@@ -150,5 +150,36 @@ def pdf_cmd(pattern_file, output, designer):
     console.print(f"[green]PDF/HTML saved to: {output}[/green]")
     console.print(f"  Open in browser and Ctrl+P to save as PDF")
 
+
+@cli.command("explain")
+@click.argument("pattern_file", type=click.Path(exists=True))
+def explain_cmd(pattern_file):
+    """AI explanation of pattern with suggestions."""
+    from .ai import PatternExplainer, SuggestionEngine, DescriptionGenerator
+    text = Path(pattern_file).read_text()
+    pattern = CrochetParser().parse(text)
+    report = validate_pattern(pattern)
+    result = PatternExplainer().explain(pattern, report)
+    suggestions = SuggestionEngine().generate_suggestions(pattern, report)
+    description = DescriptionGenerator().generate(pattern, report)
+    console.print(f"\n[bold blue]Pattern Explanation[/bold blue]")
+    console.print(f"[dim]{result.summary}[/dim]\n")
+    console.print(result.explanation)
+    console.print(f"\n[bold]Shape:[/bold] {result.shape_guess}")
+    console.print(f"[bold]Difficulty:[/bold] {result.difficulty_explanation}")
+    console.print(f"\n[bold cyan]Highlights[/bold cyan]")
+    for h in result.highlights: console.print(f"  * {h}")
+    console.print(f"\n[bold green]Recommendations[/bold green]")
+    for r in result.recommendations: console.print(f"  + {r}")
+    if suggestions:
+        console.print(f"\n[bold yellow]Fix Suggestions[/bold yellow]")
+        for s in suggestions: console.print(f"  [{s.confidence}] {s.error_location}: {s.suggestion}")
+    console.print(f"\n[bold magenta]Pattern Description[/bold magenta]")
+    console.print(f"  Title: {description.title}")
+    console.print(f"  {description.short_description}")
+    console.print(f"  Skill: {description.skill_level}")
+    console.print(f"  Size: {description.finished_size}")
+    console.print(f"  Tags: {', '.join(description.tags)}")
+
 def main(): cli()
 if __name__ == "__main__": main()
