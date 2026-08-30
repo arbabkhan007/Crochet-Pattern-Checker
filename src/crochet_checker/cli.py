@@ -109,5 +109,26 @@ def _display(report, verbose=False):
         console.print("\n[bold yellow]WARNINGS:[/bold yellow]")
         for f in report.warnings: console.print(f"  [yellow]![/yellow] [{f.location}] {f.message}")
 
+
+@cli.command("render-3d")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--output", "-o", default="output")
+def render_3d(pattern_file, output):
+    """Generate 3D mesh from pattern."""
+    from .simulation import simulate_surface, analyze_pattern_shape
+    text = Path(pattern_file).read_text()
+    pattern = CrochetParser().parse(text)
+    analysis = analyze_pattern_shape(pattern)
+    mesh = simulate_surface(pattern)
+    stem = Path(pattern_file).stem
+    out_dir = Path(output) / stem
+    out_dir.mkdir(parents=True, exist_ok=True)
+    console.print(f"Shape: [cyan]{analysis.detected_shape.value}[/cyan] ({analysis.confidence:.0%})")
+    console.print(f"  {analysis.explanation}")
+    console.print(f"Mesh: {mesh.vertex_count} verts, {mesh.face_count} faces")
+    filepath = out_dir / f"{stem}.obj"
+    mesh.save_obj(str(filepath))
+    console.print(f"  Saved: [green]{filepath}[/green]")
+
 def main(): cli()
 if __name__ == "__main__": main()
