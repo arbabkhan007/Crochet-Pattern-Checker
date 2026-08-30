@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crochet-pattern-checker"
+version = "0.1.0"
+description = "Crochet Pattern Verification, Visualization & PDF Publishing Engine"
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.0", "click>=8.0", "rich>=13.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pytest-cov>=4.1"]
+
+[project.scripts]
+crochet-check = "crochet_checker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

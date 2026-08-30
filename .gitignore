@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+output/diagrams/*
+output/renders/*
+output/pdf/*
+!output/diagrams/.gitkeep
+!output/renders/.gitkeep
+!output/pdf/.gitkeep
