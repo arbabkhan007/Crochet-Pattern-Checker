@@ -130,5 +130,25 @@ def render_3d(pattern_file, output):
     mesh.save_obj(str(filepath))
     console.print(f"  Saved: [green]{filepath}[/green]")
 
+
+@cli.command("pdf")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--output", "-o", default=None, help="Output file path")
+@click.option("--designer", default="", help="Designer name")
+def pdf_cmd(pattern_file, output, designer):
+    """Generate professional PDF/HTML from pattern."""
+    from .pdf import PDFConfig, PDFGenerator
+    text = Path(pattern_file).read_text()
+    pattern = CrochetParser().parse(text)
+    report = validate_pattern(pattern)
+    config = PDFConfig(designer_name=designer)
+    gen = PDFGenerator(config)
+    if output is None:
+        output = str(Path("output") / Path(pattern_file).stem / (Path(pattern_file).stem + ".html"))
+    Path(output).parent.mkdir(parents=True, exist_ok=True)
+    gen.save(output, pattern, report)
+    console.print(f"[green]PDF/HTML saved to: {output}[/green]")
+    console.print(f"  Open in browser and Ctrl+P to save as PDF")
+
 def main(): cli()
 if __name__ == "__main__": main()

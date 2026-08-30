@@ -2,7 +2,7 @@
 from __future__ import annotations
 import math
 from typing import Optional
-from pydantic import BaseModel, Field, computed_field
+from pydantic import BaseModel, Field, computed_field, computed_field
 from ..model.pattern import ConstructionType, Pattern
 
 class StitchDimensions(BaseModel):
@@ -32,17 +32,21 @@ class PatternMeasurements(BaseModel):
     round_measurements: list[RoundMeasurement] = Field(default_factory=list)
 
     @computed_field
+    @computed_field
     @property
     def total_height_inches(self) -> float:
         return self.total_height_mm / 25.4
+    @computed_field
     @computed_field
     @property
     def max_radius_inches(self) -> float:
         return self.max_radius_mm / 25.4
     @computed_field
+    @computed_field
     @property
     def max_circumference_inches(self) -> float:
         return self.max_circumference_mm / 25.4
+    @computed_field
     @computed_field
     @property
     def max_diameter_inches(self) -> float:
