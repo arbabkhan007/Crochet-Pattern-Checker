@@ -284,5 +284,48 @@ def config_cmd(set_key, show):
         cf.write_text(json.dumps(config, indent=2))
         console.print(f"[green]Key for {p} saved.[/green]")
 
-def main(): cli()
+
+
+@cli.command("yarn-calc")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--weight", default="worsted", type=click.Choice(["lace","fingering","sport","dk","worsted","aran","bulky","super_bulky","jumbo"]))
+@click.option("--grams", default=100)
+@click.option("--yards", default=200)
+def yarn_calc(pattern_file, weight, grams, yards):
+    """Estimate yarn requirements."""
+    from .utils import estimate_yarn
+    text = Path(pattern_file).read_text()
+    pattern = CrochetParser().parse(text)
+    est = estimate_yarn(pattern, yarn_weight=weight, grams_per_skein=grams, yards_per_skein=yards)
+    console.print(f"\n[bold]Yarn Estimate for {pattern.metadata.title or Path(pattern_file).stem}[/bold]")
+    console.print(f"\u2501" * 30)
+    console.print(f"Total yarn: [cyan]{est.total_yards:.1f} yards[/cyan] ({est.total_meters:.2f} meters)")
+    if est.total_grams: console.print(f"Weight: [cyan]{est.total_grams:.1f} grams[/cyan]")
+    console.print(f"Skeins needed: [bold green]{est.skeins_needed:.2f}[/bold green] (with 15% margin)")
+    console.print(f"Confidence: [yellow]{est.confidence}[/yellow]")
+    if est.notes:
+        console.print("\n[bold]Notes:[/bold]")
+        for n in est.notes: console.print(f"  \u2022 {n}")
+
+
+@cli.command("progress")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--complete", "-c", type=int)
+@click.option("--uncomplete", "-u", type=int)
+@click.option("--note", "-n")
+@click.option("--save", "-s")
+def progress(pattern_file, complete, uncomplete, note, save):
+    """Track crochet progress."""
+    from .utils import track_progress
+    text = Path(pattern_file).read_text()
+    pattern = CrochetParser().parse(text)
+    tracker = track_progress(pattern)
+    
+    if complete and tracker.complete_round(complete): console.print(f"[green]\u2713 Round {complete} complete[/green]")
+    if uncomplete and tracker.uncomplete_round(uncomplete): console.print(f"[yellow]\u25cb Round {uncomplete} incomplete[/yellow]")
+    if note: tracker.add_note(note); console.print("[blue]\U0001f4dd Note added[/blue]")
+    if save: tracker.save(save); console.print(f"[green]\U0001f4be Saved to {save}[/green]")
+    
+    console.print("\n" + tracker.get_summary())
+\n\ndef main(): cli()
 if __name__ == "__main__": main()
