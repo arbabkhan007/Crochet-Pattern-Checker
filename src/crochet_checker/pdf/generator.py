@@ -8,6 +8,16 @@ from ..model.pattern import Pattern
 from ..validation import ValidationReport
 from ..visualization.measurements import PatternMeasurements, measure_pattern
 
+
+TEMPLATES = {
+    "minimal": {"primary": "#2C3E50", "secondary": "#7F8C8D", "accent": "#4A90D9", "bg": "#FFFFFF", "card_bg": "#F8F9FA", "round_bg": "#FAFBFC", "border": "#E0E0E0", "font_heading": "Georgia, serif", "font_body": "Georgia, serif", "font_mono": "Courier New, monospace"},
+    "craft": {"primary": "#5B4A69", "secondary": "#9B8EA8", "accent": "#E8A87C", "bg": "#FFF8F0", "card_bg": "#FFF0E5", "round_bg": "#FFF5ED", "border": "#E8D5C4", "font_heading": "Palatino, serif", "font_body": "Palatino, serif", "font_mono": "Courier New, monospace"},
+    "modern": {"primary": "#1A1A2E", "secondary": "#16213E", "accent": "#E94560", "bg": "#FFFFFF", "card_bg": "#F5F5F5", "round_bg": "#FAFAFA", "border": "#E0E0E0", "font_heading": "Helvetica Neue, Arial, sans-serif", "font_body": "Helvetica Neue, Arial, sans-serif", "font_mono": "SF Mono, monospace"},
+    "ocean": {"primary": "#0B3D2E", "secondary": "#1A6B52", "accent": "#38A3A5", "bg": "#F0F8F5", "card_bg": "#E5F5EE", "round_bg": "#F0FAF5", "border": "#C5E0D5", "font_heading": "Garamond, serif", "font_body": "Garamond, serif", "font_mono": "Courier New, monospace"},
+    "berry": {"primary": "#6B2D5B", "secondary": "#A04E8C", "accent": "#D4738E", "bg": "#FFF5F8", "card_bg": "#FFE8F0", "round_bg": "#FFF0F5", "border": "#E8C5D5", "font_heading": "Baskerville, serif", "font_body": "Baskerville, serif", "font_mono": "Courier New, monospace"},
+    "sunset": {"primary": "#C0392B", "secondary": "#E67E22", "accent": "#F39C12", "bg": "#FFFAF0", "card_bg": "#FFF5E5", "round_bg": "#FFF8ED", "border": "#F0D5B5", "font_heading": "Copperplate, serif", "font_body": "Optima, sans-serif", "font_mono": "Courier New, monospace"},
+}
+
 class PDFConfig(BaseModel):
     template: str = "minimal"
     include_cover: bool = True
@@ -21,6 +31,7 @@ class PDFConfig(BaseModel):
 class PDFGenerator:
     def __init__(self, config=None):
         self.config = config or PDFConfig()
+        self.theme = TEMPLATES.get(self.config.template, TEMPLATES["minimal"])
     def generate(self, pattern, validation_report=None):
         m = measure_pattern(pattern); s = []
         if self.config.include_cover: s.append(self._cover(pattern, m))
