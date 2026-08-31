@@ -40,7 +40,7 @@ class AIProvider:
         result = PatternExplainer().explain(p, r)
         parts = [result.summary, "", result.explanation]
         if result.highlights: parts.append("\nKey Points:"); [parts.append(f"  * {h}") for h in result.highlights]
-        if result.recommendations: parts.append("\nRecommendations:"); [parts.append(f"  + {r}") for r in result.recommendations]
+        if result.recommendations: parts.append("\nRecommendations:"); [parts.append(f"  + {rc}") for rc in result.recommendations]
         return "\n".join(parts)
     def _prompt(self, p, r, ctx):
         items = p.rounds or p.rows; n = len(items) if items else 0

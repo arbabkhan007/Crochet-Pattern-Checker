@@ -193,8 +193,8 @@ def image_cmd(pattern_file, output, provider, style):
     from .image import ImageProvider, ImageConfig
     text = Path(pattern_file).read_text()
     pattern = CrochetParser().parse(text)
-    title = pattern.metadata.title or Path(pattern_file).stem
-    category = pattern.metadata.category or ""
+    title = getattr(pattern.metadata, "title", None) or Path(pattern_file).stem
+    category = getattr(pattern.metadata, "category", "") or ""
     config = ImageConfig(provider=provider, style=style)
     img = ImageProvider(config).generate_cover_image(title, category)
     if output is None:
@@ -210,6 +210,56 @@ def image_cmd(pattern_file, output, provider, style):
         console.print(f"[green]Cover saved to: {out}[/green]")
     console.print(f"  Provider: {provider} | Style: {style}")
 
+
+@cli.command("config")
+@click.option("--set-key", nargs=2, metavar="PROVIDER KEY")
+@click.option("--show", is_flag=True)
+def config_cmd(set_key, show):
+    """Configure AI and image providers."""
+    import json
+    cf = Path.home() / ".crochet_checker_config.json"
+    if show:
+        if cf.exists():
+            config = json.loads(cf.read_text())
+            console.print("\n[bold]Configuration:[/bold]")
+            for k, v in config.items(): console.print(f"  {k}: {v[:8]}...{v[-4:]}")
+        else:
+            console.print("\n[yellow]No config found.[/yellow]")
+        console.print("\n[bold]Providers:[/bold] openai, anthropic, gemini, ollama, dalle, stable_diffusion")
+        return
+    if set_key:
+        p, k = set_key
+        config = json.loads(cf.read_text()) if cf.exists() else {}
+        config[f"{p}_api_key"] = k
+        cf.write_text(json.dumps(config, indent=2))
+        console.print(f"[green]Key for {p} saved.[/green]")
+
+
+@cli.command("image")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--output", "-o", default=None)
+@click.option("--provider", default="placeholder", type=click.Choice(["placeholder","dalle","gemini","stable_diffusion"]))
+@click.option("--style", default="watercolor", type=click.Choice(["watercolor","realistic","cartoon","minimalist"]))
+def image_cmd(pattern_file, output, provider, style):
+    """Generate cover image for pattern."""
+    from .image import ImageProvider, ImageConfig
+    text = Path(pattern_file).read_text()
+    pattern = CrochetParser().parse(text)
+    title = getattr(pattern.metadata, "title", None) or Path(pattern_file).stem
+    category = getattr(pattern.metadata, "category", "") or ""
+    img = ImageProvider(ImageConfig(provider=provider, style=style)).generate_cover_image(title, category)
+    if output is None:
+        output = str(Path("output") / Path(pattern_file).stem / (Path(pattern_file).stem + "_cover.svg"))
+    Path(output).parent.mkdir(parents=True, exist_ok=True)
+    if img.startswith("<svg"):
+        Path(output).write_text(img)
+        console.print(f"[green]SVG cover saved to: {output}[/green]")
+    else:
+        import base64
+        out = output.replace(".svg", ".png")
+        Path(out).write_bytes(base64.b64decode(img))
+        console.print(f"[green]Cover saved to: {out}[/green]")
+    console.print(f"  Provider: {provider} | Style: {style}")
 
 @cli.command("config")
 @click.option("--set-key", nargs=2, metavar="PROVIDER KEY")
