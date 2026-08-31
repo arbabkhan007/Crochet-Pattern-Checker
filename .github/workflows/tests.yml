@@ -1,0 +1,24 @@
+name: Tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+          pip install -e ".[dev]" weasyprint python-multipart
+      - run: python -m pytest tests/ -v --tb=short
+      - run: |
+          crochet-check check examples/amigurumi.txt
+          crochet-check explain examples/amigurumi.txt
+          crochet-check pdf examples/amigurumi.txt --designer CI -o /tmp/test.pdf
+          file /tmp/test.pdf
