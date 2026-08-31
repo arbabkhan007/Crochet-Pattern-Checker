@@ -1,0 +1,58 @@
+Amigurumi Bunny
+Difficulty: Intermediate
+Category: Amigurumi
+Hook: 3.5mm
+Yarn: DK weight, white for body, pink for ears
+
+A cute stuffed bunny with long ears and a round body. Worked in continuous rounds.
+
+HEAD (make 1)
+Round 1: 6 sc into magic ring (6)
+Round 2: inc x 6 (12)
+Round 3: (sc, inc) x 6 (18)
+Round 4: (2 sc, inc) x 6 (24)
+Round 5: (3 sc, inc) x 6 (30)
+Round 6: (4 sc, inc) x 6 (36)
+Round 7-12: sc in each st around (36)
+Round 13: (4 sc, dec) x 6 (30)
+Round 14: (3 sc, dec) x 6 (24)
+Round 15: (2 sc, dec) x 6 (18)
+Round 16: (sc, dec) x 6 (12)
+Round 17: dec x 6 (6)
+
+BODY (make 1)
+Round 1: 6 sc into magic ring (6)
+Round 2: inc x 6 (12)
+Round 3: (sc, inc) x 6 (18)
+Round 4: (2 sc, inc) x 6 (24)
+Round 5: (3 sc, inc) x 6 (30)
+Round 6-10: sc in each st around (30)
+Round 11: (3 sc, dec) x 6 (24)
+Round 12: (2 sc, dec) x 6 (18)
+
+EARS (make 2)
+Round 1: 4 sc into magic ring (4)
+Round 2: (sc, inc) x 2 (6)
+Round 3: (2 sc, inc) x 2 (8)
+Round 4-10: sc in each st around (8)
+
+ARMS (make 2)
+Round 1: 6 sc into magic ring (6)
+Round 2: (sc, inc) x 3 (9)
+Round 3-7: sc in each st around (9)
+
+LEGS (make 2)
+Round 1: 6 sc into magic ring (6)
+Round 2: (sc, inc) x 3 (9)
+Round 3: (2 sc, inc) x 3 (12)
+Round 4-6: sc in each st around (12)
+Round 7: (2 sc, dec) x 3 (9)
+
+ASSEMBLY
+1. Stuff head and body firmly
+2. Sew head to body
+3. Attach ears to top of head
+4. Sew arms to sides of body
+5. Attach legs to bottom
+6. Add safety eyes and embroider nose
+7. Weave in all ends
