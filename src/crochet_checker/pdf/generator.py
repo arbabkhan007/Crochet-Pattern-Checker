@@ -32,7 +32,18 @@ class PDFGenerator:
         if self.config.designer_name or self.config.copyright_text: s.append(self._footer())
         return self._wrap(chr(10).join(s), pattern)
     def save(self, filepath, pattern, validation_report=None):
-        from pathlib import Path; Path(filepath).write_text(self.generate(pattern, validation_report), encoding="utf-8")
+        from pathlib import Path
+        content = self.generate(pattern, validation_report)
+        if str(filepath).endswith(".pdf"):
+            try:
+                from weasyprint import HTML
+                HTML(string=content).write_pdf(filepath)
+            except ImportError:
+                html_path = str(filepath).replace(".pdf", ".html")
+                Path(html_path).write_text(content, encoding="utf-8")
+                raise ImportError(f"WeasyPrint not installed. Saved HTML to {html_path}. Install: pip install weasyprint")
+        else:
+            Path(filepath).write_text(content, encoding="utf-8")
     def _wrap(self, body, pattern):
         t = html_lib.escape(pattern.metadata.title or "Crochet Pattern")
         return f"""<!DOCTYPE html>
