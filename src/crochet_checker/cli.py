@@ -22,7 +22,8 @@ def cli():
 @click.option("--verbose", "-v", is_flag=True)
 def check(pattern_file, strict, output_json, verbose):
     """Check a crochet pattern."""
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     if not output_json:
         console.print(f"\n[bold]Crochet Pattern Checker[/bold] v0.2.0")
         console.print(f"Checking: [cyan]{Path(pattern_file).name}[/cyan]\n")
@@ -327,5 +328,10 @@ def progress(pattern_file, complete, uncomplete, note, save):
     if save: tracker.save(save); console.print(f"[green]\U0001f4be Saved to {save}[/green]")
     
     console.print("\n" + tracker.get_summary())
-\n\ndef main(): cli()
-if __name__ == "__main__": main()
+def main():
+    cli()
+
+
+if __name__ == "__main__":
+    main()
+    
