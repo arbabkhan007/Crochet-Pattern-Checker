@@ -54,7 +54,8 @@ def check(pattern_file, strict, output_json, verbose):
 def render(pattern_file, output):
     """Generate visual diagrams and charts."""
     from .visualization import generate_circle_diagram, generate_stitch_count_chart, generate_crochet_chart, render_2d_preview, measure_pattern
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     report = validate_pattern(pattern)
     stem = Path(pattern_file).stem
@@ -78,7 +79,8 @@ def render(pattern_file, output):
 def measure(pattern_file):
     """Show pattern measurements."""
     from .visualization import measure_pattern
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     m = measure_pattern(pattern)
     console.print(f"\n[bold]Pattern Measurements[/bold]")
@@ -117,7 +119,8 @@ def _display(report, verbose=False):
 def render_3d(pattern_file, output):
     """Generate 3D mesh from pattern."""
     from .simulation import simulate_surface, analyze_pattern_shape
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     analysis = analyze_pattern_shape(pattern)
     mesh = simulate_surface(pattern)
@@ -139,7 +142,8 @@ def render_3d(pattern_file, output):
 def pdf_cmd(pattern_file, output, designer):
     """Generate professional PDF/HTML from pattern."""
     from .pdf import PDFConfig, PDFGenerator
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     report = validate_pattern(pattern)
     config = PDFConfig(designer_name=designer)
@@ -158,7 +162,8 @@ def pdf_cmd(pattern_file, output, designer):
 def explain_cmd(pattern_file, ai_provider):
     """AI explanation of pattern with suggestions."""
     from .ai import PatternExplainer, SuggestionEngine, DescriptionGenerator
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     report = validate_pattern(pattern)
     result = PatternExplainer().explain(pattern, report)
@@ -192,7 +197,8 @@ def explain_cmd(pattern_file, ai_provider):
 def image_cmd(pattern_file, output, provider, style):
     """Generate cover image for pattern."""
     from .image import ImageProvider, ImageConfig
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     title = getattr(pattern.metadata, "title", None) or Path(pattern_file).stem
     category = getattr(pattern.metadata, "category", "") or ""
@@ -244,7 +250,8 @@ def config_cmd(set_key, show):
 def image_cmd(pattern_file, output, provider, style):
     """Generate cover image for pattern."""
     from .image import ImageProvider, ImageConfig
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     title = getattr(pattern.metadata, "title", None) or Path(pattern_file).stem
     category = getattr(pattern.metadata, "category", "") or ""
@@ -295,7 +302,8 @@ def config_cmd(set_key, show):
 def yarn_calc(pattern_file, weight, grams, yards):
     """Estimate yarn requirements."""
     from .utils import estimate_yarn
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     est = estimate_yarn(pattern, yarn_weight=weight, grams_per_skein=grams, yards_per_skein=yards)
     console.print(f"\n[bold]Yarn Estimate for {pattern.metadata.title or Path(pattern_file).stem}[/bold]")
@@ -318,7 +326,8 @@ def yarn_calc(pattern_file, weight, grams, yards):
 def progress(pattern_file, complete, uncomplete, note, save):
     """Track crochet progress."""
     from .utils import track_progress
-    text = Path(pattern_file).read_text()
+    from crochet_checker.utils import read_pattern_file
+    text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     tracker = track_progress(pattern)
     
