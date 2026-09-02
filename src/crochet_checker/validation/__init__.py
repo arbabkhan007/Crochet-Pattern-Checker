@@ -1,5 +1,6 @@
 from .abbreviations import AbbreviationValidator, validate_abbreviations
 from .terminology import TerminologyValidator, validate_terminology
+from .multi_piece import MultiPieceValidator, validate_multi_piece
 from .stitch_counts import Severity, StitchCountReport, StitchCountValidator, ValidationFinding, validate_stitch_counts
 from .row_transitions import RowTransitionValidator, TransitionReport
 from .consistency import ConsistencyValidator, ConsistencyReport
