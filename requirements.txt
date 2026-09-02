@@ -1,0 +1,17 @@
+# Core dependencies
+pydantic>=2.0.0
+click>=8.1.0
+rich>=13.0.0
+
+# PDF support
+PyPDF2>=3.0.0
+weasyprint>=60.0.0
+
+# Web/API dependencies
+fastapi>=0.100.0
+uvicorn>=0.23.0
+python-multipart>=0.0.6
+httpx>=0.24.0
+
+# Testing
+pytest>=7.4.0

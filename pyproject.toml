@@ -7,7 +7,12 @@ name = "crochet-pattern-checker"
 version = "0.1.0"
 description = "Crochet Pattern Verification, Visualization & PDF Publishing Engine"
 requires-python = ">=3.10"
-dependencies = ["pydantic>=2.0", "click>=8.0", "rich>=13.0"]
+dependencies = [
+    "PyPDF2>=3.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "python-multipart>=0.0.6",
+    "httpx>=0.24.0","pydantic>=2.0", "click>=8.0", "rich>=13.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4", "pytest-cov>=4.1"]
