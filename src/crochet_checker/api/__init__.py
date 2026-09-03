@@ -1,1 +1,4 @@
-# Phase 2+ placeholder
+"""REST API - FastAPI web service."""
+from .rest import app
+
+__all__ = ["app"]
