@@ -9,3 +9,12 @@ output/pdf/*
 !output/diagrams/.gitkeep
 !output/renders/.gitkeep
 !output/pdf/.gitkeep
+
+# Large generated artifact directories kept out of git (kept in sandbox/zip when needed)
+output/ember/body/
+output/ember/snout/
+output/ember/legs/
+output/ember/horns/
+output/ember/tail/
+output/ember/wings/
+output/ember/head/

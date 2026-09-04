@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+<rect width="500" height="300" fill="white"/>
+<text x="250.0" y="25" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Stitch Count Per Round</text>
+<line x1="60" y1="45" x2="60" y2="260" stroke="#333"/>
+<line x1="60" y1="260" x2="470" y2="260" stroke="#333"/>
+<rect x="103.3" y="116.7" width="30" height="143.3" fill="#4A90D9" opacity="0.8" rx="2"/>
+<text x="118.3" y="113.7" text-anchor="middle" font-size="8" fill="#555" font-family="Arial">4</text>
+<text x="118.3" y="272" text-anchor="middle" font-size="8" fill="#666" font-family="Arial">1</text>
+<rect x="176.7" y="224.2" width="30" height="35.8" fill="#E74C3C" opacity="0.8" rx="2"/>
+<text x="191.7" y="221.2" text-anchor="middle" font-size="8" fill="#555" font-family="Arial">1</text>
+<text x="191.7" y="272" text-anchor="middle" font-size="8" fill="#666" font-family="Arial">2</text>
+<rect x="250.0" y="45.0" width="30" height="215.0" fill="#2ECC71" opacity="0.8" rx="2"/>
+<text x="265.0" y="42.0" text-anchor="middle" font-size="8" fill="#555" font-family="Arial">6</text>
+<text x="265.0" y="272" text-anchor="middle" font-size="8" fill="#666" font-family="Arial">3</text>
+<rect x="323.3" y="224.2" width="30" height="35.8" fill="#E74C3C" opacity="0.8" rx="2"/>
+<text x="338.3" y="221.2" text-anchor="middle" font-size="8" fill="#555" font-family="Arial">1</text>
+<text x="338.3" y="272" text-anchor="middle" font-size="8" fill="#666" font-family="Arial">4</text>
+<rect x="396.7" y="224.2" width="30" height="35.8" fill="#4A90D9" opacity="0.8" rx="2"/>
+<text x="411.7" y="221.2" text-anchor="middle" font-size="8" fill="#555" font-family="Arial">1</text>
+<text x="411.7" y="272" text-anchor="middle" font-size="8" fill="#666" font-family="Arial">5</text>
+</svg>

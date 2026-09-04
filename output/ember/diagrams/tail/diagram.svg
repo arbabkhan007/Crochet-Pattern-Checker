@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<rect width="600" height="600" fill="white"/>
+<text x="300.0" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#333">Crochet Pattern Diagram</text>
+<circle cx="300.0" cy="300.0" r="40.0" fill="none" stroke="#F39C12" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="260.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="340.0" cy="300.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="300.0" cy="340.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="260.0" cy="300.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="345.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R1</text>
+<circle cx="300.0" cy="300.0" r="60.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="240.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="365.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R2</text>
+<circle cx="300.0" cy="300.0" r="80.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="220.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="369.3" cy="260.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="369.3" cy="340.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="300.0" cy="380.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="230.7" cy="340.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="230.7" cy="260.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="385.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R3</text>
+<circle cx="300.0" cy="300.0" r="100.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="200.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="405.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R4</text>
+<circle cx="300.0" cy="300.0" r="120.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="180.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="425.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R5</text>
+<circle cx="300.0" cy="300.0" r="140.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="160.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="399.0" cy="201.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="440.0" cy="300.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="399.0" cy="399.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="300.0" cy="440.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="201.0" cy="399.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="160.0" cy="300.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="201.0" cy="201.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="445.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R6</text>
+<circle cx="300.0" cy="300.0" r="160.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="140.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="465.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R7</text>
+<circle cx="300.0" cy="300.0" r="180.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="120.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="485.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R8</text>
+<circle cx="300.0" cy="300.0" r="200.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="100.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="417.6" cy="138.2" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="490.2" cy="238.2" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="490.2" cy="361.8" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="417.6" cy="461.8" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="300.0" cy="500.0" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="182.4" cy="461.8" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="109.8" cy="361.8" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="109.8" cy="238.2" r="4.0" fill="#555" opacity="0.5"/>
+<circle cx="182.4" cy="138.2" r="4.0" fill="#555" opacity="0.5"/>
+<text x="505.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R9</text>
+<circle cx="300.0" cy="300.0" r="220.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="80.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="525.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R10</text>
+<circle cx="300.0" cy="300.0" r="240.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="60.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="545.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R11</text>
+<circle cx="300.0" cy="300.0" r="260.0" fill="none" stroke="#4A90D9" stroke-width="2" opacity="0.8"/>
+<circle cx="300.0" cy="40.0" r="4.0" fill="#555" opacity="0.5"/>
+<text x="565.0" y="297.0" font-family="Arial" font-size="10" fill="#666" dominant-baseline="middle">R12</text>
+<circle cx="300.0" cy="300.0" r="5" fill="#F39C12" stroke="#333"/>
+<text x="300.0" y="318.0" text-anchor="middle" font-size="9" fill="#666" font-family="Arial">MR</text>
+</svg>
