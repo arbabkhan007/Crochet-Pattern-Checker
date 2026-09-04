@@ -39,7 +39,7 @@ class YarnCalculator:
         
         notes = [f"Based on {self.yarn_weight} weight yarn"]
         if pattern.hook: notes.append(f"Hook size: {pattern.hook.size_mm}mm")
-        if measurements.max_diameter_inches > 0: notes.append(f"Finished size: ~{measurements.max_diameter_inches:.1f}" diameter")
+        if measurements.max_diameter_inches > 0: notes.append(f"Finished size: ~{measurements.max_diameter_inches:.1f} diameter")
         
         return YarnEstimate(total_inches=round(total_inches, 1), total_yards=round(total_yards, 1), total_meters=round(total_meters, 2),
                            total_grams=round(total_grams, 1), skeins_needed=round(skeins, 2), confidence="high" if pattern.hook and pattern.yarn else "medium",

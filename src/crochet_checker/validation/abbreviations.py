@@ -10,7 +10,7 @@ class AbbreviationValidator:
         'yo', 'yr', 'turn', 'beg', 'end', 'rep',
     }
     VALID_ABBREVIATIONS.update(STITCH_PRODUCTION.keys())
-    VALID_ABBREVIATIONS.update(ABBREVIATION_MAP.keys())
+#     VALID_ABBREVIATIONS.update(ABBREVIATION_MAP.keys())
     
     def validate_instruction_text(self, text: str, round_number: int) -> list[dict]:
         issues = []
