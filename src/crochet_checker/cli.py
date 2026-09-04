@@ -327,5 +327,7 @@ def progress(pattern_file, complete, uncomplete, note, save):
     if save: tracker.save(save); console.print(f"[green]\U0001f4be Saved to {save}[/green]")
     
     console.print("\n" + tracker.get_summary())
-\n\ndef main(): cli()
+
+
+def main(): cli()
 if __name__ == "__main__": main()
