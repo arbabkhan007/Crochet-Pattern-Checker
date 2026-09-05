@@ -47,3 +47,9 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Sellable pattern deliverables (PDFs are the product of this repo)
+!deliverables/*.pdf
+
+# local virtualenv (the tracked .venv was stale; recreated locally)
+.venv/
