@@ -46,3 +46,15 @@ __all__.extend([
     'PatternExporter', 'export_pattern_to_file',
     'PatternComparator', 'compare_patterns', 'format_comparison',
 ])
+
+
+# Blender and Browser features
+from .blender_integration import BlenderPatternGenerator, BlenderPatternVisualizer, generate_3d_from_pattern, visualize_stitches
+from .browser_viewer import BrowserPDFViewer, BrowserImageViewer, view_pdf_in_browser, view_image_in_browser
+from .html_generator import HTMLPatternGenerator, generate_interactive_pattern
+
+__all__.extend([
+    'BlenderPatternGenerator', 'BlenderPatternVisualizer', 'generate_3d_from_pattern', 'visualize_stitches',
+    'BrowserPDFViewer', 'BrowserImageViewer', 'view_pdf_in_browser', 'view_image_in_browser',
+    'HTMLPatternGenerator', 'generate_interactive_pattern',
+])
