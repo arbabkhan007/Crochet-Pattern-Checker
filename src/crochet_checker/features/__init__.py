@@ -30,3 +30,19 @@ __all__.extend([
     'PatternCollectionManager', 'PatternCollection', 'format_collections',
     'EnhancedPatternLibrary', 'Pattern', 'format_pattern_list', 'format_library_stats',
 ])
+
+
+# Additional advanced features
+from .pattern_analytics import PatternAnalyticsEngine, generate_analytics_report, format_analytics
+from .pattern_version_control import PatternVersionControl, format_version_history
+from .pattern_templates import PatternTemplateLibrary, format_template_list
+from .pattern_export import PatternExporter, export_pattern_to_file
+from .pattern_comparison import PatternComparator, compare_patterns, format_comparison
+
+__all__.extend([
+    'PatternAnalyticsEngine', 'generate_analytics_report', 'format_analytics',
+    'PatternVersionControl', 'format_version_history',
+    'PatternTemplateLibrary', 'format_template_list',
+    'PatternExporter', 'export_pattern_to_file',
+    'PatternComparator', 'compare_patterns', 'format_comparison',
+])
