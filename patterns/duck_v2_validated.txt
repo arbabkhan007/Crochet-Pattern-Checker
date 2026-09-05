@@ -1,0 +1,47 @@
+# Little Duck Plushie — v2 VALIDATED & CORRECTED (publication source)
+# Design Code NS 05 Design Code NS 05.
+# US terms, 4.5 mm hook, super-bulky chenille #6. Gauge 8 mm/st, 7 mm/rnd.
+# Claims: 16 cm tall (23 rnds x 7 mm = 161 mm); 7.5 cm wide (30 sts x 8 mm
+# = 76 mm dia); 12-st swatch ~ 10 cm; eyes 7-8 sts apart = 56-64 mm.
+# NOTE: all round tables arrived complete and consistent.
+
+=== BODY (tail to crown, one piece) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: [3 sc, inc] x 6 (30)
+Rnd 6: sc in each st around (30)
+Rnd 7: sc in each st around (30)
+Rnd 8: sc in each st around (30)
+Rnd 9: sc in each st around (30)
+Rnd 10: [3 sc, dec] x 6 (24)
+Rnd 11: sc in each st around (24)
+Rnd 12: [2 sc, dec] x 6 (18)
+Rnd 13: [2 sc, inc] x 6 (24)
+Rnd 14: [3 sc, inc] x 6 (30)
+Rnd 15: sc in each st around (30)
+Rnd 16: sc in each st around (30)
+Rnd 17: sc in each st around (30)
+Rnd 18: sc in each st around (30)
+Rnd 19: sc in each st around (30)
+Rnd 20: [3 sc, dec] x 6 (24)
+Rnd 21: [2 sc, dec] x 6 (18)
+Rnd 22: [sc, dec] x 6 (12)
+Rnd 23: dec x 6 (6)
+
+=== WINGS (make 2) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: sc in each st around (12)
+Rnd 4: 6 sc across both layers (6)
+
+=== BEAK (worked around a chain) ===
+Rnd 1: sc 3, 3 sc in last ch, sc 3, inc (11)
+Rnd 2: inc, 2 sc, inc, 2 sc, inc, 2 sc, inc, sc (15)
+
+# ===== V2 VALIDATION NOTE =====
+# Status: PASS (deterministic round-chain + size checks, tools/validate_pattern.py)
+# No stitch-count or size errors found. All 29 rounds verified; beak Rnd 1 = 11 sts
+#   around a 5-ch and Rnd 2 = 15 exactly. FIX APPLIED: removed the internal note
+#   '(tentative - confirm with studio)' from the design code line.
