@@ -17,3 +17,16 @@ __all__ = [
     'PatternSearchEngine', 'format_search_results',
     'auto_correct_pattern', 'format_corrections',
 ]
+
+# Bulk management features
+from .bulk_importer import BulkPatternImporter, format_import_results
+from .pattern_splitter import PatternSplitter, split_pattern_file, format_split_results
+from .pattern_collection import PatternCollectionManager, PatternCollection, format_collections
+from .pattern_library_manager import EnhancedPatternLibrary, Pattern, format_pattern_list, format_library_stats
+
+__all__.extend([
+    'BulkPatternImporter', 'format_import_results',
+    'PatternSplitter', 'split_pattern_file', 'format_split_results',
+    'PatternCollectionManager', 'PatternCollection', 'format_collections',
+    'EnhancedPatternLibrary', 'Pattern', 'format_pattern_list', 'format_library_stats',
+])
