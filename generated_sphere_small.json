@@ -1,0 +1,56 @@
+{
+  "title": "cute bunny",
+  "type": "sphere",
+  "difficulty": "Beginner",
+  "rounds": [
+    {
+      "round": 1,
+      "instruction": "6 sc in MR",
+      "count": 6
+    },
+    {
+      "round": 2,
+      "instruction": "inc in each st around",
+      "count": 12
+    },
+    {
+      "round": 3,
+      "instruction": "[1 sc, inc] \u00d7 6",
+      "count": 18
+    },
+    {
+      "round": 4,
+      "instruction": "[2 sc, inc] \u00d7 6",
+      "count": 24
+    },
+    {
+      "round": 5,
+      "instruction": "sc in each st around",
+      "count": 24
+    },
+    {
+      "round": 6,
+      "instruction": "sc in each st around",
+      "count": 24
+    },
+    {
+      "round": 7,
+      "instruction": "[1 sc, dec] \u00d7 6",
+      "count": 18
+    },
+    {
+      "round": 8,
+      "instruction": "[0 sc, dec] \u00d7 6",
+      "count": 12
+    },
+    {
+      "round": 9,
+      "instruction": "dec \u00d7 6",
+      "count": 6
+    }
+  ],
+  "materials": {
+    "Hook": "4.0mm",
+    "Yarn": "Worsted weight"
+  }
+}
