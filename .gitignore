@@ -47,3 +47,9 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Axel publishing kit - large generated media stays out of Git (rebuild with axel_kit/scripts/*.py)
+axel_kit/video/*.mp4
+axel_kit/audio/*.mp3
+axel_kit/assets/img_pdf/
+axel_kit/*.zip
