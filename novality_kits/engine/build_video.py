@@ -154,6 +154,9 @@ class Video:
             while start > 0 and sum(heights[start:act + 1]) + rh * 2 < avail and lines[start - 1][0] != "heading": start -= 1
             if start > 0 and lines[start][0] == "header": start += 1
             window = []; used = 0
+            if start > 0 and lines[start][0] == "row":  # re-show the heading of the table we are inside
+                own = next(l for l in reversed(lines[:start]) if l[0] == "heading")
+                window += [own, ("header",)]; used += hh + hd
             for l, hgt in zip(lines[start:], heights[start:]):
                 if used + hgt > avail - (rh if start > 0 else 0): break
                 window.append(l); used += hgt
@@ -229,7 +232,7 @@ class Video:
     def chapter_frames(self, idx, total, ch, duration, t_offset, total_dur, frame_dir):
         sents = sentences(ch["text"]); total_chars = sum(len(s) for s in sents)
         tables, units, bullets = ch["tables"], ch["units"], ch["bullets"]
-        frames = []; t = 0.0; lo, hi = -1, -1; prev_hi = -1; ui = 0
+        frames = []; t = 0.0; lo, hi = -1, -1; prev_hi = -1; ui = 0; bi = -1
         for si, sent in enumerate(sents):
             dur = duration * len(sent) / total_chars
             if tables:
@@ -241,7 +244,10 @@ class Video:
             im, d = self.base_frame(idx, total, ch["title"], ch["image"])
             if tables: self.draw_tables(d, tables, lo if lo >= 0 else 0, hi)
             elif bullets:
-                u = min(len(bullets) - 1, int(((t + dur / 2) / duration) * len(bullets)))
+                keys = [re.split(r"[:.]", b, 1)[0].strip().lower() for b in bullets]
+                j = next((k for k in range(bi + 1, len(bullets)) if len(keys[k]) > 2 and sent.lower().startswith(keys[k])), None)
+                if j is not None: bi = j
+                u = bi if bi >= 0 else min(len(bullets) - 1, int(((t + dur / 2) / duration) * len(bullets)))
                 self.draw_bullets(d, bullets, u)
             self.draw_footer(d, sent, (t_offset + t) / total_dur)
             p = frame_dir / f"{ch['slug']}_{si:03d}.png"; im.save(p, compress_level=1)
