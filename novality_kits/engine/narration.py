@@ -48,6 +48,8 @@ def prose(t):
     t = t.replace("~", "about ").replace("≈", "about ").replace("→", " to ").replace("×", " by ").replace("−", " minus ")
     t = t.replace(" - ", ", ").replace(" – ", ", ").replace(" — ", ", ").replace("&", "and")
     t = t.replace("#4", "number 4").replace("#3", "number 3").replace("#2", "number 2").replace("#", "")
+    t = re.sub(r"\bUS ([A-Z])/(\d+)\b", r"US \1 \2", t); t = re.sub(r"(Round \d+)\s*/\s*(Round \d+)", r"\1 and \2", t)
+    t = re.sub(r"\b[Rr]epeat from \*\s*", "Repeat that ", t)
     t = re.sub(r"\s*/\s*", ", or ", t); t = t.replace("+", " plus ").replace("=", " equals ").replace("*", "")
     t = t.replace("e.g.", "for example").replace("i.e.", "that is").replace("approx.", "approximately").replace("vs.", "versus")
     t = re.sub(r"\bUS terms\b", "US crochet terms", t)
