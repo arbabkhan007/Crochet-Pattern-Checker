@@ -303,7 +303,7 @@ class Video:
         ms = int(LEAD_IN * 1000)
         cmd = [FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(lst), "-f", "concat", "-safe", "0", "-i", str(alist),
                "-filter_complex", f"[1:a]adelay={ms}|{ms},apad=pad_dur={LEAD_OUT}[a]", "-map", "0:v", "-map", "[a]",
-               "-vf", f"fps={FPS},format=yuv420p,scale={W}:{H}", "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-tune", "stillimage",
+               "-vf", f"fps={FPS},format=yuv420p,scale={W}:{H}", "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-tune", "stillimage", "-g", "600",
                "-c:a", "aac", "-b:a", "80k", "-shortest", "-movflags", "+faststart", str(self.out)]
         subprocess.run(cmd, check=True)
         print("wrote", self.out, self.out.stat().st_size // (1024 * 1024), "MB", f"({total / 60:.1f} min)")
