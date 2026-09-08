@@ -31,7 +31,7 @@ _131 characters_
 
 ## Files to upload
 
-- Coco_the_Capybara_Pattern.pdf (12 pages)
+- Coco_the_Capybara_Pattern.pdf (11 pages)
 - Coco_the_Capybara_Full_Walkthrough.mp3 (~13 min) + 8 chapter MP3s
 - Coco_the_Capybara_Tutorial.mp4 (1080p, ~13 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
@@ -58,7 +58,7 @@ A low, round, bottom-heavy capybara with a blunt sewn-on muzzle, plump stuffed l
 Finished size: 10.3 cm / 4 in tall. 36 sc around measures about 52 mm in diameter when stuffed (4.5 mm per stitch, 4.3 mm per round). Check it on the body after R6 - a stuffed tube, not a flat swatch. If your 36 stitches measure wider than 52 mm, crochet more tightly or go down a hook size; a loose gauge will show stuffing.
 
 ✨ WHAT YOU GET (instant download)
-• 12-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• 11-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
 • Narrated audio walkthrough (~13 min, 8 chapters) - every round read aloud so you can crochet without looking at the page
 • Tutorial video (1080p, ~13 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: the magic ring, working in a spiral, the two-layer leg join, pinching the leg top
@@ -127,7 +127,7 @@ New: Coco the Capybara 🧶 - A low, round, bottom-heavy capybara with a blunt s
 Thank you so much for buying Coco the Capybara! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Coco_the_Capybara_Pattern.pdf - the full 12-page pattern
+• Coco_the_Capybara_Pattern.pdf - the full 11-page pattern
 • Coco_the_Capybara_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 8 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 
