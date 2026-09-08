@@ -229,12 +229,14 @@ class Video:
     def chapter_frames(self, idx, total, ch, duration, t_offset, total_dur, frame_dir):
         sents = sentences(ch["text"]); total_chars = sum(len(s) for s in sents)
         tables, units, bullets = ch["tables"], ch["units"], ch["bullets"]
-        frames = []; t = 0.0; lo, hi = -1, -1; prev_hi = -1
+        frames = []; t = 0.0; lo, hi = -1, -1; prev_hi = -1; ui = 0
         for si, sent in enumerate(sents):
             dur = duration * len(sent) / total_chars
             if tables:
-                hit = next((fi for prefix, fi in units if sent.startswith(prefix)), None)
-                if hit is not None:
+                # forward-only match: two tables in one chapter may both start at "Round one:"
+                j = next((k for k in range(ui, len(units)) if sent.startswith(units[k][0])), None)
+                if j is not None:
+                    hit = units[j][1]; ui = j + 1
                     lo, hi = prev_hi + 1, hit; prev_hi = hit
             im, d = self.base_frame(idx, total, ch["title"], ch["image"])
             if tables: self.draw_tables(d, tables, lo if lo >= 0 else 0, hi)
@@ -301,8 +303,8 @@ class Video:
         ms = int(LEAD_IN * 1000)
         cmd = [FFMPEG, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(lst), "-f", "concat", "-safe", "0", "-i", str(alist),
                "-filter_complex", f"[1:a]adelay={ms}|{ms},apad=pad_dur={LEAD_OUT}[a]", "-map", "0:v", "-map", "[a]",
-               "-vf", f"fps={FPS},format=yuv420p,scale={W}:{H}", "-c:v", "libx264", "-preset", "fast", "-crf", "23", "-tune", "stillimage",
-               "-c:a", "aac", "-b:a", "112k", "-shortest", "-movflags", "+faststart", str(self.out)]
+               "-vf", f"fps={FPS},format=yuv420p,scale={W}:{H}", "-c:v", "libx264", "-preset", "fast", "-crf", "24", "-tune", "stillimage",
+               "-c:a", "aac", "-b:a", "80k", "-shortest", "-movflags", "+faststart", str(self.out)]
         subprocess.run(cmd, check=True)
         print("wrote", self.out, self.out.stat().st_size // (1024 * 1024), "MB", f"({total / 60:.1f} min)")
         marks = []; t = LEAD_IN
