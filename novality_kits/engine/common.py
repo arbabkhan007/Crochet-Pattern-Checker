@@ -98,7 +98,7 @@ def _say_unit(u):
     if u == "sc in 2nd ch": return "single crochet in the second chain from the hook"
     if u == "sl st in next st": return "slip stitch in the next stitch"
     m = re.fullmatch(r"other side:\s*(.*)", u)
-    if m: return "then along the other side of the chain, " + _say_unit(m.group(1))
+    if m: return "along the other side of the chain, " + _say_unit(m.group(1))
     return u
 
 
