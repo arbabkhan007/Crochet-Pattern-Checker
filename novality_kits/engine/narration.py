@@ -184,12 +184,21 @@ def chapters(P, max_chapters=MAX_CHAPTERS):
         image = (sections[g0].get("image") if isinstance(g0, int) else GENERIC_IMAGE.get(g0)) or "hero"
         bullets = None
         if not tables:
-            if g0 == "Welcome": bullets = [P["size_chip"], f"{P['skill']}  ·  {P['terms']}  ·  {P['time']}"] + [f"{n} {c.replace(chr(10), ' ')}" for n, c in P["feats"]]
-            elif g0 == "Materials & gauge": bullets = [f"{k}: {v}" for k, v in P["materials"]] + [f"Gauge: {P['gauge']}"]
-            elif g0 == "Techniques": bullets = [f"{i}  {n}" for i, (n, _) in enumerate(P["techniques"], start=1)]
-            elif g0 == "Assembly & finishing": bullets = [f"{k}: {v}" for k, v in P["assembly"]][:7]
-            elif g0 == "Troubleshooting": bullets = [q for q, _ in P["troubleshooting"]][:6]
-            else: bullets = list(sections[g0].get("steps", []))[:7] or [sections[g0].get("lead", "")]
+            # bullets come from every group the chapter touches, slots allocated by how much of the chapter each group occupies
+            def group_bullets(g):
+                if g == "Welcome": return [P["size_chip"], f"{P['skill']}  ·  {P['terms']}  ·  {P['time']}"] + [f"{n} {c.replace(chr(10), ' ')}" for n, c in P["feats"]]
+                if g == "Materials & gauge": return [f"{k}: {v}" for k, v in P["materials"]] + [f"Gauge: {P['gauge']}"]
+                if g == "Techniques": return [f"{i}  {n}" for i, (n, _) in enumerate(P["techniques"], start=1)]
+                if g == "Assembly & finishing": return [f"{k}: {v}" for k, v in P["assembly"]]
+                if g == "Troubleshooting": return [q for q, _ in P["troubleshooting"]]
+                return list(sections[g].get("steps", [])) or [sections[g].get("lead", "")]
+            share = {g: sum(1 for m in metas if m[1] == g) for g in groups}
+            total = sum(share.values()) or 1
+            bullets = []
+            for g in groups:
+                slots = max(1, round(7 * share[g] / total))
+                bullets += [b for b in group_bullets(g) if b][:slots]
+            bullets = bullets[:8]
         ch.append(dict(title=title, text=txt, image=image, tables=tables, units=units, bullets=bullets))
     for i, c in enumerate(ch, start=1):
         c["slug"] = f"{i:02d}_" + re.sub(r"[^a-z0-9]+", "_", c["title"].lower()).strip("_")[:28]

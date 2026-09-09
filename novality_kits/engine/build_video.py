@@ -19,7 +19,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 sys.path.insert(0, str(Path(__file__).parent))
 from common import FONTS, IMG_ROOT, OUT_ROOT, hex_rgb, load_pattern  # noqa: E402
-from narration import chapters  # noqa: E402
+from narration import chapters, prose  # noqa: E402
 
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 W, H = 1920, 1080
@@ -70,6 +70,22 @@ def shrink(d, text, name, size, max_w, min_size=18):
         while text and d.textlength(text + "…", font=f) > max_w: text = text[:-1]
         text += "…"
     return text, f
+
+
+def _norm(s):
+    return re.sub(r"[^a-z0-9 ]+", " ", s.lower()).split()
+
+
+def bullet_matches(bullet, sentence):
+    """Does this narration sentence speak this bullet? Compare the first words of the bullet (after the same prose expansion
+    the narration uses, ignoring a leading number) with the start of the sentence."""
+    key = _norm(prose(bullet))
+    while key and key[0].isdigit(): key = key[1:]
+    key = key[:3]
+    if len(key) < 2: return False
+    words_ = _norm(sentence)
+    head = " ".join(words_[:12])
+    return " ".join(words_[:len(key)]) == " ".join(key) or (" " + " ".join(key) + " ") in (" " + head + " ")
 
 
 def audio_duration(path):
@@ -244,8 +260,7 @@ class Video:
             im, d = self.base_frame(idx, total, ch["title"], ch["image"])
             if tables: self.draw_tables(d, tables, lo if lo >= 0 else 0, hi)
             elif bullets:
-                keys = [re.split(r"[:.]", b, 1)[0].strip().lower() for b in bullets]
-                j = next((k for k in range(bi + 1, len(bullets)) if len(keys[k]) > 2 and sent.lower().startswith(keys[k])), None)
+                j = next((k for k in range(bi + 1, len(bullets)) if bullet_matches(bullets[k], sent)), None)
                 if j is not None: bi = j
                 u = bi if bi >= 0 else min(len(bullets) - 1, int(((t + dur / 2) / duration) * len(bullets)))
                 self.draw_bullets(d, bullets, u)
