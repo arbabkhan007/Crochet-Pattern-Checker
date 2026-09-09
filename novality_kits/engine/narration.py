@@ -25,6 +25,8 @@ def prose(t):
     t = t.replace("&nbsp;", " ").replace("&amp;", " and ")
     t = re.sub(r"#([A-Za-z][A-Za-z0-9]*)", lambda m: "hashtag " + re.sub(r"(?<=[a-z])(?=[A-Z])", " ", m.group(1)), t)
     t = t.replace(" · ", ", ").replace("·", ",")
+    t = re.sub(r"(\d\s*(?:mm|cm)?(?:\s+\w+)?)\s+x\s+(\d)", r"\1 by \2", t)   # 70 mm wide x 67 mm / 79 x 52 mm / 4 x 30 cm
+    t = re.sub(r"\b(Row \d+)\s*[-–]\s*(\d+ knots)", r"\1, \2", t)   # "Row 1 - 15 knots" is not a range
     t = re.sub(r"\bR(\d+)\s*[-–]\s*R?(\d+)\b", r"Rounds \1 to \2", t)
     t = re.sub(r"\bRnds?\s*(\d+)\s*[-–]\s*(\d+)\b", r"Rounds \1 to \2", t)
     t = re.sub(r"(\d)\s*[-–]\s*(\d)", r"\1 to \2", t)
