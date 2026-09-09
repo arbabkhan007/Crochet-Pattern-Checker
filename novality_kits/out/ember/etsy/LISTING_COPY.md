@@ -31,9 +31,9 @@ _131 characters_
 
 ## Files to upload
 
-- Ember_the_Baby_Dragon_Pattern.pdf (14 pages)
-- Ember_the_Baby_Dragon_Full_Walkthrough.mp3 (~16 min) + 10 chapter MP3s
-- Ember_the_Baby_Dragon_Tutorial.mp4 (1080p, ~16 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
+- Ember_the_Baby_Dragon_Pattern.pdf (13 pages)
+- Ember_the_Baby_Dragon_Full_Walkthrough.mp3 (~17 min) + 10 chapter MP3s
+- Ember_the_Baby_Dragon_Tutorial.mp4 (1080p, ~17 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
 ## Images (upload in this order)
 
@@ -58,9 +58,9 @@ A chubby sitting baby dragon with a big round head, a pale belly patch, two scal
 Finished size: 11 cm / 4.3 in seated. 36 sc around measures about 52 mm across when stuffed (4.5 mm per stitch, 4.3 mm per round). Check on the head after R6. Too wide? Go down to a 3.0 mm hook.
 
 ✨ WHAT YOU GET (instant download)
-• 14-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
-• Narrated audio walkthrough (~16 min, 10 chapters) - every round read aloud so you can crochet without looking at the page
-• Tutorial video (1080p, ~16 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
+• 13-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• Narrated audio walkthrough (~17 min, 10 chapters) - every round read aloud so you can crochet without looking at the page
+• Tutorial video (1080p, ~17 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: magic ring & spiral, invisible decrease, open-to-open join, spikes on a chain
 • Assembly guide with exact placement for every piece
 • Troubleshooting page (7 common snags) and 5 colourway ideas
@@ -131,7 +131,7 @@ New: Ember the Baby Dragon 🧶 - A chubby sitting baby dragon with a round head
 Thank you so much for buying Ember the Baby Dragon! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Ember_the_Baby_Dragon_Pattern.pdf - the full 14-page pattern
+• Ember_the_Baby_Dragon_Pattern.pdf - the full 13-page pattern
 • Ember_the_Baby_Dragon_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 10 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 
