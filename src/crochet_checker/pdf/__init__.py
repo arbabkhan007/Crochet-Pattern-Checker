@@ -1,23 +1,17 @@
 """PDF generation for crochet patterns."""
+from .generator import PDFConfig, PDFGenerator, generate_pdf_html, generate_pdf
 
-# Try to import generator
-try:
-    from .generator import generate_pdf
-    _PDF_OK = True
-except Exception as e:
-    print(f"Warning: PDF generator not available: {e}")
-    _PDF_OK = False
-    def generate_pdf(*args, **kwargs):
-        raise ImportError("PDF generation not available")
-
-# Try to import image support
+# Optional image support (best-effort)
 try:
     from .image_support import generate_pattern_images
-    _IMAGES_OK = True
-except Exception as e:
-    print(f"Warning: Image support not available: {e}")
-    _IMAGES_OK = True  # Not critical
-    def generate_pattern_images(*args, **kwargs):
+except Exception:
+    def generate_pattern_images(*_args, **_kwargs):  # type: ignore
         return []
 
-__all__ = ["generate_pdf", "generate_pattern_images"]
+__all__ = [
+    "PDFConfig",
+    "PDFGenerator",
+    "generate_pdf_html",
+    "generate_pdf",
+    "generate_pattern_images",
+]

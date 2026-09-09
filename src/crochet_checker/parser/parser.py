@@ -5,7 +5,19 @@ from ..model.instruction import Instruction, ParsedOperation
 from ..model.pattern import ConstructionType, Pattern, PatternMetadata
 from ..model.row import Row, Round
 from ..model.stitch import ABBREVIATION_MAP, StitchType
-from .grammar import EACH_AROUND, MAGIC_RING_START, NEXT_N, REPEAT_BLOCK, REMAINING, STATED_COUNT, is_row_header
+from .grammar import (
+    CHAIN_RING,
+    EACH_ACROSS,
+    EACH_AROUND,
+    MAGIC_RING_START,
+    NEXT_N,
+    REPEAT_BLOCK,
+    REMAINING,
+    SECOND_CHAIN,
+    STATED_COUNT,
+    STITCH_ABBR,
+    is_row_header,
+)
 
 class CrochetParser:
     def parse(self, text):
@@ -41,10 +53,13 @@ class CrochetParser:
                     cur = None
                 else:
                     cur = Round(round_number=num, instructions=self._parse_inst(rest), source_text=l)
-            elif cur: cur.instructions.extend(self._parse_inst(l))
             elif self._looks(l):
-                inst = self._parse_inst(l)
-                if inst: cur = Round(round_number=1, instructions=inst, source_text=l)
+                if cur: cur.instructions.extend(self._parse_inst(l))
+                else:
+                    inst = self._parse_inst(l)
+                    if inst: cur = Round(round_number=1, instructions=inst, source_text=l)
+            elif cur is not None:
+                cur = None  # non-instruction line (section header, notes, ...) ends the round group
         if cur: rounds.append(cur)
         return rounds
     def _parse_rows(self, lines):
@@ -59,10 +74,13 @@ class CrochetParser:
                     cur = None
                 else:
                     cur = Row(row_number=num, instructions=self._parse_inst(rest), source_text=l)
-            elif cur: cur.instructions.extend(self._parse_inst(l))
             elif self._looks(l):
-                inst = self._parse_inst(l)
-                if inst: cur = Row(row_number=1, instructions=inst, source_text=l)
+                if cur: cur.instructions.extend(self._parse_inst(l))
+                else:
+                    inst = self._parse_inst(l)
+                    if inst: cur = Row(row_number=1, instructions=inst, source_text=l)
+            elif cur is not None:
+                cur = None
         if cur: rows.append(cur)
         return rows
     def _looks(self, line):
@@ -90,6 +108,8 @@ class CrochetParser:
         inst = Instruction(source_text=text, normalized_text=ct, stated_stitch_count=stated)
         if self._magic(ct, inst): return inst
         if self._repeat(ct, inst): return inst
+        if self._chain_ring(ct, inst): return inst
+        if self._multi(ct, inst): return inst
         if self._each(ct, inst): return inst
         if self._nextn(ct, inst): return inst
         if self._countst(ct, inst): return inst
@@ -122,6 +142,93 @@ class CrochetParser:
         for _ in range(rc):
             for op in unit: inst.operations.append(op.model_copy(update={"is_part_of_repeat":True,"repeat_count":rc}))
         inst.confidence = 0.9; return True
+    def _chain_ring(self, text, inst):
+        """'ch 40, sl st to join (40)' — a joined chain ring: every chain
+        becomes one stitch in the next round."""
+        m = CHAIN_RING.match(text)
+        if not m: return False
+        n = int(m.group(1))
+        inst.operations = [ParsedOperation(stitch_type=StitchType.SLIP_STITCH, count=n)]
+        inst.parse_warnings.append("joined chain ring: each of the %d chains becomes one stitch in the next round" % n)
+        inst.confidence = 0.9
+        return True
+    def _across(self, text, inst):
+        m = EACH_ACROSS.match(text)
+        if not m: return False
+        inst.operations = [ParsedOperation(stitch_type=self._resolve(m.group(1)), count=1, into_stitch="remaining")]
+        inst.confidence = 0.85; return True
+    @staticmethod
+    def _split_top(text):
+        """Split on top-level commas (ignores commas inside parentheses)."""
+        parts, depth, buf = [], 0, []
+        for ch in text:
+            if ch in "([": depth += 1
+            elif ch in ")]": depth = max(0, depth - 1)
+            if ch == "," and depth == 0:
+                parts.append("".join(buf)); buf = []
+            else: buf.append(ch)
+        parts.append("".join(buf))
+        return [p.strip() for p in parts if p.strip()]
+    def _multi(self, text, inst):
+        """Instructions with several comma-separated stitch groups,
+        e.g. '10 sc, dec x 5, 5 sc' or 'ch 1, turn, sc in each st across'."""
+        groups = self._split_top(text)
+        if len(groups) < 2: return False
+        if not sum(1 for g in groups if STITCH_ABBR.search(g)) >= 2: return False
+        is_ring = bool(CHAIN_RING.match(text))
+        ops, ring_n, ok = [], None, True
+        for g in groups:
+            low = g.lower()
+            if low in ("turn", "fasten off", "fo"): continue
+            if re.match(r"sl\s*st\b", low) and ("join" in low or "ring" in low):
+                continue  # join stitch: no stitch of its own
+            if re.match(r"join\b", low):
+                continue
+            m = re.match(r"^ch\s+(\d+)$", g, re.IGNORECASE)
+            if m:
+                n = int(m.group(1))
+                if is_ring: ring_n = n
+                ops.append(ParsedOperation(stitch_type=StitchType.CHAIN, count=n))
+                continue
+            m = re.match(r"^(\d+)\s+(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)$", g, re.IGNORECASE)
+            if m:
+                ops.append(ParsedOperation(stitch_type=self._resolve(m.group(2)), count=int(m.group(1))))
+                continue
+            m = re.match(r"^(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s*[x×]\s*(\d+)$", g, re.IGNORECASE)
+            if m:
+                ops.append(ParsedOperation(stitch_type=self._resolve(m.group(1)), count=int(m.group(2))))
+                continue
+            m = SECOND_CHAIN.match(g)
+            if m:
+                ops.append(ParsedOperation(stitch_type=self._resolve(m.group(1)), count=1, into_stitch="second_chain"))
+                continue
+            m = EACH_AROUND.match(g)
+            if m:
+                ops.append(ParsedOperation(stitch_type=self._resolve(m.group(1)), count=1, into_stitch="each_stitch_around"))
+                continue
+            m = EACH_ACROSS.match(g)
+            if m:
+                ops.append(ParsedOperation(stitch_type=self._resolve(m.group(1)), count=1, into_stitch="remaining"))
+                continue
+            m = re.match(r"^(\d+)\s+(st|sts)$", g, re.IGNORECASE)
+            if m:
+                ops.append(ParsedOperation(stitch_type=StitchType.SINGLE_CROCHET, count=int(m.group(1))))
+                continue
+            m = re.search(r"^(\d+)?\s*(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)(?:\s*[x×]\s*(\d+))?$", g, re.IGNORECASE)
+            if m:
+                c = int(m.group(1) or m.group(3) or 1)
+                ops.append(ParsedOperation(stitch_type=self._resolve(m.group(2)), count=c))
+                continue
+            inst.parse_warnings.append("unparsed group: %r" % g)
+            ok = False
+        if not ops: return False
+        if ring_n is not None:
+            inst.operations = [ParsedOperation(stitch_type=StitchType.SLIP_STITCH, count=ring_n)]
+            inst.parse_warnings.append("joined chain ring: each of the %d chains becomes one stitch in the next round" % ring_n)
+        else:
+            inst.operations = ops
+        inst.confidence = 0.85 if ok else 0.5
+        return True
     def _each(self, text, inst):
         m = EACH_AROUND.match(text)
         if not m: return False

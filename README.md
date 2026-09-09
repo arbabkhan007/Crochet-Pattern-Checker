@@ -99,11 +99,17 @@ crochet-check serve --port 8000
 | File | Shape | Rounds | Description |
 |------|-------|--------|-------------|
 | amigurumi.txt | Sphere | 17 | Classic amigurumi ball |
-| simple_hat.txt | Hat | 10 | Beanie with crown shaping |
+| amigurumi_bunny.txt | Multi-piece | 53 | Stuffed bunny (head, body, ears, arms, legs) |
+| baby_booties.txt | Bootie | 10 | Baby bootie foot, worked in the round |
+| basket.txt | Circle | 12 | Round basket base |
 | flat_coaster.txt | Flat Circle | 8 | Simple round coaster |
-| tube_cowl.txt | Tube | 12 | Infinity cowl/scarf |
 | gradual_bowl.txt | Bowl | 10 | Decorative bowl shape |
-| mini_sphere.txt | Sphere | 10 | Small amigurumi sphere |
+| mini_sphere.txt | Sphere | 11 | Small amigurumi sphere |
+| scarf.txt | Flat | 5 rows | Chain-foundation scarf swatch |
+| simple_hat.txt | Hat | 27 | Beanie with crown shaping |
+| tube_cowl.txt | Tube | 12 | Infinity cowl/scarf |
+
+> `intentionally_broken_pattern.txt` is a test fixture for the validators, not a finished pattern.
 
 ---
 

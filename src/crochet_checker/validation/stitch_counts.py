@@ -29,20 +29,57 @@ class StitchCountValidator:
         elif pattern.rows: self._rows(pattern.rows, r)
         r.findings = self.findings; r.is_consistent = not r.has_errors
         return r
+
+    # -- shared math -------------------------------------------------
+    def _ctx(self, inst):
+        return any(op.into_stitch in ("each_stitch_around", "remaining") for op in inst.operations)
+    def _base(self, exp, instructions):
+        """Stitches available to a context-dependent row: the previous row's
+        count, or (for a first row) the foundation chain length."""
+        if exp is not None: return exp
+        ch = max((op.count for i in instructions for op in i.operations
+                  if op.stitch_type == StitchType.CHAIN), default=0)
+        return ch if ch >= 2 else None
+    def _resolve(self, inst, avail):
+        t, rem = 0, avail
+        for op in inst.operations:
+            if op.into_stitch in ("each_stitch_around", "remaining"):
+                t += rem * STITCH_PRODUCTION.get(op.stitch_type, 1); rem = 0
+            elif op.into_stitch == "second_chain":
+                t += 1; rem -= 2
+            else:
+                t += op.count * STITCH_PRODUCTION.get(op.stitch_type, 1)
+                rem -= op.count * STITCH_CONSUMPTION.get(op.stitch_type, 1)
+        return t
+    def _stated(self, rr):
+        for i in rr.instructions:
+            if i.stated_stitch_count is not None: return i.stated_stitch_count
+        return None
+    def _count(self, cr, exp):
+        """(produced, consumed, ambiguous) for one row/round given the previous count."""
+        base = self._base(exp, cr.instructions)
+        prod, cons, amb = 0, 0, False
+        for inst in cr.instructions:
+            if inst.is_ambiguous: amb = True; continue
+            if self._ctx(inst):
+                if base is not None:
+                    prod += self._resolve(inst, base); cons += base
+                else: amb = True
+            else:
+                prod += inst.total_stitches_produced; cons += inst.total_stitches_consumed
+        return prod, cons, amb
+
+    # -- patterns ----------------------------------------------------
     def _rounds(self, rounds, r):
         if not rounds: return
         exp = None
+        prev_num = 0
         for i, cr in enumerate(rounds):
+            if cr.round_number < prev_num:
+                exp = None  # numbering restarts: start of a new piece
+            prev_num = cr.round_number
             rn = cr.round_number; loc = f"Round {rn}"
-            prod, cons, amb = 0, 0, False
-            for inst in cr.instructions:
-                if inst.is_ambiguous: amb = True; continue
-                if self._ctx(inst):
-                    if exp is not None:
-                        prod += self._resolve(inst, exp); cons += exp
-                    else: amb = True
-                else:
-                    prod += inst.total_stitches_produced; cons += inst.total_stitches_consumed
+            prod, cons, amb = self._count(cr, exp)
             if exp is not None and not amb and cons != exp:
                 self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.ERROR,
                     location=loc, message=f"Round {rn} consumes {cons} but Round {rn-1} produced {exp}.",
@@ -61,26 +98,22 @@ class StitchCountValidator:
     def _rows(self, rows, r):
         exp = None
         for cr in rows:
-            prod = sum(i.total_stitches_produced for i in cr.instructions if not i.is_ambiguous)
-            cons = sum(i.total_stitches_consumed for i in cr.instructions if not i.is_ambiguous)
-            if exp is not None and cons != exp:
+            rn = cr.row_number; loc = f"Row {rn}"
+            prod, cons, amb = self._count(cr, exp)
+            if exp is not None and not amb and cons != exp:
                 self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.ERROR,
-                    location=f"Row {cr.row_number}", message=f"Row {cr.row_number} mismatch.", expected=exp, actual=cons))
-            if not any(i.is_ambiguous for i in cr.instructions): exp = prod
+                    location=loc, message=f"Row {rn} consumes {cons} but Row {rn-1} produced {exp}.",
+                    expected=exp, actual=cons))
+            st = self._stated(cr)
+            if st is not None and not amb and st != prod:
+                self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.ERROR,
+                    location=loc, message=f"Row {rn} states {st} but produces {prod}.",
+                    expected=st, actual=prod))
+            if not amb: exp = prod
+            elif st is not None: exp = st
             r.total_rows_checked += 1
-    def _ctx(self, inst): return any(op.into_stitch in ("each_stitch_around","remaining") for op in inst.operations)
-    def _resolve(self, inst, avail):
-        t, rem = 0, avail
-        for op in inst.operations:
-            if op.into_stitch in ("each_stitch_around","remaining"):
-                t += rem * STITCH_PRODUCTION.get(op.stitch_type,1); rem = 0
-            else:
-                t += op.count * STITCH_PRODUCTION.get(op.stitch_type,1)
-                rem -= op.count * STITCH_CONSUMPTION.get(op.stitch_type,1)
-        return t
-    def _stated(self, rr):
-        for i in rr.instructions:
-            if i.stated_stitch_count is not None: return i.stated_stitch_count
-        return None
+            if amb:
+                self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.WARNING,
+                    location=loc, message=f"Row {rn} has context-dependent operations.", confidence=0.7))
 
 def validate_stitch_counts(pattern): return StitchCountValidator().validate(pattern)

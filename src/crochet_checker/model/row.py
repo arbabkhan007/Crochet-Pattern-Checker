@@ -24,6 +24,8 @@ class Row(BaseModel):
             for op in inst.operations:
                 if op.into_stitch in ("each_stitch_around", "remaining"):
                     total += remaining * STITCH_PRODUCTION.get(op.stitch_type, 1); remaining = 0
+                elif op.into_stitch == "second_chain":
+                    total += 1; remaining -= 2
                 else:
                     total += op.count * STITCH_PRODUCTION.get(op.stitch_type, 1)
                     remaining -= op.count * STITCH_CONSUMPTION.get(op.stitch_type, 1)
@@ -50,6 +52,8 @@ class Round(BaseModel):
             for op in inst.operations:
                 if op.into_stitch in ("each_stitch_around", "remaining"):
                     total += remaining * STITCH_PRODUCTION.get(op.stitch_type, 1); remaining = 0
+                elif op.into_stitch == "second_chain":
+                    total += 1; remaining -= 2
                 else:
                     total += op.count * STITCH_PRODUCTION.get(op.stitch_type, 1)
                     remaining -= op.count * STITCH_CONSUMPTION.get(op.stitch_type, 1)
