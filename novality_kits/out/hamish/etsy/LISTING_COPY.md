@@ -32,8 +32,8 @@ _131 characters_
 ## Files to upload
 
 - Hamish_the_Highland_Cow_Pattern.pdf (13 pages)
-- Hamish_the_Highland_Cow_Full_Walkthrough.mp3 (~16 min) + 10 chapter MP3s
-- Hamish_the_Highland_Cow_Tutorial.mp4 (1080p, ~16 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
+- Hamish_the_Highland_Cow_Full_Walkthrough.mp3 (~17 min) + 10 chapter MP3s
+- Hamish_the_Highland_Cow_Tutorial.mp4 (1080p, ~17 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
 ## Images (upload in this order)
 
@@ -59,8 +59,8 @@ Finished size: 15 cm / 6 in sitting. 48 sc around measures about 70 mm across wh
 
 ✨ WHAT YOU GET (instant download)
 • 13-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
-• Narrated audio walkthrough (~16 min, 10 chapters) - every round read aloud so you can crochet without looking at the page
-• Tutorial video (1080p, ~16 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
+• Narrated audio walkthrough (~17 min, 10 chapters) - every round read aloud so you can crochet without looking at the page
+• Tutorial video (1080p, ~17 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: magic ring & spiral, invisible decrease, the flattened brow, back-loop hoof line, locking safety eyes, knotted fringe, whip-stitch seams
 • Assembly guide with exact placement for every piece
 • Troubleshooting page (7 common snags) and 5 colourway ideas
