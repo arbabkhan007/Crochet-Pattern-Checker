@@ -228,13 +228,20 @@ class Video:
 
     def draw_bullets(self, d, items, active):
         x0, y0, x1, y1 = self.box; y = y0
-        for k, t in enumerate(items):
+        rendered = []
+        for t in items:
             lines = wrap(d, t, F_BODY, x1 - x0 - 50)
             if len(lines) > 2:
                 lines = lines[:2]
                 while d.textlength(lines[1] + "…", font=F_BODY) > x1 - x0 - 50: lines[1] = lines[1][:-1]
                 lines[1] += "…"
-            hgt = 36 * len(lines) + 22
+            rendered.append((lines, 36 * len(lines) + 22))
+        avail = y1 + 10 - y0; start = 0  # slide the list so the active bullet is always on screen
+        while active >= 0 and start < active and sum(h for _, h in rendered[start:active + 1]) + (30 if start else 0) > avail: start += 1
+        if start:
+            d.text((x0, y), f"… {start} earlier step{'s' if start > 1 else ''} above", font=font("it", 22), fill=self.SOFT); y += 30
+        for k in range(start, len(items)):
+            lines, hgt = rendered[k]
             if y + hgt > y1 + 10: break
             act = k == active; done = k < active
             if act: d.rounded_rectangle((x0 - 10, y - 8, x1, y + hgt - 14), radius=10, fill=self.HIL)
