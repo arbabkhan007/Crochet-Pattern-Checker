@@ -49,3 +49,4 @@ htmlcov/
 .DS_Store
 Thumbs.db
 final_patterns/_qa/
+!final_patterns/*.pdf
