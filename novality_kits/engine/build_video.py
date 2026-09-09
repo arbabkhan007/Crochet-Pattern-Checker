@@ -161,7 +161,23 @@ class Video:
         n_rows = sum(len(r) for _, r in tables)
         compact = len(tables) > 1 or n_rows > 12
         hh, hd, rh = (44, 40, 36) if compact else (52, 46, 44)
-        heights = [hh if l[0] == "heading" else hd if l[0] == "header" else rh for l in lines]
+        f_row, f_lab, f_cnt, f_note = font("sans", 26 if compact else 28), font("semi", 26 if compact else 28), font("display", 26 if compact else 28), font("it", 21 if compact else 22)
+        c_lab, c_ins, c_cnt, c_note = x0, x0 + 104, x0 + 700, x0 + 796
+        ins_w, lh = c_cnt - c_ins - 14, f_row.size + 6
+        layouts = {}  # flat row index -> (lines, font): long instructions wrap onto up to 3 lines instead of being cut off
+        for l in lines:
+            if l[0] != "row": continue
+            s_ = str(l[1][1])
+            if d.textlength(s_, font=f_row) <= ins_w: layouts[l[2]] = ([s_], f_row); continue
+            ls = wrap(d, s_, f_row, ins_w)
+            if len(ls) <= 3: layouts[l[2]] = (ls, f_row); continue
+            f_ = font("sans", 22); ls = wrap(d, s_, f_, ins_w)
+            if len(ls) > 3:
+                ls = ls[:3]
+                while d.textlength(ls[2] + "…", font=f_) > ins_w: ls[2] = ls[2][:-1]
+                ls[2] += "…"
+            layouts[l[2]] = (ls, f_)
+        heights = [hh if l[0] == "heading" else hd if l[0] == "header" else rh + (len(layouts[l[2]][0]) - 1) * lh for l in lines]
         avail = y1 - y0
         if sum(heights) > avail:  # sliding window keeping the active row visible
             act = next((i for i, l in enumerate(lines) if l[0] == "row" and l[2] == max(hi, 0)), 0)
@@ -180,8 +196,6 @@ class Video:
             hidden_after = n_rows - hidden_before - sum(1 for l in window if l[0] == "row")
         else:
             window, hidden_before, hidden_after = lines, 0, 0
-        f_row, f_lab, f_cnt, f_note = font("sans", 26 if compact else 28), font("semi", 26 if compact else 28), font("display", 26 if compact else 28), font("it", 21 if compact else 22)
-        c_lab, c_ins, c_cnt, c_note = x0, x0 + 104, x0 + 700, x0 + 796
         y = y0
         if hidden_before:
             d.text((x0, y), f"… {hidden_before} earlier round{'s' if hidden_before > 1 else ''} above", font=font("it", 22), fill=self.SOFT); y += rh
@@ -197,18 +211,18 @@ class Video:
             else:
                 (label, instr, cnt, note), k = l[1], l[2]
                 active = lo <= k <= hi; done = k < lo
-                if active: d.rounded_rectangle((x0 - 10, y - 5, x1, y + rh - 7), radius=8, fill=self.HIL)
+                ls, f = layouts[k]; row_h = rh + (len(ls) - 1) * lh
+                if active: d.rounded_rectangle((x0 - 10, y - 5, x1, y + row_h - 7), radius=8, fill=self.HIL)
                 col = self.INK if (done or active) else self.DIM
                 d.text((c_lab, y), str(label), font=f_lab, fill=self.DEEP if active else col)
-                t, f = shrink(d, str(instr), "sans", f_row.size, c_cnt - c_ins - 14, 20)
-                d.text((c_ins, y + (f_row.size - f.size) // 2), t, font=f, fill=col)
+                for i_, line in enumerate(ls): d.text((c_ins, y + (f_row.size - f.size) // 2 + i_ * lh), line, font=f, fill=col)
                 ct = f"({cnt})" if isinstance(cnt, int) else str(cnt or "")
                 d.text((c_cnt, y), ct, font=f_cnt, fill=self.DEEP if (done or active) else self.ACC)
                 if note:
                     t, f = shrink(d, str(note), "it", f_note.size, x1 - c_note, 18)
                     d.text((c_note, y + 3), t, font=f, fill=self.SOFT if (done or active) else self.DIM)
                 if active: d.polygon([(x0 - 34, y + 8), (x0 - 34, y + 26), (x0 - 20, y + 17)], fill=self.DEEP)
-                y += rh
+                y += row_h
         if hidden_after:
             d.text((x0, y), f"… {hidden_after} more round{'s' if hidden_after > 1 else ''} below", font=font("it", 22), fill=self.SOFT)
 
