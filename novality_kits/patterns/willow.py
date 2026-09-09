@@ -48,7 +48,7 @@ P = dict(
         dict(id="blanket", title="4 · Granny-square blanket", image="inhand", caption="Each round adds one 3-dc group to every side and one to each corner: +12 dc per round.",
              lead="Worked in joined rounds from a chain ring. Every round adds one 3-dc group to every side.",
              tables=[dict(heading="Total dc per round", rounds=[
-                 ("R3", "36 dc", 36, ""), ("R5", "60 dc", 60, ""), ("R10", "120 dc", 120, ""), ("R15", "180 dc", 180, ""), ("R20", "240 dc", 240, "60 dc per edge + 26 cm square")])],
+                 ("R3", "36 dc", 36, ""), ("R5", "60 dc", 60, ""), ("R10", "120 dc", 120, ""), ("R15", "180 dc", 180, ""), ("R20", "240 dc", 240, "60 dc per edge; 26 cm square")])],
              steps=["Ch 4 and sl st to the first ch to form a ring.",
                     "Rnd 1: ch 3 (counts as first dc), 2 dc in the ring, [ch 2, 3 dc in the ring] x 3, ch 2, sl st to the ch-3 top. [12 dc, 4 corner spaces]",
                     "Rnd 2: sl st into the next corner space; ch 3, 2 dc in that space, ch 2, 3 dc in the same space (first corner); then (3 dc, ch 2, 3 dc) into each remaining corner space; sl st to close. [24 dc]",
@@ -56,7 +56,7 @@ P = dict(
                     "Border: work one final round of sc all the way around - 1 sc into each dc and 3 sc into each corner space - then sl st and FO. Rnd 20 has 240 dc: 4 corners x 3 sc + 240 sc = 252 sc. This firms the edge and stops the square curling.",
                     "Size check: about 1.3 cm per side per round. 20 rounds gives a 26 cm square; the diagonal corner to corner is about 37 cm before the border and about 43 cm with it stretched flat - a good size to hold and drag.",
                     "Fewer rounds for a smaller lovey (18 rounds = 23 cm) or more for a larger one (22 rounds = 28 cm) - the counts simply continue by +12 per round."],
-             panels=[("Counting a granny round", "Rnd n has 12 x n dc. If you are unsure which round you are on, count the 3-dc groups along one side: on Rnd n there are n groups on each side including the two corner halves.", "tip")]),
+             panels=[("Counting a granny round", "Rnd n has 12 times n dc. If you are unsure which round you are on, count the 3-dc groups along one side: on Rnd n there are n groups on each side including the two corner halves.", "tip")]),
     ],
     assembly=[
         ("Ears", "Sew the flattened base of each ear to Rnds 4-6 of the head, about 10 stitches apart. Pinch the base so the ear folds forward and flops. Sew round twice."),
