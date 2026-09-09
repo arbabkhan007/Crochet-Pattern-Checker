@@ -1,0 +1,125 @@
+{
+  "patterns": [
+    {
+      "id": "hamish",
+      "title": "Hamish the Highland Cow",
+      "design_code": "NS 01",
+      "blocks": 8,
+      "rows_checked": 81,
+      "manual_rows": 4,
+      "repo_validated_blocks": 7,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "halloween",
+      "title": "Kawaii Halloween Mini Set",
+      "design_code": "NS 02",
+      "blocks": 11,
+      "rows_checked": 73,
+      "manual_rows": 8,
+      "repo_validated_blocks": 6,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "axel",
+      "title": "Axel the Axolotl",
+      "design_code": "NS 03",
+      "blocks": 4,
+      "rows_checked": 52,
+      "manual_rows": 0,
+      "repo_validated_blocks": 4,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "coco",
+      "title": "Coco the Capybara",
+      "design_code": "NS 04",
+      "blocks": 4,
+      "rows_checked": 39,
+      "manual_rows": 2,
+      "repo_validated_blocks": 3,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "duck",
+      "title": "Little Duck Plushie",
+      "design_code": "NS 05",
+      "blocks": 3,
+      "rows_checked": 30,
+      "manual_rows": 2,
+      "repo_validated_blocks": 2,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "momo",
+      "title": "Momo the Loaf Cat",
+      "design_code": "NS 06",
+      "blocks": 2,
+      "rows_checked": 20,
+      "manual_rows": 6,
+      "repo_validated_blocks": 1,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "trio",
+      "title": "Pocket Positivity Trio",
+      "design_code": "NS 07",
+      "blocks": 7,
+      "rows_checked": 33,
+      "manual_rows": 6,
+      "repo_validated_blocks": 3,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "ember",
+      "title": "Ember the Baby Dragon",
+      "design_code": "NS 08",
+      "blocks": 7,
+      "rows_checked": 59,
+      "manual_rows": 4,
+      "repo_validated_blocks": 6,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "shelby",
+      "title": "Shelby the Sea Turtle Bag Charm",
+      "design_code": "NS 09",
+      "blocks": 4,
+      "rows_checked": 17,
+      "manual_rows": 2,
+      "repo_validated_blocks": 2,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    {
+      "id": "willow",
+      "title": "Willow the Bunny Lovey",
+      "design_code": "NS 10",
+      "blocks": 3,
+      "rows_checked": 24,
+      "manual_rows": 3,
+      "repo_validated_blocks": 2,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    }
+  ],
+  "all_pass": true
+}

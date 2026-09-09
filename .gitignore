@@ -2,6 +2,7 @@
 venv/
 ENV/
 env/
+.venv-arena/
 
 # Python
 __pycache__/
@@ -47,3 +48,4 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+final_patterns/_qa/
