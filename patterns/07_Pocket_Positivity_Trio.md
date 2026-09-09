@@ -10,7 +10,7 @@ Three palm-sized amigurumi that slip into a coat pocket - Sunny the Sunflower, W
 
 **SAFETY - READ THIS FIRST**
 
-The set uses 5 mm black safety eyes (six in total) - small parts and a choking hazard, not intended for children under 3. For young children, embroider the eyes and mouths instead.
+The set uses 5 mm black safety eyes (six in total) - small parts and a choking hazard, not intended for children under 3. These toys are tiny: lock every washer from the inside BEFORE you stuff and close each piece, and pull-test. For young children, embroider the eyes and mouths instead.
 
 Sellers: do not market as “baby-safe”; sell as adult collectibles, desk companions or keychain charms, and tag with materials, your maker name and “Not suitable for children under 3 years.”
 
@@ -131,7 +131,7 @@ Face: eyes about 5 stitches apart on the broad side around Rnd 4 (Spud's face is
 
 ### Finishing & assembly
 
-Before you finish, check each toy: Sunny has 9 even petals and a closed brown centre; Waddle has 2 wings, a cream chest and a yellow beak; Spud's seam reads as a crease. All eyes are locked or embroidered and every end is woven in at least 5 cm.
+Before you finish, check each toy: Sunny has 9 even petals and a closed brown centre; Waddle has 2 wings, a cream chest and a yellow beak; Spud's seam reads as a crease. Every safety-eye washer is locked from the inside (before stuffing and closing) or the eyes are embroidered, and every end is woven in at least 5 cm.
 
 ### Troubleshooting
 

@@ -59,7 +59,7 @@ Stuff the lower half of each leg lightly, leaving the top loose. Back legs stop 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
 | R1 | 6 sc in MR | (6) | all four |
-| R2 | [1 sc, inc] x 3 | (9) | all four |
+| R2 | [sc, inc] x 3 | (9) | all four |
 | R3 | sc in each st around | (9) | all four |
 | R4 | sc in each st around | (9) | all four |
 | R5 | sc in each st around | (9) | all four |
@@ -77,7 +77,7 @@ Finish: FO with a long tail for sewing. Before joining, pinch the whole 9-stitch
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
 | R1 | 6 sc in MR | (6) | - |
-| R2 | [1 sc, inc] x 3 | (9) | - |
+| R2 | [sc, inc] x 3 | (9) | - |
 | R3 | sc in each st around | (9) | - |
 | R4 | sc in each st around | (9) | - |
 | R5 | sc in each st around, then FO | (9) | - |
@@ -87,7 +87,7 @@ Finish: FO with a long tail for sewing. Before joining, pinch the whole 9-stitch
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
 | R1 | 6 sc in MR | (6) | - |
-| R2 | [1 sc, inc] x 3 | (9) | - |
+| R2 | [sc, inc] x 3 | (9) | - |
 | R3 | [2 sc, inc] x 3 | (12) | - |
 | R4 | sc in each st around | (12) | - |
 | R5 | sc in each st around, then FO | (12) | - |
@@ -102,9 +102,9 @@ Both are 36 stitches around with only a shallow waist between them - that is wha
 |---|---|---|---|
 | R1 | 6 sc in MR | (6) | - |
 | R2 | inc in each st around | (12) | - |
-| R3 | [1 sc, inc] x 6 | (18) | - |
-| R4 | join BL1: 3 sc, [1 sc, inc] x 3, join BL2: 3 sc, [1 sc, inc] x 3 | (24) | join the BACK legs |
-| R5 | 1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [1 sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc | (30) | join the FRONT legs |
+| R3 | [sc, inc] x 6 | (18) | - |
+| R4 | join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3 | (24) | join the BACK legs |
+| R5 | 1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc | (30) | join the FRONT legs |
 | R6 | [4 sc, inc] x 6 | (36) | full width - check gauge |
 | R7 | sc in each st around | (36) | - |
 | R8 | sc in each st around | (36) | - |
@@ -118,16 +118,16 @@ Both are 36 stitches around with only a shallow waist between them - that is wha
 | R16 | [4 sc, invdec] x 6 | (30) | - |
 | R17 | [3 sc, invdec] x 6 | (24) | stuff the head firmly |
 | R18 | [2 sc, invdec] x 6 | (18) | - |
-| R19 | [1 sc, invdec] x 6 | (12) | top up stuffing |
+| R19 | [sc, invdec] x 6 | (12) | top up stuffing |
 | R20 | invdec x 6 | (6) | - |
 
 Finish: cinch the remaining 6 stitches closed and weave the tail inside the body. Do not decrease the Rnd 10 waist further - a narrow neck cannot hold the head upright on this shape.
 
 How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds below. Wherever a round says “join”, hold a pinched-flat leg against the body and work the next 3 sc through BOTH the leg and the body together (technique 3). Those 3 sc still count as 3 stitches of the round, so the stitch totals do not change - Rnd 4 ends at 24, Rnd 5 at 30. The joined stitches are always plain single crochet - never work an increase through a leg.
 
-Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [1 sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [1 sc, inc] x 3 to the end of the round.
+Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
 
-Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc (7 stitches made); join a leg over the next 3 sc; work [1 sc, inc] x 3 and 1 sc (10 stitches made); join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end (7 stitches made). In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, and all six increases fall inside the plain runs, exactly as the [3 sc, inc] x 6 rhythm of the table. The 7-10-7 spacing centres each front leg between the two back legs.
+Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc (7 stitches made); join a leg over the next 3 sc; work [sc, inc] x 3 and 1 sc (10 stitches made); join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end (7 stitches made). In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, and all six increases fall inside the plain runs, exactly as the [3 sc, inc] x 6 rhythm of the table. The 7-10-7 spacing centres each front leg between the two back legs.
 
 Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. The correct spacing covers the deepest footprint this shape allows - about 65 mm across and 29 mm front to back. Hold the piece upside down and check all four legs sit square before you stuff the body.
 

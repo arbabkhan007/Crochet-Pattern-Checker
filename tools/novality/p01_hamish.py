@@ -15,8 +15,9 @@ PATTERN = {
         "A low, sprawling Highland sit.",
     ],
     "safety": [
-        "Hamish has two 12 mm safety eyes - small parts. Lock the washers firmly from "
-        "the inside (this pattern locks them after the muzzle is sewn) and pull-test each "
+        "Hamish has two 12 mm safety eyes - small parts. Reach through the open head "
+        "and lock the washers firmly from the inside BEFORE you stuff and close the "
+        "head (Rnd 16) - once closed you cannot get back inside. Pull-test each "
         "eye. The horns, ears, muzzle, legs and tail are sewn on, and the fringe and tail "
         "are knotted yarn: sew every seam twice, weave ends in at least 5 cm, and knot "
         "the fringe and tail securely.",
@@ -99,7 +100,7 @@ PATTERN = {
                     {"label": "R9",  "text": "sc in each st around", "stated": 48, "cons": 48, "prod": 48, "check": "sc in each st around", "note": "eyes at R9 - R10"},
                     {"label": "R10", "text": "[6 sc, dec] x 6", "stated": 42, "cons": 48, "prod": 42, "check": "[6 sc, dec] x 6", "note": ""},
                     {"label": "R11", "text": "[5 sc, dec] x 6", "stated": 36, "cons": 42, "prod": 36, "check": "[5 sc, dec] x 6", "note": ""},
-                    {"label": "R12", "text": "[4 sc, dec] x 6", "stated": 30, "cons": 36, "prod": 30, "check": "[4 sc, dec] x 6", "note": "stuff firmly, flatten front to back"},
+                    {"label": "R12", "text": "[4 sc, dec] x 6", "stated": 30, "cons": 36, "prod": 30, "check": "[4 sc, dec] x 6", "note": "lock eye washers, then stuff firmly"},
                     {"label": "R13", "text": "[3 sc, dec] x 6", "stated": 24, "cons": 30, "prod": 24, "check": "[3 sc, dec] x 6", "note": ""},
                     {"label": "R14", "text": "[2 sc, dec] x 6", "stated": 18, "cons": 24, "prod": 18, "check": "[2 sc, dec] x 6", "note": ""},
                     {"label": "R15", "text": "[sc, dec] x 6", "stated": 12, "cons": 18, "prod": 12, "check": "[sc, dec] x 6", "note": "last pinch of stuffing"},
@@ -107,9 +108,11 @@ PATTERN = {
                 ], "notes": [
                     "Eyes & head size: place the 12 mm eyes between Rnds 9 and 10, "
                     "7 stitches apart and a touch low on the face (7 sts is about "
-                    "32 mm, just under half the head width). Leave the washers off "
-                    "until the muzzle is pinned. Finished head about 70 mm wide x "
-                    "67 mm tall.",
+                    "32 mm, just under half the head width). LOCK THE WASHERS at "
+                    "about Rnd 12, while you can still reach the inside: press each "
+                    "washer on until it clicks. The head stays open until Rnd 16 "
+                    "closes it - after that the washers are unreachable. Finished "
+                    "head about 70 mm wide x 67 mm tall.",
                 ]},
             ],
         },
@@ -137,7 +140,8 @@ PATTERN = {
                     "whisper more stuffing before you close.",
                     "Nostrils (Yarn C): two short vertical satin stitches, 3 stitches "
                     "apart, on the lower third. Mouth: one tiny horizontal stitch or a "
-                    "shallow V below them. LOCK THE SAFETY-EYE WASHERS NOW.",
+                    "shallow V below them. (The eye washers were already locked before "
+                    "the head was closed at Rnd 16.)",
                     "The wide cream muzzle, low-set eyes and shaggy fringe give the "
                     "Highland stare.",
                 ]},
@@ -240,9 +244,13 @@ PATTERN = {
                     {"label": "R6", "text": "[2 sc, dec] x 3", "stated": 9, "cons": 12, "prod": 9, "check": "[2 sc, dec] x 3", "note": ""},
                     {"label": "R7", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                 ], "notes": [
-                    "Place the inner ear on the outer (cream facing you) before the "
-                    "outer's Rnd 4 and work Rnd 4 through both layers. Flatten, FO, "
-                    "and pinch the base with 2-3 stitches so the ear cups forward.",
+                    "Work BOTH layers through all 7 rounds. FO the inner ear with a "
+                    "short tail; FO the outer with a long tail. Lay the inner on the "
+                    "outer, cream side facing you, and join them around the edge: "
+                    "either single crochet around the edge through both layers in "
+                    "Yarn A (about 1 sc per stitch, plus extras at the corners), or "
+                    "whip-stitch around with the outer's tail. Flatten and pinch the "
+                    "base with 2-3 stitches so the ear cups forward.",
                 ]},
             ],
         },
@@ -319,7 +327,8 @@ PATTERN = {
     ],
     "assembly": [
         "Assembly - work in this order:",
-        "1. Muzzle & face sewn and washers locked (section 2).",
+        "1. Muzzle & face sewn (section 2) - the eye washers were locked before "
+        "the head was closed at Rnd 16.",
         "2. Horns between Rnds 5 and 7, 6 stitches apart, angled out and slightly back.",
         "3. Ears just outside and below each horn, centred on Rnds 8-9, cupped forward.",
         "4. Fringe attached and trimmed (section 9), parting around horns and ears.",

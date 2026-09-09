@@ -158,7 +158,9 @@ PATTERN = {
         "Face & markings:",
         "Eyes: fix the 8 mm eyes between Rnds 8 and 9, about 7 stitches apart, "
         "LOW and wide on the front (7 sts is about 32 mm, roughly 60% of the "
-        "body width). Low eyes read as a cat; high eyes read as a bear.",
+        "body width). Low eyes read as a cat; high eyes read as a bear. Push the "
+        "stems through and LOCK the washers from the inside BEFORE you stuff and "
+        "close the loaf - the top closure is your last chance to reach inside.",
         "Nose: a small pink triangle centred between and just below the eyes, "
         "with two short stitches angled down from the point for the mouth.",
         "Whisker dots: three tiny black French knots on each side of the nose.",

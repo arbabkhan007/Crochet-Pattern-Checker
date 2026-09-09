@@ -37,6 +37,36 @@ FONTS = {
 PAGE_W, PAGE_H = 210.0, 297.0
 M_L, M_R, M_T, M_B = 17.0, 17.0, 22.0, 20.0
 CONTENT_W = PAGE_W - M_L - M_R
+ASSETS = Path(__file__).resolve().parent.parent.parent / "final_patterns" / "assets"
+
+# colourway name -> display swatch hex
+COLORWAY_COLORS = {
+    "Ginger": "#C57A3A", "Caramel": "#B98A5E", "Highland black": "#2F2A26",
+    "Cream": "#F1E7D3", "Roan red": "#B05A36",
+    "Classic cream": "#F4EBDC", "Pumpkin orange": "#E08A3C",
+    "Bat lavender": "#A98CC9", "Ghostly white": "#FAF6EE", "Charcoal": "#4B4441",
+    "Sage & oat": "#A8B69A",
+    "Classic pink": "#F2B9C6", "White leucistic": "#FBF3EC",
+    "Melanoid black": "#2B2826", "Mint": "#B8DFC9", "Lavender": "#C3AED8",
+    "Classic warm brown": "#8B6248", "Soft grey": "#B9B3AC",
+    "Sandy beige": "#D8BE9A", "Cocoa": "#6F4E37",
+    "Grey tabby": "#9A948B", "Orange ginger": "#D98B45", "Black": "#322D2A",
+    "Calico": "#D19468",
+    "Sage green": "#A8BE9C", "Dusty teal": "#7FA6A1", "Lilac": "#C4B1D8",
+    "Blush pink": "#EFC0CC",
+    "Sage": "#A9B79B", "Dusty pink": "#DBAFB2", "Pale grey": "#C8C4BE",
+    "Butter yellow": "#F0D689",
+}
+
+
+def hex_to_rgb(h):
+    h = h.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def asset(num, kind):
+    p = ASSETS / f"p{num:02d}_{kind}.jpg"
+    return p if p.exists() else None
 
 
 class PatternPDF(FPDF):
@@ -50,7 +80,7 @@ class PatternPDF(FPDF):
         self.set_auto_page_break(True, M_B)
 
     def footer(self):
-        if self.is_cover:
+        if self.page_no() == 1:
             return
         self.set_y(-15)
         self.set_draw_color(*HAIR)
@@ -63,7 +93,7 @@ class PatternPDF(FPDF):
         self.cell(CONTENT_W * 0.4, 8, right, align="R", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     def header(self):
-        if self.is_cover:
+        if self.page_no() == 1:
             return
         self.set_y(10)
         self.set_font("sans", "B", 7.5)
@@ -134,43 +164,57 @@ def cover(pdf, p):
     pdf.ellipse(cx - 1.1, y - 1.1, 2.2, 2.2, style="F")
     pdf.set_y(y + 10)
     # title
-    pdf.set_font("serif", "B", 27)
+    pdf.set_font("serif", "B", 23)
     pdf.set_text_color(*INK)
-    pdf.multi_cell(0, 12, p["title"], align="C")
-    pdf.ln(2)
+    pdf.multi_cell(0, 10.5, p["title"], align="C")
+    pdf.ln(1.5)
     # tagline
-    pdf.set_font("serif", "", 10.5)
+    pdf.set_font("serif", "", 9.5)
     pdf.set_text_color(*MUTED)
-    pdf.set_x(M_L + 18)
-    pdf.multi_cell(CONTENT_W - 36, 5.6, p["tagline"], align="C")
-    pdf.ln(8)
+    pdf.set_x(M_L + 15)
+    pdf.multi_cell(CONTENT_W - 30, 5.0, p["tagline"], align="C")
+    pdf.ln(6)
     _badge_row(pdf, p["meta"], pdf.get_y())
-    pdf.ln(14)
+    pdf.set_y(pdf.get_y() + 13)
+    # hero photo
+    hero = asset(p["number"], "hero")
+    if hero:
+        h_w = 72.0
+        x = (PAGE_W - h_w) / 2
+        y = pdf.get_y()
+        pdf.set_fill_color(*ACCENT_SOFT)
+        pdf.rect(x - 3, y - 3, h_w + 6, h_w + 6, style="F")
+        pdf.image(str(hero), x=x, y=y, w=h_w)
+        pdf.set_draw_color(*ACCENT)
+        pdf.set_line_width(0.35)
+        pdf.rect(x - 3, y - 3, h_w + 6, h_w + 6)
+        pdf.set_y(y + h_w + 9)
     # finished size panel
-    panel_w = 150
+    panel_w = 158
     x = (PAGE_W - panel_w) / 2
     y0 = pdf.get_y()
     pdf.set_fill_color(*ACCENT_SOFT)
     pdf.set_draw_color(*HAIR)
     n = len(p["finished_size"])
-    panel_h = 12 + n * 6.4 + (14 if p["finished_size"] else 0)
+    line_h = 5.6
+    panel_h = 9 + n * line_h
     pdf.rect(x, y0, panel_w, panel_h, style="DF", round_corners=True, corner_radius=2.5)
-    pdf.set_xy(x, y0 + 5)
-    pdf.set_font("sans", "B", 8)
+    pdf.set_xy(x, y0 + 3)
+    pdf.set_font("sans", "B", 7.5)
     pdf.set_text_color(*ACCENT)
     pdf.set_char_spacing(1.5)
-    pdf.cell(panel_w, 5, "F I N I S H E D   S I Z E", align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    pdf.cell(panel_w, 4.5, "F I N I S H E D   S I Z E", align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.set_char_spacing(0)
-    pdf.set_font("sans", "", 9)
+    pdf.set_font("sans", "", 8.2)
     pdf.set_text_color(*INK)
     for line in p["finished_size"]:
         pdf.set_x(x + 8)
-        pdf.multi_cell(panel_w - 16, 6.4, "·  " + line, align="C")
-    pdf.set_y(y0 + panel_h + 12)
+        pdf.multi_cell(panel_w - 16, line_h, "·  " + line, align="C")
+    pdf.set_y(y0 + panel_h + 8)
     # design code
     pdf.set_font("sans", "", 8.5)
     pdf.set_text_color(*MUTED)
-    pdf.cell(0, 5, f"Design Code {p['design_code']}   ·   Pattern {p['number']:02d} of 10",
+    pdf.cell(0, 5, f"Design Code {p['design_code']}",
              align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     # bottom copyright on cover
     pdf.set_y(PAGE_H - 34)
@@ -374,24 +418,29 @@ def trouble_table(pdf, items):
         pdf.ln(2.4)
 
 
-def colorway_chips(pdf, colors):
-    pdf.ln(1)
-    x = M_L
-    pdf.set_font("sans", "", 9.2)
+def colorway_swatches(pdf, colors):
+    """Named colour swatches in a strict 3-column grid (always aligned)."""
+    pdf.ln(2)
+    cols = 3
+    col_w = CONTENT_W / cols
+    row_h = 9.0
     for i, c in enumerate(colors):
-        w = pdf.get_string_width(c) + 13
-        if x + w > PAGE_W - M_R:
-            x = M_L
-            pdf.ln(11.5)
+        col = i % cols
+        if col == 0 and i > 0:
+            pdf.ln(row_h)
+        x = M_L + col * col_w + 3
         y = pdf.get_y()
-        pdf.set_fill_color(*ACCENT_SOFT)
+        rgb = hex_to_rgb(COLORWAY_COLORS.get(c, "#E8D7C6"))
+        pdf.set_fill_color(*rgb)
         pdf.set_draw_color(*HAIR)
-        pdf.rect(x + 3, y, w, 8.5, style="DF", round_corners=True, corner_radius=4)
-        pdf.set_xy(x + 6, y + 1.7)
+        pdf.set_line_width(0.25)
+        # swatch: filled circle with soft outline
+        pdf.ellipse(x, y + 0.6, 5.6, 5.6, style="DF")
+        pdf.set_xy(x + 8.4, y + 1.0)
+        pdf.set_font("sans", "", 8.8)
         pdf.set_text_color(*INK)
-        pdf.cell(w - 6, 5, c)
-        x += w + 5
-    pdf.ln(12)
+        pdf.cell(col_w - 12, 6.4, c)
+    pdf.ln(row_h + 1)
 
 
 def copyright_box(pdf, notice):
@@ -428,9 +477,6 @@ def build(p):
     pdf.set_subject(f"Crochet pattern {p['design_code']} - {p['title']}")
     pdf.set_keywords(f"crochet, pattern, amigurumi, novality store, {p['id']}")
     cover(pdf, p)
-
-    # ---- main content
-    pdf.is_cover = False
     pdf.add_page()
 
     section(pdf, "Pattern overview", space_before=1)
@@ -520,6 +566,24 @@ def build(p):
             pdf.ln(1)
 
     if p.get("assembly"):
+        wip = asset(p["number"], "wip")
+        if wip:
+            w = 92.0
+            if pdf.get_y() > PAGE_H - M_B - 106:
+                pdf.add_page()
+            x = (PAGE_W - w) / 2
+            y = pdf.get_y()
+            pdf.set_fill_color(*ACCENT_SOFT)
+            pdf.rect(x - 2.5, y - 2.5, w + 5, w + 5, style="F")
+            pdf.image(str(wip), x=x, y=y, w=w)
+            pdf.set_draw_color(*ACCENT)
+            pdf.set_line_width(0.35)
+            pdf.rect(x - 2.5, y - 2.5, w + 5, w + 5)
+            pdf.set_y(y + w + 7.5)
+            pdf.set_font("serif", "", 8.5)
+            pdf.set_text_color(*MUTED)
+            pdf.cell(0, 5, "On the hook - what your rounds should look like as they grow",
+                     align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         section(pdf, "Finishing & assembly")
         for a in p["assembly"]:
             if a == "":
@@ -534,7 +598,7 @@ def build(p):
 
     if p.get("colorways"):
         section(pdf, "Colorways")
-        colorway_chips(pdf, p["colorways"])
+        colorway_swatches(pdf, p["colorways"])
 
     tips_present = p.get("extras") or p.get("designer_notes")
     if tips_present:

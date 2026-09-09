@@ -59,7 +59,7 @@ Worked in a single spiral from the top of the head straight through to the tail 
 |---|---|---|---|
 | R1 | 6 sc in MR | (6) | start at top of head |
 | R2 | inc in each st around | (12) | - |
-| R3 | [1 sc, inc] x 6 | (18) | - |
+| R3 | [sc, inc] x 6 | (18) | - |
 | R4 | [2 sc, inc] x 6 | (24) | - |
 | R5 | [3 sc, inc] x 6 | (30) | - |
 | R6 | [4 sc, inc] x 6 | (36) | head at full width |
@@ -82,13 +82,13 @@ Worked in a single spiral from the top of the head straight through to the tail 
 | R23 | [4 sc, invdec] x 6 | (30) | - |
 | R24 | [3 sc, invdec] x 6 | (24) | FEET attach at R24 - R25 |
 | R25 | [2 sc, invdec] x 6 | (18) | stuff body LIGHTLY |
-| R26 | [1 sc, invdec] x 6 | (12) | - |
+| R26 | [sc, invdec] x 6 | (12) | - |
 | R27 | sc in each st around | (12) | tail begins |
 | R28 | [2 sc, invdec] x 3 | (9) | - |
 | R29 | sc in each st around | (9) | - |
 | R30 | sc in each st around | (9) | - |
 | R31 | sc in each st around | (9) | - |
-| R32 | [1 sc, invdec] x 3 | (6) | light stuffing to here |
+| R32 | [sc, invdec] x 3 | (6) | light stuffing to here |
 | R33 | sc in each st around | (6) | - |
 | R34 | sc in each st around | (6) | - |
 | R35 | sc in each st around | (6) | - |
@@ -120,10 +120,10 @@ Arms: FO with a long tail, do not stuff. Flatten the open end and sew it closed 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
 | R1 | 6 sc in MR | (6) | - |
-| R2 | [1 sc, inc] x 3 | (9) | - |
+| R2 | [sc, inc] x 3 | (9) | - |
 | R3 | sc in each st around | (9) | - |
 | R4 | sc in each st around | (9) | - |
-| R5 | [1 sc, invdec] x 3 | (6) | feet finish here |
+| R5 | [sc, invdec] x 3 | (6) | feet finish here |
 
 Feet: FO, cinch closed with a long tail and stuff lightly - do not flatten them, they are plump little balls; sew the cinched nub toward the body.
 
@@ -135,7 +135,7 @@ Feet: FO, cinch closed with a long tail and stuff lightly - do not flatten them,
 | R2 | inc in each st around | (12) | - |
 | R3 | sc in each st around | (12) | - |
 | R4 | sc in each st around | (12) | - |
-| R5 | [1 sc, invdec] x 4 | (8) | open edge sewn to head |
+| R5 | [sc, invdec] x 4 | (8) | open edge sewn to head |
 
 Working with fuzzy yarn: you cannot see the stitches. Hold a thin strand of matching smooth yarn together with the fur yarn so you can find the stitches, or count by feel with the hook tip and trust the round count. Small errors are invisible in the finished fluff.
 

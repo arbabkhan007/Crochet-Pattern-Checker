@@ -88,7 +88,7 @@ PATTERN = {
             "subpieces": [
                 {"name": "", "rows": [
                     {"label": "R1", "text": "6 sc in MR", "stated": 6, "cons": None, "prod": 6, "check": "6 sc in magic ring", "note": "all four"},
-                    {"label": "R2", "text": "[1 sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[1 sc, inc] x 3", "note": "all four"},
+                    {"label": "R2", "text": "[sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[sc, inc] x 3", "note": "all four"},
                     {"label": "R3", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": "all four"},
                     {"label": "R4", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": "all four"},
                     {"label": "R5", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": "all four"},
@@ -110,14 +110,14 @@ PATTERN = {
             "subpieces": [
                 {"name": "Ears - make 2 (do not stuff)", "rows": [
                     {"label": "R1", "text": "6 sc in MR", "stated": 6, "cons": None, "prod": 6, "check": "6 sc in magic ring", "note": ""},
-                    {"label": "R2", "text": "[1 sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[1 sc, inc] x 3", "note": ""},
+                    {"label": "R2", "text": "[sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[sc, inc] x 3", "note": ""},
                     {"label": "R3", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                     {"label": "R4", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                     {"label": "R5", "text": "sc in each st around, then FO", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                 ], "notes": []},
                 {"name": "Muzzle - make 1 (stuff lightly)", "rows": [
                     {"label": "R1", "text": "6 sc in MR", "stated": 6, "cons": None, "prod": 6, "check": "6 sc in magic ring", "note": ""},
-                    {"label": "R2", "text": "[1 sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[1 sc, inc] x 3", "note": ""},
+                    {"label": "R2", "text": "[sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[sc, inc] x 3", "note": ""},
                     {"label": "R3", "text": "[2 sc, inc] x 3", "stated": 12, "cons": 9, "prod": 12, "check": "[2 sc, inc] x 3", "note": ""},
                     {"label": "R4", "text": "sc in each st around", "stated": 12, "cons": 12, "prod": 12, "check": "sc in each st around", "note": ""},
                     {"label": "R5", "text": "sc in each st around, then FO", "stated": 12, "cons": 12, "prod": 12, "check": "sc in each st around", "note": ""},
@@ -139,9 +139,9 @@ PATTERN = {
                 {"name": "", "rows": [
                     {"label": "R1",  "text": "6 sc in MR", "stated": 6, "cons": None, "prod": 6,  "check": "6 sc in magic ring", "note": ""},
                     {"label": "R2",  "text": "inc in each st around", "stated": 12, "cons": 6,  "prod": 12, "check": "inc in each st around", "note": ""},
-                    {"label": "R3",  "text": "[1 sc, inc] x 6", "stated": 18, "cons": 12, "prod": 18, "check": "[1 sc, inc] x 6", "note": ""},
-                    {"label": "R4",  "text": "join BL1: 3 sc, [1 sc, inc] x 3, join BL2: 3 sc, [1 sc, inc] x 3", "stated": 24, "cons": 18, "prod": 24, "check": None, "note": "join the BACK legs"},
-                    {"label": "R5",  "text": "1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [1 sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc", "stated": 30, "cons": 24, "prod": 30, "check": None, "note": "join the FRONT legs"},
+                    {"label": "R3",  "text": "[sc, inc] x 6", "stated": 18, "cons": 12, "prod": 18, "check": "[sc, inc] x 6", "note": ""},
+                    {"label": "R4",  "text": "join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3", "stated": 24, "cons": 18, "prod": 24, "check": None, "note": "join the BACK legs"},
+                    {"label": "R5",  "text": "1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc", "stated": 30, "cons": 24, "prod": 30, "check": None, "note": "join the FRONT legs"},
                     {"label": "R6",  "text": "[4 sc, inc] x 6", "stated": 36, "cons": 30, "prod": 36, "check": "[4 sc, inc] x 6", "note": "full width - check gauge"},
                     {"label": "R7",  "text": "sc in each st around", "stated": 36, "cons": 36, "prod": 36, "check": "sc in each st around", "note": ""},
                     {"label": "R8",  "text": "sc in each st around", "stated": 36, "cons": 36, "prod": 36, "check": "sc in each st around", "note": ""},
@@ -155,7 +155,7 @@ PATTERN = {
                     {"label": "R16", "text": "[4 sc, invdec] x 6", "stated": 30, "cons": 36, "prod": 30, "check": "[4 sc, dec] x 6", "note": ""},
                     {"label": "R17", "text": "[3 sc, invdec] x 6", "stated": 24, "cons": 30, "prod": 24, "check": "[3 sc, dec] x 6", "note": "stuff the head firmly"},
                     {"label": "R18", "text": "[2 sc, invdec] x 6", "stated": 18, "cons": 24, "prod": 18, "check": "[2 sc, dec] x 6", "note": ""},
-                    {"label": "R19", "text": "[1 sc, invdec] x 6", "stated": 12, "cons": 18, "prod": 12, "check": "[1 sc, dec] x 6", "note": "top up stuffing"},
+                    {"label": "R19", "text": "[sc, invdec] x 6", "stated": 12, "cons": 18, "prod": 12, "check": "[sc, dec] x 6", "note": "top up stuffing"},
                     {"label": "R20", "text": "invdec x 6", "stated": 6, "cons": 12, "prod": 6, "check": "dec x 6", "note": ""},
                 ], "notes": [
                     "Finish: cinch the remaining 6 stitches closed and weave the "
@@ -170,12 +170,12 @@ PATTERN = {
                     "The joined stitches are always plain single crochet - never "
                     "work an increase through a leg.",
                     "Rnd 4 - the BACK legs (24 stitches): work the first 3 sc "
-                    "through a leg and the body together, then [1 sc, inc] x 3; "
+                    "through a leg and the body together, then [sc, inc] x 3; "
                     "work the next 3 sc through the second leg and the body "
-                    "together, then [1 sc, inc] x 3 to the end of the round.",
+                    "together, then [sc, inc] x 3 to the end of the round.",
                     "Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, "
                     "inc, 1 sc (7 stitches made); join a leg over the next 3 sc; "
-                    "work [1 sc, inc] x 3 and 1 sc (10 stitches made); join the "
+                    "work [sc, inc] x 3 and 1 sc (10 stitches made); join the "
                     "second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end "
                     "(7 stitches made). In the finished round that is 7 - 3 - 10 - "
                     "3 - 7 = 30, and all six increases fall inside the plain runs, "

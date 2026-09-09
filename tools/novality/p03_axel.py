@@ -90,7 +90,7 @@ PATTERN = {
                 {"name": "", "rows": [
                     {"label": "R1",  "text": "6 sc in MR", "stated": 6, "cons": None, "prod": 6,  "check": "6 sc in magic ring", "note": "start at top of head"},
                     {"label": "R2",  "text": "inc in each st around", "stated": 12, "cons": 6,  "prod": 12, "check": "inc in each st around", "note": ""},
-                    {"label": "R3",  "text": "[1 sc, inc] x 6", "stated": 18, "cons": 12, "prod": 18, "check": "[1 sc, inc] x 6", "note": ""},
+                    {"label": "R3",  "text": "[sc, inc] x 6", "stated": 18, "cons": 12, "prod": 18, "check": "[sc, inc] x 6", "note": ""},
                     {"label": "R4",  "text": "[2 sc, inc] x 6", "stated": 24, "cons": 18, "prod": 24, "check": "[2 sc, inc] x 6", "note": ""},
                     {"label": "R5",  "text": "[3 sc, inc] x 6", "stated": 30, "cons": 24, "prod": 30, "check": "[3 sc, inc] x 6", "note": ""},
                     {"label": "R6",  "text": "[4 sc, inc] x 6", "stated": 36, "cons": 30, "prod": 36, "check": "[4 sc, inc] x 6", "note": "head at full width"},
@@ -113,13 +113,13 @@ PATTERN = {
                     {"label": "R23", "text": "[4 sc, invdec] x 6", "stated": 30, "cons": 36, "prod": 30, "check": "[4 sc, dec] x 6", "note": ""},
                     {"label": "R24", "text": "[3 sc, invdec] x 6", "stated": 24, "cons": 30, "prod": 24, "check": "[3 sc, dec] x 6", "note": "FEET attach at R24 - R25"},
                     {"label": "R25", "text": "[2 sc, invdec] x 6", "stated": 18, "cons": 24, "prod": 18, "check": "[2 sc, dec] x 6", "note": "stuff body LIGHTLY"},
-                    {"label": "R26", "text": "[1 sc, invdec] x 6", "stated": 12, "cons": 18, "prod": 12, "check": "[1 sc, dec] x 6", "note": ""},
+                    {"label": "R26", "text": "[sc, invdec] x 6", "stated": 12, "cons": 18, "prod": 12, "check": "[sc, dec] x 6", "note": ""},
                     {"label": "R27", "text": "sc in each st around", "stated": 12, "cons": 12, "prod": 12, "check": "sc in each st around", "note": "tail begins"},
                     {"label": "R28", "text": "[2 sc, invdec] x 3", "stated": 9, "cons": 12, "prod": 9, "check": "[2 sc, dec] x 3", "note": ""},
                     {"label": "R29", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                     {"label": "R30", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                     {"label": "R31", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
-                    {"label": "R32", "text": "[1 sc, invdec] x 3", "stated": 6, "cons": 9, "prod": 6, "check": "[1 sc, dec] x 3", "note": "light stuffing to here"},
+                    {"label": "R32", "text": "[sc, invdec] x 3", "stated": 6, "cons": 9, "prod": 6, "check": "[sc, dec] x 3", "note": "light stuffing to here"},
                     {"label": "R33", "text": "sc in each st around", "stated": 6, "cons": 6, "prod": 6, "check": "sc in each st around", "note": ""},
                     {"label": "R34", "text": "sc in each st around", "stated": 6, "cons": 6, "prod": 6, "check": "sc in each st around", "note": ""},
                     {"label": "R35", "text": "sc in each st around", "stated": 6, "cons": 6, "prod": 6, "check": "sc in each st around", "note": ""},
@@ -155,10 +155,10 @@ PATTERN = {
                 ]},
                 {"name": "Feet (make 2)", "rows": [
                     {"label": "R1", "text": "6 sc in MR", "stated": 6, "cons": None, "prod": 6, "check": "6 sc in magic ring", "note": ""},
-                    {"label": "R2", "text": "[1 sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[1 sc, inc] x 3", "note": ""},
+                    {"label": "R2", "text": "[sc, inc] x 3", "stated": 9, "cons": 6, "prod": 9, "check": "[sc, inc] x 3", "note": ""},
                     {"label": "R3", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
                     {"label": "R4", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": ""},
-                    {"label": "R5", "text": "[1 sc, invdec] x 3", "stated": 6, "cons": 9, "prod": 6, "check": "[1 sc, dec] x 3", "note": "feet finish here"},
+                    {"label": "R5", "text": "[sc, invdec] x 3", "stated": 6, "cons": 9, "prod": 6, "check": "[sc, dec] x 3", "note": "feet finish here"},
                 ], "notes": [
                     "Feet: FO, cinch closed with a long tail and stuff lightly - do "
                     "not flatten them, they are plump little balls; sew the cinched "
@@ -176,7 +176,7 @@ PATTERN = {
                     {"label": "R2", "text": "inc in each st around", "stated": 12, "cons": 6, "prod": 12, "check": "inc in each st around", "note": ""},
                     {"label": "R3", "text": "sc in each st around", "stated": 12, "cons": 12, "prod": 12, "check": "sc in each st around", "note": ""},
                     {"label": "R4", "text": "sc in each st around", "stated": 12, "cons": 12, "prod": 12, "check": "sc in each st around", "note": ""},
-                    {"label": "R5", "text": "[1 sc, invdec] x 4", "stated": 8, "cons": 12, "prod": 8, "check": "[1 sc, dec] x 4", "note": "open edge sewn to head"},
+                    {"label": "R5", "text": "[sc, invdec] x 4", "stated": 8, "cons": 12, "prod": 8, "check": "[sc, dec] x 4", "note": "open edge sewn to head"},
                 ], "notes": [
                     "Working with fuzzy yarn: you cannot see the stitches. Hold a "
                     "thin strand of matching smooth yarn together with the fur yarn "

@@ -10,7 +10,7 @@ A shaggy, sturdy Highland cow with a flattened brow, a wide cream muzzle and a w
 
 **SAFETY - READ THIS FIRST**
 
-Hamish has two 12 mm safety eyes - small parts. Lock the washers firmly from the inside (this pattern locks them after the muzzle is sewn) and pull-test each eye. The horns, ears, muzzle, legs and tail are sewn on, and the fringe and tail are knotted yarn: sew every seam twice, weave ends in at least 5 cm, and knot the fringe and tail securely.
+Hamish has two 12 mm safety eyes - small parts. Reach through the open head and lock the washers firmly from the inside BEFORE you stuff and close the head (Rnd 16) - once closed you cannot get back inside. Pull-test each eye. The horns, ears, muzzle, legs and tail are sewn on, and the fringe and tail are knotted yarn: sew every seam twice, weave ends in at least 5 cm, and knot the fringe and tail securely.
 
 Not tested to ASTM F963 or EN 71 - do not describe finished Hamishes as “baby-safe”. For children under three, embroider the eyes with black floss instead of safety eyes.
 
@@ -75,13 +75,13 @@ Worked from the crown down toward the neck. One straight round only - that is wh
 | R9 | sc in each st around | (48) | eyes at R9 - R10 |
 | R10 | [6 sc, dec] x 6 | (42) | - |
 | R11 | [5 sc, dec] x 6 | (36) | - |
-| R12 | [4 sc, dec] x 6 | (30) | stuff firmly, flatten front to back |
+| R12 | [4 sc, dec] x 6 | (30) | lock eye washers, then stuff firmly |
 | R13 | [3 sc, dec] x 6 | (24) | - |
 | R14 | [2 sc, dec] x 6 | (18) | - |
 | R15 | [sc, dec] x 6 | (12) | last pinch of stuffing |
 | R16 | dec x 6 | (6) | close the hole |
 
-Eyes & head size: place the 12 mm eyes between Rnds 9 and 10, 7 stitches apart and a touch low on the face (7 sts is about 32 mm, just under half the head width). Leave the washers off until the muzzle is pinned. Finished head about 70 mm wide x 67 mm tall.
+Eyes & head size: place the 12 mm eyes between Rnds 9 and 10, 7 stitches apart and a touch low on the face (7 sts is about 32 mm, just under half the head width). LOCK THE WASHERS at about Rnd 12, while you can still reach the inside: press each washer on until it clicks. The head stays open until Rnd 16 closes it - after that the washers are unreachable. Finished head about 70 mm wide x 67 mm tall.
 
 ### 2. Muzzle & nostrils - Yarn B
 
@@ -98,7 +98,7 @@ Eyes & head size: place the 12 mm eyes between Rnds 9 and 10, 7 stitches apart a
 
 Finish: FO with a 40 cm tail and stuff lightly. The muzzle FACE is about 35 mm across (the wide cream patch you see); the RIM it sews by is about 26 mm, spanning roughly six rounds of head. Pin the top edge just under the eyes at Rnd 10 and let the lower edge fall at Rnd 15-16 near the chin. Centre it, let the face sit a little wider than the eye spacing, and sew with small whip stitches, adding a whisper more stuffing before you close.
 
-Nostrils (Yarn C): two short vertical satin stitches, 3 stitches apart, on the lower third. Mouth: one tiny horizontal stitch or a shallow V below them. LOCK THE SAFETY-EYE WASHERS NOW.
+Nostrils (Yarn C): two short vertical satin stitches, 3 stitches apart, on the lower third. Mouth: one tiny horizontal stitch or a shallow V below them. (The eye washers were already locked before the head was closed at Rnd 16.)
 
 The wide cream muzzle, low-set eyes and shaggy fringe give the Highland stare.
 
@@ -183,7 +183,7 @@ Leg length - read before you sew. A 67 mm leg joins much lower than it is long, 
 | R6 | [2 sc, dec] x 3 | (9) | - |
 | R7 | sc in each st around | (9) | - |
 
-Place the inner ear on the outer (cream facing you) before the outer's Rnd 4 and work Rnd 4 through both layers. Flatten, FO, and pinch the base with 2-3 stitches so the ear cups forward.
+Work BOTH layers through all 7 rounds. FO the inner ear with a short tail; FO the outer with a long tail. Lay the inner on the outer, cream side facing you, and join them around the edge: either single crochet around the edge through both layers in Yarn A (about 1 sc per stitch, plus extras at the corners), or whip-stitch around with the outer's tail. Flatten and pinch the base with 2-3 stitches so the ear cups forward.
 
 ### 7. Horns - Yarn B (make 2)
 
@@ -223,7 +223,7 @@ FO; add a 3-strand tassel at each end or weave a second colour as a slip-stitch 
 
 Assembly - work in this order:
 
-1. Muzzle & face sewn and washers locked (section 2).
+1. Muzzle & face sewn (section 2) - the eye washers were locked before the head was closed at Rnd 16.
 
 2. Horns between Rnds 5 and 7, 6 stitches apart, angled out and slightly back.
 

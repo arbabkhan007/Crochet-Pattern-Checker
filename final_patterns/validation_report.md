@@ -36,13 +36,13 @@ Repository unit tests: **15 passed** (`tests/validation/`, `tests/geometry/`).
 
 | # | Pattern | Code | Issues found | Issues corrected | Status |
 |---|---------|------|--------------|------------------|--------|
-| 01 | Hamish the Highland Cow | NS 01 | 3* | 3 | **PASS** |
+| 01 | Hamish the Highland Cow | NS 01 | 5* | 5 | **PASS** |
 | 02 | Kawaii Halloween Mini Set | NS 02 | 5 | 5 | **PASS** |
-| 03 | Axel the Axolotl | NS 03 | 0 | 0 | **PASS** |
+| 03 | Axel the Axolotl | NS 03 | 1 | 1 | **PASS** |
 | 04 | Coco the Capybara | NS 04 | 4 | 4 | **PASS** |
 | 05 | Little Duck Plushie | NS 05 | 3 | 3 | **PASS (1 flag)** |
-| 06 | Momo the Loaf Cat | NS 06 | 2 | 2 | **PASS** |
-| 07 | Pocket Positivity Trio | NS 07 | 2 | 2 | **PASS** |
+| 06 | Momo the Loaf Cat | NS 06 | 3 | 3 | **PASS** |
+| 07 | Pocket Positivity Trio | NS 07 | 3 | 3 | **PASS** |
 | 08 | Ember the Baby Dragon | NS 08 | 3 | 3 | **PASS (1 flag)** |
 | 09 | Shelby the Sea Turtle Bag Charm | NS 09 | 1 | 1 | **PASS** |
 | 10 | Willow the Bunny Lovey | NS 10 | 4 | 4 | **PASS** |
@@ -51,8 +51,9 @@ Repository unit tests: **15 passed** (`tests/validation/`, `tests/geometry/`).
 technique guidance added during the review is listed under “Detail” but not
 counted as defects.
 
-Totals: **27 issues found, 27 corrected, 10/10 patterns PASS**, 0 errors /
-0 warnings in the deterministic audit after correction (428 rows, 51 blocks).
+Totals: **32 issues found, 32 corrected, 10/10 patterns PASS**, 0 errors /
+0 warnings in the deterministic audit after every correction round
+(428 rows, 51 blocks), re-run after each fix.
 
 ---
 
@@ -65,6 +66,20 @@ Totals: **27 issues found, 27 corrected, 10/10 patterns PASS**, 0 errors /
   two construction steps with consistent counts.
 - **Fixed:** leg-splay guidance depended on sewing rounds that were not named;
   named they are now (sew each pair, pin gait before committing).
+- **Fixed (customer review R2, safety):** the source locked the safety-eye
+  washers *after* the muzzle was sewn — impossible, since the head is already
+  closed and stuffed by then. Re-ordered: eyes placed between Rnds 9–10,
+  **washers locked at about Rnd 12 through the still-open head, before
+  stuffing and before the head closes at Rnd 16**. Safety box, R12 table note,
+  head notes, muzzle note and assembly step 1 all agree now.
+- **Fixed (customer review R2, construction):** inner/outer ear layers were
+  joined mid-piece ("work Rnd 4 through both layers"). Now: **work both pieces
+  through all 7 rounds, then join edge-to-edge** — single crochet around both
+  layers in Yarn A, or whip-stitch.
+- **Verified (customer review R2):** head decrease ladder Rnds 10–16 follows the
+  canonical mirrored series 48 → 42 → 36 → 30 → 24 → 18 → 12 → 6 with standard
+  `[k sc, dec] x 6` labels — checked against the increase ladder Rinds 3–8;
+  no defect (labels and counts both verified by the audit).
 - Added safety guidance (12 mm eyes = small parts; embroider for under-3s) and the
   two-pass ladder-stitch join for the head.
 - Status: **PASS**
@@ -86,6 +101,11 @@ Totals: **27 issues found, 27 corrected, 10/10 patterns PASS**, 0 errors /
 ### Pattern 03 — Axel the Axolotl (NS 03)
 - No mathematical errors. All 36 body rounds verify; tail-fin scallops (5 shells
   over 12 stitches) and the closed 6-stitch tip verify.
+- **Fixed (customer review R2, consistency):** repeat labels standardised to the
+  line-up style (`[sc, inc] x 6` instead of `[1 sc, inc] x 6`, and the same for
+  decrease labels) — presentation only, counts unchanged.
+- Eye-washer order confirmed: the pattern already places eyes and locks washers
+  before the head is stuffed (Rnd 11), while the inside is still reachable.
 - Clarity improvements only: sturdier-neck alternative (R13 20 → R14 24 changes
   the waist), fuzzy-yarn gill tip, straight-round note.
 - Status: **PASS**
@@ -121,11 +141,18 @@ Totals: **27 issues found, 27 corrected, 10/10 patterns PASS**, 0 errors /
   (→ 3), Row 3 dec, sc (→ 2) with the eye-level note.
 - **Fixed:** oval base rounds did not resolve from 18 to 48 — corrected with
   explicit corner increases; R7 BLO ridge for the loaf edge retained.
+- **Fixed (customer review R2, safety):** Momo's assembly told makers *where*
+  the eyes go but never *when to lock the washers*. Added: locks go on from
+  the inside **before stuffing and closing the loaf** (the top closure is
+  the last chance to reach inside).
 - Status: **PASS**
 
 ### Pattern 07 — Pocket Positivity Trio (NS 07: Sunny / Waddle / Spud)
 - **Fixed:** Sunny's petal round doubled the wrong count — petals now resolve
   18 → 36 with the reef-knot note.
+- **Fixed (customer review R2, safety):** 5 mm eyes on tiny closed toys, but no
+  instruction said when washers lock. Added to the safety note and the final
+  checklist: lock every washer from the inside **before stuffing and closing**.
 - **Fixed:** Spud's closing row ambiguous — flat-seam close made explicit;
   Waddle's chest oval 12 → 18 confirmed and scaling module normalised.
 - Status: **PASS**
@@ -169,6 +196,38 @@ Totals: **27 issues found, 27 corrected, 10/10 patterns PASS**, 0 errors /
   to ASTM F963 / EN 71 and must not be marketed as baby-safe; comforter-safety
   guidance added.
 - Status: **PASS**
+
+---
+
+## Review round 2 — customer feedback sweep (2026-09-09)
+
+The Hamish recommendation matrix was applied to Hamish and the same classes of
+check were swept across all ten patterns:
+
+1. **Standard ladder labels (all patterns).** Every sphere increase/decrease
+   series was re-verified against the canonical mirrored ladder
+   (6 → 12 → 18 → 24 → 30 → 36 → 42 → 48 and back). Labels resolved; the only
+   inconsistency found was presentation style (`[1 sc, …]` in Axel/Coco), now
+   standardised to `[sc, …]`.
+2. **Safety-eye washer lock timing (all patterns).** Rule: washers lock from
+   the inside *before stuffing and closing*. New/changed guidance: Hamish
+   (was impossible — locked "after muzzle sewn"; now locked at Rnd 12 through
+   the open head), Momo and the Trio (added — previously unspecified). Confirmed
+   already correct: Axel, Boo & Bramble (open/hems reachable), Ember (locks
+   before the head is joined, head never closes), Shelby (washer-fit warning),
+   Coco, Duck and Willow (embroidered — no eyes).
+3. **Two-layer parts (all patterns).** Hamish ears now complete both layers (7
+   rounds) before joining (sc-around or whip-stitch). Other layered pieces
+   (duck wing closures, Bramble ear layers) are closing constructions and were
+   already specified correctly.
+4. **PDF presentation (customer-requested).** Colourways now render as named
+   colour swatches in an aligned grid instead of text bubbles; the "Pattern N
+   of 10" cover line is removed (design code only); each cover carries a product
+   photo of the finished toy, with a work-in-progress photo placed inside each
+   pattern.
+
+Deterministic audit re-run after every change: **10/10 PASS, 0 errors /
+0 warnings.**
 
 ---
 
