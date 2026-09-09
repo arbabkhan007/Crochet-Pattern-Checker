@@ -31,7 +31,7 @@ _131 characters_
 
 ## Files to upload
 
-- Momo_the_Loaf_Cat_Pattern.pdf (10 pages)
+- Momo_the_Loaf_Cat_Pattern.pdf (9 pages)
 - Momo_the_Loaf_Cat_Full_Walkthrough.mp3 (~12 min) + 7 chapter MP3s
 - Momo_the_Loaf_Cat_Tutorial.mp4 (1080p, ~12 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
@@ -58,7 +58,7 @@ A cat in the classic loaf position: paws tucked under, wider than it is tall, wo
 Finished size: 7.9 x 5.2 x 4.3 cm. The 48-stitch oval base measures about 79 x 52 mm (4.5 mm per stitch, 4.3 mm per round). Check it after R4 - if the oval is much longer or rounder than that, your foundation chain is too loose or tight; re-chain at a steadier tension.
 
 ✨ WHAT YOU GET (instant download)
-• 10-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• 9-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
 • Narrated audio walkthrough (~12 min, 7 chapters) - every round read aloud so you can crochet without looking at the page
 • Tutorial video (1080p, ~12 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: the oval base, back-loop turning round, invisible decrease, ears worked on, tail worked on, placing the face low, embroidered features
@@ -126,7 +126,7 @@ New: Momo the Loaf Cat 🧶 - A cat in the loaf position - paws tucked, wider th
 Thank you so much for buying Momo the Loaf Cat! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Momo_the_Loaf_Cat_Pattern.pdf - the full 10-page pattern
+• Momo_the_Loaf_Cat_Pattern.pdf - the full 9-page pattern
 • Momo_the_Loaf_Cat_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 7 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 

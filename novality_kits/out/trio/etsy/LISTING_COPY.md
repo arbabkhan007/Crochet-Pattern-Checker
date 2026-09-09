@@ -31,7 +31,7 @@ _126 characters_
 
 ## Files to upload
 
-- Pocket_Positivity_Trio_Pattern.pdf (11 pages)
+- Pocket_Positivity_Trio_Pattern.pdf (10 pages)
 - Pocket_Positivity_Trio_Full_Walkthrough.mp3 (~12 min) + 7 chapter MP3s
 - Pocket_Positivity_Trio_Tutorial.mp4 (1080p, ~12 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
@@ -58,7 +58,7 @@ Three tiny pocket pals: Sunny the sunflower with nine petals worked straight int
 Finished size: 3.5 - 5 cm each. At the studio gauge for worsted on 3.5 mm - 4.5 mm per stitch, 4.3 mm per round - Sunny measures about 3.9 cm across the petals, Waddle 4.9 cm tall and Spud 3.5 cm long. Gauge is not critical here; a looser hand simply gives slightly larger pals.
 
 ✨ WHAT YOU GET (instant download)
-• 11-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• 10-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
 • Narrated audio walkthrough (~12 min, 7 chapters) - every round read aloud so you can crochet without looking at the page
 • Tutorial video (1080p, ~12 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: magic ring & spiral, petal clusters, colour change for the petals, ovals for spud, tiny faces
@@ -125,7 +125,7 @@ New: Pocket Positivity Trio 🧶 - Three tiny pocket pals - a sunflower, a pengu
 Thank you so much for buying Pocket Positivity Trio! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Pocket_Positivity_Trio_Pattern.pdf - the full 11-page pattern
+• Pocket_Positivity_Trio_Pattern.pdf - the full 10-page pattern
 • Pocket_Positivity_Trio_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 7 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 

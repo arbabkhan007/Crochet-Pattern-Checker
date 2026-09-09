@@ -31,7 +31,7 @@ _128 characters_
 
 ## Files to upload
 
-- Shelby_the_Sea_Turtle_Bag_Charm_Pattern.pdf (11 pages)
+- Shelby_the_Sea_Turtle_Bag_Charm_Pattern.pdf (10 pages)
 - Shelby_the_Sea_Turtle_Bag_Charm_Full_Walkthrough.mp3 (~11 min) + 7 chapter MP3s
 - Shelby_the_Sea_Turtle_Bag_Charm_Tutorial.mp4 (1080p, ~11 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
@@ -58,7 +58,7 @@ A thirty-minute sea turtle charm in DK cotton. The shell is a small dome, the un
 Finished size: 3.7 cm / 1.5 in across. 24 sc around measures about 27 mm across in DK on 2.5 mm (3.5 mm per stitch, 3.2 mm per round). The shell dome is about 27 mm wide; with the flippers Shelby spans about 37 mm and is 32 mm long. Gauge is not critical for a charm.
 
 ✨ WHAT YOU GET (instant download)
-• 11-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• 10-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
 • Narrated audio walkthrough (~11 min, 7 chapters) - every round read aloud so you can crochet without looking at the page
 • Tutorial video (1080p, ~11 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: magic ring & spiral, the back-loop rim, bumps in one round, joining edge to edge
@@ -126,7 +126,7 @@ New: Shelby the Sea Turtle Bag Charm 🧶 - A thirty-minute sea turtle in DK cot
 Thank you so much for buying Shelby the Sea Turtle Bag Charm! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Shelby_the_Sea_Turtle_Bag_Charm_Pattern.pdf - the full 11-page pattern
+• Shelby_the_Sea_Turtle_Bag_Charm_Pattern.pdf - the full 10-page pattern
 • Shelby_the_Sea_Turtle_Bag_Charm_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 7 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 
