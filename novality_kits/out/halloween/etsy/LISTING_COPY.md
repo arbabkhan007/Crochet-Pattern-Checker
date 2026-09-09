@@ -31,7 +31,7 @@ _137 characters_
 
 ## Files to upload
 
-- Kawaii_Halloween_Mini_Set_Pattern.pdf (14 pages)
+- Kawaii_Halloween_Mini_Set_Pattern.pdf (13 pages)
 - Kawaii_Halloween_Mini_Set_Full_Walkthrough.mp3 (~16 min) + 10 chapter MP3s
 - Kawaii_Halloween_Mini_Set_Tutorial.mp4 (1080p, ~16 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
@@ -58,7 +58,7 @@ Three palm-sized Halloween minis in DK cotton: Boo the ghost with a ruffled hem 
 Finished size: 5 - 5.5 cm each. 24 sc around measures about 27 mm across when stuffed in DK on 2.5 mm (3.5 mm per stitch, 3.2 mm per round). Gauge is not critical for these minis - a looser gauge simply gives slightly bigger toys - but keep it tight enough that stuffing does not show.
 
 ✨ WHAT YOU GET (instant download)
-• 14-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• 13-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
 • Narrated audio walkthrough (~16 min, 10 chapters) - every round read aloud so you can crochet without looking at the page
 • Tutorial video (1080p, ~16 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: magic ring & spiral, invisible decrease, the ruffled hem, needle sculpting
@@ -127,7 +127,7 @@ New: Kawaii Halloween Mini Set 🧶 - Boo the ghost, Pip the pumpkin and Bramble
 Thank you so much for buying Kawaii Halloween Mini Set! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Kawaii_Halloween_Mini_Set_Pattern.pdf - the full 14-page pattern
+• Kawaii_Halloween_Mini_Set_Pattern.pdf - the full 13-page pattern
 • Kawaii_Halloween_Mini_Set_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 10 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 

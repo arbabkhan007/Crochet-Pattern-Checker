@@ -31,7 +31,7 @@ _131 characters_
 
 ## Files to upload
 
-- Little_Duck_Plushie_Pattern.pdf (10 pages)
+- Little_Duck_Plushie_Pattern.pdf (9 pages)
 - Little_Duck_Plushie_Full_Walkthrough.mp3 (~10 min) + 7 chapter MP3s
 - Little_Duck_Plushie_Tutorial.mp4 (1080p, ~10 min) - if it exceeds Etsy's 20 MB per-file limit, host it on an unlisted video link and include the link in the PDF or a 'links' PDF
 
@@ -58,7 +58,7 @@ A squashy chenille duck worked in one continuous piece from the tail up to the c
 Finished size: 16 cm / 6.25 in tall. 30 sc around in chenille on a 5.0 mm hook measures about 75 mm across when stuffed (about 8 mm per stitch, 7 mm per round). Chenille is forgiving: if your duck comes out a little bigger or smaller it will still be a duck. Just keep the fabric tight enough that no stuffing shows.
 
 ✨ WHAT YOU GET (instant download)
-• 10-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
+• 9-page designed PDF pattern - every round in a clear table with stitch counts, photos and notes exactly where you need them
 • Narrated audio walkthrough (~10 min, 7 chapters) - every round read aloud so you can crochet without looking at the page
 • Tutorial video (1080p, ~10 min) - round-by-round slides that highlight the row being spoken, with captions and chapter markers
 • Techniques explained step by step: magic ring in chenille, spiral with a marker, invisible decrease, stuff early, finding stitches for sewing
@@ -125,7 +125,7 @@ New: Little Duck Plushie 🧶 - A squashy chenille duck worked in ONE piece from
 Thank you so much for buying Little Duck Plushie! 🧶
 
 Your files are ready under Purchases and Reviews > Download Files:
-• Little_Duck_Plushie_Pattern.pdf - the full 10-page pattern
+• Little_Duck_Plushie_Pattern.pdf - the full 9-page pattern
 • Little_Duck_Plushie_Full_Walkthrough.mp3 - the narrated audio walkthrough (plus 7 chapter files)
 • Tutorial video - see the last page of the PDF for the link and chapter markers
 
