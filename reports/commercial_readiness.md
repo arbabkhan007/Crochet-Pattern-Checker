@@ -41,14 +41,14 @@ The final release gate reads the Markdown itself and currently reports:
 The gate is `tools/pattern_release_audit.py`. A final desk suite passed on 11 September 2026:
 
 - release audit: 15 files, 532 table rows, 110 dual-terminology rows, 507 count rows and 2,470 assertions;
-- project Python suite: 92 tests passed; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
+- project Python suite: 97 tests passed, including the release gate and four mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
 - Python compilation and Ruff static analysis: pass;
 - `codespell` 2.4.1: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
 - structural Markdownlint: 16 files (15 patterns plus this report), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
 - GFM-to-HTML render: 16 files, one H1 each, 77 recognized pattern tables and balanced table tags;
 - `git diff --check`: pass.
 
-The gate was also mutation-tested separately. Four defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording and removal of a required care section—each produced a non-zero exit and a localized finding.
+The permanent test suite also mutation-tests the gate. Four defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording and removal of a required care section—each produce a non-zero exit and a localized finding.
 
 ### Collection-wide corrections
 
