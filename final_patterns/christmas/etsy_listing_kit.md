@@ -5,6 +5,22 @@ Every listing delivers **one PDF with both terminologies woven through a single 
 
 ---
 
+## Image stack — 5 slots per listing (in the `etsy/` folder, 2400×1800)
+
+Upload in this order — slot 1 is the search-thumbnail and must be the strongest photo:
+
+| Slot | Every listing | Files |
+|------|---------------|-------|
+| 1 | Cover hero (product, clean background) | `NS11_01_cover.jpg`, `NS12_01_cover.jpg`, `NS13_01_cover.jpg` |
+| 2 | Work-in-progress (believability/process) | `NS11_02_wip.jpg`, `NS12_02_wip.jpg`, `NS13_02_wip.jpg` |
+| 3 | Colourway lineup (shows choice) | `NS11_03_colorways.jpg`, `NS12_03_colorways.jpg`, `NS13_03_colorways.jpg` |
+| 4 | Detail close-up (stitch quality) | `NS11_04_detail.jpg`, `NS12_04_detail.jpg`, `NS13_04_detail.jpg` |
+| 5 | Info card (what's included: dual terms, design code, level, size) | `NS11_05_info.jpg`, `NS12_05_info.jpg`, `NS13_05_info.jpg` |
+
+All 15 are 2400×1800 (4:3) — above Etsy's 2000px recommendation, so zoom stays crisp. Etsy allows 10 slots; slots 6–10 can be added later with real customer photos of finished makes.
+
+---
+
 ## Listing 1 — NS 11 No-Sew Christmas Gnome
 
 **Title (140 chars):**
