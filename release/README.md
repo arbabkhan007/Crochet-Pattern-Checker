@@ -9,10 +9,13 @@ Codes **NS 01–NS 15**:
 - a matching black-on-white, raster-free **PRINTER SAVER** companion for
   economical home printing.
 
-The all-in-one convenience archive
+The complete requested archive
+[`Novality_Crochet_Studio_NS01-NS15_COMPLETE_PDF_AND_MARKDOWN_COLLECTION.zip`](Novality_Crochet_Studio_NS01-NS15_COMPLETE_PDF_AND_MARKDOWN_COLLECTION.zip)
+contains exactly 45 files in three folders: 15 colourful PDFs, 15 black-and-white
+printer PDFs and all 15 audited Markdown masters. The smaller
 [`Novality_Crochet_Studio_NS02-NS15_PDF_Collection.zip`](Novality_Crochet_Studio_NS02-NS15_PDF_Collection.zip)
-contains the 28 NS 02–NS 15 PDFs. The files can also be downloaded separately
-for use as the two buyer files in each Etsy listing.
+contains only the 28 NS 02–NS 15 PDFs. Individual PDFs can also be downloaded
+separately for use as the two buyer files in each Etsy listing.
 
 ## Customer-file inventory
 
@@ -35,7 +38,7 @@ for use as the two buyer files in each Etsy listing.
 | NS 15 | Interchangeable Christmas Wreath | [`NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf`](NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf) | [`NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf`](NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf) | 9 / 9 |
 
 The standard [`MANIFEST.sha256`](MANIFEST.sha256) records the final byte-level
-SHA-256 digest of every release PDF and the collection archive.
+SHA-256 digest of every release PDF and both collection archives.
 
 ## Visual and colour treatment
 
@@ -71,8 +74,11 @@ The final production review on 11 September 2026 reported:
   placements per NS 02–NS 15 PDF**;
 - printer-saver image inventory: **0 raster objects in all 14 companions**;
 - all-page render review: **261/261 pages rendered and bounded — PASS**;
-- collection ZIP: **28 expected entries, CRC clean, 5.33 MiB — PASS**;
-- Python regression suite: **99 passed**, with two third-party deprecation
+- PDF-only NS 02–NS 15 ZIP: **28 expected entries, CRC clean, 5.33 MiB — PASS**;
+- complete NS 01–NS 15 ZIP: **15 colourful PDFs + 15 printer PDFs + 15
+  Markdown masters; 45 expected byte-identical entries, CRC clean, 10.22 MiB —
+  PASS**;
+- Python regression suite: **100 passed**, with two third-party deprecation
   warnings; and
 - Ruff and `git diff --check`: **PASS**.
 
@@ -91,6 +97,9 @@ python -m venv /tmp/novality-pdf
 
 # NS 02–NS 15 pairs plus 28-file convenience ZIP
 /tmp/novality-pdf/bin/python tools/build_remaining_pattern_pdfs.py
+
+# Package all 15 colourful PDFs, all 15 printer PDFs and all 15 Markdown masters
+/tmp/novality-pdf/bin/python tools/package_complete_collection.py
 
 # Render every NS 02–NS 15 page and create review galleries under build/
 /tmp/novality-pdf/bin/python tools/render_collection_review.py

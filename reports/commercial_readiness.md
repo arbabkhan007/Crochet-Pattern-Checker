@@ -42,7 +42,7 @@ The final release gate reads the Markdown itself and currently reports:
 The gate is `tools/pattern_release_audit.py`. A final desk suite passed on 11 September 2026:
 
 - release audit: 15 files, 542 table rows, 110 dual-terminology rows, 517 count rows and 2,523 assertions;
-- project Python suite: 99 tests passed, including the release gate and six mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
+- project Python suite: 100 tests passed, including the release gate, six mutations and byte-level verification of the complete 45-file archive; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
 - Python compilation and Ruff static analysis: pass;
 - `codespell` 2.4.3: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
 - structural Markdownlint: 18 files (15 patterns, this report, the release README and the visual-asset README), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
@@ -51,7 +51,8 @@ The gate is `tools/pattern_release_audit.py`. A final desk suite passed on 11 Se
 - NS 01 printer-saver postflight: 13 A4 pages, 0.12 MiB, white backgrounds, 98 progress boxes, no raster images, grayscale-only vectors, selectable text, metadata, bookmarks and all required critical phrases;
 - NS 02–NS 15 PDF postflight: 28 of 28 A4 files passed source-content sentinels, design-code/brand identity, metadata, size, bookmark, original-colour-name, progress-box and image-inventory checks; all 14 printer companions are raster-free and grayscale-only;
 - NS 02–NS 15 all-page render inspection: 261 of 261 pages rendered; bounds, meaningful-content and replacement-glyph checks passed, followed by visual review of every cover/profile/contents/closing page and the densest instruction/table page in every design;
-- NS 02–NS 15 convenience ZIP: all 28 expected PDFs present, CRC clean and 5.33 MiB;
+- NS 02–NS 15 PDF-only ZIP: all 28 expected PDFs present, CRC clean and 5.33 MiB;
+- complete NS 01–NS 15 ZIP: exactly 15 colourful PDFs, 15 black-and-white printer PDFs and 15 Markdown masters; all 45 members byte-identical to the repository files, CRC clean and 10.22 MiB;
 - visual inspection: pass for the NS 01 Head Rnd 11 decrease and shortened-front-leg table, collection progress boxes, named original colours, pagination, difficult five-column US/UK tables, light closing pages and printer-saver notes pages;
 - `git diff --check`: pass.
 
@@ -165,9 +166,11 @@ two files for each design from NS 01 through NS 15. NS 01 has a full-colour
 edition with three labelled illustrative visuals and an image-free printer
 companion. Every NS 02–NS 15 full-colour edition has exactly two labelled
 illustrative visuals—a cover composition and maker map—and every printer
-companion is black on white with no raster objects. The 28 new files also have a
-CRC-checked convenience archive. All files retain selectable text, bookmarks,
-named original colours, copyright/licence text and construction tracking.
+companion is black on white with no raster objects. The 28 NS 02–NS 15 files
+have a PDF-only convenience archive. A second complete archive contains all 15
+colourful PDFs, all 15 printer PDFs and all 15 audited Markdown masters in three
+labelled folders. All PDFs retain selectable text, bookmarks, named original
+colours, copyright/licence text and construction tracking.
 
 None of these files contains photographs of a physically tested sample. Real
 process photographs remain deferred until rights-cleared images of the actual
