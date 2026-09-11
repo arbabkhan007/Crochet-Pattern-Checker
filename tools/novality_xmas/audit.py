@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 from tools.novality.audit import audit_pattern
-from . import PATTERNS
+from . import PATTERNS, NEW
 
 RESULTS = Path("tools/novality_xmas/audit_results.json")
 
@@ -48,11 +48,39 @@ def bobble_derivations():
     # Bauble ladder anchors
     expect("Bauble R7 consumes", 4 * 6, 24)
 
+    # ---- NS 14 tree skirt: the 12-spoke ladder ----
+    skirt = next(p for p in NEW if p["id"] == "treeskirt")
+    rows = [r for pc in skirt["pieces"] for sp in pc["subpieces"] for r in sp["rows"]]
+    rnd_rows = [(int(r["label"][1:]), r) for r in rows if r["label"].startswith("R")]
+    for n, r in rnd_rows:
+        expect(f"Skirt R{n} stated == 12*{n}", r["stated"], 12 * n)
+        expect(f"Skirt R{n} continuity",
+               (r["cons"] if r["cons"] is not None else 0, r["prod"]),
+               (12 * (n - 1), 12 * n))
+    for n, scallops in ((14, 28), (23, 46), (32, 64)):
+        s = dict(rnd_rows)[n]["stated"]
+        expect(f"Skirt R{n} divisible by 6 -> scallops", (s % 6, s // 6), (0, scallops))
+    expect("Skirt bobble rounds", [n for n, r in rnd_rows if "BO " in r["text"]],
+           [5, 8, 11, 14, 17, 20, 23, 26, 29, 32])
+
+    # ---- NS 15 wreath ----
+    wreath = next(p for p in NEW if p["id"] == "wreath")
+    wrows = [r for pc in wreath["pieces"] for sp in pc["subpieces"] for r in sp["rows"]]
+    petals = next(r for r in wrows if r["label"] == "Petals")
+    expect("Poinsettia petals consume all 6 centre sts", petals["cons"], 6)
+    expect("Poinsettia per-petal production", petals["prod"], 6 * (3 + 1))  # 3 tr + 1 sl st
+    expect("Poinsettia leaf chains used", 1 + 1 + 3 + 1 + 1, 7)  # of 8 ch, 2nd-ch start
+    expect("Bow tails from 15 ch", 15 - 1, 14)
+    expect("Bow band from 6 ch", 6 - 1, 5)
+    snow = next(r for r in wrows if r["label"] == "R2" and "Ch 5" in r["text"])
+    expect("Wreath snowflake R2 consumption", snow["cons"], 12)
+    expect("Wreath tube constant stitch", 12, 12)
+
 
 def main():
     bobble_derivations()
     print("== Deterministic audit ==")
-    reports = [audit_pattern(p) for p in PATTERNS]
+    reports = [audit_pattern(p) for p in PATTERNS + NEW]
     RESULTS.write_text(json.dumps(reports, indent=2))
     errors = 0
     for r in reports:

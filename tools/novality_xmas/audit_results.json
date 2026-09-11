@@ -34,5 +34,29 @@
     "errors": [],
     "warnings": [],
     "status": "PASS"
+  },
+  {
+    "id": "treeskirt",
+    "title": "Bobble Snowflake Tree Skirt",
+    "design_code": "NS 14",
+    "blocks": 7,
+    "rows_checked": 35,
+    "manual_rows": 35,
+    "repo_validated_blocks": 0,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
+  },
+  {
+    "id": "wreath",
+    "title": "Interchangeable Christmas Wreath",
+    "design_code": "NS 15",
+    "blocks": 5,
+    "rows_checked": 17,
+    "manual_rows": 17,
+    "repo_validated_blocks": 0,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
   }
 ]
