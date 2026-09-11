@@ -1,7 +1,7 @@
 """Build the Christmas Collection PDFs.
 
-One PDF per pattern; each PDF contains the COMPLETE pattern twice:
-first in US terms, then in UK terms (own cover divider with a UK-terms badge).
+One PDF per pattern, written in ONE flow: every round shows the US-terms
+instruction and the exact UK equivalent side by side; stitch counts once.
 
 Outputs (3 PDFs) under final_patterns/christmas/:
   NS11_No-Sew_Christmas_Gnome.pdf
@@ -25,9 +25,9 @@ def build_all():
     results = []
     for p in PATTERNS:
         uk = to_uk(p)
-        out, pages = build_pdfs.build_dual(p, uk, f"christmas/{SLUGS[p['id']]}")
+        out, pages = build_pdfs.build_dual_rows(p, uk, f"christmas/{SLUGS[p['id']]}")
         results.append((out.name, pages))
-        print(f"built {out} ({pages} pages, US + UK combined)")
+        print(f"built {out} ({pages} pages, dual US|UK rows)")
     return results
 
 

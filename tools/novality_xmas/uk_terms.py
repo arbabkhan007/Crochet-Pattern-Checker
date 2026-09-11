@@ -36,7 +36,7 @@ _FILL = {
 _SKIP_KEYS = {
     "id", "number", "design_code", "hashtag", "check", "cons", "prod",
     "stated", "skip_check", "allow_gap", "kind", "type", "file_slug",
-    "assets_key",
+    "assets_key", "abbreviations_uk",
 }
 
 

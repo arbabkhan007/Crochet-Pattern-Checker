@@ -1,7 +1,7 @@
 # Novality Store — Christmas Collection Etsy Listing Kit
 
 Design codes: **NS 11** · **NS 12** · **NS 13**
-Every listing delivers **one PDF containing BOTH terminologies**: the complete pattern written in US terms, followed by the complete pattern in UK terms (sc→dc, hdc→htr, dc→tr, tr→dtr, 5-dc bobble→5-tr bobble) with its own cover divider so the maker flips straight to their section.
+Every listing delivers **one PDF with both terminologies woven through a single pattern**: every round shows the US-terms instruction and the exact UK equivalent side by side (sc→dc, hdc→htr, dc→tr, tr→dtr, 5-dc bobble→5-tr bobble), with one shared stitch count. No duplicated sections — crochet straight down whichever column matches how you learned.
 
 ---
 
@@ -11,7 +11,7 @@ Every listing delivers **one PDF containing BOTH terminologies**: the complete p
 No Sew Christmas Gnome Crochet Pattern PDF US + UK Terms | Amigurumi Gnome Christmas Decor | One Piece Beginner Pattern | Instant Download
 
 **Short description:**
-Meet the easiest Christmas gnome you'll ever crochet: body, beard, face, nose and slouchy hat are all worked in **one continuous piece** — zero sewing, zero assembly. The nose is simply a 5-dc bobble worked right into the face round, and the beard is a ring of textured loops crocheted on, then the hat grows straight on top. Finished size approx. 11–12.5 cm (4.5–5 in) in worsted/aran yarn. Delivered as **one instant-download PDF containing both US terms AND UK terms sections**, fully stitch-counted round by round with placement photos. Includes a mini-variant note (stop after R21 for a stubby ornament body) and 5 colourway ideas. Skill level: confident beginner.
+Meet the easiest Christmas gnome you'll ever crochet: body, beard, face, nose and slouchy hat are all worked in **one continuous piece** — zero sewing, zero assembly. The nose is simply a 5-dc bobble worked right into the face round, and the beard is a ring of textured loops crocheted on, then the hat grows straight on top. Finished size approx. 11–12.5 cm (4.5–5 in) in worsted/aran yarn. Delivered as **one instant-download PDF with US and UK terms side by side in every round**, fully stitch-counted round by round with placement photos. Includes a mini-variant note (stop after R21 for a stubby ornament body) and 5 colourway ideas. Skill level: confident beginner.
 
 **13 tags:**
 crochet gnome pattern, no sew amigurumi, christmas gnome crochet, gnome pattern pdf, uk crochet pattern, us crochet terms, amigurumi christmas, one piece crochet, beginner amigurumi, christmas decor diy, crochet christmas gift, nordic gnome pattern, instant download pdf
@@ -28,7 +28,7 @@ crochet gnome pattern, no sew amigurumi, christmas gnome crochet, gnome pattern 
 Bobble Christmas Tree Crochet Pattern PDF US + UK Terms | Amigurumi Christmas Tree Table Decor | No Sew One Piece Crochet | Instant Download
 
 **Short description:**
-A plump little bobble-stitch Christmas tree worked top-down in **one piece**: seven bobble tiers build the cone while the stitch count ladders down 48 → 6, and the bobbles double as natural "branches" you can work in contrast colours like built-in ornaments. Finished size approx. 12 cm tall × 7 cm wide in worsted on a 4 mm hook (≈15–16 cm in chunky on 5 mm — notes included for both). Delivered as **one instant-download PDF containing both US terms AND UK terms sections** with every bobble round's stitch math shown. Skill level: confident beginner (the bobble is taught step-by-step inside the pattern).
+A plump little bobble-stitch Christmas tree worked top-down in **one piece**: seven bobble tiers build the cone while the stitch count ladders down 48 → 6, and the bobbles double as natural "branches" you can work in contrast colours like built-in ornaments. Finished size approx. 12 cm tall × 7 cm wide in worsted on a 4 mm hook (≈15–16 cm in chunky on 5 mm — notes included for both). Delivered as **one instant-download PDF with US and UK terms side by side in every round** with every bobble round's stitch math shown. Skill level: confident beginner (the bobble is taught step-by-step inside the pattern).
 
 **13 tags:**
 crochet christmas tree, bobble stitch pattern, christmas tree crochet, amigurumi tree pattern, uk crochet pattern, us crochet terms, christmas table decor, no sew crochet pattern, one piece amigurumi, crochet christmas pdf, chunky tree pattern, holiday decor diy, instant download pdf
@@ -45,7 +45,7 @@ crochet christmas tree, bobble stitch pattern, christmas tree crochet, amigurumi
 Crochet Christmas Ornament Pattern Bundle PDF US + UK Terms | Bauble Star Snowflake 3-in-1 | Mini Christmas Ornaments | Instant Download
 
 **Short description:**
-Three classic tree ornaments in one pattern bundle: a stuffed **round bauble** (≈3.5–4 cm) worked 24 → 6 with the classic amigurumi decrease ladder, a flat **five-point star** (≈9 cm) with fan-stitched points built on just two rounds, and an open-lace **six-point snowflake** (≈10 cm) built from six chain-5 spaces and tr-cluster arms — block it crisp and hang. Perfect stash-busters: 5–15 g of yarn each. Delivered as **one instant-download PDF containing both US terms AND UK terms sections** covering all three designs with stitch-counted rounds. Skill level: beginner to confident beginner.
+Three classic tree ornaments in one pattern bundle: a stuffed **round bauble** (≈3.5–4 cm) worked 24 → 6 with the classic amigurumi decrease ladder, a flat **five-point star** (≈9 cm) with fan-stitched points built on just two rounds, and an open-lace **six-point snowflake** (≈10 cm) built from six chain-5 spaces and tr-cluster arms — block it crisp and hang. Perfect stash-busters: 5–15 g of yarn each. Delivered as **one instant-download PDF with US and UK terms side by side in every round** covering all three designs with stitch-counted rounds. Skill level: beginner to confident beginner.
 
 **13 tags:**
 crochet ornament pattern, christmas ornament bundle, crochet bauble pattern, crochet star pattern, crochet snowflake, uk crochet pattern, us crochet terms, mini christmas crochet, stash buster crochet, 3 in 1 pattern pdf, tree decorations diy, amigurumi christmas, instant download pdf
@@ -58,7 +58,7 @@ crochet ornament pattern, christmas ornament bundle, crochet bauble pattern, cro
 
 ## FAQ (paste into each listing)
 
-**Do I get both US and UK terms?** Yes — every purchase includes one complete PDF containing BOTH terminologies: the full pattern written in US stitch terms first, then the full pattern in UK stitch terms (sc→dc, hdc→htr, dc→tr, tr→dtr) behind its own cover divider. Crochet from whichever section matches how you learned.
+**Do I get both US and UK terms?** Yes — every round in the single PDF shows both: the US-terms instruction in the left column and the exact UK equivalent (sc→dc, hdc→htr, dc→tr, tr→dtr) in the right column, with one shared stitch count. Crochet down whichever column matches how you learned.
 
 **Are these patterns worked in rounds or rows?** The amigurumi pieces (gnome, tree, bauble) are worked in continuous spiral rounds — use a stitch marker; do not join unless told. The star and snowflake are worked in joined rounds.
 
@@ -66,6 +66,6 @@ crochet ornament pattern, christmas ornament bundle, crochet bauble pattern, cro
 
 **Can I sell finished items?** Yes, small-batch sales of finished makes are welcome with credit "Pattern by Novality Store". The pattern files themselves may not be shared or resold.
 
-**How do I receive the files?** Instant download after purchase: 1 PDF per listing (US + UK terms inside). Printable at A4 or US Letter.
+**How do I receive the files?** Instant download after purchase: 1 dual-terms PDF per listing (US + UK side by side in every round). Printable at A4 or US Letter.
 
 **What yarn works best?** Any worsted/aran (#4) — acrylic for durability, cotton for crisp ornaments. Gauge notes are inside; these designs are gauge-tolerant because size scales with yarn and hook.

@@ -300,43 +300,54 @@ def safety_box(pdf, paragraphs):
 
 
 COLS = [16, 90, 14, 56]   # Rnd | Instruction | Sts | Note  (sums to CONTENT_W)
+DUAL_COLS = [14, 62, 62, 12, 26]   # Rnd | US | UK | Sts | Note
 
 
 def round_table(pdf, rows):
-    header = ["Rnd", "Instruction", "Sts", "Note"]
+    dual = any(r.get("text_uk") for r in rows)
+    cols = DUAL_COLS if dual else COLS
+    header = (["Rnd", "US terms", "UK terms", "Sts", "Note"] if dual
+              else ["Rnd", "Instruction", "Sts", "Note"])
+    styles = ([("sans", "B", INK), ("sans", "", INK), ("sans", "", INK),
+               ("sans", "B", ACCENT), ("sans", "", MUTED)] if dual
+              else [("sans", "B", INK), ("sans", "", INK),
+                    ("sans", "B", ACCENT), ("sans", "", MUTED)])
     pdf.set_line_width(0.2)
+
+    def cells_of(row):
+        c = [row["label"], row["text"]]
+        if dual:
+            c.append(row.get("text_uk", ""))
+        c.append(f"({row['stated']})" if row.get("stated") is not None else "-")
+        c.append(row.get("note") or "-")
+        return c
 
     def draw_header():
         pdf.set_font("sans", "B", 8.2)
         pdf.set_fill_color(*ACCENT)
         pdf.set_text_color(*WHITE)
         h = 6.5
-        for w, txt in zip(COLS, header):
+        for w, txt in zip(cols, header):
             pdf.cell(w, h, txt, border=0, align="L", fill=True)
         pdf.ln(h)
 
     def row_height(row):
         pdf.set_font("sans", "", 8.6)
-        cells = [row["label"], row["text"],
-                 f"({row['stated']})" if row.get("stated") is not None else "-",
-                 row.get("note") or "-"]
+        cells = cells_of(row)
         hmax = 0
-        for w, txt in zip(COLS, cells):
+        for w, txt in zip(cols, cells):
             h = pdf.multi_cell(w - 3, 4.3, txt, dry_run=True, output=MethodReturnValue.HEIGHT)
             hmax = max(hmax, h)
         return hmax + 2.6
 
     def draw_row(idx, row, h):
-        cells = [row["label"], row["text"],
-                 f"({row['stated']})" if row.get("stated") is not None else "-",
-                 row.get("note") or "-"]
+        cells = cells_of(row)
         y0 = pdf.get_y()
         if idx % 2 == 1:
             pdf.set_fill_color((250, 246, 241))
             pdf.rect(M_L, y0, CONTENT_W, h, style="F")
         x = M_L
-        styles = [("sans", "B", INK), ("sans", "", INK), ("sans", "B", ACCENT), ("sans", "", MUTED)]
-        for (w, txt, (fam, st, col)) in zip(COLS, cells, styles):
+        for (w, txt, (fam, st, col)) in zip(cols, cells, styles):
             pdf.set_xy(x + 1.5, y0 + 1.3)
             pdf.set_font(fam, st, 8.6)
             pdf.set_text_color(*col)
@@ -505,21 +516,54 @@ def render_pattern(pdf, p):
     abbr = p["abbreviations"]
     half = (len(abbr) + 1) // 2
     col_w = CONTENT_W / 2
-    y0 = pdf.get_y()
-    x0 = M_L
-    for i, line in enumerate(abbr):
-        col = 0 if i < half else 1
-        row = i if i < half else i - half
-        pdf.set_xy(x0 + col * col_w, y0 + row * 5.2)
-        parts = line.split(" - ", 1)
+
+    pairs = [(abbr[i], abbr[i + half] if i + half < len(abbr) else "")
+             for i in range(half)]
+
+    def desc_width(pair_txt_w1):
+        return max(col_w - 6 - pair_txt_w1, 22)
+
+    def code_w1(code):
+        pdf.set_font("sans", "B", 8.8)
+        return pdf.get_string_width(code + "  ")
+
+    def entry_height(txt):
+        if not txt:
+            return 4.6
+        parts = txt.split(" - ", 1)
+        if len(parts) == 1:
+            return 4.6
+        pdf.set_font("sans", "", 8.8)
+        return max(4.6, pdf.multi_cell(desc_width(code_w1(parts[0])), 4.6,
+                                       parts[1], dry_run=True,
+                                       output=MethodReturnValue.HEIGHT))
+
+    def draw_entry(x, y, txt):
+        if not txt:
+            return
+        parts = txt.split(" - ", 1)
+        pdf.set_xy(x, y)
         pdf.set_font("sans", "B", 8.8)
         pdf.set_text_color(*ACCENT)
-        w1 = pdf.get_string_width(parts[0] + "  ")
-        pdf.cell(w1, 5, parts[0] + "  ")
+        if len(parts) == 1:
+            pdf.multi_cell(col_w - 6, 4.6, parts[0])
+            return
+        w1 = code_w1(parts[0])
+        pdf.cell(w1, 4.6, parts[0] + "  ")
         pdf.set_font("sans", "", 8.8)
         pdf.set_text_color(*INK)
-        pdf.cell(col_w - w1 - 4, 5, parts[1] if len(parts) > 1 else "")
-    pdf.set_y(y0 + half * 5.2 + 2)
+        pdf.set_xy(x + w1, y)
+        pdf.multi_cell(desc_width(w1), 4.6, parts[1])
+
+    row_heights = [max(entry_height(a), entry_height(b)) for a, b in pairs]
+    if pdf.get_y() > pdf.page_break_trigger - (sum(row_heights) + 8):
+        pdf.add_page()
+    y = pdf.get_y()
+    for (a, b), h in zip(pairs, row_heights):
+        draw_entry(M_L, y, a)
+        draw_entry(M_L + col_w, y, b)
+        y += max(h, 5.2)
+    pdf.set_xy(M_L, y + 2)
 
     if p.get("construction") or p.get("techniques"):
         section(pdf, "Construction & techniques")
@@ -671,16 +715,68 @@ def build(p):
     return _write(pdf, p)
 
 
-def build_dual(p, uk, slug):
-    """One PDF containing the full pattern twice: US terms, then UK terms."""
-    pdf = _new_pdf(p)
-    render_pattern(pdf, p)
-    pdf.pdata = uk
-    render_pattern(pdf, uk)
-    out = OUT / f"{slug}.pdf"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    pdf.output(str(out))
-    return out, pdf.page_no()
+def _merge_abbr(us, ukl):
+    """Pair US and UK abbreviation lists into plain-language dual lines."""
+    out = []
+    for a, b in zip(us, ukl):
+        ca, _, da = a.partition(" - ")
+        cb, _, db = b.partition(" - ")
+        ca, cb, da, db = ca.strip(), cb.strip(), da.strip(), db.strip()
+        if ca == cb and da == db:
+            out.append(a)
+        elif ca == cb:
+            # same code, different working stitch (e.g. BO 5-dc vs 5-tr)
+            out.append(f"{ca} - {da} / UK: {db}")
+        elif da == db:
+            out.append(f"{ca} = {cb} - {da}")
+        else:
+            out.append(f"{ca} = {cb} - {da} / {db}")
+    return out
+
+
+def merge_dual(p, uk):
+    """Merge a US pattern dict with its UK twin into one dual-terms pattern.
+
+    Every round keeps its exact US instruction AND its UK equivalent; stitch
+    counts appear once (they are identical). Prose sections use US terms.
+    """
+    m = dict(p)
+    m["meta"] = ["US + UK terms" if t in ("US terms", "UK terms") else t
+                 for t in p["meta"]]
+    m["abbreviations"] = _merge_abbr(p["abbreviations"], uk["abbreviations"])
+    m["notes"] = [
+        ("How to read this dual pattern: every round appears twice side by "
+         "side - the US-terms instruction in the left column, the exact UK "
+         "equivalent in the right column. Stitch counts are identical for "
+         "both terminologies. Prose tips use US terms."),
+        *p.get("notes", []),
+    ]
+    pieces = []
+    for pu, pk in zip(p["pieces"], uk["pieces"]):
+        np_ = dict(pu)
+        subs = []
+        for su, sk in zip(pu["subpieces"], pk["subpieces"]):
+            ns = dict(su)
+            rows = []
+            for ru, rk in zip(su.get("rows", []), sk.get("rows", [])):
+                nr = dict(ru)
+                nr["text_uk"] = rk["text"]
+                rows.append(nr)
+            ns["rows"] = rows
+            subs.append(ns)
+        np_["subpieces"] = subs
+        pieces.append(np_)
+    m["pieces"] = pieces
+    return m
+
+
+def build_dual_rows(p, uk, slug):
+    """One PDF, one flow: US and UK instructions side by side in every round."""
+    m = merge_dual(p, uk)
+    m["file_slug"] = slug
+    pdf = _new_pdf(m)
+    render_pattern(pdf, m)
+    return _write(pdf, m)
 
 
 def build_all():

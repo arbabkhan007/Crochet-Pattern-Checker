@@ -40,7 +40,7 @@ PATTERN = {
     "abbreviations": [
         "MR - magic ring", "ch - chain", "sl st - slip stitch",
         "sc - single crochet", "inc - increase (2 sc in one st)",
-        "sc2tog - single crochet 2 together (a decrease)",
+        "sc2tog - work 2 stitches together as one (a decrease)",
         "BLO - back loop only", "BO - 5-dc bobble (counts as 1 st)",
         "FO - fasten off", "st(s) - stitch(es)", "R - round",
         "(n) - stitch count at round end",
@@ -48,7 +48,7 @@ PATTERN = {
     "abbreviations_uk": [
         "MR - magic ring", "ch - chain", "sl st - slip stitch",
         "dc - double crochet", "inc - increase (2 dc in one st)",
-        "dc2tog - double crochet 2 together (a decrease)",
+        "dc2tog - work 2 stitches together as one (a decrease)",
         "BLO - back loop only", "BO - 5-tr bobble (counts as 1 st)",
         "FO - fasten off", "st(s) - stitch(es)", "R - round",
         "(n) - stitch count at round end",
