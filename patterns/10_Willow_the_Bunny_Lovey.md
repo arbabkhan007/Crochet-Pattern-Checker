@@ -97,7 +97,7 @@ Ch 4 and sl st to the first ch to form a ring. Every round closes with a slip st
 
 Total dc per round: Rnd 3 = 36, Rnd 5 = 60, Rnd 10 = 120, Rnd 15 = 180, Rnd 20 = 240 (60 dc per edge = ~26 cm).
 
-Border: work one final round of sc all the way around - 1 sc into each dc and 3 sc into each corner space - then sl st and FO. At Rnd 20 that is 240 sc + 12 corner sc = 252 sc. This firms the edge and stops the square curling.
+Border: work one final round of sc all the way around - 1 sc into each dc, and 3 sc into each corner space (into the space itself; the 2 corner chains are not worked into) - then sl st to join and FO. At Rnd 20 that is 240 sc + 12 corner sc = 252 sc. This firms the edge and stops the square curling.
 
 Open dc clusters and crisp (3 dc, ch 2, 3 dc) corners keep the square true round after round.
 

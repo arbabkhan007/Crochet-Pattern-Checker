@@ -270,6 +270,58 @@ independent recomputation PASS, repo tests 15/15 PASS, render QA 10/10 PASS.**
 
 ---
 
+## Review round 4 — structural & assembly sweep (2026-09-09)
+
+A further external review raised 14 findings across all ten patterns. Each was
+checked against the source data and with the deterministic toolchain:
+
+**Fixed (4):**
+1. *Coco leg joins:* assembly previously read "there is nothing to sew".
+   The 3-sc joins catch the pinched leg tops, but a sliver can stay open at
+   the sides of a leg top; assembly now instructs a 2-3 whip-stitch tack
+   through all layers (invisible on the underbody).
+2. *Ember leg closure:* "flatten the top 3 stitches" was confusing (a 9-st
+   tube does not flatten into 3). Now: stuff lower half, FO, press the
+   9-stitch opening flat (4 front / 4 back, odd stitch tucked in) — the mouth
+   sews shut on attachment.
+3. *Momo ear anchoring:* added a slip stitch into the next head stitch to
+   anchor each ear base flat before FO (reviewer-requested anti-gaping step).
+4. *Willow border corners:* now explicit that 3 sc go into the corner SPACE
+   (the 2 corner chains are not worked into) — removes the only ambiguity in
+   the 252-sc count.
+
+**Investigated and disproven / already documented (10):**
+- Hamish muzzle `[2 sc, dec] x 6`: 24→18 requires exactly six decreases and
+  the repeat contains six ✓ (it "omits" none).
+- Hamish belly patch: corner increases are written into every line
+  (R1: 3 sc + 2 sc corners; R2-4: structured `inc x 3 / x 2` corner blocks).
+- Boo R7→R8: reads `[11 sc, inc] x 2` — both increases explicitly placed.
+- Pip tendril: pattern works 1 sl st per chain (19), then wind-wraps for the
+  curl; the "2 sl sts per chain" model is not in the pattern.
+- Bramble wings: shell edge uses exactly 12 sts (2+3+2+2 anchors + 3 cluster
+  sts) with a printed "scallop maths" note.
+- Axel R26→R28: R27 is an intentional plain 12-st round ("tail begins");
+  R28's `[2 sc, invdec] x 3` is evenly spaced. No missing decreases.
+- Duck R10-R14: every waist round is explicit ([3 sc, dec]×6, [2 sc, dec]×6,
+  [2 sc, inc]×6, [3 sc, inc]×6); the pinch is the neck design. Beak R1 = 11
+  (3+3+3+2 around 4 chains) is standard oval math — not 10.
+- Spud foundation: R1 lists both end turns (`3 sc in last ch`, `2 sc in last
+  ch`): 1+4+3+4+2 = 14 is fully accounted.
+- Ember spike strip: strip = 1 starting ch-4 + nine ch-4 spikes = 40 chains
+  exactly as printed; the length range is a physical guide with a pin-first
+  instruction.
+- Shelby shell-to-underside 35-vs-24 and Bigger Shelby 53-vs-42: the "count
+  anchors, not outer stitches" rule is printed in both versions ("Put one
+  shell stitch against each anchor"; "Join 42 to 42 by the same rule").
+- Coco R10/R11 waist dip and Willow head taper: intentional shaping with
+  notes (waist kept shallow on purpose; head stuffed firmly at Rnd 11 -
+  earlier than the review suggested).
+
+Re-validated after fixes: **audit 10/10 PASS, independent recomputation
+PASS, repo tests 15/15, PDF render QA 10/10.**
+
+---
+
 ## Unresolved items for human review
 
 1. **Ember (NS 08):** the materials list once referenced a “Belly” piece that has

@@ -217,8 +217,11 @@ PATTERN = {
         "about 5 stitches apart, angled slightly outward. Rnd 15 is a full 36-st "
         "round, so this puts the ears on top of the head where a capybara's "
         "belong.",
-        "Legs: the legs were joined during Rnd 4-5 - there is nothing to sew. "
-        "Just check each pinched 3-stitch strip is caught fully in the round.",
+        "Legs: the 3-sc joins locked each leg's pinched top into the body "
+        "round. Check that every pinched 3-stitch strip is caught fully in the "
+        "round; if a sliver stays open at the side of a leg top, tack it shut "
+        "with 2-3 whip stitches through all layers - it sits on the underbody "
+        "and stays invisible.",
         "Final shaping: roll the finished piece gently between your palms to "
         "settle the stuffing into a round, bottom-heavy shape.",
         "Before you sew - lay every component out and check: 4 legs (2 back of 8 "

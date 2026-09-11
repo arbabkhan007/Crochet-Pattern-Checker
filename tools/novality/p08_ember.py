@@ -173,8 +173,11 @@ PATTERN = {
                     {"label": "R7", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": "front legs only"},
                     {"label": "R8", "text": "sc in each st around", "stated": 9, "cons": 9, "prod": 9, "check": "sc in each st around", "note": "front legs only"},
                 ], "notes": [
-                    "Finish: stuff the lower half lightly, flatten the top "
-                    "3 stitches, FO with a long tail. The pairs are "
+                    "Finish: stuff the lower half lightly and leave the top 3 "
+                    "rounds soft; FO with a long tail. Press the 9-stitch "
+                    "opening flat - 4 stitches in front, 4 behind, the odd "
+                    "stitch tucked into the fold - and the leg mouth sews shut "
+                    "when you attach it. The pairs are "
                     "different lengths on purpose: back legs (6 rnd / "
                     "26 mm) attach at Rnd 6, 26 mm up; front legs (8 rnd / "
                     "34 mm) attach at Rnd 8, 34 mm up. A higher join needs "

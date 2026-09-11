@@ -115,7 +115,7 @@ Finish: FO with a 40 cm tail; do not close. When you join the head, ladder-stitc
 | R7 | sc in each st around | (9) | front legs only |
 | R8 | sc in each st around | (9) | front legs only |
 
-Finish: stuff the lower half lightly, flatten the top 3 stitches, FO with a long tail. The pairs are different lengths on purpose: back legs (6 rnd / 26 mm) attach at Rnd 6, 26 mm up; front legs (8 rnd / 34 mm) attach at Rnd 8, 34 mm up. A higher join needs a longer leg so all four feet reach the table. Sew each pair about 8 stitches apart; angle the back legs under as haunches and the front legs slightly forward. The body rests on the table - the legs pose, they don't lift her.
+Finish: stuff the lower half lightly and leave the top 3 rounds soft; FO with a long tail. Press the 9-stitch opening flat - 4 stitches in front, 4 behind, the odd stitch tucked into the fold - and the leg mouth sews shut when you attach it. The pairs are different lengths on purpose: back legs (6 rnd / 26 mm) attach at Rnd 6, 26 mm up; front legs (8 rnd / 34 mm) attach at Rnd 8, 34 mm up. A higher join needs a longer leg so all four feet reach the table. Sew each pair about 8 stitches apart; angle the back legs under as haunches and the front legs slightly forward. The body rests on the table - the legs pose, they don't lift her.
 
 ### 5. Tail - main colour
 

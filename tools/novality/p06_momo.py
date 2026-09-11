@@ -131,7 +131,8 @@ PATTERN = {
                     "The row maths: Row 1 makes 5 stitches; Row 2 works dec, "
                     "sc, dec (consumes 5, makes 3); Row 3 works dec, sc "
                     "(consumes 3, makes 2) - those 2 stitches form the tip.",
-                    "FO with a short tail; pull it through the 2 tip stitches "
+                    "After Row 3, work 1 sl st into the next head stitch to "
+                    "anchor the ear flat, then FO with a short tail; pull it through the 2 tip stitches "
                     "to close the point and bury inside the head. Embroider a "
                     "small pink triangle on the front of each ear for lining.",
                 ]},
