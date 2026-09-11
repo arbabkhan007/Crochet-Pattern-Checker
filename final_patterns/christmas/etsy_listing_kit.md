@@ -1,28 +1,33 @@
 # Novality Store — Christmas Collection Etsy Listing Kit
 
-Design codes: **NS 11** · **NS 12** · **NS 13**
+Design codes: **NS 11** · **NS 12** · **NS 13** · **NS 14** · **NS 15**
 Every listing delivers **one PDF with both terminologies woven through a single pattern**: every round shows the US-terms instruction and the exact UK equivalent side by side (sc→dc, hdc→htr, dc→tr, tr→dtr, 5-dc bobble→5-tr bobble), with one shared stitch count. No duplicated sections — crochet straight down whichever column matches how you learned.
 
 ---
 
-## Image stack — 10 slots per listing (in the `etsy/` folder, 2400×1800)
+## Image stack — 15 slots per listing (in the `etsy/` folder, 2400×1800)
 
-Upload in this order — slot 1 is the search thumbnail and must be the strongest photo:
+Upload in this order — slot 1 is the search thumbnail and must be the strongest photo. Slots 1–5 are your core sales funnel; 6–10 answer the remaining hesitations; 11–15 provide the deep trust signals Etsy heavily weights in photos-browse sessions.
 
-| Slot | Purpose | Files (per listing) |
-|------|---------|---------------------|
-| 1 | Cover hero (product, clean background) | `NS11_01_cover.jpg`, `NS12_01_cover.jpg`, `NS13_01_cover.jpg` |
-| 2 | Work-in-progress (process believability) | `NS11_02_wip.jpg`, `NS12_02_wip.jpg`, `NS13_02_wip.jpg` |
-| 3 | Colourway lineup (shows choice) | `NS11_03_colorways.jpg`, `NS12_03_colorways.jpg`, `NS13_03_colorways.jpg` |
-| 4 | Detail close-up (stitch quality) | `NS11_04_detail.jpg`, `NS12_04_detail.jpg`, `NS13_04_detail.jpg` |
-| 5 | Info card (dual terms, code, level, size) | `NS11_05_info.jpg`, `NS12_05_info.jpg`, `NS13_05_info.jpg` |
-| 6 | Lifestyle scene (decor context) | `NS11_06_lifestyle.jpg`, `NS12_06_lifestyle.jpg`, `NS13_06_lifestyle.jpg` |
-| 7 | Size / scale reference | `NS11_07_sizes.jpg`, `NS12_07_sizes.jpg`, `NS13_07_sizes.jpg` |
-| 8 | Peek inside the PDF (page previews) | `NS11_08_preview.jpg`, `NS12_08_preview.jpg`, `NS13_08_preview.jpg` |
-| 9 | Gift-ready styled shot (seasonal push) | `NS11_09_gift.jpg`, `NS12_09_gift.jpg`, `NS13_09_gift.jpg` |
-| 10 | Why Novality (trust & policies card) | `NS11_10_why.jpg`, `NS12_10_why.jpg`, `NS13_10_why.jpg` |
+| Slot | Purpose | NS 11 | NS 12 | NS 13 | NS 14 | NS 15 |
+|------|---------|-------|-------|-------|-------|-------|
+| 1 | Cover hero | `NS11_01_cover.jpg` | `NS12_01_cover.jpg` | `NS13_01_cover.jpg` | `NS14_01_cover.jpg` | `NS15_01_cover.jpg` |
+| 2 | Work-in-progress (believability) | `NS11_02_wip.jpg` | `NS12_02_wip.jpg` | `NS13_02_wip.jpg` | `NS14_02_wip.jpg` | `NS15_02_looks.jpg` (1 wreath · 3 looks — the USP photo, use here or swap with hero per your tests) |
+| 3 | Colourway / lineup | `NS11_03_colorways.jpg` | `NS12_03_colorways.jpg` | `NS13_03_colorways.jpg` | `NS14_03_sizes.jpg` | `NS15_03_detail.jpg` |
+| 4 | Detail close-up (stitch quality) | `NS11_04_detail.jpg` | `NS12_04_detail.jpg` | `NS13_04_detail.jpg` | `NS14_04_detail.jpg` | `NS15_04_lifestyle.jpg` |
+| 5 | Info card (dual terms, code, level, size) | `NS11_05_info.jpg` | `NS12_05_info.jpg` | `NS13_05_info.jpg` | `NS14_05_info.jpg` | `NS15_05_info.jpg` |
+| 6 | Lifestyle scene (decor context) | `NS11_06_lifestyle.jpg` | `NS12_06_lifestyle.jpg` | `NS13_06_lifestyle.jpg` | `NS14_06_lifestyle.jpg` | `NS15_06_sizes.jpg` |
+| 7 | Size / scale reference | `NS11_07_sizes.jpg` | `NS12_07_sizes.jpg` | `NS13_07_sizes.jpg` | `NS14_07_sizechart.jpg` | `NS15_07_preview.jpg` |
+| 8 | Peek inside the PDF | `NS11_08_preview.jpg` | `NS12_08_preview.jpg` | `NS13_08_preview.jpg` | `NS14_08_preview.jpg` | `NS15_08_gift.jpg` |
+| 9 | Gift-ready styled shot | `NS11_09_gift.jpg` | `NS12_09_gift.jpg` | `NS13_09_gift.jpg` | `NS14_09_gift.jpg` | `NS15_09_why.jpg` |
+| 10 | Why Novality (trust card) | `NS11_10_why.jpg` | `NS12_10_why.jpg` | `NS13_10_why.jpg` | `NS14_10_why.jpg` | `NS15_10_wip.jpg` |
+| 11 | Process / pattern-details deep card | `NS11_11_process.jpg` | `NS12_11_process.jpg` | `NS13_11_process.jpg` | `NS14_11_details.jpg` | `NS15_11_details.jpg` |
+| 12 | Flat-lay / recolour scene | `NS11_11_pattern_card.jpg` (use for "at a glance" slot 12) | `NS12_11_pattern_card.jpg` | `NS13_11_pattern_card.jpg` | `NS14_12_flay.jpg` | `NS15_12_colorways.jpg` |
+| 13 | Care instructions card | `NS11_13_care.jpg` | `NS12_13_care.jpg` | `NS13_13_care.jpg` | `NS14_13_colorways.jpg` | `NS15_13_care.jpg` |
+| 14 | FAQ card | `NS11_14_faq.jpg` | `NS12_14_faq.jpg` | `NS13_14_faq.jpg` | `NS14_14_care.jpg` | `NS15_14_mini.jpg` (mini-wreath bonus) |
+| 15 | Thank-you / close card | `NS11_15_thanks.jpg` | `NS12_15_thanks.jpg` | `NS13_15_thanks.jpg` | `NS14_15_thanks.jpg` | `NS15_15_thanks.jpg` |
 
-All 35 are 2400×1800 (4:3) — above Etsy's 2000px recommendation, so zoom stays crisp.
+All are 2400×1800 (4:3) — above Etsy's 2000px recommendation, so zoom stays crisp.
 
 ### Bundle listing image stack (5 slots)
 
@@ -108,6 +113,57 @@ christmas crochet pattern, crochet pattern bundle, christmas gnome crochet, croc
 
 ---
 
+## Listing 5 — NS 14 Bobble Snowflake Christmas Tree Skirt
+
+**Title (140 chars):**
+Crochet Christmas Tree Skirt Pattern PDF US + UK Terms | Bobble Snowflake Scallop Border | 3 Sizes Mini Standard Large | Instant Download
+
+**Short description:**
+The heirloom tree skirt people stop and touch: a creamy white 12-spoke circle scattered with raised **5-dc bobble "snow"**, crisp **surface slip-stitch snowflake rays** and a bobble-edged **red & green scalloped border**. Worked flat from the tree trunk outward — no seaming anywhere — with three sizes built into the same growth ladder: **mini/tabletop (stop after R14, 46–53 cm across), standard (stop after R23, 74–84 cm) or large (stop after R32, 97–109 cm)**. The repeat math always lands on exactly **12 × N stitches per round**, and the border repeat divides every checkpoint perfectly (28 / 46 / 64 scallops), so there is no fudged last repeat. Delivered as **one instant-download PDF with US and UK terms side by side in every round**, with the per-round consumption/production ladder printed in full, three checkpoint measurement pages, and technique notes for the magic-ring join, 5-dc bobbles, scallops and surface spokes. Includes 3 colour recipes (Classic Pine, Frost & Berry, Monochrome Cream). Skill level: easy-intermediate (ch, sl st, sc, dc + bobbles).
+
+**13 tags:**
+crochet tree skirt pattern, christmas tree skirt, snowflake crochet pattern, bobble stitch crochet, uk crochet terms, us crochet pattern, christmas decor crochet, scallop edge crochet, large crochet pattern, easy intermediate crochet, holiday home decor diy, tree skirt pdf, instant download pdf
+
+**Materials:** worsted/aran #4 yarn — main colour (cream/white) approx. 250–500 g depending on size end stop, red ~40–60 g, green ~40–60 g · 5 mm (US H-8) hook · stitch marker, tapestry needle.
+
+**Care (finished item):** Cool hand wash or machine wool cycle in a mesh bag, roll in a towel to remove water, dry flat and reshape the scallops. Acrylic worsted is fully machine washable on gentle. Roll (don't fold) for storage.
+
+---
+
+## Listing 6 — NS 15 Interchangeable Christmas Wreath (3-in-1)
+
+**Title (140 chars):**
+Crochet Christmas Wreath Pattern PDF US + UK Terms | 3-in-1 Interchangeable Poinsettia Snowflake Bow Set | Home Decor | Instant Download
+
+**Short description:**
+One stuffed wreath, three looks, one pattern — the wreath you will never take down: crochet a thick **plush tube wreath** (no wire frame needed), then swap the oversized centrepiece decoration in ten seconds — a **layered red poinsettia with holly-red leaves**, a crisp **six-arm snowflake**, or a plump **knit-look holiday bow**. Each decoration attaches with built-in loop tie-ons or optional safety-pin backs, and every one doubles as a standalone ornament. A **bonus mini wreath** (16–19 cm across) for doors, garlands and table settings is included with its built-in hanging loop. Sizes are driven by your starting chain and tube length — the pattern includes the finished-diameter table for 10 in / 12 in / 14 in wreaths at the stated gauge. Delivered as **one instant-download PDF with US and UK terms side by side for every row**, all five sub-pieces stitch-counted, plus an assembly walk-through for the loop tie system. Skill level: confident beginner (magic ring, sc spiral, chains, increases, simple loops).
+
+**13 tags:**
+crochet wreath pattern, christmas wreath crochet, poinsettia crochet pattern, 3 in 1 crochet pattern, uk crochet terms, us crochet pattern, christmas door decor, crochet christmas snowflake, holiday bow crochet, interchangeable wreath, beginner wreath pattern, wreath pattern pdf, instant download pdf
+
+**Materials:** DK or light worsted — green ~60–80 g, red ~20–25 g, white/cream ~10–15 g · 4 mm (US G-6) hook · fibre fill ~40 g · 3 large safety pins (optional) · stitch marker, tapestry needle, blocking pins for the snowflake.
+
+**Care (finished item):** Dust with cool hair-dryer air; spot clean with a damp cloth. Indoor or sheltered-door use only. Detach decorations before storing; wrap the snowflake in tissue.
+
+**Pricing suggestion:** the skirt (NS 14) is your highest perceived-value Christmas pattern — price it 30–40% above the amigurumi singles. The wreath (NS 15) sits between the skirt and the amigurumi line.
+
+---
+
+## Full-bundle listing (all 5 Christmas patterns)
+
+**Buyer download:** upload all five PDFs together in one listing, or the collection zip.
+
+**Title (140 chars):**
+Christmas Crochet Pattern Bundle PDF US + UK Terms | Gnome Tree Skirt Wreath Ornaments 5-in-1 Deal | Holiday Crochet Set | Instant Download
+
+**Short description:**
+The complete Novality Christmas Collection in one discounted download — the no-sew gnome (NS 11), the bobble Christmas tree (NS 12), the ornament trio (NS 13), the heirloom bobble-snowflake tree skirt in 3 sizes (NS 14) and the interchangeable 3-look wreath with bonus mini (NS 15). Five patterns, one instant download, every round written in both US and UK terms with stitch counts re-derived by automated audit. Enough Christmas to fill a mantel, dress a tree, and outfit the front door — at a bundle price visibly below the five singles.
+
+**13 tags:**
+christmas crochet bundle, crochet pattern bundle, tree skirt pattern, christmas wreath crochet, christmas gnome pattern, crochet ornaments set, us uk crochet terms, christmas decor diy, beginner christmas crochet, pattern bundle deal, holiday crochet set, amigurumi christmas pdf, instant download pdf
+
+---
+
 ## Seasonal tag rotation
 
 Etsy search refreshes with the season — swap these tags in and out of **slot 13** of each listing:
@@ -164,6 +220,14 @@ Hashtags: `#christmastreecrochet #bobblestitch #crochetchristmas #festivecrochet
 **Post 3 — Bundle (photo `BNDL_01_cover.jpg`):**
 "One weekend. Three patterns. A whole Christmas: gnome + tree + ornaments (bauble, star, snowflake). The Christmas Collection bundle is live — cheaper than the three separately, US + UK terms side by side in every round 🧶"
 Hashtags: `#crochetpatternbundle #christmaspatterns #crochetornaments #patternbundle #beginnercrochet #crochetchristmasornaments #novalitystore`
+
+**Post 4 — Tree Skirt (hero `NS14_01_cover.jpg`):**
+"The tree's almost dressed. The skirt is the outfit. 12 snowflake spokes, raised bobbles, and a scalloped red & green border — in 3 sizes from one ladder that's always exactly 12×N stitches. US + UK terms in every round. Pattern live now ❄️"
+Hashtags: `#crochettreeskirt #christmastreeskirt #bobblestitchcrochet #snowflakecrochet #christmascrochetpattern #crochetpattern #novalitystore #crochetchristmasdecor`
+
+**Post 5 — Wreath (photo `NS15_02_looks.jpg`):**
+"1 wreath. 3 looks. 10 seconds to change your mind. Poinsettia for December, snowflake for January, bow whenever you feel festive — they all swap on built-in loops, and each one doubles as a standalone ornament. The 3-in-1 wreath pattern is live, with a bonus mini 🎀"
+Hashtags: `#crochetwreath #christmaswreath #3in1pattern #crochetpoinsettia #crochetsnowflake #crochetbow #christmascrochet #novalitystore`
 
 ---
 
