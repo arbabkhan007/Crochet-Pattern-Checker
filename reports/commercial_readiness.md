@@ -17,7 +17,7 @@
 | Yarn-use, size, time, wash and durability measurements | **NOT PHYSICALLY VERIFIED — BLOCKING** |
 | Ownership, provenance, title and brand clearance | **NOT CLEARED — BLOCKING** |
 | Market-specific legal/product-safety review | **NOT PERFORMED — BLOCKING** |
-| Photography and final PDF preflight | **NOT PRESENT — BLOCKING** |
+| Real sample photography and final PDF preflight | **FINAL ASSETS NOT PRESENT — BLOCKING** |
 | Etsy listing compliance and disclosure review | **NOT COMPLETED — BLOCKING** |
 | Overall decision | **HOLD — do not list for sale yet** |
 
@@ -152,7 +152,7 @@ Do not silently invent replacement names and call them cleared. The owner should
 
 ## Photography and PDF production gate
 
-The repository currently contains Markdown masters, not photographed, sale-ready PDFs. Do not use a generated or borrowed image as evidence that a pattern was physically made.
+The repository contains Markdown masters and one branded NS 01 confirmation proof, `proofs/NS01_Hamish_the_Highland_Cow_CONFIRMATION_PROOF.pdf`; it does not contain photographed, sale-ready PDFs. The proof is explicitly marked “not for retail” and labels its generated cover artwork as concept imagery. It tests the proposed visual system only and does not satisfy the sample-photography gate. Do not use a generated or borrowed image as evidence that a pattern was physically made.
 
 After sample testing is complete:
 

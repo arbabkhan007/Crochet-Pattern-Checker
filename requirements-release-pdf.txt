@@ -1,0 +1,6 @@
+# Branded pattern-proof composition
+Pillow>=10.0,<12
+reportlab>=4.2,<5
+
+# PDF postflight and text/metadata inspection
+pypdf>=5.0,<6
