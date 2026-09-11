@@ -5,19 +5,34 @@ Every listing delivers **one PDF with both terminologies woven through a single 
 
 ---
 
-## Image stack — 5 slots per listing (in the `etsy/` folder, 2400×1800)
+## Image stack — 10 slots per listing (in the `etsy/` folder, 2400×1800)
 
-Upload in this order — slot 1 is the search-thumbnail and must be the strongest photo:
+Upload in this order — slot 1 is the search thumbnail and must be the strongest photo:
 
-| Slot | Every listing | Files |
-|------|---------------|-------|
+| Slot | Purpose | Files (per listing) |
+|------|---------|---------------------|
 | 1 | Cover hero (product, clean background) | `NS11_01_cover.jpg`, `NS12_01_cover.jpg`, `NS13_01_cover.jpg` |
-| 2 | Work-in-progress (believability/process) | `NS11_02_wip.jpg`, `NS12_02_wip.jpg`, `NS13_02_wip.jpg` |
+| 2 | Work-in-progress (process believability) | `NS11_02_wip.jpg`, `NS12_02_wip.jpg`, `NS13_02_wip.jpg` |
 | 3 | Colourway lineup (shows choice) | `NS11_03_colorways.jpg`, `NS12_03_colorways.jpg`, `NS13_03_colorways.jpg` |
 | 4 | Detail close-up (stitch quality) | `NS11_04_detail.jpg`, `NS12_04_detail.jpg`, `NS13_04_detail.jpg` |
-| 5 | Info card (what's included: dual terms, design code, level, size) | `NS11_05_info.jpg`, `NS12_05_info.jpg`, `NS13_05_info.jpg` |
+| 5 | Info card (dual terms, code, level, size) | `NS11_05_info.jpg`, `NS12_05_info.jpg`, `NS13_05_info.jpg` |
+| 6 | Lifestyle scene (decor context) | `NS11_06_lifestyle.jpg`, `NS12_06_lifestyle.jpg`, `NS13_06_lifestyle.jpg` |
+| 7 | Size / scale reference | `NS11_07_sizes.jpg`, `NS12_07_sizes.jpg`, `NS13_07_sizes.jpg` |
+| 8 | Peek inside the PDF (page previews) | `NS11_08_preview.jpg`, `NS12_08_preview.jpg`, `NS13_08_preview.jpg` |
+| 9 | Gift-ready styled shot (seasonal push) | `NS11_09_gift.jpg`, `NS12_09_gift.jpg`, `NS13_09_gift.jpg` |
+| 10 | Why Novality (trust & policies card) | `NS11_10_why.jpg`, `NS12_10_why.jpg`, `NS13_10_why.jpg` |
 
-All 15 are 2400×1800 (4:3) — above Etsy's 2000px recommendation, so zoom stays crisp. Etsy allows 10 slots; slots 6–10 can be added later with real customer photos of finished makes.
+All 35 are 2400×1800 (4:3) — above Etsy's 2000px recommendation, so zoom stays crisp.
+
+### Bundle listing image stack (5 slots)
+
+| Slot | Files |
+|------|-------|
+| 1 Cover | `BNDL_01_cover.jpg` (all three styled together) |
+| 2 | `BNDL_02_three.jpg` (three patterns, one download) |
+| 3 | `BNDL_03_colorways.jpg` (all 15 colourway photos) |
+| 4 | `BNDL_04_detail.jpg` (texture close-ups ×3) |
+| 5 | `BNDL_05_info.jpg` (bundle value card) |
 
 ---
 
@@ -69,6 +84,38 @@ crochet ornament pattern, christmas ornament bundle, crochet bauble pattern, cro
 **Materials:** small amounts (5–15 g) worsted/aran or DK in white, red, gold, green, silver (cotton crispest for the snowflake) · 3–4 mm hook · pinch of fibre fill (bauble) · blocking pins for star + snowflake.
 
 **Care (finished item):** Hand wash cool, pin flat to dry (star/snowflake should be re-blocked). Bauble: reshape and air dry.
+
+---
+
+## Listing 4 — Bundle: Christmas Collection (NS 11 + NS 12 + NS 13)
+
+**Buyer download:** `novality-christmas-collection.zip` — already contains all three dual-terms PDFs, no new files needed.
+
+**Title (140 chars):**
+Christmas Crochet Pattern Bundle PDF US + UK Terms | Gnome Bobble Tree Ornaments 3-in-1 Deal | Amigurumi Christmas Set | Instant Download
+
+**Short description:**
+The whole Novality Christmas Collection in one discounted download: the **no-sew gnome** (NS 11), the **bobble Christmas tree** (NS 12) and the **ornament bundle** with bauble + star + snowflake (NS 13). One weekend of Christmas crafting — mantel decor, a table centrepiece and a tree full of ornaments. Every round shows US and UK terms side by side with one shared stitch count, so it works no matter how you learned to crochet. Instant download, printable at A4 or US Letter. Buying the set costs noticeably less than the three listings separately.
+
+**13 tags:**
+christmas crochet pattern, crochet pattern bundle, christmas gnome crochet, crochet christmas tree, crochet ornament pattern, amigurumi christmas pdf, us uk crochet terms, no sew amigurumi, christmas decor diy, pattern bundle deal, beginner christmas crochet, crochet gift set diy, instant download pdf
+
+**Materials:** see the three individual listings (worsted/aran #4 yarn in festive colours, hooks 3–4 mm, fibre fill, stitch markers).
+
+**Care (finished items):** hand wash cool, reshape, air dry; re-block star and snowflake flat.
+
+**Pricing suggestion:** set the bundle at roughly 25–30% below the three singles combined — visible savings drive bundle conversion without undercutting your single listings.
+
+---
+
+## Seasonal tag rotation
+
+Etsy search refreshes with the season — swap these tags in and out of **slot 13** of each listing:
+
+- **July (Christmas in July):** `christmas in july`, `cij crochet`, `holiday prep diy`
+- **Sept–Oct (early planners):** `christmas prep`, `holiday market prep`, `craft fair stock`
+- **Nov (gift season peak):** `stocking stuffer diy`, `secret santa craft`, `last minute gift`
+- **Dec (fast makes):** `quick christmas gift`, `weekend craft`, `festive stash buster`
 
 ---
 
