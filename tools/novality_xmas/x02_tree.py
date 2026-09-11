@@ -106,7 +106,7 @@ PATTERN = {
                     {"label": "R19", "text": "sc in each st around", "stated": 24, "cons": 24, "prod": 24, "check": "sc in each st around", "note": ""},
                     {"label": "R20", "text": "[BO, sc, sc2tog] x 6", "stated": 18, "cons": 24, "prod": 18, "check": None, "note": ""},
                     {"label": "R21", "text": "sc in each st around", "stated": 18, "cons": 18, "prod": 18, "check": "sc in each st around", "note": ""},
-                    {"label": "R22", "text": "[BO, sc2tog] x 6", "stated": 12, "cons": 18, "prod": 12, "check": None, "note": "bobble tier at tip"},
+                    {"label": "R22", "text": "[BO, sc2tog] x 6", "stated": 12, "cons": 18, "prod": 12, "check": None, "note": "bobble tier at tip - each repeat uses 3 sts, makes 2"},
                     {"label": "R23", "text": "sc in each st around", "stated": 12, "cons": 12, "prod": 12, "check": "sc in each st around", "note": ""},
                     {"label": "R24", "text": "sc2tog x 6", "stated": 6, "cons": 12, "prod": 6, "check": "dec x 6", "note": "stuff cone lightly now"},
                     {"label": "R25", "text": "sc in each st around", "stated": 6, "cons": 6, "prod": 6, "check": "sc in each st around", "note": ""},
@@ -149,7 +149,8 @@ PATTERN = {
         "Why every bobble tier shrinks by 6: each [BO, k sc, sc2tog] repeat works "
         "one hidden decrease, at the END of the repeat, so the bobbles never "
         "drift out of their columns even while the cone narrows 10 rounds in a "
-        "row.",
+        "row. R22 is the extreme case: [BO, sc2tog] uses 3 sts and makes 2 per "
+        "repeat - 18 sts used, 12 left, nothing unworked.",
     ],
     "terms": {
         "ownership": ("This crochet pattern - including all instructions, stitch "

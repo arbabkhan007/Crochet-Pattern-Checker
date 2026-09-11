@@ -47,7 +47,7 @@ PATTERN = {
         "MR - magic ring", "ch - chain", "sl st - slip stitch",
         "sc - single crochet", "dc - double crochet",
         "inc - increase (2 sc in one st)",
-        "sc2tog - single crochet 2 together (a decrease)",
+        "sc2tog - single crochet 2 together (decrease; swap for an invisible decrease, invdec, on the hat if preferred)",
         "BO - 5-dc bobble (counts as 1 st)", "FO - fasten off",
         "st(s) - stitch(es)", "R - round", "(n) - stitch count at round end",
     ],
@@ -55,7 +55,7 @@ PATTERN = {
         "MR - magic ring", "ch - chain", "sl st - slip stitch",
         "dc - double crochet", "tr - treble crochet",
         "inc - increase (2 dc in one st)",
-        "dc2tog - double crochet 2 together (a decrease)",
+        "dc2tog - double crochet 2 together (decrease; swap for an invisible decrease, invdec, on the hat if preferred)",
         "BO - 5-tr bobble (counts as 1 st)", "FO - fasten off",
         "st(s) - stitch(es)", "R - round", "(n) - stitch count at round end",
     ],
@@ -80,8 +80,11 @@ PATTERN = {
          "counts as ONE stitch and pops the nose."),
         ("sc2tog decrease",
          "Insert hook, pull up a loop; insert in the next stitch, pull up a loop "
-         "(3 loops on hook). Yarn over and pull through all 3. On visible rounds "
-         "use an invisible decrease instead if you prefer."),
+         "(3 loops on hook). Yarn over and pull through all 3. On the visible "
+         "hat rounds (R17-R23) you may prefer the invisible decrease (invdec): "
+         "insert hook under the FRONT loop only of the next two stitches, yarn "
+         "over, pull through both front loops, yarn over, pull through 2 loops. "
+         "Same counts, no bump."),
         ("Clean colour changes",
          "Work the last stitch of the old colour until 2 loops remain, then pull "
          "the new colour through. Give both yarns a gentle tug to keep the join "
@@ -90,8 +93,10 @@ PATTERN = {
     "notes": [
         "The nose sits on the round BEFORE the hat-band colour change. Before R14, "
         "mark the front of the face (count 14 sts from your round start); the "
-        "bobble lands between rounds 16 and 17 of the body - centred under the "
-        "eyes you will place one round above it.",
+        "bobble must land centred under the eyes you will place one round above "
+        "it. Spirals drift to the right as rounds grow - if your front mark has "
+        "wandered off centre by R14, shift the round start by 1 st so the "
+        "bobble lands dead centre.",
     ],
     "pieces": [
         {

@@ -64,8 +64,9 @@ PATTERN = {
          "gaps, work the tail through the first round once more before weaving."),
         ("Picot-free points (star)",
          "Each point is a fan of 7 stitches into ONE centre stitch, with a ch-2 "
-         "tip: (sc, hdc, dc, ch 2, dc, hdc, sc). The symmetry comes from "
-         "blocking, not from tugging."),
+         "tip: (sc, hdc, dc, ch 2, dc, hdc, sc). The ch-2 tip is a chain space and is "
+         "not counted in the edge total - per point you gain 7 fan stitches plus "
+         "1 anchor sl st. The symmetry comes from blocking, not from tugging."),
         ("Chain spaces (snowflake)",
          "The snowflake skeleton is 6 ch-5 loops pinned around the 12-dc ring. "
          "The arms are worked into the spaces, never into individual chains."),
@@ -109,7 +110,7 @@ PATTERN = {
             "subpieces": [
                 {"name": "", "rows": [
                     {"label": "R1", "text": "ch 1, 10 sc in MR, sl st to first sc to close", "stated": 10, "cons": None, "prod": 10, "check": None, "note": "centre ring"},
-                    {"label": "R2", "text": "[sl st in next st, (sc, hdc, dc, ch 2, dc, hdc, sc) in next st] x 5, sl st to first sl st, FO", "stated": None, "cons": 10, "prod": 40, "check": None, "note": "5 points = 40 edge sts"},
+                    {"label": "R2", "text": "[sl st in next st, (sc, hdc, dc, ch 2, dc, hdc, sc) in next st] x 5, sl st to first sl st, FO", "stated": None, "cons": 10, "prod": 40, "check": None, "note": "5 points = 40 edge sts (ch-2 tip = a space, not a stitch)"},
                 ], "notes": [
                     "Hanging loop: pick the top point, join yarn in its ch-2 tip, "
                     "ch 18, sl st into the same ch-2 space.",
@@ -128,7 +129,7 @@ PATTERN = {
                 {"name": "", "rows": [
                     {"label": "R1", "text": "ch 6, sl st in first ch to form a ring; ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3", "stated": 12, "cons": None, "prod": 12, "check": None, "note": "12 spokes"},
                     {"label": "R2", "text": "[ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close", "stated": None, "cons": 12, "prod": 6, "check": None, "note": "6 ch-5 spaces"},
-                    {"label": "R3", "text": "(sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO", "stated": None, "cons": None, "prod": None, "check": None, "note": "6 arms"},
+                    {"label": "R3", "text": "(sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO", "stated": None, "cons": None, "prod": None, "check": None, "note": "6 arms - first sl st of each arm loose, last sl st snug"},
                 ], "notes": [
                     "Hanging loop: join yarn in the ch-3 tip of one arm, ch 18, "
                     "sl st into the same tip.",
@@ -153,9 +154,11 @@ PATTERN = {
         ("Star will not lie flat.",
          "It needs blocking, not more tugging. Mist, pin all five points, let "
          "dry; cotton needs the mist, acrylic just the pins."),
-        ("Snowflake arms lean one way.",
-         "The ch-3s at the arm ends are worked over the same space - keep the "
-         "first and last sl st of each arm snug so the arm stands upright."),
+        ("Snowflake arms lean one way, or the base bunches.",
+         "Both arm-end sl sts share the same ch-5 space, and tension is the "
+         "whole trick: work the FIRST sl st of each arm loose enough that the "
+         "base of the arm lies flat (too tight twists the arm into the opening "
+         "sl st), then work the LAST sl st snug so the arm stands upright."),
     ],
     "colorways": ["Snow white", "Classic red & white", "Gold", "Evergreen trio", "Frost blue"],
     "extras": [
