@@ -119,6 +119,54 @@ Etsy search refreshes with the season — swap these tags in and out of **slot 1
 
 ---
 
+## Etsy category & attributes (same for all 4 listings)
+
+Fill these once, then copy across listings:
+
+- **Category path:** Craft Supplies & Tools → Patterns & How To → Patterns & Blueprints
+- **Craft type (attribute):** Crochet
+- **Pattern format:** Digital download
+- **Who made it:** I did · **What is it:** A pattern to make this item
+- **Occasion:** Christmas · **Holiday:** Christmas
+- **Suggested shop section:** "Christmas Patterns"
+- **Renewal options:** Automatic
+- **Digital file to upload:** `NS11_No-Sew_Christmas_Gnome.pdf` / `NS12_…_Tree.pdf` / `NS13_…_Bundle.pdf` — bundle listing: upload all three PDFs **or** the `novality-christmas-collection.zip`
+- **Primary colour (attribute):** listing 1 Red · listing 2 Green · listing 3 Multi · bundle Multi
+
+---
+
+## Care & thank-you cards (for finished-item sellers)
+
+`etsy/NS_CARE_cards_sheet.pdf` — print-ready A4 sheet (cut on the frame lines):
+- 2× **care cards** — hand wash cool, dry flat, no tumble dry, no flames, "pattern by Novality Store"
+- 2× **thank-you cards** — packaging insert driving tag-backs to #NovalityStore
+
+Slip one into every finished gnome/tree/ornament you sell — buyers photographing and tagging the cards feed your shop's social proof.
+
+---
+
+## Shop announcement snippet
+
+> 🎄 New in the shop: the Christmas Collection — a no-sew gnome, a bobble-stitch tree, and a bauble + star + snowflake ornament set. Every pattern shows US and UK terms side by side in every round, with stitch counts re-derived and audited before release. Grab all three in the bundle listing and save. Back soon — the eggs are still in the incubator. 🧶
+
+---
+
+## Social promo mini-pack
+
+**Post 1 — Gnome (hero photo `NS11_01_cover.jpg`):**
+"He's stuffed, he's bearded, and there is NOTHING to sew. The no-sew Christmas gnome: body, beard, face and hat in one continuous piece. US + UK terms in every round. Link in bio 🎅"
+Hashtags: `#crochetgnome #nosewamigurumi #christmascrochet #amigurumipattern #crochetpattern #novalitystore #handmadechristmas #gnomelove`
+
+**Post 2 — Tree (photo `NS12_01_cover.jpg`):**
+"Bobble by bobble, tier by tier — a crocheted Christmas tree that stands on its own and never drops a needle. Chunky yarn makes it 16 cm of shelf candy. Pattern in bio 🎄"
+Hashtags: `#christmastreecrochet #bobblestitch #crochetchristmas #festivecrochet #amigurumi #christmasdecorcrochet #novalitystore`
+
+**Post 3 — Bundle (photo `BNDL_01_cover.jpg`):**
+"One weekend. Three patterns. A whole Christmas: gnome + tree + ornaments (bauble, star, snowflake). The Christmas Collection bundle is live — cheaper than the three separately, US + UK terms side by side in every round 🧶"
+Hashtags: `#crochetpatternbundle #christmaspatterns #crochetornaments #patternbundle #beginnercrochet #crochetchristmasornaments #novalitystore`
+
+---
+
 ## FAQ (paste into each listing)
 
 **Do I get both US and UK terms?** Yes — every round in the single PDF shows both: the US-terms instruction in the left column and the exact UK equivalent (sc→dc, hdc→htr, dc→tr, tr→dtr) in the right column, with one shared stitch count. Crochet down whichever column matches how you learned.
