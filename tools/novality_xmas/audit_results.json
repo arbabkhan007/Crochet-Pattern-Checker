@@ -1,0 +1,38 @@
+[
+  {
+    "id": "gnome",
+    "title": "No-Sew Christmas Gnome",
+    "design_code": "NS X01",
+    "blocks": 4,
+    "rows_checked": 18,
+    "manual_rows": 1,
+    "repo_validated_blocks": 3,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
+  },
+  {
+    "id": "tree",
+    "title": "Bobble Christmas Tree",
+    "design_code": "NS X02",
+    "blocks": 1,
+    "rows_checked": 26,
+    "manual_rows": 7,
+    "repo_validated_blocks": 0,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
+  },
+  {
+    "id": "bundle",
+    "title": "Christmas Ornament Bundle",
+    "design_code": "NS X03",
+    "blocks": 3,
+    "rows_checked": 13,
+    "manual_rows": 5,
+    "repo_validated_blocks": 1,
+    "errors": [],
+    "warnings": [],
+    "status": "PASS"
+  }
+]

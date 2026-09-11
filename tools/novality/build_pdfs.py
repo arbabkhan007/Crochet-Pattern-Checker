@@ -64,9 +64,13 @@ def hex_to_rgb(h):
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def asset(num, kind):
-    p = ASSETS / f"p{num:02d}_{kind}.jpg"
+def asset(key, kind):
+    p = ASSETS / f"{key}_{kind}.jpg"
     return p if p.exists() else None
+
+
+def akey(p, kind):
+    return asset(p.get("assets_key") or f"p{p['number']:02d}", kind)
 
 
 class PatternPDF(FPDF):
@@ -177,7 +181,7 @@ def cover(pdf, p):
     _badge_row(pdf, p["meta"], pdf.get_y())
     pdf.set_y(pdf.get_y() + 13)
     # hero photo
-    hero = asset(p["number"], "hero")
+    hero = akey(p, "hero")
     if hero:
         h_w = 72.0
         x = (PAGE_W - h_w) / 2
@@ -566,7 +570,7 @@ def build(p):
             pdf.ln(1)
 
     if p.get("assembly"):
-        wip = asset(p["number"], "wip")
+        wip = akey(p, "wip")
         if wip:
             w = 92.0
             if pdf.get_y() > PAGE_H - M_B - 106:
@@ -644,7 +648,11 @@ def build(p):
              align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     slug = p["title"].replace(" ", "_")
-    out = OUT / f"Pattern_{p['number']:02d}_{slug}.pdf"
+    if p.get("file_slug"):
+        out = OUT / f"{p['file_slug']}.pdf"
+        out.parent.mkdir(parents=True, exist_ok=True)
+    else:
+        out = OUT / f"Pattern_{p['number']:02d}_{slug}.pdf"
     pdf.output(str(out))
     return out, pdf.page_no()
 

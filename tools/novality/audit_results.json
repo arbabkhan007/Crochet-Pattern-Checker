@@ -81,13 +81,7 @@
       "manual_rows": 6,
       "repo_validated_blocks": 3,
       "errors": [],
-      "warnings": [
-        {
-          "level": "WARN",
-          "where": "1. Sunny the Sunflower Petal",
-          "message": "token 'this' used but not declared in Abbreviations"
-        }
-      ],
+      "warnings": [],
       "status": "PASS"
     },
     {
