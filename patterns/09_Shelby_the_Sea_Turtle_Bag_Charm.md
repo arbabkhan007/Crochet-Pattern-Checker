@@ -103,6 +103,10 @@ Work the shell to 42 stitches: Rnd 1 (6), Rnd 2 (12), Rnd 3 (18), Rnd 4 (24), Rn
 
 Underside Rnd 8 (head & flippers), worked BLO throughout: 7 sc, (sc, hdc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st = 53 stitches, consuming all 42 back-loop anchors and leaving all 42 front loops exposed. Sl st to the first Rnd-8 sc and FO. Join the shell's 42 edge stitches to those 42 exposed front loops by the same rule as the small version. Allow 45-50 minutes and about 4 g of yarn.
 
+## Colorways
+
+Original colourway: sage-green shell, cream underside/head/flippers, darker-sage embroidered shell markings and black French-knot eyes. Optional shell variations: teal, mustard or rust; pair each with a clearly contrasting sand, cream or pale-green body.
+
 ## Care
 
 Follow the labels for the yarn, embroidery floss and keyring. Before publishing a care claim or supplying finished charms, clean and dry a complete sample by the proposed method, then inspect for dye transfer, corrosion, distortion, stuffing migration and damage to the ring attachment or seam. Until that sample test passes, recommend wiping the crochet surface with a barely damp cloth, keeping the metal ring as dry as possible, then drying the charm flat. Check the ring, doubled attachment yarn and surrounding shell stitches before each use and after cleaning.

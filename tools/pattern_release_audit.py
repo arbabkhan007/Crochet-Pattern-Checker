@@ -346,7 +346,7 @@ def run() -> int:
     required = [
         "## Safety — read this first", "## Materials", "## Gauge & size",
         "## Abbreviations", "## Instructions", "## Troubleshooting",
-        "## Terms of Use",
+        "## Colorways", "## Terms of Use",
     ]
 
     for expected_no, name in enumerate(EXPECTED, 1):

@@ -139,6 +139,10 @@ The flat orange beak and embroidered eyes avoid plastic facial parts; all sewn a
 
 These hooks are starting points only. Make a dense swatch and measure a completed sample before advertising any alternate size.
 
+## Colorways
+
+Original colourway: sunshine-yellow body and wings, tangerine-orange beak, and black embroidered eyes. Optional body-tone variations: buttercream, soft white, pale peach or duck-egg blue; keep the beak visibly contrasting and embroider the face in a dark washable thread.
+
 ## Care
 
 Follow the actual yarn label and wash-test a finished sample before publishing care claims. Until that test is complete, recommend gentle surface cleaning with a damp cloth and mild soap, followed by drying flat away from heat. Restore the pile gently by hand; brushing can pull fibres from some chenille yarns.

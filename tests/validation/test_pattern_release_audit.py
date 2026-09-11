@@ -36,7 +36,7 @@ def test_current_commercial_pattern_collection_passes_release_gate():
 
     assert result.returncode == 0, result.stdout + result.stderr
     assert "count rows checked: 517" in result.stdout
-    assert "assertions: 2505" in result.stdout
+    assert "assertions: 2523" in result.stdout
     assert "PASS - all release-gate checks succeeded" in result.stdout
 
 
@@ -73,13 +73,20 @@ def test_current_commercial_pattern_collection_passes_release_gate():
             "\n## Cleaning notes\n",
             "missing care section",
         ),
+        (
+            "05_Little_Duck_Plushie.md",
+            "\n## Colorways\n",
+            "\n## Palette notes\n",
+            "missing section '## Colorways'",
+        ),
     ],
     ids=[
         "count",
         "terminology",
         "structural-safeguard",
         "front-leg-safeguard",
-        "required-section",
+        "required-care-section",
+        "required-colourway-section",
     ],
 )
 def test_release_gate_rejects_mutations(

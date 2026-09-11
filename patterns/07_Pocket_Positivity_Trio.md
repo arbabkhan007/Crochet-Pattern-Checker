@@ -148,6 +148,10 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 
 Use bulky (#5) yarn with a 4.5 mm hook and make a dense swatch targeting about 4.5 mm per sc (about 1.3x the original gauge): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change. Do not hold worsted yarn double on the original 3.5 mm hook; that combination is usually too tight to work safely or evenly.
 
+## Colorways
+
+Original trio: Sunny uses golden-yellow petals with a chocolate-brown centre; Waddle uses a black body, cream chest and golden-yellow beak; Spud uses warm tan. Faces are black. Optional coordinated variations: mustard and cocoa for Sunny, charcoal and oat for Waddle, and russet or sandy beige for Spud.
+
 ## Selling & care
 
 These designs may be displayed as desk companions, but a listing label alone does not determine product classification. Do not claim “baby-safe” or compliance without the required evidence. Stuff firmly and evenly. Spot clean with a damp cloth and reshape while drying; do not machine wash unless the actual yarn and completed sample have been wash-tested.

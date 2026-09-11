@@ -2,5 +2,6 @@
 Pillow>=10.0,<12
 reportlab>=4.2,<5
 
-# PDF postflight and text/metadata inspection
+# PDF postflight, text/metadata inspection, and all-page render review
 pypdf>=5.0,<6
+PyMuPDF>=1.24,<2

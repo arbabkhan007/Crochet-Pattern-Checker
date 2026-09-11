@@ -17,7 +17,8 @@
 | Yarn-use, size, time, wash and durability measurements | **NOT PHYSICALLY VERIFIED — BLOCKING** |
 | Ownership, provenance, title and brand clearance | **NOT CLEARED — BLOCKING** |
 | Market-specific legal/product-safety review | **NOT PERFORMED — BLOCKING** |
-| Real sample photography and final PDF preflight | **FINAL ASSETS NOT PRESENT — BLOCKING** |
+| Customer PDF production and technical preflight | **PASS for the provisional illustrative editions** |
+| Real, rights-cleared sample/process photography | **NOT PRESENT — BLOCKING** |
 | Etsy listing compliance and disclosure review | **NOT COMPLETED — BLOCKING** |
 | Overall decision | **HOLD — do not list for sale yet** |
 
@@ -33,25 +34,28 @@ The final release gate reads the Markdown itself and currently reports:
 - **542** Markdown table rows;
 - **110** side-by-side US/UK instruction rows with exact token translation;
 - **517** count-bearing rows independently evaluated;
-- **2,505** total assertions;
+- **2,523** total assertions;
 - canonical increase/decrease continuity plus explicit arithmetic for every non-canonical count-bearing construction;
 - required safety, materials, gauge, abbreviations, instructions, finishing/assembly, troubleshooting, care and terms sections;
 - semantic heading hierarchy, table shape, file hygiene and high-risk release safeguards.
 
 The gate is `tools/pattern_release_audit.py`. A final desk suite passed on 11 September 2026:
 
-- release audit: 15 files, 542 table rows, 110 dual-terminology rows, 517 count rows and 2,505 assertions;
-- project Python suite: 98 tests passed, including the release gate and five mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
+- release audit: 15 files, 542 table rows, 110 dual-terminology rows, 517 count rows and 2,523 assertions;
+- project Python suite: 99 tests passed, including the release gate and six mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
 - Python compilation and Ruff static analysis: pass;
 - `codespell` 2.4.3: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
-- structural Markdownlint: 17 files (15 patterns, this report and the release README), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
-- GFM-to-HTML render: 16 master/report files, one H1 each, 78 recognized pattern tables and balanced table tags;
+- structural Markdownlint: 18 files (15 patterns, this report, the release README and the visual-asset README), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
+- GFM-to-HTML render: 18 master/report/release/asset files, one H1 each, 78 recognized pattern tables (83 tables total) and balanced table tags;
 - NS 01 full-colour PDF postflight: 13 A4 pages, 5.80 MiB, three distinct raster visuals, 91 construction-table progress boxes, selectable text, metadata, bookmarks and all required critical phrases;
 - NS 01 printer-saver postflight: 13 A4 pages, 0.12 MiB, white backgrounds, 98 progress boxes, no raster images, grayscale-only vectors, selectable text, metadata, bookmarks and all required critical phrases;
-- all-page render inspection: pass for the Head Rnd 11 decrease, shortened-front-leg table, progress boxes, colour names, materials visual, pagination, table flow, light closing page and printer-saver notes page;
+- NS 02–NS 15 PDF postflight: 28 of 28 A4 files passed source-content sentinels, design-code/brand identity, metadata, size, bookmark, original-colour-name, progress-box and image-inventory checks; all 14 printer companions are raster-free and grayscale-only;
+- NS 02–NS 15 all-page render inspection: 261 of 261 pages rendered; bounds, meaningful-content and replacement-glyph checks passed, followed by visual review of every cover/profile/contents/closing page and the densest instruction/table page in every design;
+- NS 02–NS 15 convenience ZIP: all 28 expected PDFs present, CRC clean and 5.33 MiB;
+- visual inspection: pass for the NS 01 Head Rnd 11 decrease and shortened-front-leg table, collection progress boxes, named original colours, pagination, difficult five-column US/UK tables, light closing pages and printer-saver notes pages;
 - `git diff --check`: pass.
 
-The permanent test suite also mutation-tests the gate. Five defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording, removal of NS 01’s explicit front-leg angle and removal of a required care section—each produce a non-zero exit and a localized finding.
+The permanent test suite also mutation-tests the gate. Six defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording, removal of NS 01’s explicit front-leg angle, removal of a required care section and removal of a required original-colour section—each produce a non-zero exit and a localized finding.
 
 ### Collection-wide corrections
 
@@ -60,6 +64,7 @@ The permanent test suite also mutation-tests the gate. Five defects—an incorre
 - Added or strengthened complete-sample care testing in every pattern. A yarn ball label alone no longer supports laundering claims for an assembled and stuffed item.
 - Standardized the finished-item licence: purchasers may sell small-batch finished physical items with credit, but may not redistribute the pattern itself. The wording still requires legal review before publication.
 - Rebuilt heading levels so the masters can later become navigable, accessible PDFs.
+- Added or standardized an explicit named original-colour section in every master; the release gate now requires it.
 - Added missing abbreviations and removed internal-review or tentative wording from customer-facing text.
 
 ### Per-pattern desk findings
@@ -155,16 +160,21 @@ Do not silently invent replacement names and call them cleared. The owner should
 
 ## Photography and PDF production gate
 
-The repository contains Markdown masters and a two-file NS 01 customer set: the
-full-colour `release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf` and the
-black-on-white `release/NS01_Hamish_the_Highland_Cow_PRINTER_SAVER.pdf`. The
-full-colour cover, materials visual and assembly map are illustrative; neither
-file contains photographs of a physically tested sample. Real ear, fringe and
-leg progress photographs remain deferred until rights-cleared images of the
-actual sample are supplied. The PDF composition does not independently satisfy
-the sample, title/provenance, product-safety or Etsy-disclosure gates. Do not
-use a generated or borrowed image as evidence that a pattern was physically
-made.
+The repository now contains the audited Markdown masters and 30 customer PDFs:
+two files for each design from NS 01 through NS 15. NS 01 has a full-colour
+edition with three labelled illustrative visuals and an image-free printer
+companion. Every NS 02–NS 15 full-colour edition has exactly two labelled
+illustrative visuals—a cover composition and maker map—and every printer
+companion is black on white with no raster objects. The 28 new files also have a
+CRC-checked convenience archive. All files retain selectable text, bookmarks,
+named original colours, copyright/licence text and construction tracking.
+
+None of these files contains photographs of a physically tested sample. Real
+process photographs remain deferred until rights-cleared images of the actual
+samples are supplied. The PDF production and preflight do not independently
+satisfy the sample, title/provenance, product-safety or Etsy-disclosure gates.
+Do not use generated, drawn or borrowed imagery as evidence that a pattern was
+physically made.
 
 After sample testing is complete:
 
