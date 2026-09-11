@@ -1,10 +1,10 @@
-"""Christmas Collection - NS X02 - Bobble Christmas Tree (US terms)."""
+"""Christmas Collection - NS 12 - Bobble Christmas Tree (US terms)."""
 
 PATTERN = {
     "id": "tree",
     "assets_key": "x02",
     "number": 102,
-    "design_code": "NS X02",
+    "design_code": "NS 12",
     "title": "Bobble Christmas Tree",
     "tagline": ("A soft standing fir built in one piece: plain rounds, then tier "
                 "after tier of popcorn bobbles that thin out toward the tip. "
@@ -156,7 +156,7 @@ PATTERN = {
         "ownership": ("This crochet pattern - including all instructions, stitch "
                       "counts, photography and design elements - is the original work "
                       "and intellectual property of Novality Store, designed by "
-                      "Novality Crochet Studio. Design Code NS X02."),
+                      "Novality Crochet Studio. Design Code NS 12."),
         "may": ("Make as many finished trees as you like for yourself, gifts, or "
                 "charity. Sell physical finished items made from this pattern in "
                 "small batches, in shops, markets and online, provided credit is "

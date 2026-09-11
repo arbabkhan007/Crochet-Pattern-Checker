@@ -1,10 +1,10 @@
-"""Christmas Collection - NS X03 - Christmas Ornament Bundle (US terms)."""
+"""Christmas Collection - NS 13 - Christmas Ornament Bundle (US terms)."""
 
 PATTERN = {
     "id": "bundle",
     "assets_key": "x03",
     "number": 103,
-    "design_code": "NS X03",
+    "design_code": "NS 13",
     "title": "Christmas Ornament Bundle",
     "tagline": ("Three quick decorations from leftover yarn: a stuffed round "
                 "bauble, a flat-blocked five-point star, and a crisp six-arm "
@@ -177,7 +177,7 @@ PATTERN = {
         "ownership": ("This crochet pattern - including all instructions, stitch "
                       "counts, photography and design elements - is the original work "
                       "and intellectual property of Novality Store, designed by "
-                      "Novality Crochet Studio. Design Code NS X03."),
+                      "Novality Crochet Studio. Design Code NS 13."),
         "may": ("Make as many finished ornaments as you like for yourself, gifts, or "
                 "charity. Sell physical finished items made from this pattern in "
                 "small batches, in shops, markets and online, provided credit is "

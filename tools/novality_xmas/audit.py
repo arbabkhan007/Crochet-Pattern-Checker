@@ -1,4 +1,4 @@
-"""Audit harness for the Christmas Collection (NS X01-X03).
+"""Audit harness for the Christmas Collection (NS 11, NS 12, NS 13).
 
 Reuses the master audit's audit_pattern() (continuity, stated counts, parser
 dual-check, repo StitchCountValidator, abbreviation + terminology scans) and

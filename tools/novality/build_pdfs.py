@@ -82,9 +82,10 @@ class PatternPDF(FPDF):
             self.add_font(fam, style, path)
         self.set_margins(M_L, M_T, M_R)
         self.set_auto_page_break(True, M_B)
+        self.cover_pages = {1}
 
     def footer(self):
-        if self.page_no() == 1:
+        if self.page_no() in self.cover_pages:
             return
         self.set_y(-15)
         self.set_draw_color(*HAIR)
@@ -97,7 +98,7 @@ class PatternPDF(FPDF):
         self.cell(CONTENT_W * 0.4, 8, right, align="R", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     def header(self):
-        if self.page_no() == 1:
+        if self.page_no() in self.cover_pages:
             return
         self.set_y(10)
         self.set_font("sans", "B", 7.5)
@@ -138,6 +139,7 @@ def _badge_row(pdf, items, y):
 
 def cover(pdf, p):
     pdf.add_page()
+    pdf.cover_pages.add(pdf.page_no())
     pdf.is_cover = True
     pdf.set_fill_color(*PAPER)
     pdf.rect(0, 0, PAGE_W, PAGE_H, style="F")
@@ -474,12 +476,7 @@ def copyright_box(pdf, notice):
     pdf.set_line_width(0.2)
 
 
-def build(p):
-    pdf = PatternPDF(p)
-    pdf.set_title(f"{p['title']} - crochet pattern - Novality Store")
-    pdf.set_author("Novality Store")
-    pdf.set_subject(f"Crochet pattern {p['design_code']} - {p['title']}")
-    pdf.set_keywords(f"crochet, pattern, amigurumi, novality store, {p['id']}")
+def render_pattern(pdf, p):
     cover(pdf, p)
     pdf.add_page()
 
@@ -647,12 +644,41 @@ def build(p):
     pdf.cell(0, 5, f"{p['title']}  ·  Design Code {p['design_code']}  ·  Novality Store",
              align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
+
+def _new_pdf(p):
+    pdf = PatternPDF(p)
+    pdf.set_title(f"{p['title']} - crochet pattern - Novality Store")
+    pdf.set_author("Novality Store")
+    pdf.set_subject(f"Crochet pattern {p['design_code']} - {p['title']}")
+    pdf.set_keywords(f"crochet, pattern, amigurumi, novality store, {p['id']}")
+    return pdf
+
+
+def _write(pdf, p):
     slug = p["title"].replace(" ", "_")
     if p.get("file_slug"):
         out = OUT / f"{p['file_slug']}.pdf"
         out.parent.mkdir(parents=True, exist_ok=True)
     else:
         out = OUT / f"Pattern_{p['number']:02d}_{slug}.pdf"
+    pdf.output(str(out))
+    return out, pdf.page_no()
+
+
+def build(p):
+    pdf = _new_pdf(p)
+    render_pattern(pdf, p)
+    return _write(pdf, p)
+
+
+def build_dual(p, uk, slug):
+    """One PDF containing the full pattern twice: US terms, then UK terms."""
+    pdf = _new_pdf(p)
+    render_pattern(pdf, p)
+    pdf.pdata = uk
+    render_pattern(pdf, uk)
+    out = OUT / f"{slug}.pdf"
+    out.parent.mkdir(parents=True, exist_ok=True)
     pdf.output(str(out))
     return out, pdf.page_no()
 

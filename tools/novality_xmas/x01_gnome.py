@@ -1,15 +1,15 @@
-"""Christmas Collection - NS X01 - No-Sew Christmas Gnome Amigurumi (US terms)."""
+"""Christmas Collection - NS 11 - No-Sew Christmas Gnome Amigurumi (US terms)."""
 
 TERMS_OWNERSHIP = ("This crochet pattern - including all instructions, stitch "
                    "counts, photography and design elements - is the original work "
                    "and intellectual property of Novality Store, designed by "
-                   "Novality Crochet Studio. Design Code NS X01.")
+                   "Novality Crochet Studio. Design Code NS 11.")
 
 PATTERN = {
     "id": "gnome",
     "assets_key": "x01",
     "number": 101,
-    "design_code": "NS X01",
+    "design_code": "NS 11",
     "title": "No-Sew Christmas Gnome",
     "tagline": ("A plump little gnome worked as ONE continuous piece - body, beard, "
                 "face and hat all in one tube with simple colour changes and a "
