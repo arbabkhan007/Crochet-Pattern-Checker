@@ -1,17 +1,25 @@
 """Validation system for crochet patterns."""
-from .validator import validate_pattern, ValidationReport, Severity
-from .multipiece import MultiPieceDetector, detect_and_validate_multipiece
 
-# Try to import abbreviations (may have issues)
-try:
-    from .abbreviations import AbbreviationValidator, validate_abbreviations
-except:
-    pass
+from .abbreviations import AbbreviationValidator, validate_abbreviations
+from .multipiece import MultiPieceDetector, detect_and_validate_multipiece
+from .stitch_counts import ValidationFinding
+from .validator import (
+    OverallStatus,
+    Severity,
+    ValidationPipeline,
+    ValidationReport,
+    validate_pattern,
+)
 
 __all__ = [
-    "validate_pattern",
-    "ValidationReport",
-    "Severity",
+    "AbbreviationValidator",
     "MultiPieceDetector",
+    "OverallStatus",
+    "Severity",
+    "ValidationFinding",
+    "ValidationPipeline",
+    "ValidationReport",
     "detect_and_validate_multipiece",
+    "validate_abbreviations",
+    "validate_pattern",
 ]
