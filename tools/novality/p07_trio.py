@@ -70,11 +70,12 @@ PATTERN = {
                     {"label": "R6", "text": "dec x 6", "stated": 6, "cons": 12, "prod": 6, "check": "dec x 6", "note": "stuff firmly before closing"},
                 ], "notes": []},
                 {"name": "Petals - yellow (worked in the round)", "rows": [
-                    {"label": "Petal", "text": "join yellow with a sl st into any st of Rnd 3, then [sl st in next st, (sc, hdc, sc) in next st] x 9", "stated": 36, "cons": 18, "prod": 36, "check": None, "note": "9 petals"},
+                    {"label": "Petal", "text": "join yellow with a sl st in any st of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next st, [sl st in next st, (sc, hdc, sc) in next st] x 8, sl st to the first sl st, FO", "stated": 36, "cons": 18, "prod": 36, "check": None, "note": "9 petals"},
                 ], "notes": [
-                    "Each repeat uses 2 stitches (a slip stitch, then three "
-                    "stitches into the next), so nine petals close the "
-                    "18-stitch round exactly. The slip stitch sits in the "
+                    "Count check: the joining slip stitch counts as the first of 9 "
+                    "slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 "
+                    "= 36 stitches, using exactly 2 stitches per petal set on the "
+                    "18-stitch cushion round. The slip stitch sits in the "
                     "valley between petals; work this round loosely (use a "
                     "4 mm hook for this round only if it pulls tight). FO and "
                     "weave in.",

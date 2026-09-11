@@ -231,6 +231,45 @@ Deterministic audit re-run after every change: **10/10 PASS, 0 errors /
 
 ---
 
+## Review round 3 — external audit response (2026-09-09)
+
+An external review raised eight findings; each was investigated line-by-line:
+
+1. **Coco Rnd 4/5 join rounds — claim: counts don't sum. Disproven by
+   arithmetic.** Each `[sc, inc] x 3` block works into 6 stitches and makes 9
+   (the review read it as 3 worked / 6 made). Correct totals: Rnd 4 uses
+   3+6+3+6 = 18 (every stitch of Rnd 3) and makes 3+9+3+9 = 24; Rnd 5 uses
+   5+3+7+3+6 = 24 and makes 7+3+10+3+7 = 30. The independent checking script
+   now derives Rnd 4 the same way (it already derived Rnd 5), and the full
+   arithmetic is printed in the pattern note itself so the join cannot be
+   misread. Also removed a stray phrase referencing a "[3 sc, inc] x 6 rhythm"
+   that does not exist in the table.
+2. **Ember size rounding — claim: 103 mm rounded to 11 cm. Correct call;
+   fixed.** Notes now read 56 + 47 = 103 mm ≈ 10.5 cm, wingspan 124 mm (just
+   under 12.5 cm); finished-size panel updated to match.
+3. **Sunny petal join — claim: the joining slip stitch is uncounted. Correct
+   call; fixed.** The petal round now counts the joining sl st as the first of
+   the 9 slip stitches, followed by 1 petal + 8 repeats + a closing join:
+   9 sl sts + 9 petals = 36 stitches over exactly 18 cushion stitches, with a
+   printed count check.
+4. **Hamish page-4 truncation — not reproducible.** The current PDF's page 4
+   was re-rendered and inspected: every paragraph and table row is complete;
+   the text layer extracts fully. (Claim may reflect a different/old document;
+   if a specific phrase is missing, send the exact wording.)
+5. **Hamish muzzle 26 mm vs 35 mm — consistent.** At 11 sc = 5 cm, the 24-st
+   face round measures ~34.7 mm across and the 18-st rim ~25.8 mm; both
+   figures are printed as measured values, not stitch counts.
+6. **Axel fin crowding — documented design choice, math confirmed.** 5 shells
+   over the 10-stitch ridge fits exactly; the ruffle is intentional and the
+   troubleshooting note says so.
+7. **Confirmed correct (no change):** Shelby underside 24→35, Willow border
+   240+12=252, Waddle wings 4→6, Axel ladder 12→9→6, duck beak 11→15.
+
+Full re-validation after the fixes: **10/10 deterministic audit PASS,
+independent recomputation PASS, repo tests 15/15 PASS, render QA 10/10 PASS.**
+
+---
+
 ## Unresolved items for human review
 
 1. **Ember (NS 08):** the materials list once referenced a “Belly” piece that has

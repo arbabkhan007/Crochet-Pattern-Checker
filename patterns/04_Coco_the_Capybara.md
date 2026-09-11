@@ -127,7 +127,9 @@ How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds b
 
 Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
 
-Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc (7 stitches made); join a leg over the next 3 sc; work [sc, inc] x 3 and 1 sc (10 stitches made); join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end (7 stitches made). In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, and all six increases fall inside the plain runs, exactly as the [3 sc, inc] x 6 rhythm of the table. The 7-10-7 spacing centres each front leg between the two back legs.
+Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc (7 stitches made); join a leg over the next 3 sc; work [sc, inc] x 3 and 1 sc (10 stitches made); join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end (7 stitches made). In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, all six increases falling inside the plain runs. The 7-10-7 spacing centres each front leg between the two back legs.
+
+Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 5 + 3 + 7 + 3 + 6 = 24, using every stitch of Rnd 4; made = 7 + 3 + 10 + 3 + 7 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
 
 Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. The correct spacing covers the deepest footprint this shape allows - about 65 mm across and 29 mm front to back. Hold the piece upside down and check all four legs sit square before you stuff the body.
 

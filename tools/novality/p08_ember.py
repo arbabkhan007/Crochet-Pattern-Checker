@@ -10,8 +10,8 @@ PATTERN = {
                 "folding haunches and splayed front legs."),
     "meta": ["US terms", "Intermediate", "4 - 5 hours"],
     "finished_size": [
-        "About 11 cm (4.3 in) tall seated.",
-        "12.5 cm (5 in) wingspan. 5 cm (2 in) tail.",
+        "About 10.5 cm (a touch over 4 in) tall seated - 103 mm by the gauge.",
+        "12.4 cm (just under 5 in) wingspan. About 5 cm (2 in) tail.",
         "A sitting dragon - her body rests on the table and her legs pose "
         "rather than lift her.",
     ],
@@ -73,9 +73,10 @@ PATTERN = {
     ],
     "notes": [
         "How the size adds up: body Rnd 1-13 is 13 rounds x 4.3 mm = 56 mm; "
-        "head Rnd 1-11 is 11 rounds x 4.3 mm = 47 mm; seated together about "
-        "103 mm = 11 cm. Wingspan: 45 + 34 + 45 = about 124 mm = 12.5 cm. "
-        "Tail: 12 rounds x 4.3 mm = 52 mm = 5 cm.",
+        "head Rnd 1-11 is 11 rounds x 4.3 mm = 47 mm; seated together 56 + 47 "
+        "= 103 mm - about 10.5 cm. Wingspan: 45 + 34 + 45 = 124 mm - just "
+        "under 12.5 cm. "
+        "Tail: 12 rounds x 4.3 mm = 52 mm - about 5 cm.",
     ],
     "pieces": [
         {

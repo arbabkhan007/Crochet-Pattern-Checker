@@ -56,9 +56,9 @@ A small brown cushion; nine yellow petals are worked straight into Rnd 3.
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
-| Petal | join yellow with a sl st into any st of Rnd 3, then [sl st in next st, (sc, hdc, sc) in next st] x 9 | (36) | 9 petals |
+| Petal | join yellow with a sl st in any st of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next st, [sl st in next st, (sc, hdc, sc) in next st] x 8, sl st to the first sl st, FO | (36) | 9 petals |
 
-Each repeat uses 2 stitches (a slip stitch, then three stitches into the next), so nine petals close the 18-stitch round exactly. The slip stitch sits in the valley between petals; work this round loosely (use a 4 mm hook for this round only if it pulls tight). FO and weave in.
+Count check: the joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 stitches per petal set on the 18-stitch cushion round. The slip stitch sits in the valley between petals; work this round loosely (use a 4 mm hook for this round only if it pulls tight). FO and weave in.
 
 Face: embroider a smiling mouth between Rnd 2-3 and add eyes 3 stitches apart on Rnd 2 (~10.5 mm; use 4 apart only if embroidering).
 

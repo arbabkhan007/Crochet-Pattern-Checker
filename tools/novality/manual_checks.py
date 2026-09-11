@@ -77,8 +77,16 @@ expect("sturdier neck R13 produces 20", r13p, 20)
 expect("sturdier neck R14 consumes 20 / produces 24", (r14, r14p), (20, 24))
 
 print("== Coco (NS 04) ==")
+r4 = row("coco", 2, 0, 3)
+# sequence: join BL1: 3 sc | [sc, inc]x3 | join BL2: 3 sc | [sc, inc]x3
+# each [sc, inc]x3 block: consumes 2*3=6, produces 3*3=9
+cons4 = 3 + (2 * 3) + 3 + (2 * 3)
+prod4 = 3 + (3 * 3) + 3 + (3 * 3)
+expect("Coco R4 join round: cons/prod", (cons4, prod4), (18, 24))
+expect("data", (r4["cons"], r4["prod"], r4["stated"]), (18, 24, 24))
+
 r5 = row("coco", 2, 0, 4)
-# sequence: 1 sc, inc, 1 sc, inc, 1 sc | join 3 | [1 sc, inc]x3, 1 sc | join 3 | 3 sc, inc, 2 sc
+# sequence: 1 sc, inc, 1 sc, inc, 1 sc | join 3 | [sc, inc]x3, 1 sc | join 3 | 3 sc, inc, 2 sc
 cons = (1 + 1 + 1 + 1 + 1) + 3 + (2 * 3 + 1) + 3 + (3 + 1 + 2)
 prod = (1 + 2 + 1 + 2 + 1) + 3 + (3 * 3 + 1) + 3 + (3 + 2 + 2)
 expect("Coco R5 join round: cons/prod", (cons, prod), (24, 30))
