@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Build the NS 01 branded confirmation proof from its audited Markdown master.
+"""Build the branded NS 01 Etsy-edition PDF from its audited Markdown master.
 
-This proof intentionally labels the generated cover artwork as concept imagery. Replace
-it with photographs of a physically tested sample before creating a retail PDF.
+The layout treats the supplied visuals as illustrations, never as physical test evidence.
+Product testing, image disclosure, and listing compliance remain owner responsibilities.
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ import re
 import tempfile
 from dataclasses import dataclass
 from hashlib import sha256
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 from typing import Iterable, Sequence
 
@@ -49,7 +49,8 @@ from pypdf.generic import IndirectObject
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "patterns/01_Hamish_the_Highland_Cow.md"
 HERO = ROOT / "assets/patterns/ns01/hamish_cover_concept.png"
-DEFAULT_OUTPUT = ROOT / "proofs/NS01_Hamish_the_Highland_Cow_CONFIRMATION_PROOF.pdf"
+MATERIALS_IMAGE = ROOT / "assets/patterns/ns01/hamish_materials_concept.png"
+DEFAULT_OUTPUT = ROOT / "release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf"
 ASSET_DIR = Path(tempfile.gettempdir()) / "novality-pdf-assets/ns01"
 
 PAGE_WIDTH, PAGE_HEIGHT = A4
@@ -57,7 +58,7 @@ BRAND = "Novality Crochet Studio"
 DESIGN_CODE = "NS 01"
 TITLE = "Hamish"
 SUBTITLE = "the Highland Cow"
-REVISION = "Confirmation proof · 11 September 2026"
+REVISION = "First edition · 2026"
 
 INK = HexColor("#28231F")
 FOREST = HexColor("#31473B")
@@ -124,49 +125,6 @@ def pil_font(size: int, bold: bool = False, serif: bool = False) -> ImageFont.Fr
         return ImageFont.truetype(str(font_dir / name), size=size)
     except OSError:
         return ImageFont.load_default()
-
-
-def create_palette_asset(path: Path) -> None:
-    """Create the original-colour palette figure used in the proof."""
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    canvas = PILImage.new("RGB", (1800, 820), "#F7F1E7")
-    draw = ImageDraw.Draw(canvas)
-    draw.rounded_rectangle((40, 40, 1760, 780), radius=38, fill="#FFFDF8", outline="#D8CDBE", width=3)
-    draw.text((105, 90), "ORIGINAL COLOUR STORY", font=pil_font(52, bold=True, serif=True), fill="#28231F")
-    draw.text(
-        (107, 160),
-        "Warm Highland tones · keep dye-lot labels with the sample record",
-        font=pil_font(26),
-        fill="#6F665E",
-    )
-
-    swatches = [
-        ("YARN A", "GINGER", "body + fringe · about 25 g", "#B9652B"),
-        ("YARN B", "OAT CREAM", "muzzle + horns + inner ears · 12 g", "#E7D7B8"),
-        ("YARN C", "DARK CHOCOLATE", "hooves + nostrils · 5 g", "#4A2B23"),
-        ("YARN D", "RUST / TARTAN", "optional scarf · about 6 g", "#9A4630"),
-    ]
-    start_x = 105
-    card_w = 380
-    gap = 34
-    for index, (code, name, use, colour) in enumerate(swatches):
-        x = start_x + index * (card_w + gap)
-        draw.rounded_rectangle((x, 245, x + card_w, 690), radius=26, fill="#FAF6EF", outline="#E4D8C9", width=3)
-        draw.rounded_rectangle((x + 28, 273, x + card_w - 28, 465), radius=22, fill=colour)
-        contrast = "#FFFDF8" if name != "OAT CREAM" else "#4A2B23"
-        draw.text((x + 50, 303), code, font=pil_font(23, bold=True), fill=contrast)
-        draw.text((x + 28, 503), name, font=pil_font(30, bold=True, serif=True), fill="#28231F")
-        wrapped = wrap_words(use, 29)
-        draw.multiline_text((x + 28, 560), wrapped, font=pil_font(21), fill="#6F665E", spacing=8)
-
-    draw.text(
-        (107, 721),
-        "Screen colours are a guide only. Use the yarn description—not a hex value—to select materials.",
-        font=pil_font(20),
-        fill="#6F665E",
-    )
-    canvas.save(path, quality=95)
 
 
 def create_assembly_asset(path: Path) -> None:
@@ -245,11 +203,12 @@ def wrap_words(text: str, width: int) -> str:
 
 
 def normalize_branding(text: str) -> str:
-    """Apply the owner-requested customer-facing studio brand to this proof."""
+    """Apply the owner-requested customer-facing studio brand and spelling."""
 
     return (
         text.replace("Novality Store", BRAND)
         .replace("#NovalityStore", "#NovalityCrochetStudio")
+        .replace("## Colorways", "## Colourways")
         .replace(
             "including all instructions, stitch counts, photography and design elements",
             "including all instructions, stitch counts, editorial layout and design elements",
@@ -536,11 +495,11 @@ class HeadingParagraph(Paragraph):
         super().__init__(text, style)
         self.outline_level = level
         self.bookmark_key = key
-        self.plain_heading = re.sub(r"<[^>]+>", "", text)
+        self.plain_heading = unescape(re.sub(r"<[^>]+>", "", text))
 
 
 class CoverFlowable(Flowable):
-    """Full-page editorial cover for the confirmation proof."""
+    """Full-page editorial cover for the customer PDF."""
 
     def __init__(self, hero: Path, fonts: Fonts):
         super().__init__()
@@ -625,83 +584,71 @@ class CoverFlowable(Flowable):
         canvas.setFillColor(MUTED)
         canvas.setFont(self.fonts.sans, 6.8)
         canvas.drawString(14 * mm, 34.5 * mm, REVISION.upper())
-        canvas.drawRightString(PAGE_WIDTH - 14 * mm, 34.5 * mm, "NOT FOR RETAIL")
+        canvas.drawRightString(PAGE_WIDTH - 14 * mm, 34.5 * mm, "DIGITAL CROCHET PATTERN")
         canvas.setFont(self.fonts.sans, 6.3)
         canvas.drawString(
             14 * mm,
             27 * mm,
-            "CONCEPT COVER IMAGE — REPLACE WITH A PHOTOGRAPH OF THE TESTED SAMPLE BEFORE PUBLICATION",
+            "ILLUSTRATIVE COVER ART · ORIGINAL GINGER COLOURWAY · WRITTEN INSTRUCTIONS CONTROL",
         )
         canvas.setFillColor(FOREST_DARK)
         canvas.rect(0, 0, PAGE_WIDTH, 14 * mm, stroke=0, fill=1)
         canvas.setFillColor(colors.white)
         canvas.setFont(self.fonts.sans_bold, 7.2)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 5.1 * mm, "NOVALITY CROCHET STUDIO  ·  CONFIRMATION PROOF")
+        canvas.drawCentredString(PAGE_WIDTH / 2, 5.1 * mm, "NOVALITY CROCHET STUDIO  ·  ORIGINAL PATTERN")
         canvas.restoreState()
 
 
-class ClosingFlowable(Flowable):
-    """Intentional branded back cover for the proof."""
+class ClosingPanel(Flowable):
+    """Light closing page that matches the interior rather than a colour flood."""
 
-    def __init__(self, hero: Path, fonts: Fonts):
+    def __init__(self, width: float, fonts: Fonts):
         super().__init__()
-        self.hero = hero
         self.fonts = fonts
-        self.width = PAGE_WIDTH
-        self.height = PAGE_HEIGHT - 0.2 * mm
+        self.width = width
+        self.height = 172 * mm
 
     def wrap(self, available_width, available_height):  # noqa: ANN001
-        return self.width, min(self.height, available_height)
+        return min(self.width, available_width), min(self.height, available_height)
 
     def draw(self) -> None:
         canvas = self.canv
         canvas.saveState()
-        canvas.setFillColor(FOREST_DARK)
-        canvas.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, stroke=0, fill=1)
-
-        canvas.setFillColor(GINGER)
-        canvas.circle(PAGE_WIDTH / 2, 237 * mm, 23 * mm, stroke=0, fill=1)
-        canvas.setFillColor(colors.white)
-        canvas.setFont(self.fonts.sans_bold, 19)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 233.5 * mm, DESIGN_CODE)
-
-        canvas.setFont(self.fonts.serif_bold, 28)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 199 * mm, "HAPPY CROCHETING")
-        canvas.setFont(self.fonts.serif, 13)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 187 * mm, "Make it slowly. Check every seam. Make it yours.")
-
-        image_w, image_h = 61 * mm, 88 * mm
-        image_x = (PAGE_WIDTH - image_w) / 2
-        canvas.setFillColor(PAPER)
-        canvas.roundRect(image_x - 2 * mm, 83 * mm, image_w + 4 * mm, image_h + 4 * mm, 4 * mm, stroke=0, fill=1)
-        canvas.drawImage(
-            str(self.hero),
-            image_x,
-            85 * mm,
-            width=image_w,
-            height=image_h,
-            preserveAspectRatio=True,
-            anchor="c",
-            mask="auto",
-        )
-
-        canvas.setFillColor(OAT)
-        canvas.setFont(self.fonts.sans_bold, 8.3)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 69 * mm, "SHARE YOUR FINISHED HAMISH")
-        canvas.setFillColor(colors.white)
-        canvas.setFont(self.fonts.sans, 8)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 61 * mm, "#NovalityCrochetStudio   ·   #HamishTheHighlandCow")
-
+        canvas.setFillColor(PALE_GREEN)
         canvas.setStrokeColor(MOSS)
-        canvas.line(28 * mm, 43 * mm, PAGE_WIDTH - 28 * mm, 43 * mm)
+        canvas.setLineWidth(0.8)
+        canvas.roundRect(0, 19 * mm, self.width, 144 * mm, 5 * mm, stroke=1, fill=1)
+
+        center = self.width / 2
+        canvas.setFillColor(GINGER)
+        canvas.circle(center, 139 * mm, 14 * mm, stroke=0, fill=1)
         canvas.setFillColor(colors.white)
+        canvas.setFont(self.fonts.sans_bold, 12)
+        canvas.drawCentredString(center, 136.4 * mm, DESIGN_CODE)
+
+        canvas.setFillColor(FOREST_DARK)
+        canvas.setFont(self.fonts.serif_bold, 25)
+        canvas.drawCentredString(center, 111 * mm, "HAPPY CROCHETING")
+        canvas.setFont(self.fonts.serif, 12)
+        canvas.drawCentredString(center, 99 * mm, "Make it slowly. Check every seam. Make it yours.")
+
+        canvas.setStrokeColor(GINGER_LIGHT)
+        canvas.setLineWidth(1.2)
+        canvas.line(36 * mm, 88 * mm, self.width - 36 * mm, 88 * mm)
+        canvas.setFillColor(INK)
         canvas.setFont(self.fonts.sans_bold, 8.2)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 33 * mm, BRAND.upper())
-        canvas.setFont(self.fonts.sans, 6.8)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 25 * mm, f"© 2026 {BRAND} · ALL RIGHTS RESERVED · {DESIGN_CODE}")
-        canvas.setFillColor(OAT)
-        canvas.setFont(self.fonts.sans_bold, 6.6)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 13 * mm, "CONFIRMATION PROOF · CONCEPT IMAGE · NOT FOR RETAIL")
+        canvas.drawCentredString(center, 76 * mm, "SHARE YOUR FINISHED HAMISH")
+        canvas.setFont(self.fonts.sans, 8)
+        canvas.drawCentredString(center, 67 * mm, "#NovalityCrochetStudio   ·   #HamishTheHighlandCow")
+
+        canvas.setFont(self.fonts.sans, 7.4)
+        canvas.setFillColor(MUTED)
+        canvas.drawCentredString(center, 50 * mm, "Keep this design code with support questions and pattern revisions.")
+        canvas.setFont(self.fonts.sans_bold, 8)
+        canvas.setFillColor(FOREST_DARK)
+        canvas.drawCentredString(center, 39 * mm, BRAND.upper())
+        canvas.setFont(self.fonts.sans, 7)
+        canvas.drawCentredString(center, 29 * mm, f"© 2026 {BRAND} · ALL RIGHTS RESERVED · {DESIGN_CODE}")
         canvas.restoreState()
 
 
@@ -718,7 +665,7 @@ class PatternDocument(BaseDocTemplate):
             bottomMargin=18 * mm,
             title=f"{DESIGN_CODE} — {TITLE} {SUBTITLE}",
             author=BRAND,
-            subject=f"Crochet pattern confirmation proof, {DESIGN_CODE}",
+            subject=f"Crochet pattern, {DESIGN_CODE}",
             creator=BRAND,
         )
         self.fonts = fonts
@@ -761,8 +708,8 @@ class PatternDocument(BaseDocTemplate):
         canvas.line(18 * mm, 12.5 * mm, PAGE_WIDTH - 18 * mm, 12.5 * mm)
         canvas.setFillColor(MUTED)
         canvas.setFont(self.fonts.sans, 6.6)
-        canvas.drawString(18 * mm, 7.2 * mm, f"© 2026 {BRAND} · Confirmation proof")
-        canvas.drawCentredString(PAGE_WIDTH / 2, 7.2 * mm, "DO NOT DISTRIBUTE")
+        canvas.drawString(18 * mm, 7.2 * mm, f"© 2026 {BRAND} · All rights reserved")
+        canvas.drawCentredString(PAGE_WIDTH / 2, 7.2 * mm, "PERSONAL LICENSE · SEE TERMS")
         canvas.setFont(self.fonts.sans_bold, 7)
         canvas.drawRightString(PAGE_WIDTH - 18 * mm, 7.2 * mm, f"{DESIGN_CODE}   ·   {doc.page}")
         canvas.restoreState()
@@ -771,7 +718,7 @@ class PatternDocument(BaseDocTemplate):
     def set_pdf_metadata(canvas) -> None:  # noqa: ANN001
         canvas.setTitle(f"{DESIGN_CODE} — {TITLE} {SUBTITLE}")
         canvas.setAuthor(BRAND)
-        canvas.setSubject(f"Branded crochet pattern confirmation proof · {DESIGN_CODE}")
+        canvas.setSubject(f"Branded crochet pattern · {DESIGN_CODE}")
         canvas.setCreator(BRAND)
         canvas.setKeywords(f"crochet, amigurumi, Highland cow, {DESIGN_CODE}, {BRAND}")
 
@@ -843,7 +790,48 @@ def make_table(rows: Sequence[Sequence[str]], styles: dict[str, ParagraphStyle],
     return table
 
 
-def profile_story(styles: dict[str, ParagraphStyle], palette: Path) -> list[Flowable]:
+def colour_swatch_table(
+    styles: dict[str, ParagraphStyle], available_width: float
+) -> Table:
+    """Render named original colours as native PDF vectors and selectable text."""
+
+    labels = [
+        ("YARN A", "GINGER", "body + fringe · about 25 g", GINGER),
+        ("YARN B", "OAT CREAM", "muzzle + horns + inner ears · 12 g", OAT),
+        ("YARN C", "DARK CHOCOLATE", "hooves + nostrils · about 5 g", CHOCOLATE),
+        ("YARN D", "RUST / TARTAN", "optional scarf · about 6 g", RUST),
+    ]
+    width = available_width / len(labels)
+    data = [
+        ["" for _ in labels],
+        [
+            Paragraph(
+                f"<b>{code} · {name}</b><br/>{use}",
+                styles["small"],
+            )
+            for code, name, use, _colour in labels
+        ],
+    ]
+    table = Table(data, colWidths=[width] * len(labels), rowHeights=[13 * mm, None])
+    commands: list[tuple] = [
+        ("BOX", (0, 0), (-1, -1), 0.7, LINE),
+        ("INNERGRID", (0, 0), (-1, -1), 0.45, LINE),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 1), (-1, -1), 7),
+        ("RIGHTPADDING", (0, 1), (-1, -1), 7),
+        ("TOPPADDING", (0, 1), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 1), (-1, -1), 7),
+        ("BACKGROUND", (0, 1), (-1, 1), HexColor("#FAF6EF")),
+    ]
+    for index, (_code, _name, _use, colour) in enumerate(labels):
+        commands.append(("BACKGROUND", (index, 0), (index, 0), colour))
+    table.setStyle(TableStyle(commands))
+    return table
+
+
+def profile_story(
+    styles: dict[str, ParagraphStyle], materials_image: Path, available_width: float
+) -> list[Flowable]:
     badge_data = [
         [
             Paragraph("<b>TERMINOLOGY</b><br/>US crochet terms", styles["body_compact"]),
@@ -867,30 +855,8 @@ def profile_story(styles: dict[str, ParagraphStyle], palette: Path) -> list[Flow
             ]
         )
     )
-    checkpoints = Table(
-        [
-            [
-                Paragraph("<b>01 · ACCESS</b><br/>Lock both eye washers while the head is open.", styles["small"]),
-                Paragraph("<b>02 · FIT</b><br/>Match all 18 neck stitches one-for-one.", styles["small"]),
-                Paragraph("<b>03 · FINISH</b><br/>Make two complete passes on structural seams.", styles["small"]),
-            ]
-        ],
-        colWidths=[56.7 * mm] * 3,
-    )
-    checkpoints.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, -1), HexColor("#F8F3EB")),
-                ("BOX", (0, 0), (-1, -1), 0.6, LINE),
-                ("INNERGRID", (0, 0), (-1, -1), 0.4, LINE),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 8),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
-                ("TOPPADDING", (0, 0), (-1, -1), 7),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
-            ]
-        )
-    )
+    materials = image_for_width(materials_image, 160 * mm, 68 * mm)
+    materials.hAlign = "CENTER"
     return [
         Paragraph("Pattern profile", styles["front_title"]),
         Paragraph(
@@ -899,10 +865,16 @@ def profile_story(styles: dict[str, ParagraphStyle], palette: Path) -> list[Flow
         ),
         Spacer(1, 3 * mm),
         badges,
-        Spacer(1, 7 * mm),
-        image_for_width(palette, 170 * mm, 76 * mm),
+        Spacer(1, 5 * mm),
+        Paragraph("Original colourway", styles["h3"]),
+        colour_swatch_table(styles, available_width),
         Paragraph(
-            "FIGURE 1 · The specified ginger, oat-cream, dark-chocolate and optional rust colour story. Yarn appearance varies by screen and dye lot.",
+            "COLOUR GUIDE · Ginger, oat cream, dark chocolate and optional rust/tartan are the named original colours. Screen appearance and dye lots vary.",
+            styles["caption"],
+        ),
+        materials,
+        Paragraph(
+            "FIGURE 1 · Materials visual: ginger, oat-cream and dark-chocolate yarn; rust tartan; 3.5 mm hook; two eyes with washers; fibre fill; needle, pins, scissors and marker. Follow the written quantities below.",
             styles["caption"],
         ),
         Paragraph("Read before making", styles["h2"]),
@@ -911,16 +883,13 @@ def profile_story(styles: dict[str, ParagraphStyle], palette: Path) -> list[Flow
             styles["front_body"],
         ),
         Paragraph(
-            "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This proof does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
+            "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
             styles["callout"],
         ),
         Paragraph(
-            f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. This pattern is licensed to one purchaser under the Terms of Use in this document. The confirmation-proof artwork is a layout placeholder and must be replaced by photographs of the physically tested sample before retail release.",
+            f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Cover and materials visuals are illustrative; the written materials, counts and construction directions control.",
             styles["quote"],
         ),
-        Spacer(1, 2 * mm),
-        Paragraph("Three checkpoints to mark", styles["h3"]),
-        checkpoints,
     ]
 
 
@@ -967,10 +936,14 @@ def toc_story(styles: dict[str, ParagraphStyle], fonts: Fonts) -> list[Flowable]
         Spacer(1, 8 * mm),
         HRFlowable(width="100%", thickness=0.8, color=LINE),
         Spacer(1, 5 * mm),
-        Paragraph("Proof status", styles["h2"]),
+        Paragraph("How to use this pattern", styles["h2"]),
         Paragraph(
-            "This is the first visual-design proof. It preserves the audited written master but is not the retail release: title clearance, physical sample testing, independent tester sign-off, measured yarn/time/size, complete-item care testing and real sample photography remain open gates.",
+            "Read each component and its finishing note before beginning. Mark completed rows as you work, use the stitch count at the end of every round, and stop if your count differs. Diagrams support orientation only; the numbered written directions control construction.",
             styles["callout"],
+        ),
+        Paragraph(
+            "Three checkpoints: lock both eye washers while the head is open; match all 18 neck stitches one-for-one; and make two complete passes on structural seams.",
+            styles["front_body"],
         ),
     ]
 
@@ -1011,6 +984,16 @@ def blocks_to_story(
                     ]
                 )
                 inserted_assembly = True
+            if text == "Colourways":
+                story.extend(
+                    [
+                        colour_swatch_table(styles, available_width),
+                        Paragraph(
+                            "ORIGINAL COLOURWAY · Yarn A Ginger · Yarn B Oat Cream · Yarn C Dark Chocolate · Yarn D Rust / Tartan (optional).",
+                            styles["caption"],
+                        ),
+                    ]
+                )
             continue
         if block.kind == "rule":
             story.extend([Spacer(1, 2 * mm), HRFlowable(width="100%", thickness=0.8, color=LINE), Spacer(1, 3 * mm)])
@@ -1035,7 +1018,12 @@ def blocks_to_story(
             continue
         if block.kind == "paragraph":
             style = styles["callout"] if current_h2.startswith("Safety") else styles["body"]
-            story.append(Paragraph(inline_markup(str(block.value)), style))
+            value = str(block.value)
+            if current_h2 == "Colourways":
+                value = f"<b>Optional body-tone variations:</b> {escape(value)}"
+                story.append(Paragraph(value, style))
+            else:
+                story.append(Paragraph(inline_markup(value), style))
     return story
 
 
@@ -1043,12 +1031,12 @@ def build_pdf(output: Path) -> None:
     if not SOURCE.exists():
         raise FileNotFoundError(f"Missing audited master: {SOURCE}")
     if not HERO.exists():
-        raise FileNotFoundError(f"Missing concept cover asset: {HERO}")
+        raise FileNotFoundError(f"Missing illustrative cover asset: {HERO}")
+    if not MATERIALS_IMAGE.exists():
+        raise FileNotFoundError(f"Missing illustrative materials asset: {MATERIALS_IMAGE}")
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    palette = ASSET_DIR / "ns01_original_colourway.png"
     assembly = ASSET_DIR / "ns01_assembly_map.png"
-    create_palette_asset(palette)
     create_assembly_asset(assembly)
 
     fonts = register_fonts()
@@ -1061,28 +1049,27 @@ def build_pdf(output: Path) -> None:
         CoverFlowable(HERO, fonts),
         NextPageTemplate("Content"),
         PageBreak(),
-        *profile_story(styles, palette),
+        *profile_story(styles, MATERIALS_IMAGE, document.width),
         PageBreak(),
         *toc_story(styles, fonts),
         PageBreak(),
         *blocks_to_story(blocks, styles, document.width, assembly),
-        NextPageTemplate("Cover"),
         PageBreak(),
-        ClosingFlowable(HERO, fonts),
+        ClosingPanel(document.width, fonts),
     ]
     document.multiBuild(story)
 
 
 def postflight_pdf(output: Path) -> None:
-    """Reject a proof with missing pages, identity, imagery, or critical text."""
+    """Reject an Etsy PDF with missing pages, identity, imagery, or critical text."""
 
     reader = PdfReader(output)
     if reader.is_encrypted:
-        raise ValueError("The confirmation proof must not be encrypted")
+        raise ValueError("The customer PDF must not be encrypted")
     if not 10 <= len(reader.pages) <= 18:
-        raise ValueError(f"Unexpected proof length: {len(reader.pages)} pages")
+        raise ValueError(f"Unexpected PDF length: {len(reader.pages)} pages")
     if output.stat().st_size >= 20 * 1024 * 1024:
-        raise ValueError("The confirmation proof exceeds Etsy's 20 MB file limit")
+        raise ValueError("The customer PDF exceeds Etsy's 20 MB file limit")
     if reader.metadata.title != f"{DESIGN_CODE} — {TITLE} {SUBTITLE}":
         raise ValueError("Incorrect or missing PDF title metadata")
     if reader.metadata.author != BRAND:
@@ -1105,9 +1092,12 @@ def postflight_pdf(output: Path) -> None:
 
     all_text = "\n".join(page_texts)
     if "Novality Store" in all_text:
-        raise ValueError("Legacy branding remains in the proof")
+        raise ValueError("Legacy branding remains in the customer PDF")
     if "**" in all_text or "|---" in all_text:
-        raise ValueError("Raw Markdown leaked into the proof")
+        raise ValueError("Raw Markdown leaked into the customer PDF")
+    for proof_marker in ("confirmation proof", "not for retail", "do not distribute"):
+        if proof_marker in all_text.lower():
+            raise ValueError(f"Proof-only marker remains: {proof_marker!r}")
 
     required_text = [
         "Safety — read this first",
@@ -1127,7 +1117,11 @@ def postflight_pdf(output: Path) -> None:
         "10. Tartan scarf - Yarn D (optional)",
         "Finishing & assembly",
         "Troubleshooting",
-        "Colorways",
+        "Colourways",
+        "YARN A · GINGER",
+        "YARN B · OAT CREAM",
+        "YARN C · DARK CHOCOLATE",
+        "YARN D · RUST / TARTAN",
         "Care",
         "Terms of Use",
         "Copyright & ownership",
@@ -1139,7 +1133,7 @@ def postflight_pdf(output: Path) -> None:
     normalized_text = all_text.lower()
     for phrase in required_text:
         if phrase.lower() not in normalized_text:
-            raise ValueError(f"Required proof text is missing: {phrase!r}")
+            raise ValueError(f"Required customer text is missing: {phrase!r}")
 
     image_hashes: set[str] = set()
     image_placements = 0

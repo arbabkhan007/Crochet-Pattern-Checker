@@ -43,9 +43,11 @@ The gate is `tools/pattern_release_audit.py`. A final desk suite passed on 11 Se
 - release audit: 15 files, 532 table rows, 110 dual-terminology rows, 507 count rows and 2,470 assertions;
 - project Python suite: 97 tests passed, including the release gate and four mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
 - Python compilation and Ruff static analysis: pass;
-- `codespell` 2.4.1: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
-- structural Markdownlint: 16 files (15 patterns plus this report), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
-- GFM-to-HTML render: 16 files, one H1 each, 77 recognized pattern tables and balanced table tags;
+- `codespell` 2.4.3: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
+- structural Markdownlint: 17 files (15 patterns, this report and the release README), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
+- GFM-to-HTML render: 16 master/report files, one H1 each, 77 recognized pattern tables and balanced table tags;
+- NS 01 PDF postflight: 13 A4 pages, 5.80 MiB, three distinct raster visuals, selectable text, metadata, bookmarks and all required critical phrases;
+- all-page render inspection: pass for colour names, materials visual, pagination, table flow and the light closing page;
 - `git diff --check`: pass.
 
 The permanent test suite also mutation-tests the gate. Four defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording and removal of a required care section—each produce a non-zero exit and a localized finding.
@@ -152,7 +154,13 @@ Do not silently invent replacement names and call them cleared. The owner should
 
 ## Photography and PDF production gate
 
-The repository contains Markdown masters and one branded NS 01 confirmation proof, `proofs/NS01_Hamish_the_Highland_Cow_CONFIRMATION_PROOF.pdf`; it does not contain photographed, sale-ready PDFs. The proof is explicitly marked “not for retail” and labels its generated cover artwork as concept imagery. It tests the proposed visual system only and does not satisfy the sample-photography gate. Do not use a generated or borrowed image as evidence that a pattern was physically made.
+The repository contains Markdown masters and one fully composed NS 01 customer
+PDF, `release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf`. Its cover and
+materials visuals are illustrative and it does not contain photographs of a
+physically tested sample. The PDF composition is complete, but the file does
+not independently satisfy the sample, title/provenance, product-safety or
+Etsy-disclosure gates. Do not use a generated or borrowed image as evidence
+that a pattern was physically made.
 
 After sample testing is complete:
 
