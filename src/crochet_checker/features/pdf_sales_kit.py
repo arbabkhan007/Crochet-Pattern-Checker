@@ -57,12 +57,6 @@ class PDFSalesKit:
         setup_unicode_font(self.pdf)
         # Register Unicode font
         import os
-        font_path = '/usr/local/lib/python3.13/site-packages/cv2/qt/fonts/DejaVuSans.ttf'
-        font_bold = '/usr/local/lib/python3.13/site-packages/cv2/qt/fonts/DejaVuSans-Bold.ttf'
-        if os.path.exists(font_path):
-            self.pdf.add_font('DejaVu', '', font_path, uni=True)
-        if os.path.exists(font_bold):
-            self.pdf.add_font('DejaVu', 'B', font_bold, uni=True)
     
     def _hex_to_rgb(self, hex_color: str) -> tuple:
         h = hex_color.lstrip('#')
@@ -405,7 +399,7 @@ if __name__ == "__main__":
         },
     ]
     
-    output = "/home/user/demo_sales_kit.pdf"
+    output = "/tmp/demo_sales_kit.pdf"
     result = kit.generate_sales_kit(patterns, output)
     
     print(f"\n[OK] Sales Kit Generated: {result}")

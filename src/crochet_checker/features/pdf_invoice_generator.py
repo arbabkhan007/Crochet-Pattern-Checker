@@ -36,12 +36,6 @@ class PDFInvoiceGenerator:
         setup_unicode_font(self.pdf)
         # Register Unicode font
         import os
-        font_path = '/usr/local/lib/python3.13/site-packages/cv2/qt/fonts/DejaVuSans.ttf'
-        font_bold = '/usr/local/lib/python3.13/site-packages/cv2/qt/fonts/DejaVuSans-Bold.ttf'
-        if os.path.exists(font_path):
-            self.pdf.add_font('DejaVu', '', font_path, uni=True)
-        if os.path.exists(font_bold):
-            self.pdf.add_font('DejaVu', 'B', font_bold, uni=True)
         self.invoice_number = 1
     
     def _hex_to_rgb(self, hex_color: str) -> tuple:
@@ -270,7 +264,7 @@ class PDFInvoiceGenerator:
         invoice_num = self.invoice_number
         self.invoice_number += 1
         
-        filename = f"/home/user/invoice_{invoice_num:04d}.pdf"
+        filename = f"/tmp/invoice_{invoice_num:04d}.pdf"
         self.pdf.output(filename)
         return filename
     
@@ -361,7 +355,7 @@ class PDFInvoiceGenerator:
         self.pdf.cell(0, 10, "Thank you for your purchase!", align='C')
         
         # Save
-        filename = f"/home/user/receipt_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+        filename = f"/tmp/receipt_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
         self.pdf.output(filename)
         return filename
 

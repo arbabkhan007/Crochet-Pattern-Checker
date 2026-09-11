@@ -30,12 +30,6 @@ class PDFPatternBook:
         setup_unicode_font(self.pdf)
         # Register Unicode font
         import os
-        font_path = '/usr/local/lib/python3.13/site-packages/cv2/qt/fonts/DejaVuSans.ttf'
-        font_bold = '/usr/local/lib/python3.13/site-packages/cv2/qt/fonts/DejaVuSans-Bold.ttf'
-        if os.path.exists(font_path):
-            self.pdf.add_font('DejaVu', '', font_path, uni=True)
-        if os.path.exists(font_bold):
-            self.pdf.add_font('DejaVu', 'B', font_bold, uni=True)
         self.patterns = []
     
     def add_pattern(self, title: str, difficulty: str = "",
@@ -366,7 +360,7 @@ if __name__ == "__main__":
     )
     
     # Build book
-    output = "/home/user/demo_pattern_book.pdf"
+    output = "/tmp/demo_pattern_book.pdf"
     result = book.build_book(output, author_bio="Jane Smith is a passionate crochet designer with 10 years of experience. She loves creating patterns that are both beautiful and accessible.")
     
     print(f"\n[OK] Book Generated: {result}")

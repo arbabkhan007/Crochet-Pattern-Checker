@@ -250,7 +250,7 @@ if __name__ == "__main__":
         "copyright": f"(c) {datetime.now().year} Your Name. All rights reserved.",
     }
     
-    output = "/home/user/demo_pattern.pdf"
+    output = "/tmp/demo_pattern.pdf"
     result = pdf_gen.generate_full_pattern_pdf(pattern, output)
     
     print(f"\n  PDF Generated: {result}")
