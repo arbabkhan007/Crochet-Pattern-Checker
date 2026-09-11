@@ -43,7 +43,7 @@ from reportlab.platypus import (
 )
 from reportlab.platypus.tableofcontents import TableOfContents
 from pypdf import PdfReader
-from pypdf.generic import IndirectObject
+from pypdf.generic import ContentStream, IndirectObject
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,6 +51,7 @@ SOURCE = ROOT / "patterns/01_Hamish_the_Highland_Cow.md"
 HERO = ROOT / "assets/patterns/ns01/hamish_cover_concept.png"
 MATERIALS_IMAGE = ROOT / "assets/patterns/ns01/hamish_materials_concept.png"
 DEFAULT_OUTPUT = ROOT / "release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf"
+DEFAULT_PRINTER_OUTPUT = ROOT / "release/NS01_Hamish_the_Highland_Cow_PRINTER_SAVER.pdf"
 ASSET_DIR = Path(tempfile.gettempdir()) / "novality-pdf-assets/ns01"
 
 PAGE_WIDTH, PAGE_HEIGHT = A4
@@ -488,6 +489,21 @@ def make_styles(fonts: Fonts) -> dict[str, ParagraphStyle]:
     }
 
 
+def make_printer_styles(fonts: Fonts) -> dict[str, ParagraphStyle]:
+    """Return ink-light black-on-white variants of the customer styles."""
+
+    styles = make_styles(fonts)
+    for style in styles.values():
+        style.textColor = colors.black
+    for key in ("quote", "callout"):
+        styles[key].backColor = colors.white
+        styles[key].borderColor = HexColor("#666666")
+        styles[key].borderWidth = 0.6
+    styles["table_header"].textColor = colors.black
+    styles["caption"].textColor = HexColor("#444444")
+    return styles
+
+
 class HeadingParagraph(Paragraph):
     """Paragraph carrying outline and table-of-contents metadata."""
 
@@ -599,6 +615,76 @@ class CoverFlowable(Flowable):
         canvas.restoreState()
 
 
+class PrinterCoverFlowable(Flowable):
+    """Black-on-white cover for the companion printer-saver edition."""
+
+    def __init__(self, fonts: Fonts):
+        super().__init__()
+        self.fonts = fonts
+        self.width = PAGE_WIDTH
+        self.height = PAGE_HEIGHT - 0.2 * mm
+
+    def wrap(self, available_width, available_height):  # noqa: ANN001
+        return self.width, min(self.height, available_height)
+
+    def draw(self) -> None:
+        canvas = self.canv
+        canvas.saveState()
+        canvas.setFillColor(colors.white)
+        canvas.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, stroke=0, fill=1)
+        canvas.setStrokeColor(colors.black)
+        canvas.setLineWidth(0.8)
+        canvas.rect(14 * mm, 14 * mm, PAGE_WIDTH - 28 * mm, PAGE_HEIGHT - 28 * mm, stroke=1, fill=0)
+
+        canvas.setFillColor(colors.black)
+        canvas.setFont(self.fonts.sans_bold, 9)
+        canvas.drawString(20 * mm, PAGE_HEIGHT - 25 * mm, BRAND.upper())
+        canvas.setFont(self.fonts.sans, 8)
+        canvas.drawRightString(PAGE_WIDTH - 20 * mm, PAGE_HEIGHT - 25 * mm, "PRINTER-SAVER EDITION")
+        canvas.line(20 * mm, PAGE_HEIGHT - 31 * mm, PAGE_WIDTH - 20 * mm, PAGE_HEIGHT - 31 * mm)
+
+        canvas.setFont(self.fonts.sans_bold, 12)
+        canvas.drawString(20 * mm, 235 * mm, f"DESIGN CODE {DESIGN_CODE}")
+        canvas.setFont(self.fonts.serif_bold, 34)
+        canvas.drawString(20 * mm, 211 * mm, TITLE.upper())
+        canvas.setFont(self.fonts.serif, 20)
+        canvas.drawString(20 * mm, 198 * mm, SUBTITLE)
+        canvas.setLineWidth(1.2)
+        canvas.line(20 * mm, 188 * mm, 92 * mm, 188 * mm)
+
+        canvas.setFont(self.fonts.sans_bold, 10)
+        canvas.drawString(20 * mm, 172 * mm, "BLACK + WHITE · WHITE BACKGROUNDS · PROGRESS BOXES")
+        canvas.setFont(self.fonts.sans, 9)
+        canvas.drawString(20 * mm, 160 * mm, "US terms · Intermediate · 6–8 hours · About 15 cm / 6 in")
+        canvas.drawString(20 * mm, 151 * mm, "Worsted / aran yarn · 3.5 mm hook")
+
+        canvas.setLineWidth(0.5)
+        canvas.rect(20 * mm, 112 * mm, PAGE_WIDTH - 40 * mm, 26 * mm, stroke=1, fill=0)
+        canvas.setFont(self.fonts.sans_bold, 8.5)
+        canvas.drawString(25 * mm, 130 * mm, "NAMED ORIGINAL COLOURWAY")
+        canvas.setFont(self.fonts.sans, 8.5)
+        canvas.drawString(
+            25 * mm,
+            120 * mm,
+            "Yarn A Ginger · Yarn B Oat Cream · Yarn C Dark Chocolate · Yarn D Rust / Tartan",
+        )
+
+        canvas.setFont(self.fonts.sans_bold, 8.5)
+        canvas.drawString(20 * mm, 91 * mm, "ABOUT THIS COMPANION FILE")
+        canvas.setFont(self.fonts.sans, 8.2)
+        canvas.drawString(20 * mm, 81 * mm, "Designed for economical home printing and handwritten progress tracking.")
+        canvas.drawString(20 * mm, 73 * mm, "Large raster artwork is omitted. Use the full-colour edition for the materials")
+        canvas.drawString(20 * mm, 66 * mm, "visual and assembly illustration; the written instructions in both files are the same.")
+
+        canvas.line(20 * mm, 47 * mm, PAGE_WIDTH - 20 * mm, 47 * mm)
+        canvas.setFont(self.fonts.sans, 7)
+        canvas.drawString(20 * mm, 37 * mm, f"© 2026 {BRAND} · All rights reserved")
+        canvas.drawRightString(PAGE_WIDTH - 20 * mm, 37 * mm, "PERSONAL LICENSE · SEE TERMS")
+        canvas.setFont(self.fonts.sans_bold, 7)
+        canvas.drawCentredString(PAGE_WIDTH / 2, 24 * mm, f"{DESIGN_CODE} · PRINTER-SAVER CROCHET PATTERN")
+        canvas.restoreState()
+
+
 class ClosingPanel(Flowable):
     """Light closing page that matches the interior rather than a colour flood."""
 
@@ -652,10 +738,64 @@ class ClosingPanel(Flowable):
         canvas.restoreState()
 
 
+class PrinterNotesPanel(Flowable):
+    """Low-ink completion checklist and ruled notes area."""
+
+    def __init__(self, width: float, fonts: Fonts):
+        super().__init__()
+        self.fonts = fonts
+        self.width = width
+        self.height = 228 * mm
+
+    def wrap(self, available_width, available_height):  # noqa: ANN001
+        return min(self.width, available_width), min(self.height, available_height)
+
+    def draw(self) -> None:
+        canvas = self.canv
+        canvas.saveState()
+        canvas.setFillColor(colors.black)
+        canvas.setFont(self.fonts.serif_bold, 22)
+        canvas.drawString(0, 211 * mm, "Finish checklist & notes")
+        canvas.setFont(self.fonts.sans, 8.5)
+        checks = [
+            "[ ] Round counts checked before every decrease",
+            "[ ] Both eye washers locked before Head Rnd 16",
+            "[ ] Inner and outer ears joined stitch-for-stitch",
+            "[ ] Leg option and mirrored angles checked while pinned",
+            "[ ] All structural seams completed twice",
+            "[ ] All yarn ends, fringe knots and attachments inspected",
+        ]
+        y = 196 * mm
+        for check in checks:
+            canvas.drawString(2 * mm, y, check)
+            y -= 9 * mm
+
+        canvas.setFont(self.fonts.sans_bold, 9)
+        canvas.drawString(0, 132 * mm, "PROJECT NOTES")
+        canvas.setStrokeColor(HexColor("#777777"))
+        canvas.setLineWidth(0.45)
+        for index in range(12):
+            line_y = (122 - index * 9) * mm
+            canvas.line(0, line_y, self.width, line_y)
+
+        canvas.setFont(self.fonts.sans, 7)
+        canvas.setFillColor(colors.black)
+        canvas.drawString(0, 7 * mm, f"{BRAND} · {DESIGN_CODE} · printer-saver companion")
+        canvas.drawRightString(self.width, 7 * mm, "Keep this page with your project notes")
+        canvas.restoreState()
+
+
 class PatternDocument(BaseDocTemplate):
     """Document template with stable headers, footers, bookmarks, and metadata."""
 
-    def __init__(self, filename: Path, fonts: Fonts):
+    def __init__(
+        self,
+        filename: Path,
+        fonts: Fonts,
+        *,
+        printer_saver: bool = False,
+    ):
+        edition = "printer-saver crochet pattern" if printer_saver else "crochet pattern"
         super().__init__(
             str(filename),
             pagesize=A4,
@@ -665,10 +805,11 @@ class PatternDocument(BaseDocTemplate):
             bottomMargin=18 * mm,
             title=f"{DESIGN_CODE} — {TITLE} {SUBTITLE}",
             author=BRAND,
-            subject=f"Crochet pattern, {DESIGN_CODE}",
+            subject=f"{edition.capitalize()}, {DESIGN_CODE}",
             creator=BRAND,
         )
         self.fonts = fonts
+        self.printer_saver = printer_saver
         cover_frame = Frame(0, 0, PAGE_WIDTH, PAGE_HEIGHT, id="cover", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
         content_frame = Frame(
             self.leftMargin,
@@ -695,18 +836,26 @@ class PatternDocument(BaseDocTemplate):
         self.set_pdf_metadata(canvas)
         canvas.saveState()
         y = PAGE_HEIGHT - 13 * mm
-        canvas.setStrokeColor(LINE)
+        line_colour = HexColor("#777777") if self.printer_saver else LINE
+        primary = colors.black if self.printer_saver else FOREST_DARK
+        accent = colors.black if self.printer_saver else GINGER
+        canvas.setStrokeColor(line_colour)
         canvas.setLineWidth(0.5)
         canvas.line(18 * mm, y - 3.2 * mm, PAGE_WIDTH - 18 * mm, y - 3.2 * mm)
-        canvas.setFillColor(FOREST_DARK)
+        canvas.setFillColor(primary)
         canvas.setFont(self.fonts.sans_bold, 7.2)
         canvas.drawString(18 * mm, y, BRAND.upper())
-        canvas.setFillColor(GINGER)
-        canvas.drawRightString(PAGE_WIDTH - 18 * mm, y, f"DESIGN CODE {DESIGN_CODE}")
+        canvas.setFillColor(accent)
+        edition = " · PRINTER SAVER" if self.printer_saver else ""
+        canvas.drawRightString(
+            PAGE_WIDTH - 18 * mm,
+            y,
+            f"DESIGN CODE {DESIGN_CODE}{edition}",
+        )
 
-        canvas.setStrokeColor(LINE)
+        canvas.setStrokeColor(line_colour)
         canvas.line(18 * mm, 12.5 * mm, PAGE_WIDTH - 18 * mm, 12.5 * mm)
-        canvas.setFillColor(MUTED)
+        canvas.setFillColor(HexColor("#444444") if self.printer_saver else MUTED)
         canvas.setFont(self.fonts.sans, 6.6)
         canvas.drawString(18 * mm, 7.2 * mm, f"© 2026 {BRAND} · All rights reserved")
         canvas.drawCentredString(PAGE_WIDTH / 2, 7.2 * mm, "PERSONAL LICENSE · SEE TERMS")
@@ -714,11 +863,11 @@ class PatternDocument(BaseDocTemplate):
         canvas.drawRightString(PAGE_WIDTH - 18 * mm, 7.2 * mm, f"{DESIGN_CODE}   ·   {doc.page}")
         canvas.restoreState()
 
-    @staticmethod
-    def set_pdf_metadata(canvas) -> None:  # noqa: ANN001
+    def set_pdf_metadata(self, canvas) -> None:  # noqa: ANN001
         canvas.setTitle(f"{DESIGN_CODE} — {TITLE} {SUBTITLE}")
         canvas.setAuthor(BRAND)
-        canvas.setSubject(f"Branded crochet pattern · {DESIGN_CODE}")
+        subject = "Printer-saver crochet pattern" if self.printer_saver else "Branded crochet pattern"
+        canvas.setSubject(f"{subject} · {DESIGN_CODE}")
         canvas.setCreator(BRAND)
         canvas.setKeywords(f"crochet, amigurumi, Highland cow, {DESIGN_CODE}, {BRAND}")
 
@@ -743,30 +892,38 @@ def table_widths(rows: Sequence[Sequence[str]], available: float) -> list[float]
     columns = len(rows[0])
     header = [cell.lower() for cell in rows[0]]
     if columns == 4 and any("instruction" in cell for cell in header):
-        return [available * 0.12, available * 0.51, available * 0.11, available * 0.26]
+        return [available * 0.14, available * 0.49, available * 0.11, available * 0.26]
     if columns == 4:
         return [available * 0.25, available * 0.36, available * 0.17, available * 0.22]
     if columns == 3:
-        return [available * 0.16, available * 0.65, available * 0.19]
+        return [available * 0.18, available * 0.63, available * 0.19]
     return [available / columns] * columns
 
 
-def make_table(rows: Sequence[Sequence[str]], styles: dict[str, ParagraphStyle], available: float) -> Table:
+def make_table(
+    rows: Sequence[Sequence[str]],
+    styles: dict[str, ParagraphStyle],
+    available: float,
+    *,
+    printer_saver: bool = False,
+) -> Table:
     formatted: list[list[Paragraph]] = []
+    progress_table = rows[0][0].strip().lower() == "rnd"
     for row_index, row in enumerate(rows):
-        formatted.append(
-            [
-                Paragraph(
-                    inline_markup(cell),
-                    styles["table_header"]
-                    if row_index == 0
-                    else styles["table_cell_bold"]
-                    if column_index == 0
-                    else styles["table_cell"],
-                )
-                for column_index, cell in enumerate(row)
-            ]
-        )
+        formatted_row: list[Paragraph] = []
+        for column_index, cell in enumerate(row):
+            display = cell
+            if progress_table and row_index > 0 and column_index == 0:
+                display = f"[ ] {cell}"
+            style = (
+                styles["table_header"]
+                if row_index == 0
+                else styles["table_cell_bold"]
+                if column_index == 0
+                else styles["table_cell"]
+            )
+            formatted_row.append(Paragraph(inline_markup(display), style))
+        formatted.append(formatted_row)
     table = Table(
         formatted,
         colWidths=table_widths(rows, available),
@@ -774,24 +931,31 @@ def make_table(rows: Sequence[Sequence[str]], styles: dict[str, ParagraphStyle],
         hAlign="LEFT",
         splitByRow=1,
     )
+    header_fill = colors.white if printer_saver else FOREST
+    header_text = colors.black if printer_saver else colors.white
+    grid_colour = HexColor("#777777") if printer_saver else LINE
+    row_fills = [colors.white] if printer_saver else [PAPER, HexColor("#F8F3EB")]
     commands: list[tuple] = [
-        ("BACKGROUND", (0, 0), (-1, 0), FOREST),
-        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("BACKGROUND", (0, 0), (-1, 0), header_fill),
+        ("TEXTCOLOR", (0, 0), (-1, 0), header_text),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("GRID", (0, 0), (-1, -1), 0.35, LINE),
+        ("GRID", (0, 0), (-1, -1), 0.35, grid_colour),
         ("LEFTPADDING", (0, 0), (-1, -1), 4.5),
         ("RIGHTPADDING", (0, 0), (-1, -1), 4.5),
         ("TOPPADDING", (0, 0), (-1, -1), 4.2),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 4.2),
-        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [PAPER, HexColor("#F8F3EB")]),
-        ("LINEBELOW", (0, 0), (-1, 0), 1.0, FOREST_DARK),
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1), row_fills),
+        ("LINEBELOW", (0, 0), (-1, 0), 1.0, colors.black if printer_saver else FOREST_DARK),
     ]
     table.setStyle(TableStyle(commands))
     return table
 
 
 def colour_swatch_table(
-    styles: dict[str, ParagraphStyle], available_width: float
+    styles: dict[str, ParagraphStyle],
+    available_width: float,
+    *,
+    printer_saver: bool = False,
 ) -> Table:
     """Render named original colours as native PDF vectors and selectable text."""
 
@@ -802,17 +966,33 @@ def colour_swatch_table(
         ("YARN D", "RUST / TARTAN", "optional scarf · about 6 g", RUST),
     ]
     width = available_width / len(labels)
-    data = [
-        ["" for _ in labels],
-        [
-            Paragraph(
-                f"<b>{code} · {name}</b><br/>{use}",
-                styles["small"],
-            )
-            for code, name, use, _colour in labels
-        ],
+    text_cells = [
+        Paragraph(f"<b>{code} · {name}</b><br/>{use}", styles["small"])
+        for code, name, use, _colour in labels
     ]
-    table = Table(data, colWidths=[width] * len(labels), rowHeights=[13 * mm, None])
+    if printer_saver:
+        table = Table([text_cells], colWidths=[width] * len(labels))
+        table.setStyle(
+            TableStyle(
+                [
+                    ("BOX", (0, 0), (-1, -1), 0.7, HexColor("#777777")),
+                    ("INNERGRID", (0, 0), (-1, -1), 0.45, HexColor("#777777")),
+                    ("BACKGROUND", (0, 0), (-1, -1), colors.white),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 7),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 7),
+                    ("TOPPADDING", (0, 0), (-1, -1), 7),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+                ]
+            )
+        )
+        return table
+
+    table = Table(
+        [["" for _ in labels], text_cells],
+        colWidths=[width] * len(labels),
+        rowHeights=[13 * mm, None],
+    )
     commands: list[tuple] = [
         ("BOX", (0, 0), (-1, -1), 0.7, LINE),
         ("INNERGRID", (0, 0), (-1, -1), 0.45, LINE),
@@ -893,15 +1073,89 @@ def profile_story(
     ]
 
 
-def toc_story(styles: dict[str, ParagraphStyle], fonts: Fonts) -> list[Flowable]:
+def printer_profile_story(
+    styles: dict[str, ParagraphStyle], available_width: float
+) -> list[Flowable]:
+    """Create a low-ink profile page without raster artwork or colour fills."""
+
+    facts = Table(
+        [
+            [
+                Paragraph("<b>TERMINOLOGY</b><br/>US crochet terms", styles["body_compact"]),
+                Paragraph("<b>SKILL LEVEL</b><br/>Intermediate", styles["body_compact"]),
+                Paragraph("<b>ACTIVE TIME</b><br/>6–8 hours", styles["body_compact"]),
+                Paragraph("<b>FINISHED SIZE</b><br/>About 15 cm / 6 in", styles["body_compact"]),
+            ]
+        ],
+        colWidths=[42.5 * mm] * 4,
+    )
+    facts.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), colors.white),
+                ("BOX", (0, 0), (-1, -1), 0.7, HexColor("#777777")),
+                ("INNERGRID", (0, 0), (-1, -1), 0.4, HexColor("#777777")),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-1, -1), 9),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
+            ]
+        )
+    )
+    return [
+        Paragraph("Pattern profile", styles["front_title"]),
+        Paragraph(
+            f"<b>{DESIGN_CODE}</b> is the permanent identity of this pattern. This companion edition removes large artwork and colour backgrounds to reduce home-printer ink use.",
+            styles["front_body"],
+        ),
+        Spacer(1, 3 * mm),
+        facts,
+        Spacer(1, 5 * mm),
+        Paragraph("Named original colourway", styles["h3"]),
+        colour_swatch_table(styles, available_width, printer_saver=True),
+        Paragraph(
+            "The names above—not a screen or print colour—control yarn selection. See the full-colour companion for visual swatches and illustrative materials.",
+            styles["caption"],
+        ),
+        Paragraph("Progress tracking", styles["h2"]),
+        Paragraph(
+            "Every construction-table row begins with a printable [ ] box. Tick it by hand or with a PDF annotation tool only after completing the round and confirming the stitch count.",
+            styles["front_body"],
+        ),
+        Paragraph("Read before making", styles["h2"]),
+        Paragraph(
+            "Use a stitch marker and work in a continuous spiral unless a round explicitly says otherwise. Read each component through before starting; complete eyes, embroidery and internal knots while the relevant opening remains accessible.",
+            styles["front_body"],
+        ),
+        Paragraph(
+            "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
+            styles["callout"],
+        ),
+        Paragraph(
+            f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. The written materials, counts and construction directions control.",
+            styles["quote"],
+        ),
+    ]
+
+
+def toc_story(
+    styles: dict[str, ParagraphStyle],
+    fonts: Fonts,
+    *,
+    printer_saver: bool = False,
+) -> list[Flowable]:
     toc = TableOfContents()
+    primary = colors.black if printer_saver else FOREST_DARK
+    secondary = colors.black if printer_saver else INK
+    muted = HexColor("#444444") if printer_saver else MUTED
     toc.levelStyles = [
         ParagraphStyle(
             "TOC1",
             fontName=fonts.serif_bold,
             fontSize=10,
             leading=15,
-            textColor=FOREST_DARK,
+            textColor=primary,
             leftIndent=0,
             firstLineIndent=0,
             spaceBefore=4,
@@ -911,7 +1165,7 @@ def toc_story(styles: dict[str, ParagraphStyle], fonts: Fonts) -> list[Flowable]
             fontName=fonts.sans,
             fontSize=8.4,
             leading=12,
-            textColor=INK,
+            textColor=secondary,
             leftIndent=10,
             firstLineIndent=0,
         ),
@@ -920,7 +1174,7 @@ def toc_story(styles: dict[str, ParagraphStyle], fonts: Fonts) -> list[Flowable]
             fontName=fonts.sans,
             fontSize=7.8,
             leading=11,
-            textColor=MUTED,
+            textColor=muted,
             leftIndent=20,
             firstLineIndent=0,
         ),
@@ -934,7 +1188,11 @@ def toc_story(styles: dict[str, ParagraphStyle], fonts: Fonts) -> list[Flowable]
         Spacer(1, 4 * mm),
         toc,
         Spacer(1, 8 * mm),
-        HRFlowable(width="100%", thickness=0.8, color=LINE),
+        HRFlowable(
+            width="100%",
+            thickness=0.8,
+            color=HexColor("#777777") if printer_saver else LINE,
+        ),
         Spacer(1, 5 * mm),
         Paragraph("How to use this pattern", styles["h2"]),
         Paragraph(
@@ -952,7 +1210,9 @@ def blocks_to_story(
     blocks: Iterable[Block],
     styles: dict[str, ParagraphStyle],
     available_width: float,
-    assembly: Path,
+    assembly: Path | None,
+    *,
+    printer_saver: bool = False,
 ) -> list[Flowable]:
     story: list[Flowable] = []
     heading_count = 0
@@ -973,7 +1233,7 @@ def blocks_to_story(
             key = f"section-{heading_count}"
             heading_count += 1
             story.append(HeadingParagraph(inline_markup(text), styles[style_key], level, key))
-            if text == "Finishing & assembly" and not inserted_assembly:
+            if text == "Finishing & assembly" and assembly is not None and not inserted_assembly:
                 story.extend(
                     [
                         image_for_width(assembly, available_width, 104 * mm),
@@ -987,7 +1247,11 @@ def blocks_to_story(
             if text == "Colourways":
                 story.extend(
                     [
-                        colour_swatch_table(styles, available_width),
+                        colour_swatch_table(
+                            styles,
+                            available_width,
+                            printer_saver=printer_saver,
+                        ),
                         Paragraph(
                             "ORIGINAL COLOURWAY · Yarn A Ginger · Yarn B Oat Cream · Yarn C Dark Chocolate · Yarn D Rust / Tartan (optional).",
                             styles["caption"],
@@ -996,13 +1260,31 @@ def blocks_to_story(
                 )
             continue
         if block.kind == "rule":
-            story.extend([Spacer(1, 2 * mm), HRFlowable(width="100%", thickness=0.8, color=LINE), Spacer(1, 3 * mm)])
+            rule_colour = HexColor("#777777") if printer_saver else LINE
+            story.extend(
+                [
+                    Spacer(1, 2 * mm),
+                    HRFlowable(width="100%", thickness=0.8, color=rule_colour),
+                    Spacer(1, 3 * mm),
+                ]
+            )
             continue
         if block.kind == "quote":
             story.append(Paragraph(inline_markup(str(block.value)), styles["quote"]))
             continue
         if block.kind == "table":
-            story.extend([Spacer(1, 2 * mm), make_table(block.value, styles, available_width), Spacer(1, 4 * mm)])
+            story.extend(
+                [
+                    Spacer(1, 2 * mm),
+                    make_table(
+                        block.value,
+                        styles,
+                        available_width,
+                        printer_saver=printer_saver,
+                    ),
+                    Spacer(1, 4 * mm),
+                ]
+            )
             continue
         if block.kind == "bullet":
             story.append(Paragraph(inline_markup(str(block.value)), styles["bullet"], bulletText="•"))
@@ -1060,6 +1342,60 @@ def build_pdf(output: Path) -> None:
     document.multiBuild(story)
 
 
+def build_printer_pdf(output: Path) -> None:
+    """Build the black-on-white companion without any raster image objects."""
+
+    if not SOURCE.exists():
+        raise FileNotFoundError(f"Missing audited master: {SOURCE}")
+    output.parent.mkdir(parents=True, exist_ok=True)
+
+    fonts = register_fonts()
+    styles = make_printer_styles(fonts)
+    text = normalize_branding(SOURCE.read_text(encoding="utf-8"))
+    blocks = parse_markdown(text)
+
+    document = PatternDocument(output, fonts, printer_saver=True)
+    story: list[Flowable] = [
+        PrinterCoverFlowable(fonts),
+        NextPageTemplate("Content"),
+        PageBreak(),
+        *printer_profile_story(styles, document.width),
+        PageBreak(),
+        *toc_story(styles, fonts, printer_saver=True),
+        PageBreak(),
+        *blocks_to_story(
+            blocks,
+            styles,
+            document.width,
+            None,
+            printer_saver=True,
+        ),
+        PageBreak(),
+        PrinterNotesPanel(document.width, fonts),
+    ]
+    document.multiBuild(story)
+
+
+def image_inventory(reader: PdfReader) -> tuple[set[str], int]:
+    """Return distinct decoded raster hashes and total page placements."""
+
+    image_hashes: set[str] = set()
+    image_placements = 0
+    for page in reader.pages:
+        resources = page.get("/Resources")
+        if isinstance(resources, IndirectObject):
+            resources = resources.get_object()
+        xobjects = resources.get("/XObject") if resources else None
+        if isinstance(xobjects, IndirectObject):
+            xobjects = xobjects.get_object()
+        for image in (xobjects or {}).values():
+            image = image.get_object()
+            if image.get("/Subtype") == "/Image":
+                image_placements += 1
+                image_hashes.add(sha256(image.get_data()).hexdigest())
+    return image_hashes, image_placements
+
+
 def postflight_pdf(output: Path) -> None:
     """Reject an Etsy PDF with missing pages, identity, imagery, or critical text."""
 
@@ -1110,6 +1446,9 @@ def postflight_pdf(output: Path) -> None:
         "3. Body - Yarn A",
         "4. Belly patch - Yarn B (optional)",
         "5. Legs - start with Yarn C, change to Yarn A (make 4)",
+        "Standard 16-round legs",
+        "Shortened front legs - upright option only (make 2)",
+        "Start each leg 25 degrees forward from vertical",
         "6. Ears - make 2 of each layer",
         "7. Horns - Yarn B (make 2)",
         "8. Tail - Yarn A",
@@ -1135,20 +1474,16 @@ def postflight_pdf(output: Path) -> None:
         if phrase.lower() not in normalized_text:
             raise ValueError(f"Required customer text is missing: {phrase!r}")
 
-    image_hashes: set[str] = set()
-    image_placements = 0
-    for page in reader.pages:
-        resources = page.get("/Resources")
-        if isinstance(resources, IndirectObject):
-            resources = resources.get_object()
-        xobjects = resources.get("/XObject") if resources else None
-        if isinstance(xobjects, IndirectObject):
-            xobjects = xobjects.get_object()
-        for image in (xobjects or {}).values():
-            image = image.get_object()
-            if image.get("/Subtype") == "/Image":
-                image_placements += 1
-                image_hashes.add(sha256(image.get_data()).hexdigest())
+    head_rnd_11 = r"\[\s*\]\s*R11\s+\[5 sc, dec\] x 6\s+\(36\)"
+    if not re.search(head_rnd_11, all_text):
+        raise ValueError("Head Rnd 11 is missing its 42-to-36 decrease instruction")
+    body_rnd_11 = r"\[\s*\]\s*R11\s+sc in each st around\s+\(48\)"
+    if not re.search(body_rnd_11, all_text):
+        raise ValueError("Body Rnd 11 is missing its straight-round instruction")
+    if all_text.count("[ ]") < 90:
+        raise ValueError("Too few construction-table progress checkboxes were rendered")
+
+    image_hashes, image_placements = image_inventory(reader)
     if len(image_hashes) != 3:
         raise ValueError(
             f"Expected exactly 3 distinct visual assets, found {len(image_hashes)}"
@@ -1158,14 +1493,120 @@ def postflight_pdf(output: Path) -> None:
         "PDF postflight: PASS — "
         f"{len(reader.pages)} A4 pages, "
         f"{output.stat().st_size / 1024 / 1024:.2f} MiB, "
-        f"3 distinct images ({image_placements} placements), selectable text, "
-        "metadata, bookmarks, brand, code, copyright, and critical instructions"
+        f"3 distinct images ({image_placements} placements), "
+        f"{all_text.count('[ ]')} progress boxes, selectable text, metadata, "
+        "bookmarks, brand, code, copyright, and critical instructions"
+    )
+
+
+def postflight_printer_pdf(output: Path) -> None:
+    """Reject a printer-saver companion that uses images or loses core content."""
+
+    reader = PdfReader(output)
+    if reader.is_encrypted:
+        raise ValueError("The printer-saver PDF must not be encrypted")
+    if not 10 <= len(reader.pages) <= 20:
+        raise ValueError(f"Unexpected printer-saver length: {len(reader.pages)} pages")
+    if output.stat().st_size >= 5 * 1024 * 1024:
+        raise ValueError("The printer-saver PDF is unexpectedly large")
+    if reader.metadata.title != f"{DESIGN_CODE} — {TITLE} {SUBTITLE}":
+        raise ValueError("Incorrect printer-saver title metadata")
+    if reader.metadata.author != BRAND:
+        raise ValueError("Incorrect printer-saver author metadata")
+    if "printer-saver" not in (reader.metadata.subject or "").lower():
+        raise ValueError("Printer-saver metadata is missing its edition label")
+    if not reader.outline:
+        raise ValueError("Printer-saver bookmarks were not generated")
+
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    for number, (page, text) in enumerate(zip(reader.pages, page_texts, strict=True), 1):
+        if len(text) <= 250:
+            raise ValueError(f"Printer-saver page {number} is unexpectedly empty")
+        if DESIGN_CODE.lower() not in text.lower():
+            raise ValueError(f"Printer-saver page {number} is missing the design code")
+        if BRAND.lower() not in text.lower():
+            raise ValueError(f"Printer-saver page {number} is missing the studio brand")
+        if abs(float(page.mediabox.width) - 595.28) >= 1:
+            raise ValueError(f"Printer-saver page {number} is not A4 width")
+        if abs(float(page.mediabox.height) - 841.89) >= 1:
+            raise ValueError(f"Printer-saver page {number} is not A4 height")
+        content = ContentStream(page.get_contents(), reader)
+        for operands, operator in content.operations:
+            if operator in (b"rg", b"RG"):
+                channels = [float(value) for value in operands]
+                if max(channels) - min(channels) > 0.0001:
+                    raise ValueError(
+                        f"Printer-saver page {number} contains non-grayscale vector colour"
+                    )
+            if operator in (b"k", b"K"):
+                cyan, magenta, yellow, _black = [float(value) for value in operands]
+                if max(cyan, magenta, yellow) > 0.0001:
+                    raise ValueError(
+                        f"Printer-saver page {number} contains chromatic CMYK colour"
+                    )
+
+    all_text = "\n".join(page_texts)
+    normalized_text = all_text.lower()
+    required_text = [
+        "PRINTER-SAVER EDITION",
+        "Every construction-table row begins with a printable [ ] box",
+        "Safety — read this first",
+        "Materials",
+        "1. Head - Yarn A",
+        "[ ] R11",
+        "[5 sc, dec] x 6",
+        "3. Body - Yarn A",
+        "Shortened front legs - upright option only (make 2)",
+        "Start each leg 25 degrees forward from vertical",
+        "INNER ear - Yarn B (make 2) & OUTER ear - Yarn A (make 2)",
+        "Finishing & assembly",
+        "Colourways",
+        "YARN A · GINGER",
+        "YARN B · OAT CREAM",
+        "YARN C · DARK CHOCOLATE",
+        "YARN D · RUST / TARTAN",
+        "Terms of Use",
+        f"© 2026 {BRAND}",
+    ]
+    for phrase in required_text:
+        if phrase.lower() not in normalized_text:
+            raise ValueError(f"Required printer-saver text is missing: {phrase!r}")
+    if all_text.count("[ ]") < 75:
+        raise ValueError("Too few progress checkboxes were rendered")
+    head_rnd_11 = r"\[\s*\]\s*R11\s+\[5 sc, dec\] x 6\s+\(36\)"
+    if not re.search(head_rnd_11, all_text):
+        raise ValueError("Printer-saver Head Rnd 11 instruction is missing")
+    body_rnd_11 = r"\[\s*\]\s*R11\s+sc in each st around\s+\(48\)"
+    if not re.search(body_rnd_11, all_text):
+        raise ValueError("Printer-saver Body Rnd 11 instruction is missing")
+
+    image_hashes, image_placements = image_inventory(reader)
+    if image_hashes or image_placements:
+        raise ValueError("Printer-saver PDF must not contain raster images")
+
+    print(
+        "Printer-saver postflight: PASS — "
+        f"{len(reader.pages)} A4 pages, "
+        f"{output.stat().st_size / 1024 / 1024:.2f} MiB, "
+        f"{all_text.count('[ ]')} progress boxes, no raster images, grayscale vectors, "
+        "selectable text, metadata, bookmarks, brand, code, copyright, and critical instructions"
     )
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--printer-output",
+        type=Path,
+        default=DEFAULT_PRINTER_OUTPUT,
+        help="Path for the black-on-white printer-saver companion",
+    )
+    parser.add_argument(
+        "--skip-printer-saver",
+        action="store_true",
+        help="Build only the full-colour customer edition",
+    )
     return parser.parse_args()
 
 
@@ -1175,6 +1616,11 @@ def main() -> int:
     build_pdf(output)
     postflight_pdf(output)
     print(output)
+    if not args.skip_printer_saver:
+        printer_output = args.printer_output.resolve()
+        build_printer_pdf(printer_output)
+        postflight_printer_pdf(printer_output)
+        print(printer_output)
     return 0
 
 

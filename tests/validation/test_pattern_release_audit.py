@@ -35,8 +35,8 @@ def test_current_commercial_pattern_collection_passes_release_gate():
     result = run_audit(ROOT)
 
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "count rows checked: 507" in result.stdout
-    assert "assertions: 2470" in result.stdout
+    assert "count rows checked: 517" in result.stdout
+    assert "assertions: 2505" in result.stdout
     assert "PASS - all release-gate checks succeeded" in result.stdout
 
 
@@ -63,12 +63,24 @@ def test_current_commercial_pattern_collection_passes_release_gate():
         ),
         (
             "01_Hamish_the_Highland_Cow.md",
+            "Start each leg 25 degrees forward from vertical",
+            "Angle each front leg forward",
+            "missing release safeguard 'Start each leg 25 degrees forward from vertical'",
+        ),
+        (
+            "01_Hamish_the_Highland_Cow.md",
             "\n## Care\n",
             "\n## Cleaning notes\n",
             "missing care section",
         ),
     ],
-    ids=["count", "terminology", "structural-safeguard", "required-section"],
+    ids=[
+        "count",
+        "terminology",
+        "structural-safeguard",
+        "front-leg-safeguard",
+        "required-section",
+    ],
 )
 def test_release_gate_rejects_mutations(
     tmp_path: Path,

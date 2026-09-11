@@ -30,27 +30,28 @@ All 15 masters were read as customer instructions rather than accepted from gene
 The final release gate reads the Markdown itself and currently reports:
 
 - **15** expected files and **15** unique sequential design codes;
-- **532** Markdown table rows;
+- **542** Markdown table rows;
 - **110** side-by-side US/UK instruction rows with exact token translation;
-- **507** count-bearing rows independently evaluated;
-- **2,470** total assertions;
+- **517** count-bearing rows independently evaluated;
+- **2,505** total assertions;
 - canonical increase/decrease continuity plus explicit arithmetic for every non-canonical count-bearing construction;
 - required safety, materials, gauge, abbreviations, instructions, finishing/assembly, troubleshooting, care and terms sections;
 - semantic heading hierarchy, table shape, file hygiene and high-risk release safeguards.
 
 The gate is `tools/pattern_release_audit.py`. A final desk suite passed on 11 September 2026:
 
-- release audit: 15 files, 532 table rows, 110 dual-terminology rows, 507 count rows and 2,470 assertions;
-- project Python suite: 97 tests passed, including the release gate and four mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
+- release audit: 15 files, 542 table rows, 110 dual-terminology rows, 517 count rows and 2,505 assertions;
+- project Python suite: 98 tests passed, including the release gate and five mutations; two third-party FastAPI/Starlette deprecation warnings remain outside the pattern masters;
 - Python compilation and Ruff static analysis: pass;
 - `codespell` 2.4.3: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
 - structural Markdownlint: 17 files (15 patterns, this report and the release README), zero findings, with only line length, trailing heading punctuation and compact-table style disabled;
-- GFM-to-HTML render: 16 master/report files, one H1 each, 77 recognized pattern tables and balanced table tags;
-- NS 01 PDF postflight: 13 A4 pages, 5.80 MiB, three distinct raster visuals, selectable text, metadata, bookmarks and all required critical phrases;
-- all-page render inspection: pass for colour names, materials visual, pagination, table flow and the light closing page;
+- GFM-to-HTML render: 16 master/report files, one H1 each, 78 recognized pattern tables and balanced table tags;
+- NS 01 full-colour PDF postflight: 13 A4 pages, 5.80 MiB, three distinct raster visuals, 91 construction-table progress boxes, selectable text, metadata, bookmarks and all required critical phrases;
+- NS 01 printer-saver postflight: 13 A4 pages, 0.12 MiB, white backgrounds, 98 progress boxes, no raster images, grayscale-only vectors, selectable text, metadata, bookmarks and all required critical phrases;
+- all-page render inspection: pass for the Head Rnd 11 decrease, shortened-front-leg table, progress boxes, colour names, materials visual, pagination, table flow, light closing page and printer-saver notes page;
 - `git diff --check`: pass.
 
-The permanent test suite also mutation-tests the gate. Four defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording and removal of a required care section—each produce a non-zero exit and a localized finding.
+The permanent test suite also mutation-tests the gate. Five defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording, removal of NS 01’s explicit front-leg angle and removal of a required care section—each produce a non-zero exit and a localized finding.
 
 ### Collection-wide corrections
 
@@ -154,13 +155,16 @@ Do not silently invent replacement names and call them cleared. The owner should
 
 ## Photography and PDF production gate
 
-The repository contains Markdown masters and one fully composed NS 01 customer
-PDF, `release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf`. Its cover and
-materials visuals are illustrative and it does not contain photographs of a
-physically tested sample. The PDF composition is complete, but the file does
-not independently satisfy the sample, title/provenance, product-safety or
-Etsy-disclosure gates. Do not use a generated or borrowed image as evidence
-that a pattern was physically made.
+The repository contains Markdown masters and a two-file NS 01 customer set: the
+full-colour `release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf` and the
+black-on-white `release/NS01_Hamish_the_Highland_Cow_PRINTER_SAVER.pdf`. The
+full-colour cover, materials visual and assembly map are illustrative; neither
+file contains photographs of a physically tested sample. Real ear, fringe and
+leg progress photographs remain deferred until rights-cleared images of the
+actual sample are supplied. The PDF composition does not independently satisfy
+the sample, title/provenance, product-safety or Etsy-disclosure gates. Do not
+use a generated or borrowed image as evidence that a pattern was physically
+made.
 
 After sample testing is complete:
 

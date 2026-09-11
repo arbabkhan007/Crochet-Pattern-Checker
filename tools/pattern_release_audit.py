@@ -521,7 +521,13 @@ def run() -> int:
     # High-risk release statements: these exact concepts prevent regressions in
     # eye order, end joining, unit conversion, and customer-facing math.
     must_contain = {
-        "01_Hamish_the_Highland_Cow.md": ["18 head stitches of Rnd 14", "INNER ear through Rnd 6 only"],
+        "01_Hamish_the_Highland_Cow.md": [
+            "18 head stitches of Rnd 14",
+            "INNER ear through Rnd 6 only",
+            "Shortened front legs - upright option only (make 2)",
+            "12-stitch top opening",
+            "Start each leg 25 degrees forward from vertical",
+        ],
         "02_Kawaii_Halloween_Mini_Set.md": ["UP THE OUTSIDE", "(38)", "FIRST fan in the written Row-3 sequence", "lock eye washers and embroider fangs/blush now"],
         "04_Coco_the_Capybara.md": ["Immediately after Rnd 15", "through all three layers"],
         "03_Axel_the_Axolotl.md": ["lock eye washers and embroider face now", "TEN marked surface anchors"],

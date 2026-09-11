@@ -75,7 +75,7 @@ Worked from the crown down toward the neck. One straight round only - that is wh
 | R8 | [6 sc, inc] x 6 | (48) | fringe row 1 / ears |
 | R9 | sc in each st around | (48) | eyes at R9 - R10 |
 | R10 | [6 sc, dec] x 6 | (42) | - |
-| R11 | [5 sc, dec] x 6 | (36) | - |
+| R11 | [5 sc, dec] x 6 | (36) | decreases 42 to 36 |
 | R12 | [4 sc, dec] x 6 | (30) | lock eye washers, then stuff firmly |
 | R13 | [3 sc, dec] x 6 | (24) | - |
 | R14 | [2 sc, dec] x 6 | (18) | - |
@@ -147,7 +147,12 @@ Sl st, FO with a long tail; sew centred on the front with the lower edge about 3
 
 ### 5. Legs - start with Yarn C, change to Yarn A (make 4)
 
-All four identical; the sitting pose comes from where and at what angle you sew them. Sixteen rounds = a 67 mm leg.
+Choose one pose before making the legs:
+
+- **Low Highland sit:** make all four standard 16-round legs. The sewing angle creates the splay.
+- **Tidier upright sit:** make two standard 16-round back legs and two shortened 10-round front legs from the separate table below. Do not make four long legs for this option.
+
+#### Standard 16-round legs
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -168,7 +173,24 @@ All four identical; the sitting pose comes from where and at what angle you sew 
 | R15 | sc in each st around | (9) | - |
 | R16 | sc in each st around | (9) | leave top open |
 
-Leg length - read before you sew. A 67 mm leg joins much lower than it is long, so it splays: front about 55 degrees from vertical, back about 68-70 degrees (near horizontal) - that is the low Highland sit. For a tidier upright sit, work the FRONT pair only to Rnd 10 (42 mm); leave the back pair at 16 rounds as haunches.
+A standard leg is about 67 mm. For the low Highland sit, pin the front pair about 55 degrees from vertical and the back pair about 68-70 degrees from vertical (nearly horizontal). The low join and long leg create the splay.
+
+#### Shortened front legs - upright option only (make 2)
+
+| Rnd | Exact instruction | Sts |
+|---|---|---|
+| R1 | With Yarn C, 6 sc in MR | (6) |
+| R2 | inc in each st around | (12) |
+| R3 | [sc, inc] x 6 | (18) |
+| R4 | sc in each st around | (18) |
+| R5 | sc in each st around | (18) |
+| R6 | BLO sc in each st around; change to Yarn A after the round | (18) |
+| R7 | sc in each st around | (18) |
+| R8 | [sc, dec] x 6 | (12) |
+| R9 | sc in each st around | (12) |
+| R10 | sc in each st around; stop here | (12) |
+
+Short-front finish and placement: each leg is about 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening. Pin both front legs before sewing, centred across Body Rnds 8-9 and about 8 body stitches apart. Start each leg 25 degrees forward from vertical; mirror the pair and adjust only within 20-30 degrees until both hooves rest level. Sew all 12 opening stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
 
 ### 6. Ears - make 2 of each layer
 
