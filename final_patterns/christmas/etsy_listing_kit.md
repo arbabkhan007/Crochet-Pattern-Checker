@@ -5,39 +5,43 @@ Every listing delivers **one PDF with both terminologies woven through a single 
 
 ---
 
-## Image stack — 15 slots per listing (in the `etsy/` folder, 2400×1800)
+## Image stack — 15 slots per listing (PREMIUM set, per-pattern folders `etsy_premium/<CODE>/`)
 
-Upload in this order — slot 1 is the search thumbnail and must be the strongest photo. Slots 1–5 are your core sales funnel; 6–10 answer the remaining hesitations; 11–15 provide the deep trust signals Etsy heavily weights in photos-browse sessions.
+> **v2 premium:** editorial full-bleed photography, ivory info cards, locked cream / cranberry / pine palette. All 2400×1800 (4:3), quality-92 — above Etsy's 2000px recommendation, so zoom stays crisp. The v1 stack is retired; only `etsy/BNDL_*` remains for the legacy 3-pattern bundle.
+
+Upload in this order — slot 1 is the search thumbnail and must be the strongest photo:
 
 | Slot | Purpose | NS 11 | NS 12 | NS 13 | NS 14 | NS 15 |
 |------|---------|-------|-------|-------|-------|-------|
 | 1 | Cover hero | `NS11_01_cover.jpg` | `NS12_01_cover.jpg` | `NS13_01_cover.jpg` | `NS14_01_cover.jpg` | `NS15_01_cover.jpg` |
-| 2 | Work-in-progress (believability) | `NS11_02_wip.jpg` | `NS12_02_wip.jpg` | `NS13_02_wip.jpg` | `NS14_02_wip.jpg` | `NS15_02_looks.jpg` (1 wreath · 3 looks — the USP photo, use here or swap with hero per your tests) |
-| 3 | Colourway / lineup | `NS11_03_colorways.jpg` | `NS12_03_colorways.jpg` | `NS13_03_colorways.jpg` | `NS14_03_sizes.jpg` | `NS15_03_detail.jpg` |
-| 4 | Detail close-up (stitch quality) | `NS11_04_detail.jpg` | `NS12_04_detail.jpg` | `NS13_04_detail.jpg` | `NS14_04_detail.jpg` | `NS15_04_lifestyle.jpg` |
-| 5 | Info card (dual terms, code, level, size) | `NS11_05_info.jpg` | `NS12_05_info.jpg` | `NS13_05_info.jpg` | `NS14_05_info.jpg` | `NS15_05_info.jpg` |
-| 6 | Lifestyle scene (decor context) | `NS11_06_lifestyle.jpg` | `NS12_06_lifestyle.jpg` | `NS13_06_lifestyle.jpg` | `NS14_06_lifestyle.jpg` | `NS15_06_sizes.jpg` |
-| 7 | Size / scale reference | `NS11_07_sizes.jpg` | `NS12_07_sizes.jpg` | `NS13_07_sizes.jpg` | `NS14_07_sizechart.jpg` | `NS15_07_preview.jpg` |
-| 8 | Peek inside the PDF | `NS11_08_preview.jpg` | `NS12_08_preview.jpg` | `NS13_08_preview.jpg` | `NS14_08_preview.jpg` | `NS15_08_gift.jpg` |
-| 9 | Gift-ready styled shot | `NS11_09_gift.jpg` | `NS12_09_gift.jpg` | `NS13_09_gift.jpg` | `NS14_09_gift.jpg` | `NS15_09_why.jpg` |
-| 10 | Why Novality (trust card) | `NS11_10_why.jpg` | `NS12_10_why.jpg` | `NS13_10_why.jpg` | `NS14_10_why.jpg` | `NS15_10_wip.jpg` |
-| 11 | Process / pattern-details deep card | `NS11_11_process.jpg` | `NS12_11_process.jpg` | `NS13_11_process.jpg` | `NS14_11_details.jpg` | `NS15_11_details.jpg` |
-| 12 | Flat-lay / recolour scene | `NS11_11_pattern_card.jpg` (use for "at a glance" slot 12) | `NS12_11_pattern_card.jpg` | `NS13_11_pattern_card.jpg` | `NS14_12_flay.jpg` | `NS15_12_colorways.jpg` |
-| 13 | Care instructions card | `NS11_13_care.jpg` | `NS12_13_care.jpg` | `NS13_13_care.jpg` | `NS14_13_colorways.jpg` | `NS15_13_care.jpg` |
-| 14 | FAQ card | `NS11_14_faq.jpg` | `NS12_14_faq.jpg` | `NS13_14_faq.jpg` | `NS14_14_care.jpg` | `NS15_14_mini.jpg` (mini-wreath bonus) |
-| 15 | Thank-you / close card | `NS11_15_thanks.jpg` | `NS12_15_thanks.jpg` | `NS13_15_thanks.jpg` | `NS14_15_thanks.jpg` | `NS15_15_thanks.jpg` |
+| 2 | Work-in-progress (believability) | `NS11_02_wip.jpg` | `NS12_02_wip.jpg` | `NS13_02_wip.jpg` | `NS14_02_wip.jpg` | `NS15_02_looks.jpg` (the 3-look USP shot) |
+| 3 | Colourways / lineup | `NS11_03_trio.jpg` | `NS12_03_trio.jpg` | `NS13_03_trio.jpg` | `NS14_03_sizes.jpg` | `NS15_03_detail.jpg` |
+| 4 | Detail close-up (texture) | `NS11_04_detail.jpg` | `NS12_04_detail.jpg` | `NS13_04_detail.jpg` | `NS14_04_detail.jpg` | `NS15_04_lifestyle.jpg` |
+| 5 | Info card (what's inside) | `NS11_05_info.jpg` | `NS12_05_info.jpg` | `NS13_05_info.jpg` | `NS14_05_info.jpg` | `NS15_05_info.jpg` |
+| 6 | Lifestyle scene | `NS11_06_lifestyle.jpg` | `NS12_06_lifestyle.jpg` | `NS13_06_lifestyle.jpg` | `NS14_06_lifestyle.jpg` | `NS15_06_wip.jpg` |
+| 7 | Size / measurement card | `NS11_07_sizechart.jpg` | `NS12_07_sizechart.jpg` | `NS13_07_sizechart.jpg` | `NS14_07_sizechart.jpg` | `NS15_07_sizechart.jpg` |
+| 8 | Peek inside the PDF | `NS11_08_preview.jpg` | `NS12_08_preview.jpg` | `NS13_08_preview.jpg` | `NS14_08_preview.jpg` | `NS15_08_preview.jpg` |
+| 9 | Gift-ready collage | `NS11_09_gift.jpg` | `NS12_09_gift.jpg` | `NS13_09_gift.jpg` | `NS14_09_gift.jpg` | `NS15_09_gift.jpg` |
+| 10 | Why Novality (trust card) | `NS11_10_why.jpg` | `NS12_10_why.jpg` | `NS13_10_why.jpg` | `NS14_10_why.jpg` | `NS15_10_why.jpg` |
+| 11 | Pattern details grid | `NS11_11_details.jpg` | `NS12_11_details.jpg` | `NS13_11_details.jpg` | `NS14_11_details.jpg` | `NS15_11_details.jpg` |
+| 12 | Second clean hero | `NS11_12_hero2.jpg` | `NS12_12_hero2.jpg` | `NS13_12_hero2.jpg` | `NS14_12_flat.jpg` | `NS15_12_flat.jpg` |
+| 13 | Colour palette recipes | `NS11_13_colourways.jpg` | `NS12_13_colourways.jpg` | `NS13_13_colourways.jpg` | `NS14_13_colourways.jpg` | `NS15_13_colourways.jpg` |
+| 14 | Care instructions card | `NS11_14_care.jpg` | `NS12_14_care.jpg` | `NS13_14_care.jpg` | `NS14_14_care.jpg` | `NS15_14_care.jpg` |
+| 15 | Thank-you close card | `NS11_15_thanks.jpg` | `NS12_15_thanks.jpg` | `NS13_15_thanks.jpg` | `NS14_15_thanks.jpg` | `NS15_15_thanks.jpg` |
 
-All are 2400×1800 (4:3) — above Etsy's 2000px recommendation, so zoom stays crisp.
+### Per-pattern downloads (15 jpg each, in the `christmas/` folder)
 
-### Bundle listing image stack (5 slots)
+`novality-ns11-premium-images.zip` · `novality-ns12-premium-images.zip` · `novality-ns13-premium-images.zip` · `novality-ns14-premium-images.zip` · `novality-ns15-premium-images.zip` — plus one combined `novality-all-5-premium-image-stacks.zip` (75 images + care sheet) for a single download.
+
+### Legacy: v1 bundle stack (5 slots, only if you still list the 3-pattern bundle)
 
 | Slot | Files |
 |------|-------|
-| 1 Cover | `BNDL_01_cover.jpg` (all three styled together) |
-| 2 | `BNDL_02_three.jpg` (three patterns, one download) |
-| 3 | `BNDL_03_colorways.jpg` (all 15 colourway photos) |
-| 4 | `BNDL_04_detail.jpg` (texture close-ups ×3) |
-| 5 | `BNDL_05_info.jpg` (bundle value card) |
+| 1 Cover | `etsy/BNDL_01_cover.jpg` (all three styled together) |
+| 2 | `etsy/BNDL_02_three.jpg` (three patterns, one download) |
+| 3 | `etsy/BNDL_03_colorways.jpg` (colourway photos) |
+| 4 | `etsy/BNDL_04_detail.jpg` (texture close-ups ×3) |
+| 5 | `etsy/BNDL_05_info.jpg` (bundle value card) |
 
 ---
 
