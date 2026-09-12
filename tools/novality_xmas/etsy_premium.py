@@ -689,6 +689,84 @@ add("NS15", "Interchangeable Christmas Wreath", "crochet pattern · NS 15",
     build=build_ns15)
 
 
+# ============================================================== NS 13
+def build_ns13(p):
+    peek_rows = [
+        ("Bauble R1-5", "MR 6 sc, inc ladder to 30", "MR 6 dc, inc ladder to 30", "30"),
+        ("Bauble R12", "dec x6 ladder to 6, stuff", "dec x6 ladder to 6, stuff", "6"),
+        ("Star", "centre ring + 5 fan points, 2 rnds", "centre ring + 5 fan points, 2 rnds", "-"),
+        ("Snowflake", "12 anchors → 6 ch-5 spaces → 6 arms", "12 anchors → 6 ch-5 spaces → 6 arms", "6"),
+        ("Hanger", "ch 14 loop, join, FO", "ch 14 loop, join, FO", "-"),
+    ]
+    jobs = [
+        ("01", "cover", s_cover(p, p["src"])),
+        ("02", "wip", s_scene(p, "wip", None, "SCRAP-BUSTERS WITH STRUCTURE",
+                              "five to fifteen grams each - your leftover sport yarn is about to pay its way", top=True)),
+        ("03", "trio", s_trio(p, None, "Three ornaments, one ladder",
+            [("trio", "BAUBLE + STAR + SNOWFLAKE", "the full set in one PDF"),
+             ("hero", "TREE-READY", "thin ribbon loops built in"),
+             ("macro", "BLOCKED CRISP", "picot points that stay stiff")],
+            "each ornament is independent - start with the bauble, branch out")),
+        ("04", "detail", s_scene(p, "macro", None, "LACE THAT HOLDS ITS POINTS",
+                                 "the snowflake arms are anchored twice and blocked once - no floppy corners", top=False, color=CRANBERRY)),
+        ("05", "info", s_info(p, None, [
+            ("Three patterns in one PDF", "round bauble, flat five-point star, lace six-armed snowflake"),
+            ("Closet-scale yarn use", "5-15 g per ornament; the set is your leftover-yarn win"),
+            ("Stitch ladders shown", "every increase/decrease round with produced counts - tension-friendly"),
+            ("Blocking walk-through", "post-wash pinning for the star and snowflake, step by step"),
+            ("Dual-format rounds", "us and uk terms side by side in one column, one shared count"),
+            ("Real support", "pattern questions answered personally within 48 hours"),
+        ])),
+        ("06", "lifestyle", s_scene(p, "life", None, "ELEGANT ON THE BRANCH",
+                                    "the white stars catch the fairy lights; the reds warm them up", top=True, color=EVERGREEN)),
+        ("07", "sizechart", s_sizes(p, None, "Finished dimensions",
+            [(210, "ORNAMENT"), (740, "FINISHED SIZE"), (1380, "YARN LOAD")],
+            [(["BAUBLE", "≈3.5-4 cm across", "≈8-12 g"], "stuffed sphere, 30→6 ladder"),
+             (["STAR", "≈9 cm wide", "≈5-8 g"], "flat, two rounds, five fans"),
+             (["SNOWFLAKE", "≈10 cm wide", "≈5-7 g"], "lace, six anchor points, six arms")],
+            ("scale freely with hook size", "larger yarn + hook grows them proportionally - count stays the same")),
+        ),
+        ("08", "preview", s_peek(p, None, peek_rows,
+            "+ blocking board walk-through and troubleshooting for every ornament")),
+        ("09", "gift", gift_card(p, None, "Hangable, giftable, sellable", [
+            ("Gift tags included", "print-ready minis for tucking ornaments into packages"),
+            ("Great stocking filler", "small size, instant delight"),
+            ("Fast sellers", "bundle sets perform at holiday markets - credit included"),
+        ], "the set that decorates a dozen trees")),
+        ("10", "why", s_why(p, None,
+            [("hero", "three types, one purchase"), ("macro", "lace that behaves"), ("trio", "set, styled and counted")],
+            [("Counted before christmas", "bauble ladder, star fan math and snowflake 12→6 derivation all reconciled"),
+             ("Pictures you can trust", "the listing shows what the pattern actually outputs"),
+             ("Real human support", "48-hour answers from the maker"),
+             ("Instant download", "us + uk terms, one PDF"),
+            ])),
+        ("11", "details", s_grid(p, None, [
+            ("design code", "NS 13"), ("format", "PDF · us + uk terms"),
+            ("level", "beginner"), ("time", "45-75 min each"),
+            ("hook", "3 mm (us C-2)"), ("yarn", "sport / fingering"),
+            ("yardage", "5-15 g each"), ("set", "bauble · star · snowflake"),
+            ("sizes", "3.5-10 cm"), ("stitches", "ch · sl st · sc · inc · dec · fans"),
+            ("finish", "loop hanger built in"), ("bonus", "printable gift tags"),
+        ])),
+        ("12", "hero2", s_scene(p, "hero", None, "THE ORNAMENT SET YOUR TREE WAS MISSING",
+                                "bauble, star, snowflake - balanced, elegant, and quick", top=True)),
+        ("13", "colourways", s_palette(p, None, [
+            ("HERITAGE", [(168, 63, 55), (244, 238, 226), (46, 75, 63)], "holly red · cream · pine green - the classic trio"),
+            ("FROST", [(188, 194, 200), (244, 246, 248), (120, 148, 160)], "silver fog · white · dusty blue - winter pastels"),
+            ("GOLDEN HOUR", [(188, 146, 92), (244, 238, 226), (140, 110, 70)], "amber, cream, copper - warm handmade luxe"),
+        ], "grab any palette - the counts are identical")),
+        ("14", "care", s_care(p, None, [
+            ("Wash", "hand wash cool, mild detergent - only the bauble can take a dip"),
+            ("Dry flat", "lay on a towel; reshape the star and snowflake points while damp"),
+            ("Store", "flat in a box with tissue; the snowflake likes a divider card"),
+            ("Block yearly", "re-pin the lace points each season for crisp arms"),
+            ("Handle loops", "hang by the loop, never by the lace arms"),
+        ], "gentle care keeps the lace crisp for decades")),
+        ("15", "thanks", s_thanks(p, None, "#NovalityOrnaments")),
+    ]
+    return jobs
+
+
 add("NS11", "No-Sew Christmas Gnome", "crochet pattern · NS 11",
     {"hero": "hero", "trio": "trio", "macro": "macro", "life": "life", "wip": "wip",
      "gift": "life", "flat": "trio", "three": "trio"},
@@ -701,6 +779,13 @@ add("NS12", "Bobble Christmas Tree", "crochet pattern · NS 12",
      "gift": "life", "flat": "trio", "three": "trio"},
     cover_line="bobble-stitch tiers · self-standing · two heights included",
     build=build_ns12)
+
+
+add("NS13", "Christmas Ornament Bundle", "crochet pattern · NS 13",
+    {"hero": "hero", "trio": "trio", "macro": "macro", "life": "life", "wip": "wip",
+     "gift": "life", "flat": "trio", "three": "trio"},
+    cover_line="bauble · star · snowflake - three lace-weight ornaments in one PDF",
+    build=build_ns13)
 
 
 OUTNAME = "{code}_{nn}_{label}.jpg"
