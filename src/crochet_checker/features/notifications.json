@@ -1,0 +1,31 @@
+{
+  "notifications": [
+    {
+      "type": "wip_reminder",
+      "project": "Granny Square Blanket",
+      "last_worked": "2026-09-07",
+      "reminder_date": "2026-09-14",
+      "message": "Time to work on Granny Square Blanket!",
+      "status": "active"
+    },
+    {
+      "type": "deadline",
+      "project": "Birthday Gift Scarf",
+      "deadline": "2026-09-22",
+      "notice_date": "2026-09-19",
+      "message": "Birthday Gift Scarf is due in 3 days!",
+      "status": "active"
+    },
+    {
+      "type": "custom",
+      "category": "sales",
+      "date": "2026-09-14",
+      "message": "Yarn sale at Joann's!",
+      "status": "active"
+    }
+  ],
+  "preferences": {
+    "email": false,
+    "desktop": true
+  }
+}

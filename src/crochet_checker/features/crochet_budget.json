@@ -1,0 +1,44 @@
+{
+  "expenses": [
+    {
+      "category": "yarn",
+      "amount": 45.0,
+      "description": "Red Heart Super Saver (10 skeins)",
+      "date": "2026-09-12"
+    },
+    {
+      "category": "hooks",
+      "amount": 25.0,
+      "description": "Set of aluminum hooks",
+      "date": "2026-09-12"
+    },
+    {
+      "category": "patterns",
+      "amount": 12.0,
+      "description": "3 premium patterns",
+      "date": "2026-09-12"
+    },
+    {
+      "category": "tools",
+      "amount": 18.0,
+      "description": "Stitch markers and tapestry needles",
+      "date": "2026-09-12"
+    }
+  ],
+  "income": [
+    {
+      "source": "sales",
+      "amount": 150.0,
+      "description": "Sold 3 custom scarves",
+      "date": "2026-09-12"
+    },
+    {
+      "source": "commissions",
+      "amount": 200.0,
+      "description": "Custom blanket order",
+      "date": "2026-09-12"
+    }
+  ],
+  "projects": [],
+  "monthly_budget": 200.0
+}
