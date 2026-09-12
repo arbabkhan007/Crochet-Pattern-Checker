@@ -12,15 +12,15 @@ FEATURES_DIR = "src/crochet_checker/features"
 TIMEOUT = 30
 
 SLOW_FILES = {
-    "ai_tutorial_generator": 120,
+    "quick_tutorial_generator": 120,
     "photo_studio": 60,
 }
 
-SLOW_FILES = {"ai_tutorial_generator": 120, "photo_studio": 60}  # seconds per test
+SLOW_FILES = {"quick_tutorial_generator": 120, "photo_studio": 60}  # seconds per test
 
 # Files that need extra time
 SLOW_FILES = {
-    "ai_tutorial_generator": 60,  # Downloads audio
+    "quick_tutorial_generator": 60,  # Downloads audio
     "photo_studio": 45,
 }
 

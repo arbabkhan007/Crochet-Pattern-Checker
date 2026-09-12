@@ -79,9 +79,70 @@
       "yarn_yards": 1800,
       "difficulty": "Advanced",
       "completed_date": "2026-09-12"
+    },
+    {
+      "name": "Granny Square Blanket",
+      "category": "Blankets",
+      "hours": 45.5,
+      "yarn_yards": 2500,
+      "difficulty": "Intermediate",
+      "completed_date": "2026-09-12"
+    },
+    {
+      "name": "Amigurumi Bunny",
+      "category": "Toys",
+      "hours": 8.0,
+      "yarn_yards": 150,
+      "difficulty": "Beginner",
+      "completed_date": "2026-09-12"
+    },
+    {
+      "name": "Lace Shawl",
+      "category": "Accessories",
+      "hours": 32.0,
+      "yarn_yards": 1200,
+      "difficulty": "Advanced",
+      "completed_date": "2026-09-12"
+    },
+    {
+      "name": "Baby Booties",
+      "category": "Baby",
+      "hours": 4.5,
+      "yarn_yards": 80,
+      "difficulty": "Beginner",
+      "completed_date": "2026-09-12"
+    },
+    {
+      "name": "Cable Sweater",
+      "category": "Garments",
+      "hours": 60.0,
+      "yarn_yards": 1800,
+      "difficulty": "Advanced",
+      "completed_date": "2026-09-12"
     }
   ],
   "yarn_usage": [
+    {
+      "brand": "Red Heart",
+      "color": "Various",
+      "yards": 5000,
+      "cost": 125.0,
+      "date": "2026-09-12"
+    },
+    {
+      "brand": "Lily Sugar'n Cream",
+      "color": "Natural",
+      "yards": 1200,
+      "cost": 45.0,
+      "date": "2026-09-12"
+    },
+    {
+      "brand": "Malabrigo",
+      "color": "Purple",
+      "yards": 800,
+      "cost": 95.0,
+      "date": "2026-09-12"
+    },
     {
       "brand": "Red Heart",
       "color": "Various",
@@ -127,6 +188,31 @@
   ],
   "time_spent": [],
   "skills_learned": [
+    {
+      "name": "Single Crochet",
+      "proficiency": 10,
+      "date": "2026-09-12"
+    },
+    {
+      "name": "Double Crochet",
+      "proficiency": 10,
+      "date": "2026-09-12"
+    },
+    {
+      "name": "Cable Stitch",
+      "proficiency": 7,
+      "date": "2026-09-12"
+    },
+    {
+      "name": "Lace Work",
+      "proficiency": 5,
+      "date": "2026-09-12"
+    },
+    {
+      "name": "Amigurumi",
+      "proficiency": 8,
+      "date": "2026-09-12"
+    },
     {
       "name": "Single Crochet",
       "proficiency": 10,

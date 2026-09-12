@@ -13,19 +13,19 @@
         {
           "content": "",
           "author": "alice_designer",
-          "timestamp": "2026-09-12T01:53:34.764058",
+          "timestamp": "2026-09-12T01:57:01.566897",
           "comment": "Initial version"
         },
         {
           "content": "Row 1: Ch 20, sc across",
           "author": "alice_designer",
-          "timestamp": "2026-09-12T01:53:34.764890",
+          "timestamp": "2026-09-12T01:57:01.567931",
           "comment": "Initial pattern"
         },
         {
           "content": "Row 1: Ch 25, sc across\nRow 2: Ch 1, turn, sc across",
           "author": "bob_tester",
-          "timestamp": "2026-09-12T01:53:34.765108",
+          "timestamp": "2026-09-12T01:57:01.568265",
           "comment": "Added row 2"
         }
       ],
@@ -33,15 +33,15 @@
         {
           "author": "carol_editor",
           "text": "Love the pattern! Maybe add a border?",
-          "timestamp": "2026-09-12T01:53:34.765373"
+          "timestamp": "2026-09-12T01:57:01.568622"
         },
         {
           "author": "alice_designer",
           "text": "Good idea! Working on it.",
-          "timestamp": "2026-09-12T01:53:34.765613"
+          "timestamp": "2026-09-12T01:57:01.568999"
         }
       ],
-      "created": "2026-09-12T01:53:34.764066"
+      "created": "2026-09-12T01:57:01.566905"
     },
     "proj_2": {
       "name": "Granny Square Blanket",
@@ -56,19 +56,19 @@
         {
           "content": "",
           "author": "alice_designer",
-          "timestamp": "2026-09-12T01:56:16.658287",
+          "timestamp": "2026-09-12T01:58:41.345706",
           "comment": "Initial version"
         },
         {
           "content": "Row 1: Ch 20, sc across",
           "author": "alice_designer",
-          "timestamp": "2026-09-12T01:56:16.663028",
+          "timestamp": "2026-09-12T01:58:41.346829",
           "comment": "Initial pattern"
         },
         {
           "content": "Row 1: Ch 25, sc across\nRow 2: Ch 1, turn, sc across",
           "author": "bob_tester",
-          "timestamp": "2026-09-12T01:56:16.664155",
+          "timestamp": "2026-09-12T01:58:41.347173",
           "comment": "Added row 2"
         }
       ],
@@ -76,15 +76,58 @@
         {
           "author": "carol_editor",
           "text": "Love the pattern! Maybe add a border?",
-          "timestamp": "2026-09-12T01:56:16.664724"
+          "timestamp": "2026-09-12T01:58:41.347496"
         },
         {
           "author": "alice_designer",
           "text": "Good idea! Working on it.",
-          "timestamp": "2026-09-12T01:56:16.666327"
+          "timestamp": "2026-09-12T01:58:41.347800"
         }
       ],
-      "created": "2026-09-12T01:56:16.658299"
+      "created": "2026-09-12T01:58:41.345716"
+    },
+    "proj_3": {
+      "name": "Granny Square Blanket",
+      "owner": "alice_designer",
+      "description": "Modern granny square blanket pattern",
+      "collaborators": [
+        "alice_designer",
+        "bob_tester",
+        "carol_editor"
+      ],
+      "versions": [
+        {
+          "content": "",
+          "author": "alice_designer",
+          "timestamp": "2026-09-12T02:02:31.992406",
+          "comment": "Initial version"
+        },
+        {
+          "content": "Row 1: Ch 20, sc across",
+          "author": "alice_designer",
+          "timestamp": "2026-09-12T02:02:31.994080",
+          "comment": "Initial pattern"
+        },
+        {
+          "content": "Row 1: Ch 25, sc across\nRow 2: Ch 1, turn, sc across",
+          "author": "bob_tester",
+          "timestamp": "2026-09-12T02:02:31.994619",
+          "comment": "Added row 2"
+        }
+      ],
+      "comments": [
+        {
+          "author": "carol_editor",
+          "text": "Love the pattern! Maybe add a border?",
+          "timestamp": "2026-09-12T02:02:31.995174"
+        },
+        {
+          "author": "alice_designer",
+          "text": "Good idea! Working on it.",
+          "timestamp": "2026-09-12T02:02:31.995712"
+        }
+      ],
+      "created": "2026-09-12T02:02:31.992418"
     }
   },
   "users": {}
