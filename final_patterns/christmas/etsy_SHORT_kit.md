@@ -9,7 +9,9 @@ Market comps pulled from live Etsy (top sellers): no-sew gnomes sell $3.99–5.9
 **Title (140 ch):**
 No Sew Christmas Gnome Crochet Pattern PDF, US + UK Terms, One Piece Beginner Amigurumi Christmas Decor, Instant Download, Pattern by Novality
 
-**13 tags:** no sew gnome pattern · crochet gnome pattern · christmas gnome · amigurumi gnome · beginner crochet pdf · us uk terms pattern · one piece amigurumi · nordic christmas decor · easy gnome tutorial · christmas crochet · market make pattern · last minute gift diy · instant download
+**13 tags** (all ≤ 20 chars): no sew gnome crochet · christmas gnome pdf · amigurumi gnome · gnome pattern pdf · nordic gnome decor · one piece amigurumi · beginner crochet pdf · us uk terms pattern · easy gnome tutorial · christmas decor diy · market make pattern · last minute gift diy · instant download pdf
+
+> char counts: 20 19 15 17 18 19 20 19 19 19 19 20 20
 
 **Short description:**
 🧶 ONE PDF — every round shown in BOTH US and UK terms, side by side.
@@ -27,7 +29,9 @@ You may sell small-batch finished gnomes with credit to Novality Store.
 **Title (140 ch):**
 Bobble Christmas Tree Crochet Pattern PDF, US + UK Terms, Self Standing No Sew Table Tree, Easy Holiday Decor, Two Sizes, Instant Download
 
-**13 tags:** crochet christmas tree · bobble stitch pattern · table tree crochet · christmas decor pdf · us uk terms pattern · no sew crochet · easy holiday crochet · amigurumi tree · christmas centerpiece · stash buster pattern · beginner crochet pdf · market make pattern · instant download
+**13 tags** (all ≤ 20 chars): crochet xmas tree · bobble tree pattern · bobble stitch tree · christmas tree pdf · table christmas tree · no sew crochet pdf · amigurumi tree pdf · us uk terms pattern · holiday table decor · xmas centerpiece diy · two sizes included · market make crochet · instant download pdf
+
+> char counts: 17 19 18 18 20 18 17 19 19 20 18 19 20
 
 **Short description:**
 🎄 ONE PDF — every round in BOTH US and UK terms.
@@ -45,7 +49,9 @@ Small-batch selling of finished trees allowed with credit to Novality Store.
 **Title (140 ch):**
 Crochet Christmas Ornament Pattern Bundle PDF, US + UK Terms, Bauble Star Snowflake 3-in-1, Beginner Holiday Decor, Scrap Buster Set, Instant Download
 
-**13 tags:** crochet ornament bundle · christmas ornament pdf · crochet bauble pattern · crochet star pattern · crochet snowflake pdf · us uk terms pattern · 3 in 1 crochet pdf · beginner crochet pdf · scrap buster crochet · stocking filler diy · christmas tree decor · quick crochet gift · instant download
+**13 tags** (all ≤ 20 chars): ornament pattern pdf · ornament bundle pdf · christmas ornaments · crochet bauble pdf · crochet star pattern · crochet snowflake · 3 in 1 pattern pdf · stash buster crochet · tree decorations diy · mini xmas crochet · stocking filler diy · us uk terms pattern · instant download pdf
+
+> char counts: 20 19 19 18 20 17 18 20 20 17 19 19 20
 
 **Short description:**
 ⭐ ONE PDF — 3 ornaments, every round in BOTH US and UK terms.
@@ -63,7 +69,9 @@ Sell finished ornaments small-batch with credit to Novality Store.
 **Title (140 ch):**
 Crochet Tree Skirt Pattern PDF, US + UK Terms, Bobble Snowflake Scallop Border, 3 Sizes Mini Standard Large, Christmas Heirloom Decor, Instant Download
 
-**13 tags:** tree skirt crochet pattern · christmas tree skirt · bobble snowflake pattern · scalloped edge crochet · us uk terms pattern · heirloom christmas decor · large crochet pattern pdf · easy intermediate · 3 sizes pattern · christmas home decor · festive crochet gift · weekend crochet project · instant download
+**13 tags** (all ≤ 20 chars): tree skirt crochet · christmas tree skirt · snowflake crochet · bobble stitch skirt · scalloped border · crochet tree skirt · 3 sizes pattern pdf · heirloom crochet pdf · holiday home decor · xmas decor pattern · festive crochet pdf · weekend crochet make · instant download pdf
+
+> char counts: 18 20 17 19 16 18 19 20 18 18 19 20 20
 
 **Short description:**
 ❄️ ONE PDF — every round in BOTH US and UK terms.
@@ -81,7 +89,9 @@ Sell finished skirts small-batch with credit to Novality Store.
 **Title (140 ch):**
 Crochet Christmas Wreath Pattern PDF, US + UK Terms, 3-in-1 Interchangeable Poinsettia Snowflake Bow, Plus Mini Bonus, Door Decor, Instant Download
 
-**13 tags:** wreath crochet pattern · christmas wreath pdf · poinsettia crochet · crochet snowflake bow · us uk terms pattern · 3 in 1 christmas crochet · interchangeable wreath · door decor crochet · crochet poinsettia pdf · beginner wreath pattern · holiday home decor · handmade christmas · instant download
+**13 tags** (all ≤ 20 chars): wreath crochet pdf · christmas wreath diy · poinsettia crochet · lacy snowflake bow · 3 in 1 wreath pdf · interchangeable · door decor crochet · holiday wreath diy · christmas door decor · crochet wreath set · winter wreath decor · beginner wreath pdf · instant download pdf
+
+> char counts: 18 20 18 18 17 15 18 18 20 17 19 19 20
 
 **Short description:**
 🌿 ONE PDF — every row in BOTH US and UK terms.
@@ -99,7 +109,9 @@ Sell finished wreaths small-batch with credit to Novality Store.
 **Title (140 ch):**
 Christmas Crochet Pattern Bundle PDF, US + UK Terms, 5-in-1 Gnome Tree Ornaments Tree Skirt Wreath Set, Beginner Holiday Pack Deal, Instant Download
 
-**13 tags:** christmas crochet bundle · crochet pattern bundle · 5 in 1 christmas pdf · christmas pattern pack · gnome tree scene pdf · crochet wreath skirt · us uk terms pattern · beginner christmas set · holiday crochet deal · christmas decor diy · crochet gift bundle · no sew christmas pdf · instant download
+**13 tags** (all ≤ 20 chars): christmas bundle pdf · crochet bundle deal · 5 in 1 crochet pdf · christmas mega pack · gnome tree ornament · holiday crochet set · wreath skirt bundle · xmas crochet starter · christmas decor set · no sew pattern pack · us uk crochet terms · holiday diy bundle · instant download pdf
+
+> char counts: 20 19 18 19 19 19 19 20 19 19 19 18 20
 
 **Short description:**
 🎁 ALL FIVE Christmas patterns in one discounted download: no-sew gnome, bobble tree, ornament trio, 3-size tree skirt, interchangeable 3-look wreath. Every round in both US and UK terms. Fill a mantel, dress a tree, outfit the front door this weekend.
