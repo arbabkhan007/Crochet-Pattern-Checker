@@ -526,11 +526,181 @@ add("NS14", "Bobble Snowflake Christmas Tree Skirt", "crochet pattern · NS 14",
     build=build_ns14)
 
 
+# ============================================================== NS 11
+def build_ns11(p):
+    peek_rows = [
+        ("R1-4", "MR 6 sc; inc ladders to 24", "MR 6 dc; inc ladders to 24", "24"),
+        ("R5", "14 sc, 4 hdc, 6 sc - face zone", "14 dc, 4 htr, 6 dc - face zone", "24"),
+        ("Nose", "5-dc bobble between face sts", "5-tr bobble between face sts", "24"),
+        ("Beard", "ch 8 loop into fn-sts, x12", "ch 8 loop into fn-sts, x12", "-"),
+        ("Hat", "sc rnds + 3 inc kinks, 12 slouch rnds", "dc rnds + 3 inc kinks, 12 slouch rnds", "-"),
+    ]
+    jobs = [
+        ("01", "cover", s_cover(p, p["src"])),
+        ("02", "wip", s_scene(p, "wip", None, "NO INSTRUCTION LEFT TO GUESS",
+                              "every colour change is counted; the beard loop is engineered, not draped", top=True)),
+        ("03", "trio", s_trio(p, None, "Three colours, one gnome",
+            [("trio", "HOLLY RED", "classic nordic - the bestseller"),
+             ("life", "FOREST PINE", "deep woodland tones"),
+             ("hero", "IVORY GOLD", "quiet luxury for mantle whites")],
+            "yardage for all three recipes is in the pattern")),
+        ("04", "detail", s_scene(p, "macro", None, "TEXTURE YOU CAN FEEL THROUGH THE SCREEN",
+                                 "dense amigurumi fabric plus a looped beard - zero sewing, all attitude", top=False, color=CRANBERRY)),
+        ("05", "info", s_info(p, None, [
+            ("Genuinely no-sew", "body, beard, face, nose and hat grow from one continuous tube - one yarn end to hide"),
+            ("Dual-format rounds", "us and uk terms side by side in one column; one shared stitch count"),
+            ("Stitch-checked ladders", "each increase/decrease round is re-derived and printed; your stitch count always checks out"),
+            ("Nose engineered in", "a 5-dc bobble placed on the face round - no assembly, no wobble"),
+            ("Three colour recipes", "holly red, forest pine, ivory gold - all with exact yardage"),
+            ("Real support", "questions answered personally within 48 hours"),
+        ])),
+        ("06", "lifestyle", s_scene(p, "life", None, "EVERY MANTEL NEEDS ONE",
+                                    "fifteen centimetres of pure holiday attitude that sells itself at markets", top=True, color=EVERGREEN)),
+        ("07", "sizechart", s_sizes(p, None, "Built to fill a shelf",
+            [(210, "VARIANT"), (740, "FINISHED HEIGHT"), (1380, "YARN LOAD")],
+            [(["STANDARD", "15 cm / 6 in", "~40 g total"], "the pattern size - DK or light worsted"),
+             (["MINI", "11-12 cm", "~25 g"], "worsted with 3.5 mm hook - tote-friendly"),
+             (["UPGRADE", "18-20 cm", "~70 g"], "a wreath-sized showpiece in chunky yarn")],
+            ("size scales with yarn and hook, not the pattern", "the 24-stitch body round is the same - change the yarn, change the height")),
+        ),
+        ("08", "preview", s_peek(p, None, peek_rows,
+            "+ beard loop engineering, nose placement round, hat slouch section and troubleshooting")),
+        ("09", "gift", gift_card(p, None, "The safest handmade gift", [
+            ("Sews itself", "nothing to hide - one continuous build means no visible seams to worry about"),
+            ("Cute at both sizes", "mini for stockings, standard for mantels"),
+            ("Sell at markets", "gnomes move fast on stall tables - small-batch credit included"),
+        ], "the gnomes sell themselves")),
+        ("10", "why", s_why(p, None,
+            [("hero", "no-sew, engineered in"), ("macro", "dense, tactile fabric"), ("trio", "three moods, one build")],
+            [("Really no sewing", "the gloves-off spirit is real - the whole guy is one tube"),
+             ("Rounds you can audit", "ladder math printed next to every round - tension and count both tamed"),
+             ("Support by the maker", "48-hour pattern questions answered by a human"),
+             ("Instant download", "us + uk terms, one PDF"),
+            ])),
+        ("11", "details", s_grid(p, None, [
+            ("design code", "NS 11"), ("format", "PDF · us + uk terms"),
+            ("level", "beginner+"), ("time", "1.5-2.5 hours"),
+            ("hook", "4 mm (US G-6)"), ("yarn", "DK / light worsted"),
+            ("yardage", "≈ 40 g total"), ("construction", "ONE piece - zero sewing"),
+            ("height", "15 cm standard"), ("stitches", "ch · sl st · sc · inc · dec · bobble"),
+            ("finish", "set washer eyes optional"), ("bonus", "3 hat colour recipes"),
+        ])),
+        ("12", "hero2", s_scene(p, "hero", None, "THE NO-SEW GNOME THAT LIVES ON EVERYONE'S MANTEL",
+                                "body, beard, face, hat - one continuous spiral from base to pom", top=True)),
+        ("13", "colourways", s_palette(p, None, [
+            ("HOLLY RED", [(168, 63, 55), (244, 238, 226), (240, 220, 190)], "cranberry hat · cream beard · warm earth nose - the classic"),
+            ("FOREST PINE", [(46, 75, 63), (234, 232, 222), (176, 150, 106)], "deep green hat · frost beard · tan nose - the calm nordic"),
+            ("IVORY GOLD", [(198, 172, 120), (248, 247, 242), (140, 130, 110)], "antique gold hat · ivory beard · slate nose - quiet luxury"),
+        ], "same pattern, any mood - the colour-change rounds stay exactly where they are")),
+        ("14", "care", s_care(p, None, [
+            ("Display", "indoors only - sunshine will eventually fade the hat"),
+            ("Dust", "cool hair-dryer air or a soft brush, gentle over the beard loops"),
+            ("Spot clean", "damp cloth and cool water; never soak the nose area"),
+            ("Store", "in a box with space - the beard likes its shape"),
+            ("Revive", "a fingertip of steam (never touch) fluffs flattened beard loops"),
+        ], "takes seconds to dust, lasts years")),
+        ("15", "thanks", s_thanks(p, None, "#NoSewGnome")),
+    ]
+    return jobs
+
+
+# ============================================================== NS 12
+def build_ns12(p):
+    peek_rows = [
+        ("R1-6", "tip spiral: 6 → 48 by 7 tiers", "tip spiral: 6 → 48 by 7 tiers", "48"),
+        ("R7", "bobble row every few sc", "bobble row every few tr", "48"),
+        ("R8-26", "dec to plateau, repeat 7 bobble tiers", "dec to plateau, repeat 7 bobble tiers", "48"),
+        ("Trunk", "last 6 rnds straight, stuff", "last 6 rnds straight, stuff", "18"),
+        ("Finish", "ch-amber loop at crown", "ch-amber loop at crown", "-"),
+    ]
+    jobs = [
+        ("01", "cover", s_cover(p, p["src"])),
+        ("02", "wip", s_scene(p, "wip", None, "BOBBLES THAT ACTUALLY BUBBLE",
+                              "unfinished bobbles pass the crochet hook test: firm, even, satisfying", top=True)),
+        ("03", "trio", s_trio(p, None, "Two heights, two moods",
+            [("trio", "GRAND FIR", "28 cm bobble statement"),
+             ("hero", "CLASSIC PINE", "18 cm table topper"),
+             ("life", "PLACE SETTING", "fiction-scaled for the table")],
+            "scaled by round count: the pattern flags the pivot rounds")),
+        ("04", "detail", s_scene(p, "macro", None, "IT'S NOT STUFFED - IT'S STITCHED",
+                                 "dense bobble rows hold the cone sonically solid; stiffness comes from structure", top=False, color=EVERGREEN)),
+        ("05", "info", s_info(p, None, [
+            ("One stimulus-cone build", "tip to trunk in one continuous spiral - no seaming, no finishing seamstress work"),
+            ("Bobble rounds taught", "the 4-dc incomplete-bobble technique with the hook-count trick"),
+            ("Stitch-checked tiers", "every tier's consumption and production printed beside the round - scale anxiety gone"),
+            ("Two heights included", "classic 18 cm table tree plus pivot markers for the 28 cm grand statement"),
+            ("Dual-format PDF", "us and uk terms in one column, single stitch count"),
+            ("Real support", "pattern questions answered personally within 48 hours"),
+        ])),
+        ("06", "lifestyle", s_scene(p, "life", None, "CENTREPIECE, NO WRAPPING REQUIRED",
+                                    "two trees, two heights and dinner flowers itself", top=True, color=EVERGREEN)),
+        ("07", "sizechart", s_sizes(p, None, "Two heights, one ladder",
+            [(210, "HEIGHT"), (740, "FINAL ROUND"), (1380, "APPROX LOAD")],
+            [(["CLASSIC", "stop after tier 7", "≈100-120 g"], "18 cm - the place-setting classic"),
+             (["GRAND", "continue to tier 9", "≈180-220 g"], "28 cm - the mantel statement"),
+             (["ORNAMENT", "stop at tier 4", "≈35-45 g"], "10 cm - tree-topper-sized minis")],
+            ("both sizes share every ladder count", "the pattern prints the tier table - choose your station, stop counting where it says STOP")),
+        ),
+        ("08", "preview", s_peek(p, None, peek_rows,
+            "+ bobble technique card, tier pivot table, stuffing guide and troubleshooting")),
+        ("09", "gift", gift_card(p, None, "A tree people keep out", [
+            ("Never wilts", "unlike the spruce outside, this one stays perfect all year"),
+            ("Market favourite", "bobbles sell - small-batch runs welcome with credit"),
+            ("Gift once, use for decades", "premium wool and structure make it heirloom grade"),
+        ], "greenery that outlives the season")),
+        ("10", "why", s_why(p, None,
+            [("hero", "self-standing, no wires"), ("macro", "bobblefic texture"), ("trio", "two heights, one ladder")],
+            [("Cone, not cone-shaped compromise", "the flat ladder gives a true conical profile"),
+             ("Audited ladder", "tier-by-tier math re-derived before publication"),
+             ("Real human support", "48-hour answers, maker's knowledge"),
+             ("Instant download", "us + uk terms in one PDF"),
+            ])),
+        ("11", "details", s_grid(p, None, [
+            ("design code", "NS 12"), ("format", "PDF · us + uk terms"),
+            ("level", "easy"), ("time", "2-3 hours"),
+            ("hook", "4 mm (US G-6)"), ("yarn", "DK / light worsted"),
+            ("yardage", "≈100-120 g"), ("construction", "one continuous spiral"),
+            ("heights", "classic 18 · grand 28 cm"), ("stitches", "ch · sl st · sc · dec · bobble"),
+            ("finish", "no seaming"), ("bonus", "tier pivot table"),
+        ])),
+        ("12", "hero2", s_scene(p, "hero", None, "THE TREE WHOSE BOBBLES MAKE OTHER TREES JEALOUS",
+                                "spiral tip, seven tiers of bobble-weight, straight-trunk finish", top=True)),
+        ("13", "colourways", s_palette(p, None, [
+            ("FOREST PINE", [(46, 75, 63), (58, 94, 76), (34, 56, 47)], "deep forest greens, lighter tips - woodsy classic"),
+            ("WINTER FOG", [(188, 194, 200), (238, 240, 242), (160, 148, 168)], "silver fog with white tips - scandi minimal"),
+            ("GOLDEN HOUR", [(188, 146, 92), (214, 180, 126), (244, 232, 204)], "warm amber and honey - the hostess gift"),
+        ], "the tier table doesn't move with colour - just swap the skein")),
+        ("14", "care", s_care(p, None, [
+            ("Dust", "cool hair-dryer puff, then reshape any flattened bobbles by hand"),
+            ("Spot clean", "damp cloth with cold water, minimal soap, don't twist"),
+            ("Store", "away from heaters; wrap loosely in tissue, never stack"),
+            ("Revive", "hover a steam iron over tired bobbles - they puff right back"),
+            ("Storage tip", "store standing upright in a box with the tip free"),
+        ], "the bobbles last decades with simple care")),
+        ("15", "thanks", s_thanks(p, None, "#BobbleTree")),
+    ]
+    return jobs
+
+
 add("NS15", "Interchangeable Christmas Wreath", "crochet pattern · NS 15",
     {"hero": "hero", "variants": "variants", "fire": "fire", "macro": "macro",
      "wip": "wip", "gift": "hero", "life": "variants", "three": "variants"},
     cover_line="one plush wreath · three swappable centrepieces · bonus mini",
     build=build_ns15)
+
+
+add("NS11", "No-Sew Christmas Gnome", "crochet pattern · NS 11",
+    {"hero": "hero", "trio": "trio", "macro": "macro", "life": "life", "wip": "wip",
+     "gift": "life", "flat": "trio", "three": "trio"},
+    cover_line="body · beard · face · hat in one piece · zero sewing",
+    build=build_ns11)
+
+
+add("NS12", "Bobble Christmas Tree", "crochet pattern · NS 12",
+    {"hero": "hero", "trio": "trio", "macro": "macro", "life": "life", "wip": "wip",
+     "gift": "life", "flat": "trio", "three": "trio"},
+    cover_line="bobble-stitch tiers · self-standing · two heights included",
+    build=build_ns12)
 
 
 OUTNAME = "{code}_{nn}_{label}.jpg"
