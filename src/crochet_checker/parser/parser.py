@@ -104,7 +104,7 @@ class CrochetParser:
             if i:
                 result.append(i)
             else:
-                m = re.match(r'^\((\d+)\)\s*$', p)
+                m = re.match(r'^[\(\[](\d+)[\)\]]\s*$', p)
                 if m and result and result[-1].stated_stitch_count is None:
                     result[-1].stated_stitch_count = int(m.group(1))
         return result
@@ -147,6 +147,9 @@ class CrochetParser:
     def _chunk_ops(self, text):
         """Parse one comma-free segment into operations (may be empty)."""
         t = text.strip()
+        # leading loop-placement prefixes (BLO sc in each st around) do not
+        # change counts, so strip them before matching
+        t = re.sub(r"^(blo|flo)\s+", "", t, flags=re.IGNORECASE)
         if not t: return []
         if _HOUSEKEEPING.match(t): return []
         # repeat blocks: "(sc 3, dec) x 4" or "(sc 3, dec) 4 times"

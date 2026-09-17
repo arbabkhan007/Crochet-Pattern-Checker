@@ -104,3 +104,20 @@ class TestFoundationRing:
         r = validate_pattern(parse_pattern(t))
         assert r.errors == []
         assert r.overall_status == OverallStatus.PASS
+
+
+class TestFlatRowContext:
+    def test_sc_across_resolves(self):
+        t = ("Row 1: ch 20, sc in 2nd ch from hook, sc in each ch across (19)\n"
+             "Row 2: ch 1, turn, sc in each st across (19)\n"
+             "Row 3: ch 1, turn, sc in each st across (19)")
+        r = validate_pattern(parse_pattern(t))
+        assert r.errors == []
+
+    def test_bracket_counts_pipeline(self):
+        t = ("Rnd 1: 6 sc in MR [6]\n"
+             "Rnd 2: Inc in each st around [12]\n"
+             "Rnd 3: (sc 1, inc) x 6 [18]\n"
+             "Rnd 4: (sc 1, dec) x 6 [12]")
+        r = validate_pattern(parse_pattern(t))
+        assert r.errors == []

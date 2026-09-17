@@ -68,19 +68,26 @@ class StitchCountValidator:
     def _rows(self, rows, r):
         exp = None
         for cr in rows:
-            prod = sum(i.total_stitches_produced for i in cr.instructions if not i.is_ambiguous)
-            cons = sum(i.total_stitches_consumed for i in cr.instructions if not i.is_ambiguous)
-            if exp is not None and cons > exp:
+            prod, cons, amb = 0, 0, False
+            for inst in cr.instructions:
+                if inst.is_ambiguous: amb = True; continue
+                if self._ctx(inst):
+                    if exp is not None:
+                        prod += self._resolve(inst, exp); cons += exp
+                    else:
+                        amb = True  # context op with no previous row to resolve against
+                else:
+                    prod += inst.total_stitches_produced; cons += inst.total_stitches_consumed
+            st = self._stated(cr)
+            if exp is not None and not amb and cons > exp:
                 self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.ERROR,
                     location=f"Row {cr.row_number}", message=f"Row {cr.row_number} consumes {cons} stitches but only {exp} are available.",
                     expected=exp, actual=cons))
-            elif exp is not None and cons < exp:
+            elif exp is not None and not amb and cons < exp:
                 self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.WARNING,
                     location=f"Row {cr.row_number}",
                     message=f"Row {cr.row_number} works {cons} of the {exp} available stitches — intentional shaping (e.g. short rows) or a dropped stitch?",
                     expected=exp, actual=cons, confidence=0.7))
-            amb = any(i.is_ambiguous for i in cr.instructions)
-            st = self._stated(cr)
             if st is not None and not amb and st != prod:
                 self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.ERROR,
                     location=f"Row {cr.row_number}", message=f"Row {cr.row_number} states {st} but produces {prod}.",
@@ -90,6 +97,9 @@ class StitchCountValidator:
             elif st is not None:
                 exp = st
             r.total_rows_checked += 1
+            if amb:
+                self.findings.append(ValidationFinding(validator="stitch_counts", severity=Severity.WARNING,
+                    location=f"Row {cr.row_number}", message=f"Row {cr.row_number} has context-dependent operations.", confidence=0.7))
     def _ctx(self, inst): return any(op.into_stitch in ("each_stitch_around","remaining") for op in inst.operations)
     def _resolve(self, inst, avail):
         t, rem = 0, avail

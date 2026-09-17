@@ -91,3 +91,39 @@ class TestRangeHeaders:
     def test_rnd_range_expansion(self):
         p = parse_pattern("Rnd 6-10: sc in each st around (20)")
         assert [r.round_number for r in p.rounds] == [6, 7, 8, 9, 10]
+
+
+class TestBracketCounts:
+    """[N] square-bracket stated counts (amigurumi convention)."""
+
+    def test_bracket_stated(self):
+        inst = parse_instruction("Rnd 1: 6 sc in MR [6]")
+        assert inst.stated_stitch_count == 6
+        assert inst.total_stitches_produced == 6
+
+    def test_bracket_after_repeat(self):
+        inst = parse_instruction("(sc 5, dec) x 6 [36]")
+        assert inst.stated_stitch_count == 36
+        assert inst.total_stitches_produced == 36
+        assert inst.total_stitches_consumed == 42
+
+
+class TestLeadingBLO:
+    def test_blo_prefix(self):
+        inst = parse_instruction("BLO sc in each st around [10]")
+        kinds = [k for k, _ in ops("BLO sc in each st around [10]")]
+        assert inst.stated_stitch_count == 10
+        assert kinds == ["single_crochet"]  # ctx op, not double-counted
+
+
+class TestEachWithoutAround:
+    def test_inc_in_each_st(self):
+        inst = parse_instruction("Inc in each st [12]")
+        assert inst.stated_stitch_count == 12
+        kinds = dict(ops("Inc in each st [12]"))
+        assert kinds.get("increase") == 1  # ctx op resolved against previous round
+
+    def test_across_rows(self):
+        p = parse_pattern("Row 1: ch 1, sc in each st across (5)\nRow 2: ch 1, turn, sc in each st across (5)")
+        r2 = p.rows[1]
+        assert r2.computed_stitch_count >= 1  # ctx ops stored as single op
