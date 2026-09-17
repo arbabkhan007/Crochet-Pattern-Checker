@@ -39,7 +39,7 @@ def check(pattern_file, strict, output_json, verbose):
             dc = sc
             for inst in r.instructions:
                 if inst.stated_stitch_count is not None: dc = inst.stated_stitch_count; break
-            console.print(f"  {chr(8220)+'Round' if hasattr(r,'round_number') else 'Row'} {num}: {dc} stitches")
+            console.print(f"  {'Round' if hasattr(r,'round_number') else 'Row'} {num}: {dc} stitches")
             prev = dc
         console.print()
     report = validate_pattern(pattern, strict=strict)

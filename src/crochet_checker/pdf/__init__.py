@@ -3,6 +3,7 @@
 # Try to import generator
 try:
     from .generator import generate_pdf
+    from .html_generator import PDFConfig, PDFGenerator, generate_pdf_html
     _PDF_OK = True
 except Exception as e:
     print(f"Warning: PDF generator not available: {e}")
@@ -20,4 +21,4 @@ except Exception as e:
     def generate_pattern_images(*args, **kwargs):
         return []
 
-__all__ = ["generate_pdf", "generate_pattern_images"]
+__all__ = ["generate_pdf", "generate_pattern_images", "PDFConfig", "PDFGenerator", "generate_pdf_html"]
