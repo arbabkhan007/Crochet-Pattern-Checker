@@ -7,8 +7,8 @@ are **illustrations, not photographs of physically tested samples**.
 |---|---|---|
 | NS 01 | Cover and materials concepts | Illustrative generated compositions retained from the approved NS 01 edition. |
 | NS 02–NS 08 | Cover compositions | Illustrative crochet renderings produced for this release; they must not be described as sample photography or test evidence. |
-| NS 09–NS 15 | Cover graphics | Original deterministic editorial motifs drawn by `tools/build_remaining_pattern_pdfs.py`. |
-| NS 02–NS 15 | Maker maps | Original deterministic navigation graphics drawn from each master’s component headings by `tools/build_remaining_pattern_pdfs.py`. |
+| NS 09–NS 17 | Cover graphics | Original deterministic editorial motifs drawn by `tools/build_remaining_pattern_pdfs.py`. |
+| NS 02–NS 17 | Maker maps | Original deterministic navigation graphics drawn from each master’s component headings by `tools/build_remaining_pattern_pdfs.py`. |
 
 The PDF itself labels each cover visual and maker map as illustrative and states
 that the written instructions and counts control. No genuine process or finished

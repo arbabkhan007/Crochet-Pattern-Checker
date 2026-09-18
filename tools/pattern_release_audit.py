@@ -18,11 +18,12 @@ Run from the repository root:
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
-from pathlib import Path
 import math
 import re
 import sys
+from dataclasses import dataclass
+from itertools import pairwise
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PATTERN_DIR = ROOT / "patterns"
@@ -42,6 +43,8 @@ EXPECTED = [
     "13_Christmas_Ornament_Bundle.md",
     "14_Bobble_Snowflake_Tree_Skirt.md",
     "15_Interchangeable_Christmas_Wreath.md",
+    "16_Crochet_Mini_Stocking_Advent_Garland.md",
+    "17_Year_of_the_Fire_Goat_2027_Plushie_Set.md",
 ]
 
 
@@ -298,6 +301,25 @@ MANUAL = _manual([
     ("dec, sc, dec, ch 1, turn", 5, 3),
     ("dec, sc", 3, 2),
 
+    # NS 16 mini-stocking heel and foot route.
+    ("sc in each of 20 foundation chains around", 20, 20),
+    ("ch 1, sc in same st as join and next 9 sts, ch 1, turn", 10, 10),
+    ("6 sc, dec; leave final 2 sts unworked, ch 1, turn", None, 7),
+    ("4 sc, dec; leave final st unworked, ch 1, turn", None, 5),
+    ("3 sc, dec, ch 1, turn", 5, 4),
+    ("2 sc, dec; do not turn", 4, 3),
+    ("5 side sc, 10 instep sc, 5 side sc, 3 heel-centre sc", None, 23),
+    ("4 sc, dec, 5 sc, dec, 5 sc, dec, 3 sc", 23, 20),
+
+    # NS 17 layered ears and fixed accessory foundations.
+    ("sc in 2nd ch and next 5 ch, ch 1, turn", 6, 6),
+    ("dec, 2 sc, dec, ch 1, turn", 6, 4),
+    ("sc in 2nd ch and next 6 ch, ch 1, turn", 7, 7),
+    ("dec, 3 sc, dec, ch 1, turn", 7, 5),
+    ("dec, sc, dec", 5, 3),
+    ("sc in 2nd ch and next 34 ch, ch 1, turn", 35, 35),
+    ("sc in 2nd ch and next 20 ch, ch 1, turn", 21, 21),
+
     # Clusters, joins and decorative rounds.
     ("FLO: [2 sl st, (sc, hdc, dc, hdc, sc) in next st, 1 sl st] x 6", 24, 48),
     ("sl st in first 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st in next 3, (sc, hdc, picot, hdc, sc) in next st, sl st in next 2, (sc, hdc, picot, hdc, sc) in next st, sl st in last 2", 12, 23),
@@ -333,7 +355,7 @@ MANUAL = _manual([
 def run() -> int:
     audit = Audit()
     actual = sorted(p.name for p in PATTERN_DIR.glob("*.md"))
-    audit.equal(actual, EXPECTED, "15-pattern file inventory")
+    audit.equal(actual, EXPECTED, "17-pattern file inventory")
 
     all_rows: list[TableRow] = []
     codes: list[str] = []
@@ -388,7 +410,7 @@ def run() -> int:
                     f"{name}: first heading must be the single H1 title")
         audit.equal(sum(level == 1 for level, _ in headings), 1,
                     f"{name}: H1 title count")
-        for (prior, _), (level, title) in zip(headings, headings[1:]):
+        for (prior, _), (level, title) in pairwise(headings):
             audit.check(level <= prior + 1,
                         f"{name}: heading level jumps to H{level} at {title!r}")
         audit.check(not re.search(r"^\*\*[^*]+\*\*$", text, re.MULTILINE),
@@ -397,7 +419,7 @@ def run() -> int:
                     f"{name}: multiple consecutive blank lines")
         all_rows.extend(parse_rows(path, audit))
 
-    audit.equal(len(set(codes)), 15, "unique design codes")
+    audit.equal(len(set(codes)), 17, "unique design codes")
 
     # Side-by-side terminology must be an exact token translation.
     dual_rows = 0
@@ -417,7 +439,7 @@ def run() -> int:
     for row in all_rows:
         by_table.setdefault((row.file, row.table), []).append(row)
 
-    for _, rows in by_table.items():
+    for rows in by_table.values():
         previous: int | None = None
         for row in rows:
             if row.stated is None:
@@ -487,8 +509,8 @@ def run() -> int:
         (37 + 4 + 4 * 3, 53, "Shelby large underside stitches"),
         (240 + 4 * 3, 252, "Willow R20 border stitches"),
         (14 + 1 + 15, 30, "Gnome nose round"),
-        (6 * ((1 + 5 + 2)), 48, "Tree R12 anchors consumed"),
-        (6 * ((1 + 5 + 1)), 42, "Tree R12 stitches produced"),
+        (6 * (1 + 5 + 2), 48, "Tree R12 anchors consumed"),
+        (6 * (1 + 5 + 1), 42, "Tree R12 stitches produced"),
         (5 * (1 + 6), 35, "Star counted stitches"),
         (6 * 2, 12, "Snowflake R2 ring stitches consumed"),
         (168 // 6, 28, "Mini tree-skirt scallops"),
@@ -497,6 +519,18 @@ def run() -> int:
         (1 + 1 + 3 + 1 + 1, 7, "Wreath poinsettia leaf chains"),
         (15 - 1, 14, "Wreath bow-tail stitches"),
         (6 - 1, 5, "Wreath bow-band stitches"),
+        (5 + 10 + 5 + 3, 23, "NS16 exact foot pickup"),
+        (4 + 2 + 5 + 2 + 5 + 2 + 3, 23, "NS16 evening-round anchors"),
+        (4 + 1 + 5 + 1 + 5 + 1 + 3, 20, "NS16 evening-round stitches"),
+        (4 * (3 + 2), 20, "NS16 first toe-round anchors"),
+        (4 * (3 + 1), 16, "NS16 first toe-round stitches"),
+        (6 * (1 + 2), 18, "NS17 head-to-neck decrease anchors"),
+        (6 * (1 + 1), 12, "NS17 head-to-neck decrease stitches"),
+        (4 * (1 + 2), 12, "NS17 corrected leg-final anchors"),
+        (4 * (1 + 1), 8, "NS17 corrected leg-final stitches"),
+        (1 + 11 * 3 + 1, 35, "NS17 flame-edge anchors"),
+        (1 + 11, 12, "NS17 flame peaks"),
+        (12 * 2, 24, "NS17 two-pass neck seam"),
     ]
     for got, want, label in derivations:
         audit.equal(got, want, label)
@@ -542,13 +576,29 @@ def run() -> int:
         "13_Christmas_Ornament_Bundle.md": ["(35)", "fan contains 6 worked stitches"],
         "14_Bobble_Snowflake_Tree_Skirt.md": ["SAME stitch as the join", "Round N always consumes N-1"],
         "15_Interchangeable_Christmas_Wreath.md": ["20-24 cm / 8-9.5 in", "Keep both openings ROUND", "folded 55 cm tie under at least 2 sturdy", "does not rely on individual crochet sts"],
+        "16_Crochet_Mini_Stocking_Advent_Garland.md": [
+            "Row 6 | BLO sc in each st across, ch 1, turn",
+            "5 + 10 + 5 + 3 = 23 stitches",
+            "Do not move the three Foot-R2 decreases arbitrarily",
+            "Never hang it over a bed, cot, play space",
+            "Original colourway: classic red MC for leg and foot, snow-white CC",
+        ],
+        "17_Year_of_the_Fire_Goat_2027_Plushie_Set.md": [
+            "contains no internal wire and no loose tie-on collar",
+            "Do not work a six-stitch closing round",
+            "corrected final round decreases 12 to 8 rather than 9",
+            "exactly 12 burnt-orange peaks",
+            "12 matched anchors and 24 seam passes",
+            "Do not add a bell or long ribbon tie",
+            "Original Fire Goat colourway: warm-cream body and ears",
+        ],
     }
     for name, needles in must_contain.items():
         text = (PATTERN_DIR / name).read_text(encoding="utf-8")
         for needle in needles:
             audit.check(needle in text, f"{name}: missing release safeguard {needle!r}")
 
-    print(f"Files: 15 | table rows: {len(all_rows)} | dual rows: {dual_rows} | "
+    print(f"Files: 17 | table rows: {len(all_rows)} | dual rows: {dual_rows} | "
           f"count rows checked: {checked_count_rows} | assertions: {audit.checks}")
     if audit.errors:
         print(f"FAIL ({len(audit.errors)} findings)")

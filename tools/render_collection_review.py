@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render every NS 02–NS 15 PDF page and create visual-review galleries.
+"""Render selected NS 02–NS 17 PDF pages and create visual-review galleries.
 
 Outputs go under build/, which is intentionally excluded from release artifacts.
 This is a production-review utility, not part of the customer download.
@@ -7,6 +7,7 @@ This is a production-review utility, not part of the customer download.
 
 from __future__ import annotations
 
+import argparse
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -93,10 +94,40 @@ def gallery(name: str, items: list[tuple[Path, str]], *, columns: int = 4, thumb
     return destination
 
 
+def selected_numbers(value: str) -> tuple[int, ...]:
+    wanted: set[int] = set()
+    for part in value.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "-" in part:
+            start, end = (int(item) for item in part.split("-", 1))
+            wanted.update(range(start, end + 1))
+        else:
+            wanted.add(int(part))
+    unsupported = wanted - set(range(2, 18))
+    if unsupported:
+        raise ValueError(f"Unsupported design codes: {sorted(unsupported)}")
+    if not wanted:
+        raise ValueError("At least one design code is required")
+    return tuple(sorted(wanted))
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--codes",
+        default="2-15",
+        help="Comma-separated numbers/ranges to render (default: 2-15; NS 16–17 are supported)",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     rendered: list[RenderedPdf] = []
-    for number in range(2, 16):
+    for number in selected_numbers(args.codes):
         code = f"NS{number:02d}"
         main_pdf = next(RELEASE.glob(f"{code}_*_Crochet_Pattern.pdf"))
         print_pdf = next(RELEASE.glob(f"{code}_*_PRINTER_SAVER.pdf"))
@@ -130,6 +161,19 @@ def main() -> int:
             ]
         )
     outputs.append(gallery("06_printer_saver_representative", print_selection, columns=3, thumb_width=360))
+    for item in rendered:
+        all_pages = [
+            (page, f"{item.code} · {item.edition.upper()} · PAGE {index + 1} · {item.char_counts[index]} CHARS")
+            for index, page in enumerate(item.pages)
+        ]
+        outputs.append(
+            gallery(
+                f"07_{item.code}_{item.edition}_all_pages",
+                all_pages,
+                columns=4,
+                thumb_width=315,
+            )
+        )
 
     total_pages = sum(len(item.pages) for item in rendered)
     print(f"Render audit: PASS — {len(rendered)} PDFs, {total_pages} pages rendered")

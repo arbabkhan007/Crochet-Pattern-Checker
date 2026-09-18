@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build and postflight the NS 02–NS 15 full-colour and printer-saver PDFs.
+"""Build and postflight the NS 02–NS 17 full-colour and printer-saver PDFs.
 
 Every full-colour edition uses the approved Novality Crochet Studio visual system,
 selectable named original-colour swatches, one clearly labelled illustrative cover
@@ -19,14 +19,16 @@ import math
 import random
 import re
 import zipfile
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from hashlib import sha256
 from html import unescape
 from pathlib import Path
-from typing import Iterable, Sequence
 
 from PIL import Image as PILImage
 from PIL import ImageDraw, ImageFilter
+from pypdf import PdfReader
+from pypdf.generic import ContentStream, IndirectObject
 from reportlab.lib import colors
 from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_LEFT
@@ -49,8 +51,6 @@ from reportlab.platypus import (
     TableStyle,
 )
 from reportlab.platypus.tableofcontents import TableOfContents
-from pypdf import PdfReader
-from pypdf.generic import ContentStream, IndirectObject
 
 try:  # Direct script execution: python tools/build_remaining_pattern_pdfs.py
     from build_ns01_etsy_pdf import (
@@ -87,6 +87,7 @@ PATTERN_DIR = ROOT / "patterns"
 ASSET_ROOT = ROOT / "assets/patterns"
 RELEASE_DIR = ROOT / "release"
 BUNDLE_OUTPUT = RELEASE_DIR / "Novality_Crochet_Studio_NS02-NS15_PDF_Collection.zip"
+LEGACY_BUNDLE_CODES = tuple(range(2, 16))
 
 PAGE_WIDTH, PAGE_HEIGHT = A4
 BRAND = "Novality Crochet Studio"
@@ -452,6 +453,52 @@ SPECS: tuple[PatternSpec, ...] = (
         "wreath_cover_graphic.png",
         "wreath",
     ),
+    PatternSpec(
+        16,
+        "16_Crochet_Mini_Stocking_Advent_Garland.md",
+        ("MINI STOCKING", "ADVENT GARLAND"),
+        "Twenty-four-piece set",
+        "A turned-heel mini stocking with an exact batch and garland plan.",
+        "US TERMS",
+        "ADVANCED BEGINNER",
+        "SOURCE EST. 15–20 MIN · VERIFY",
+        "10 CM TALL · 5 CM WIDE TARGET",
+        "DK / LIGHT WORSTED · 4.0 MM",
+        (
+            PaletteEntry("CLASSIC RED", "main leg + foot", "#A63D40"),
+            PaletteEntry("SNOW WHITE", "ribbed cuff", "#EEE8DA"),
+            PaletteEntry("EVERGREEN", "heel, toe + hanging loop", "#3F6448"),
+        ),
+        "TURN AFTER HEEL ROW 6 · PICK UP 5 + 10 + 5 + 3 = 23",
+        "mini_stocking_garland_cover_graphic.png",
+        "stockings",
+    ),
+    PatternSpec(
+        17,
+        "17_Year_of_the_Fire_Goat_2027_Plushie_Set.md",
+        ("YEAR OF THE", "FIRE GOAT 2027"),
+        "Goat + companion lamb",
+        "A sculpted zodiac goat and rounder lamb with fixed festive details.",
+        "US TERMS",
+        "INTERMEDIATE",
+        "5–7 H PLANNING EST. · VERIFY",
+        "HEIGHT UNVERIFIED · MEASURE SAMPLE",
+        "WORSTED · 3.5 MM HOOK",
+        (
+            PaletteEntry("WARM CREAM", "goat head, body + upper limbs", "#E8DDC5"),
+            PaletteEntry("LIGHT TAN", "muzzles, goat ear linings + all hooves", "#C5A87B"),
+            PaletteEntry("ESPRESSO BROWN", "two yarn-only horns", "#49372E"),
+            PaletteEntry("SCARLET RED", "fixed sash + lamb collar", "#A63832"),
+            PaletteEntry("BURNT ORANGE", "twelve flame peaks", "#D66B31"),
+            PaletteEntry("GOLDEN YELLOW", "flame-tip stitches + flowers", "#E0AD34"),
+            PaletteEntry("WOOL WHITE", "companion lamb main shade", "#F1EADC"),
+            PaletteEntry("PALE PINK", "lamb inner ears + optional blush", "#D9A2AA"),
+            PaletteEntry("SAGE GREEN", "optional crochet leaves", "#66805D"),
+        ),
+        "MATCH 12 NECK ANCHORS · FLATTEN EACH 8-ST LEG INTO 4 PAIRS",
+        "fire_goat_lamb_cover_graphic.png",
+        "fire_goats",
+    ),
 )
 
 
@@ -478,7 +525,7 @@ def darker(rgb: tuple[int, int, int], factor: float = 0.72) -> tuple[int, int, i
     return tuple(max(0, round(channel * factor)) for channel in rgb)  # type: ignore[return-value]
 
 
-def contrasting_pdf_colour(value: str):  # noqa: ANN201
+def contrasting_pdf_colour(value: str):
     """Choose the higher-contrast near-black or white text colour."""
 
     channels = []
@@ -555,13 +602,13 @@ def create_graphic_cover(spec: PatternSpec) -> None:
     third = colours[2] if len(colours) > 2 else (70, 70, 70)
     outline = darker(main, 0.58)
 
-    def ellipse(box, colour, seed):  # noqa: ANN001
+    def ellipse(box, colour, seed):
         mask, md = mask_image(size)
         md.ellipse(box, fill=255)
         shape_layer(canvas, mask, colour, seed=seed)
         draw.ellipse(box, outline=darker(colour, 0.58), width=5)
 
-    def polygon(points, colour, seed):  # noqa: ANN001
+    def polygon(points, colour, seed):
         mask, md = mask_image(size)
         md.polygon(points, fill=255)
         shape_layer(canvas, mask, colour, seed=seed)
@@ -670,6 +717,122 @@ def create_graphic_cover(spec: PatternSpec) -> None:
         polygon([(660, 1280), (540, 1390), (690, 1425), (700, 1335)], third, 160)
         polygon([(740, 1280), (860, 1390), (710, 1425), (700, 1335)], third, 161)
         draw.rounded_rectangle((625, 1200, 775, 1340), radius=34, fill=third, outline=darker(third), width=5)
+    elif spec.motif == "stockings":
+        # A sweeping garland establishes the 24-piece use; separate evergreen
+        # heel and toe patches preserve the written red-foot original colourway.
+        evergreen = colours[2]
+        draw.arc((170, 220, 1230, 600), 190, 350, fill="#79634F", width=16)
+        for index, x in enumerate((255, 455, 655, 855, 1055)):
+            draw.line((x, 402, x, 455), fill="#79634F", width=8)
+            mini = [
+                (x - 46, 438),
+                (x + 46, 438),
+                (x + 37, 592),
+                (x + 98, 630),
+                (x + 72, 692),
+                (x - 7, 675),
+                (x - 48, 625),
+            ]
+            polygon(mini, main, 170 + index)
+            mini_heel = [(x - 45, 554), (x + 10, 578), (x + 3, 650), (x - 48, 625)]
+            mini_toe = [(x + 53, 602), (x + 98, 630), (x + 72, 692), (x + 37, 684), (x + 47, 646)]
+            polygon(mini_heel, evergreen, 176 + index)
+            polygon(mini_toe, evergreen, 182 + index)
+            draw.rounded_rectangle(
+                (x - 59, 418, x + 59, 474),
+                radius=17,
+                fill=second,
+                outline=darker(second),
+                width=4,
+            )
+            number = str(index + 1)
+            number_font = pil_font(28, bold=True)
+            number_box = draw.textbbox((0, 0), number, font=number_font)
+            draw.text((x - (number_box[2] - number_box[0]) / 2, 505), number, font=number_font, fill=second)
+
+        # Draw the loop behind the enlarged stocking so both anchors disappear
+        # into the back-centre cuff rather than appearing on the foot.
+        draw.arc((520, 545, 700, 715), 180, 360, fill=evergreen, width=15)
+        large = [(490, 700), (780, 700), (770, 1115), (995, 1235), (955, 1385), (680, 1360), (490, 1195)]
+        polygon(large, main, 190)
+        large_heel = [(490, 1035), (610, 1058), (642, 1194), (560, 1260), (490, 1195)]
+        large_toe = [(835, 1150), (995, 1235), (955, 1385), (838, 1374), (854, 1284)]
+        polygon(large_heel, evergreen, 191)
+        polygon(large_toe, evergreen, 192)
+        draw.line((490, 1035, 610, 1058, 642, 1194), fill=darker(evergreen, 0.72), width=7)
+        draw.line((835, 1150, 854, 1284, 838, 1374), fill=darker(evergreen, 0.72), width=7)
+        cuff_mask, cuff_draw = mask_image(size)
+        cuff_draw.rounded_rectangle((440, 650, 830, 815), radius=44, fill=255)
+        shape_layer(canvas, cuff_mask, second, spacing=34, seed=193)
+        draw.rounded_rectangle((440, 650, 830, 815), radius=44, outline=darker(second), width=6)
+        draw.text((566, 905), "24", font=pil_font(80, bold=True, serif=True), fill=second)
+    elif spec.motif == "fire_goats":
+        tan = colours[1]
+        espresso = colours[2]
+        scarlet = colours[3]
+        orange = colours[4]
+        yellow = colours[5]
+        wool_white = colours[6]
+        pale_pink = colours[7]
+        sage = colours[8]
+        face_thread = (45, 42, 40)
+
+        # Fire Goat: warm-cream head/body, light-tan points, espresso yarn horns
+        # and a permanently sewn scarlet flame sash — the written original palette.
+        ellipse((345, 790, 875, 1335), main, 190)
+        for box in ((390, 1190, 535, 1490), (680, 1190, 825, 1490)):
+            ellipse(box, main, 191 + box[0])
+            draw.rounded_rectangle((box[0] + 3, 1410, box[2] - 3, 1500), radius=30, fill=tan, outline=darker(tan), width=4)
+        polygon([(365, 1015), (265, 950), (280, 1060), (390, 1110)], main, 192)
+        ellipse((335, 390, 845, 870), main, 193)
+        polygon([(385, 530), (190, 455), (315, 655), (445, 670)], main, 194)
+        polygon([(795, 530), (1010, 455), (875, 655), (755, 675)], main, 195)
+        polygon([(340, 535), (245, 505), (330, 600), (400, 620)], tan, 196)
+        polygon([(838, 535), (948, 505), (850, 605), (785, 625)], tan, 197)
+        draw.line([(500, 465), (420, 335), (390, 225), (435, 160)], fill=espresso, width=50, joint="curve")
+        draw.line([(680, 465), (760, 335), (790, 225), (745, 160)], fill=espresso, width=50, joint="curve")
+        draw.line([(500, 460), (438, 335), (415, 238)], fill=darker(espresso, 1.45), width=12, joint="curve")
+        draw.line([(680, 460), (742, 335), (765, 238)], fill=darker(espresso, 1.45), width=12, joint="curve")
+        # Optional crochet-only crown belongs between the goat horns, never on
+        # the lamb and never as a loose or glued accessory.
+        for x, y in ((545, 385), (595, 365), (645, 390)):
+            draw.line((x, y + 16, x - 8, y + 58), fill=sage, width=8)
+            for petal in range(5):
+                angle = math.radians(petal * 72 - 90)
+                px = x + 15 * math.cos(angle)
+                py = y + 15 * math.sin(angle)
+                draw.ellipse((px - 10, py - 10, px + 10, py + 10), fill=yellow, outline=darker(yellow), width=3)
+            draw.ellipse((x - 7, y - 7, x + 7, y + 7), fill=orange, outline=darker(orange), width=2)
+        ellipse((455, 610, 725, 840), tan, 198)
+        draw.arc((460, 585, 548, 690), 200, 342, fill=face_thread, width=10)
+        draw.arc((632, 585, 720, 690), 198, 340, fill=face_thread, width=10)
+        draw.line((590, 695, 590, 735), fill=face_thread, width=8)
+        draw.arc((548, 715, 632, 785), 5, 175, fill=face_thread, width=7)
+
+        sash = [(360, 820), (455, 775), (855, 1260), (765, 1320)]
+        polygon(sash, scarlet, 199)
+        for index in range(12):
+            x = 414 + index * 32
+            y = 838 + index * 39
+            polygon([(x, y), (x + 17, y - 29), (x + 34, y + 5)], orange, 200 + index)
+            draw.line((x + 16, y - 19, x + 19, y - 5), fill=yellow, width=5)
+
+        # Hornless companion lamb: wool-white body, pale-pink ear linings, tan
+        # hooves and a closed scarlet band with no dangling tie.
+        ellipse((865, 1030, 1190, 1375), wool_white, 220)
+        for x in (900, 1080):
+            ellipse((x, 1280, x + 80, 1500), wool_white, 211 + x)
+            draw.rounded_rectangle((x, 1445, x + 80, 1500), radius=18, fill=tan, outline=darker(tan), width=4)
+        ellipse((825, 785, 1135, 1095), wool_white, 214)
+        polygon([(855, 880), (740, 825), (820, 945), (885, 970)], wool_white, 215)
+        polygon([(1100, 880), (1215, 825), (1140, 950), (1080, 972)], wool_white, 216)
+        polygon([(842, 882), (780, 852), (830, 913), (870, 928)], pale_pink, 227)
+        polygon([(1112, 882), (1176, 852), (1124, 917), (1088, 930)], pale_pink, 228)
+        draw.arc((865, 865, 930, 935), 195, 345, fill=face_thread, width=8)
+        draw.arc((1030, 865, 1095, 935), 195, 345, fill=face_thread, width=8)
+        draw.polygon([(980, 955), (960, 975), (1000, 975)], fill=face_thread)
+        draw.rounded_rectangle((848, 1040, 1115, 1094), radius=18, fill=scarlet, outline=darker(scarlet), width=5)
+        draw.line((865, 1064, 1098, 1064), fill=darker(scarlet, 1.25), width=6)
 
     draw.rounded_rectangle((160, 1540, 1240, 1618), radius=30, fill="#E7ECE7", outline="#76836A", width=3)
     label = "ILLUSTRATIVE CROCHET MOTIF · WRITTEN DIRECTIONS CONTROL"
@@ -699,6 +862,30 @@ def create_maker_map(spec: PatternSpec) -> None:
     source_text = normalize_branding(spec.source.read_text(encoding="utf-8"))
     headings = component_headings(source_text)
     cards = headings[:9]
+    if spec.number == 16:
+        cards = [
+            "Cuff + leg",
+            "Heel flap + mandatory turn",
+            "Pick up 5 + 10 + 5 + 3",
+            "Even 23 stitches to 20",
+            "Shape + close toe",
+            "Make + secure hanging loop",
+            "Finish + inspect one stocking",
+            "Batch all 24 stockings",
+            "Space on cord + final QA",
+        ]
+    elif spec.number == 17:
+        cards = [
+            "GOAT · Head + 12-stitch neck",
+            "GOAT · Muzzle, ears + horns",
+            "GOAT · Body + 12-stitch neck",
+            "GOAT · Arms, legs + tail",
+            "GOAT · Fixed flame sash",
+            "LAMB · Head, body + muzzle",
+            "LAMB · Ears, legs + tail",
+            "LAMB · Fixed collar",
+            "ASSEMBLY · Match, pin + inspect",
+        ]
     if len(cards) < 4:
         cards.extend(
             [
@@ -758,7 +945,7 @@ def ensure_visual_assets(spec: PatternSpec) -> None:
     create_maker_map(spec)
 
 
-def draw_fitted_text(canvas, font_name: str, text: str, x: float, y: float, max_width: float, start: float, minimum: float) -> float:  # noqa: ANN001
+def draw_fitted_text(canvas, font_name: str, text: str, x: float, y: float, max_width: float, start: float, minimum: float) -> float:
     size = start
     while size > minimum and pdfmetrics.stringWidth(text, font_name, size) > max_width:
         size -= 0.5
@@ -777,7 +964,7 @@ class CollectionCover(Flowable):
         self.width = PAGE_WIDTH
         self.height = PAGE_HEIGHT - 0.2 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return self.width, min(self.height, available_height)
 
     def draw(self) -> None:
@@ -872,7 +1059,7 @@ class CollectionClosingPanel(Flowable):
         self.width = width
         self.height = 172 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return min(self.width, available_width), min(self.height, available_height)
 
     def draw(self) -> None:
@@ -923,7 +1110,7 @@ class PrinterCover(Flowable):
         self.width = PAGE_WIDTH
         self.height = PAGE_HEIGHT - 0.2 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return self.width, min(self.height, available_height)
 
     def draw(self) -> None:
@@ -984,7 +1171,7 @@ class PrinterNotesPanel(Flowable):
         self.width = width
         self.height = 228 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return min(self.width, available_width), min(self.height, available_height)
 
     def draw(self) -> None:
@@ -1049,7 +1236,7 @@ class CollectionDocument(BaseDocTemplate):
             ]
         )
 
-    def set_metadata(self, canvas) -> None:  # noqa: ANN001
+    def set_metadata(self, canvas) -> None:
         subject = "Printer-saver crochet pattern" if self.printer_saver else "Branded crochet pattern"
         canvas.setTitle(f"{self.spec.code} — {self.spec.title}")
         canvas.setAuthor(BRAND)
@@ -1057,10 +1244,10 @@ class CollectionDocument(BaseDocTemplate):
         canvas.setCreator(BRAND)
         canvas.setKeywords(f"crochet, pattern, {self.spec.code}, {self.spec.title}, {BRAND}")
 
-    def draw_cover_meta(self, canvas, doc) -> None:  # noqa: ANN001
+    def draw_cover_meta(self, canvas, doc) -> None:
         self.set_metadata(canvas)
 
-    def draw_content_page(self, canvas, doc) -> None:  # noqa: ANN001
+    def draw_content_page(self, canvas, doc) -> None:
         self.set_metadata(canvas)
         canvas.saveState()
         y = PAGE_HEIGHT - 13 * mm
@@ -1698,7 +1885,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--codes",
         default="2-15",
-        help="Comma-separated numbers/ranges to build (default: 2-15)",
+        help="Comma-separated numbers/ranges to build (default: 2-15; NS 16–17 are supported)",
     )
     parser.add_argument("--skip-printer-savers", action="store_true")
     parser.add_argument("--skip-bundle", action="store_true")
@@ -1718,7 +1905,8 @@ def main() -> int:
         if not args.skip_printer_savers:
             printer_output, printer_blocks = build_one(spec, fonts, printer_saver=True)
             postflight(spec, printer_output, printer_blocks, printer_saver=True)
-    if not args.skip_bundle and not args.skip_printer_savers and len(specs) == len(SPECS):
+    selected_codes = tuple(spec.number for spec in specs)
+    if not args.skip_bundle and not args.skip_printer_savers and selected_codes == LEGACY_BUNDLE_CODES:
         print(create_bundle(specs))
     for spec in specs:
         print(spec.main_output)

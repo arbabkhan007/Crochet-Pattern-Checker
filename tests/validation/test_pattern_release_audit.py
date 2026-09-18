@@ -9,7 +9,6 @@ from pathlib import Path
 
 import pytest
 
-
 ROOT = Path(__file__).resolve().parents[2]
 AUDIT = Path("tools/pattern_release_audit.py")
 
@@ -35,8 +34,8 @@ def test_current_commercial_pattern_collection_passes_release_gate():
     result = run_audit(ROOT)
 
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "count rows checked: 517" in result.stdout
-    assert "assertions: 2523" in result.stdout
+    assert "count rows checked: 700" in result.stdout
+    assert "assertions: 3220" in result.stdout
     assert "PASS - all release-gate checks succeeded" in result.stdout
 
 
@@ -79,6 +78,18 @@ def test_current_commercial_pattern_collection_passes_release_gate():
             "\n## Palette notes\n",
             "missing section '## Colorways'",
         ),
+        (
+            "16_Crochet_Mini_Stocking_Advent_Garland.md",
+            "Row 6 | BLO sc in each st across, ch 1, turn",
+            "Row 6 | BLO sc in each st across; do not turn",
+            "missing release safeguard 'Row 6 | BLO sc in each st across, ch 1, turn'",
+        ),
+        (
+            "17_Year_of_the_Fire_Goat_2027_Plushie_Set.md",
+            "| R13 | [sc, dec] x 4 | (8) | corrected even opening; FO with sewing tail |",
+            "| R13 | [sc, dec] x 4 | (9) | corrected even opening; FO with sewing tail |",
+            "got 8, expected 9",
+        ),
     ],
     ids=[
         "count",
@@ -87,6 +98,8 @@ def test_current_commercial_pattern_collection_passes_release_gate():
         "front-leg-safeguard",
         "required-care-section",
         "required-colourway-section",
+        "ns16-heel-turn-safeguard",
+        "ns17-even-leg-opening",
     ],
 )
 def test_release_gate_rejects_mutations(

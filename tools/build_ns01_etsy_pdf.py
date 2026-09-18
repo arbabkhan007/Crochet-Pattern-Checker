@@ -10,14 +10,16 @@ from __future__ import annotations
 import argparse
 import re
 import tempfile
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from hashlib import sha256
 from html import escape, unescape
 from pathlib import Path
-from typing import Iterable, Sequence
 
 from PIL import Image as PILImage
 from PIL import ImageDraw, ImageFont
+from pypdf import PdfReader
+from pypdf.generic import ContentStream, IndirectObject
 from reportlab.lib import colors
 from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
@@ -42,9 +44,6 @@ from reportlab.platypus import (
     TableStyle,
 )
 from reportlab.platypus.tableofcontents import TableOfContents
-from pypdf import PdfReader
-from pypdf.generic import ContentStream, IndirectObject
-
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "patterns/01_Hamish_the_Highland_Cow.md"
@@ -233,9 +232,7 @@ def is_special(line: str, next_line: str = "") -> bool:
         return True
     if re.match(r"^(?:[-*]|\d+\.)\s+", stripped):
         return True
-    if stripped.startswith("|") and is_table_separator(next_line):
-        return True
-    return False
+    return stripped.startswith("|") and is_table_separator(next_line)
 
 
 def parse_markdown(text: str) -> list[Block]:
@@ -303,7 +300,7 @@ def inline_markup(text: str) -> str:
 
     value = escape(text, quote=False)
     value = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", value)
-    value = re.sub(r"`(.+?)`", r"<font name=\"Courier\">\1</font>", value)
+    value = re.sub(r"`(.+?)`", r'<font name="Courier">\1</font>', value)
     value = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"<i>\1</i>", value)
     return value.replace("\n", "<br/>")
 
@@ -524,7 +521,7 @@ class CoverFlowable(Flowable):
         self.width = PAGE_WIDTH
         self.height = PAGE_HEIGHT - 0.2 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return self.width, min(self.height, available_height)
 
     def draw(self) -> None:
@@ -624,7 +621,7 @@ class PrinterCoverFlowable(Flowable):
         self.width = PAGE_WIDTH
         self.height = PAGE_HEIGHT - 0.2 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return self.width, min(self.height, available_height)
 
     def draw(self) -> None:
@@ -694,7 +691,7 @@ class ClosingPanel(Flowable):
         self.width = width
         self.height = 172 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return min(self.width, available_width), min(self.height, available_height)
 
     def draw(self) -> None:
@@ -747,7 +744,7 @@ class PrinterNotesPanel(Flowable):
         self.width = width
         self.height = 228 * mm
 
-    def wrap(self, available_width, available_height):  # noqa: ANN001
+    def wrap(self, available_width, available_height):
         return min(self.width, available_width), min(self.height, available_height)
 
     def draw(self) -> None:
@@ -829,10 +826,10 @@ class PatternDocument(BaseDocTemplate):
             ]
         )
 
-    def draw_cover_meta(self, canvas, doc) -> None:  # noqa: ANN001
+    def draw_cover_meta(self, canvas, doc) -> None:
         self.set_pdf_metadata(canvas)
 
-    def draw_content_page(self, canvas, doc) -> None:  # noqa: ANN001
+    def draw_content_page(self, canvas, doc) -> None:
         self.set_pdf_metadata(canvas)
         canvas.saveState()
         y = PAGE_HEIGHT - 13 * mm
@@ -863,7 +860,7 @@ class PatternDocument(BaseDocTemplate):
         canvas.drawRightString(PAGE_WIDTH - 18 * mm, 7.2 * mm, f"{DESIGN_CODE}   ·   {doc.page}")
         canvas.restoreState()
 
-    def set_pdf_metadata(self, canvas) -> None:  # noqa: ANN001
+    def set_pdf_metadata(self, canvas) -> None:
         canvas.setTitle(f"{DESIGN_CODE} — {TITLE} {SUBTITLE}")
         canvas.setAuthor(BRAND)
         subject = "Printer-saver crochet pattern" if self.printer_saver else "Branded crochet pattern"
