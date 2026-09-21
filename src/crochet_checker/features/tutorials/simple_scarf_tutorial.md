@@ -1,7 +1,7 @@
 # Simple Scarf
 
 **Difficulty:** Beginner  
-**Created:** September 12, 2026
+**Created:** September 21, 2026
 
 ## Steps
 
