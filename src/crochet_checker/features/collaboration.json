@@ -128,6 +128,49 @@
         }
       ],
       "created": "2026-09-21T12:03:51.665803"
+    },
+    "proj_4": {
+      "name": "Granny Square Blanket",
+      "owner": "alice_designer",
+      "description": "Modern granny square blanket pattern",
+      "collaborators": [
+        "alice_designer",
+        "bob_tester",
+        "carol_editor"
+      ],
+      "versions": [
+        {
+          "content": "",
+          "author": "alice_designer",
+          "timestamp": "2026-09-21T13:34:18.164552",
+          "comment": "Initial version"
+        },
+        {
+          "content": "Row 1: Ch 20, sc across",
+          "author": "alice_designer",
+          "timestamp": "2026-09-21T13:34:18.165691",
+          "comment": "Initial pattern"
+        },
+        {
+          "content": "Row 1: Ch 25, sc across\nRow 2: Ch 1, turn, sc across",
+          "author": "bob_tester",
+          "timestamp": "2026-09-21T13:34:18.165985",
+          "comment": "Added row 2"
+        }
+      ],
+      "comments": [
+        {
+          "author": "carol_editor",
+          "text": "Love the pattern! Maybe add a border?",
+          "timestamp": "2026-09-21T13:34:18.166280"
+        },
+        {
+          "author": "alice_designer",
+          "text": "Good idea! Working on it.",
+          "timestamp": "2026-09-21T13:34:18.166613"
+        }
+      ],
+      "created": "2026-09-21T13:34:18.164562"
     }
   },
   "users": {}
