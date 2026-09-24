@@ -1,63 +1,151 @@
-from __future__ import annotations
-from enum import Enum, auto
-from typing import Optional
-from pydantic import BaseModel
+"""
+AST Lexer & Frontmatter Isolation
+Strips formatting, isolates Frontmatter/Glossary/Instructions
+"""
+import re
+from typing import List, Dict, Tuple, Optional
+from dataclasses import dataclass
 
-class TokenType(Enum):
-    NUMBER=auto(); STITCH_ABBREV=auto(); COMMA=auto(); LPAREN=auto(); RPAREN=auto()
-    TIMES=auto(); INTO=auto(); EACH=auto(); AROUND=auto(); NEXT=auto(); STITCH=auto()
-    REMAINING=auto(); MAGIC_RING=auto(); TEXT=auto(); EOF=auto()
 
-class Token(BaseModel):
-    type: TokenType; value: str; position: int = 0
+@dataclass
+class Section:
+    """Represents a section of the pattern"""
+    section_type: str  # 'glossary', 'notes', 'instructions', 'frontmatter'
+    content: str
+    line_number: int
 
-STITCH_ABBS = {"ch","sl st","slst","sc","hdc","dc","tr","inc","dec","sc2tog","dc2tog","fpdc","bpdc"}
 
 class Lexer:
-    def __init__(self, text): self.text = text; self.pos = 0; self.tokens = []
-    def tokenize(self):
-        self.pos = 0; self.tokens = []
-        while self.pos < len(self.text):
-            self._skip_ws()
-            if self.pos >= len(self.text): break
-            t = self._next(); 
-            if t: self.tokens.append(t)
-        self.tokens.append(Token(type=TokenType.EOF, value="", position=self.pos))
-        return self.tokens
-    def _skip_ws(self):
-        while self.pos < len(self.text) and self.text[self.pos] in " \t\n\r": self.pos += 1
-    def _next(self):
-        if self.pos >= len(self.text): return None
-        ch = self.text[self.pos]
-        if ch == ",": self.pos += 1; return Token(type=TokenType.COMMA, value=",", position=self.pos-1)
-        if ch == "(": self.pos += 1; return Token(type=TokenType.LPAREN, value="(", position=self.pos-1)
-        if ch == ")": self.pos += 1; return Token(type=TokenType.RPAREN, value=")", position=self.pos-1)
-        if ch.isdigit(): return self._num()
-        if ch in "×*": self.pos += 1; return Token(type=TokenType.TIMES, value=ch, position=self.pos-1)
-        if ch.isalpha(): return self._word()
-        self.pos += 1; return None
-    def _num(self):
-        s = self.pos
-        while self.pos < len(self.text) and self.text[self.pos].isdigit(): self.pos += 1
-        return Token(type=TokenType.NUMBER, value=self.text[s:self.pos], position=s)
-    def _word(self):
-        s = self.pos
-        while self.pos < len(self.text) and (self.text[self.pos].isalpha() or self.text[self.pos]=="'"): self.pos += 1
-        w = self.text[s:self.pos].lower()
-        rest = self.text[self.pos:].lstrip()
-        if w=="sl" and rest.startswith("st"):
-            self.pos += len(self.text[self.pos:]) - len(self.text[self.pos:].lstrip()); self.pos += 2
-            return Token(type=TokenType.STITCH_ABBREV, value="sl st", position=s)
-        if w=="magic" and rest.startswith("ring"):
-            self.pos += len(self.text[self.pos:]) - len(self.text[self.pos:].lstrip()); self.pos += 4
-            return Token(type=TokenType.MAGIC_RING, value="magic ring", position=s)
-        kw = {"in":TokenType.INTO,"into":TokenType.INTO,"each":TokenType.EACH,"around":TokenType.AROUND,
-              "next":TokenType.NEXT,"st":TokenType.STITCH,"sts":TokenType.STITCH,
-              "rem":TokenType.REMAINING,"remaining":TokenType.REMAINING,"x":TokenType.TIMES}
-        if w in kw: return Token(type=kw[w], value=w, position=s)
-        if w in STITCH_ABBS or w == "mr":
-            if w == "mr": return Token(type=TokenType.MAGIC_RING, value="MR", position=s)
-            return Token(type=TokenType.STITCH_ABBREV, value=w, position=s)
-        return Token(type=TokenType.TEXT, value=w, position=s)
+    """Tokenizes and isolates pattern sections"""
+    
+    def __init__(self):
+        self.section_patterns = {
+            'glossary': re.compile(r'^(glossary|abbreviations|terms|stitch definitions)', re.IGNORECASE),
+            'notes': re.compile(r'^(notes?|instructions?|special instructions)', re.IGNORECASE),
+            'instructions': re.compile(r'^(round|row|instructions)', re.IGNORECASE)
+        }
+        self.markdown_pattern = re.compile(r'[*_#`]|^\s*[-*+]\s+')
+        self.round_pattern = re.compile(r'(round|row)\s+(\d+)', re.IGNORECASE)
+    
+    def tokenize(self, markdown_text: str) -> List[Section]:
+        """Tokenize markdown into discrete sections"""
+        sections = []
+        lines = markdown_text.split('\n')
+        current_section = None
+        current_content = []
+        line_num = 0
+        
+        for line in lines:
+            line_num += 1
+            stripped = line.strip()
+            
+            # Check for section header
+            section_type = self._detect_section_type(stripped)
+            
+            if section_type:
+                # Save previous section
+                if current_section and current_content:
+                    sections.append(Section(
+                        section_type=current_section,
+                        content='\n'.join(current_content),
+                        line_number=line_num - len(current_content)
+                    ))
+                
+                # Start new section
+                current_section = section_type
+                current_content = [stripped]
+            elif current_section:
+                current_content.append(line)
+        
+        # Save last section
+        if current_section and current_content:
+            sections.append(Section(
+                section_type=current_section,
+                content='\n'.join(current_content),
+                line_number=line_num - len(current_content) + 1
+            ))
+        
+        return sections
+    
+    def _detect_section_type(self, line: str) -> Optional[str]:
+        """Detect section type from line"""
+        cleaned = self.strip_markdown(line)
+        
+        for section_type, pattern in self.section_patterns.items():
+            if pattern.search(cleaned):
+                return section_type
+        
+        return None
+    
+    def strip_markdown(self, text: str) -> str:
+        """Strip markdown formatting"""
+        return self.markdown_pattern.sub('', text).strip()
+    
+    def extract_round_number(self, line: str) -> Optional[int]:
+        """Extract round/row number from line"""
+        match = self.round_pattern.search(line)
+        if match:
+            return int(match.group(2))
+        return None
+    
+    def isolate_glossary(self, sections: List[Section]) -> Dict[str, str]:
+        """Extract glossary definitions from sections"""
+        glossary = {}
+        
+        for section in sections:
+            if section.section_type == 'glossary':
+                lines = section.content.split('\n')
+                for line in lines:
+                    # Parse "abbreviation: definition" or "abbreviation - definition"
+                    match = re.match(r'^\s*([^:]+?)\s*[:\-]\s*(.+?)\s*$', line)
+                    if match:
+                        abbrev = self.strip_markdown(match.group(1)).strip()
+                        definition = match.group(2).strip()
+                        if abbrev and not abbrev.lower().startswith(('round', 'row', 'note')):
+                            glossary[abbrev] = definition
+        
+        return glossary
+    
+    def isolate_instructions(self, sections: List[Section]) -> List[Tuple[int, str]]:
+        """Extract instruction lines with line numbers"""
+        instructions = []
+        
+        for section in sections:
+            if section.section_type == 'instructions':
+                lines = section.content.split('\n')
+                for i, line in enumerate(lines):
+                    round_num = self.extract_round_number(line)
+                    if round_num:
+                        instructions.append((section.line_number + i, line))
+        
+        return instructions
 
-def tokenize(text): return Lexer(text).tokenize()
+
+if __name__ == "__main__":
+    print("🔤 Lexer Test")
+    lexer = Lexer()
+    
+    test_pattern = """
+# Test Pattern
+
+## Glossary
+sc: single crochet
+dc: double crochet
+3-tr-cl: 3 Treble Cluster
+
+## Notes
+Work in continuous rounds
+
+## Instructions
+Round 1: 6 sc in magic ring
+Round 2: 2 sc in each st around
+"""
+    
+    sections = lexer.tokenize(test_pattern)
+    print(f"Found {len(sections)} sections")
+    
+    glossary = lexer.isolate_glossary(sections)
+    print(f"Glossary: {glossary}")
+    
+    instructions = lexer.isolate_instructions(sections)
+    print(f"Instructions: {len(instructions)} rounds")

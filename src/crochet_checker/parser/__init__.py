@@ -1,2 +1,47 @@
-from .lexer import Lexer, Token, TokenType, tokenize
-from .parser import CrochetParser, parse_instruction, parse_pattern
+"""
+Parser package - AST-based pattern parsing and unrolling
+
+Pipeline (per 4-pattern audit):
+  1. MarkdownFrontmatterSanitizer  -> strips non-instructional markdown
+  2. GlossaryPrePassExtractor      -> symbol table before instruction parsing
+  3. MultiPieceASTBuilder          -> isolated PieceNode scopes
+  4. RecursiveLoopUnroller         -> flat array of atomic operations
+"""
+
+from .lexer import Lexer, Section
+from .sanitizer import MarkdownFrontmatterSanitizer
+from .glossary import GlossaryPrePassExtractor, GlossaryEntry
+from .ast_builder import (
+    ASTBuilder,
+    MultiPieceASTBuilder,
+    PatternNode,
+    PieceNode,
+    RoundNode,
+    StitchInstruction,
+    ConstructionMode,
+)
+from .unroller import Unroller, RepeatNode, RecursiveLoopUnroller, AtomicOperation
+
+__all__ = [
+    # Lexer
+    'Lexer',
+    'Section',
+    # Sanitizer
+    'MarkdownFrontmatterSanitizer',
+    # Glossary
+    'GlossaryPrePassExtractor',
+    'GlossaryEntry',
+    # AST Builder
+    'ASTBuilder',
+    'MultiPieceASTBuilder',
+    'PatternNode',
+    'PieceNode',
+    'RoundNode',
+    'StitchInstruction',
+    'ConstructionMode',
+    # Unroller
+    'Unroller',
+    'RepeatNode',
+    'RecursiveLoopUnroller',
+    'AtomicOperation',
+]
