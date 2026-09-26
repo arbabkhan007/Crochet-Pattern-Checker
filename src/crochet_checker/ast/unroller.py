@@ -190,3 +190,54 @@ if __name__ == "__main__":
         print(f"  {i}. {instr.stitch_type} x{instr.count}")
     
     print("\n✅ AST Unroller working!")
+
+# Legacy compatibility alias.
+try:
+    Unroller
+except NameError:
+    Unroller = ASTUnroller
+
+
+# Legacy compatibility API.
+def _legacy_unroll(self, text, *args, **kwargs):
+    """
+    Legacy text-based unroller.
+
+    Example:
+        *sc 2* repeat 3 times
+    becomes:
+        sc sc sc sc sc sc
+    """
+    import re
+
+    value = str(text).strip()
+
+    repeat_match = re.search(
+        r"\*(.*?)\*\s*repeat\s+(\d+)\s+times",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    if repeat_match:
+        body = repeat_match.group(1).strip()
+        count = int(repeat_match.group(2))
+        return " ".join([body] * count)
+
+    twice_match = re.search(
+        r"\*(.*?)\*\s*(twice|thrice)",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    if twice_match:
+        body = twice_match.group(1).strip()
+        count = 2 if twice_match.group(2).lower() == "twice" else 3
+        return " ".join([body] * count)
+
+    return value
+
+
+ASTUnroller.unroll = _legacy_unroll
+
+# Legacy class name.
+Unroller = ASTUnroller
