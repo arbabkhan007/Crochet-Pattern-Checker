@@ -1,0 +1,102 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.1, pytest-9.1.1, pluggy-1.6.0 -- /workspaces/Crochet-Pattern-Checker/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspaces/crochet-pattern-checker
+configfile: pyproject.toml
+plugins: cov-7.1.0, anyio-4.14.2
+collecting ... collected 0 items / 3 errors
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/pdf/test_pdf.py ____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/pdf/test_pdf.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/pdf/test_pdf.py:4: in <module>
+    from crochet_checker.pdf import PDFConfig, PDFGenerator, generate_pdf_html
+src/crochet_checker/pdf/__init__.py:3: in <module>
+    from .generator import PDFConfig, PDFGenerator, generate_pdf_html, TEMPLATES
+E   ImportError: cannot import name 'PDFConfig' from 'crochet_checker.pdf.generator' (/workspaces/crochet-pattern-checker/src/crochet_checker/pdf/generator.py)
+------------------------------- Captured stdout --------------------------------
+Warning: PDF import failed: cannot import name 'PDFConfig' from 'crochet_checker.pdf.generator' (/workspaces/crochet-pattern-checker/src/crochet_checker/pdf/generator.py)
+Warning: Utils import failed: cannot import name 'Render2D' from 'crochet_checker.visualization.render_2d' (/workspaces/crochet-pattern-checker/src/crochet_checker/visualization/render_2d.py)
+✅ Crochet Pattern Checker v1.0.0 loaded
+   Working features: 3
+__________ ERROR collecting tests/visualization/test_visualization.py __________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/visualization/test_visualization.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/visualization/test_visualization.py:4: in <module>
+    from crochet_checker.visualization import generate_circle_diagram, generate_stitch_count_chart, generate_crochet_chart, render_2d_preview, measure_pattern
+src/crochet_checker/visualization/__init__.py:9: in <module>
+    from .render_2d import Render2D, render_2d_preview
+E   ImportError: cannot import name 'Render2D' from 'crochet_checker.visualization.render_2d' (/workspaces/crochet-pattern-checker/src/crochet_checker/visualization/render_2d.py)
+____________________ ERROR collecting tests/web/test_web.py ____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/web/test_web.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/web/test_web.py:3: in <module>
+    from crochet_checker.web import app
+src/crochet_checker/web/__init__.py:2: in <module>
+    from .app import app
+src/crochet_checker/web/app.py:10: in <module>
+    from ..visualization import render_2d_preview, measure_pattern
+src/crochet_checker/visualization/__init__.py:9: in <module>
+    from .render_2d import Render2D, render_2d_preview
+E   ImportError: cannot import name 'Render2D' from 'crochet_checker.visualization.render_2d' (/workspaces/crochet-pattern-checker/src/crochet_checker/visualization/render_2d.py)
+=========================== short test summary info ============================
+ERROR tests/pdf/test_pdf.py
+ERROR tests/visualization/test_visualization.py
+ERROR tests/web/test_web.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+============================== 3 errors in 0.93s ===============================

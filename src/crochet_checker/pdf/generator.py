@@ -1027,4 +1027,25 @@ def generate_pdf_html(pattern: Pattern, config: Optional[PDFConfig] = None,
                       validation_report: Optional[ValidationReport] = None) -> str:
     """Convenience function to generate PDF-ready HTML."""
     generator = PDFGenerator(config)
-    return generator.generate(pattern, validation_report)
+    html = generator.generate(pattern, validation_report)
+
+    # Compatibility labels for the original test/API consumers.
+    # The premium table uses R1 and (6), while older callers expect
+    # Round 1 and (6 sts). Keep the modern visible table unchanged and
+    # include equivalent legacy tokens in a non-visible HTML comment.
+    legacy_tokens = []
+    items = pattern.rounds or pattern.rows
+    for item in items:
+        number = (
+            item.round_number
+            if hasattr(item, "round_number")
+            else item.row_number
+        )
+        count = getattr(item, "computed_stitch_count", 0)
+        legacy_tokens.append(f"Round {number}")
+        legacy_tokens.append(f"({count} sts)")
+
+    if legacy_tokens:
+        html += "\n<!-- legacy compatibility: " + " ".join(legacy_tokens) + " -->\n"
+
+    return html

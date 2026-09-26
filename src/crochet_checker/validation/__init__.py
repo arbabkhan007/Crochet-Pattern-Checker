@@ -42,3 +42,43 @@ __all__ = [
     'AssemblyGraphValidator',
     'AssemblyError',
 ]
+
+
+# Legacy compatibility exports used by the original test suite.
+from enum import Enum as _Enum
+
+from .validator import (
+    validate_pattern,
+    ValidationReport,
+    Severity as CompilerSeverity,
+)
+
+try:
+    from .stitch_counts import (
+        validate_stitch_counts,
+        StitchCountReport,
+    )
+except ImportError:
+    validate_stitch_counts = None
+    StitchCountReport = None
+
+
+class OverallStatus(_Enum):
+    PASS = "pass"
+    WARNING = "warning"
+    FAIL = "fail"
+    ERROR = "error"
+
+
+__all__.extend([
+    "validate_pattern",
+    "ValidationReport",
+    "CompilerSeverity",
+    "OverallStatus",
+    "validate_stitch_counts",
+    "StitchCountReport",
+])
+
+from .stitch_counts import ValidationFinding
+
+__all__.append("ValidationFinding")

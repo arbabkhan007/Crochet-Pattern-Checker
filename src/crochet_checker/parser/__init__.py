@@ -1,3 +1,4 @@
+from .parser import CrochetParser, ParseError, parse_pattern
 """
 Parser package - AST-based pattern parsing and unrolling
 
@@ -23,6 +24,9 @@ from .ast_builder import (
 from .unroller import Unroller, RepeatNode, RecursiveLoopUnroller, AtomicOperation
 
 __all__ = [
+    'CrochetParser',
+    'ParseError',
+    'parse_pattern',
     # Lexer
     'Lexer',
     'Section',

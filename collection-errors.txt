@@ -1,0 +1,241 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.1, pytest-9.1.1, pluggy-1.6.0 -- /workspaces/Crochet-Pattern-Checker/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspaces/crochet-pattern-checker
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-7.1.0, anyio-4.14.2
+collecting ... collected 24 items / 7 errors
+
+<Dir crochet-pattern-checker>
+  <Package tests>
+    <Package geometry>
+      <Module test_measurements.py>
+        Tests for measurements.
+        <Class TestStitchDimensions>
+          <Function test_default>
+          <Function test_from_gauge>
+          <Function test_worsted>
+        <Class TestMeasureEngine>
+          <Function test_measure_circle>
+          <Function test_radius_increases>
+          <Function test_inches>
+    <Package image>
+      <Module test_image.py>
+        Tests for image generation.
+        <Class TestImage>
+          <Function test_placeholder>
+          <Function test_category_icons>
+          <Function test_convenience>
+          <Function test_deterministic>
+    <Package simulation>
+      <Module test_simulation.py>
+        Tests for 3D simulation.
+        <Class TestVec3>
+          <Function test_add>
+          <Function test_length>
+          <Function test_normalized>
+        <Class TestMesh>
+          <Function test_vertex>
+          <Function test_face>
+          <Function test_obj>
+        <Class TestMeshGen>
+          <Function test_sphere>
+          <Function test_tube>
+          <Function test_circle>
+          <Function test_hat>
+        <Class TestShapeAnalysis>
+          <Function test_sphere>
+          <Function test_flat_circle>
+        <Class TestSurface>
+          <Function test_generates_mesh>
+          <Function test_obj_export>
+
+==================================== ERRORS ====================================
+_____________________ ERROR collecting tests/ai/test_ai.py _____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/ai/test_ai.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/ai/test_ai.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+E   ImportError: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+------------------------------- Captured stdout --------------------------------
+Warning: Parser import failed: cannot import name 'CrochetParser' from 'crochet_checker.parser' (/workspaces/crochet-pattern-checker/src/crochet_checker/parser/__init__.py)
+Warning: Validation import failed: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+✅ Crochet Pattern Checker v1.0.0 loaded
+   Working features: 2
+____________ ERROR collecting tests/ai_providers/test_providers.py _____________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/ai_providers/test_providers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/ai_providers/test_providers.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+E   ImportError: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+____________________ ERROR collecting tests/pdf/test_pdf.py ____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/pdf/test_pdf.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/pdf/test_pdf.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+E   ImportError: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+__________________ ERROR collecting tests/utils/test_utils.py __________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/utils/test_utils.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/utils/test_utils.py:2: in <module>
+    from crochet_checker.parser import CrochetParser
+E   ImportError: cannot import name 'CrochetParser' from 'crochet_checker.parser' (/workspaces/crochet-pattern-checker/src/crochet_checker/parser/__init__.py)
+___________ ERROR collecting tests/validation/test_stitch_counts.py ____________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/validation/test_stitch_counts.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/validation/test_stitch_counts.py:2: in <module>
+    from crochet_checker.validation import validate_pattern, OverallStatus
+E   ImportError: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+__________ ERROR collecting tests/visualization/test_visualization.py __________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/visualization/test_visualization.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/visualization/test_visualization.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+E   ImportError: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+____________________ ERROR collecting tests/web/test_web.py ____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/web/test_web.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/python.py:508: in importtestmodule
+    mod = import_path(
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+../Crochet-Pattern-Checker/.venv/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests/web/test_web.py:3: in <module>
+    from crochet_checker.web import app
+src/crochet_checker/web/__init__.py:2: in <module>
+    from .app import app
+src/crochet_checker/web/app.py:9: in <module>
+    from ..validation import validate_pattern
+E   ImportError: cannot import name 'validate_pattern' from 'crochet_checker.validation' (/workspaces/crochet-pattern-checker/src/crochet_checker/validation/__init__.py)
+=========================== short test summary info ============================
+ERROR tests/ai/test_ai.py
+ERROR tests/ai_providers/test_providers.py
+ERROR tests/pdf/test_pdf.py
+ERROR tests/utils/test_utils.py
+ERROR tests/validation/test_stitch_counts.py
+ERROR tests/visualization/test_visualization.py
+ERROR tests/web/test_web.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 7 errors during collection !!!!!!!!!!!!!!!!!!!!
+==================== 24 tests collected, 7 errors in 1.16s =====================

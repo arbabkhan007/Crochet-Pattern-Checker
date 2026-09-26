@@ -1,0 +1,90 @@
+................................                                         [100%]
+==================================== ERRORS ====================================
+_____________________ ERROR collecting tests/ai/test_ai.py _____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/ai/test_ai.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/ai/test_ai.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+../Crochet-Pattern-Checker/src/crochet_checker/validation/__init__.py:2: in <module>
+    from .validator import validate_pattern, ValidationReport, Severity
+E   ModuleNotFoundError: No module named 'crochet_checker.validation.validator'
+------------------------------- Captured stdout --------------------------------
+Warning: Validation import failed: No module named 'crochet_checker.validation.validator'
+✅ Crochet Pattern Checker v1.0.0 loaded
+   Working features: 4
+____________ ERROR collecting tests/ai_providers/test_providers.py _____________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/ai_providers/test_providers.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/ai_providers/test_providers.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+../Crochet-Pattern-Checker/src/crochet_checker/validation/__init__.py:2: in <module>
+    from .validator import validate_pattern, ValidationReport, Severity
+E   ModuleNotFoundError: No module named 'crochet_checker.validation.validator'
+____________________ ERROR collecting tests/pdf/test_pdf.py ____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/pdf/test_pdf.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/pdf/test_pdf.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+../Crochet-Pattern-Checker/src/crochet_checker/validation/__init__.py:2: in <module>
+    from .validator import validate_pattern, ValidationReport, Severity
+E   ModuleNotFoundError: No module named 'crochet_checker.validation.validator'
+___________ ERROR collecting tests/validation/test_stitch_counts.py ____________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/validation/test_stitch_counts.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/validation/test_stitch_counts.py:2: in <module>
+    from crochet_checker.validation import validate_pattern, OverallStatus
+../Crochet-Pattern-Checker/src/crochet_checker/validation/__init__.py:2: in <module>
+    from .validator import validate_pattern, ValidationReport, Severity
+E   ModuleNotFoundError: No module named 'crochet_checker.validation.validator'
+__________ ERROR collecting tests/visualization/test_visualization.py __________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/visualization/test_visualization.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/visualization/test_visualization.py:3: in <module>
+    from crochet_checker.validation import validate_pattern
+../Crochet-Pattern-Checker/src/crochet_checker/validation/__init__.py:2: in <module>
+    from .validator import validate_pattern, ValidationReport, Severity
+E   ModuleNotFoundError: No module named 'crochet_checker.validation.validator'
+____________________ ERROR collecting tests/web/test_web.py ____________________
+ImportError while importing test module '/workspaces/crochet-pattern-checker/tests/web/test_web.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/home/codespace/.python/current/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/web/test_web.py:3: in <module>
+    from crochet_checker.web import app
+../Crochet-Pattern-Checker/src/crochet_checker/web/__init__.py:2: in <module>
+    from .app import app
+../Crochet-Pattern-Checker/src/crochet_checker/web/app.py:9: in <module>
+    from ..validation import validate_pattern
+../Crochet-Pattern-Checker/src/crochet_checker/validation/__init__.py:2: in <module>
+    from .validator import validate_pattern, ValidationReport, Severity
+E   ModuleNotFoundError: No module named 'crochet_checker.validation.validator'
+=========================== short test summary info ============================
+ERROR tests/ai/test_ai.py
+ERROR tests/ai_providers/test_providers.py
+ERROR tests/pdf/test_pdf.py
+ERROR tests/validation/test_stitch_counts.py
+ERROR tests/visualization/test_visualization.py
+ERROR tests/web/test_web.py
+32 passed, 6 errors in 0.58s
