@@ -1,11 +1,10 @@
-"""Compiler-authoritative AI quality and consensus layer."""
+"""Compiler-authoritative AI quality layer for ChatGPT and Gemini."""
 
 from __future__ import annotations
 
 import hashlib
 import json
 import os
-import re
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -18,9 +17,6 @@ class AIClaim:
     model: str
     claim_type: str
     message: str
-    round_number: int | None = None
-    compiler_count: int | None = None
-    ai_count: int | None = None
     confidence: float = 0.0
     status: str = "UNVERIFIED"
     latency_ms: int = 0
@@ -58,7 +54,8 @@ class AIQualityReport:
         if not self.claims:
             return 1.0 if self.compiler_valid else 0.0
         return round(
-            sum(claim.confidence for claim in self.claims) / len(self.claims),
+            sum(claim.confidence for claim in self.claims)
+            / len(self.claims),
             3,
         )
 
@@ -77,15 +74,14 @@ class AIQualityReport:
         }
 
     def to_json(self) -> str:
-        return json.dumps(self.to_dict(), indent=2, ensure_ascii=False)
+        return json.dumps(self.to_dict(), indent=2)
 
 
 class AIQualityChecker:
     """
-    Safe AI layer.
+    Compare deterministic compiler results with AI explanations.
 
-    The deterministic compiler is always authoritative. AI output is advisory,
-    explicitly labeled, cached, and never directly applied to source patterns.
+    The compiler is authoritative. AI results are advisory only.
     """
 
     def __init__(
@@ -93,17 +89,16 @@ class AIQualityChecker:
         mode: str = "offline",
         cache_dir: str | None = None,
     ):
-        allowed = {"offline", "cloud", "consensus", "local"}
-        if mode not in allowed:
-            raise ValueError(f"mode must be one of {sorted(allowed)}")
+        valid_modes = {"offline", "cloud", "consensus"}
+        if mode not in valid_modes:
+            raise ValueError(
+                f"mode must be one of: {', '.join(sorted(valid_modes))}"
+            )
 
         self.mode = mode
         self.cache_dir = Path(
             cache_dir
-            or os.environ.get(
-                "CROCHET_AI_CACHE",
-                ".crochet_cache/ai",
-            )
+            or os.environ.get("CROCHET_AI_CACHE", ".crochet_cache/ai")
         )
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
@@ -113,32 +108,17 @@ class AIQualityChecker:
             pattern_text.strip().encode("utf-8")
         ).hexdigest()[:24]
 
-    def _compiler_errors(self, report) -> list[str]:
-        return [
-            getattr(item, "message", str(item))
-            for item in getattr(report, "errors", [])
-        ]
-
-    def _compiler_counts(self, pattern) -> dict[int, int]:
-        result: dict[int, int] = {}
-
-        for item in getattr(pattern, "rounds", []) or getattr(pattern, "rows", []):
-            number = getattr(
-                item,
-                "round_number",
-                getattr(item, "row_number", 0),
-            )
-            result[int(number)] = int(
-                getattr(item, "computed_stitch_count", 0)
-            )
-
-        return result
-
-    def _cache_path(self, pattern_text: str) -> Path:
+    def _cache_file(self, pattern_text: str) -> Path:
         return self.cache_dir / f"{self.pattern_hash(pattern_text)}.json"
 
-    def load_cache(self, pattern_text: str) -> dict[str, Any] | None:
-        path = self._cache_path(pattern_text)
+    def _compiler_errors(self, report) -> list[str]:
+        return [
+            getattr(error, "message", str(error))
+            for error in getattr(report, "errors", [])
+        ]
+
+    def _cached(self, pattern_text: str) -> dict[str, Any] | None:
+        path = self._cache_file(pattern_text)
         if not path.exists():
             return None
 
@@ -147,59 +127,56 @@ class AIQualityChecker:
         except (OSError, json.JSONDecodeError):
             return None
 
-    def save_cache(self, pattern_text: str, report: AIQualityReport) -> None:
-        path = self._cache_path(pattern_text)
-        path.write_text(report.to_json(), encoding="utf-8")
+    def _save(self, pattern_text: str, report: AIQualityReport) -> None:
+        self._cache_file(pattern_text).write_text(
+            report.to_json(),
+            encoding="utf-8",
+        )
 
-    def check(self, pattern, report) -> AIQualityReport:
+    def check(self, pattern, compiler_report) -> AIQualityReport:
         pattern_text = getattr(pattern, "source_text", str(pattern))
-        compiler_errors = self._compiler_errors(report)
-        compiler_counts = self._compiler_counts(pattern)
 
-        cached = self.load_cache(pattern_text)
-        if cached and self.mode != "offline":
-            return self._from_cached(cached)
+        if self.mode != "offline":
+            cached = self._cached(pattern_text)
+            if cached:
+                return self._from_dict(cached)
 
         result = AIQualityReport(
             pattern_hash=self.pattern_hash(pattern_text),
-            compiler_valid=bool(getattr(report, "valid", False)),
-            compiler_errors=compiler_errors,
+            compiler_valid=bool(
+                getattr(compiler_report, "valid", False)
+            ),
+            compiler_errors=self._compiler_errors(compiler_report),
             mode=self.mode,
         )
 
-        # Always provide deterministic compiler claims.
-        for number, count in compiler_counts.items():
-            result.claims.append(
-                AIClaim(
-                    provider="compiler",
-                    model="deterministic",
-                    claim_type="stitch_count",
-                    message=f"Round {number} computes {count} stitches.",
-                    round_number=number,
-                    compiler_count=count,
-                    ai_count=count,
-                    confidence=1.0,
-                    status="VERIFIED",
-                )
+        result.claims.append(
+            AIClaim(
+                provider="compiler",
+                model="deterministic",
+                claim_type="validation",
+                message=(
+                    "Compiler validation passed."
+                    if result.compiler_valid
+                    else "Compiler found validation errors."
+                ),
+                confidence=1.0,
+                status="VERIFIED",
             )
+        )
 
         if self.mode in {"cloud", "consensus"}:
-            self._add_cloud_claims(result, pattern, report)
+            self._query_cloud_models(result, pattern, compiler_report)
 
-        if self.mode == "local":
-            result.disagreements.append(
-                "Local AI mode requires an Ollama adapter; compiler result retained."
-            )
-
-        if compiler_errors:
+        if result.compiler_errors:
             result.recommendation = (
                 "Fix deterministic compiler errors first. "
-                "AI suggestions cannot override compiler arithmetic."
+                "AI output cannot override compiler arithmetic."
             )
         elif result.disagreements:
             result.recommendation = (
-                "AI providers disagree. Keep the compiler result authoritative "
-                "and review the conflicting rounds manually."
+                "AI providers disagree. Keep the compiler result "
+                "authoritative and review the pattern manually."
             )
         else:
             result.recommendation = (
@@ -208,48 +185,63 @@ class AIQualityChecker:
             )
 
         if self.mode != "offline":
-            self.save_cache(pattern_text, result)
+            self._save(pattern_text, result)
 
         return result
 
-    def _add_cloud_claims(self, result, pattern, report) -> None:
-        try:
-            from .provider import AIConfig, AIProvider
-        except ImportError as exc:
-            result.disagreements.append(f"AI provider unavailable: {exc}")
-            return
+    def _query_cloud_models(self, result, pattern, compiler_report):
+        from .provider import AIConfig, AIProvider
 
-        configurations = [
-            ("openai", AIConfig(
-                provider="openai",
-                model=os.environ.get("OPENAI_MODEL", "gpt-4o-mini"),
-            )),
-            ("gemini", AIConfig(
-                provider="gemini",
-                model=os.environ.get("GEMINI_MODEL", "gemini-1.5-flash"),
-            )),
+        providers = [
+            (
+                "openai",
+                "OPENAI_API_KEY",
+                AIConfig(
+                    provider="openai",
+                    model=os.environ.get(
+                        "OPENAI_MODEL",
+                        "gpt-4o-mini",
+                    ),
+                ),
+            ),
+            (
+                "gemini",
+                "GOOGLE_API_KEY",
+                AIConfig(
+                    provider="gemini",
+                    model=os.environ.get(
+                        "GEMINI_MODEL",
+                        "gemini-1.5-flash",
+                    ),
+                ),
+            ),
         ]
 
-        responses: dict[str, str] = {}
+        responses: list[str] = []
 
-        for provider_name, config in configurations:
-            if provider_name == "openai" and not os.environ.get("OPENAI_API_KEY"):
-                continue
-            if provider_name == "gemini" and not os.environ.get("GOOGLE_API_KEY"):
+        for name, key_name, config in providers:
+            if not os.environ.get(key_name):
+                result.disagreements.append(
+                    f"{name} skipped: {key_name} is not configured."
+                )
                 continue
 
             started = time.perf_counter()
 
             try:
-                provider = AIProvider(config)
-                response = provider.explain_pattern(pattern, report)
-                latency = int((time.perf_counter() - started) * 1000)
+                response = AIProvider(config).explain_pattern(
+                    pattern,
+                    compiler_report,
+                )
+                latency = int(
+                    (time.perf_counter() - started) * 1000
+                )
 
-                responses[provider_name] = response
-                result.providers_used.append(provider_name)
+                responses.append(response.strip())
+                result.providers_used.append(name)
                 result.claims.append(
                     AIClaim(
-                        provider=provider_name,
+                        provider=name,
                         model=config.model or "default",
                         claim_type="explanation",
                         message=response,
@@ -260,28 +252,28 @@ class AIQualityChecker:
                 )
             except Exception as exc:
                 result.disagreements.append(
-                    f"{provider_name} failed safely: "
+                    f"{name} failed safely: "
                     f"{type(exc).__name__}: {exc}"
                 )
 
-        if len(responses) >= 2:
-            values = list(responses.values())
-            if values[0].strip() != values[1].strip():
-                result.disagreements.append(
-                    "ChatGPT and Gemini returned different explanations."
-                )
+        if len(responses) >= 2 and responses[0] != responses[1]:
+            result.disagreements.append(
+                "ChatGPT and Gemini returned different explanations."
+            )
 
     @staticmethod
-    def _from_cached(data: dict[str, Any]) -> AIQualityReport:
+    def _from_dict(data: dict[str, Any]) -> AIQualityReport:
         return AIQualityReport(
             pattern_hash=data["pattern_hash"],
             compiler_valid=data["compiler_valid"],
             compiler_errors=data.get("compiler_errors", []),
             claims=[
-                AIClaim(**item) for item in data.get("claims", [])
+                AIClaim(**item)
+                for item in data.get("claims", [])
             ],
             repairs=[
-                RepairProposal(**item) for item in data.get("repairs", [])
+                RepairProposal(**item)
+                for item in data.get("repairs", [])
             ],
             disagreements=data.get("disagreements", []),
             providers_used=data.get("providers_used", []),
@@ -290,6 +282,13 @@ class AIQualityChecker:
         )
 
 
-def quality_check(pattern, report, mode: str = "offline") -> AIQualityReport:
-    """Convenience API for AI quality checking."""
-    return AIQualityChecker(mode=mode).check(pattern, report)
+def quality_check(
+    pattern,
+    compiler_report,
+    mode: str = "offline",
+) -> AIQualityReport:
+    """Convenience function for AI quality checking."""
+    return AIQualityChecker(mode=mode).check(
+        pattern,
+        compiler_report,
+    )

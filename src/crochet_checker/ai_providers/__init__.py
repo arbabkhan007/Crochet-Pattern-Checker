@@ -17,3 +17,11 @@ from .quality import (
     RepairProposal,
     quality_check,
 )
+
+from .quality import (
+    AIClaim,
+    AIQualityChecker,
+    AIQualityReport,
+    RepairProposal,
+    quality_check,
+)
