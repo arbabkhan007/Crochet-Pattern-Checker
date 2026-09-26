@@ -1,13 +1,12 @@
 """
 Yarn Weight Converter - Convert between all yarn weight systems worldwide
 """
-from typing import Dict, List, Optional
 
 
 class YarnWeightConverter:
     """
     Convert between yarn weight systems
-    
+
     Features:
     - US yarn weight categories
     - UK/Australian terms
@@ -17,7 +16,7 @@ class YarnWeightConverter:
     - Hook size recommendations
     - Substitution guide
     """
-    
+
     WEIGHT_CATEGORIES = {
         "0": {
             "name": "Lace",
@@ -116,7 +115,7 @@ class YarnWeightConverter:
             "substitutions": ["Multiple strands of bulky"],
         },
     }
-    
+
     WPI_RANGES = {
         (15, 999): "0 - Lace",
         (13, 14): "1 - Super Fine",
@@ -127,35 +126,34 @@ class YarnWeightConverter:
         (5, 6): "6 - Super Bulky",
         (1, 4): "7 - Jumbo",
     }
-    
-    def convert_by_name(self, yarn_name: str) -> Dict:
+
+    def convert_by_name(self, yarn_name: str) -> dict:
         """Convert by US yarn weight name"""
         search = yarn_name.lower()
-        
+
         for cat_id, info in self.WEIGHT_CATEGORIES.items():
-            if (search in info["us"].lower() or 
-                search in info["name"].lower()):
+            if search in info["us"].lower() or search in info["name"].lower():
                 return {
                     "category": cat_id,
                     "info": info,
                 }
-        
+
         return {"error": f"Could not find yarn weight: {yarn_name}"}
-    
-    def convert_by_uk(self, uk_term: str) -> Dict:
+
+    def convert_by_uk(self, uk_term: str) -> dict:
         """Convert by UK/Australian term"""
         search = uk_term.lower()
-        
+
         for cat_id, info in self.WEIGHT_CATEGORIES.items():
             if search in info["uk_au"].lower():
                 return {
                     "category": cat_id,
                     "info": info,
                 }
-        
+
         return {"error": f"Could not find UK term: {uk_term}"}
-    
-    def convert_by_wpi(self, wpi: int) -> Dict:
+
+    def convert_by_wpi(self, wpi: int) -> dict:
         """Convert by wraps per inch"""
         for (low, high), category in self.WPI_RANGES.items():
             if low <= wpi <= high:
@@ -165,28 +163,28 @@ class YarnWeightConverter:
                     "category": cat_id,
                     "info": self.WEIGHT_CATEGORIES[cat_id],
                 }
-        
+
         return {"error": f"WPI {wpi} out of range"}
-    
-    def get_hook_size(self, category: str, system: str = "mm") -> Dict:
+
+    def get_hook_size(self, category: str, system: str = "mm") -> dict:
         """Get recommended hook size for a yarn weight"""
         info = self.WEIGHT_CATEGORIES.get(category)
         if not info:
             return {"error": f"Unknown category: {category}"}
-        
+
         if system == "mm":
             return {"hook_mm": info["hook_mm"], "category": info["name"]}
         else:
             return {"hook_us": info["hook_us"], "category": info["name"]}
-    
-    def suggest_substitute(self, current_yarn: str) -> Dict:
+
+    def suggest_substitute(self, current_yarn: str) -> dict:
         """Suggest substitute yarns"""
         result = self.convert_by_name(current_yarn)
         if "error" in result:
             return result
-        
+
         info = result["info"]
-        
+
         return {
             "original": current_yarn,
             "category": info["name"],
@@ -194,43 +192,45 @@ class YarnWeightConverter:
             "hook_recommended_mm": info["hook_mm"],
             "alternatives": self._get_alternatives(result["category"]),
         }
-    
-    def _get_alternatives(self, category: str) -> List[str]:
+
+    def _get_alternatives(self, category: str) -> list[str]:
         """Get alternative yarn names"""
         info = self.WEIGHT_CATEGORIES.get(category, {})
         return [
             info.get("us", ""),
             info.get("uk_au", ""),
         ]
-    
+
     def get_full_reference(self) -> str:
         """Generate full reference chart"""
         ref = "YARN WEIGHT CONVERSION CHART\n" + "=" * 60 + "\n\n"
-        
-        ref += f"{'Cat':<4} {'US Name':<20} {'UK/AU':<15} {'Hook (mm)':<12} {'WPI':<6}\n"
+
+        ref += (
+            f"{'Cat':<4} {'US Name':<20} {'UK/AU':<15} {'Hook (mm)':<12} {'WPI':<6}\n"
+        )
         ref += "-" * 60 + "\n"
-        
+
         for cat_id, info in sorted(self.WEIGHT_CATEGORIES.items()):
             ref += f"{cat_id:<4} {info['name']:<20} {info['uk_au']:<15} {info['hook_mm']:<12} {info['wpi']:<6}\n"
-        
+
         return ref
-    
-    def calculate_yardage_substitution(self, pattern_yards: int,
-                                      original_weight: str,
-                                      substitute_weight: str) -> Dict:
+
+    def calculate_yardage_substitution(
+        self, pattern_yards: int, original_weight: str, substitute_weight: str
+    ) -> dict:
         """Calculate yardage needed when substituting yarn weights"""
         orig = self.WEIGHT_CATEGORIES.get(original_weight)
         sub = self.WEIGHT_CATEGORIES.get(substitute_weight)
-        
+
         if not orig or not sub:
             return {"error": "Unknown yarn weight"}
-        
+
         # Rough conversion based on thickness
         thickness_ratio = int(substitute_weight) / max(1, int(original_weight))
-        
+
         # Thicker yarn = less yardage needed
         adjusted_yards = int(pattern_yards / max(0.5, thickness_ratio))
-        
+
         return {
             "original_pattern": f"{pattern_yards} yards of {orig['name']}",
             "substitute_weight": sub["name"],
@@ -245,11 +245,11 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  YARN WEIGHT CONVERTER - DEMONSTRATION")
     print("=" * 60)
-    
+
     converter = YarnWeightConverter()
-    
+
     # Convert by name
-    print(f"\n🧶 Converting 'Worsted':")
+    print("\n🧶 Converting 'Worsted':")
     result = converter.convert_by_name("worsted")
     if "error" not in result:
         info = result["info"]
@@ -259,44 +259,44 @@ if __name__ == "__main__":
         print(f"  Hook: {info['hook_mm']}mm ({info['hook_us']})")
         print(f"  WPI: {info['wpi']}")
         print(f"  Uses: {info['common_uses']}")
-    
+
     # Convert by UK term
-    print(f"\n🇬🇧 Converting 'DK':")
+    print("\n🇬🇧 Converting 'DK':")
     result = converter.convert_by_uk("DK")
     if "error" not in result:
         print(f"  = {result['info']['name']} (US)")
         print(f"  Hook: {result['info']['hook_mm']}mm")
-    
+
     # Convert by WPI
-    print(f"\n📏 Converting WPI 9:")
+    print("\n📏 Converting WPI 9:")
     result = converter.convert_by_wpi(9)
     if "error" not in result:
         print(f"  = {result['info']['name']}")
         print(f"  Hook: {result['info']['hook_mm']}mm")
-    
+
     # Hook sizes
-    print(f"\n🪝 Recommended hooks for Medium/Worsted:")
+    print("\n🪝 Recommended hooks for Medium/Worsted:")
     hook = converter.get_hook_size("4", "mm")
     print(f"  mm: {hook['hook_mm']}")
-    
+
     # Substitution
-    print(f"\n🔄 Substituting 'Worsted':")
+    print("\n🔄 Substituting 'Worsted':")
     sub = converter.suggest_substitute("worsted")
     if "error" not in sub:
         print(f"  Category: {sub['category']}")
         print(f"  Alternatives: {', '.join(sub['alternatives'])}")
-    
+
     # Yardage adjustment
-    print(f"\n📐 Yardage substitution:")
-    print(f"  Pattern needs 500 yards of Worsted")
-    print(f"  Using Bulky instead:")
+    print("\n📐 Yardage substitution:")
+    print("  Pattern needs 500 yards of Worsted")
+    print("  Using Bulky instead:")
     yards = converter.calculate_yardage_substitution(500, "4", "5")
     if "error" not in yards:
         print(f"  Need: {yards['adjusted_yards_needed']} yards of Bulky")
         print(f"  Ratio: {yards['ratio']}x")
-    
+
     # Full reference
-    print(f"\n📋 Full Reference Chart:")
+    print("\n📋 Full Reference Chart:")
     print(converter.get_full_reference())
-    
-    print(f"\n  Yarn Weight Converter Complete! 🧶")
+
+    print("\n  Yarn Weight Converter Complete! 🧶")

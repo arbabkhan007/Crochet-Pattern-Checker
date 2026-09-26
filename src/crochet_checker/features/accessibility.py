@@ -1,8 +1,8 @@
 """
 Accessibility Suite - Large print, high contrast, screen reader support
 """
-from typing import Dict, List, Optional
-from dataclasses import dataclass, field, asdict
+
+from dataclasses import asdict, dataclass
 
 
 @dataclass
@@ -18,15 +18,15 @@ class AccessibilityConfig:
     reduced_motion: bool = True
     large_touch_targets: bool = True
     text_spacing: float = 1.5
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 class AccessibilitySuite:
     """
     Make crochet patterns accessible to everyone
-    
+
     Features:
     - Large print pattern generator
     - High contrast output
@@ -38,7 +38,7 @@ class AccessibilitySuite:
     - Dyslexia-friendly formatting
     - Cognitive load reduction
     """
-    
+
     CONTRAST_THEMES = {
         "high_contrast": {
             "bg": "#000000",
@@ -91,14 +91,14 @@ class AccessibilitySuite:
             "note": "Blue/yellow palette safe for protanopia",
         },
     }
-    
+
     FONT_SIZES = {
         "small": {"base": "12px", "heading": "16px", "line_height": "1.4"},
         "medium": {"base": "16px", "heading": "22px", "line_height": "1.5"},
         "large": {"base": "20px", "heading": "28px", "line_height": "1.6"},
         "xlarge": {"base": "26px", "heading": "36px", "line_height": "1.8"},
     }
-    
+
     STITCH_SIMPLIFICATION = {
         "sc": "single crochet (insert hook, yarn over, pull through, yarn over, pull through both)",
         "dc": "double crochet (yarn over, insert hook, yarn over, pull through, yarn over, pull through 2, yarn over, pull through 2)",
@@ -111,11 +111,11 @@ class AccessibilitySuite:
         "MR": "magic ring (make an adjustable loop to start crocheting in the round)",
         "FO": "fasten off (cut yarn and pull through last loop)",
     }
-    
+
     def __init__(self, config: AccessibilityConfig = None):
         self.config = config or AccessibilityConfig()
-    
-    def convert_pattern(self, pattern: Dict) -> Dict:
+
+    def convert_pattern(self, pattern: dict) -> dict:
         """Convert a pattern to accessible format"""
         result = {
             "title": pattern.get("title", "Pattern"),
@@ -124,157 +124,169 @@ class AccessibilitySuite:
             "format": "accessible",
             "config": self.config.to_dict(),
         }
-        
+
         rounds = pattern.get("rounds", [])
-        
+
         for rnd in rounds:
             rn = rnd.get("round_number", rnd.get("round", 0))
             instr = rnd.get("instruction", "")
             count = rnd.get("stitch_count", rnd.get("count", 0))
-            
+
             # Simplify language if needed
             if self.config.simple_language:
                 instr = self._simplify_instruction(instr)
-            
+
             # Add step-by-step breakdown
             if self.config.step_by_step:
                 steps = self._break_down_instruction(instr)
             else:
                 steps = [instr]
-            
-            result["rounds"].append({
-                "round": rn,
-                "original": rnd.get("instruction", ""),
-                "accessible_text": instr,
-                "steps": steps,
-                "count": count,
-                "count_spoken": f"You should have {count} stitches at the end of this round." if count else "",
-            })
-        
+
+            result["rounds"].append(
+                {
+                    "round": rn,
+                    "original": rnd.get("instruction", ""),
+                    "accessible_text": instr,
+                    "steps": steps,
+                    "count": count,
+                    "count_spoken": f"You should have {count} stitches at the end of this round."
+                    if count
+                    else "",
+                }
+            )
+
         return result
-    
+
     def _simplify_instruction(self, instruction: str) -> str:
         """Simplify instruction language"""
         simplified = instruction
-        
+
         for abbr, full in self.STITCH_SIMPLIFICATION.items():
             if abbr.lower() in simplified.lower():
                 # Only replace standalone abbreviations
                 import re
-                pattern = r'\b' + re.escape(abbr) + r'\b'
-                simplified = re.sub(pattern, full.split("(")[0].strip(), simplified, flags=re.IGNORECASE)
-        
+
+                pattern = r"\b" + re.escape(abbr) + r"\b"
+                simplified = re.sub(
+                    pattern, full.split("(")[0].strip(), simplified, flags=re.IGNORECASE
+                )
+
         return simplified
-    
-    def _break_down_instruction(self, instruction: str) -> List[str]:
+
+    def _break_down_instruction(self, instruction: str) -> list[str]:
         """Break instruction into individual steps"""
         steps = []
-        
+
         # Check for repeat patterns
         import re
-        bracket_match = re.search(r'\[(.*?)\]\s*[x×]\s*(\d+)', instruction, re.IGNORECASE)
-        
+
+        bracket_match = re.search(
+            r"\[(.*?)\]\s*[x×]\s*(\d+)", instruction, re.IGNORECASE
+        )
+
         if bracket_match:
             inner = bracket_match.group(1)
             repeats = int(bracket_match.group(2))
-            
+
             # Break down inner instruction
             inner_steps = self._parse_stitch_sequence(inner)
-            
+
             steps.append(f"Repeat the following {repeats} times:")
             for i, step in enumerate(inner_steps, 1):
                 steps.append(f"  Step {i}: {step}")
-        
+
         elif "each st around" in instruction.lower():
             steps = [
                 f"Work {instruction.split('in')[0].strip() if 'in' in instruction else 'stitches'}",
                 "in every stitch around",
-                "Join or continue as directed"
+                "Join or continue as directed",
             ]
-        
+
         elif "magic ring" in instruction.lower() or "MR" in instruction:
             steps = [
                 "Make a magic ring",
-                f"Work the specified stitches into the ring",
-                "Pull the tail to close the ring tightly"
+                "Work the specified stitches into the ring",
+                "Pull the tail to close the ring tightly",
             ]
-        
+
         else:
             steps = [instruction]
-        
+
         return steps
-    
-    def _parse_stitch_sequence(self, instruction: str) -> List[str]:
+
+    def _parse_stitch_sequence(self, instruction: str) -> list[str]:
         """Parse a sequence of stitches into steps"""
         parts = []
-        
+
         # Split by comma
         stitches = [s.strip() for s in instruction.split(",")]
-        
+
         for stitch in stitches:
             stitch_lower = stitch.lower().strip()
             if stitch_lower in self.STITCH_SIMPLIFICATION:
                 parts.append(self.STITCH_SIMPLIFICATION[stitch_lower])
             else:
                 parts.append(stitch)
-        
+
         return parts
-    
-    def generate_large_print(self, pattern: Dict, font_size: str = "xlarge") -> str:
+
+    def generate_large_print(self, pattern: dict, font_size: str = "xlarge") -> str:
         """Generate large print version"""
         result = self.convert_pattern(pattern)
         lines = []
-        
+
         lines.append(f"{'=' * 50}")
         lines.append(f"  {result['title'].upper()}")
-        lines.append(f"  LARGE PRINT EDITION")
+        lines.append("  LARGE PRINT EDITION")
         lines.append(f"{'=' * 50}")
         lines.append("")
-        
+
         for rnd in result["rounds"]:
             lines.append(f"  ROUND {rnd['round']}")
             lines.append(f"  {'-' * 30}")
-            
+
             for i, step in enumerate(rnd["steps"], 1):
                 lines.append(f"    {i}. {step}")
-            
+
             if rnd["count"]:
-                lines.append(f"")
+                lines.append("")
                 lines.append(f"    >>> COUNT: {rnd['count']} stitches <<<")
-            
+
             lines.append("")
-        
+
         return "\n".join(lines)
-    
-    def generate_screen_reader_text(self, pattern: Dict) -> str:
+
+    def generate_screen_reader_text(self, pattern: dict) -> str:
         """Generate screen-reader optimized text"""
         result = self.convert_pattern(pattern)
         lines = []
-        
+
         lines.append(f"Pattern: {result['title']}")
         lines.append(f"Total rounds: {len(result['rounds'])}")
         lines.append("")
-        
+
         for rnd in result["rounds"]:
             lines.append(f"Round {rnd['round']}.")
-            
+
             for step in rnd["steps"]:
                 lines.append(f"  {step}.")
-            
+
             if rnd["count_spoken"]:
                 lines.append(f"  {rnd['count_spoken']}")
-            
+
             lines.append("")
-        
+
         return "\n".join(lines)
-    
-    def generate_accessible_html(self, pattern: Dict, theme: str = "high_contrast") -> str:
+
+    def generate_accessible_html(
+        self, pattern: dict, theme: str = "high_contrast"
+    ) -> str:
         """Generate accessible HTML pattern"""
         colors = self.CONTRAST_THEMES.get(theme, self.CONTRAST_THEMES["high_contrast"])
         fonts = self.FONT_SIZES.get(self.config.font_size, self.FONT_SIZES["large"])
         result = self.convert_pattern(pattern)
-        
-        html = f'''<!DOCTYPE html>
+
+        html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -371,25 +383,28 @@ h2 {{
 </div>
 
 <main role="main">
-'''
+"""
         for rnd in result["rounds"]:
-            html += f'''
+            html += f"""
 <div class="round" role="region" aria-label="Round {rnd["round"]}">
     <div class="round-number">Round {rnd["round"]}</div>
-'''
+"""
             for i, step in enumerate(rnd["steps"], 1):
                 html += f'    <div class="step">Step {i}: {step}</div>\n'
-            
+
             if rnd["count"]:
                 html += f'    <div class="count" aria-label="Stitch count: {rnd["count"]}">{rnd["count"]} stitches</div>\n'
-            
-            html += '</div>\n'
-        
-        html += '''
+
+            html += "</div>\n"
+
+        html += (
+            """
 </main>
 
 <script>
-let fontSize = ''' + str(int(fonts["base"].replace("px", ""))) + ''';
+let fontSize = """
+            + str(int(fonts["base"].replace("px", "")))
+            + """;
 
 function increaseFontSize() {
     fontSize = Math.min(48, fontSize + 2);
@@ -414,34 +429,41 @@ function toggleContrast() {
 }
 </script>
 </body>
-</html>'''
-        
+</html>"""
+        )
+
         return html
-    
-    def get_recommendations(self, pattern: Dict) -> List[str]:
+
+    def get_recommendations(self, pattern: dict) -> list[str]:
         """Get accessibility recommendations for a pattern"""
         recs = []
-        
+
         rounds = pattern.get("rounds", [])
-        
+
         if len(rounds) > 20:
-            recs.append("Pattern has many rounds - consider adding visual round markers")
-        
+            recs.append(
+                "Pattern has many rounds - consider adding visual round markers"
+            )
+
         has_complex = any(
-            any(s in r.get("instruction", "").lower() 
-                for s in ["cable", "popcorn", "bobble", "shell"])
+            any(
+                s in r.get("instruction", "").lower()
+                for s in ["cable", "popcorn", "bobble", "shell"]
+            )
             for r in rounds
         )
         if has_complex:
-            recs.append("Pattern has complex stitches - video tutorials linked for each")
-        
+            recs.append(
+                "Pattern has complex stitches - video tutorials linked for each"
+            )
+
         if any("dec" in r.get("instruction", "").lower() for r in rounds):
             recs.append("Pattern has decreases - invisible decrease tutorial available")
-        
+
         recs.append("Large print version available for easy reading while crocheting")
         recs.append("Screen reader mode reads instructions step by step")
         recs.append("High contrast mode for low vision users")
-        
+
         return recs
 
 
@@ -450,9 +472,9 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  ACCESSIBILITY SUITE - DEMONSTRATION")
     print("=" * 60)
-    
+
     suite = AccessibilitySuite()
-    
+
     sample = {
         "title": "Simple Amigurumi Ball",
         "rounds": [
@@ -464,27 +486,27 @@ if __name__ == "__main__":
             {"round": 6, "instruction": "[2 sc, dec] x 6", "count": 18},
             {"round": 7, "instruction": "[sc, dec] x 6", "count": 12},
             {"round": 8, "instruction": "dec x 6", "count": 6},
-        ]
+        ],
     }
-    
+
     # Large print
     print("\n--- Large Print Mode ---")
     large = suite.generate_large_print(sample)
     print(large[:600])
-    
+
     # Screen reader
     print("\n--- Screen Reader Mode ---")
     sr = suite.generate_screen_reader_text(sample)
     print(sr[:600])
-    
+
     # Recommendations
     print("\n--- Accessibility Recommendations ---")
     recs = suite.get_recommendations(sample)
     for r in recs:
         print(f"  -> {r}")
-    
+
     # HTML
     html = suite.generate_accessible_html(sample, theme="high_contrast")
     print(f"\n  Accessible HTML generated: {len(html)} chars")
-    
-    print(f"\n  Accessibility Suite Complete!")
+
+    print("\n  Accessibility Suite Complete!")

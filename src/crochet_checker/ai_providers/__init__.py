@@ -1,2 +1,3 @@
 """Multi-provider AI assistance."""
-from .provider import AIProvider, AIConfig
+
+from .provider import AIConfig, AIProvider

@@ -9,9 +9,8 @@ and other relevant attributes.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class StitchType(str, Enum):
@@ -114,7 +113,7 @@ class StitchDefinition(BaseModel):
     type: StitchType
     name: str
     abbreviation: str
-    uk_equivalent: Optional[str] = None
+    uk_equivalent: str | None = None
     consumes_stitches: int = 1
     produces_stitches: int = 1
     relative_height: float = 1.0
@@ -262,7 +261,7 @@ class StitchAbbreviationMap:
         }
         self._map = {k.lower(): v for k, v in standard.items()}
 
-    def lookup(self, abbreviation: str) -> Optional[StitchType]:
+    def lookup(self, abbreviation: str) -> StitchType | None:
         """Look up a stitch type from its abbreviation."""
         return self._map.get(abbreviation.lower().strip())
 

@@ -1,27 +1,26 @@
-
-from pathlib import Path
-from typing import Optional
-import webbrowser
-import tempfile
 import base64
+import tempfile
+import webbrowser
+from pathlib import Path
+
 
 class BrowserPDFViewer:
     """View PDFs in browser"""
-    
+
     def __init__(self):
         self.temp_dir = tempfile.mkdtemp()
-    
+
     def view_pdf(self, pdf_path: str) -> str:
         """Open PDF in browser"""
         pdf_file = Path(pdf_path)
-        
+
         if not pdf_file.exists():
             raise FileNotFoundError(f"PDF not found: {pdf_path}")
-        
+
         # Read PDF and convert to base64
-        with open(pdf_file, 'rb') as f:
+        with open(pdf_file, "rb") as f:
             pdf_data = base64.b64encode(f.read()).decode()
-        
+
         # Create HTML viewer
         html_content = f"""
 <!DOCTYPE html>
@@ -99,37 +98,38 @@ class BrowserPDFViewer:
 </body>
 </html>
 """
-        
+
         # Save HTML file
         html_path = Path(self.temp_dir) / f"{pdf_file.stem}_viewer.html"
-        with open(html_path, 'w') as f:
+        with open(html_path, "w") as f:
             f.write(html_content)
-        
+
         # Open in browser
-        webbrowser.open(f'file://{html_path.absolute()}')
-        
+        webbrowser.open(f"file://{html_path.absolute()}")
+
         return str(html_path)
+
 
 class BrowserImageViewer:
     """View images in browser with controls"""
-    
+
     def __init__(self):
         self.temp_dir = tempfile.mkdtemp()
-    
+
     def view_image(self, image_path: str, title: str = "Image Viewer") -> str:
         """Open image in browser with controls"""
         image_file = Path(image_path)
-        
+
         if not image_file.exists():
             raise FileNotFoundError(f"Image not found: {image_path}")
-        
+
         # Read image and convert to base64
-        with open(image_file, 'rb') as f:
+        with open(image_file, "rb") as f:
             image_data = base64.b64encode(f.read()).decode()
-        
+
         # Determine MIME type
         mime_type = f"image/{image_file.suffix[1:]}"
-        
+
         # Create HTML viewer
         html_content = f"""
 <!DOCTYPE html>
@@ -247,21 +247,23 @@ class BrowserImageViewer:
 </body>
 </html>
 """
-        
+
         # Save HTML file
         html_path = Path(self.temp_dir) / f"{image_file.stem}_viewer.html"
-        with open(html_path, 'w') as f:
+        with open(html_path, "w") as f:
             f.write(html_content)
-        
+
         # Open in browser
-        webbrowser.open(f'file://{html_path.absolute()}')
-        
+        webbrowser.open(f"file://{html_path.absolute()}")
+
         return str(html_path)
+
 
 def view_pdf_in_browser(pdf_path: str) -> str:
     """Convenience function to view PDF in browser"""
     viewer = BrowserPDFViewer()
     return viewer.view_pdf(pdf_path)
+
 
 def view_image_in_browser(image_path: str, title: str = "Image Viewer") -> str:
     """Convenience function to view image in browser"""

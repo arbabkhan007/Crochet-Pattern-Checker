@@ -1,9 +1,9 @@
 """
 Subscription Box Planner - Plan and manage monthly crochet subscription boxes
 """
+
 import json
-from typing import Dict, List, Optional
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -11,6 +11,7 @@ from pathlib import Path
 @dataclass
 class BoxItem:
     """An item in a subscription box"""
+
     name: str
     type: str  # pattern, yarn, tool, notion, extra
     quantity: int = 1
@@ -18,10 +19,10 @@ class BoxItem:
     description: str = ""
     supplier: str = ""
     notes: str = ""
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
-    
+
     @property
     def total_cost(self) -> float:
         return self.unit_cost * self.quantity
@@ -30,24 +31,25 @@ class BoxItem:
 @dataclass
 class SubscriptionBox:
     """A subscription box"""
+
     id: str
     month: str
     theme: str = ""
-    items: List[Dict] = field(default_factory=list)
+    items: list[dict] = field(default_factory=list)
     target_cost: float = 0
     actual_cost: float = 0
     subscriber_count: int = 0
     status: str = "planning"  # planning, sourcing, packed, shipped, delivered
     shipping_date: str = ""
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 class SubscriptionBoxPlanner:
     """
     Plan and manage monthly crochet subscription boxes
-    
+
     Features:
     - Monthly box planning
     - Theme selection
@@ -57,68 +59,120 @@ class SubscriptionBoxPlanner:
     - Shipping logistics
     - Revenue projection
     """
-    
+
     THEMES = {
         "cozy_winter": {
             "name": "Cozy Winter",
             "emoji": "❄️",
             "season": "winter",
-            "suggested_items": ["Chunky yarn", "Warm hat pattern", "Stitch markers (snowflake)", "Hot cocoa packet"],
+            "suggested_items": [
+                "Chunky yarn",
+                "Warm hat pattern",
+                "Stitch markers (snowflake)",
+                "Hot cocoa packet",
+            ],
         },
         "spring_garden": {
             "name": "Spring Garden",
             "emoji": "🌸",
             "season": "spring",
-            "suggested_items": ["Floral yarn", "Flower pattern", "Floral stitch markers", "Seed packet"],
+            "suggested_items": [
+                "Floral yarn",
+                "Flower pattern",
+                "Floral stitch markers",
+                "Seed packet",
+            ],
         },
         "summer_beach": {
             "name": "Summer Beach",
             "emoji": "🏖️",
             "season": "summer",
-            "suggested_items": ["Cotton yarn", "Beach bag pattern", "Shell stitch markers", "Sunscreen"],
+            "suggested_items": [
+                "Cotton yarn",
+                "Beach bag pattern",
+                "Shell stitch markers",
+                "Sunscreen",
+            ],
         },
         "autumn_harvest": {
             "name": "Autumn Harvest",
             "emoji": "🍂",
             "season": "fall",
-            "suggested_items": ["Warm-toned yarn", "Pumpkin pattern", "Leaf markers", "Spiced tea"],
+            "suggested_items": [
+                "Warm-toned yarn",
+                "Pumpkin pattern",
+                "Leaf markers",
+                "Spiced tea",
+            ],
         },
         "amigurumi_party": {
             "name": "Amigurumi Party",
             "emoji": "🧸",
             "season": "any",
-            "suggested_items": ["Safety eyes", "Stuffing", "Amigurumi pattern", "Embroidery thread"],
+            "suggested_items": [
+                "Safety eyes",
+                "Stuffing",
+                "Amigurumi pattern",
+                "Embroidery thread",
+            ],
         },
         "beginner_basics": {
             "name": "Beginner Basics",
             "emoji": "🌟",
             "season": "any",
-            "suggested_items": ["Starter yarn", "Basic hook", "Beginner pattern", "Stitch guide"],
+            "suggested_items": [
+                "Starter yarn",
+                "Basic hook",
+                "Beginner pattern",
+                "Stitch guide",
+            ],
         },
         "luxury_luxe": {
             "name": "Luxury Luxe",
             "emoji": "💎",
             "season": "any",
-            "suggested_items": ["Merino yarn", "Bamboo hook", "Designer pattern", "Project bag"],
+            "suggested_items": [
+                "Merino yarn",
+                "Bamboo hook",
+                "Designer pattern",
+                "Project bag",
+            ],
         },
         "holiday_cheer": {
             "name": "Holiday Cheer",
             "emoji": "🎄",
             "season": "winter",
-            "suggested_items": ["Red/green yarn", "Ornament pattern", "Gift tag markers", "Candy cane"],
+            "suggested_items": [
+                "Red/green yarn",
+                "Ornament pattern",
+                "Gift tag markers",
+                "Candy cane",
+            ],
         },
     }
-    
-    MONTH_NAMES = ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"]
-    
+
+    MONTH_NAMES = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ]
+
     def __init__(self, storage_path: str = "subscription_boxes.json"):
         self.storage_path = Path(storage_path)
-        self.boxes: Dict[str, SubscriptionBox] = {}
-        self.subscribers: List[Dict] = []
+        self.boxes: dict[str, SubscriptionBox] = {}
+        self.subscribers: list[dict] = []
         self._next_id = 1
         self.load()
-    
+
     def load(self):
         if self.storage_path.exists():
             try:
@@ -129,7 +183,7 @@ class SubscriptionBoxPlanner:
                 self._next_id = data.get("next_id", 1)
             except Exception:
                 pass
-    
+
     def save(self):
         data = {
             "boxes": {k: v.to_dict() for k, v in self.boxes.items()},
@@ -137,43 +191,52 @@ class SubscriptionBoxPlanner:
             "next_id": self._next_id,
         }
         self.storage_path.write_text(json.dumps(data, indent=2))
-    
+
     def create_box(self, month: str, theme: str = "", target_cost: float = 25) -> str:
         """Create a new monthly box"""
         box_id = f"BOX{self._next_id:04d}"
         self._next_id += 1
-        
+
         box = SubscriptionBox(
             id=box_id,
             month=month,
             theme=theme,
             target_cost=target_cost,
         )
-        
+
         self.boxes[box_id] = box
         self.save()
         return box_id
-    
-    def add_item(self, box_id: str, name: str, item_type: str = "extra",
-                quantity: int = 1, unit_cost: float = 0, **kwargs) -> Dict:
+
+    def add_item(
+        self,
+        box_id: str,
+        name: str,
+        item_type: str = "extra",
+        quantity: int = 1,
+        unit_cost: float = 0,
+        **kwargs,
+    ) -> dict:
         """Add an item to a box"""
         box = self.boxes.get(box_id)
         if not box:
             return {"error": "Box not found"}
-        
-        item = BoxItem(name=name, type=item_type, quantity=quantity,
-                      unit_cost=unit_cost, **kwargs)
+
+        item = BoxItem(
+            name=name, type=item_type, quantity=quantity, unit_cost=unit_cost, **kwargs
+        )
         box.items.append(item.to_dict())
         box.actual_cost += item.total_cost
-        
+
         self.save()
         return {"item": item.to_dict(), "running_cost": box.actual_cost}
-    
-    def plan_monthly_box(self, month: str, theme_key: str = None,
-                        subscriber_tier: str = "standard") -> Dict:
+
+    def plan_monthly_box(
+        self, month: str, theme_key: str = None, subscriber_tier: str = "standard"
+    ) -> dict:
         """Plan a complete monthly box"""
         theme = self.THEMES.get(theme_key, self.THEMES["cozy_winter"])
-        
+
         # Pricing tiers
         tiers = {
             "basic": {"price": 19.99, "item_count": 3, "yarn_yards": 100},
@@ -181,23 +244,27 @@ class SubscriptionBoxPlanner:
             "premium": {"price": 44.99, "item_count": 7, "yarn_yards": 350},
         }
         tier = tiers.get(subscriber_tier, tiers["standard"])
-        
+
         # Generate box plan
         items = []
         for suggested in theme["suggested_items"]:
-            items.append({
-                "name": suggested,
-                "type": "suggested",
-                "estimated_cost": round(tier["price"] / tier["item_count"] * 0.4, 2),
-            })
-        
+            items.append(
+                {
+                    "name": suggested,
+                    "type": "suggested",
+                    "estimated_cost": round(
+                        tier["price"] / tier["item_count"] * 0.4, 2
+                    ),
+                }
+            )
+
         # Cost breakdown
         estimated_item_cost = sum(i["estimated_cost"] for i in items)
         packaging_cost = 3.00
         shipping_cost = 5.00
         total_cost = estimated_item_cost + packaging_cost + shipping_cost
         profit = tier["price"] - total_cost
-        
+
         return {
             "month": month,
             "theme": theme["name"],
@@ -214,9 +281,14 @@ class SubscriptionBoxPlanner:
             "profit_per_box": round(profit, 2),
             "profit_margin_pct": round(profit / tier["price"] * 100, 1),
         }
-    
-    def add_subscriber(self, name: str, email: str = "", tier: str = "standard",
-                      start_month: str = None) -> Dict:
+
+    def add_subscriber(
+        self,
+        name: str,
+        email: str = "",
+        tier: str = "standard",
+        start_month: str = None,
+    ) -> dict:
         """Add a subscriber"""
         subscriber = {
             "name": name,
@@ -229,10 +301,10 @@ class SubscriptionBoxPlanner:
         self.subscribers.append(subscriber)
         self.save()
         return subscriber
-    
-    def get_business_projections(self, subscriber_count: int = None,
-                                tier: str = "standard",
-                                months: int = 12) -> Dict:
+
+    def get_business_projections(
+        self, subscriber_count: int = None, tier: str = "standard", months: int = 12
+    ) -> dict:
         """Project business revenue"""
         tiers = {
             "basic": 19.99,
@@ -240,15 +312,17 @@ class SubscriptionBoxPlanner:
             "premium": 44.99,
         }
         price = tiers.get(tier, 29.99)
-        count = subscriber_count or len([s for s in self.subscribers if s["status"] == "active"])
-        
+        count = subscriber_count or len(
+            [s for s in self.subscribers if s["status"] == "active"]
+        )
+
         monthly_revenue = price * count
         monthly_costs = 15 * count  # Average cost per box
         monthly_profit = monthly_revenue - monthly_costs
-        
+
         # Growth assumptions
         growth_rate = 0.10  # 10% monthly growth
-        
+
         projections = []
         cumulative = 0
         subscribers = count
@@ -257,18 +331,20 @@ class SubscriptionBoxPlanner:
             costs = 15 * subscribers
             profit = revenue - costs
             cumulative += profit
-            
-            projections.append({
-                "month": m,
-                "subscribers": subscribers,
-                "revenue": round(revenue, 2),
-                "costs": round(costs, 2),
-                "profit": round(profit, 2),
-                "cumulative_profit": round(cumulative, 2),
-            })
-            
+
+            projections.append(
+                {
+                    "month": m,
+                    "subscribers": subscribers,
+                    "revenue": round(revenue, 2),
+                    "costs": round(costs, 2),
+                    "profit": round(profit, 2),
+                    "cumulative_profit": round(cumulative, 2),
+                }
+            )
+
             subscribers = int(subscribers * (1 + growth_rate))
-        
+
         return {
             "starting_subscribers": count,
             "tier": tier,
@@ -279,25 +355,25 @@ class SubscriptionBoxPlanner:
             "yearly_profit": round(sum(p["profit"] for p in projections), 2),
             "projections": projections,
         }
-    
-    def get_box_planning_dashboard(self) -> Dict:
+
+    def get_box_planning_dashboard(self) -> dict:
         """Get box planning dashboard"""
         boxes = list(self.boxes.values())
         active_subs = len([s for s in self.subscribers if s["status"] == "active"])
-        
+
         # Upcoming boxes
         now = datetime.now()
         upcoming_months = []
         for i in range(1, 7):
-            month_date = now + timedelta(days=30*i)
+            month_date = now + timedelta(days=30 * i)
             month_name = self.MONTH_NAMES[month_date.month - 1]
             year = month_date.year
             upcoming_months.append(f"{month_name} {year}")
-        
+
         # Planned boxes
         planned = [b for b in boxes if b.status == "planning"]
         shipped = [b for b in boxes if b.status in ("shipped", "delivered")]
-        
+
         return {
             "total_boxes": len(boxes),
             "active_subscribers": active_subs,
@@ -306,15 +382,15 @@ class SubscriptionBoxPlanner:
             "upcoming_months": upcoming_months,
             "revenue_per_month": round(active_subs * 29.99, 2),
         }
-    
-    def suggest_box_contents(self, month: str, budget: float = 25) -> Dict:
+
+    def suggest_box_contents(self, month: str, budget: float = 25) -> dict:
         """Suggest box contents for a month"""
         month_num = None
         for i, name in enumerate(self.MONTH_NAMES, 1):
             if name.lower() in month.lower():
                 month_num = i
                 break
-        
+
         # Match season
         if month_num in (12, 1, 2):
             season = "winter"
@@ -324,22 +400,26 @@ class SubscriptionBoxPlanner:
             season = "summer"
         else:
             season = "fall"
-        
-        matching_themes = [t for t, info in self.THEMES.items() if info["season"] == season]
+
+        matching_themes = [
+            t for t, info in self.THEMES.items() if info["season"] == season
+        ]
         if not matching_themes:
             matching_themes = list(self.THEMES.keys())
-        
+
         suggestions = []
         for theme_key in matching_themes[:2]:
             theme = self.THEMES[theme_key]
             plan = self.plan_monthly_box(month, theme_key)
-            suggestions.append({
-                "theme": theme["name"],
-                "emoji": theme["emoji"],
-                "items": theme["suggested_items"],
-                "estimated_cost": plan["cost_breakdown"]["total"],
-            })
-        
+            suggestions.append(
+                {
+                    "theme": theme["name"],
+                    "emoji": theme["emoji"],
+                    "items": theme["suggested_items"],
+                    "estimated_cost": plan["cost_breakdown"]["total"],
+                }
+            )
+
         return {
             "month": month,
             "season": season,
@@ -351,43 +431,44 @@ class SubscriptionBoxPlanner:
 # Demo
 if __name__ == "__main__":
     import os
+
     print("\n" + "=" * 60)
     print("  SUBSCRIPTION BOX PLANNER - DEMONSTRATION")
     print("=" * 60)
-    
+
     planner = SubscriptionBoxPlanner(storage_path="/tmp/demo_boxes.json")
-    
+
     # Show themes
-    print(f"\n📦 Available Themes:")
+    print("\n📦 Available Themes:")
     for key, theme in planner.THEMES.items():
         print(f"  {theme['emoji']} {theme['name']} ({theme['season']})")
-    
+
     # Plan a box
-    print(f"\n🗓️  Planning January Box:")
+    print("\n🗓️  Planning January Box:")
     plan = planner.plan_monthly_box("January 2026", "cozy_winter", "standard")
     print(f"  Theme: {plan['theme_emoji']} {plan['theme']}")
     print(f"  Subscriber Price: ${plan['subscriber_price']}")
-    print(f"  Items:")
+    print("  Items:")
     for item in plan["items"]:
         print(f"    • {item['name']} (${item['estimated_cost']})")
     print(f"  Total Cost: ${plan['cost_breakdown']['total']}")
     print(f"  Profit/Box: ${plan['profit_per_box']} ({plan['profit_margin_pct']}%)")
-    
+
     # Add items to box
     box_id = planner.create_box("January 2026", "Cozy Winter")
     planner.add_item(box_id, "Merino Wool Yarn", "yarn", unit_cost=8.00)
     planner.add_item(box_id, "Chunky Beanie Pattern", "pattern", unit_cost=0)
     planner.add_item(box_id, "Wooden Stitch Markers", "notion", unit_cost=3.50)
     planner.add_item(box_id, "Hot Cocoa Mix", "extra", unit_cost=2.00)
-    print(f"\n✅ Created box with 4 items")
-    
+    print("\n✅ Created box with 4 items")
+
     # Add subscribers
     for name in ["Alice", "Bob", "Carol", "Dave", "Eve"]:
         planner.add_subscriber(name, tier="standard")
-    print(f"✅ Added 5 subscribers")
-    
+    print("✅ Added 5 subscribers")
+
     # Business projections
-    print(f"\n💰 Business Projections (12 months):")
+    print("\n💰 Business Projections (12 months):")
     proj = planner.get_business_projections(subscriber_count=50, months=6)
     print(f"  Starting: {proj['starting_subscribers']} subscribers")
     print(f"  Price: ${proj['price_per_box']}/box")
@@ -395,28 +476,30 @@ if __name__ == "__main__":
     print(f"  Monthly Profit: ${proj['monthly_profit']}")
     print(f"  6-Month Revenue: ${proj['yearly_revenue']}")
     print(f"  6-Month Profit: ${proj['yearly_profit']}")
-    
+
     # Growth projections
-    print(f"\n📈 Growth:")
+    print("\n📈 Growth:")
     for p in proj["projections"][:4]:
-        print(f"  Month {p['month']}: {p['subscribers']} subs → ${p['revenue']} rev → ${p['profit']} profit")
-    
+        print(
+            f"  Month {p['month']}: {p['subscribers']} subs → ${p['revenue']} rev → ${p['profit']} profit"
+        )
+
     # Suggestions
-    print(f"\n🎁 Box Suggestions for March:")
+    print("\n🎁 Box Suggestions for March:")
     suggestions = planner.suggest_box_contents("March", budget=25)
     print(f"  Season: {suggestions['season']}")
     for s in suggestions["suggestions"]:
         print(f"  {s['emoji']} {s['theme']}: {', '.join(s['items'][:3])}...")
-    
+
     # Dashboard
-    print(f"\n📊 Dashboard:")
+    print("\n📊 Dashboard:")
     dash = planner.get_box_planning_dashboard()
     print(f"  Active Subscribers: {dash['active_subscribers']}")
     print(f"  Revenue/Month: ${dash['revenue_per_month']}")
     print(f"  Boxes Planned: {dash['planned_boxes']}")
-    
+
     # Cleanup
     if os.path.exists("/tmp/demo_boxes.json"):
         os.remove("/tmp/demo_boxes.json")
-    
-    print(f"\n  Subscription Box Planner Complete! 📦")
+
+    print("\n  Subscription Box Planner Complete! 📦")

@@ -1,9 +1,21 @@
-from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+
+
 class Yarn(BaseModel):
-    name: Optional[str] = None; brand: Optional[str] = None; color: Optional[str] = None
-    weight: Optional[str] = None; hook_size_mm: Optional[float] = None
+    name: str | None = None
+    brand: str | None = None
+    color: str | None = None
+    weight: str | None = None
+    hook_size_mm: float | None = None
+
+
 class Hook(BaseModel):
-    size_mm: Optional[float] = None; us_size: Optional[str] = None
+    size_mm: float | None = None
+    us_size: str | None = None
+
+
 class Gauge(BaseModel):
-    stitches_per_unit: int; rows_per_unit: int; unit_size: float = 4.0; unit: str = "inches"
+    stitches_per_unit: int
+    rows_per_unit: int
+    unit_size: float = 4.0
+    unit: str = "inches"

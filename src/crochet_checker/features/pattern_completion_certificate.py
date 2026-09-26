@@ -1,5 +1,7 @@
 """Pattern Completion Certificate - Generate certificates"""
+
 from datetime import datetime
+
 
 class PatternCompletionCertificate:
     def generate_certificate(self, pattern_name: str, crafter_name: str) -> dict:
@@ -8,8 +10,9 @@ class PatternCompletionCertificate:
             "pattern": pattern_name,
             "crafter": crafter_name,
             "date": datetime.now().strftime("%Y-%m-%d"),
-            "status": "Generated"
+            "status": "Generated",
         }
+
 
 if __name__ == "__main__":
     print("🏆 Pattern Completion Certificate - Working!")

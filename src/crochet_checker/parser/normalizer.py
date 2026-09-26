@@ -11,7 +11,6 @@ Handles variations in how crochet patterns are written:
 from __future__ import annotations
 
 import re
-from typing import Optional
 
 
 class TerminologyDialect(str):

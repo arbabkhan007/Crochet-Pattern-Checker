@@ -5,6 +5,7 @@ __version__ = "1.0.0"
 # Only import core features that definitely work
 try:
     from .parser import CrochetParser, parse_pattern
+
     PARSER_OK = True
 except Exception as e:
     print(f"Warning: Parser import failed: {e}")
@@ -12,6 +13,7 @@ except Exception as e:
 
 try:
     from .validation import validate_pattern
+
     VALIDATION_OK = True
 except Exception as e:
     print(f"Warning: Validation import failed: {e}")
@@ -19,6 +21,7 @@ except Exception as e:
 
 try:
     from .pdf import generate_pdf
+
     PDF_OK = True
 except Exception as e:
     print(f"Warning: PDF import failed: {e}")
@@ -26,6 +29,7 @@ except Exception as e:
 
 try:
     from .utils import read_pattern_file
+
     UTILS_OK = True
 except Exception as e:
     print(f"Warning: Utils import failed: {e}")

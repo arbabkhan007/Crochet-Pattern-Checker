@@ -8,38 +8,38 @@ Layers (per 4-pattern audit):
   - StitchConsumer (Loop State Allocator) -> loop lifecycle states
 """
 
+from .anchor_graph import AnchorNode, AnchorType, GlobalAnchorGraph
+from .assembly_graph import AssemblyGraph
 from .canvas_queue import (
-    CanvasQueue,
-    CanvasElement,
-    StitchStatus,
     BackwardTraversalError,
+    CanvasElement,
+    CanvasQueue,
     OrphanedStitchError,
     PostVsHeadLoopTracker,
+    StitchStatus,
 )
-from .stitch_consumer import StitchConsumer, ConsumptionResult
 from .consumer import StitchConsumer as LoopStateAllocator
 from .state_machine import StateMachine
-from .assembly_graph import AssemblyGraph
-from .anchor_graph import GlobalAnchorGraph, AnchorNode, AnchorType
+from .stitch_consumer import ConsumptionResult, StitchConsumer
 
 __all__ = [
     # Canvas Queue
-    'CanvasQueue',
-    'CanvasElement',
-    'StitchStatus',
-    'BackwardTraversalError',
-    'OrphanedStitchError',
-    'PostVsHeadLoopTracker',
+    "CanvasQueue",
+    "CanvasElement",
+    "StitchStatus",
+    "BackwardTraversalError",
+    "OrphanedStitchError",
+    "PostVsHeadLoopTracker",
     # Stitch Consumption
-    'StitchConsumer',
-    'ConsumptionResult',
-    'LoopStateAllocator',
+    "StitchConsumer",
+    "ConsumptionResult",
+    "LoopStateAllocator",
     # State Machine
-    'StateMachine',
+    "StateMachine",
     # Assembly Graph
-    'AssemblyGraph',
+    "AssemblyGraph",
     # Anchor Graph
-    'GlobalAnchorGraph',
-    'AnchorNode',
-    'AnchorType',
+    "GlobalAnchorGraph",
+    "AnchorNode",
+    "AnchorType",
 ]

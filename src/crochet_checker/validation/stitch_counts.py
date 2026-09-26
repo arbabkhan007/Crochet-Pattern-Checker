@@ -8,11 +8,10 @@ are consistent across rows/rounds. It is fully deterministic - no AI involved.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from ..model.instruction import Instruction, ParsedOperation
+from ..model.instruction import Instruction
 from ..model.pattern import Pattern
 from ..model.row import Round, Row
 from ..model.stitch import STITCH_CONSUMPTION, STITCH_PRODUCTION, StitchType
@@ -34,10 +33,10 @@ class ValidationFinding(BaseModel):
     severity: Severity
     location: str = ""
     message: str
-    original_instruction: Optional[str] = None
-    expected: Optional[int] = None
-    actual: Optional[int] = None
-    suggested_fix: Optional[str] = None
+    original_instruction: str | None = None
+    expected: int | None = None
+    actual: int | None = None
+    suggested_fix: str | None = None
     confidence: float = 1.0
 
 
@@ -52,7 +51,11 @@ class StitchCountReport(BaseModel):
 
     @property
     def errors(self) -> list[ValidationFinding]:
-        return [f for f in self.findings if f.severity in (Severity.ERROR, Severity.CRITICAL)]
+        return [
+            f
+            for f in self.findings
+            if f.severity in (Severity.ERROR, Severity.CRITICAL)
+        ]
 
     @property
     def warnings(self) -> list[ValidationFinding]:
@@ -80,18 +83,17 @@ class StitchCountValidator:
     def __init__(self) -> None:
         self.findings: list[ValidationFinding] = []
 
-
     def _detect_pieces(self, rounds: list) -> list[tuple[int, int]]:
         """Detect piece boundaries based on round number resets."""
         pieces = []
         current_start = 0
-        
+
         for i in range(1, len(rounds)):
             # If round number decreases, it's a new piece
-            if rounds[i].round_number < rounds[i-1].round_number:
+            if rounds[i].round_number < rounds[i - 1].round_number:
                 pieces.append((current_start, i))
                 current_start = i
-        
+
         # Add last piece
         pieces.append((current_start, len(rounds)))
         return pieces
@@ -127,7 +129,7 @@ class StitchCountValidator:
         if not rounds:
             return
 
-        expected_next_start: Optional[int] = None
+        expected_next_start: int | None = None
 
         for i, current_round in enumerate(rounds):
             round_num = current_round.round_number
@@ -156,7 +158,9 @@ class StitchCountValidator:
                 if self._has_context_dependent_ops(inst):
                     if expected_next_start is not None:
                         # Recalculate with context
-                        resolved_produced = self._resolve_context_dependent(inst, expected_next_start)
+                        resolved_produced = self._resolve_context_dependent(
+                            inst, expected_next_start
+                        )
                         resolved_consumed = expected_next_start
                         produced += resolved_produced
                         consumed += resolved_consumed
@@ -192,7 +196,9 @@ class StitchCountValidator:
                             suggested_fix=f"Review instructions in Round {round_num} for missing or extra stitches.",
                         )
                     )
-                row_data["start_matches"] = consumed == expected_next_start or has_ambiguous
+                row_data["start_matches"] = (
+                    consumed == expected_next_start or has_ambiguous
+                )
 
             # Check 2: Does stated count match computed count?
             stated = self._get_stated_total(current_round)
@@ -222,8 +228,14 @@ class StitchCountValidator:
             # Check 3: First round special handling
             if i == 0 and expected_next_start is None:
                 # First round - check if it starts from magic ring or chain
-                first_stitches = current_round.instructions[0].operations if current_round.instructions else []
-                if any(op.stitch_type == StitchType.MAGIC_RING for op in first_stitches):
+                first_stitches = (
+                    current_round.instructions[0].operations
+                    if current_round.instructions
+                    else []
+                )
+                if any(
+                    op.stitch_type == StitchType.MAGIC_RING for op in first_stitches
+                ):
                     # Magic ring - the produced count becomes the starting count for next round
                     row_data["starts_from_magic_ring"] = True
                 else:
@@ -232,7 +244,7 @@ class StitchCountValidator:
                             validator="stitch_counts",
                             severity=Severity.INFO,
                             location=location,
-                            message=f"First round does not start from a magic ring. Starting count unknown.",
+                            message="First round does not start from a magic ring. Starting count unknown.",
                         )
                     )
 
@@ -264,7 +276,7 @@ class StitchCountValidator:
         if not rows:
             return
 
-        expected_next_start: Optional[int] = None
+        expected_next_start: int | None = None
 
         for i, current_row in enumerate(rows):
             row_num = current_row.row_number
@@ -344,7 +356,9 @@ class StitchCountValidator:
                 return True
         return False
 
-    def _resolve_context_dependent(self, instruction: Instruction, available_stitches: int) -> int:
+    def _resolve_context_dependent(
+        self, instruction: Instruction, available_stitches: int
+    ) -> int:
         """
         Resolve context-dependent operations given the available stitch count.
 
@@ -371,7 +385,7 @@ class StitchCountValidator:
 
         return total
 
-    def _get_stated_total(self, row_or_round) -> Optional[int]:
+    def _get_stated_total(self, row_or_round) -> int | None:
         """Get the stated total stitch count from a row or round."""
         # Check if any instruction has a stated count at the end
         for inst in row_or_round.instructions:
@@ -379,7 +393,7 @@ class StitchCountValidator:
                 return inst.stated_stitch_count
 
         # Check the expected ending count on the row/round itself
-        if hasattr(row_or_round, 'expected_ending_stitch_count'):
+        if hasattr(row_or_round, "expected_ending_stitch_count"):
             return row_or_round.expected_ending_stitch_count
         return None
 

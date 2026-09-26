@@ -2,32 +2,33 @@
 Timelapse Video Maker - Create progress videos from photos
 Turn your crochet journey into a beautiful timelapse video
 """
+
 import json
-from typing import Dict, List, Optional
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
-from pathlib import Path
 
 
 @dataclass
 class TimelapseFrame:
     """A single frame in the timelapse"""
+
     photo_path: str = ""
     round_number: int = 0
     timestamp: str = ""
     caption: str = ""
     transition: str = "fade"  # fade, slide, zoom, none
     duration_seconds: float = 2.0
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 @dataclass
 class TimelapseProject:
     """A timelapse video project"""
+
     name: str
-    frames: List[Dict] = field(default_factory=list)
+    frames: list[dict] = field(default_factory=list)
     music: str = ""
     background: str = "dark"
     title_card: str = ""
@@ -38,15 +39,15 @@ class TimelapseProject:
     output_format: str = "html"  # html, gif, mp4
     width: int = 1080
     height: int = 1080
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 class TimelapseMaker:
     """
     Create timelapse videos from crochet progress photos
-    
+
     Features:
     - Combine progress photos into video
     - Add transitions (fade, slide, zoom)
@@ -56,7 +57,7 @@ class TimelapseMaker:
     - Round-by-round annotation
     - Progress overlay
     """
-    
+
     TRANSITIONS = {
         "fade": "Smooth fade between frames",
         "slide_left": "Slide from right to left",
@@ -66,7 +67,7 @@ class TimelapseMaker:
         "flip": "3D flip transition",
         "none": "No transition (cut)",
     }
-    
+
     THEMES = {
         "dark": {"bg": "#0a0a0a", "text": "#ffffff", "accent": "#4ECCA3"},
         "light": {"bg": "#f5f5f5", "text": "#333333", "accent": "#E94560"},
@@ -75,7 +76,7 @@ class TimelapseMaker:
         "ocean": {"bg": "#0C2340", "text": "#E0F7FA", "accent": "#00BCD4"},
         "forest": {"bg": "#1B3A2D", "text": "#C8E6C9", "accent": "#66BB6A"},
     }
-    
+
     MUSIC_SUGGESTIONS = [
         {"name": "Relaxing Piano", "mood": "calm", "bpm": 60},
         {"name": "Upbeat Acoustic", "mood": "happy", "bpm": 120},
@@ -83,12 +84,13 @@ class TimelapseMaker:
         {"name": "Cinematic", "mood": "epic", "bpm": 80},
         {"name": "Nature Sounds", "mood": "peaceful", "bpm": 0},
     ]
-    
+
     def __init__(self):
-        self.projects: Dict[str, TimelapseProject] = {}
-    
-    def create_project(self, name: str, theme: str = "dark",
-                      fps: int = 30, frame_duration: float = 2.0) -> str:
+        self.projects: dict[str, TimelapseProject] = {}
+
+    def create_project(
+        self, name: str, theme: str = "dark", fps: int = 30, frame_duration: float = 2.0
+    ) -> str:
         """Create a new timelapse project"""
         project = TimelapseProject(
             name=name,
@@ -98,14 +100,19 @@ class TimelapseMaker:
         )
         self.projects[name] = project
         return name
-    
-    def add_frame(self, project_name: str, photo_path: str = "",
-                 round_number: int = 0, caption: str = "",
-                 transition: str = "fade") -> bool:
+
+    def add_frame(
+        self,
+        project_name: str,
+        photo_path: str = "",
+        round_number: int = 0,
+        caption: str = "",
+        transition: str = "fade",
+    ) -> bool:
         """Add a frame to the timelapse"""
         if project_name not in self.projects:
             return False
-        
+
         frame = TimelapseFrame(
             photo_path=photo_path,
             round_number=round_number,
@@ -114,10 +121,10 @@ class TimelapseMaker:
             transition=transition,
             duration_seconds=self.projects[project_name].frame_duration,
         )
-        
+
         self.projects[project_name].frames.append(frame.to_dict())
         return True
-    
+
     def add_demo_frames(self, project_name: str, total_rounds: int = 10):
         """Add demo frames for testing"""
         for i in range(1, total_rounds + 1):
@@ -127,21 +134,19 @@ class TimelapseMaker:
                 f"Round {i} complete!",
             ]
             self.add_frame(
-                project_name,
-                round_number=i,
-                caption=captions[i % len(captions)]
+                project_name, round_number=i, caption=captions[i % len(captions)]
             )
-    
+
     def generate_html_timelapse(self, project_name: str) -> str:
         """Generate an interactive HTML timelapse"""
         if project_name not in self.projects:
             return "<p>Project not found</p>"
-        
+
         proj = self.projects[project_name]
         theme = self.THEMES.get(proj.background, self.THEMES["dark"])
-        
+
         frames_json = json.dumps(proj.frames)
-        
+
         html = f'''<!DOCTYPE html>
 <html>
 <head>
@@ -152,8 +157,8 @@ class TimelapseMaker:
 * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 body {{
     font-family: -apple-system, sans-serif;
-    background: {theme['bg']};
-    color: {theme['text']};
+    background: {theme["bg"]};
+    color: {theme["text"]};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,7 +166,7 @@ body {{
     padding: 20px;
 }}
 h1 {{
-    color: {theme['accent']};
+    color: {theme["accent"]};
     margin: 20px 0;
     font-size: 2em;
 }}
@@ -196,13 +201,13 @@ h1 {{
 .frame .round-num {{
     font-size: 5em;
     font-weight: bold;
-    color: {theme['accent']};
+    color: {theme["accent"]};
     text-shadow: 0 0 30px rgba(78,204,163,0.3);
     margin-bottom: 20px;
 }}
 .frame .caption {{
     font-size: 1.5em;
-    color: {theme['text']};
+    color: {theme["text"]};
     opacity: 0.8;
     max-width: 80%;
 }}
@@ -228,7 +233,7 @@ h1 {{
 }}
 .progress-fill {{
     height: 100%;
-    background: linear-gradient(90deg, {theme['accent']}, {theme['text']});
+    background: linear-gradient(90deg, {theme["accent"]}, {theme["text"]});
     transition: width 0.5s ease;
     border-radius: 3px;
 }}
@@ -248,9 +253,9 @@ h1 {{
     transition: transform 0.1s;
 }}
 .btn:active {{ transform: scale(0.95); }}
-.btn-play {{ background: {theme['accent']}; color: {theme['bg']}; }}
+.btn-play {{ background: {theme["accent"]}; color: {theme["bg"]}; }}
 .btn-stop {{ background: #e94560; color: white; }}
-.btn-step {{ background: rgba(255,255,255,0.1); color: {theme['text']}; }}
+.btn-step {{ background: rgba(255,255,255,0.1); color: {theme["text"]}; }}
 .info {{
     color: rgba(255,255,255,0.5);
     margin: 10px;
@@ -373,34 +378,38 @@ showFrame(0);
 </script>
 </body>
 </html>'''
-        
+
         return html
-    
-    def get_project_info(self, project_name: str) -> Dict:
+
+    def get_project_info(self, project_name: str) -> dict:
         """Get project information"""
         if project_name not in self.projects:
             return {}
-        
+
         proj = self.projects[project_name]
         total_duration = sum(f.get("duration_seconds", 2) for f in proj.frames)
-        
+
         return {
             "name": proj.name,
             "total_frames": len(proj.frames),
             "total_duration_seconds": round(total_duration, 1),
-            "total_duration_string": f"{int(total_duration // 60)}m {int(total_duration % 60)}s" if total_duration >= 60 else f"{int(total_duration)}s",
+            "total_duration_string": f"{int(total_duration // 60)}m {int(total_duration % 60)}s"
+            if total_duration >= 60
+            else f"{int(total_duration)}s",
             "theme": proj.background,
             "fps": proj.fps,
-            "transitions_used": list(set(f.get("transition", "fade") for f in proj.frames)),
+            "transitions_used": list(
+                set(f.get("transition", "fade") for f in proj.frames)
+            ),
         }
-    
-    def export_for_external_tool(self, project_name: str) -> Dict:
+
+    def export_for_external_tool(self, project_name: str) -> dict:
         """Export project data for external video tools"""
         if project_name not in self.projects:
             return {}
-        
+
         proj = self.projects[project_name]
-        
+
         return {
             "ffmpeg_command": self._generate_ffmpeg_command(proj),
             "frames_list": proj.frames,
@@ -411,9 +420,9 @@ showFrame(0);
                 "DaVinci Resolve (free professional)",
                 "Canva Video (easy online)",
                 "InShot (mobile)",
-            ]
+            ],
         }
-    
+
     def _generate_ffmpeg_command(self, proj: TimelapseProject) -> str:
         """Generate FFmpeg command for video creation"""
         return (
@@ -429,43 +438,43 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  TIMELAPSE VIDEO MAKER - DEMONSTRATION")
     print("=" * 60)
-    
+
     maker = TimelapseMaker()
-    
+
     # Create project
     proj = maker.create_project("Bunny Timelapse", theme="cozy", frame_duration=2.0)
     print(f"\n✅ Created project: {proj}")
-    
+
     # Add demo frames
     maker.add_demo_frames(proj, total_rounds=13)
-    print(f"✅ Added 13 frames")
-    
+    print("✅ Added 13 frames")
+
     # Get info
     info = maker.get_project_info(proj)
-    print(f"\n📊 Project Info:")
+    print("\n📊 Project Info:")
     for key, val in info.items():
         print(f"  {key}: {val}")
-    
+
     # Generate HTML
     html = maker.generate_html_timelapse(proj)
     print(f"\n✅ HTML timelapse: {len(html)} chars")
-    
+
     # Export for external tools
     export = maker.export_for_external_tool(proj)
-    print(f"\n🎬 FFmpeg command:")
+    print("\n🎬 FFmpeg command:")
     print(f"  {export['ffmpeg_command']}")
-    print(f"\n📱 Suggested tools:")
-    for tool in export['suggested_tools']:
+    print("\n📱 Suggested tools:")
+    for tool in export["suggested_tools"]:
         print(f"  • {tool}")
-    
+
     # Themes
-    print(f"\n🎨 Available Themes:")
+    print("\n🎨 Available Themes:")
     for name, colors in maker.THEMES.items():
         print(f"  • {name}: bg={colors['bg']} accent={colors['accent']}")
-    
+
     # Music
-    print(f"\n🎵 Music Suggestions:")
+    print("\n🎵 Music Suggestions:")
     for m in maker.MUSIC_SUGGESTIONS:
         print(f"  • {m['name']} ({m['mood']}, {m['bpm']} BPM)")
-    
-    print(f"\n  Timelapse Maker Complete! 🎬")
+
+    print("\n  Timelapse Maker Complete! 🎬")

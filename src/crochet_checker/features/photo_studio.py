@@ -2,16 +2,15 @@
 Photo Studio - Create professional product photos for selling crochet items
 Add watermarks, backgrounds, branding, mockups, social media ready images
 """
+
 import json
-from typing import Dict, List, Optional
-from dataclasses import dataclass, field, asdict
-from datetime import datetime
-from pathlib import Path
+from dataclasses import asdict, dataclass
 
 
 @dataclass
 class BrandKit:
     """Your brand identity"""
+
     name: str = "My Crochet"
     tagline: str = "Handmade with Love"
     website: str = ""
@@ -23,29 +22,30 @@ class BrandKit:
     background_color: str = "#1A1A2E"
     font_style: str = "elegant"  # elegant, modern, cute, rustic
     watermark_opacity: float = 0.3
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 @dataclass
 class PhotoTemplate:
     """A photo layout template"""
+
     name: str
     style: str  # product, lifestyle, flat_lay, mockup, social
     background: str
-    dimensions: Dict  # width, height
+    dimensions: dict  # width, height
     watermark_position: str  # top_left, top_right, bottom_left, bottom_right, center
     overlay_text: str = ""
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 class PhotoStudio:
     """
     Professional photo studio for crochet products
-    
+
     Features:
     - Branded photo templates
     - Watermark generator
@@ -55,10 +55,14 @@ class PhotoStudio:
     - Before/after comparison
     - Batch photo processing
     """
-    
+
     SOCIAL_SIZES = {
         "instagram_square": {"width": 1080, "height": 1080, "name": "Instagram Post"},
-        "instagram_story": {"width": 1080, "height": 1920, "name": "Instagram Story/Reel"},
+        "instagram_story": {
+            "width": 1080,
+            "height": 1920,
+            "name": "Instagram Story/Reel",
+        },
         "pinterest_pin": {"width": 1000, "height": 1500, "name": "Pinterest Pin"},
         "etsy_listing": {"width": 2000, "height": 1500, "name": "Etsy Listing"},
         "facebook_post": {"width": 1200, "height": 630, "name": "Facebook Post"},
@@ -66,7 +70,7 @@ class PhotoStudio:
         "tiktok_video": {"width": 1080, "height": 1920, "name": "TikTok Video"},
         "ravelry_photo": {"width": 1200, "height": 1200, "name": "Ravelry Photo"},
     }
-    
+
     BACKGROUNDS = {
         "marble": "linear-gradient(135deg, #f5f5f5 25%, #e8e8e8 25%, #e8e8e8 50%, #f5f5f5 50%, #f5f5f5 75%, #e8e8e8 75%)",
         "wood": "linear-gradient(180deg, #DEB887 0%, #D2691E 50%, #8B4513 100%)",
@@ -77,47 +81,92 @@ class PhotoStudio:
         "sage_green": "linear-gradient(135deg, #B2C9AD 0%, #95B8A0 50%, #7FA98B 100%)",
         "blush_pink": "linear-gradient(135deg, #FFE4E1 0%, #FFB6C1 50%, #FFC0CB 100%)",
     }
-    
+
     WATERMARK_STYLES = {
         "elegant": {"font": "Georgia, serif", "size": "24px", "letter_spacing": "3px"},
-        "modern": {"font": "Arial, sans-serif", "size": "20px", "letter_spacing": "1px"},
-        "cute": {"font": "Comic Sans MS, cursive", "size": "22px", "letter_spacing": "0px"},
-        "rustic": {"font": "Courier New, monospace", "size": "18px", "letter_spacing": "2px"},
+        "modern": {
+            "font": "Arial, sans-serif",
+            "size": "20px",
+            "letter_spacing": "1px",
+        },
+        "cute": {
+            "font": "Comic Sans MS, cursive",
+            "size": "22px",
+            "letter_spacing": "0px",
+        },
+        "rustic": {
+            "font": "Courier New, monospace",
+            "size": "18px",
+            "letter_spacing": "2px",
+        },
         "bold": {"font": "Impact, sans-serif", "size": "28px", "letter_spacing": "4px"},
     }
-    
+
     def __init__(self, brand: BrandKit = None):
         self.brand = brand or BrandKit()
-        self.templates: List[PhotoTemplate] = []
+        self.templates: list[PhotoTemplate] = []
         self._load_default_templates()
-    
+
     def _load_default_templates(self):
         """Load default photo templates"""
         self.templates = [
-            PhotoTemplate("Instagram Product", "product", "marble",
-                         self.SOCIAL_SIZES["instagram_square"], "bottom_right"),
-            PhotoTemplate("Etsy Hero Image", "product", "linen",
-                         self.SOCIAL_SIZES["etsy_listing"], "bottom_right"),
-            PhotoTemplate("Pinterest Pin", "lifestyle", "pastel_gradient",
-                         self.SOCIAL_SIZES["pinterest_pin"], "center"),
-            PhotoTemplate("Flat Lay", "flat_lay", "cozy_knit",
-                         self.SOCIAL_SIZES["instagram_square"], "top_right"),
-            PhotoTemplate("Story Background", "social", "dark_luxe",
-                         self.SOCIAL_SIZES["instagram_story"], "bottom_right"),
+            PhotoTemplate(
+                "Instagram Product",
+                "product",
+                "marble",
+                self.SOCIAL_SIZES["instagram_square"],
+                "bottom_right",
+            ),
+            PhotoTemplate(
+                "Etsy Hero Image",
+                "product",
+                "linen",
+                self.SOCIAL_SIZES["etsy_listing"],
+                "bottom_right",
+            ),
+            PhotoTemplate(
+                "Pinterest Pin",
+                "lifestyle",
+                "pastel_gradient",
+                self.SOCIAL_SIZES["pinterest_pin"],
+                "center",
+            ),
+            PhotoTemplate(
+                "Flat Lay",
+                "flat_lay",
+                "cozy_knit",
+                self.SOCIAL_SIZES["instagram_square"],
+                "top_right",
+            ),
+            PhotoTemplate(
+                "Story Background",
+                "social",
+                "dark_luxe",
+                self.SOCIAL_SIZES["instagram_story"],
+                "bottom_right",
+            ),
         ]
-    
-    def generate_product_photo(self, item_name: str, description: str = "",
-                              template: str = "Instagram Product",
-                              price: str = "") -> str:
+
+    def generate_product_photo(
+        self,
+        item_name: str,
+        description: str = "",
+        template: str = "Instagram Product",
+        price: str = "",
+    ) -> str:
         """Generate a branded product photo layout as HTML"""
-        tmpl = next((t for t in self.templates if t.name == template), self.templates[0])
+        tmpl = next(
+            (t for t in self.templates if t.name == template), self.templates[0]
+        )
         bg = self.BACKGROUNDS.get(tmpl.background, self.BACKGROUNDS["marble"])
-        wm_style = self.WATERMARK_STYLES.get(self.brand.font_style, self.WATERMARK_STYLES["elegant"])
-        
+        wm_style = self.WATERMARK_STYLES.get(
+            self.brand.font_style, self.WATERMARK_STYLES["elegant"]
+        )
+
         size = tmpl.dimensions
         opacity = self.brand.watermark_opacity
-        
-        html = f'''<!DOCTYPE html>
+
+        html = f"""<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -135,8 +184,8 @@ body {{
     min-height: 100vh;
 }}
 .photo-frame {{
-    width: {size['width']}px;
-    height: {size['height']}px;
+    width: {size["width"]}px;
+    height: {size["height"]}px;
     max-width: 90vw;
     max-height: 80vh;
     background: {bg};
@@ -172,9 +221,9 @@ body {{
     {self._get_watermark_position(tmpl.watermark_position)}
     padding: 15px 25px;
     opacity: {opacity};
-    font-family: {wm_style['font']};
-    font-size: {wm_style['size']};
-    letter-spacing: {wm_style['letter_spacing']};
+    font-family: {wm_style["font"]};
+    font-size: {wm_style["size"]};
+    letter-spacing: {wm_style["letter_spacing"]};
     color: {self.brand.primary_color};
     text-transform: uppercase;
     pointer-events: none;
@@ -184,7 +233,7 @@ body {{
     bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    font-family: {wm_style['font']};
+    font-family: {wm_style["font"]};
     font-size: 14px;
     color: rgba(0,0,0,0.4);
     letter-spacing: 2px;
@@ -316,10 +365,10 @@ document.querySelector('.photo-placeholder').addEventListener('click', function(
 }});
 </script>
 </body>
-</html>'''
-        
+</html>"""
+
         return html
-    
+
     def _get_watermark_position(self, position: str) -> str:
         """Get CSS positioning for watermark"""
         positions = {
@@ -330,26 +379,27 @@ document.querySelector('.photo-placeholder').addEventListener('click', function(
             "center": "top: 50%; left: 50%; transform: translate(-50%, -50%);",
         }
         return positions.get(position, positions["bottom_right"])
-    
-    def generate_all_social_sizes(self, item_name: str, description: str = "", 
-                                 price: str = "") -> Dict:
+
+    def generate_all_social_sizes(
+        self, item_name: str, description: str = "", price: str = ""
+    ) -> dict:
         """Generate photos for all social media platforms"""
         results = {}
         for platform, size in self.SOCIAL_SIZES.items():
             tmpl = PhotoTemplate(
-                f"{platform}_template", "product", "marble",
-                size, "bottom_right"
+                f"{platform}_template", "product", "marble", size, "bottom_right"
             )
             results[platform] = {
                 "name": size["name"],
                 "width": size["width"],
                 "height": size["height"],
-                "html": self.generate_product_photo(item_name, description, 
-                                                     f"{platform}_template", price)
+                "html": self.generate_product_photo(
+                    item_name, description, f"{platform}_template", price
+                ),
             }
         return results
-    
-    def get_brand_summary(self) -> Dict:
+
+    def get_brand_summary(self) -> dict:
         """Get brand kit summary"""
         return {
             "name": self.brand.name,
@@ -371,33 +421,31 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  PHOTO STUDIO - DEMONSTRATION")
     print("=" * 60)
-    
+
     brand = BrandKit(
         name="Cozy Stitches",
         tagline="Handmade with Love",
         primary_color="#E94560",
         secondary_color="#4ECCA3",
-        font_style="elegant"
+        font_style="elegant",
     )
-    
+
     studio = PhotoStudio(brand)
-    
+
     print("\n🎨 Brand Kit:")
     summary = studio.get_brand_summary()
     for key, val in summary.items():
         print(f"  {key}: {val}")
-    
+
     print("\n📱 Social Media Sizes:")
     for platform, size in studio.SOCIAL_SIZES.items():
         print(f"  {platform}: {size['width']}x{size['height']}")
-    
+
     # Generate product photo
     html = studio.generate_product_photo(
-        "Amigurumi Bunny",
-        "Soft cotton bunny, perfect gift",
-        price="$25"
+        "Amigurumi Bunny", "Soft cotton bunny, perfect gift", price="$25"
     )
     print(f"\n✅ Product photo generated: {len(html)} chars")
     print(f"   Backgrounds available: {len(studio.BACKGROUNDS)}")
-    
-    print(f"\n  Photo Studio Complete! 📸")
+
+    print("\n  Photo Studio Complete! 📸")

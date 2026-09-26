@@ -1,13 +1,12 @@
 """
 Yarn Care Guide - Complete washing, blocking, and care instructions for all fiber types
 """
-from typing import Dict, List, Optional
 
 
 class YarnCareGuide:
     """
     Complete yarn care instructions
-    
+
     Features:
     - Washing instructions by fiber
     - Blocking methods
@@ -16,7 +15,7 @@ class YarnCareGuide:
     - Stain removal
     - Pilling solutions
     """
-    
+
     FIBER_CARE = {
         "cotton": {
             "wash": "Machine wash warm or cool",
@@ -127,7 +126,7 @@ class YarnCareGuide:
             "temp": "20°C / 68°F",
         },
     }
-    
+
     BLOCKING_METHODS = {
         "wet_blocking": {
             "name": "Wet Blocking",
@@ -164,7 +163,7 @@ class YarnCareGuide:
             ],
         },
     }
-    
+
     STAIN_REMOVAL = {
         "food": "Blot excess. Mix dish soap + cold water. Dab gently. Rinse.",
         "oil": "Apply cornstarch or baking soda. Wait 30 min. Brush off. Wash.",
@@ -173,7 +172,7 @@ class YarnCareGuide:
         "grass": "Apply white vinegar. Let sit 5 min. Wash normally.",
         "makeup": "Apply shaving cream. Gently work in. Rinse with cold water.",
     }
-    
+
     STORAGE_TIPS = [
         "Store in breathable cotton bags, not plastic",
         "Keep away from direct sunlight to prevent fading",
@@ -184,7 +183,7 @@ class YarnCareGuide:
         "Rotate items seasonally to prevent long compression",
         "Use acid-free tissue paper for delicate items",
     ]
-    
+
     PILLING_SOLUTIONS = [
         "Use a fabric shaver/depiller gently",
         "A disposable razor works in a pinch",
@@ -193,59 +192,62 @@ class YarnCareGuide:
         "Hand wash instead of machine when possible",
         "Acrylic pills more than natural fibers",
     ]
-    
-    def get_care(self, fiber: str) -> Dict:
+
+    def get_care(self, fiber: str) -> dict:
         """Get care instructions for a fiber"""
         care = self.FIBER_CARE.get(fiber.lower(), self.FIBER_CARE.get("acrylic"))
         return {
             "fiber": fiber,
             "care": care,
         }
-    
-    def suggest_blocking(self, fiber: str) -> Dict:
+
+    def suggest_blocking(self, fiber: str) -> dict:
         """Suggest best blocking method for a fiber"""
         best_method = None
         for method, info in self.BLOCKING_METHODS.items():
             if fiber.lower() in info["best_for"]:
                 best_method = method
                 break
-        
+
         if not best_method:
             best_method = "wet_blocking"
-        
+
         return {
             "fiber": fiber,
             "recommended_method": self.BLOCKING_METHODS[best_method]["name"],
             "steps": self.BLOCKING_METHODS[best_method]["steps"],
         }
-    
-    def get_stain_help(self, stain_type: str) -> Dict:
+
+    def get_stain_help(self, stain_type: str) -> dict:
         """Get stain removal instructions"""
-        treatment = self.STAIN_REMOVAL.get(stain_type.lower(), "Blot gently. Test any treatment on an inconspicuous area first.")
+        treatment = self.STAIN_REMOVAL.get(
+            stain_type.lower(),
+            "Blot gently. Test any treatment on an inconspicuous area first.",
+        )
         return {
             "stain": stain_type,
             "treatment": treatment,
         }
-    
-    def get_storage_tips(self) -> List[str]:
+
+    def get_storage_tips(self) -> list[str]:
         """Get storage tips"""
         return self.STORAGE_TIPS
-    
-    def get_pilling_solutions(self) -> List[str]:
+
+    def get_pilling_solutions(self) -> list[str]:
         """Get pilling solutions"""
         return self.PILLING_SOLUTIONS
-    
+
     def quick_reference_card(self) -> str:
         """Generate a quick reference text"""
         card = "YARN CARE QUICK REFERENCE\n" + "=" * 40 + "\n\n"
-        
+
         for fiber, care in sorted(self.FIBER_CARE.items()):
             card += f"{fiber.upper()}\n"
             card += f"  Wash: {care['wash']}\n"
             card += f"  Dry:  {care['dry']}\n"
             card += f"  Temp: {care['temp']}\n"
             card += f"  Block: {care['block']}\n\n"
-        
+
         return card
 
 
@@ -254,9 +256,9 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  YARN CARE GUIDE - DEMONSTRATION")
     print("=" * 60)
-    
+
     guide = YarnCareGuide()
-    
+
     # Test fibers
     for fiber in ["wool", "cotton", "acrylic", "silk"]:
         print(f"\n🧶 {fiber.upper()}")
@@ -264,37 +266,37 @@ if __name__ == "__main__":
         print(f"  Wash: {care['care']['wash']}")
         print(f"  Dry: {care['care']['dry']}")
         print(f"  Temp: {care['care']['temp']}")
-    
+
     # Blocking methods
-    print(f"\n📌 Blocking for Wool:")
+    print("\n📌 Blocking for Wool:")
     block = guide.suggest_blocking("wool")
     print(f"  Method: {block['recommended_method']}")
-    for i, step in enumerate(block['steps'][:3], 1):
+    for i, step in enumerate(block["steps"][:3], 1):
         print(f"  {i}. {step}")
-    
-    print(f"\n📌 Blocking for Acrylic:")
+
+    print("\n📌 Blocking for Acrylic:")
     block = guide.suggest_blocking("acrylic")
     print(f"  Method: {block['recommended_method']}")
-    for i, step in enumerate(block['steps'][:3], 1):
+    for i, step in enumerate(block["steps"][:3], 1):
         print(f"  {i}. {step}")
-    
+
     # Stain removal
-    print(f"\n🧼 Stain Removal - Oil:")
+    print("\n🧼 Stain Removal - Oil:")
     stain = guide.get_stain_help("oil")
     print(f"  {stain['treatment']}")
-    
+
     # Storage
-    print(f"\n📦 Storage Tips:")
+    print("\n📦 Storage Tips:")
     for tip in guide.get_storage_tips()[:3]:
         print(f"  • {tip}")
-    
+
     # Pilling
-    print(f"\n🔍 Pilling Solutions:")
+    print("\n🔍 Pilling Solutions:")
     for solution in guide.get_pilling_solutions()[:3]:
         print(f"  • {solution}")
-    
+
     # Quick reference
     ref = guide.quick_reference_card()
     print(f"\n✅ Quick reference card: {len(ref)} chars")
-    
-    print(f"\n  Yarn Care Guide Complete! 🧼")
+
+    print("\n  Yarn Care Guide Complete! 🧼")

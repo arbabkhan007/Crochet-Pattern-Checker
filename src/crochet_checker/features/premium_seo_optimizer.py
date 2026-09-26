@@ -2,6 +2,7 @@
 Premium SEO Optimizer - Search engine optimization
 """
 
+
 class PremiumSEOOptimizer:
     def __init__(self):
         self.seo_factors = {
@@ -9,9 +10,9 @@ class PremiumSEOOptimizer:
             "structured_data": True,
             "semantic_html": True,
             "performance": True,
-            "mobile_friendly": True
+            "mobile_friendly": True,
         }
-    
+
     def optimize_seo(self, content: dict, keywords: list) -> dict:
         """Optimize premium SEO"""
         return {
@@ -24,18 +25,21 @@ class PremiumSEOOptimizer:
                 "rich_snippets",
                 "open_graph_tags",
                 "twitter_cards",
-                "sitemap_integration"
-            ]
+                "sitemap_integration",
+            ],
         }
+
 
 if __name__ == "__main__":
     print("🔍 Premium SEO Optimizer")
     print("=" * 60)
-    
+
     seo = PremiumSEOOptimizer()
-    result = seo.optimize_seo({"content": "pattern"}, ["crochet", "pattern", "tutorial"])
-    
-    print(f"\n✅ SEO optimized")
+    result = seo.optimize_seo(
+        {"content": "pattern"}, ["crochet", "pattern", "tutorial"]
+    )
+
+    print("\n✅ SEO optimized")
     print(f"SEO Score: {result['seo_score']}/100")
     print(f"Keywords: {result['keywords_included']}")
     print(f"Premium features: {len(result['premium_features'])}")

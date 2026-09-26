@@ -1,36 +1,43 @@
 """
 Crochet Analytics Dashboard - Beautiful charts and insights about your crochet journey
 """
+
 import json
-import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 
 class CrochetAnalytics:
     """Generate beautiful analytics dashboards for crochet projects"""
-    
+
     def __init__(self, data_file: str = "crochet_analytics.json"):
         self.data_file = Path(data_file)
         self.data = self._load_data()
-    
+
     def _load_data(self):
         if self.data_file.exists():
-            with open(self.data_file, 'r') as f:
+            with open(self.data_file, "r") as f:
                 return json.load(f)
         return {
             "projects": [],
             "yarn_usage": [],
             "time_spent": [],
-            "skills_learned": []
+            "skills_learned": [],
         }
-    
+
     def save_data(self):
-        with open(self.data_file, 'w') as f:
+        with open(self.data_file, "w") as f:
             json.dump(self.data, f, indent=2)
-    
-    def add_project(self, name: str, category: str, hours: float, yarn_yards: float, 
-                    difficulty: str, completed_date: str = None):
+
+    def add_project(
+        self,
+        name: str,
+        category: str,
+        hours: float,
+        yarn_yards: float,
+        difficulty: str,
+        completed_date: str = None,
+    ):
         """Add a completed project"""
         project = {
             "name": name,
@@ -38,67 +45,69 @@ class CrochetAnalytics:
             "hours": hours,
             "yarn_yards": yarn_yards,
             "difficulty": difficulty,
-            "completed_date": completed_date or datetime.now().strftime("%Y-%m-%d")
+            "completed_date": completed_date or datetime.now().strftime("%Y-%m-%d"),
         }
         self.data["projects"].append(project)
         self.save_data()
-    
-    def add_yarn_purchase(self, brand: str, color: str, yards: float, cost: float, date: str = None):
+
+    def add_yarn_purchase(
+        self, brand: str, color: str, yards: float, cost: float, date: str = None
+    ):
         """Track yarn purchases"""
         purchase = {
             "brand": brand,
             "color": color,
             "yards": yards,
             "cost": cost,
-            "date": date or datetime.now().strftime("%Y-%m-%d")
+            "date": date or datetime.now().strftime("%Y-%m-%d"),
         }
         self.data["yarn_usage"].append(purchase)
         self.save_data()
-    
+
     def add_skill(self, skill_name: str, proficiency: int, date: str = None):
         """Track skills learned (proficiency 1-10)"""
         skill = {
             "name": skill_name,
             "proficiency": proficiency,
-            "date": date or datetime.now().strftime("%Y-%m-%d")
+            "date": date or datetime.now().strftime("%Y-%m-%d"),
         }
         self.data["skills_learned"].append(skill)
         self.save_data()
-    
+
     def generate_dashboard_html(self, output_file: str = "crochet_dashboard.html"):
         """Generate beautiful HTML dashboard with charts"""
-        
+
         # Calculate statistics
         total_projects = len(self.data["projects"])
         total_hours = sum(p["hours"] for p in self.data["projects"])
         total_yarn = sum(p["yarn_yards"] for p in self.data["projects"])
         total_yarn_cost = sum(y["cost"] for y in self.data["yarn_usage"])
         total_skills = len(self.data["skills_learned"])
-        
+
         # Category breakdown
         categories = {}
         for p in self.data["projects"]:
             cat = p["category"]
             categories[cat] = categories.get(cat, 0) + 1
-        
+
         # Monthly progress
         monthly = {}
         for p in self.data["projects"]:
             month = p["completed_date"][:7]  # YYYY-MM
             monthly[month] = monthly.get(month, 0) + 1
-        
+
         # Difficulty distribution
         difficulties = {}
         for p in self.data["projects"]:
             diff = p["difficulty"]
             difficulties[diff] = difficulties.get(diff, 0) + 1
-        
+
         # Top yarn brands
         yarn_brands = {}
         for y in self.data["yarn_usage"]:
             brand = y["brand"]
             yarn_brands[brand] = yarn_brands.get(brand, 0) + y["yards"]
-        
+
         html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -287,39 +296,41 @@ class CrochetAnalytics:
     </script>
 </body>
 </html>"""
-        
-        with open(output_file, 'w') as f:
+
+        with open(output_file, "w") as f:
             f.write(html)
-        
+
         return output_file
 
 
 if __name__ == "__main__":
     print("🎨 Crochet Analytics Dashboard")
     print("=" * 50)
-    
+
     analytics = CrochetAnalytics()
-    
+
     # Add sample data
     print("\n📝 Adding sample projects...")
-    analytics.add_project("Granny Square Blanket", "Blankets", 45.5, 2500, "Intermediate")
+    analytics.add_project(
+        "Granny Square Blanket", "Blankets", 45.5, 2500, "Intermediate"
+    )
     analytics.add_project("Amigurumi Bunny", "Toys", 8.0, 150, "Beginner")
     analytics.add_project("Lace Shawl", "Accessories", 32.0, 1200, "Advanced")
     analytics.add_project("Baby Booties", "Baby", 4.5, 80, "Beginner")
     analytics.add_project("Cable Sweater", "Garments", 60.0, 1800, "Advanced")
-    
+
     print("🧶 Adding yarn purchases...")
     analytics.add_yarn_purchase("Red Heart", "Various", 5000, 125.00)
     analytics.add_yarn_purchase("Lily Sugar'n Cream", "Natural", 1200, 45.00)
     analytics.add_yarn_purchase("Malabrigo", "Purple", 800, 95.00)
-    
+
     print("🎯 Adding skills...")
     analytics.add_skill("Single Crochet", 10)
     analytics.add_skill("Double Crochet", 10)
     analytics.add_skill("Cable Stitch", 7)
     analytics.add_skill("Lace Work", 5)
     analytics.add_skill("Amigurumi", 8)
-    
+
     print("\n📊 Generating dashboard...")
     output = analytics.generate_dashboard_html()
     print(f"✅ Dashboard saved to: {output}")

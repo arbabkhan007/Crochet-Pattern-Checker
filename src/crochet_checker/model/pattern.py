@@ -8,54 +8,57 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
 from .instruction import Instruction
-from .row import Row, Round, RowOrRound
-from .yarn import Yarn, Hook, Gauge
+from .row import Round, Row, RowOrRound
+from .yarn import Gauge, Hook, Yarn
 
 
 class ConstructionType(str, Enum):
     """How the pattern is constructed."""
 
-    FLAT = "flat"           # Worked in rows, back and forth
+    FLAT = "flat"  # Worked in rows, back and forth
     IN_THE_ROUND = "in_the_round"  # Worked in continuous rounds
     JOINED_ROUNDS = "joined_rounds"  # Rounds joined with slip stitch
-    MOTIF = "motif"         # Multiple motifs joined together
-    ASSEMBLY = "assembly"   # Multiple pieces sewn together
+    MOTIF = "motif"  # Multiple motifs joined together
+    ASSEMBLY = "assembly"  # Multiple pieces sewn together
 
 
 class PatternMetadata(BaseModel):
     """Metadata about the pattern."""
 
-    title: Optional[str] = None
-    designer: Optional[str] = None
-    difficulty: Optional[str] = None  # beginner, easy, intermediate, advanced
-    category: Optional[str] = None  # hat, scarf, amigurumi, blanket, etc.
-    description: Optional[str] = None
-    pattern_id: Optional[str] = None
+    title: str | None = None
+    designer: str | None = None
+    difficulty: str | None = None  # beginner, easy, intermediate, advanced
+    category: str | None = None  # hat, scarf, amigurumi, blanket, etc.
+    description: str | None = None
+    pattern_id: str | None = None
     version: str = "1.0"
     created_at: datetime = Field(default_factory=datetime.now)
-    updated_at: Optional[datetime] = None
+    updated_at: datetime | None = None
     checker_version: str = "0.1.0"
 
 
 class PatternPiece(BaseModel):
     """A single piece/component of a multi-piece crochet pattern."""
-    
+
     name: str = Field(description="Piece name (e.g., 'HEAD', 'ARMS', 'GILLS')")
-    make_count: Optional[int] = Field(default=None, description="How many to make (e.g., 2 for 'make 2')")
-    rounds: list[Round] = Field(default_factory=list, description="Rounds for this piece")
+    make_count: int | None = Field(
+        default=None, description="How many to make (e.g., 2 for 'make 2')"
+    )
+    rounds: list[Round] = Field(
+        default_factory=list, description="Rounds for this piece"
+    )
     rows: list[Row] = Field(default_factory=list, description="Rows for this piece")
     notes: list[str] = Field(default_factory=list, description="Piece-specific notes")
-    
+
     @property
     def is_rounds(self) -> bool:
         """Whether this piece uses rounds (vs rows)."""
         return len(self.rounds) > 0
-    
+
     @property
     def total_rows_or_rounds(self) -> int:
         """Total number of rows or rounds in this piece."""
@@ -73,9 +76,9 @@ class Pattern(BaseModel):
     metadata: PatternMetadata = Field(default_factory=PatternMetadata)
     source_text: str = Field(default="", description="Original full pattern text")
     construction: ConstructionType = Field(default=ConstructionType.FLAT)
-    yarn: Optional[Yarn] = None
-    hook: Optional[Hook] = None
-    gauge: Optional[Gauge] = None
+    yarn: Yarn | None = None
+    hook: Hook | None = None
+    gauge: Gauge | None = None
     abbreviations: dict[str, str] = Field(
         default_factory=dict,
         description="Custom abbreviation mappings",
@@ -85,8 +88,12 @@ class Pattern(BaseModel):
     rounds: list[Round] = Field(default_factory=list)
     finishing: list[str] = Field(default_factory=list)
     special_stitches: dict[str, str] = Field(default_factory=dict)
-    pieces: list[PatternPiece] = Field(default_factory=list, description="For multi-piece patterns, each component")
-    pieces: list[PatternPiece] = Field(default_factory=list, description="For multi-piece patterns, each component")
+    pieces: list[PatternPiece] = Field(
+        default_factory=list, description="For multi-piece patterns, each component"
+    )
+    pieces: list[PatternPiece] = Field(
+        default_factory=list, description="For multi-piece patterns, each component"
+    )
 
     @property
     def rows_or_rounds(self) -> list[RowOrRound]:
@@ -94,7 +101,7 @@ class Pattern(BaseModel):
         result: list[RowOrRound] = []
         if self.rounds:
             for r in self.rounds:
-                result.append(RowOrRound(is_round=True, **{"round": r}))
+                result.append(RowOrRound(is_round=True, round=r))
         elif self.rows:
             for r in self.rows:
                 result.append(RowOrRound(is_round=False, row=r))
@@ -122,14 +129,14 @@ class Pattern(BaseModel):
                 counts.append((r.row_number, r.computed_stitch_count))
         return counts
 
-    def get_round(self, number: int) -> Optional[Round]:
+    def get_round(self, number: int) -> Round | None:
         """Get a round by number."""
         for r in self.rounds:
             if r.round_number == number:
                 return r
         return None
 
-    def get_row(self, number: int) -> Optional[Row]:
+    def get_row(self, number: int) -> Row | None:
         """Get a row by number."""
         for r in self.rows:
             if r.row_number == number:
@@ -152,27 +159,7 @@ class Project(BaseModel):
     """A project wrapping a pattern with additional context for validation and publishing."""
 
     pattern: Pattern
-    validation_report: Optional[dict] = None
-    output_directory: Optional[str] = None
+    validation_report: dict | None = None
+    output_directory: str | None = None
     images: list[str] = Field(default_factory=list)
-    pdf_path: Optional[str] = None
-
-
-class PatternPiece(BaseModel):
-    """A single piece/component of a multi-piece crochet pattern."""
-    
-    name: str = Field(description="Piece name (e.g., 'HEAD', 'ARMS', 'GILLS')")
-    make_count: Optional[int] = Field(default=None, description="How many to make (e.g., 2 for 'make 2')")
-    rounds: list[Round] = Field(default_factory=list, description="Rounds for this piece")
-    rows: list[Row] = Field(default_factory=list, description="Rows for this piece")
-    notes: list[str] = Field(default_factory=list, description="Piece-specific notes")
-    
-    @property
-    def is_rounds(self) -> bool:
-        """Whether this piece uses rounds (vs rows)."""
-        return len(self.rounds) > 0
-    
-    @property
-    def total_rows_or_rounds(self) -> int:
-        """Total number of rows or rounds in this piece."""
-        return len(self.rounds) if self.is_rounds else len(self.rows)
+    pdf_path: str | None = None

@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import re
 
-
 # Pattern: "N stitches" or "N sc" etc.
 COUNT_STITCH = re.compile(
     r"(\d+)\s+(ch|sl\s*st|sc|hdc|dc|tr|dtr|inc|dec|sc2tog|dc2tog|fpdc|bpdc)"
@@ -86,7 +85,7 @@ def extract_stated_count(text: str) -> tuple[str, int | None]:
     match = STATED_COUNT.search(text.strip())
     if match:
         count = int(match.group(1))
-        clean_text = text[:match.start()].strip().rstrip(",")
+        clean_text = text[: match.start()].strip().rstrip(",")
         return clean_text, count
     return text, None
 

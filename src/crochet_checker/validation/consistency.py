@@ -12,7 +12,6 @@ from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
-from ..model.instruction import Instruction
 from ..model.pattern import Pattern
 from ..model.stitch import StitchType
 from .stitch_counts import Severity, ValidationFinding
@@ -25,7 +24,9 @@ class ConsistencyReport(BaseModel):
 
     @property
     def has_errors(self) -> bool:
-        return any(f.severity in (Severity.ERROR, Severity.CRITICAL) for f in self.findings)
+        return any(
+            f.severity in (Severity.ERROR, Severity.CRITICAL) for f in self.findings
+        )
 
 
 class ConsistencyValidator:
@@ -83,8 +84,13 @@ class ConsistencyValidator:
                                 sum(op.stitches_produced for op in inst.repeat_unit)
                                 * inst.repeat_count
                             )
-                            per_repeat = sum(op.stitches_produced for op in inst.repeat_unit)
-                            if per_repeat > 0 and total_produced % inst.repeat_count != 0:
+                            per_repeat = sum(
+                                op.stitches_produced for op in inst.repeat_unit
+                            )
+                            if (
+                                per_repeat > 0
+                                and total_produced % inst.repeat_count != 0
+                            ):
                                 self.findings.append(
                                     ValidationFinding(
                                         validator="consistency",
@@ -104,7 +110,12 @@ class ConsistencyValidator:
                     abbreviations_used.add(op.stitch_type.value)
 
         # Check for mixed terminology (e.g., both US and UK terms)
-        us_terms = {"single_crochet", "half_double_crochet", "double_crochet", "treble_crochet"}
+        us_terms = {
+            "single_crochet",
+            "half_double_crochet",
+            "double_crochet",
+            "treble_crochet",
+        }
         # This would need more sophisticated detection for real UK/US mixing
 
     def _check_structure(self, pattern: Pattern) -> None:

@@ -8,9 +8,7 @@ Provides SVG-based visualization:
 - Full 2D preview renders
 """
 
-from .stitch_diagram import SVGDiagram, generate_circle_diagram, generate_stitch_count_chart
 from .crochet_chart import generate_crochet_chart
-from .render_2d import Render2D, render_2d_preview
 from .measurements import (
     MeasurementEngine,
     PatternMeasurements,
@@ -18,17 +16,23 @@ from .measurements import (
     StitchDimensions,
     measure_pattern,
 )
+from .render_2d import Render2D, render_2d_preview
+from .stitch_diagram import (
+    SVGDiagram,
+    generate_circle_diagram,
+    generate_stitch_count_chart,
+)
 
 __all__ = [
-    "SVGDiagram",
-    "generate_circle_diagram",
-    "generate_stitch_count_chart",
-    "generate_crochet_chart",
-    "Render2D",
-    "render_2d_preview",
     "MeasurementEngine",
     "PatternMeasurements",
+    "Render2D",
     "RoundMeasurement",
+    "SVGDiagram",
     "StitchDimensions",
+    "generate_circle_diagram",
+    "generate_crochet_chart",
+    "generate_stitch_count_chart",
     "measure_pattern",
+    "render_2d_preview",
 ]

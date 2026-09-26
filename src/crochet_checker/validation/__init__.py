@@ -15,32 +15,32 @@ Rules engine (per 4-pattern audit):
 - AssemblyGraphValidator    -> N neighbor joins + N core joins before closure
 """
 
-from .validator import PatternValidator, ValidationResult, ValidationError
+from .assembly import AssemblyError, AssemblyGraphValidator
+from .chains import ChainAllocation, TurningChainRulesEngine
+from .corners import CornerMismatchError, CornerSequenceValidator
+from .exhaustion import ExhaustionReport, OrphanedStitchAnalyzer, OrphanedStitchError
 from .reporter import PatternReporter
-from .exhaustion import OrphanedStitchAnalyzer, ExhaustionReport, OrphanedStitchError
-from .corners import CornerSequenceValidator, CornerMismatchError
-from .chains import TurningChainRulesEngine, ChainAllocation
-from .assembly import AssemblyGraphValidator, AssemblyError
+from .validator import PatternValidator, ValidationError, ValidationResult
 
 __all__ = [
     # Core pipeline
-    'PatternValidator',
-    'ValidationResult',
-    'ValidationError',
-    'PatternReporter',
+    "PatternValidator",
+    "ValidationResult",
+    "ValidationError",
+    "PatternReporter",
     # Exhaustion
-    'OrphanedStitchAnalyzer',
-    'ExhaustionReport',
-    'OrphanedStitchError',
+    "OrphanedStitchAnalyzer",
+    "ExhaustionReport",
+    "OrphanedStitchError",
     # Corners
-    'CornerSequenceValidator',
-    'CornerMismatchError',
+    "CornerSequenceValidator",
+    "CornerMismatchError",
     # Chains
-    'TurningChainRulesEngine',
-    'ChainAllocation',
+    "TurningChainRulesEngine",
+    "ChainAllocation",
     # Assembly
-    'AssemblyGraphValidator',
-    'AssemblyError',
+    "AssemblyGraphValidator",
+    "AssemblyError",
 ]
 
 
@@ -48,15 +48,17 @@ __all__ = [
 from enum import Enum as _Enum
 
 from .validator import (
-    validate_pattern,
-    ValidationReport,
     Severity as CompilerSeverity,
+)
+from .validator import (
+    ValidationReport,
+    validate_pattern,
 )
 
 try:
     from .stitch_counts import (
-        validate_stitch_counts,
         StitchCountReport,
+        validate_stitch_counts,
     )
 except ImportError:
     validate_stitch_counts = None
@@ -70,14 +72,16 @@ class OverallStatus(_Enum):
     ERROR = "error"
 
 
-__all__.extend([
-    "validate_pattern",
-    "ValidationReport",
-    "CompilerSeverity",
-    "OverallStatus",
-    "validate_stitch_counts",
-    "StitchCountReport",
-])
+__all__.extend(
+    [
+        "CompilerSeverity",
+        "OverallStatus",
+        "StitchCountReport",
+        "ValidationReport",
+        "validate_pattern",
+        "validate_stitch_counts",
+    ]
+)
 
 from .stitch_counts import ValidationFinding
 

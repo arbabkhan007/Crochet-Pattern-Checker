@@ -1,15 +1,17 @@
-
-from pathlib import Path
-import webbrowser
 import tempfile
+import webbrowser
+from pathlib import Path
+
 
 class MobilePatternInterface:
     """Mobile-responsive pattern interface"""
-    
+
     def __init__(self):
         self.temp_dir = tempfile.mkdtemp()
-    
-    def generate_mobile_interface(self, pattern_text: str, title: str = "Crochet Pattern") -> str:
+
+    def generate_mobile_interface(
+        self, pattern_text: str, title: str = "Crochet Pattern"
+    ) -> str:
         """Generate mobile-responsive interface"""
         html = f"""
 <!DOCTYPE html>
@@ -207,10 +209,10 @@ class MobilePatternInterface:
             let currentRound = null;
             
             for (let line of lines) {{
-                const match = line.match(/(?:round|rnd|r)\s+(\d+):?\s*(.*)/i);
+                const match = line.match(/(?:round|rnd|r)\\s+(\\d+):?\\s*(.*)/i);
                 if (match) {{
                     if (currentRound) rounds.push(currentRound);
-                    const countMatch = line.match(/\((\d+)\)/);
+                    const countMatch = line.match(/\\((\\d+)\\)/);
                     currentRound = {{
                         number: parseInt(match[1]),
                         instruction: match[2],
@@ -335,13 +337,14 @@ class MobilePatternInterface:
 </body>
 </html>
 """
-        
+
         html_path = Path(self.temp_dir) / f"{title.replace(' ', '_')}_mobile.html"
-        with open(html_path, 'w') as f:
+        with open(html_path, "w") as f:
             f.write(html)
-        
-        webbrowser.open(f'file://{html_path.absolute()}')
+
+        webbrowser.open(f"file://{html_path.absolute()}")
         return str(html_path)
+
 
 def generate_mobile_interface(pattern_text: str, title: str = "Crochet Pattern") -> str:
     """Convenience function for mobile interface"""

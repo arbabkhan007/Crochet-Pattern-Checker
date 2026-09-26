@@ -1,13 +1,11 @@
 """
 Pattern Watermark Generator - Add professional watermarks to pattern images and PDFs
 """
-from typing import Dict
-from pathlib import Path
 
 
 class PatternWatermarkGenerator:
     """Add watermarks to protect your patterns"""
-    
+
     def __init__(self):
         self.watermark_styles = {
             "subtle": {"opacity": 0.3, "position": "center", "repeat": False},
@@ -15,13 +13,17 @@ class PatternWatermarkGenerator:
             "corner": {"opacity": 0.5, "position": "bottom-right", "repeat": False},
             "heavy": {"opacity": 0.6, "position": "center", "repeat": True},
         }
-    
-    def generate_watermark_html(self, text: str, style: str = "subtle", 
-                                output_file: str = "watermark_preview.html") -> str:
+
+    def generate_watermark_html(
+        self,
+        text: str,
+        style: str = "subtle",
+        output_file: str = "watermark_preview.html",
+    ) -> str:
         """Generate HTML preview of watermark"""
-        
+
         config = self.watermark_styles.get(style, self.watermark_styles["subtle"])
-        
+
         html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +47,7 @@ class PatternWatermarkGenerator:
         }}
         .watermark {{
             position: absolute;
-            color: rgba(0, 0, 0, {config['opacity']});
+            color: rgba(0, 0, 0, {config["opacity"]});
             font-size: 3em;
             font-weight: bold;
             pointer-events: none;
@@ -135,13 +137,15 @@ class PatternWatermarkGenerator:
     </script>
 </body>
 </html>"""
-        
-        with open(output_file, 'w') as f:
+
+        with open(output_file, "w") as f:
             f.write(html)
-        
+
         return output_file
-    
-    def _generate_watermark_content(self, text: str, style: str, js: bool = False) -> str:
+
+    def _generate_watermark_content(
+        self, text: str, style: str, js: bool = False
+    ) -> str:
         """Generate watermark HTML content"""
         if style == "diagonal" or style == "heavy":
             repeats = 20 if style == "diagonal" else 30
@@ -150,16 +154,16 @@ class PatternWatermarkGenerator:
             return "".join([f"<span>{text}</span>" for _ in range(repeats)])
         else:
             return text
-    
+
     def generate_watermark_css(self, text: str, style: str = "subtle") -> str:
         """Generate CSS for adding watermarks to existing pages"""
         config = self.watermark_styles.get(style, self.watermark_styles["subtle"])
-        
+
         css = f"""
 /* Watermark Styles */
 .watermark {{
     position: absolute;
-    color: rgba(0, 0, 0, {config['opacity']});
+    color: rgba(0, 0, 0, {config["opacity"]});
     font-size: 3em;
     font-weight: bold;
     pointer-events: none;
@@ -185,19 +189,19 @@ class PatternWatermarkGenerator:
 if __name__ == "__main__":
     print("🔒 Pattern Watermark Generator")
     print("=" * 50)
-    
+
     generator = PatternWatermarkGenerator()
-    
+
     print("\n🎨 Generating watermark previews...")
     output = generator.generate_watermark_html("© Your Name 2024", "subtle")
     print(f"✅ Watermark preview saved to: {output}")
-    
+
     print("\n📋 Available styles:")
     for style in generator.watermark_styles:
         print(f"  • {style}")
-    
+
     print("\n💡 Usage:")
     print("  Open the HTML file in your browser to see different watermark styles")
     print("  Choose the style that best protects your patterns")
-    
+
     print("\n✅ Watermark Generator ready!")

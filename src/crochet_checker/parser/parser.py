@@ -9,18 +9,18 @@ ways crochet patterns are written while preserving the original text.
 from __future__ import annotations
 
 import re
-from typing import Optional
 
 from ..model.instruction import Instruction, ParsedOperation
 from ..model.pattern import ConstructionType, Pattern, PatternMetadata
-from ..model.row import Row, Round
+from ..model.row import Round, Row
 from ..model.stitch import ABBREVIATION_MAP, StitchType
+from ..model.yarn import Gauge, Hook, Yarn
 from .grammar import (
     EACH_AROUND,
     MAGIC_RING_START,
     NEXT_N,
-    REPEAT_BLOCK,
     REMAINING,
+    REPEAT_BLOCK,
     STATED_COUNT,
     is_row_header,
 )
@@ -78,54 +78,61 @@ class CrochetParser:
             gauge=gauge,
         )
 
-        if construction == ConstructionType.IN_THE_ROUND or construction == ConstructionType.JOINED_ROUNDS:
+        if (
+            construction == ConstructionType.IN_THE_ROUND
+            or construction == ConstructionType.JOINED_ROUNDS
+        ):
             pattern.rounds = self._parse_rounds(lines)
         else:
             pattern.rows = self._parse_rows(lines)
 
         # Set notes and finishing from metadata extraction
-        pattern.notes = getattr(self, '_parsed_notes', [])
-        pattern.finishing = getattr(self, '_parsed_finishing', [])
+        pattern.notes = getattr(self, "_parsed_notes", [])
+        pattern.finishing = getattr(self, "_parsed_finishing", [])
 
         # Detect and populate pieces for multi-piece patterns
         from .parser import detect_pattern_pieces
+
         piece_boundaries = detect_pattern_pieces(text)
         if piece_boundaries and len(piece_boundaries) > 1:
             # Multi-piece pattern detected
             from ..model.pattern import PatternPiece
-            
+
             # Parse each piece separately
-            text_lines = text.split('\n')
-            
+            text_lines = text.split("\n")
+
             for piece_info in piece_boundaries:
                 # Extract lines for this piece
-                start_line = piece_info['start_line']
-                end_line = piece_info['end_line']
+                start_line = piece_info["start_line"]
+                end_line = piece_info["end_line"]
                 piece_lines = text_lines[start_line:end_line]
-                
+
                 # Filter to only content lines (rounds/rows)
                 piece_content_lines = []
                 for line in piece_lines:
                     is_header, _, _, _, _ = is_row_header(line)
                     if is_header or self._looks_like_instruction(line):
                         piece_content_lines.append(line)
-                
+
                 # Parse rounds/rows for this piece
-                if construction == ConstructionType.IN_THE_ROUND or construction == ConstructionType.JOINED_ROUNDS:
+                if (
+                    construction == ConstructionType.IN_THE_ROUND
+                    or construction == ConstructionType.JOINED_ROUNDS
+                ):
                     piece_rounds = self._parse_rounds(piece_content_lines)
                     piece = PatternPiece(
-                        name=piece_info['name'],
-                        make_count=piece_info['make_count'],
+                        name=piece_info["name"],
+                        make_count=piece_info["make_count"],
                         rounds=piece_rounds,
                     )
                 else:
                     piece_rows = self._parse_rows(piece_content_lines)
                     piece = PatternPiece(
-                        name=piece_info['name'],
-                        make_count=piece_info['make_count'],
+                        name=piece_info["name"],
+                        make_count=piece_info["make_count"],
                         rows=piece_rows,
                     )
-                
+
                 pattern.pieces.append(piece)
 
         return pattern
@@ -139,37 +146,43 @@ class CrochetParser:
                 lines.append(stripped)
         return lines
 
-    def _extract_metadata(self, lines: list[str]) -> tuple[PatternMetadata, Optional[Yarn], Optional[Hook], Optional[Gauge], list[str]]:
+    def _extract_metadata(
+        self, lines: list[str]
+    ) -> tuple[PatternMetadata, Yarn | None, Hook | None, Gauge | None, list[str]]:
         """Extract and remove metadata lines (title, materials, etc.)."""
-        from ..model.yarn import Yarn, Hook, Gauge
-        
+        from ..model.yarn import Gauge, Hook, Yarn
+
         metadata = PatternMetadata()
-        yarn: Optional[Yarn] = None
-        hook: Optional[Hook] = None
-        gauge: Optional[Gauge] = None
+        yarn: Yarn | None = None
+        hook: Hook | None = None
+        gauge: Gauge | None = None
         content_lines: list[str] = []
         notes: list[str] = []
         finishing: list[str] = []
-        
+
         # Track if we've seen any round/row instructions yet
         seen_instruction = False
         in_notes = False
         in_finishing = False
-        
+
         for i, line in enumerate(lines):
             lower = line.lower().strip()
-            
+
             # Check if this is a round/row header
             is_header, _, _, _, _ = is_row_header(line)
-            
+
             if is_header:
                 seen_instruction = True
                 content_lines.append(line)
                 continue
-            
+
             # After instructions start, collect notes/finishing
             if seen_instruction:
-                if lower.startswith("finish") or lower.startswith("assembly") or lower.startswith("sew"):
+                if (
+                    lower.startswith("finish")
+                    or lower.startswith("assembly")
+                    or lower.startswith("sew")
+                ):
                     in_finishing = True
                     in_notes = False
                 if in_finishing:
@@ -182,147 +195,185 @@ class CrochetParser:
                 else:
                     content_lines.append(line)
                 continue
-            
+
             # Before instructions - parse metadata
             # Title - first non-metadata line
             if i == 0 and not self._is_metadata_line(line):
                 metadata.title = line.strip()
                 continue
-            
+
             # Difficulty
             if lower.startswith("difficulty:"):
                 metadata.difficulty = line.split(":", 1)[1].strip()
                 continue
-            
+
             # Category
             if lower.startswith("category:"):
                 metadata.category = line.split(":", 1)[1].strip()
                 continue
-            
+
             # Yarn
             if lower.startswith("yarn:"):
                 yarn_text = line.split(":", 1)[1].strip()
                 yarn = self._parse_yarn(yarn_text)
                 continue
-            
+
             # Hook
             if lower.startswith("hook:"):
                 hook_text = line.split(":", 1)[1].strip()
                 hook = self._parse_hook(hook_text)
                 continue
-            
+
             # Gauge
             if lower.startswith("gauge:"):
                 gauge_text = line.split(":", 1)[1].strip()
                 gauge = self._parse_gauge(gauge_text)
                 continue
-            
+
             # Designer
             if lower.startswith("designer:") or lower.startswith("design:"):
                 metadata.designer = line.split(":", 1)[1].strip()
                 continue
-            
+
             # Description - line after title that isn't metadata
-            if metadata.title and not metadata.description and not self._is_metadata_line(line):
+            if (
+                metadata.title
+                and not metadata.description
+                and not self._is_metadata_line(line)
+            ):
                 if not is_header and not self._looks_like_instruction(line):
                     metadata.description = line.strip()
                     continue
-            
+
             # If nothing matched, add as content
             if self._looks_like_instruction(line) or is_header:
                 content_lines.append(line)
-        
+
         metadata_dict = metadata.model_dump()
         metadata_dict["notes"] = notes
-        final_metadata = PatternMetadata(**{k: v for k, v in metadata_dict.items() if k in PatternMetadata.model_fields})
+        final_metadata = PatternMetadata(
+            **{
+                k: v
+                for k, v in metadata_dict.items()
+                if k in PatternMetadata.model_fields
+            }
+        )
         # Set source_text
-        final_metadata = metadata  # Keep the original with all parsed fields
-        
+
         # Detect section headers (HEAD, BODY, EARS, etc.)
         section_headers = []
         for i, line in enumerate(content_lines):
             # Match patterns like "HEAD (make 1)", "BODY:", "EARS (make 2)"
-            if re.match(r'^[A-Z][A-Z\s]+\s*(\(make\s+\d+\))?\s*:?$', line.strip()):
+            if re.match(r"^[A-Z][A-Z\s]+\s*(\(make\s+\d+\))?\s*:?$", line.strip()):
                 section_headers.append((i, line.strip()))
-        
+
         # Store for validator use
         self._section_headers = section_headers
-        
+
         # Store notes/finishing for later
         self._parsed_notes = notes
         self._parsed_finishing = finishing
-        
+
         return metadata, yarn, hook, gauge, content_lines
-    
+
     def _is_metadata_line(self, line: str) -> bool:
         """Check if a line is a metadata line (not a pattern instruction)."""
         lower = line.lower().strip()
         metadata_prefixes = [
-            "difficulty:", "category:", "yarn:", "hook:", "gauge:",
-            "designer:", "design:", "size:", "finished size:",
-            "materials:", "notes:", "abbreviation",
+            "difficulty:",
+            "category:",
+            "yarn:",
+            "hook:",
+            "gauge:",
+            "designer:",
+            "design:",
+            "size:",
+            "finished size:",
+            "materials:",
+            "notes:",
+            "abbreviation",
         ]
         return any(lower.startswith(p) for p in metadata_prefixes)
-    
+
     def _parse_yarn(self, text: str) -> Yarn:
         """Parse yarn information from text."""
         from ..model.yarn import Yarn
+
         yarn = Yarn()
         text_lower = text.lower()
-        
+
         # Try to extract weight
         weight_patterns = {
-            "lace": "lace", "fingering": "fingering", "sock": "fingering",
-            "sport": "sport", "dk": "dk", "double knit": "dk",
-            "worsted": "worsted", "aran": "worsted", "afghan": "aran",
-            "bulky": "bulky", "chunky": "bulky",
-            "super bulky": "super_bulky", "super bulky": "super_bulky",
+            "lace": "lace",
+            "fingering": "fingering",
+            "sock": "fingering",
+            "sport": "sport",
+            "dk": "dk",
+            "double knit": "dk",
+            "worsted": "worsted",
+            "aran": "worsted",
+            "afghan": "aran",
+            "bulky": "bulky",
+            "chunky": "bulky",
+            "super bulky": "super_bulky",
             "jumbo": "jumbo",
-            "#0": "lace", "#1": "fingering", "#2": "sport", "#3": "dk",
-            "#4": "worsted", "#5": "bulky", "#6": "super_bulky", "#7": "jumbo",
+            "#0": "lace",
+            "#1": "fingering",
+            "#2": "sport",
+            "#3": "dk",
+            "#4": "worsted",
+            "#5": "bulky",
+            "#6": "super_bulky",
+            "#7": "jumbo",
         }
         for pattern, weight in weight_patterns.items():
             if pattern in text_lower:
                 yarn.weight = weight
                 break
-        
+
         # Extract hook size if mentioned in yarn line
-        hook_match = re.search(r'(\d+\.?\d*)\s*mm', text)
+        hook_match = re.search(r"(\d+\.?\d*)\s*mm", text)
         if hook_match:
             yarn.hook_size_mm = float(hook_match.group(1))
-        
+
         # Use full text as name if no weight found
         if not yarn.weight:
             yarn.name = text.strip()
         else:
             yarn.name = text.strip()
-        
+
         return yarn
-    
+
     def _parse_hook(self, text: str) -> Hook:
         """Parse hook information from text."""
         from ..model.yarn import Hook
+
         hook = Hook()
-        
+
         # Extract mm size
-        mm_match = re.search(r'(\d+\.?\d*)\s*mm', text)
+        mm_match = re.search(r"(\d+\.?\d*)\s*mm", text)
         if mm_match:
             hook.size_mm = float(mm_match.group(1))
-        
+
         # Extract US size
-        us_match = re.search(r'US\s+([A-G]-?\d+|\d+)', text, re.IGNORECASE)
+        us_match = re.search(r"US\s+([A-G]-?\d+|\d+)", text, re.IGNORECASE)
         if us_match:
             hook.us_size = us_match.group(1)
-        
+
         return hook
-    
+
     def _parse_gauge(self, text: str) -> Gauge:
         """Parse gauge information from text."""
         from ..model.yarn import Gauge
+
         gauge = Gauge()
-        
+
         # Try "N sts x N rows = X in/cm"
-        match = re.search(r'(\d+)\s*sts?\s*[x×]\s*(\d+)\s*rows?\s*=\s*(\d+\.?\d*)\s*(in|cm|inch)', text, re.IGNORECASE)
+        match = re.search(
+            r"(\d+)\s*sts?\s*[x×]\s*(\d+)\s*rows?\s*=\s*(\d+\.?\d*)\s*(in|cm|inch)",
+            text,
+            re.IGNORECASE,
+        )
         if match:
             gauge.stitches_per_unit = int(match.group(1))
             gauge.rows_per_unit = int(match.group(2))
@@ -331,16 +382,20 @@ class CrochetParser:
             if gauge.unit in ("in", "inch"):
                 gauge.unit = "in"
             return gauge
-        
+
         # Try "N sts = X in/cm"
-        match = re.search(r'(\d+)\s*sts?\s*(?:around)?\s*(?:measures)?\s*(?:about)?\s*(\d+\.?\d*)\s*(mm|in|cm)', text, re.IGNORECASE)
+        match = re.search(
+            r"(\d+)\s*sts?\s*(?:around)?\s*(?:measures)?\s*(?:about)?\s*(\d+\.?\d*)\s*(mm|in|cm)",
+            text,
+            re.IGNORECASE,
+        )
         if match:
             gauge.stitches_per_unit = int(match.group(1))
             gauge.unit_size = float(match.group(2))
             gauge.unit = match.group(3).lower()
             gauge.rows_per_unit = 1
             return gauge
-        
+
         return gauge
 
     def _detect_construction(self, lines: list[str]) -> ConstructionType:
@@ -370,7 +425,7 @@ class CrochetParser:
     def _parse_rounds(self, lines: list[str]) -> list[Round]:
         """Parse pattern lines into Round objects."""
         rounds: list[Round] = []
-        current_round: Optional[Round] = None
+        current_round: Round | None = None
 
         for line in lines:
             is_header, header_type, number, rest, end_number = is_row_header(line)
@@ -384,11 +439,13 @@ class CrochetParser:
                     # Create copies for each round in the range
                     for n in range(number, end_number + 1):
                         instructions = self._parse_instruction_text(rest, line)
-                        rounds.append(Round(
-                            round_number=n,
-                            instructions=instructions,
-                            source_text=line,
-                        ))
+                        rounds.append(
+                            Round(
+                                round_number=n,
+                                instructions=instructions,
+                                source_text=line,
+                            )
+                        )
                     current_round = None
                 else:
                     instructions = self._parse_instruction_text(rest, line)
@@ -420,7 +477,7 @@ class CrochetParser:
     def _parse_rows(self, lines: list[str]) -> list[Row]:
         """Parse pattern lines into Row objects."""
         rows: list[Row] = []
-        current_row: Optional[Row] = None
+        current_row: Row | None = None
 
         for line in lines:
             is_header, header_type, number, rest, end_number = is_row_header(line)
@@ -433,11 +490,13 @@ class CrochetParser:
                 if end_number > number:
                     for n in range(number, end_number + 1):
                         instructions = self._parse_instruction_text(rest, line)
-                        rows.append(Row(
-                            row_number=n,
-                            instructions=instructions,
-                            source_text=line,
-                        ))
+                        rows.append(
+                            Row(
+                                row_number=n,
+                                instructions=instructions,
+                                source_text=line,
+                            )
+                        )
                     current_row = None
                 else:
                     instructions = self._parse_instruction_text(rest, line)
@@ -468,19 +527,37 @@ class CrochetParser:
         """Check if a line looks like a crochet instruction."""
         lower = line.lower()
         # Skip metadata-like lines
-        if any(lower.startswith(x) for x in [
-            "materials:", "yarn:", "hook:", "gauge:", "difficulty:", "size:",
-            "notes:", "finished", "this pattern",
-        ]):
+        if any(
+            lower.startswith(x)
+            for x in [
+                "materials:",
+                "yarn:",
+                "hook:",
+                "gauge:",
+                "difficulty:",
+                "size:",
+                "notes:",
+                "finished",
+                "this pattern",
+            ]
+        ):
             return False
         # Skip lines that look like titles (no stitch abbreviations and no row/round prefix)
-        if not re.match(r'^(row|round|rnd)\s+\d', lower):
+        if not re.match(r"^(row|round|rnd)\s+\d", lower):
             # If it doesn't start with a row/round header, check for stitch abbreviations
             # Use word boundaries to avoid matching "ch" in "crochet" etc.
             abbrev_patterns = [
-                r'\bsc\b', r'\bdc\b', r'\bhdc\b', r'\btr\b', r'\bch\s+\d',
-                r'\binc\b', r'\bdec\b', r'\bsl\s+st\b', r'\bmr\b',
-                r'\bmagic\s+ring\b', r'\bmagic\s+circle\b',
+                r"\bsc\b",
+                r"\bdc\b",
+                r"\bhdc\b",
+                r"\btr\b",
+                r"\bch\s+\d",
+                r"\binc\b",
+                r"\bdec\b",
+                r"\bsl\s+st\b",
+                r"\bmr\b",
+                r"\bmagic\s+ring\b",
+                r"\bmagic\s+circle\b",
             ]
             has_abbrev = any(re.search(p, lower) for p in abbrev_patterns)
             if not has_abbrev:
@@ -518,15 +595,19 @@ class CrochetParser:
         text = text.rstrip(".")
 
         # Split on period followed by space and what looks like a new instruction
-        parts = re.split(r'\.\s+(?=\d|\(|sc|dc|hdc|tr|ch|inc|dec|sl|skip|join|fasten)', text, flags=re.IGNORECASE)
+        parts = re.split(
+            r"\.\s+(?=\d|\(|sc|dc|hdc|tr|ch|inc|dec|sl|skip|join|fasten)",
+            text,
+            flags=re.IGNORECASE,
+        )
 
         if len(parts) == 1:
             # Try splitting on semicolons
-            parts = re.split(r'\s*;\s*', text)
+            parts = re.split(r"\s*;\s*", text)
 
         return [p.strip() for p in parts if p.strip()]
 
-    def _parse_single_instruction(self, text: str) -> Optional[Instruction]:
+    def _parse_single_instruction(self, text: str) -> Instruction | None:
         """Parse a single instruction string into an Instruction object."""
         text = text.strip()
         if not text:
@@ -585,12 +666,12 @@ class CrochetParser:
         instruction.confidence = 0.0
         return instruction
 
-    def _extract_stated_count(self, text: str) -> tuple[str, Optional[int]]:
+    def _extract_stated_count(self, text: str) -> tuple[str, int | None]:
         """Extract stated stitch count from end of instruction."""
         match = STATED_COUNT.search(text.strip())
         if match:
             count = int(match.group(1))
-            clean = text[:match.start()].strip().rstrip(",")
+            clean = text[: match.start()].strip().rstrip(",")
             return clean, count
         return text, None
 
@@ -601,7 +682,8 @@ class CrochetParser:
             # Also try just "N sc in MR"
             match2 = re.match(
                 r"(\d+)\s+(sc|hdc|dc|tr)\s+(?:in|into)\s+MR",
-                text, re.IGNORECASE,
+                text,
+                re.IGNORECASE,
             )
             if not match2:
                 return False
@@ -640,7 +722,9 @@ class CrochetParser:
         for _ in range(repeat_count):
             for op in unit_ops:
                 instruction.operations.append(
-                    op.model_copy(update={"is_part_of_repeat": True, "repeat_count": repeat_count})
+                    op.model_copy(
+                        update={"is_part_of_repeat": True, "repeat_count": repeat_count}
+                    )
                 )
 
         instruction.confidence = 0.9
@@ -685,7 +769,8 @@ class CrochetParser:
         """Try to parse 'N stitch' style instructions."""
         match = re.match(
             r"(\d+)\s+(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)",
-            text, re.IGNORECASE,
+            text,
+            re.IGNORECASE,
         )
         if not match:
             return False
@@ -693,9 +778,7 @@ class CrochetParser:
         count = int(match.group(1))
         stitch = self._resolve_stitch(match.group(2))
 
-        instruction.operations = [
-            ParsedOperation(stitch_type=stitch, count=count)
-        ]
+        instruction.operations = [ParsedOperation(stitch_type=stitch, count=count)]
         instruction.confidence = 0.9
         return True
 
@@ -729,11 +812,14 @@ class CrochetParser:
         instruction.confidence = 0.8
         return True
 
-    def _try_parse_stitch_times_count(self, text: str, instruction: Instruction) -> bool:
+    def _try_parse_stitch_times_count(
+        self, text: str, instruction: Instruction
+    ) -> bool:
         """Try to parse 'stitch x N' style instructions like 'dec x 6'."""
         match = re.match(
             r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s*[x×]\s*(\d+)",
-            text, re.IGNORECASE,
+            text,
+            re.IGNORECASE,
         )
         if not match:
             return False
@@ -741,9 +827,7 @@ class CrochetParser:
         stitch = self._resolve_stitch(match.group(1))
         count = int(match.group(2))
 
-        instruction.operations = [
-            ParsedOperation(stitch_type=stitch, count=count)
-        ]
+        instruction.operations = [ParsedOperation(stitch_type=stitch, count=count)]
         instruction.confidence = 0.9
         return True
 
@@ -765,7 +849,9 @@ class CrochetParser:
         if ops:
             instruction.operations = ops
             instruction.confidence = 0.6
-            instruction.parse_warnings.append("Parsed with generic fallback - may be incomplete")
+            instruction.parse_warnings.append(
+                "Parsed with generic fallback - may be incomplete"
+            )
             return True
 
         return False
@@ -829,7 +915,7 @@ class CrochetParser:
         self.warnings.append(f"Unknown stitch abbreviation: '{abbrev}'")
         return StitchType.UNKNOWN
 
-    def _resolve_stitch_from_text(self, text: str) -> Optional[StitchType]:
+    def _resolve_stitch_from_text(self, text: str) -> StitchType | None:
         """Try to resolve a stitch type from arbitrary text."""
         text = text.lower().strip()
 
@@ -879,7 +965,7 @@ def parse_instruction(text: str) -> Instruction:
 def detect_pattern_pieces(text: str) -> list[dict]:
     """
     Detect piece boundaries in multi-piece patterns.
-    
+
     Returns list of dicts with:
     - name: piece name (e.g., "HEAD", "ARMS")
     - make_count: how many to make (e.g., 2)
@@ -887,43 +973,45 @@ def detect_pattern_pieces(text: str) -> list[dict]:
     - end_line: line index where piece ends
     """
     import re
-    
-    lines = text.split('\n')
+
+    lines = text.split("\n")
     pieces = []
     current_piece = None
-    
+
     # Words that should NOT be treated as piece names
-    non_piece_words = {'FO', 'FINISH', 'ASSEMBLY', 'NOTES', 'MATERIALS'}
-    
+    non_piece_words = {"FO", "FINISH", "ASSEMBLY", "NOTES", "MATERIALS"}
+
     for i, line in enumerate(lines):
         line_stripped = line.strip()
-        
+
         # Match patterns like "HEAD (make 1)", "ARMS (make 2)", "BODY:"
-        match = re.match(r'^([A-Z][A-Z\s,/&]+?)\s*(?:\(make\s+(\d+)\))?\s*:?\s*$', line_stripped)
-        
+        match = re.match(
+            r"^([A-Z][A-Z\s,/&]+?)\s*(?:\(make\s+(\d+)\))?\s*:?\s*$", line_stripped
+        )
+
         if match:
             name = match.group(1).strip()
-            
+
             # Skip if this is not a real piece name
             if name in non_piece_words or len(name) < 2:
                 continue
-            
+
             # Save previous piece
             if current_piece:
-                current_piece['end_line'] = i
+                current_piece["end_line"] = i
                 pieces.append(current_piece)
-            
+
             # Start new piece
             make_count = int(match.group(2)) if match.group(2) else 1
             current_piece = {
-                'name': name,
-                'make_count': make_count,
-                'start_line': i + 1,  # +1 to skip the header line
-                'end_line': len(lines)  # Default to end
+                "name": name,
+                "make_count": make_count,
+                "start_line": i + 1,  # +1 to skip the header line
+                "end_line": len(lines),  # Default to end
             }
-    
+
     # Add last piece
     if current_piece:
         pieces.append(current_piece)
-    
+
     return pieces

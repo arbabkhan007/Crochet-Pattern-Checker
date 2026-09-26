@@ -1,64 +1,70 @@
 """
 Color Theory Tool - Color wheels, palettes, and harmony for crochet projects
 """
+
 import colorsys
-import math
-from typing import Dict, List, Optional, Tuple
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass
 
 
 @dataclass
 class CrochetColor:
     """A color with crochet-specific info"""
+
     name: str
     hex_code: str
     yarn_brand: str = ""
     yarn_line: str = ""
     dye_lot: str = ""
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
-    
+
     @property
-    def rgb(self) -> Tuple[int, int, int]:
-        h = self.hex_code.lstrip('#')
-        return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
-    
+    def rgb(self) -> tuple[int, int, int]:
+        h = self.hex_code.lstrip("#")
+        return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+
     @property
-    def hsl(self) -> Tuple[float, float, float]:
+    def hsl(self) -> tuple[float, float, float]:
         r, g, b = [x / 255.0 for x in self.rgb]
         h, l, s = colorsys.rgb_to_hls(r, g, b)
         return (round(h * 360), round(s * 100), round(l * 100))
-    
+
     @property
     def is_warm(self) -> bool:
         h = self.hsl[0]
-        return (h < 60 or h > 300)
-    
+        return h < 60 or h > 300
+
     @property
     def is_cool(self) -> bool:
         h = self.hsl[0]
         return 120 < h < 270
-    
+
     @property
     def brightness(self) -> str:
         l = self.hsl[2]
-        if l < 30: return "dark"
-        elif l < 60: return "medium"
-        else: return "light"
-    
+        if l < 30:
+            return "dark"
+        elif l < 60:
+            return "medium"
+        else:
+            return "light"
+
     @property
     def saturation(self) -> str:
         s = self.hsl[1]
-        if s < 20: return "muted"
-        elif s < 60: return "moderate"
-        else: return "vivid"
+        if s < 20:
+            return "muted"
+        elif s < 60:
+            return "moderate"
+        else:
+            return "vivid"
 
 
 class ColorTheory:
     """
     Color theory tools for crochet projects
-    
+
     Features:
     - Color wheel generation
     - Complementary colors
@@ -71,147 +77,199 @@ class ColorTheory:
     - Seasonal palettes
     - Mood-based palettes
     """
-    
+
     SEASONAL_PALETTES = {
         "spring": [
-            ("#FFB7C5", "Cherry Blossom"), ("#98FB98", "Pale Green"),
-            ("#FFFACD", "Lemon Chiffon"), ("#DDA0DD", "Plum"),
-            ("#87CEEB", "Sky Blue"), ("#FFDAB9", "Peach"),
+            ("#FFB7C5", "Cherry Blossom"),
+            ("#98FB98", "Pale Green"),
+            ("#FFFACD", "Lemon Chiffon"),
+            ("#DDA0DD", "Plum"),
+            ("#87CEEB", "Sky Blue"),
+            ("#FFDAB9", "Peach"),
         ],
         "summer": [
-            ("#FF6347", "Tomato"), ("#00CED1", "Dark Turquoise"),
-            ("#FFD700", "Gold"), ("#FF69B4", "Hot Pink"),
-            ("#32CD32", "Lime Green"), ("#FF4500", "Orange Red"),
+            ("#FF6347", "Tomato"),
+            ("#00CED1", "Dark Turquoise"),
+            ("#FFD700", "Gold"),
+            ("#FF69B4", "Hot Pink"),
+            ("#32CD32", "Lime Green"),
+            ("#FF4500", "Orange Red"),
         ],
         "autumn": [
-            ("#8B4513", "Saddle Brown"), ("#D2691E", "Chocolate"),
-            ("#DAA520", "Goldenrod"), ("#B22222", "Firebrick"),
-            ("#556B2F", "Dark Olive"), ("#CD853F", "Peru"),
+            ("#8B4513", "Saddle Brown"),
+            ("#D2691E", "Chocolate"),
+            ("#DAA520", "Goldenrod"),
+            ("#B22222", "Firebrick"),
+            ("#556B2F", "Dark Olive"),
+            ("#CD853F", "Peru"),
         ],
         "winter": [
-            ("#191970", "Midnight Blue"), ("#DC143C", "Crimson"),
-            ("#2F4F4F", "Dark Slate"), ("#F5F5F5", "White Smoke"),
-            ("#4169E1", "Royal Blue"), ("#800020", "Burgundy"),
+            ("#191970", "Midnight Blue"),
+            ("#DC143C", "Crimson"),
+            ("#2F4F4F", "Dark Slate"),
+            ("#F5F5F5", "White Smoke"),
+            ("#4169E1", "Royal Blue"),
+            ("#800020", "Burgundy"),
         ],
     }
-    
+
     MOOD_PALETTES = {
-        "calm": [("#B0C4DE", "Light Steel"), ("#E6E6FA", "Lavender"),
-                ("#F0FFF0", "Honeydew"), ("#F5F5DC", "Beige"),
-                ("#E0FFFF", "Light Cyan")],
-        "energetic": [("#FF4500", "Orange Red"), ("#FFD700", "Gold"),
-                     ("#FF1493", "Deep Pink"), ("#00FF7F", "Spring Green"),
-                     ("#FF6347", "Tomato")],
-        "romantic": [("#FFB6C1", "Light Pink"), ("#DDA0DD", "Plum"),
-                    ("#FFC0CB", "Pink"), ("#DB7093", "Pale Violet"),
-                    ("#FFF0F5", "Lavender Blush")],
-        "earthy": [("#8B4513", "Saddle Brown"), ("#D2B48C", "Tan"),
-                  ("#556B2F", "Dark Olive"), ("#DEB887", "Burlywood"),
-                  ("#A0522D", "Sienna")],
-        "ocean": [("#003366", "Navy"), ("#006994", "Pacific"),
-                 ("#40E0D0", "Turquoise"), ("#E0FFFF", "Light Cyan"),
-                 ("#F0FFFF", "Azure")],
-        "sunset": [("#FF4500", "Orange Red"), ("#FF8C00", "Dark Orange"),
-                  ("#FFD700", "Gold"), ("#FF1493", "Deep Pink"),
-                  ("#8B008B", "Dark Magenta")],
+        "calm": [
+            ("#B0C4DE", "Light Steel"),
+            ("#E6E6FA", "Lavender"),
+            ("#F0FFF0", "Honeydew"),
+            ("#F5F5DC", "Beige"),
+            ("#E0FFFF", "Light Cyan"),
+        ],
+        "energetic": [
+            ("#FF4500", "Orange Red"),
+            ("#FFD700", "Gold"),
+            ("#FF1493", "Deep Pink"),
+            ("#00FF7F", "Spring Green"),
+            ("#FF6347", "Tomato"),
+        ],
+        "romantic": [
+            ("#FFB6C1", "Light Pink"),
+            ("#DDA0DD", "Plum"),
+            ("#FFC0CB", "Pink"),
+            ("#DB7093", "Pale Violet"),
+            ("#FFF0F5", "Lavender Blush"),
+        ],
+        "earthy": [
+            ("#8B4513", "Saddle Brown"),
+            ("#D2B48C", "Tan"),
+            ("#556B2F", "Dark Olive"),
+            ("#DEB887", "Burlywood"),
+            ("#A0522D", "Sienna"),
+        ],
+        "ocean": [
+            ("#003366", "Navy"),
+            ("#006994", "Pacific"),
+            ("#40E0D0", "Turquoise"),
+            ("#E0FFFF", "Light Cyan"),
+            ("#F0FFFF", "Azure"),
+        ],
+        "sunset": [
+            ("#FF4500", "Orange Red"),
+            ("#FF8C00", "Dark Orange"),
+            ("#FFD700", "Gold"),
+            ("#FF1493", "Deep Pink"),
+            ("#8B008B", "Dark Magenta"),
+        ],
     }
-    
+
     YARN_BRAND_COLORS = {
         "Red Heart Super Saver": [
-            "#CC0000", "#000080", "#228B22", "#FFD700", "#FFFFFF",
-            "#000000", "#FF69B4", "#808080", "#8B4513", "#FFA500"
+            "#CC0000",
+            "#000080",
+            "#228B22",
+            "#FFD700",
+            "#FFFFFF",
+            "#000000",
+            "#FF69B4",
+            "#808080",
+            "#8B4513",
+            "#FFA500",
         ],
         "Scheepjes Catona": [
-            "#FFFFFF", "#106", "#256", "#384", "#145",
-            "#608", "#392", "#252", "#104", "#611"
+            "#FFFFFF",
+            "#106",
+            "#256",
+            "#384",
+            "#145",
+            "#608",
+            "#392",
+            "#252",
+            "#104",
+            "#611",
         ],
     }
-    
+
     def complementary(self, hex_code: str) -> str:
         """Get the complementary color"""
         r, g, b = self._hex_to_rgb(hex_code)
-        h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
+        h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
         comp_h = (h + 0.5) % 1.0
         cr, cg, cb = colorsys.hls_to_rgb(comp_h, l, s)
-        return self._rgb_to_hex(int(cr*255), int(cg*255), int(cb*255))
-    
-    def analogous(self, hex_code: str, count: int = 5, angle: float = 30) -> List[str]:
+        return self._rgb_to_hex(int(cr * 255), int(cg * 255), int(cb * 255))
+
+    def analogous(self, hex_code: str, count: int = 5, angle: float = 30) -> list[str]:
         """Get analogous colors"""
         r, g, b = self._hex_to_rgb(hex_code)
-        h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
-        
+        h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+
         colors = []
         start_angle = -angle * (count // 2) / 360
         for i in range(count):
             new_h = (h + start_angle + (i * angle / 360)) % 1.0
             cr, cg, cb = colorsys.hls_to_rgb(new_h, l, s)
-            colors.append(self._rgb_to_hex(int(cr*255), int(cg*255), int(cb*255)))
-        
+            colors.append(self._rgb_to_hex(int(cr * 255), int(cg * 255), int(cb * 255)))
+
         return colors
-    
-    def triadic(self, hex_code: str) -> List[str]:
+
+    def triadic(self, hex_code: str) -> list[str]:
         """Get triadic color scheme"""
         r, g, b = self._hex_to_rgb(hex_code)
-        h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
-        
+        h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+
         colors = [hex_code]
-        for offset in [1/3, 2/3]:
+        for offset in [1 / 3, 2 / 3]:
             new_h = (h + offset) % 1.0
             cr, cg, cb = colorsys.hls_to_rgb(new_h, l, s)
-            colors.append(self._rgb_to_hex(int(cr*255), int(cg*255), int(cb*255)))
-        
+            colors.append(self._rgb_to_hex(int(cr * 255), int(cg * 255), int(cb * 255)))
+
         return colors
-    
-    def split_complementary(self, hex_code: str) -> List[str]:
+
+    def split_complementary(self, hex_code: str) -> list[str]:
         """Get split-complementary scheme"""
         r, g, b = self._hex_to_rgb(hex_code)
-        h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
-        
+        h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+
         colors = [hex_code]
-        for offset in [15/360, -15/360]:
+        for offset in [15 / 360, -15 / 360]:
             new_h = (h + 0.5 + offset) % 1.0
             cr, cg, cb = colorsys.hls_to_rgb(new_h, l, s)
-            colors.append(self._rgb_to_hex(int(cr*255), int(cg*255), int(cb*255)))
-        
+            colors.append(self._rgb_to_hex(int(cr * 255), int(cg * 255), int(cb * 255)))
+
         return colors
-    
-    def monochromatic(self, hex_code: str, count: int = 5) -> List[str]:
+
+    def monochromatic(self, hex_code: str, count: int = 5) -> list[str]:
         """Get monochromatic palette"""
         r, g, b = self._hex_to_rgb(hex_code)
-        h, l, s = colorsys.rgb_to_hls(r/255, g/255, b/255)
-        
+        h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+
         colors = []
         for i in range(count):
             new_l = 0.2 + (i * 0.6 / (count - 1)) if count > 1 else 0.5
             cr, cg, cb = colorsys.hls_to_rgb(h, new_l, s)
-            colors.append(self._rgb_to_hex(int(cr*255), int(cg*255), int(cb*255)))
-        
+            colors.append(self._rgb_to_hex(int(cr * 255), int(cg * 255), int(cb * 255)))
+
         return colors
-    
+
     def contrast_ratio(self, color1: str, color2: str) -> float:
         """Calculate WCAG contrast ratio"""
         r1, g1, b1 = self._hex_to_rgb(color1)
         r2, g2, b2 = self._hex_to_rgb(color2)
-        
+
         def luminance(r, g, b):
-            rs, gs, bs = r/255, g/255, b/255
-            rs = rs/12.92 if rs <= 0.03928 else ((rs+0.055)/1.055)**2.4
-            gs = gs/12.92 if gs <= 0.03928 else ((gs+0.055)/1.055)**2.4
-            bs = bs/12.92 if bs <= 0.03928 else ((bs+0.055)/1.055)**2.4
-            return 0.2126*rs + 0.7152*gs + 0.0722*bs
-        
+            rs, gs, bs = r / 255, g / 255, b / 255
+            rs = rs / 12.92 if rs <= 0.03928 else ((rs + 0.055) / 1.055) ** 2.4
+            gs = gs / 12.92 if gs <= 0.03928 else ((gs + 0.055) / 1.055) ** 2.4
+            bs = bs / 12.92 if bs <= 0.03928 else ((bs + 0.055) / 1.055) ** 2.4
+            return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
+
         l1 = luminance(r1, g1, b1)
         l2 = luminance(r2, g2, b2)
-        
+
         lighter = max(l1, l2)
         darker = min(l1, l2)
-        
+
         return round((lighter + 0.05) / (darker + 0.05), 2)
-    
-    def suggest_palette(self, base_color: str, scheme: str = "complementary") -> Dict:
+
+    def suggest_palette(self, base_color: str, scheme: str = "complementary") -> dict:
         """Suggest a complete palette based on a base color"""
         color = CrochetColor("base", base_color)
-        
+
         schemes = {
             "complementary": self.complementary(base_color),
             "analogous": self.analogous(base_color),
@@ -219,9 +277,9 @@ class ColorTheory:
             "split_complementary": self.split_complementary(base_color),
             "monochromatic": self.monochromatic(base_color),
         }
-        
+
         palette = schemes.get(scheme, self.complementary(base_color))
-        
+
         return {
             "base_color": base_color,
             "scheme": scheme,
@@ -232,8 +290,8 @@ class ColorTheory:
             "hsl": color.hsl,
             "contrast_notes": self._get_contrast_notes(palette),
         }
-    
-    def _get_contrast_notes(self, palette: List[str]) -> List[str]:
+
+    def _get_contrast_notes(self, palette: list[str]) -> list[str]:
         """Get contrast notes for a palette"""
         notes = []
         if len(palette) >= 2:
@@ -247,17 +305,17 @@ class ColorTheory:
             else:
                 notes.append(f"Low contrast ({ratio}:1) - may be hard to see")
         return notes
-    
-    def _hex_to_rgb(self, hex_code: str) -> Tuple[int, int, int]:
-        h = hex_code.lstrip('#')
-        return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
-    
+
+    def _hex_to_rgb(self, hex_code: str) -> tuple[int, int, int]:
+        h = hex_code.lstrip("#")
+        return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+
     def _rgb_to_hex(self, r: int, g: int, b: int) -> str:
         return f"#{r:02x}{g:02x}{b:02x}"
-    
+
     def generate_color_wheel_html(self) -> str:
         """Generate an interactive color wheel as HTML"""
-        return '''<!DOCTYPE html>
+        return """<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Color Wheel</title>
 <style>
 body { font-family: -apple-system, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; text-align: center; }
@@ -411,7 +469,7 @@ function getContrastRatio(c1,c2) {
     return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);
 }
 </script>
-</body></html>'''
+</body></html>"""
 
 
 # Demo
@@ -419,39 +477,39 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  COLOR THEORY TOOL - DEMONSTRATION")
     print("=" * 60)
-    
+
     ct = ColorTheory()
-    
+
     base = "#E94560"
-    
+
     print(f"\n🎨 Base Color: {base}")
-    
+
     # Schemes
     print(f"\n  Complementary: {ct.complementary(base)}")
     print(f"  Analogous:     {ct.analogous(base)}")
     print(f"  Triadic:       {ct.triadic(base)}")
     print(f"  Split-Comp:    {ct.split_complementary(base)}")
     print(f"  Mono:          {ct.monochromatic(base)}")
-    
+
     # Color info
     color = CrochetColor("test", base)
     print(f"\n  HSL: {color.hsl}")
     print(f"  Warm: {color.is_warm}")
     print(f"  Brightness: {color.brightness}")
     print(f"  Saturation: {color.saturation}")
-    
+
     # Contrast
     print(f"\n  Contrast with white: {ct.contrast_ratio(base, '#FFFFFF')}:1")
     print(f"  Contrast with black: {ct.contrast_ratio(base, '#000000')}:1")
-    
+
     # Seasonal palettes
-    print(f"\n🌸 Seasonal Palettes:")
+    print("\n🌸 Seasonal Palettes:")
     for season, colors in ct.SEASONAL_PALETTES.items():
         swatches = " ".join(f"■{c[0]}" for c in colors[:3])
         print(f"  {season:8s}: {swatches}")
-    
+
     # HTML wheel
     html = ct.generate_color_wheel_html()
     print(f"\n✅ Interactive color wheel: {len(html)} chars")
-    
-    print(f"\n  Color Theory Complete! 🎨")
+
+    print("\n  Color Theory Complete! 🎨")

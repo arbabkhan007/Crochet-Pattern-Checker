@@ -9,27 +9,43 @@ commercial crochet patterns.
 from __future__ import annotations
 
 import math
-from typing import Optional
 
 from ..model.pattern import Pattern
 from ..model.stitch import StitchType
 from .stitch_diagram import _escape_xml
 
-
 # SVG symbol paths for each stitch type (simplified representations)
 STITCH_SYMBOLS = {
     StitchType.CHAIN: {"symbol": "○", "color": "#999", "desc": "Chain"},
-    StitchType.SINGLE_CROCHET: {"symbol": "✕", "color": "#4A90D9", "desc": "Single Crochet"},
-    StitchType.HALF_DOUBLE_CROCHET: {"symbol": "T", "color": "#50C878", "desc": "Half Double Crochet"},
-    StitchType.DOUBLE_CROCHET: {"symbol": "T̄", "color": "#7B68EE", "desc": "Double Crochet"},
-    StitchType.TREBLE_CROCHET: {"symbol": "T̈", "color": "#FF8C00", "desc": "Treble Crochet"},
+    StitchType.SINGLE_CROCHET: {
+        "symbol": "✕",
+        "color": "#4A90D9",
+        "desc": "Single Crochet",
+    },
+    StitchType.HALF_DOUBLE_CROCHET: {
+        "symbol": "T",
+        "color": "#50C878",
+        "desc": "Half Double Crochet",
+    },
+    StitchType.DOUBLE_CROCHET: {
+        "symbol": "T̄",
+        "color": "#7B68EE",
+        "desc": "Double Crochet",
+    },
+    StitchType.TREBLE_CROCHET: {
+        "symbol": "T̈",
+        "color": "#FF8C00",
+        "desc": "Treble Crochet",
+    },
     StitchType.SLIP_STITCH: {"symbol": "•", "color": "#666", "desc": "Slip Stitch"},
     StitchType.INCREASE: {"symbol": "V", "color": "#2ECC71", "desc": "Increase"},
     StitchType.DECREASE: {"symbol": "Λ", "color": "#E74C3C", "desc": "Decrease"},
 }
 
 
-def generate_crochet_chart(pattern: Pattern, width: int = 600, height: int = 500) -> str:
+def generate_crochet_chart(
+    pattern: Pattern, width: int = 600, height: int = 500
+) -> str:
     """
     Generate a traditional crochet symbol chart as SVG.
 
@@ -47,14 +63,14 @@ def generate_crochet_chart(pattern: Pattern, width: int = 600, height: int = 500
     # Title
     title = pattern.metadata.title or "Crochet Chart"
     elements.append(
-        f'<text x="{width/2}" y="25" text-anchor="middle" '
+        f'<text x="{width / 2}" y="25" text-anchor="middle" '
         f'font-family="Arial" font-size="16" font-weight="bold" '
         f'fill="#2C3E50">{_escape_xml(title)}</text>'
     )
     elements.append(
-        f'<text x="{width/2}" y="42" text-anchor="middle" '
+        f'<text x="{width / 2}" y="42" text-anchor="middle" '
         f'font-family="Arial" font-size="10" fill="#7F8C8D">'
-        f'Symbol Chart</text>'
+        f"Symbol Chart</text>"
     )
 
     cx = width / 2
@@ -73,8 +89,7 @@ def generate_crochet_chart(pattern: Pattern, width: int = 600, height: int = 500
 
 
 def _draw_chart_rounds(
-    elements: list[str], pattern: Pattern, cx: float, cy: float,
-    width: int, height: int
+    elements: list[str], pattern: Pattern, cx: float, cy: float, width: int, height: int
 ) -> None:
     """Draw a circular crochet chart with stitch symbols."""
     max_r = min(width, height) / 2 - 70
@@ -97,7 +112,7 @@ def _draw_chart_rounds(
         if sc == 0:
             prev = 0
             if i > 0:
-                prev = pattern.rounds[i-1].computed_stitch_count
+                prev = pattern.rounds[i - 1].computed_stitch_count
             sc = rnd.compute_stitch_count_with_context(prev)
 
         if sc == 0:
@@ -145,7 +160,9 @@ def _draw_chart_rows(
     elements: list[str], pattern: Pattern, width: int, height: int
 ) -> None:
     """Draw a flat crochet chart with stitch symbols."""
-    max_stitches = max(r.computed_stitch_count for r in pattern.rows) if pattern.rows else 1
+    max_stitches = (
+        max(r.computed_stitch_count for r in pattern.rows) if pattern.rows else 1
+    )
     if max_stitches == 0:
         max_stitches = 1
 
@@ -160,7 +177,7 @@ def _draw_chart_rows(
 
         # Row background
         elements.append(
-            f'<rect x="{start_x - 2}" y="{y - row_h/2 + 2}" '
+            f'<rect x="{start_x - 2}" y="{y - row_h / 2 + 2}" '
             f'width="{sc * stitch_w + 4}" height="{row_h - 4}" '
             f'fill="#F8F9FA" stroke="#EEE" rx="3"/>'
         )
@@ -173,11 +190,13 @@ def _draw_chart_rows(
             # Check if row has increases/decreases
             has_inc = any(
                 op.stitch_type == StitchType.INCREASE
-                for inst in row.instructions for op in inst.operations
+                for inst in row.instructions
+                for op in inst.operations
             )
             has_dec = any(
                 op.stitch_type == StitchType.DECREASE
-                for inst in row.instructions for op in inst.operations
+                for inst in row.instructions
+                for op in inst.operations
             )
 
             if has_inc:

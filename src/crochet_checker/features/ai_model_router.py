@@ -2,36 +2,34 @@
 AI Model Router - Connects to multiple AI services
 Supports: OpenAI, Google Gemini, ElevenLabs, Sora, etc.
 """
+
 import json
 import os
-import time
-import hashlib
-from typing import Dict, List, Optional, Any
-from dataclasses import dataclass, field, asdict
-from datetime import datetime
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 
 @dataclass
 class AIModelConfig:
     """Configuration for an AI model"""
+
     name: str
     provider: str  # openai, google, elevenlabs, stability, runway
     model_id: str
     api_key_env: str  # Environment variable name for API key
-    capabilities: List[str] = field(default_factory=list)
+    capabilities: list[str] = field(default_factory=list)
     max_tokens: int = 4096
     temperature: float = 0.7
     is_available: bool = True
-    
-    def to_dict(self) -> Dict:
+
+    def to_dict(self) -> dict:
         return asdict(self)
 
 
 class AIModelRouter:
     """
     Routes requests to the best available AI model
-    
+
     Supported Models:
     - OpenAI GPT-4o: Script generation, narration text
     - OpenAI Sora: Video generation
@@ -43,7 +41,7 @@ class AIModelRouter:
     - Stability AI: Image generation
     - Runway Gen-3: Video generation
     """
-    
+
     MODELS = {
         # Text/Script Generation
         "gpt4o": AIModelConfig(
@@ -70,7 +68,6 @@ class AIModelRouter:
             capabilities=["text", "script", "analysis", "multimodal"],
             max_tokens=32000,
         ),
-        
         # Voice Synthesis
         "elevenlabs_turbo": AIModelConfig(
             name="ElevenLabs Turbo v2.5",
@@ -93,7 +90,6 @@ class AIModelRouter:
             api_key_env="GOOGLE_API_KEY",
             capabilities=["voice", "tts"],
         ),
-        
         # Video Generation
         "sora": AIModelConfig(
             name="OpenAI Sora",
@@ -116,7 +112,6 @@ class AIModelRouter:
             api_key_env="RUNWAY_API_KEY",
             capabilities=["video", "animation"],
         ),
-        
         # Image Generation
         "dalle3": AIModelConfig(
             name="DALL-E 3",
@@ -132,7 +127,6 @@ class AIModelRouter:
             api_key_env="STABILITY_API_KEY",
             capabilities=["image", "thumbnail"],
         ),
-        
         # Audio/Music
         "elevenlabs_sfx": AIModelConfig(
             name="ElevenLabs Sound Effects",
@@ -142,55 +136,55 @@ class AIModelRouter:
             capabilities=["sfx", "ambient", "background"],
         ),
     }
-    
+
     # Voice presets for different tutorial styles
     VOICE_PRESETS = {
         "warm_friendly": {
             "voice_id": "EXAVITQu4vr4xnSDxMaL",  # Sarah
             "name": "Sarah",
             "style": "Warm, friendly, encouraging",
-            "best_for": "Beginner tutorials"
+            "best_for": "Beginner tutorials",
         },
         "professional": {
             "voice_id": "21m00Tcm4TlvDq8ikWAM",  # Rachel
             "name": "Rachel",
             "style": "Professional, clear, calm",
-            "best_for": "Technical instructions"
+            "best_for": "Technical instructions",
         },
         "energetic": {
             "voice_id": "AZnzlk1XvdvUeBnXldUp",  # Antoni
             "name": "Antoni",
             "style": "Energetic, enthusiastic",
-            "best_for": "Challenge videos, social media"
+            "best_for": "Challenge videos, social media",
         },
         "gentle": {
             "voice_id": "MF3mGyEYCl7XYWbV9V6O",  # Elli
             "name": "Elli",
             "style": "Gentle, soft, relaxing",
-            "best_for": "Meditative crochet, ASMR"
+            "best_for": "Meditative crochet, ASMR",
         },
         "narrator": {
             "voice_id": "ErXwobaYiN019PkySvjV",  # Glenn
             "name": "Glenn",
             "style": "Deep, authoritative narrator",
-            "best_for": "Documentary style"
+            "best_for": "Documentary style",
         },
     }
-    
+
     def __init__(self):
         self.available_models = self._check_availability()
         self.cache_dir = Path(".ai_cache")
         self.cache_dir.mkdir(exist_ok=True)
-    
-    def _check_availability(self) -> Dict[str, bool]:
+
+    def _check_availability(self) -> dict[str, bool]:
         """Check which models are available based on API keys"""
         available = {}
         for model_id, config in self.MODELS.items():
             api_key = os.environ.get(config.api_key_env, "")
             available[model_id] = bool(api_key)
         return available
-    
-    def get_available_models(self, capability: str = None) -> List[str]:
+
+    def get_available_models(self, capability: str = None) -> list[str]:
         """Get list of available models, optionally filtered by capability"""
         result = []
         for model_id, config in self.MODELS.items():
@@ -198,13 +192,13 @@ class AIModelRouter:
                 if capability is None or capability in config.capabilities:
                     result.append(model_id)
         return result
-    
-    def get_best_model(self, capability: str) -> Optional[str]:
+
+    def get_best_model(self, capability: str) -> str | None:
         """Get the best available model for a capability"""
         available = self.get_available_models(capability)
         if not available:
             return None
-        
+
         # Priority order
         priority = {
             "text": ["gpt4o", "gemini", "gpt4o_mini"],
@@ -214,56 +208,59 @@ class AIModelRouter:
             "image": ["dalle3", "stable_diffusion"],
             "sfx": ["elevenlabs_sfx"],
         }
-        
+
         for model in priority.get(capability, []):
             if model in available:
                 return model
-        
+
         return available[0] if available else None
-    
+
     # ════════════════════════════════════════════════════
     # TEXT/SCRIPT GENERATION
     # ════════════════════════════════════════════════════
-    
-    def generate_tutorial_script(self, pattern: Dict, style: str = "friendly") -> str:
+
+    def generate_tutorial_script(self, pattern: dict, style: str = "friendly") -> str:
         """Generate a tutorial narration script using AI"""
         model = self.get_best_model("script")
-        
+
         if model == "gpt4o" or model == "gpt4o_mini":
             return self._generate_script_openai(pattern, style)
         elif model == "gemini":
             return self._generate_script_gemini(pattern, style)
         else:
             return self._generate_script_local(pattern, style)
-    
-    def _generate_script_openai(self, pattern: Dict, style: str) -> str:
+
+    def _generate_script_openai(self, pattern: dict, style: str) -> str:
         """Generate script using OpenAI GPT-4o"""
         try:
             import openai
+
             client = openai.OpenAI()
-            
+
             title = pattern.get("title", "Pattern")
             rounds = pattern.get("rounds", [])
             difficulty = pattern.get("difficulty", "Beginner")
-            
+
             style_prompts = {
                 "friendly": "warm, encouraging, like a friend teaching you",
                 "professional": "clear, precise, like a technical instructor",
                 "energetic": "exciting, upbeat, like a YouTube creator",
                 "gentle": "soft, calming, meditative, ASMR-like",
             }
-            
+
             rounds_text = "\n".join(
-                f"Round {r.get('round', r.get('round_number', i+1))}: {r.get('instruction', '')} ({r.get('count', r.get('stitch_count', 0))} sts)"
+                f"Round {r.get('round', r.get('round_number', i + 1))}: {r.get('instruction', '')} ({r.get('count', r.get('stitch_count', 0))} sts)"
                 for i, r in enumerate(rounds)
             )
-            
+
             response = client.chat.completions.create(
                 model="gpt-4o",
                 messages=[
-                    {"role": "system", "content": f"""You are a crochet tutorial narrator. 
+                    {
+                        "role": "system",
+                        "content": f"""You are a crochet tutorial narrator. 
                     Write a step-by-step narration script for a crochet pattern video.
-                    Style: {style_prompts.get(style, 'friendly')}
+                    Style: {style_prompts.get(style, "friendly")}
                     Include:
                     - Warm introduction mentioning the pattern name
                     - Materials needed
@@ -272,39 +269,43 @@ class AIModelRouter:
                     - Encouragement and tips
                     - Celebratory conclusion
                     Keep each round's narration to 15-30 seconds.
-                    Use natural speech patterns, not robotic."""},
-                    {"role": "user", "content": f"""Write a tutorial script for this crochet pattern:
+                    Use natural speech patterns, not robotic.""",
+                    },
+                    {
+                        "role": "user",
+                        "content": f"""Write a tutorial script for this crochet pattern:
 
 Pattern: {title}
 Difficulty: {difficulty}
 Rounds:
 {rounds_text}
 
-Write the full narration script."""}
+Write the full narration script.""",
+                    },
                 ],
                 max_tokens=4000,
                 temperature=0.8,
             )
-            
+
             return response.choices[0].message.content
-            
+
         except Exception as e:
             print(f"OpenAI script generation failed: {e}")
             return self._generate_script_local(pattern, style)
-    
-    def _generate_script_gemini(self, pattern: Dict, style: str) -> str:
+
+    def _generate_script_gemini(self, pattern: dict, style: str) -> str:
         """Generate script using Google Gemini"""
         try:
             import google.generativeai as genai
-            
+
             title = pattern.get("title", "Pattern")
             rounds = pattern.get("rounds", [])
-            
+
             rounds_text = "\n".join(
-                f"Round {r.get('round', i+1)}: {r.get('instruction', '')} ({r.get('count', 0)} sts)"
+                f"Round {r.get('round', i + 1)}: {r.get('instruction', '')} ({r.get('count', 0)} sts)"
                 for i, r in enumerate(rounds)
             )
-            
+
             model = genai.GenerativeModel("gemini-2.0-flash-exp")
             response = model.generate_content(f"""
 Write a warm, friendly tutorial narration script for this crochet pattern:
@@ -314,89 +315,99 @@ Rounds: {rounds_text}
 Include introduction, step-by-step instructions, stitch counts, tips, and conclusion.
 Make it sound natural for video narration, about 3-5 minutes of speaking.
 """)
-            
+
             return response.text
-            
+
         except Exception as e:
             print(f"Gemini script generation failed: {e}")
             return self._generate_script_local(pattern, style)
-    
-    def _generate_script_local(self, pattern: Dict, style: str) -> str:
+
+    def _generate_script_local(self, pattern: dict, style: str) -> str:
         """Generate script locally (no API needed)"""
         title = pattern.get("title", "Pattern")
         rounds = pattern.get("rounds", [])
         difficulty = pattern.get("difficulty", "Beginner")
         materials = pattern.get("materials", {})
-        
+
         lines = []
-        
+
         # Introduction
-        lines.append(f"Welcome to today's crochet tutorial!")
+        lines.append("Welcome to today's crochet tutorial!")
         lines.append(f"We're going to make {title} together.")
-        lines.append(f"This is a {difficulty.lower()} level pattern, perfect for {'getting started' if difficulty == 'Beginner' else 'building your skills'}.")
+        lines.append(
+            f"This is a {difficulty.lower()} level pattern, perfect for {'getting started' if difficulty == 'Beginner' else 'building your skills'}."
+        )
         lines.append("")
-        
+
         # Materials
         if materials:
             lines.append("Before we begin, let's gather our materials.")
             for key, val in materials.items():
                 lines.append(f"You'll need {val} {key.replace('_', ' ')}.")
             lines.append("")
-        
+
         # Tips
         lines.append("A few quick tips before we start:")
         lines.append("Use a stitch marker to keep track of your rounds.")
         lines.append("Keep your tension consistent for even stitches.")
         lines.append("Count your stitches at the end of each round.")
         lines.append("")
-        
+
         # Rounds
         lines.append("Let's begin!")
         lines.append("")
-        
+
         for rnd in rounds:
             rn = rnd.get("round_number", rnd.get("round", 0))
             instr = rnd.get("instruction", "")
             count = rnd.get("count", rnd.get("stitch_count", 0))
-            
+
             lines.append(f"Round {rn}.")
-            
+
             # Expand instruction into speakable form
             spoken = self._instruction_to_speech(instr)
             lines.append(spoken)
-            
+
             if count:
                 lines.append(f"You should now have {count} stitches.")
-                lines.append(f"Let me count with you... one, two, three... yes, {count} stitches. Perfect!")
-            
+                lines.append(
+                    f"Let me count with you... one, two, three... yes, {count} stitches. Perfect!"
+                )
+
             lines.append("")
-            
+
             # Add encouragement at milestones
             if rn == len(rounds) // 3:
-                lines.append("Great progress! We're about a third of the way done. You're doing amazing!")
+                lines.append(
+                    "Great progress! We're about a third of the way done. You're doing amazing!"
+                )
                 lines.append("")
             elif rn == len(rounds) // 2:
-                lines.append("Halfway there! Look at how beautiful it's coming along. Keep going!")
+                lines.append(
+                    "Halfway there! Look at how beautiful it's coming along. Keep going!"
+                )
                 lines.append("")
             elif rn == len(rounds):
                 lines.append("And that's the last round! Can you believe it?")
                 lines.append("")
-        
+
         # Conclusion
         lines.append("Congratulations! You've completed the pattern!")
         lines.append("Now, fasten off your yarn and weave in any loose ends.")
         lines.append("Look at what you've made! Isn't it beautiful?")
         lines.append("")
-        lines.append("If you enjoyed this tutorial, please like and subscribe for more crochet patterns.")
+        lines.append(
+            "If you enjoyed this tutorial, please like and subscribe for more crochet patterns."
+        )
         lines.append("Tag me in your finished projects, I'd love to see them!")
         lines.append("Happy crocheting!")
-        
+
         return "\n".join(lines)
-    
+
     def _instruction_to_speech(self, instruction: str) -> str:
         """Convert written instruction to natural speech"""
         spoken = instruction
-        
+
         # Expand abbreviations
         expansions = {
             "sc": "single crochet",
@@ -416,150 +427,173 @@ Make it sound natural for video narration, about 3-5 minutes of speaking.
             "x": "times",
             "×": "times",
         }
-        
+
         for abbr, full in expansions.items():
             import re
-            spoken = re.sub(r'\b' + re.escape(abbr) + r'\b', full, spoken, flags=re.IGNORECASE)
-        
+
+            spoken = re.sub(
+                r"\b" + re.escape(abbr) + r"\b", full, spoken, flags=re.IGNORECASE
+            )
+
         # Handle repeat patterns
         import re
-        bracket_match = re.search(r'\[(.*?)\]\s*[×x]\s*(\d+)', spoken, re.IGNORECASE)
+
+        bracket_match = re.search(r"\[(.*?)\]\s*[×x]\s*(\d+)", spoken, re.IGNORECASE)
         if bracket_match:
             inner = bracket_match.group(1)
             times = bracket_match.group(2)
-            spoken = spoken.replace(bracket_match.group(0), 
-                                   f"Repeat the following {times} times: {inner}")
-        
+            spoken = spoken.replace(
+                bracket_match.group(0), f"Repeat the following {times} times: {inner}"
+            )
+
         return spoken
-    
+
     # ════════════════════════════════════════════════════
     # VOICE SYNTHESIS
     # ════════════════════════════════════════════════════
-    
-    def generate_voice(self, text: str, voice: str = "warm_friendly", 
-                      output_path: str = "tutorial_audio.mp3") -> bool:
+
+    def generate_voice(
+        self,
+        text: str,
+        voice: str = "warm_friendly",
+        output_path: str = "tutorial_audio.mp3",
+    ) -> bool:
         """Generate voice narration using ElevenLabs, gTTS, or pyttsx3"""
-        voice_config = self.VOICE_PRESETS.get(voice, self.VOICE_PRESETS["warm_friendly"])
-        
+        voice_config = self.VOICE_PRESETS.get(
+            voice, self.VOICE_PRESETS["warm_friendly"]
+        )
+
         # Try ElevenLabs first (best quality, needs API key)
-        if self.available_models.get("elevenlabs_turbo") or self.available_models.get("elevenlabs_multilingual"):
+        if self.available_models.get("elevenlabs_turbo") or self.available_models.get(
+            "elevenlabs_multilingual"
+        ):
             return self._generate_voice_elevenlabs(text, voice_config, output_path)
-        
+
         # Try gTTS second (free, no system deps, good quality)
         return self._generate_voice_gtts(text, output_path)
-    
+
     def _generate_voice_gtts(self, text: str, output_path: str) -> bool:
         """Generate voice using Google TTS (free, no API key needed)"""
         try:
             from gtts import gTTS
+
             max_chars = 4500
             if len(text) > max_chars:
                 text = text[:max_chars]
-            tts = gTTS(text=text, lang='en', tld='com', slow=False)
+            tts = gTTS(text=text, lang="en", tld="com", slow=False)
             tts.save(output_path)
-            print(f"  ✅ Voice generated with Google TTS (free)")
+            print("  ✅ Voice generated with Google TTS (free)")
             return True
         except ImportError:
-            print(f"  ⚠️  gTTS not installed. Run: pip install gTTS")
-            script_path = output_path.replace('.mp3', '_script.txt')
+            print("  ⚠️  gTTS not installed. Run: pip install gTTS")
+            script_path = output_path.replace(".mp3", "_script.txt")
             Path(script_path).write_text(text)
             print(f"  📝 Script saved to: {script_path}")
             return True
         except Exception as e:
             print(f"  ⚠️  gTTS error: {e}")
-            script_path = output_path.replace('.mp3', '_script.txt')
+            script_path = output_path.replace(".mp3", "_script.txt")
             Path(script_path).write_text(text)
             print(f"  📝 Script saved to: {script_path}")
             return True
-    
-    def _generate_voice_elevenlabs(self, text: str, voice_config: Dict, 
-                                   output_path: str) -> bool:
+
+    def _generate_voice_elevenlabs(
+        self, text: str, voice_config: dict, output_path: str
+    ) -> bool:
         """Generate voice using ElevenLabs API"""
         try:
             from elevenlabs import ElevenLabs, save
-            
+
             client = ElevenLabs(api_key=os.environ.get("ELEVENLABS_API_KEY"))
-            
+
             audio = client.generate(
                 text=text,
                 voice=voice_config["voice_id"],
                 model="eleven_turbo_v2_5",
-                stream=False
+                stream=False,
             )
-            
+
             save(audio, output_path)
             print(f"  ✅ Voice generated with ElevenLabs ({voice_config['name']})")
             return True
-            
+
         except ImportError:
             print("  ⚠️  elevenlabs package not installed. Run: pip install elevenlabs")
             return self._generate_voice_local(text, output_path)
         except Exception as e:
             print(f"  ❌ ElevenLabs error: {e}")
             return self._generate_voice_local(text, output_path)
-    
+
     def _generate_voice_google(self, text: str, output_path: str) -> bool:
         """Generate voice using Google TTS"""
         try:
             from gtts import gTTS
-            
-            tts = gTTS(text=text, lang='en', slow=False)
+
+            tts = gTTS(text=text, lang="en", slow=False)
             tts.save(output_path)
-            print(f"  ✅ Voice generated with Google TTS")
+            print("  ✅ Voice generated with Google TTS")
             return True
-            
+
         except ImportError:
             print("  ⚠️  gTTS not installed. Run: pip install gTTS")
             return self._generate_voice_local(text, output_path)
         except Exception as e:
             print(f"  ❌ Google TTS error: {e}")
             return self._generate_voice_local(text, output_path)
-    
+
     def _generate_voice_local(self, text: str, output_path: str) -> bool:
         """Generate voice using local TTS (pyttsx3)"""
         try:
             import pyttsx3
-            
+
             engine = pyttsx3.init()
             engine.save_to_file(text, output_path)
             engine.runAndWait()
-            print(f"  ✅ Voice generated with local TTS")
+            print("  ✅ Voice generated with local TTS")
             return True
-            
+
         except ImportError:
             # Last resort: just save the text as a script file
-            script_path = output_path.replace('.mp3', '_script.txt')
+            script_path = output_path.replace(".mp3", "_script.txt")
             Path(script_path).write_text(text)
             print(f"  📝 No TTS available. Script saved to: {script_path}")
-            print(f"  💡 Install voice support: pip install elevenlabs gTTS pyttsx3")
+            print("  💡 Install voice support: pip install elevenlabs gTTS pyttsx3")
             return True
         except Exception as e:
             print(f"  ❌ Local TTS error: {e}")
             return False
-    
+
     # ════════════════════════════════════════════════════
     # VIDEO GENERATION
     # ════════════════════════════════════════════════════
-    
-    def generate_video_prompt(self, pattern: Dict, round_num: int = None) -> str:
+
+    def generate_video_prompt(self, pattern: dict, round_num: int = None) -> str:
         """Generate a detailed video prompt for AI video models"""
         title = pattern.get("title", "Pattern")
         rounds = pattern.get("rounds", [])
-        
+
         if round_num is not None:
-            rnd = next((r for r in rounds if r.get("round", r.get("round_number")) == round_num), None)
+            rnd = next(
+                (
+                    r
+                    for r in rounds
+                    if r.get("round", r.get("round_number")) == round_num
+                ),
+                None,
+            )
             if rnd:
                 return self._generate_round_prompt(title, rnd, round_num, len(rounds))
-        
+
         # Generate full video prompt
         return self._generate_full_video_prompt(pattern)
-    
-    def _generate_round_prompt(self, title: str, rnd: Dict, round_num: int, 
-                              total_rounds: int) -> str:
+
+    def _generate_round_prompt(
+        self, title: str, rnd: dict, round_num: int, total_rounds: int
+    ) -> str:
         """Generate a video prompt for a single round"""
         instr = rnd.get("instruction", "")
         count = rnd.get("count", rnd.get("stitch_count", 0))
-        
+
         return f"""Close-up crochet tutorial video showing hands working {title}.
 Round {round_num} of {total_rounds}: {instr}.
 The camera focuses on the crochet hook and yarn, showing each stitch being formed.
@@ -568,13 +602,13 @@ The crocheter's hands are steady and skilled.
 After completing the round, the stitch count of {count} is verified.
 Style: calm, instructional, high quality, 4K resolution.
 Duration: 10-15 seconds."""
-    
-    def _generate_full_video_prompt(self, pattern: Dict) -> str:
+
+    def _generate_full_video_prompt(self, pattern: dict) -> str:
         """Generate prompt for full tutorial video"""
         title = pattern.get("title", "Pattern")
         total_rounds = len(pattern.get("rounds", []))
         difficulty = pattern.get("difficulty", "Beginner")
-        
+
         return f"""Professional crochet tutorial video for {title}.
 Opening shot: Beautiful finished {title} on a cozy workspace.
 Transition to close-up of hands beginning the pattern.
@@ -586,16 +620,16 @@ Difficulty level: {difficulty}.
 Style: Professional YouTube tutorial, 4K, steady camera.
 Total duration: 3-5 minutes.
 End screen with completed project and call to action."""
-    
-    def generate_video_sora(self, prompt: str, duration: int = 10) -> Dict:
+
+    def generate_video_sora(self, prompt: str, duration: int = 10) -> dict:
         """Generate video using OpenAI Sora"""
         if not self.available_models.get("sora"):
             return {
                 "status": "unavailable",
                 "message": "Sora API key not configured. Set OPENAI_API_KEY.",
-                "fallback": "animation"
+                "fallback": "animation",
             }
-        
+
         try:
             # Sora API call (when available)
             return {
@@ -603,69 +637,71 @@ End screen with completed project and call to action."""
                 "model": "sora",
                 "prompt": prompt[:200] + "...",
                 "duration": duration,
-                "message": "Ready to generate. Call Sora API with this prompt."
+                "message": "Ready to generate. Call Sora API with this prompt.",
             }
         except Exception as e:
             return {"status": "error", "message": str(e)}
-    
-    def generate_video_veo2(self, prompt: str) -> Dict:
+
+    def generate_video_veo2(self, prompt: str) -> dict:
         """Generate video using Google Veo 2"""
         if not self.available_models.get("veo2"):
             return {
                 "status": "unavailable",
                 "message": "Veo 2 API key not configured. Set GOOGLE_API_KEY.",
-                "fallback": "animation"
+                "fallback": "animation",
             }
-        
+
         return {
             "status": "ready",
             "model": "veo-2",
             "prompt": prompt[:200] + "...",
-            "message": "Ready to generate with Google Veo 2."
+            "message": "Ready to generate with Google Veo 2.",
         }
-    
-    def generate_video(self, pattern: Dict) -> Dict:
+
+    def generate_video(self, pattern: dict) -> dict:
         """Generate a complete tutorial video"""
         # Check which video models are available
         video_models = self.get_available_models("video")
-        
+
         if not video_models:
             # Fallback: Generate animated HTML video
             return {
                 "status": "fallback",
                 "type": "html_animation",
                 "content": self._generate_html_animation(pattern),
-                "message": "No video API keys configured. Generated HTML animation instead."
+                "message": "No video API keys configured. Generated HTML animation instead.",
             }
-        
+
         # Use best available video model
         model = video_models[0]
         full_prompt = self.generate_video_prompt(pattern)
-        
+
         if model == "sora":
             result = self.generate_video_sora(full_prompt)
         elif model == "veo2":
             result = self.generate_video_veo2(full_prompt)
         else:
             result = {"status": "ready", "model": model}
-        
+
         return result
-    
-    def _generate_html_animation(self, pattern: Dict) -> str:
+
+    def _generate_html_animation(self, pattern: dict) -> str:
         """Generate an animated HTML tutorial as fallback"""
         title = pattern.get("title", "Pattern")
         rounds = pattern.get("rounds", [])
-        
-        rounds_json = json.dumps([
-            {
-                "round": r.get("round", r.get("round_number", i+1)),
-                "instruction": r.get("instruction", ""),
-                "count": r.get("count", r.get("stitch_count", 0))
-            }
-            for i, r in enumerate(rounds)
-        ])
-        
-        html = f'''<!DOCTYPE html>
+
+        rounds_json = json.dumps(
+            [
+                {
+                    "round": r.get("round", r.get("round_number", i + 1)),
+                    "instruction": r.get("instruction", ""),
+                    "count": r.get("count", r.get("stitch_count", 0)),
+                }
+                for i, r in enumerate(rounds)
+            ]
+        )
+
+        html = f"""<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -909,11 +945,11 @@ function togglePlay() {{
 updateDisplay();
 </script>
 </body>
-</html>'''
-        
+</html>"""
+
         return html
-    
-    def get_status(self) -> Dict:
+
+    def get_status(self) -> dict:
         """Get status of all AI models"""
         return {
             "available_models": {k: v for k, v in self.available_models.items() if v},
@@ -924,7 +960,7 @@ updateDisplay();
                 "voice_synthesis": bool(self.get_available_models("voice")),
                 "video_generation": bool(self.get_available_models("video")),
                 "image_generation": bool(self.get_available_models("image")),
-            }
+            },
         }
 
 
@@ -933,26 +969,26 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  AI MODEL ROUTER - STATUS")
     print("=" * 60)
-    
+
     router = AIModelRouter()
     status = router.get_status()
-    
+
     print(f"\n  Available Models: {len(status['available_models'])}")
-    for model, available in status['available_models'].items():
+    for model, available in status["available_models"].items():
         print(f"    ✅ {model}")
-    
+
     print(f"\n  Missing API Keys: {len(status['missing_api_keys'])}")
-    for model in status['missing_api_keys']:
+    for model in status["missing_api_keys"]:
         env_var = router.MODELS[model].api_key_env
         print(f"    ❌ {model} → Set {env_var}")
-    
-    print(f"\n  Capabilities:")
-    for cap, available in status['capabilities'].items():
+
+    print("\n  Capabilities:")
+    for cap, available in status["capabilities"].items():
         icon = "✅" if available else "❌ (using fallback)"
         print(f"    {icon} {cap}")
-    
+
     # Test script generation
-    print(f"\n  Testing script generation (local)...")
+    print("\n  Testing script generation (local)...")
     sample = {
         "title": "Test Ball",
         "difficulty": "Beginner",
@@ -960,17 +996,17 @@ if __name__ == "__main__":
             {"round": 1, "instruction": "6 sc in MR", "count": 6},
             {"round": 2, "instruction": "inc in each st around", "count": 12},
             {"round": 3, "instruction": "[sc, inc] x 6", "count": 18},
-        ]
+        ],
     }
-    
+
     script = router._generate_script_local(sample, "friendly")
     print(f"  Generated script: {len(script)} chars")
     print(f"  First 200 chars: {script[:200]}...")
-    
+
     # Test video prompt
-    print(f"\n  Testing video generation (fallback)...")
+    print("\n  Testing video generation (fallback)...")
     video = router.generate_video(sample)
     print(f"  Status: {video['status']}")
     print(f"  Type: {video.get('type', 'N/A')}")
-    
-    print(f"\n  AI Model Router Complete!")
+
+    print("\n  AI Model Router Complete!")

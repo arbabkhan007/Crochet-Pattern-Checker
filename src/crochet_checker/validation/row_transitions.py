@@ -24,7 +24,9 @@ class TransitionReport(BaseModel):
 
     @property
     def has_errors(self) -> bool:
-        return any(f.severity in (Severity.ERROR, Severity.CRITICAL) for f in self.findings)
+        return any(
+            f.severity in (Severity.ERROR, Severity.CRITICAL) for f in self.findings
+        )
 
 
 class RowTransitionValidator:
@@ -46,7 +48,9 @@ class RowTransitionValidator:
         report.findings = self.findings
         return report
 
-    def _validate_round_transitions(self, rounds: list[Round], report: TransitionReport) -> None:
+    def _validate_round_transitions(
+        self, rounds: list[Round], report: TransitionReport
+    ) -> None:
         """Check transitions between consecutive rounds."""
         if len(rounds) < 2:
             return
@@ -105,7 +109,9 @@ class RowTransitionValidator:
                     )
                 )
 
-    def _validate_row_transitions(self, rows: list[Row], report: TransitionReport) -> None:
+    def _validate_row_transitions(
+        self, rows: list[Row], report: TransitionReport
+    ) -> None:
         """Check transitions between consecutive rows."""
         if len(rows) < 2:
             return

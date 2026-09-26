@@ -1,17 +1,17 @@
 """
 3D Pattern Viewer - Generate interactive 3D visualizations of crochet patterns using WebGL
 """
-from typing import Dict, List
+
 import json
 
 
 class Crochet3DViewer:
     """Generate 3D visualizations of crochet patterns"""
-    
+
     def __init__(self):
         self.pattern_data = None
-    
-    def parse_pattern_to_3d(self, pattern_text: str) -> Dict:
+
+    def parse_pattern_to_3d(self, pattern_text: str) -> dict:
         """Parse pattern into 3D coordinates"""
         # Simplified: create basic shapes based on pattern type
         if "blanket" in pattern_text.lower() or "square" in pattern_text.lower():
@@ -22,28 +22,29 @@ class Crochet3DViewer:
             return self._generate_sphere(8)
         else:
             return self._generate_flat_grid(8, 8)
-    
-    def _generate_flat_grid(self, width: int, height: int) -> Dict:
+
+    def _generate_flat_grid(self, width: int, height: int) -> dict:
         """Generate flat grid (for blankets, scarves)"""
         vertices = []
         faces = []
-        
+
         for y in range(height):
             for x in range(width):
                 vertices.append([x, y, 0])
-                
+
                 if x < width - 1 and y < height - 1:
                     v = y * width + x
                     faces.append([v, v + 1, v + width + 1, v + width])
-        
+
         return {"vertices": vertices, "faces": faces, "type": "flat"}
-    
-    def _generate_cylinder(self, radius: int, height: int) -> Dict:
+
+    def _generate_cylinder(self, radius: int, height: int) -> dict:
         """Generate cylinder (for hats)"""
         import math
+
         vertices = []
         faces = []
-        
+
         # Generate points around circumference for each height level
         segments = 20
         for h in range(height):
@@ -53,7 +54,7 @@ class Crochet3DViewer:
                 y = h
                 z = radius * math.sin(angle)
                 vertices.append([x, y, z])
-        
+
         # Connect faces
         for h in range(height - 1):
             for i in range(segments):
@@ -62,19 +63,20 @@ class Crochet3DViewer:
                 v3 = (h + 1) * segments + (i + 1) % segments
                 v4 = (h + 1) * segments + i
                 faces.append([v1, v2, v3, v4])
-        
+
         return {"vertices": vertices, "faces": faces, "type": "cylinder"}
-    
-    def _generate_sphere(self, radius: int) -> Dict:
+
+    def _generate_sphere(self, radius: int) -> dict:
         """Generate sphere (for amigurumi)"""
         import math
+
         vertices = []
         faces = []
-        
+
         # Generate points on sphere using spherical coordinates
         rings = 10
         segments = 20
-        
+
         for i in range(rings + 1):
             phi = math.pi * i / rings
             for j in range(segments):
@@ -83,7 +85,7 @@ class Crochet3DViewer:
                 y = radius * math.cos(phi)
                 z = radius * math.sin(phi) * math.sin(theta)
                 vertices.append([x, y, z])
-        
+
         # Connect faces
         for i in range(rings):
             for j in range(segments):
@@ -92,12 +94,14 @@ class Crochet3DViewer:
                 v3 = (i + 1) * segments + (j + 1) % segments
                 v4 = (i + 1) * segments + j
                 faces.append([v1, v2, v3, v4])
-        
+
         return {"vertices": vertices, "faces": faces, "type": "sphere"}
-    
-    def generate_3d_html(self, pattern_data: Dict, output_file: str = "crochet_3d_viewer.html") -> str:
+
+    def generate_3d_html(
+        self, pattern_data: dict, output_file: str = "crochet_3d_viewer.html"
+    ) -> str:
         """Generate interactive 3D viewer HTML"""
-        
+
         html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,9 +136,9 @@ class Crochet3DViewer:
     <canvas id="canvas"></canvas>
     <div class="controls">
         <h2>🧶 3D Pattern Viewer</h2>
-        <div class="info">Shape: {pattern_data['type'].title()}</div>
-        <div class="info">Vertices: {len(pattern_data['vertices'])}</div>
-        <div class="info">Faces: {len(pattern_data['faces'])}</div>
+        <div class="info">Shape: {pattern_data["type"].title()}</div>
+        <div class="info">Vertices: {len(pattern_data["vertices"])}</div>
+        <div class="info">Faces: {len(pattern_data["faces"])}</div>
         <div class="info" style="margin-top: 10px; font-size: 0.9em;">
             🖱️ Drag to rotate<br>
             🔄 Scroll to zoom
@@ -190,7 +194,7 @@ class Crochet3DViewer:
         gl.useProgram(program);
         
         // Create vertex buffer
-        const vertices = new Float32Array({json.dumps(pattern_data['vertices'])}.flat());
+        const vertices = new Float32Array({json.dumps(pattern_data["vertices"])}.flat());
         const buffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
         gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
@@ -200,7 +204,7 @@ class Crochet3DViewer:
         gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 0, 0);
         
         // Create index buffer
-        const indices = new Uint16Array({json.dumps(pattern_data['faces'])}.flat());
+        const indices = new Uint16Array({json.dumps(pattern_data["faces"])}.flat());
         const indexBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
@@ -281,35 +285,35 @@ class Crochet3DViewer:
     </script>
 </body>
 </html>"""
-        
-        with open(output_file, 'w') as f:
+
+        with open(output_file, "w") as f:
             f.write(html)
-        
+
         return output_file
 
 
 if __name__ == "__main__":
     print("🎨 3D Crochet Pattern Viewer")
     print("=" * 50)
-    
+
     viewer = Crochet3DViewer()
-    
+
     print("\n📦 Generating 3D shapes...")
-    
+
     # Test different shapes
     shapes = [
         ("Blanket", "blanket pattern"),
         ("Hat", "hat pattern"),
-        ("Amigurumi", "amigurumi ball")
+        ("Amigurumi", "amigurumi ball"),
     ]
-    
+
     for name, pattern in shapes:
         data = viewer.parse_pattern_to_3d(pattern)
         print(f"\n{name}:")
         print(f"  Type: {data['type']}")
         print(f"  Vertices: {len(data['vertices'])}")
         print(f"  Faces: {len(data['faces'])}")
-    
+
     # Generate viewer
     print("\n🌐 Generating 3D viewer...")
     data = viewer.parse_pattern_to_3d("blanket pattern")

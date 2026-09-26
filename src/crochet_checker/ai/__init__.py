@@ -1,5 +1,6 @@
 """AI Assistance package."""
-from .explainer import PatternExplainer, explain_pattern, ExplanationResult
-from .terminology import TerminologyTranslator, translate_pattern, US_TO_UK, UK_TO_US
-from .suggestions import SuggestionEngine, generate_suggestions, Suggestion
-from .description import DescriptionGenerator, generate_description, PatternDescription
+
+from .description import DescriptionGenerator, PatternDescription, generate_description
+from .explainer import ExplanationResult, PatternExplainer, explain_pattern
+from .suggestions import Suggestion, SuggestionEngine, generate_suggestions
+from .terminology import UK_TO_US, US_TO_UK, TerminologyTranslator, translate_pattern

@@ -1,4 +1,6 @@
 """Pattern Difficulty Analyzer - Analyze pattern complexity"""
+
+
 class PatternDifficultyAnalyzer:
     def analyze_difficulty(self, pattern_text: str) -> dict:
         complexity = len(pattern_text.split())
@@ -8,6 +10,7 @@ class PatternDifficultyAnalyzer:
             return {"level": "Intermediate", "score": 2}
         else:
             return {"level": "Advanced", "score": 3}
+
 
 if __name__ == "__main__":
     print("📊 Pattern Difficulty Analyzer - Working!")

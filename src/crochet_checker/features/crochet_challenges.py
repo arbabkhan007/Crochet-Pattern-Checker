@@ -1,15 +1,15 @@
 """
 Crochet Challenge Generator - Random fun challenges to keep you inspired
 """
+
 import random
-from typing import Dict, List
 from datetime import datetime
 
 
 class CrochetChallengeGenerator:
     """
     Generate fun crochet challenges
-    
+
     Features:
     - Random challenges
     - Time-based challenges
@@ -18,7 +18,7 @@ class CrochetChallengeGenerator:
     - Charity challenges
     - Challenge tracking
     """
-    
+
     CHALLENGES = {
         "speed": [
             "Crochet a complete amigurumi in under 2 hours",
@@ -81,7 +81,7 @@ class CrochetChallengeGenerator:
             "Crochet something from your childhood memories",
         ],
     }
-    
+
     MONTHLY_THEMES = {
         1: {"name": "Warmth", "emoji": "❄️", "focus": "Winter items"},
         2: {"name": "Love", "emoji": "❤️", "focus": "Gifts for others"},
@@ -96,8 +96,8 @@ class CrochetChallengeGenerator:
         11: {"name": "Gratitude", "emoji": "🙏", "focus": "Thank you gifts"},
         12: {"name": "Celebration", "emoji": "🎄", "focus": "Holiday making"},
     }
-    
-    def generate_random_challenge(self, category: str = None) -> Dict:
+
+    def generate_random_challenge(self, category: str = None) -> dict:
         """Generate a random challenge"""
         if category:
             challenges = self.CHALLENGES.get(category, [])
@@ -106,21 +106,23 @@ class CrochetChallengeGenerator:
             for cat_challenges in self.CHALLENGES.values():
                 all_challenges.extend(cat_challenges)
             challenges = all_challenges
-        
+
         if not challenges:
             return {"error": "No challenges found"}
-        
+
         challenge = random.choice(challenges)
         category_used = category or random.choice(list(self.CHALLENGES.keys()))
-        
+
         return {
             "challenge": challenge,
             "category": category_used,
             "difficulty": random.choice(["Easy", "Medium", "Hard"]),
-            "time_estimate": random.choice(["1-2 hours", "3-5 hours", "1 day", "1 week"]),
+            "time_estimate": random.choice(
+                ["1-2 hours", "3-5 hours", "1 day", "1 week"]
+            ),
             "motivation": self._get_motivation(),
         }
-    
+
     def _get_motivation(self) -> str:
         """Get a motivational message"""
         motivations = [
@@ -134,83 +136,117 @@ class CrochetChallengeGenerator:
             "Enjoy the process, not just the result! 😊",
         ]
         return random.choice(motivations)
-    
-    def generate_daily_challenge(self) -> Dict:
+
+    def generate_daily_challenge(self) -> dict:
         """Generate a challenge for today"""
         today = datetime.now()
         day_of_year = today.timetuple().tm_yday
-        
+
         # Use day of year to pick consistent challenge
         random.seed(day_of_year + today.year)
         challenge = self.generate_random_challenge()
         random.seed()  # Reset seed
-        
+
         return {
             **challenge,
             "date": today.strftime("%Y-%m-%d"),
             "is_daily": True,
         }
-    
-    def get_monthly_theme(self, month: int = None) -> Dict:
+
+    def get_monthly_theme(self, month: int = None) -> dict:
         """Get monthly theme"""
         if month is None:
             month = datetime.now().month
-        
+
         theme = self.MONTHLY_THEMES.get(month, self.MONTHLY_THEMES[1])
-        
+
         return {
             **theme,
             "month": month,
             "challenge_ideas": self._get_theme_challenges(month),
         }
-    
-    def _get_theme_challenges(self, month: int) -> List[str]:
+
+    def _get_theme_challenges(self, month: int) -> list[str]:
         """Get challenge ideas for a monthly theme"""
         ideas = {
             1: ["Make a cozy hat", "Crochet warm mittens", "Create a scarf"],
-            2: ["Make a heart amigurumi", "Crochet a gift for someone special", "Create something pink or red"],
-            3: ["Learn a new stitch", "Start a skill-building project", "Try a technique tutorial"],
-            4: ["Organize your yarn stash", "Use up scraps", "Clean your crochet tools"],
-            5: ["Make something bright yellow", "Create a sunshine project", "Use cheerful colors"],
+            2: [
+                "Make a heart amigurumi",
+                "Crochet a gift for someone special",
+                "Create something pink or red",
+            ],
+            3: [
+                "Learn a new stitch",
+                "Start a skill-building project",
+                "Try a technique tutorial",
+            ],
+            4: [
+                "Organize your yarn stash",
+                "Use up scraps",
+                "Clean your crochet tools",
+            ],
+            5: [
+                "Make something bright yellow",
+                "Create a sunshine project",
+                "Use cheerful colors",
+            ],
             6: ["Crochet a beach bag", "Make a sun hat", "Create summer accessories"],
-            7: ["Try bold color combinations", "Make a statement piece", "Experiment with texture"],
+            7: [
+                "Try bold color combinations",
+                "Make a statement piece",
+                "Experiment with texture",
+            ],
             8: ["Start autumn prep", "Make warm items", "Use fall colors"],
-            9: ["Finish a WIP", "Complete an unfinished project", "Clear your project queue"],
-            10: ["Make Halloween decorations", "Crochet a spooky amigurumi", "Create orange/black items"],
-            11: ["Make thank you gifts", "Crochet for charity", "Give back to your community"],
+            9: [
+                "Finish a WIP",
+                "Complete an unfinished project",
+                "Clear your project queue",
+            ],
+            10: [
+                "Make Halloween decorations",
+                "Crochet a spooky amigurumi",
+                "Create orange/black items",
+            ],
+            11: [
+                "Make thank you gifts",
+                "Crochet for charity",
+                "Give back to your community",
+            ],
             12: ["Holiday decorations", "Gift making", "Festive amigurumi"],
         }
         return ideas.get(month, [])
-    
-    def generate_7_day_challenge(self) -> Dict:
+
+    def generate_7_day_challenge(self) -> dict:
         """Generate a 7-day challenge"""
         days = []
         categories = list(self.CHALLENGES.keys())
-        
+
         for i in range(7):
             cat = categories[i % len(categories)]
             challenge = random.choice(self.CHALLENGES[cat])
-            days.append({
-                "day": i + 1,
-                "category": cat,
-                "challenge": challenge,
-            })
-        
+            days.append(
+                {
+                    "day": i + 1,
+                    "category": cat,
+                    "challenge": challenge,
+                }
+            )
+
         return {
             "name": "7-Day Crochet Challenge",
             "days": days,
             "motivation": "One challenge per day for a week! You've got this!",
         }
-    
-    def get_challenge_stats(self, completed: List[str]) -> Dict:
+
+    def get_challenge_stats(self, completed: list[str]) -> dict:
         """Get stats for completed challenges"""
         total = len(completed)
-        
+
         return {
             "completed": total,
             "message": self._get_completion_message(total),
         }
-    
+
     def _get_completion_message(self, count: int) -> str:
         """Get message based on completion count"""
         if count == 0:
@@ -228,50 +264,52 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  CROCHET CHALLENGE GENERATOR - DEMONSTRATION")
     print("=" * 60)
-    
+
     gen = CrochetChallengeGenerator()
-    
+
     # Random challenges
-    print(f"\n🎲 Random Challenges:")
+    print("\n🎲 Random Challenges:")
     for i in range(3):
         challenge = gen.generate_random_challenge()
         print(f"  [{challenge['category'].upper()}] {challenge['challenge']}")
-        print(f"    Difficulty: {challenge['difficulty']} | Time: {challenge['time_estimate']}")
+        print(
+            f"    Difficulty: {challenge['difficulty']} | Time: {challenge['time_estimate']}"
+        )
         print(f"    {challenge['motivation']}\n")
-    
+
     # Category-specific
-    print(f"\n🎯 Charity Challenge:")
+    print("\n🎯 Charity Challenge:")
     charity = gen.generate_random_challenge("charity")
     print(f"  {charity['challenge']}")
-    
-    print(f"\n🌈 Color Challenge:")
+
+    print("\n🌈 Color Challenge:")
     color = gen.generate_random_challenge("color")
     print(f"  {color['challenge']}")
-    
+
     # Daily challenge
-    print(f"\n📅 Today's Challenge:")
+    print("\n📅 Today's Challenge:")
     daily = gen.generate_daily_challenge()
     print(f"  {daily['challenge']}")
     print(f"  Category: {daily['category']} | {daily['motivation']}")
-    
+
     # Monthly theme
-    print(f"\n🗓️  This Month's Theme:")
+    print("\n🗓️  This Month's Theme:")
     theme = gen.get_monthly_theme()
     print(f"  {theme['emoji']} {theme['name']}")
     print(f"  Focus: {theme['focus']}")
     print(f"  Ideas: {', '.join(theme['challenge_ideas'][:3])}")
-    
+
     # 7-day challenge
-    print(f"\n🔥 7-Day Challenge:")
+    print("\n🔥 7-Day Challenge:")
     week = gen.generate_7_day_challenge()
     print(f"  {week['name']}")
     print(f"  {week['motivation']}\n")
-    for day in week['days']:
+    for day in week["days"]:
         print(f"  Day {day['day']}: [{day['category']}] {day['challenge']}")
-    
+
     # Stats
-    print(f"\n📊 Challenge Stats:")
+    print("\n📊 Challenge Stats:")
     stats = gen.get_challenge_stats(["challenge1", "challenge2", "challenge3"])
     print(f"  {stats['message']}")
-    
-    print(f"\n  Crochet Challenge Generator Complete! 🎯")
+
+    print("\n  Crochet Challenge Generator Complete! 🎯")

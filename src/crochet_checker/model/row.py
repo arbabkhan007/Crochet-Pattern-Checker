@@ -7,8 +7,6 @@ A Round is a single circuit in circular/tubular crochet (worked in the round).
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel, Field
 
 from .instruction import Instruction
@@ -21,9 +19,9 @@ class Row(BaseModel):
     instructions: list[Instruction] = Field(default_factory=list)
     source_text: str = ""
     is_wrong_side: bool = False
-    turning_chain: Optional[int] = None
-    starting_stitch_count: Optional[int] = None
-    expected_ending_stitch_count: Optional[int] = None
+    turning_chain: int | None = None
+    starting_stitch_count: int | None = None
+    expected_ending_stitch_count: int | None = None
 
     @property
     def computed_stitch_count(self) -> int:
@@ -46,7 +44,7 @@ class Row(BaseModel):
         Returns:
             The computed stitch count for this row.
         """
-        from ..model.stitch import STITCH_PRODUCTION, STITCH_CONSUMPTION
+        from ..model.stitch import STITCH_CONSUMPTION, STITCH_PRODUCTION
 
         remaining = previous_stitch_count
         total_produced = 0
@@ -96,8 +94,8 @@ class Round(BaseModel):
     round_number: int
     instructions: list[Instruction] = Field(default_factory=list)
     source_text: str = ""
-    starting_stitch_count: Optional[int] = None
-    expected_ending_stitch_count: Optional[int] = None
+    starting_stitch_count: int | None = None
+    expected_ending_stitch_count: int | None = None
     join_at_end: bool = False
     is_continuous: bool = True
 
@@ -122,7 +120,7 @@ class Round(BaseModel):
         Returns:
             The computed stitch count for this round.
         """
-        from ..model.stitch import STITCH_PRODUCTION, STITCH_CONSUMPTION
+        from ..model.stitch import STITCH_CONSUMPTION, STITCH_PRODUCTION
 
         remaining = previous_stitch_count
         total_produced = 0
@@ -175,8 +173,8 @@ class RowOrRound(BaseModel):
     """Unified wrapper for either a row or a round."""
 
     is_round: bool = True
-    row: Optional[Row] = None
-    round_: Optional[Round] = Field(default=None, alias="round")
+    row: Row | None = None
+    round_: Round | None = Field(default=None, alias="round")
 
     @property
     def number(self) -> int:

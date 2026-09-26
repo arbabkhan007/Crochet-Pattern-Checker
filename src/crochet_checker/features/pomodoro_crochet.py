@@ -1,8 +1,8 @@
 """
 Pomodoro Crochet Timer - Productive timed crochet sessions with breaks
 """
+
 import json
-from typing import Dict, List, Optional
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -10,7 +10,7 @@ from pathlib import Path
 class PomodoroCrochetTimer:
     """
     Pomodoro timer optimized for crochet sessions
-    
+
     Features:
     - Customizable work/break intervals
     - Session tracking
@@ -19,7 +19,7 @@ class PomodoroCrochetTimer:
     - Goal integration
     - Break activity suggestions
     """
-    
+
     PRESETS = {
         "standard": {"work": 25, "short_break": 5, "long_break": 15, "cycles": 4},
         "relaxed": {"work": 20, "short_break": 5, "long_break": 10, "cycles": 3},
@@ -27,7 +27,7 @@ class PomodoroCrochetTimer:
         "beginner": {"work": 15, "short_break": 5, "long_break": 10, "cycles": 3},
         "marathon": {"work": 50, "short_break": 10, "long_break": 30, "cycles": 6},
     }
-    
+
     BREAK_ACTIVITIES = [
         "Stand up and stretch your arms overhead",
         "Roll your shoulders 10 times each direction",
@@ -42,7 +42,7 @@ class PomodoroCrochetTimer:
         "Look out a window and rest your eyes",
         "Do finger spreads - open wide, make fist, repeat 10x",
     ]
-    
+
     def __init__(self, storage_path: str = "pomodoro_crochet.json"):
         self.storage_path = Path(storage_path)
         self.data = {
@@ -55,38 +55,42 @@ class PomodoroCrochetTimer:
             "last_session_date": None,
         }
         self.load()
-    
+
     def load(self):
         if self.storage_path.exists():
             try:
                 self.data.update(json.loads(self.storage_path.read_text()))
             except Exception:
                 pass
-    
+
     def save(self):
         self.storage_path.write_text(json.dumps(self.data, indent=2))
-    
-    def create_session(self, preset: str = "standard", custom_minutes: int = None) -> Dict:
+
+    def create_session(
+        self, preset: str = "standard", custom_minutes: int = None
+    ) -> dict:
         """Create a pomodoro session plan"""
         config = self.PRESETS.get(preset, self.PRESETS["standard"])
-        
+
         if custom_minutes:
             config = {**config, "work": custom_minutes}
-        
+
         # Build timeline
         timeline = []
         total_minutes = 0
-        
+
         for cycle in range(1, config["cycles"] + 1):
             # Work phase
-            timeline.append({
-                "type": "work",
-                "duration": config["work"],
-                "label": f"Work #{cycle}",
-                "instruction": f"Focus on your crochet for {config['work']} minutes",
-            })
+            timeline.append(
+                {
+                    "type": "work",
+                    "duration": config["work"],
+                    "label": f"Work #{cycle}",
+                    "instruction": f"Focus on your crochet for {config['work']} minutes",
+                }
+            )
             total_minutes += config["work"]
-            
+
             # Break phase
             if cycle < config["cycles"]:
                 break_time = config["short_break"]
@@ -94,16 +98,18 @@ class PomodoroCrochetTimer:
             else:
                 break_time = config["long_break"]
                 break_type = "long"
-            
-            timeline.append({
-                "type": "break",
-                "duration": break_time,
-                "label": f"{break_type.title()} Break",
-                "instruction": f"Rest for {break_time} minutes. {self.get_break_activity()}",
-                "activity": self.get_break_activity(),
-            })
+
+            timeline.append(
+                {
+                    "type": "break",
+                    "duration": break_time,
+                    "label": f"{break_type.title()} Break",
+                    "instruction": f"Rest for {break_time} minutes. {self.get_break_activity()}",
+                    "activity": self.get_break_activity(),
+                }
+            )
             total_minutes += break_time
-        
+
         return {
             "preset": preset,
             "config": config,
@@ -112,18 +118,20 @@ class PomodoroCrochetTimer:
             "total_hours": round(total_minutes / 60, 1),
             "pomodoros": config["cycles"],
         }
-    
-    def complete_session(self, preset: str = "standard", pomodoros_completed: int = 0) -> Dict:
+
+    def complete_session(
+        self, preset: str = "standard", pomodoros_completed: int = 0
+    ) -> dict:
         """Log a completed session"""
         config = self.PRESETS.get(preset, self.PRESETS["standard"])
-        
+
         work_minutes = pomodoros_completed * config["work"]
         break_minutes = (pomodoros_completed - 1) * config["short_break"]
         if pomodoros_completed == config["cycles"]:
             break_minutes += config["long_break"] - config["short_break"]
-        
+
         today = datetime.now().strftime("%Y-%m-%d")
-        
+
         # Update streak
         if self.data["last_session_date"] != today:
             if self.data["last_session_date"]:
@@ -135,28 +143,30 @@ class PomodoroCrochetTimer:
             else:
                 self.data["streak"] = 1
             self.data["last_session_date"] = today
-        
+
         # Update daily log
         if today not in self.data["daily_log"]:
             self.data["daily_log"][today] = {"work_minutes": 0, "pomodoros": 0}
-        
+
         self.data["daily_log"][today]["work_minutes"] += work_minutes
         self.data["daily_log"][today]["pomodoros"] += pomodoros_completed
-        
+
         self.data["total_work_minutes"] += work_minutes
         self.data["total_break_minutes"] += break_minutes
         self.data["total_pomodoros"] += pomodoros_completed
-        
-        self.data["sessions"].append({
-            "date": today,
-            "time": datetime.now().strftime("%H:%M"),
-            "preset": preset,
-            "pomodoros": pomodoros_completed,
-            "work_minutes": work_minutes,
-        })
-        
+
+        self.data["sessions"].append(
+            {
+                "date": today,
+                "time": datetime.now().strftime("%H:%M"),
+                "preset": preset,
+                "pomodoros": pomodoros_completed,
+                "work_minutes": work_minutes,
+            }
+        )
+
         self.save()
-        
+
         return {
             "pomodoros_completed": pomodoros_completed,
             "work_minutes": work_minutes,
@@ -164,30 +174,39 @@ class PomodoroCrochetTimer:
             "streak": self.data["streak"],
             "today_minutes": self.data["daily_log"][today]["work_minutes"],
         }
-    
+
     def get_break_activity(self) -> str:
         """Get a random break activity"""
         import random
+
         return random.choice(self.BREAK_ACTIVITIES)
-    
-    def get_stats(self) -> Dict:
+
+    def get_stats(self) -> dict:
         """Get pomodoro statistics"""
         today = datetime.now().strftime("%Y-%m-%d")
-        today_data = self.data["daily_log"].get(today, {"work_minutes": 0, "pomodoros": 0})
-        
+        today_data = self.data["daily_log"].get(
+            today, {"work_minutes": 0, "pomodoros": 0}
+        )
+
         # This week
         week_start = datetime.now() - timedelta(days=datetime.now().weekday())
         week_minutes = 0
         week_pomodoros = 0
         for i in range(7):
             day = (week_start + timedelta(days=i)).strftime("%Y-%m-%d")
-            day_data = self.data["daily_log"].get(day, {"work_minutes": 0, "pomodoros": 0})
+            day_data = self.data["daily_log"].get(
+                day, {"work_minutes": 0, "pomodoros": 0}
+            )
             week_minutes += day_data["work_minutes"]
             week_pomodoros += day_data["pomodoros"]
-        
+
         # Best day
-        best_day = max(self.data["daily_log"].items(), key=lambda x: x[1]["work_minutes"]) if self.data["daily_log"] else (None, {"work_minutes": 0})
-        
+        best_day = (
+            max(self.data["daily_log"].items(), key=lambda x: x[1]["work_minutes"])
+            if self.data["daily_log"]
+            else (None, {"work_minutes": 0})
+        )
+
         return {
             "total_pomodoros": self.data["total_pomodoros"],
             "total_work_hours": round(self.data["total_work_minutes"] / 60, 1),
@@ -206,14 +225,16 @@ class PomodoroCrochetTimer:
                 "date": best_day[0],
                 "minutes": best_day[1]["work_minutes"],
             },
-            "avg_per_session": round(self.data["total_work_minutes"] / max(1, len(self.data["sessions"])), 0),
+            "avg_per_session": round(
+                self.data["total_work_minutes"] / max(1, len(self.data["sessions"])), 0
+            ),
         }
-    
+
     def generate_timer_html(self, preset: str = "standard") -> str:
         """Generate interactive timer HTML"""
         config = self.PRESETS.get(preset, self.PRESETS["standard"])
-        
-        return f'''<!DOCTYPE html>
+
+        return f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Pomodoro Crochet Timer</title>
 <style>
 body {{ font-family: -apple-system, sans-serif; background: linear-gradient(135deg, #667eea, #764ba2);
@@ -232,17 +253,17 @@ button {{ padding: 15px 40px; font-size: 1.3em; border: none; border-radius: 30p
 <body>
 <div class="label" id="label">Ready to Focus!</div>
 <div class="timer" id="timer">25:00</div>
-<div class="cycle" id="cycle">Pomodoro 1 of {config['cycles']}</div>
+<div class="cycle" id="cycle">Pomodoro 1 of {config["cycles"]}</div>
 <div class="activity" id="activity">🧶 Focus on your crochet project</div>
 <div>
     <button class="start" onclick="toggleTimer()" id="toggleBtn">▶️ Start</button>
     <button class="reset" onclick="resetTimer()">🔄 Reset</button>
 </div>
 <script>
-const workMin = {config['work']};
-const shortBreak = {config['short_break']};
-const longBreak = {config['long_break']};
-const cycles = {config['cycles']};
+const workMin = {config["work"]};
+const shortBreak = {config["short_break"]};
+const longBreak = {config["long_break"]};
+const cycles = {config["cycles"]};
 const activities = {json.dumps(self.BREAK_ACTIVITIES)};
 
 let seconds = workMin * 60;
@@ -330,43 +351,44 @@ function resetTimer() {{
 
 updateDisplay();
 </script>
-</body></html>'''
+</body></html>"""
 
 
 # Demo
 if __name__ == "__main__":
     import os
+
     print("\n" + "=" * 60)
     print("  POMODORO CROCHET TIMER - DEMONSTRATION")
     print("=" * 60)
-    
+
     timer = PomodoroCrochetTimer(storage_path="/tmp/demo_pomo.json")
-    
+
     # Show presets
-    print(f"\n⏱️  Available Presets:")
+    print("\n⏱️  Available Presets:")
     for name, config in timer.PRESETS.items():
         total = config["work"] * config["cycles"]
         print(f"  • {name}: {config['work']}min work × {config['cycles']} = {total}min")
-    
+
     # Create session
-    print(f"\n📋 Standard Session Plan:")
+    print("\n📋 Standard Session Plan:")
     session = timer.create_session("standard")
     print(f"  Total: {session['total_minutes']}min ({session['total_hours']}h)")
     print(f"  Pomodoros: {session['pomodoros']}")
     for item in session["timeline"][:4]:
         icon = "🧶" if item["type"] == "work" else "☕"
         print(f"  {icon} {item['label']}: {item['duration']}min")
-    
+
     # Complete sessions
-    print(f"\n✅ Completing sessions...")
+    print("\n✅ Completing sessions...")
     for _ in range(3):
         result = timer.complete_session("standard", pomodoros_completed=4)
-    
+
     print(f"  Total hours: {result['total_hours']}")
     print(f"  Streak: {result['streak']} days")
-    
+
     # Stats
-    print(f"\n📊 Pomodoro Stats:")
+    print("\n📊 Pomodoro Stats:")
     stats = timer.get_stats()
     print(f"  Total Pomodoros: {stats['total_pomodoros']}")
     print(f"  Total Work: {stats['total_work_hours']} hours")
@@ -374,18 +396,18 @@ if __name__ == "__main__":
     print(f"  Streak: {stats['streak']} days")
     print(f"  Today: {stats['today']['minutes']}min")
     print(f"  This Week: {stats['this_week']['hours']}h")
-    
+
     # Break activities
-    print(f"\n💡 Break Activities:")
+    print("\n💡 Break Activities:")
     for _ in range(3):
         print(f"  • {timer.get_break_activity()}")
-    
+
     # HTML timer
     html = timer.generate_timer_html("standard")
     print(f"\n✅ Interactive timer: {len(html)} chars")
-    
+
     # Cleanup
     if os.path.exists("/tmp/demo_pomo.json"):
         os.remove("/tmp/demo_pomo.json")
-    
-    print(f"\n  Pomodoro Crochet Timer Complete! ⏱️")
+
+    print("\n  Pomodoro Crochet Timer Complete! ⏱️")

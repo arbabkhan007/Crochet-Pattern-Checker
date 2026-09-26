@@ -1,6 +1,7 @@
 """Visual Pattern Debugger"""
-from typing import List
+
 from dataclasses import dataclass
+
 
 @dataclass
 class DebugPoint:
@@ -8,10 +9,11 @@ class DebugPoint:
     round_number: int
     stitch_count: int
 
+
 class PatternDebugger:
     def __init__(self):
-        self.breakpoints: List[int] = []
-    
+        self.breakpoints: list[int] = []
+
     def set_breakpoint(self, line_number: int):
         if line_number not in self.breakpoints:
             self.breakpoints.append(line_number)
@@ -27,5 +29,6 @@ def _legacy_generate_visual_map(self, pattern_text):
         marker = "*" if index in self.breakpoints else " "
         output.append(f"{marker} {index:03d} | {line}")
     return "\\n".join(output)
+
 
 PatternDebugger.generate_visual_map = _legacy_generate_visual_map

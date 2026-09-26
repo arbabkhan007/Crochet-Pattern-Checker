@@ -8,12 +8,10 @@ showing stitch placement, round structure, and construction.
 from __future__ import annotations
 
 import math
-from typing import Optional
 
-from ..model.pattern import ConstructionType, Pattern
+from ..model.pattern import Pattern
 from ..model.stitch import StitchType
-from .measurements import MeasurementEngine, PatternMeasurements, StitchDimensions
-
+from .measurements import StitchDimensions
 
 # Colors for different stitch types
 STITCH_COLORS = {
@@ -43,7 +41,7 @@ class SVGDiagram:
         self,
         width: int = 600,
         height: int = 600,
-        stitch_dims: Optional[StitchDimensions] = None,
+        stitch_dims: StitchDimensions | None = None,
     ) -> None:
         self.width = width
         self.height = height
@@ -103,16 +101,13 @@ class SVGDiagram:
             return
 
         # Calculate max stitch count for scaling
-        max_stitches = max(
-            r.computed_stitch_count for r in pattern.rounds
-        )
+        max_stitches = max(r.computed_stitch_count for r in pattern.rounds)
         if max_stitches == 0:
             # Try context-aware
             prev = 0
             for r in pattern.rounds:
                 sc = r.compute_stitch_count_with_context(prev)
-                if sc > max_stitches:
-                    max_stitches = sc
+                max_stitches = max(max_stitches, sc)
                 prev = sc if sc > 0 else prev
 
         if max_stitches == 0:
@@ -183,7 +178,9 @@ class SVGDiagram:
 
     def _draw_rows_flat(self, pattern: Pattern) -> None:
         """Draw a flat diagram for row-based patterns."""
-        max_width = max(r.computed_stitch_count for r in pattern.rows) if pattern.rows else 1
+        max_width = (
+            max(r.computed_stitch_count for r in pattern.rows) if pattern.rows else 1
+        )
         if max_width == 0:
             max_width = 1
 
@@ -270,7 +267,9 @@ def generate_circle_diagram(
     return diagram.generate_circle_diagram(pattern)
 
 
-def generate_stitch_count_chart(pattern: Pattern, width: int = 500, height: int = 300) -> str:
+def generate_stitch_count_chart(
+    pattern: Pattern, width: int = 500, height: int = 300
+) -> str:
     """Generate an SVG chart showing stitch counts per round."""
     elements = []
     elements.append(
@@ -281,7 +280,7 @@ def generate_stitch_count_chart(pattern: Pattern, width: int = 500, height: int 
 
     # Title
     elements.append(
-        f'<text x="{width/2}" y="25" text-anchor="middle" '
+        f'<text x="{width / 2}" y="25" text-anchor="middle" '
         f'font-family="Arial" font-size="14" font-weight="bold" '
         f'fill="#333">Stitch Count Per Round</text>'
     )
@@ -298,7 +297,7 @@ def generate_stitch_count_chart(pattern: Pattern, width: int = 500, height: int 
         sc = r.computed_stitch_count
         if sc == 0:
             sc = r.compute_stitch_count_with_context(prev)
-        num = r.round_number if hasattr(r, 'round_number') else r.row_number
+        num = r.round_number if hasattr(r, "round_number") else r.row_number
         counts.append((num, sc))
         prev = sc if sc > 0 else prev
 
@@ -371,25 +370,25 @@ def generate_stitch_count_chart(pattern: Pattern, width: int = 500, height: int 
 
         # Value on top
         elements.append(
-            f'<text x="{x + bar_width/2:.1f}" y="{y - 3:.1f}" text-anchor="middle" '
+            f'<text x="{x + bar_width / 2:.1f}" y="{y - 3:.1f}" text-anchor="middle" '
             f'font-family="Arial" font-size="8" fill="#555">{count}</text>'
         )
 
         # Round number below
         elements.append(
-            f'<text x="{x + bar_width/2:.1f}" y="{margin_top + chart_h + 12}" '
+            f'<text x="{x + bar_width / 2:.1f}" y="{margin_top + chart_h + 12}" '
             f'text-anchor="middle" font-family="Arial" font-size="8" fill="#666">{num}</text>'
         )
 
     # Axis labels
     elements.append(
-        f'<text x="{width/2}" y="{height - 5}" text-anchor="middle" '
+        f'<text x="{width / 2}" y="{height - 5}" text-anchor="middle" '
         f'font-family="Arial" font-size="10" fill="#555">Round</text>'
     )
     elements.append(
-        f'<text x="15" y="{height/2}" text-anchor="middle" '
+        f'<text x="15" y="{height / 2}" text-anchor="middle" '
         f'font-family="Arial" font-size="10" fill="#555" '
-        f'transform="rotate(-90, 15, {height/2})">Stitches</text>'
+        f'transform="rotate(-90, 15, {height / 2})">Stitches</text>'
     )
 
     elements.append("</svg>")

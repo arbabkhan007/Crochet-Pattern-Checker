@@ -1,24 +1,28 @@
 """FastAPI web application for crochet pattern checker."""
+
 from __future__ import annotations
-from pathlib import Path
-from typing import Optional
-from fastapi import FastAPI, File, UploadFile, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+
+from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
+
 from ..parser.parser import CrochetParser
-from ..validation import validate_pattern
-from ..visualization import render_2d_preview, measure_pattern
-from ..simulation import simulate_surface
 from ..pdf import PDFConfig, PDFGenerator
+from ..simulation import simulate_surface
+from ..validation import validate_pattern
+from ..visualization import measure_pattern, render_2d_preview
 
 app = FastAPI(title="Crochet Pattern Checker", version="0.5.0")
+
 
 class CheckRequest(BaseModel):
     pattern_text: str
 
+
 @app.get("/", response_class=HTMLResponse)
 async def index():
     return get_frontend_html()
+
 
 @app.post("/api/check")
 async def check_pattern(request: CheckRequest):
@@ -26,14 +30,23 @@ async def check_pattern(request: CheckRequest):
         pattern = CrochetParser().parse(request.pattern_text)
         report = validate_pattern(pattern)
         m = measure_pattern(pattern)
-        return {"status": report.overall_status, "score": report.score,
-                "errors": [{"message": e.message, "location": e.location} for e in report.errors],
-                "warnings": [{"message": w.message, "location": w.location} for w in report.warnings],
-                "rounds": m.total_rounds, "max_stitches": m.max_stitch_count,
-                "max_diameter_inches": round(m.max_diameter_inches, 2),
-                "total_height_inches": round(m.total_height_inches, 2)}
+        return {
+            "status": report.overall_status,
+            "score": report.score,
+            "errors": [
+                {"message": e.message, "location": e.location} for e in report.errors
+            ],
+            "warnings": [
+                {"message": w.message, "location": w.location} for w in report.warnings
+            ],
+            "rounds": m.total_rounds,
+            "max_stitches": m.max_stitch_count,
+            "max_diameter_inches": round(m.max_diameter_inches, 2),
+            "total_height_inches": round(m.total_height_inches, 2),
+        }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @app.post("/api/upload")
 async def upload_pattern(file: UploadFile = File(...)):
@@ -45,14 +58,23 @@ async def upload_pattern(file: UploadFile = File(...)):
         pattern = CrochetParser().parse(text)
         report = validate_pattern(pattern)
         m = measure_pattern(pattern)
-        return {"status": report.overall_status, "score": report.score,
-                "errors": [{"message": e.message, "location": e.location} for e in report.errors],
-                "warnings": [{"message": w.message, "location": w.location} for w in report.warnings],
-                "rounds": m.total_rounds, "max_stitches": m.max_stitch_count,
-                "max_diameter_inches": round(m.max_diameter_inches, 2),
-                "total_height_inches": round(m.total_height_inches, 2)}
+        return {
+            "status": report.overall_status,
+            "score": report.score,
+            "errors": [
+                {"message": e.message, "location": e.location} for e in report.errors
+            ],
+            "warnings": [
+                {"message": w.message, "location": w.location} for w in report.warnings
+            ],
+            "rounds": m.total_rounds,
+            "max_stitches": m.max_stitch_count,
+            "max_diameter_inches": round(m.max_diameter_inches, 2),
+            "total_height_inches": round(m.total_height_inches, 2),
+        }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @app.post("/api/render")
 async def render_pattern(request: CheckRequest):
@@ -64,18 +86,25 @@ async def render_pattern(request: CheckRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+
 @app.post("/api/simulate")
 async def simulate_pattern(request: CheckRequest):
     try:
         pattern = CrochetParser().parse(request.pattern_text)
         result = simulate_surface(pattern)
-        return {"shape": result.detected_shape.value, "confidence": round(result.confidence, 2),
-                "vertices": len(result.mesh.vertices), "faces": len(result.mesh.faces), "status": "success"}
+        return {
+            "shape": result.detected_shape.value,
+            "confidence": round(result.confidence, 2),
+            "vertices": len(result.mesh.vertices),
+            "faces": len(result.mesh.faces),
+            "status": "success",
+        }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+
 @app.post("/api/pdf")
-async def generate_pdf(request: CheckRequest, designer: Optional[str] = None):
+async def generate_pdf(request: CheckRequest, designer: str | None = None):
     try:
         pattern = CrochetParser().parse(request.pattern_text)
         report = validate_pattern(pattern)
@@ -84,6 +113,7 @@ async def generate_pdf(request: CheckRequest, designer: Optional[str] = None):
         return {"html": html, "status": "success"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @app.get("/api/health")
 async def health():

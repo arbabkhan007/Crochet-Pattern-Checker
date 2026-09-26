@@ -1,9 +1,11 @@
 """Yarn substitution engine."""
+
 from pydantic import BaseModel
-from typing import List
+
 
 class YarnProperties(BaseModel):
     """Yarn properties."""
+
     name: str
     brand: str
     weight: str = "worsted"
@@ -11,26 +13,33 @@ class YarnProperties(BaseModel):
     yardage: int = 200
     price_usd: float = 5.99
 
+
 class SubstitutionResult(BaseModel):
     """A yarn substitution result."""
+
     substitute_yarn: YarnProperties
     compatibility_score: int = 100
-    pros: List[str] = []
-    cons: List[str] = []
+    pros: list[str] = []
+    cons: list[str] = []
+
 
 class YarnSubstitutionEngine:
     """Find yarn substitutes."""
-    
-    def find_substitutes(self, yarn: YarnProperties, max_results: int = 3) -> List[SubstitutionResult]:
+
+    def find_substitutes(
+        self, yarn: YarnProperties, max_results: int = 3
+    ) -> list[SubstitutionResult]:
         """Find substitute yarns."""
         # Return some sample substitutes
         return [
             SubstitutionResult(
                 substitute_yarn=YarnProperties(
-                    name="Heartland", brand="Lion Brand",
-                    weight=yarn.weight, fiber=yarn.fiber
+                    name="Heartland",
+                    brand="Lion Brand",
+                    weight=yarn.weight,
+                    fiber=yarn.fiber,
                 ),
                 compatibility_score=100,
-                pros=["Same weight", "Similar gauge"]
+                pros=["Same weight", "Similar gauge"],
             )
         ]

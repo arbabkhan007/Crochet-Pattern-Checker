@@ -7,19 +7,19 @@ Per 4-pattern audit:
 """
 
 from .fallback import (
-    UnsupportedSyntaxFallback,
     CountResult,
     FallbackWarning,
     TrustLevel,
+    UnsupportedSyntaxFallback,
 )
 from .patcher import DiffPatchGenerator, Patch, PatchReport
 
 __all__ = [
-    'UnsupportedSyntaxFallback',
-    'CountResult',
-    'FallbackWarning',
-    'TrustLevel',
-    'DiffPatchGenerator',
-    'Patch',
-    'PatchReport',
+    "CountResult",
+    "DiffPatchGenerator",
+    "FallbackWarning",
+    "Patch",
+    "PatchReport",
+    "TrustLevel",
+    "UnsupportedSyntaxFallback",
 ]

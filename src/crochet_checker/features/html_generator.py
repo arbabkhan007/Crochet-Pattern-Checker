@@ -1,87 +1,91 @@
-
-from pathlib import Path
-from typing import List, Dict
-import webbrowser
 import tempfile
+import webbrowser
+from pathlib import Path
+
 
 class HTMLPatternGenerator:
     """Generate interactive HTML patterns"""
-    
+
     def __init__(self):
         self.temp_dir = tempfile.mkdtemp()
-    
-    def generate_interactive_pattern(self, pattern_text: str, title: str = "Crochet Pattern") -> str:
+
+    def generate_interactive_pattern(
+        self, pattern_text: str, title: str = "Crochet Pattern"
+    ) -> str:
         """Generate interactive HTML pattern"""
         # Parse pattern
         rounds = self._parse_rounds(pattern_text)
-        
+
         # Generate HTML
         html = self._generate_html(rounds, title, pattern_text)
-        
+
         # Save file
         html_path = Path(self.temp_dir) / f"{title.replace(' ', '_')}_interactive.html"
-        with open(html_path, 'w') as f:
+        with open(html_path, "w") as f:
             f.write(html)
-        
+
         # Open in browser
-        webbrowser.open(f'file://{html_path.absolute()}')
-        
+        webbrowser.open(f"file://{html_path.absolute()}")
+
         return str(html_path)
-    
-    def _parse_rounds(self, pattern_text: str) -> List[Dict]:
+
+    def _parse_rounds(self, pattern_text: str) -> list[dict]:
         """Parse pattern into rounds"""
         import re
+
         rounds = []
-        
+
         # Extract rounds
-        lines = pattern_text.split('\n')
+        lines = pattern_text.split("\n")
         current_round = None
-        
+
         for line in lines:
             line = line.strip()
             if not line:
                 continue
-            
+
             # Check if line starts a new round
-            round_match = re.match(r'(?:round|rnd|r)\s+(\d+):?\s*(.*)', line, re.IGNORECASE)
+            round_match = re.match(
+                r"(?:round|rnd|r)\s+(\d+):?\s*(.*)", line, re.IGNORECASE
+            )
             if round_match:
                 if current_round:
                     rounds.append(current_round)
                 current_round = {
-                    'number': int(round_match.group(1)),
-                    'instruction': round_match.group(2),
-                    'stitches': []
+                    "number": int(round_match.group(1)),
+                    "instruction": round_match.group(2),
+                    "stitches": [],
                 }
-                
+
                 # Extract stitch count
-                count_match = re.search(r'\((\d+)\)', line)
+                count_match = re.search(r"\((\d+)\)", line)
                 if count_match:
-                    current_round['stitch_count'] = int(count_match.group(1))
+                    current_round["stitch_count"] = int(count_match.group(1))
             elif current_round:
                 # Continue previous round
-                current_round['instruction'] += ' ' + line
-        
+                current_round["instruction"] += " " + line
+
         if current_round:
             rounds.append(current_round)
-        
+
         return rounds
-    
-    def _generate_html(self, rounds: List[Dict], title: str, original_text: str) -> str:
+
+    def _generate_html(self, rounds: list[dict], title: str, original_text: str) -> str:
         """Generate interactive HTML"""
         rounds_html = ""
         for rnd in rounds:
-            stitch_count = rnd.get('stitch_count', '?')
+            stitch_count = rnd.get("stitch_count", "?")
             rounds_html += f"""
-            <div class="round" data-round="{rnd['number']}">
+            <div class="round" data-round="{rnd["number"]}">
                 <div class="round-header">
-                    <span class="round-number">Round {rnd['number']}</span>
+                    <span class="round-number">Round {rnd["number"]}</span>
                     <span class="stitch-count">({stitch_count} sts)</span>
-                    <button class="check-btn" onclick="toggleRound({rnd['number']})">✓</button>
+                    <button class="check-btn" onclick="toggleRound({rnd["number"]})">✓</button>
                 </div>
-                <div class="round-instruction">{rnd['instruction']}</div>
+                <div class="round-instruction">{rnd["instruction"]}</div>
             </div>
             """
-        
+
         html = f"""
 <!DOCTYPE html>
 <html>
@@ -353,7 +357,10 @@ class HTMLPatternGenerator:
 """
         return html
 
-def generate_interactive_pattern(pattern_text: str, title: str = "Crochet Pattern") -> str:
+
+def generate_interactive_pattern(
+    pattern_text: str, title: str = "Crochet Pattern"
+) -> str:
     """Convenience function to generate interactive pattern"""
     generator = HTMLPatternGenerator()
     return generator.generate_interactive_pattern(pattern_text, title)

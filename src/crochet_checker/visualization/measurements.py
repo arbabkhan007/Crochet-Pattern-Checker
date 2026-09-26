@@ -11,12 +11,10 @@ Computes physical dimensions from pattern data:
 from __future__ import annotations
 
 import math
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from ..model.pattern import ConstructionType, Pattern
-from ..model.stitch import STITCH_HEIGHT, StitchType
+from ..model.pattern import Pattern
 
 
 class StitchDimensions(BaseModel):
@@ -26,24 +24,24 @@ class StitchDimensions(BaseModel):
     height_mm: float = Field(default=6.0, description="Height of one row in mm")
 
     @classmethod
-    def from_gauge(cls, stitches_per_4in: int, rows_per_4in: int) -> "StitchDimensions":
+    def from_gauge(cls, stitches_per_4in: int, rows_per_4in: int) -> StitchDimensions:
         """Create from gauge swatch measurements."""
         width = (4 * 25.4) / stitches_per_4in  # 4 inches to mm
         height = (4 * 25.4) / rows_per_4in
         return cls(width_mm=width, height_mm=height)
 
     @classmethod
-    def for_worsted(cls) -> "StitchDimensions":
+    def for_worsted(cls) -> StitchDimensions:
         """Typical dimensions for worsted weight yarn with 5mm hook."""
         return cls(width_mm=6.0, height_mm=6.0)
 
     @classmethod
-    def for_dk(cls) -> "StitchDimensions":
+    def for_dk(cls) -> StitchDimensions:
         """Typical dimensions for DK weight yarn with 4mm hook."""
         return cls(width_mm=5.0, height_mm=5.0)
 
     @classmethod
-    def for_sport(cls) -> "StitchDimensions":
+    def for_sport(cls) -> StitchDimensions:
         """Typical dimensions for sport weight yarn with 3.5mm hook."""
         return cls(width_mm=4.5, height_mm=4.5)
 
@@ -87,7 +85,7 @@ class MeasurementEngine:
     the physical size of the finished object.
     """
 
-    def __init__(self, stitch_dims: Optional[StitchDimensions] = None) -> None:
+    def __init__(self, stitch_dims: StitchDimensions | None = None) -> None:
         self.dims = stitch_dims or StitchDimensions.for_worsted()
 
     def measure(self, pattern: Pattern) -> PatternMeasurements:
@@ -137,12 +135,11 @@ class MeasurementEngine:
             )
             result.round_measurements.append(rm)
 
-            if sc > result.max_stitch_count:
-                result.max_stitch_count = sc
-            if radius > result.max_radius_mm:
-                result.max_radius_mm = radius
-            if circumference > result.max_circumference_mm:
-                result.max_circumference_mm = circumference
+            result.max_stitch_count = max(result.max_stitch_count, sc)
+            result.max_radius_mm = max(result.max_radius_mm, radius)
+            result.max_circumference_mm = max(
+                result.max_circumference_mm, circumference
+            )
 
         result.total_height_mm = cumulative_height
 
@@ -153,8 +150,7 @@ class MeasurementEngine:
         max_width_stitches = 0
         for r in pattern.rows:
             sc = r.computed_stitch_count
-            if sc > max_width_stitches:
-                max_width_stitches = sc
+            max_width_stitches = max(max_width_stitches, sc)
 
         width_mm = max_width_stitches * self.dims.width_mm
         height_mm = len(pattern.rows) * self.dims.height_mm
@@ -176,7 +172,9 @@ class MeasurementEngine:
             result.round_measurements.append(rm)
 
 
-def measure_pattern(pattern: Pattern, stitch_dims: Optional[StitchDimensions] = None) -> PatternMeasurements:
+def measure_pattern(
+    pattern: Pattern, stitch_dims: StitchDimensions | None = None
+) -> PatternMeasurements:
     """Convenience function to measure a pattern."""
     engine = MeasurementEngine(stitch_dims)
     return engine.measure(pattern)
