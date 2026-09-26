@@ -91,9 +91,6 @@ class Pattern(BaseModel):
     pieces: list[PatternPiece] = Field(
         default_factory=list, description="For multi-piece patterns, each component"
     )
-    pieces: list[PatternPiece] = Field(
-        default_factory=list, description="For multi-piece patterns, each component"
-    )
 
     @property
     def rows_or_rounds(self) -> list[RowOrRound]:
