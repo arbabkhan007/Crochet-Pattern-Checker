@@ -4,7 +4,7 @@
 
 A flat twelve-spoke circle of double crochet with a bobble snowflake blooming every third round. Closed centre ring - slip it over the stand before the tree goes up. Mini, standard and large sizes from the same twelve-columns math.
 
-**FINISHED SIZE** Mini / tabletop: stop after R14 - 19-21 in (48-53 cm) across. Standard: stop after R23 - 30-33 in (76-84 cm) across. Large: stop after R32 - 41-45 in (104-114 cm) across. Centre hole approximately 1.25-1.75 in (3-4.5 cm) at rest, opening to about 2 in (5 cm) when stretched over a stand (verify against your tree stand; ch 24 at the start for an opening about 1.5-2.1 in / 4-5.5 cm at rest).
+**FINISHED SIZE** Mini / tabletop: stop after R14 - 19-21 in (48-53 cm) across. Standard: stop after R23 - 30-33 in (76-84 cm) across. Large: stop after R32 - 41-45 in (104-114 cm) across. Centre hole approximately 1.25-1.75 in (3-4.5 cm) at rest, stretching to about 2 in (5 cm) over a stand. Ch 24 instead of ch 20 raises that maximum to about 2.4 in (6 cm); because the same 12 dc of R1 gather the ring either way, it buys you stretch rather than a much larger relaxed hole. Measure your stand's post before you start.
 
 ---
 
@@ -80,7 +80,7 @@ Ch 2 starts every round and is never counted. From R2 onward, work the first dc 
 |---|---|---|---|---|
 | - | Ch 20, sl st to first ch to form a ring | Ch 20, sl st to first ch to form a ring | - | trunk opening; ch 24 for a larger one |
 
-The 12 dc of R1 gather the chain ring slightly, so the relaxed opening is smaller than the chain itself: expect roughly 1.25-1.75 in (3-4.5 cm) at rest, stretching to about 2 in (5 cm). Measure your tree stand's post and use ch 24 if you need more.
+The ch 20 ring is about 6.2 in (15.8 cm) of chain, but the 12 dc of R1 span only 4 in (10 cm), so the ring gathers and the relaxed opening is smaller than the chain suggests: expect roughly 1.25-1.75 in (3-4.5 cm) at rest, stretching to about 2 in (5 cm) as you ease it over the stand. Ch 24 raises the stretched maximum to about 2.4 in (6 cm). Keep the ring's slip stitch loose so the opening can open.
 
 #### Rounds 1-8
 
@@ -170,7 +170,7 @@ Sizes are approximate - yarn, hook and tension change the diameter. Measure the 
 
 - **Bobbles will not pop.** Work the 5 dc loosely and push each bobble to the front as it closes; CC bobbles read best.
 
-- **The border swallows some bobbles.** Each size ends on a bobble round, so a few edge bobbles fall inside a "skip 2". If you would rather keep every bobble clear, work one extra plain round before the border (R15, R24 or R33); the totals stay 12 x N and the scallop count becomes 2 x N.
+- **The border swallows some bobbles.** Each size ends on a bobble round, so a few edge bobbles fall inside a "skip 2". If you would rather keep every bobble clear, work one extra plain round before the border: R15 (180 sts, 30 scallops) after Mini, R24 (288 sts, 48 scallops) after Standard, or R33 after Large. R15 and R24 are printed above; R33 is `Ch 2, dc in same st as join, dc in next 30 sts, 2 dc in next st, [dc in next 31 sts, 2 dc in next st] x 11, sl st to first dc` (396 sts, 66 scallops). In UK terms replace every dc with tr.
 
 ## Colorways
 

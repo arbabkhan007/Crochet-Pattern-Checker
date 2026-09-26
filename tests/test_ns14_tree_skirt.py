@@ -56,3 +56,31 @@ def test_original_pattern_is_still_detected_as_broken():
     result = run("original.md")
     assert result.returncode == 1
     assert "Round-start anchor contradiction" in result.stdout
+
+
+CROSSCHECK = PATTERN_DIR / "crosscheck.py"
+
+
+def run_cc(target: str) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        [sys.executable, str(CROSSCHECK), target],
+        cwd=PATTERN_DIR,
+        capture_output=True,
+        text=True,
+    )
+
+
+@pytest.mark.skipif(not CROSSCHECK.exists(), reason="cross-checker not present")
+def test_independent_crosscheck_agrees():
+    """A second implementation, sharing no code, must reach the same verdict."""
+    result = run_cc("corrected.md")
+    assert result.returncode == 0, result.stdout
+    assert "CROSS-CHECK PASSED" in result.stdout
+    assert "rounds with a slipped col: 0" in result.stdout
+
+
+@pytest.mark.skipif(not CROSSCHECK.exists(), reason="cross-checker not present")
+def test_independent_crosscheck_catches_the_original():
+    result = run_cc("original.md")
+    assert result.returncode == 1
+    assert "increases off-column     : 360 of 360" in result.stdout
