@@ -25,3 +25,32 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# Production correctness lint gate.
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "PIE"]
+ignore = [
+    "E501",
+    "F401",
+    "F841",
+    "B008",
+    "BLE001",
+    "S110",
+    "SIM102",
+    "SIM103",
+    "SIM115",
+    "RUF012",
+    "RUF013",
+    "RUF022",
+    "DTZ001",
+    "DTZ005",
+    "DTZ007",
+    "EXE001",
+    "EXE002",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["F401", "F841", "SIM115"]
+"src/crochet_checker/__init__.py" = ["F401"]
+"src/crochet_checker/**/__init__.py" = ["F401"]
+
