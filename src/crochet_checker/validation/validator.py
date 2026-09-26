@@ -262,14 +262,14 @@ rep - repeat
 
 
 # ============================================================================
-# Compatibility exports (used by test_all_features.py and legacy callers)
+# ============================================================================
+# Compatibility exports
 # ============================================================================
 
 from enum import Enum as _Enum
 
 
 class Severity(_Enum):
-    """Severity levels for validation findings."""
     INFO = "info"
     WARNING = "warning"
     ERROR = "error"
@@ -277,24 +277,142 @@ class Severity(_Enum):
 
 
 @dataclass
+@dataclass
+class _CompatFinding:
+    """Legacy finding object used by AI and suggestion consumers."""
+    message: str
+    severity: str = "error"
+    location: str = ""
+
+
+    def __str__(self) -> str:
+        return self.message
+
+
+@dataclass
 class ValidationReport:
-    """Legacy-style validation report container."""
+    """
+    Compatibility report shared by the validator, AI, visualization, PDF,
+    and web layers.
+    """
+
     valid: bool = True
     errors: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
     stitch_count: int = 0
+    score: int = 100
+    overall_status: str = "PASS"
+    stitch_counts: Dict[int, int] = field(default_factory=dict)
+    row_transitions: List[dict] = field(default_factory=list)
+    consistency: bool = True
+
+    @property
+    def has_errors(self) -> bool:
+        return bool(self.errors)
+
+    @property
+    def is_valid(self) -> bool:
+        return self.valid
+
+    def to_dict(self) -> dict:
+        return {
+            "valid": self.valid,
+            "errors": [
+                getattr(item, "message", str(item)) for item in self.errors
+            ],
+            "warnings": [
+                getattr(item, "message", str(item)) for item in self.warnings
+            ],
+            "stitch_count": self.stitch_count,
+            "score": self.score,
+            "overall_status": self.overall_status,
+            "stitch_counts": self.stitch_counts,
+            "row_transitions": self.row_transitions,
+            "consistency": self.consistency,
+        }
 
 
-def validate_pattern(pattern_text: str):
+def validate_pattern(pattern_input):
     """
-    Convenience function for one-shot validation.
-    Returns a plain dict compatible with legacy callers.
+    Validate raw pattern text or a parsed Pattern object and return the
+    compatibility ValidationReport expected by legacy callers.
     """
-    validator = PatternValidator()
-    result = validator.validate(pattern_text)
-    return {
-        'valid': result.is_valid,
-        'errors': [e.message for e in result.errors],
-        'warnings': [w.message for w in result.warnings],
-        'stitch_count': result.total_stitches,
-    }
+
+    if isinstance(pattern_input, str):
+        pattern_text = pattern_input
+    else:
+        pattern_text = getattr(pattern_input, "source_text", None)
+
+    if not isinstance(pattern_text, str):
+        raise TypeError(
+            "validate_pattern expects pattern text or a parsed Pattern "
+            "with source_text"
+        )
+
+    result = PatternValidator().validate(pattern_text)
+
+    errors = [item.message for item in result.errors]
+    warnings = [item.message for item in result.warnings]
+
+    # Compatibility check for stated stitch counts.
+    # The compiler pipeline validates spatial consumption, while the legacy
+    # suite also expects internal counts such as "(sc, inc) x 7 (18)" to fail
+    # because the operations produce 21 stitches, not 18.
+    try:
+        from ..parser.parser import parse_pattern
+
+        parsed = pattern_input if not isinstance(pattern_input, str) else parse_pattern(pattern_text)
+        rows_or_rounds = parsed.rounds or parsed.rows
+
+        for item in rows_or_rounds:
+            for instruction in item.instructions:
+                stated = getattr(instruction, "stated_stitch_count", None)
+                if stated is None:
+                    continue
+
+                computed = instruction.total_stitches_produced
+                if computed != stated:
+                    message = (
+                        f"Round/row {getattr(item, 'round_number', getattr(item, 'row_number', '?'))}: "
+                        f"stated {stated} stitches but operations produce {computed}"
+                    )
+                    if message not in errors:
+                        errors.append(message)
+    except Exception:
+        # The compiler result remains authoritative if legacy parsing is
+        # unavailable for an unusual input.
+        pass
+
+    # Keep the score useful for legacy callers.
+    if errors:
+        score = max(0, 100 - min(100, len(errors) * 25))
+        status = "ERROR"
+    elif warnings:
+        score = 90
+        status = "PASS_WITH_WARNINGS"
+    else:
+        score = 100
+        status = "PASS"
+
+    # AI and suggestion consumers expect error.message, not plain strings.
+    error_objects = [
+        item if hasattr(item, "message") else _CompatFinding(str(item))
+        for item in errors
+    ]
+    warning_objects = [
+        item if hasattr(item, "message") else _CompatFinding(str(item), "warning")
+        for item in warnings
+    ]
+
+    report = ValidationReport(
+        valid=result.is_valid,
+        errors=error_objects,
+        warnings=warning_objects,
+        stitch_count=result.total_stitches,
+        score=score,
+        overall_status=status,
+        stitch_counts=dict(result.stitch_counts),
+        consistency=not bool(errors),
+    )
+
+    return report
