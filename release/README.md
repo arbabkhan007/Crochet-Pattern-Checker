@@ -14,10 +14,10 @@ The NS 16–NS 17 customer archive
 contains exactly six files in three folders: two colourful PDFs, two
 black-and-white printer PDFs and the two authoritative Markdown masters.
 
-The earlier complete NS 01–NS 15 archive
+The complete NS 01–NS 15 archive
 [`Novality_Crochet_Studio_NS01-NS15_COMPLETE_PDF_AND_MARKDOWN_COLLECTION.zip`](Novality_Crochet_Studio_NS01-NS15_COMPLETE_PDF_AND_MARKDOWN_COLLECTION.zip)
-remains unchanged and contains 45 files: 15 colourful PDFs, 15 printer PDFs
-and 15 Markdown masters. The smaller
+contains 45 files: 15 colourful PDFs, 15 printer PDFs and 15 Markdown masters;
+it was rebuilt after the NS 14 second audit. The smaller
 [`Novality_Crochet_Studio_NS02-NS15_PDF_Collection.zip`](Novality_Crochet_Studio_NS02-NS15_PDF_Collection.zip)
 contains only the 28 NS 02–NS 15 PDFs. Individual PDFs can also be downloaded
 separately for use as the two buyer files in each Etsy listing.
@@ -39,7 +39,7 @@ separately for use as the two buyer files in each Etsy listing.
 | NS 11 | No-Sew Christmas Gnome | [`NS11_No-Sew_Christmas_Gnome_Crochet_Pattern.pdf`](NS11_No-Sew_Christmas_Gnome_Crochet_Pattern.pdf) | [`NS11_No-Sew_Christmas_Gnome_PRINTER_SAVER.pdf`](NS11_No-Sew_Christmas_Gnome_PRINTER_SAVER.pdf) | 9 / 9 |
 | NS 12 | Bobble Christmas Tree | [`NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf`](NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf) | [`NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf`](NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf) | 8 / 8 |
 | NS 13 | Christmas Ornament Bundle | [`NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf`](NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf) | [`NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf`](NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf) | 8 / 8 |
-| NS 14 | Bobble Snowflake Tree Skirt | [`NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf`](NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf) | [`NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf`](NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf) | 9 / 9 |
+| NS 14 | Bobble Snowflake Tree Skirt | [`NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf`](NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf) | [`NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf`](NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf) | 11 / 11 |
 | NS 15 | Interchangeable Christmas Wreath | [`NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf`](NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf) | [`NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf`](NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf) | 9 / 9 |
 | NS 16 | Crochet Mini Stocking Advent Garland | [`NS16_Crochet_Mini_Stocking_Advent_Garland_Crochet_Pattern.pdf`](NS16_Crochet_Mini_Stocking_Advent_Garland_Crochet_Pattern.pdf) | [`NS16_Crochet_Mini_Stocking_Advent_Garland_PRINTER_SAVER.pdf`](NS16_Crochet_Mini_Stocking_Advent_Garland_PRINTER_SAVER.pdf) | 11 / 11 |
 | NS 17 | Year of the Fire Goat 2027 Plushie Set | [`NS17_Year_of_the_Fire_Goat_2027_Plushie_Set_Crochet_Pattern.pdf`](NS17_Year_of_the_Fire_Goat_2027_Plushie_Set_Crochet_Pattern.pdf) | [`NS17_Year_of_the_Fire_Goat_2027_Plushie_Set_PRINTER_SAVER.pdf`](NS17_Year_of_the_Fire_Goat_2027_Plushie_Set_PRINTER_SAVER.pdf) | 16 / 16 |
@@ -72,21 +72,25 @@ sentinels, page identity, metadata, A4 geometry, file-size, bookmark,
 original-colour-name, progress-box and image-inventory checks. Its printer-saver
 gate also rejects any raster object or non-grayscale vector colour.
 
-The NS 16–NS 17 production review on 18 September 2026 reported:
+The current production review through 26 September 2026 reported:
 
-- release-source audit: **17 files, 727 table rows, 110 dual-terminology rows,
-  700 count rows and 3,220 assertions — PASS**;
-- NS 16–NS 17 PDF postflight: **4/4 files — PASS**;
-- full-colour image inventory: exactly **2 distinct raster visuals in 2
-  placements per full-colour PDF**;
-- printer-saver image inventory: **0 raster objects in both companions**;
-- NS 16–NS 17 all-page render review: **54/54 pages rendered and bounded —
-  PASS**;
-- NS 16–NS 17 archive: **2 colourful PDFs + 2 printer PDFs + 2 Markdown
-  masters; 6 expected byte-identical entries, CRC clean and under 20 MiB —
-  PASS**; and
-- project regression suite: **103 passed** with two third-party deprecation
-  warnings; spelling, static checks and release integrity: **PASS**.
+- release-source audit: **17 files, 728 table rows, 111 dual-terminology rows,
+  700 count rows and 3,233 assertions — PASS**;
+- NS 14 second audit: all **32 growth rounds** satisfy the `12 × round number`
+  invariant; all **10 bobble rounds** follow the exact every-third-round
+  sequence; all three gauge-derived body diameters and **28 / 46 / 64** border
+  scallop totals were independently recomputed;
+- NS 14 PDF postflight: **2/2 files — PASS**, each with 11 A4 pages; the
+  full-colour edition has exactly 2 labelled raster visuals and the printer
+  companion has no raster objects or colour vectors;
+- NS 14 all-page render review: **22/22 pages rendered and bounded — PASS**;
+- NS 16–NS 17 PDF postflight and prior all-page review remain **PASS** for all
+  4 files and 54 pages;
+- archive integrity: the updated NS 02–NS 15 PDF archive and 45-file NS 01–NS 15
+  complete archive are CRC-clean and byte-identical to the current NS 14 files;
+  the separate six-file NS 16–NS 17 archive remains CRC-clean and unchanged;
+- project regression suite: **104 passed** with one third-party deprecation
+  warning; spelling, static checks and release integrity: **PASS**.
 
 The full-colour and printer-saver files deliberately can have different page
 counts where omitting a maker-map image improves printer pagination; the written
@@ -103,6 +107,12 @@ python -m venv /tmp/novality-pdf
 
 # Established NS 02–NS 15 pairs and PDF-only convenience ZIP
 /tmp/novality-pdf/bin/python tools/build_remaining_pattern_pdfs.py
+/tmp/novality-pdf/bin/python tools/package_complete_collection.py
+
+# Rebuild and render only the re-audited NS 14 pair while editing
+/tmp/novality-pdf/bin/python tools/build_remaining_pattern_pdfs.py \
+  --codes 14 --skip-bundle
+/tmp/novality-pdf/bin/python tools/render_collection_review.py --codes 14
 
 # NS 16–NS 17 pairs; package exactly their six requested customer files
 /tmp/novality-pdf/bin/python tools/build_remaining_pattern_pdfs.py \

@@ -418,17 +418,17 @@ SPECS: tuple[PatternSpec, ...] = (
         "14_Bobble_Snowflake_Tree_Skirt.md",
         ("BOBBLE", "SNOWFLAKE"),
         "Tree Skirt",
-        "A twelve-spoke circle with bobble snowflakes and three sizes.",
+        "A closed-centre twelve-spoke circle with three exact stopping points.",
         "US + UK TERMS",
         "EASY–INTERMEDIATE",
-        "GROWS BY SIZE",
-        "46–109 CM",
+        "TIME UNVERIFIED · RECORD SAMPLE",
+        "TARGET 46–109 CM · VERIFY",
         "WORSTED · 5–5.5 MM HOOK",
         (
-            PaletteEntry("FOREST GREEN", "main twelve-spoke field", "#3D6245"),
-            PaletteEntry("OAT CREAM", "bobble snowflake contrast", "#E8DEC6"),
+            PaletteEntry("FOREST GREEN", "MC · every non-bobble growth round", "#3D6245"),
+            PaletteEntry("OAT CREAM", "CC · bobble rounds, spokes + border", "#E8DEC6"),
         ),
-        "ROUND N CONSUMES N-1 STS · KEEP ALL 12 COLUMNS ALIGNED",
+        "12 SEPARATE SPOKES · FINAL COUNTS 168 / 276 / 384 · EXACT 6-ST BORDER REPEATS",
         "tree_skirt_cover_graphic.png",
         "skirt",
     ),
@@ -862,7 +862,19 @@ def create_maker_map(spec: PatternSpec) -> None:
     source_text = normalize_branding(spec.source.read_text(encoding="utf-8"))
     headings = component_headings(source_text)
     cards = headings[:9]
-    if spec.number == 16:
+    if spec.number == 14:
+        cards = [
+            "Fit the relaxed centre ring",
+            "R1–R4 · establish 12 repeats",
+            "R5 onward · bobble every 3rd round",
+            "Move all 12 column markers",
+            "Stop at R14, R23 or R32",
+            "Measure + approve final growth round",
+            "Work 12 separate surface spokes",
+            "Work exact 6-stitch border repeats",
+            "Weave, block, measure + inspect",
+        ]
+    elif spec.number == 16:
         cards = [
             "Cuff + leg",
             "Heel flap + mandatory turn",

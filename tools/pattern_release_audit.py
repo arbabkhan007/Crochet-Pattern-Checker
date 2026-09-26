@@ -477,6 +477,21 @@ def run() -> int:
         audit.equal(row.stated, 12 * n,
                     f"{row.file}:{row.line} 12-spoke invariant")
     audit.equal(len(skirt_rows), 32, "tree-skirt round coverage")
+    bobble_rounds = [
+        int(row.label[1:])
+        for row in skirt_rows
+        if "BO in next st" in row.instruction
+    ]
+    audit.equal(bobble_rounds, list(range(5, 33, 3)),
+                "tree-skirt every-third-round bobble sequence")
+    for stitches, expected_inches, label in [
+        (168, 17.8, "mini"),
+        (276, 29.3, "standard"),
+        (384, 40.7, "large"),
+    ]:
+        diameter = (stitches / (12 / 4)) / math.pi
+        audit.check(abs(diameter - expected_inches) < 0.1,
+                    f"tree-skirt {label} gauge-derived body diameter")
 
     # Independent derivations for constructions that do not have a simple
     # one-repeat parser form.  These deliberately recompute the arithmetic
@@ -574,7 +589,17 @@ def run() -> int:
         "11_No-Sew_Christmas_Gnome.md": ["after Rnd 15", "begin stuffing through the still-wide opening"],
         "12_Bobble_Christmas_Tree.md": ["change TO contrast before each bobble", "immediately after Rnd 9"],
         "13_Christmas_Ornament_Bundle.md": ["(35)", "fan contains 6 worked stitches"],
-        "14_Bobble_Snowflake_Tree_Skirt.md": ["SAME stitch as the join", "Round N always consumes N-1"],
+        "14_Bobble_Snowflake_Tree_Skirt.md": [
+            "SAME stitch as the join",
+            "Round N always consumes N-1",
+            "check the relaxed ring against the stand",
+            "Each spoke needs its own centre join and outer-edge fasten-off",
+            "R14 gives 168 ÷ 6 = 28 scallops",
+            "forest green MC for R1–R4",
+            "MINI SIZE — stop growth; optional spokes, then border",
+            "STANDARD SIZE — stop growth; optional spokes, then border",
+            "LARGE SIZE — stop growth; optional spokes, then border",
+        ],
         "15_Interchangeable_Christmas_Wreath.md": ["20-24 cm / 8-9.5 in", "Keep both openings ROUND", "folded 55 cm tie under at least 2 sturdy", "does not rely on individual crochet sts"],
         "16_Crochet_Mini_Stocking_Advent_Garland.md": [
             "Row 6 | BLO sc in each st across, ch 1, turn",
