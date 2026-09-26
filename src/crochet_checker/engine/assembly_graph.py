@@ -260,3 +260,7 @@ if __name__ == "__main__":
             print(f"  ❌ {error}")
     
     print("\n✅ Assembly Graph Validator working!")
+
+
+# Legacy compatibility alias.
+AssemblyGraph.add_piece = AssemblyGraph.register_piece

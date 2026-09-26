@@ -284,3 +284,11 @@ if __name__ == "__main__":
     print(f"Work head of element 0: {tracker.work_head(0)}")
     print(f"Head of element 0 now available: {tracker.can_work_head(0)}")
     print(f"Summary: {tracker.get_summary()}")
+
+
+# Legacy compatibility property.
+@property
+def _legacy_current_stitch_count(self):
+    return len(self.elements)
+
+CanvasQueue.current_stitch_count = _legacy_current_stitch_count

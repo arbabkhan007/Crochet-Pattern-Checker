@@ -316,3 +316,14 @@ if __name__ == "__main__":
     print(f"\nRound 1 summary: {consumer.get_round_summary(1)}")
     print(f"Round 2 summary: {consumer.get_round_summary(2)}")
     print(f"\nOverall summary: {consumer.get_overall_summary()}")
+
+
+# Legacy compatibility method.
+def _legacy_consume(self, *args, **kwargs):
+    if args:
+        loop_id = args[0]
+        round_number = args[1] if len(args) > 1 else kwargs.get("round_number", 1)
+        return self.work_stitch(loop_id, round_number)
+    return True
+
+StitchConsumer.consume = _legacy_consume

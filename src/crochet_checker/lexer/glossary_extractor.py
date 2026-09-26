@@ -221,3 +221,7 @@ if __name__ == "__main__":
     print(f"  Loops In: {sc_def.loop_count_in}, Out: {sc_def.loop_count_out}")
     
     print("\n✅ Glossary Extractor working!")
+
+
+# Legacy compatibility alias.
+GlossaryExtractor.extract_glossary = GlossaryExtractor.extract_from_text

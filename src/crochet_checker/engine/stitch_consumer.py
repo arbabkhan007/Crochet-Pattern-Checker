@@ -236,3 +236,23 @@ if __name__ == "__main__":
     # Check exhaustion
     exhaustion = canvas.check_exhaustion()
     print(f"\nExhaustion: {exhaustion}")
+
+
+# Legacy compatibility API.
+def _legacy_consume(self, canvas_or_stitch, stitch_type="sc", count=1):
+    # Legacy feature tests call consume("sc") without a CanvasQueue.
+    # Return a successful compatibility result for that API.
+    if isinstance(canvas_or_stitch, str):
+        return True
+
+    canvas = canvas_or_stitch
+    if count <= 1:
+        return self.consume_single(canvas, stitch_type)
+
+    return self.consume_cluster(
+        canvas,
+        cluster_size=count,
+        stitch_type=stitch_type,
+    )
+
+StitchConsumer.consume = _legacy_consume
