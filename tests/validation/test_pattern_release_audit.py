@@ -88,8 +88,8 @@ def test_current_commercial_pattern_collection_passes_release_gate():
         ),
         (
             "14_Bobble_Snowflake_Tree_Skirt.md",
-            "| R12 | Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 10 sts, 2 tr in next st] x 12, sl st to first tr | (144) | - |",
-            "| R12 | Ch 2, [dc in next 9 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 9 sts, 2 tr in next st] x 12, sl st to first tr | (144) | - |",
+            "| R12 | Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 10 sts, 2 tr in next st] x 12, sl st to first tr | (144) | 10 plain + 1 increase anchor consumes 11 and makes 12 |",
+            "| R12 | Ch 2, [dc in next 9 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 9 sts, 2 tr in next st] x 12, sl st to first tr | (144) | 10 plain + 1 increase anchor consumes 11 and makes 12 |",
             "got 132, expected 144",
         ),
         (

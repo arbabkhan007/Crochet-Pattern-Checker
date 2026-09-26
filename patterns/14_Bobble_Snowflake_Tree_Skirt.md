@@ -94,7 +94,7 @@ Ch 2 starts every round and is never counted. Work the first dc—or first BO on
 | R9 | Ch 2, [dc in next 7 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 7 sts, 2 tr in next st] x 12, sl st to first tr | (108) | - |
 | R10 | Ch 2, [dc in next 8 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 8 sts, 2 tr in next st] x 12, sl st to first tr | (120) | - |
 | R11 | Ch 2, [BO in next st, dc in next 8 sts, 2 dc in next st] x 12, sl st to first BO | Ch 2, [BO in next st, tr in next 8 sts, 2 tr in next st] x 12, sl st to first BO | (132) | - |
-| R12 | Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 10 sts, 2 tr in next st] x 12, sl st to first tr | (144) | - |
+| R12 | Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 10 sts, 2 tr in next st] x 12, sl st to first tr | (144) | 10 plain + 1 increase anchor consumes 11 and makes 12 |
 | R13 | Ch 2, [dc in next 11 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 11 sts, 2 tr in next st] x 12, sl st to first tr | (156) | - |
 | R14 | Ch 2, [BO in next st, dc in next 11 sts, 2 dc in next st] x 12, sl st to first BO | Ch 2, [BO in next st, tr in next 11 sts, 2 tr in next st] x 12, sl st to first BO | (168) | MINI SIZE — stop growth; optional spokes, then border |
 | R15 | Ch 2, [dc in next 13 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 13 sts, 2 tr in next st] x 12, sl st to first tr | (180) | - |
