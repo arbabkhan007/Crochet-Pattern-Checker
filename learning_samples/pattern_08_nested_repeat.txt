@@ -1,0 +1,3 @@
+Round 1: 6 sc into magic ring (6)
+Round 2: [(sc, inc) x 2] x 3 (18)
+Round 3: [(2 sc, inc) x 2] x 3 (24)

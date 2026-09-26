@@ -1,0 +1,4 @@
+Row 1: ch 12
+Row 2: ch 1, 11 sc
+Row 3: ch 1, 11 sc
+Row 4: ch 1, 11 sc

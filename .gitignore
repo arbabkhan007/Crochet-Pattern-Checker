@@ -47,3 +47,12 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Private AI and learning data
+.crochet_learning/
+.crochet_cache/
+*.learning.json
+*.learning.jsonl
+.env
+.env.*
+!.env.example
