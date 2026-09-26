@@ -79,17 +79,21 @@ The current production review through 26 September 2026 reported:
 - NS 14 second audit: all **32 growth rounds** satisfy the `12 × round number`
   invariant; all **10 bobble rounds** follow the exact every-third-round
   sequence; all three gauge-derived body diameters and **28 / 46 / 64** border
-  scallop totals were independently recomputed;
+  scallop totals were independently recomputed. The R11-to-R12 transition was
+  rechecked explicitly: `BO + 8 dc + increase` consumes 10 and produces 11 per
+  repeat, then `10 dc + increase` consumes 11 and produces 12; reducing R12 to
+  9 plain dc would leave 12 stitches unworked;
 - NS 14 PDF postflight: **2/2 files — PASS**, each with 11 A4 pages; the
   full-colour edition has exactly 2 labelled raster visuals and the printer
-  companion has no raster objects or colour vectors;
+  companion has no raster objects or colour vectors. Its finish checklist now
+  uses tree-skirt-specific centre, column, spoke, border and clearance checks;
 - NS 14 all-page render review: **22/22 pages rendered and bounded — PASS**;
 - NS 16–NS 17 PDF postflight and prior all-page review remain **PASS** for all
   4 files and 54 pages;
 - archive integrity: the updated NS 02–NS 15 PDF archive and 45-file NS 01–NS 15
   complete archive are CRC-clean and byte-identical to the current NS 14 files;
   the separate six-file NS 16–NS 17 archive remains CRC-clean and unchanged;
-- project regression suite: **104 passed** with one third-party deprecation
+- project regression suite: **105 passed** with one third-party deprecation
   warning; spelling, static checks and release integrity: **PASS**.
 
 The full-colour and printer-saver files deliberately can have different page

@@ -87,6 +87,12 @@ def test_current_commercial_pattern_collection_passes_release_gate():
             "missing release safeguard 'Each spoke needs its own centre join and outer-edge fasten-off'",
         ),
         (
+            "14_Bobble_Snowflake_Tree_Skirt.md",
+            "| R12 | Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 10 sts, 2 tr in next st] x 12, sl st to first tr | (144) | - |",
+            "| R12 | Ch 2, [dc in next 9 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 9 sts, 2 tr in next st] x 12, sl st to first tr | (144) | - |",
+            "got 132, expected 144",
+        ),
+        (
             "16_Crochet_Mini_Stocking_Advent_Garland.md",
             "Row 6 | BLO sc in each st across, ch 1, turn",
             "Row 6 | BLO sc in each st across; do not turn",
@@ -107,6 +113,7 @@ def test_current_commercial_pattern_collection_passes_release_gate():
         "required-care-section",
         "required-colourway-section",
         "ns14-separate-spokes-safeguard",
+        "ns14-r12-plain-count",
         "ns16-heel-turn-safeguard",
         "ns17-even-leg-opening",
     ],

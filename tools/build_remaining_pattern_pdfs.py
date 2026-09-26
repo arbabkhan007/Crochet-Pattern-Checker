@@ -1193,7 +1193,7 @@ class PrinterNotesPanel(Flowable):
         canvas.setFont(self.fonts.serif_bold, 22)
         canvas.drawString(0, 211 * mm, "Finish checklist & notes")
         canvas.setFont(self.fonts.sans, 8.5)
-        checks = (
+        default_checks = (
             "[ ] Every row count checked before moving on",
             "[ ] Gauge, dimensions and selected version confirmed",
             "[ ] Face and internal ends completed before closure",
@@ -1201,6 +1201,15 @@ class PrinterNotesPanel(Flowable):
             "[ ] Structural seams and hanging points checked twice",
             "[ ] All yarn ends, knots and attachments inspected",
         )
+        ns14_checks = (
+            "[ ] Centre ring fits the stand relaxed; join and ends secured",
+            "[ ] Every growth round counted; 12 increase columns aligned",
+            "[ ] Final count confirmed: 168 / 276 / 384",
+            "[ ] Optional spokes: 12 separate routes, no puckering or floats",
+            "[ ] Border closed: 28 / 46 / 64 complete scallops",
+            "[ ] Blocked dimensions recorded; stand and cord clearances checked",
+        )
+        checks = ns14_checks if self.spec.number == 14 else default_checks
         y = 196 * mm
         for check in checks:
             canvas.drawString(2 * mm, y, check)
@@ -1804,6 +1813,24 @@ def postflight(spec: PatternSpec, output: Path, blocks: list[Block], *, printer_
 
     all_text = "\n".join(page_texts)
     normalized_pdf = canonical_text(all_text)
+    if printer_saver and spec.number == 14:
+        required_checks = (
+            "centre ring fits the stand relaxed",
+            "12 increase columns aligned",
+            "final count confirmed: 168 / 276 / 384",
+            "optional spokes: 12 separate routes",
+            "border closed: 28 / 46 / 64 complete scallops",
+            "stand and cord clearances checked",
+        )
+        for check in required_checks:
+            if check not in normalized_pdf:
+                raise ValueError(f"{spec.code} printer checklist missing: {check!r}")
+        for stale_check in (
+            "face and internal ends completed before closure",
+            "structural seams and hanging points checked twice",
+        ):
+            if stale_check in normalized_pdf:
+                raise ValueError(f"{spec.code} printer checklist contains stale prompt: {stale_check!r}")
     if "novality store" in normalized_pdf:
         raise ValueError(f"{spec.code} {edition}: legacy brand remains")
     if "**" in all_text or "|---" in all_text:

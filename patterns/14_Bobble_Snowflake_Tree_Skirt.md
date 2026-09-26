@@ -100,6 +100,8 @@ Ch 2 starts every round and is never counted. Work the first dc—or first BO on
 | R15 | Ch 2, [dc in next 13 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 13 sts, 2 tr in next st] x 12, sl st to first tr | (180) | - |
 | R16 | Ch 2, [dc in next 14 sts, 2 dc in next st] x 12, sl st to first dc | Ch 2, [tr in next 14 sts, 2 tr in next st] x 12, sl st to first tr | (192) | - |
 
+**R11-to-R12 count check:** R11 consumes 10 old stitches per repeat—1 BO + 8 plain dc + 1 increase anchor—and produces 11, giving 132 stitches. R12 then consumes 11 old stitches per repeat—10 plain dc + 1 increase anchor—and produces 12, giving 144 stitches. R12 therefore requires **10 plain dc, not 9**, before the increase; using 9 would leave 12 old stitches unworked and produce only 132 stitches.
+
 #### Rounds 17-24
 
 | Rnd | US terms | UK terms | Sts | Note |
