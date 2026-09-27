@@ -155,21 +155,24 @@ def _display(report, verbose=False):
     table.add_column("Check", style="cyan")
     table.add_column("Status")
     table.add_column("Findings")
-    if report.stitch_counts:
-        e = len(report.stitch_counts.errors)
+    stitch_findings = getattr(report.stitch_counts, "findings", None)
+    stitch_errors = getattr(report.stitch_counts, "errors", None)
+    if stitch_findings is not None and stitch_errors is not None:
+        e = len(stitch_errors)
         w = len(
-            [f for f in report.stitch_counts.findings if f.severity == Severity.WARNING]
+            [f for f in stitch_findings if f.severity == Severity.WARNING]
         )
         table.add_row(
             "Stitch Counts",
             Text("OK" if e == 0 else "X", style="green" if e == 0 else "red"),
             f"{e} errors, {w} warnings",
         )
-    if report.row_transitions:
+    transition_findings = getattr(report.row_transitions, "findings", None)
+    if transition_findings is not None:
         e = len(
             [
                 f
-                for f in report.row_transitions.findings
+                for f in transition_findings
                 if f.severity in (Severity.ERROR, Severity.CRITICAL)
             ]
         )

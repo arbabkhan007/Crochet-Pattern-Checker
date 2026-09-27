@@ -99,3 +99,34 @@ class TestPipeline:
         expected = [6, 18, 24, 30, 36]
         for i, r in enumerate(p.rounds):
             assert r.computed_stitch_count == expected[i]
+
+
+def test_each_around_example():
+    """'inc/sc in each st around' must use the previous round, not count=1."""
+    report = validate_pattern(open("examples/amigurumi.txt").read())
+    assert report.valid is True
+    assert report.overall_status == "PASS"
+    assert report.score == 100
+    assert report.errors == []
+
+    broken = validate_pattern(open("examples/intentionally_broken_pattern.txt").read())
+    assert broken.valid is False
+    assert broken.overall_status == "ERROR"
+    messages = [getattr(item, "message", str(item)) for item in broken.errors]
+    assert any("produce 21" in message for message in messages)
+    assert not any("Round/row 2:" in message for message in messages)
+
+
+def test_foundation_and_clauses():
+    """Joined chains and comma-separated clauses must not stop at the first word."""
+    tube = validate_pattern(open("examples/tube_cowl.txt").read())
+    assert tube.valid is True
+    assert tube.errors == []
+
+    scarf = validate_pattern(open("examples/scarf.txt").read())
+    assert scarf.errors == []
+
+    boot = validate_pattern(open("examples/baby_booties.txt").read())
+    messages = [getattr(item, "message", str(item)) for item in boot.errors]
+    assert any("produce 20" in message for message in messages)
+    assert not any("produce 10" in message for message in messages)

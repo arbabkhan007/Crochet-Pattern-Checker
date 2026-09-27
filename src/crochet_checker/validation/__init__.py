@@ -50,6 +50,9 @@ from enum import Enum as _Enum
 from .validator import (
     Severity as CompilerSeverity,
 )
+
+# cli.py imports Severity; the compiler enum is the same object.
+Severity = CompilerSeverity
 from .validator import (
     ValidationReport,
     validate_pattern,

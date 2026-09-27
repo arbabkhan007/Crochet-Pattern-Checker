@@ -622,6 +622,19 @@ class CrochetParser:
             stated_stitch_count=stated_count,
         )
 
+        # A comma outside parentheses starts another clause. Prefix parsers
+        # such as "10 sc" and "ch 40" used to return before reading the rest.
+        clauses = self._split_top_level_commas(clean_text)
+        if len(clauses) > 1:
+            operations = []
+            for clause in clauses:
+                operations.extend(self._parse_clause_operations(clause))
+            if operations:
+                instruction.operations = operations
+                self._apply_foundation_count(instruction, clean_text)
+                instruction.confidence = 0.85
+                return instruction
+
         # Try different parsing strategies in order of specificity
 
         # Strategy 1: Magic ring start - "6 sc into magic ring"
@@ -674,6 +687,159 @@ class CrochetParser:
             clean = text[: match.start()].strip().rstrip(",")
             return clean, count
         return text, None
+
+
+    def _split_top_level_commas(self, text: str) -> list[str]:
+        """Split on commas that are not inside parentheses or brackets."""
+        parts: list[str] = []
+        buf: list[str] = []
+        depth = 0
+        for ch in text:
+            if ch in "([":
+                depth += 1
+                buf.append(ch)
+            elif ch in ")]":
+                depth = max(0, depth - 1)
+                buf.append(ch)
+            elif ch == "," and depth == 0:
+                part = "".join(buf).strip()
+                if part:
+                    parts.append(part)
+                buf = []
+            else:
+                buf.append(ch)
+        tail = "".join(buf).strip()
+        if tail:
+            parts.append(tail)
+        return parts
+
+    def _parse_clause_operations(self, clause: str) -> list[ParsedOperation]:
+        """Parse one comma-separated clause into operations."""
+        text = re.sub(r"^(?:then\s+)", "", clause.strip(), flags=re.IGNORECASE)
+        text = re.sub(r"^turn\b\s*", "", text, flags=re.IGNORECASE).strip(" ,.")
+        if not text or re.fullmatch(r"turn|to join|join", text, flags=re.IGNORECASE):
+            return []
+
+        if re.match(r"sl\s*st\s+(?:to\s+join|in\s+(?:the\s+)?first)", text, re.IGNORECASE):
+            return [
+                ParsedOperation(
+                    stitch_type=StitchType.SLIP_STITCH,
+                    count=1,
+                    into_stitch="join",
+                )
+            ]
+
+        each = re.match(
+            r"(sc|hdc|dc|tr|sl\s*st|inc)\s+in\s+each\s+(st|sts|ch)\s+(around|across)",
+            text,
+            re.IGNORECASE,
+        )
+        if each:
+            stitch = self._resolve_stitch(each.group(1))
+            if each.group(2).lower() == "ch":
+                into = "each_chain"
+            elif each.group(3).lower() == "across":
+                into = "each_stitch_across"
+            else:
+                into = "each_stitch_around"
+            return [
+                ParsedOperation(stitch_type=stitch, count=1, into_stitch=into)
+            ]
+
+        if re.search(r"2nd\s+ch\s+from\s+hook", text, re.IGNORECASE):
+            return []
+
+        times = re.match(
+            r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s*[x×]\s*(\d+)",
+            text,
+            re.IGNORECASE,
+        )
+        if times:
+            return [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(times.group(1)),
+                    count=int(times.group(2)),
+                )
+            ]
+
+        counted = re.match(
+            r"(\d+)\s+(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\b",
+            text,
+            re.IGNORECASE,
+        )
+        if counted and not re.search(r"\bin\s+each\b", text, re.IGNORECASE):
+            return [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(counted.group(2)),
+                    count=int(counted.group(1)),
+                )
+            ]
+
+        chain = re.match(r"ch\s+(\d+)", text, re.IGNORECASE)
+        if chain:
+            return [
+                ParsedOperation(
+                    stitch_type=StitchType.CHAIN,
+                    count=int(chain.group(1)),
+                )
+            ]
+
+        if REPEAT_BLOCK.search(text):
+            temp = Instruction(source_text=text, normalized_text=text)
+            if self._try_parse_repeat_block(text, temp):
+                return list(temp.operations)
+        return []
+
+    def _apply_foundation_count(self, instruction: Instruction, text: str) -> None:
+        """A starting chain is the stitch count only when nothing is worked into it.
+
+        'ch 40, sl st to join (40)' counts as 40. 'ch 20, sc in 2nd ch from
+        hook, sc in each ch across (19)' counts as 19. A turning chain beside
+        'sc in each st across' stays at 0 and does not consume the row.
+        """
+        chains = [
+            op for op in instruction.operations if op.stitch_type == StitchType.CHAIN
+        ]
+        if not chains:
+            return
+        chain_n = chains[0].count
+        if re.search(r"2nd\s+ch\s+from\s+hook", text, re.IGNORECASE) and re.search(
+            r"each\s+ch", text, re.IGNORECASE
+        ):
+            stitch = StitchType.SINGLE_CROCHET
+            found = re.search(
+                r"(sc|hdc|dc|tr)\s+in\s+each\s+ch", text, re.IGNORECASE
+            )
+            if found:
+                stitch = self._resolve_stitch(found.group(1))
+            instruction.operations = [
+                ParsedOperation(
+                    stitch_type=StitchType.CHAIN,
+                    count=chain_n,
+                    into_stitch="foundation_chain",
+                ),
+                ParsedOperation(stitch_type=stitch, count=max(chain_n - 1, 0)),
+            ]
+            return
+        joined = any(op.into_stitch == "join" for op in instruction.operations)
+        has_body = any(
+            op.into_stitch not in ("join", "foundation", "foundation_chain")
+            and op.stitch_type not in (StitchType.CHAIN, StitchType.SLIP_STITCH)
+            for op in instruction.operations
+        )
+        if joined and not has_body:
+            instruction.operations = [
+                ParsedOperation(
+                    stitch_type=StitchType.CHAIN,
+                    count=chain_n,
+                    into_stitch="foundation",
+                ),
+                ParsedOperation(
+                    stitch_type=StitchType.SLIP_STITCH,
+                    count=1,
+                    into_stitch="join",
+                ),
+            ]
 
     def _try_parse_magic_ring(self, text: str, instruction: Instruction) -> bool:
         """Try to parse 'N sc into magic ring' style instructions."""
@@ -737,14 +903,16 @@ class CrochetParser:
             return False
 
         stitch = self._resolve_stitch(match.group(1))
+        where = match.group(3).lower() if match.lastindex and match.lastindex >= 3 else "around"
+        into = "each_stitch_around" if where == "around" else "each_stitch_across"
 
-        # "each st around" means we don't know the exact count from the text
+        # "each st around/across" means we don't know the exact count from the text
         # The count depends on the previous round's stitch count
         instruction.operations = [
             ParsedOperation(
                 stitch_type=stitch,
                 count=1,  # Will be expanded based on context
-                into_stitch="each_stitch_around",
+                into_stitch=into,
             )
         ]
         instruction.confidence = 0.85

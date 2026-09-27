@@ -344,7 +344,59 @@ class ValidationReport:
         }
 
 
-def validate_pattern(pattern_input):
+
+_CONTEXT_TARGETS = ("each_stitch_around", "each_stitch_across", "remaining")
+
+
+def _needs_previous_round(instruction) -> bool:
+    """True when the instruction count depends on the previous round."""
+    return any(
+        getattr(op, "into_stitch", None) in _CONTEXT_TARGETS
+        for op in getattr(instruction, "operations", []) or []
+    )
+
+
+def _produced_with_context(instruction, previous: int | None) -> int:
+    """Count stitches produced, expanding context-dependent operations.
+
+    'inc in each st around' is stored as one increase. Without the previous
+    round that is 2, not 12. A joined foundation chain ('ch 40, sl st to
+    join') counts as the chain length. A turning chain does not.
+    """
+    ops = getattr(instruction, "operations", []) or []
+    targets = {getattr(op, "into_stitch", None) for op in ops}
+    has_foundation = "foundation" in targets
+    needs_context = bool(targets & set(_CONTEXT_TARGETS))
+    if not has_foundation and not needs_context and not targets & {"join", "foundation_chain"}:
+        return instruction.total_stitches_produced
+    if needs_context and previous is None and not has_foundation:
+        return instruction.total_stitches_produced
+
+    from ..model.stitch import STITCH_CONSUMPTION, STITCH_PRODUCTION
+
+    remaining = 0 if previous is None else previous
+    total = 0
+    for op in ops:
+        target = getattr(op, "into_stitch", None)
+        if target == "foundation":
+            total += op.count
+            remaining = op.count
+            continue
+        if target in ("join", "foundation_chain"):
+            continue
+        if target in _CONTEXT_TARGETS:
+            per = STITCH_PRODUCTION.get(op.stitch_type, 1)
+            total += remaining * per
+            remaining = 0
+            continue
+        per = STITCH_PRODUCTION.get(op.stitch_type, 1)
+        cons = STITCH_CONSUMPTION.get(op.stitch_type, 1)
+        total += op.count * per
+        remaining -= op.count * cons
+    return total
+
+
+def validate_pattern(pattern_input, strict=False):
     """
     Validate raw pattern text or a parsed Pattern object and return the
     compatibility ValidationReport expected by legacy callers.
@@ -369,6 +421,8 @@ def validate_pattern(pattern_input):
     # The compiler pipeline validates spatial consumption, while the legacy
     # suite also expects internal counts such as "(sc, inc) x 7 (18)" to fail
     # because the operations produce 21 stitches, not 18.
+    # "each st around" / "remaining" are resolved from the previous round
+    # instead of the placeholder count stored on the operation.
     try:
         from ..parser.parser import parse_pattern
 
@@ -378,14 +432,22 @@ def validate_pattern(pattern_input):
             else parse_pattern(pattern_text)
         )
         rows_or_rounds = parsed.rounds or parsed.rows
+        previous = None
 
         for item in rows_or_rounds:
+            produced_this_round = 0
+            available = previous
             for instruction in item.instructions:
+                computed = _produced_with_context(instruction, available)
+                produced_this_round += computed
+                if _needs_previous_round(instruction):
+                    available = 0
+                elif available is not None:
+                    available -= instruction.total_stitches_consumed
+
                 stated = getattr(instruction, "stated_stitch_count", None)
                 if stated is None:
                     continue
-
-                computed = instruction.total_stitches_produced
                 if computed != stated:
                     message = (
                         f"Round/row {getattr(item, 'round_number', getattr(item, 'row_number', '?'))}: "
@@ -393,6 +455,7 @@ def validate_pattern(pattern_input):
                     )
                     if message not in errors:
                         errors.append(message)
+            previous = produced_this_round
     except Exception:
         # The compiler result remains authoritative if legacy parsing is
         # unavailable for an unusual input.
@@ -420,7 +483,7 @@ def validate_pattern(pattern_input):
     ]
 
     report = ValidationReport(
-        valid=result.is_valid,
+        valid=bool(result.is_valid) and not errors,
         errors=error_objects,
         warnings=warning_objects,
         stitch_count=result.total_stitches,
