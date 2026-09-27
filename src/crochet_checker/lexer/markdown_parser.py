@@ -35,17 +35,26 @@ class MarkdownParser:
                 pattern.title = section_content.strip()
 
             elif section_type == "piece":
-                # New piece/module
-                piece_name = section_content.strip()
+                # A heading is only the name. Older splits bundled later
+                # rounds into this section; keep those as rounds, not the name.
+                piece_lines = [line for line in section_content.split('\n')]
+                piece_name = next((line.strip() for line in piece_lines if line.strip()), "Main")
                 construction_type = self._detect_construction_type(section_content)
-
                 current_piece = PieceNode(
                     name=piece_name, construction_type=construction_type
                 )
                 pattern.add_piece(current_piece)
+                leftover = '\n'.join(piece_lines[1:])
+                if leftover.strip():
+                    for round_node in self._parse_rounds(leftover, line_number):
+                        current_piece.add_round(round_node)
 
             elif section_type == "content" and current_piece:
-                # Parse rounds/rows within current piece
+                # Following lines can be the only place "row" or "round" appears.
+                if current_piece.construction_type == ConstructionType.ROUNDS:
+                    detected = self._detect_construction_type(section_content)
+                    if detected == ConstructionType.ROWS:
+                        current_piece.construction_type = detected
                 rounds = self._parse_rounds(section_content, line_number)
                 for round_node in rounds:
                     current_piece.add_round(round_node)
@@ -107,7 +116,13 @@ class MarkdownParser:
                 else:
                     current_type = "piece"
 
-                current_section = [title]
+                if current_type == "piece":
+                    # The heading is only the name. Following rounds are content.
+                    sections.append(("piece", title))
+                    current_section = []
+                    current_type = "content"
+                else:
+                    current_section = [title]
             else:
                 current_section.append(line)
 

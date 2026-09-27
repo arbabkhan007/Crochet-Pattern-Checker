@@ -15,6 +15,7 @@ from ..model.pattern import ConstructionType, Pattern, PatternMetadata
 from ..model.row import Round, Row
 from ..model.stitch import ABBREVIATION_MAP, StitchType
 from ..model.yarn import Gauge, Hook, Yarn
+from .normalizer import sanitize_pattern_text
 from .grammar import (
     EACH_AROUND,
     MAGIC_RING_START,
@@ -62,7 +63,8 @@ class CrochetParser:
             A structured Pattern object
         """
         self.warnings = []
-        lines = self._split_into_lines(text)
+        cleaned = sanitize_pattern_text(text)
+        lines = self._split_into_lines(cleaned)
         metadata, yarn, hook, gauge, lines = self._extract_metadata(lines)
 
         # Determine if pattern uses rows or rounds
@@ -114,23 +116,28 @@ class CrochetParser:
                     if is_header or self._looks_like_instruction(line):
                         piece_content_lines.append(line)
 
-                # Parse rounds/rows for this piece
-                if (
-                    construction == ConstructionType.IN_THE_ROUND
-                    or construction == ConstructionType.JOINED_ROUNDS
-                ):
-                    piece_rounds = self._parse_rounds(piece_content_lines)
+                # Each piece chooses rows or rounds from its own headers.
+                row_headers = 0
+                round_headers = 0
+                for line in piece_content_lines:
+                    header, header_type, _, _, _ = is_row_header(line)
+                    if not header:
+                        continue
+                    if header_type.lower() == "row":
+                        row_headers += 1
+                    elif header_type.lower() in ("round", "rnd", "r"):
+                        round_headers += 1
+                if row_headers > round_headers:
                     piece = PatternPiece(
                         name=piece_info["name"],
                         make_count=piece_info["make_count"],
-                        rounds=piece_rounds,
+                        rows=self._parse_rows(piece_content_lines),
                     )
                 else:
-                    piece_rows = self._parse_rows(piece_content_lines)
                     piece = PatternPiece(
                         name=piece_info["name"],
                         make_count=piece_info["make_count"],
-                        rows=piece_rows,
+                        rounds=self._parse_rounds(piece_content_lines),
                     )
 
                 pattern.pieces.append(piece)
@@ -454,6 +461,13 @@ class CrochetParser:
                         instructions=instructions,
                         source_text=line,
                     )
+            elif _line_starts_new_section(line) or (
+                is_header and header_type.lower() == "row"
+            ):
+                # The next piece, or a row, is not part of this round.
+                if current_round is not None:
+                    rounds.append(current_round)
+                    current_round = None
             elif current_round is not None:
                 # Continuation of current round
                 additional = self._parse_instruction_text(line, line)
@@ -505,6 +519,12 @@ class CrochetParser:
                         instructions=instructions,
                         source_text=line,
                     )
+            elif _line_starts_new_section(line) or (
+                is_header and header_type.lower() in ("round", "rnd", "r")
+            ):
+                if current_row is not None:
+                    rows.append(current_row)
+                    current_row = None
             elif current_row is not None:
                 additional = self._parse_instruction_text(line, line)
                 current_row.instructions.extend(additional)
@@ -568,7 +588,7 @@ class CrochetParser:
     def _parse_instruction_text(self, text: str, source_line: str) -> list[Instruction]:
         """Parse a piece of instruction text into Instruction objects."""
         text = text.strip()
-        if not text:
+        if not text or self._is_glossary_definition(text):
             return []
 
         # Split on sentence boundaries (periods followed by space and new instruction)
@@ -669,6 +689,16 @@ class CrochetParser:
         if self._try_parse_stitch_times_count(clean_text, instruction):
             return instruction
 
+        # "sc around" and "sc in each stitch" mean one stitch in every
+        # previous stitch. The generic scan would count that as 1.
+        if self._try_parse_shorthand_around(clean_text, instruction):
+            return instruction
+
+        # A glossary cluster is one stitch. Do this before the generic scan,
+        # which would match "tr" inside "3-tr-cl" and "ch" inside "each".
+        if self._try_parse_cluster_each(clean_text, instruction):
+            return instruction
+
         # Strategy 9: Generic parsing - try to find any recognizable operations
         if self._try_parse_generic(clean_text, instruction):
             return instruction
@@ -730,7 +760,9 @@ class CrochetParser:
             ]
 
         each = re.match(
-            r"(sc|hdc|dc|tr|sl\s*st|inc)\s+in\s+each\s+(st|sts|ch)\s+(around|across)",
+            r"(sc|hdc|dc|tr|sl\s*st|inc)\s+in\s+"
+            r"(?:(?:BLO|FLO|back\s+loops?\s+only|front\s+loops?\s+only)\s+of\s+)?"
+            r"each\s+(st|sts|ch)\s+(around|across)",
             text,
             re.IGNORECASE,
         )
@@ -866,16 +898,22 @@ class CrochetParser:
         return True
 
     def _try_parse_repeat_block(self, text: str, instruction: Instruction) -> bool:
-        """Try to parse '(stuff) x N' style instructions."""
-        match = REPEAT_BLOCK.search(text)
-        if not match:
-            return False
+        """Try to parse '(stuff) x N' style instructions.
 
-        repeat_text = match.group(1)
-        repeat_count = int(match.group(2))
-
-        # Parse the repeat unit
-        unit_ops = self._parse_operation_sequence(repeat_text)
+        A nested repeat such as '[(sc, inc) x 2] x 3' must multiply the
+        outer count too. The first bracket match is only the inner repeat.
+        """
+        wrapped = self._wrapping_repeat(text)
+        if wrapped:
+            repeat_text, repeat_count = wrapped
+            unit_ops = self._operations_for_repeat_unit(repeat_text)
+        else:
+            match = REPEAT_BLOCK.search(text)
+            if not match:
+                return False
+            repeat_text = match.group(1)
+            repeat_count = int(match.group(2))
+            unit_ops = self._parse_operation_sequence(repeat_text)
         if not unit_ops:
             return False
 
@@ -895,6 +933,37 @@ class CrochetParser:
 
         instruction.confidence = 0.9
         return True
+
+    def _wrapping_repeat(self, text: str) -> tuple[str, int] | None:
+        """Return the inside and count when the whole clause is one bracket repeat."""
+        stripped = text.strip().rstrip(".").strip()
+        if len(stripped) < 5 or stripped[0] not in "([" :
+            return None
+        depth = 0
+        end = None
+        for index, char in enumerate(stripped):
+            if char in "([":
+                depth += 1
+            elif char in ")]":
+                depth -= 1
+                if depth == 0:
+                    end = index
+                    break
+        if end is None:
+            return None
+        tail = stripped[end + 1 :].strip()
+        count_match = re.fullmatch(r"[x×]\s*(\d+)", tail, flags=re.IGNORECASE)
+        if not count_match:
+            return None
+        return stripped[1:end], int(count_match.group(1))
+
+    def _operations_for_repeat_unit(self, text: str) -> list[ParsedOperation]:
+        """Parse a repeat unit, including a repeat nested inside it."""
+        if self._wrapping_repeat(text):
+            temp = Instruction(source_text=text, normalized_text=text)
+            if self._try_parse_repeat_block(text, temp):
+                return list(temp.operations)
+        return self._parse_operation_sequence(text)
 
     def _try_parse_each_around(self, text: str, instruction: Instruction) -> bool:
         """Try to parse 'sc in each st around' style instructions."""
@@ -996,6 +1065,64 @@ class CrochetParser:
         count = int(match.group(2))
 
         instruction.operations = [ParsedOperation(stitch_type=stitch, count=count)]
+        instruction.confidence = 0.9
+        return True
+
+    def _try_parse_shorthand_around(self, text: str, instruction: Instruction) -> bool:
+        """Parse 'sc around' and 'sc in each stitch' as one stitch per loop.
+
+        A decrease is not included. 'dec around' consumes two loops each time,
+        so treating it as one decrease per stitch would invent the wrong count.
+        """
+        cleaned = text.strip().rstrip(".")
+        match = re.match(
+            r"(sc|hdc|dc|tr|sl\s*st|inc)"
+            r"(?:\s+in\s+each\s+(?:stitch(?:es)?|sts?))?"
+            r"(?:\s+(around|across))?\s*$",
+            cleaned,
+            flags=re.IGNORECASE,
+        )
+        if not match or not (
+            re.search(r"\baround\b|\bacross\b", cleaned, flags=re.IGNORECASE)
+            or re.search(r"\beach\s+stitch", cleaned, flags=re.IGNORECASE)
+        ):
+            return False
+        where = (match.group(2) or "around").lower()
+        instruction.operations = [
+            ParsedOperation(
+                stitch_type=self._resolve_stitch(match.group(1)),
+                count=1,
+                into_stitch=(
+                    "each_stitch_around" if where == "around" else "each_stitch_across"
+                ),
+            )
+        ]
+        instruction.confidence = 0.9
+        return True
+
+    def _is_glossary_definition(self, text: str) -> bool:
+        """A line such as '3-tr-cl: 3 treble cluster' defines a stitch. It is not a round."""
+        return bool(
+            re.match(r"\d+-[a-z]+-cl\s*:\s*\S", text.strip(), flags=re.IGNORECASE)
+        )
+
+    def _try_parse_cluster_each(self, text: str, instruction: Instruction) -> bool:
+        """Count '3-tr-cl in each stitch' as one cluster in every previous stitch."""
+        match = re.match(
+            r"(\d+-[a-z]+-cl)\s+in\s+each\s+(?:stitch(?:es)?|sts?)"
+            r"(?:\s+(?:around|across))?\s*$",
+            text.strip().rstrip("."),
+            flags=re.IGNORECASE,
+        )
+        if not match:
+            return False
+        instruction.operations = [
+            ParsedOperation(
+                stitch_type=StitchType.CLUSTER,
+                count=1,
+                into_stitch="each_stitch_around",
+            )
+        ]
         instruction.confidence = 0.9
         return True
 
@@ -1130,9 +1257,31 @@ def parse_instruction(text: str) -> Instruction:
     return result
 
 
+
+def _line_starts_new_section(line: str) -> bool:
+    """True when a line starts another piece and must not join the previous round."""
+    stripped = line.strip()
+    if re.match(r"^#{2,6}\s+\S", stripped):
+        return True
+    if re.match(
+        r"^[A-Z][A-Z\s,/&]{1,40}\s*(?:\(make\s+\d+\))?\s*:?\s*$",
+        stripped,
+    ):
+        return True
+    if re.match(
+        r"^[A-Z][A-Za-z][A-Za-z\s,/&]{0,40}\s*\(make\s+\d+\)\s*:?\s*$",
+        stripped,
+    ):
+        return True
+    return False
+
 def detect_pattern_pieces(text: str) -> list[dict]:
     """
     Detect piece boundaries in multi-piece patterns.
+
+    A piece line must be a markdown heading (## or deeper), an ALL-CAPS
+    name, or a line with an explicit make count. A bare title such as
+    "Amigurumi Bunny" is not a piece.
 
     Returns list of dicts with:
     - name: piece name (e.g., "HEAD", "ARMS")
@@ -1142,43 +1291,73 @@ def detect_pattern_pieces(text: str) -> list[dict]:
     """
     import re
 
-    lines = text.split("\n")
+    lines = text.split('\n')
     pieces = []
     current_piece = None
 
-    # Words that should NOT be treated as piece names
-    non_piece_words = {"FO", "FINISH", "ASSEMBLY", "NOTES", "MATERIALS"}
+    non_piece_words = {
+        "FO",
+        "FINISH",
+        "ASSEMBLY",
+        "NOTES",
+        "MATERIALS",
+        "GLOSSARY",
+        "INSTRUCTIONS",
+        "PATTERN",
+        "ABBREVIATIONS",
+        "SPECIAL STITCHES",
+    }
 
     for i, line in enumerate(lines):
         line_stripped = line.strip()
+        if not line_stripped:
+            continue
 
-        # Match patterns like "HEAD (make 1)", "ARMS (make 2)", "BODY:"
-        match = re.match(
-            r"^([A-Z][A-Z\s,/&]+?)\s*(?:\(make\s+(\d+)\))?\s*:?\s*$", line_stripped
+        heading = re.match('^(#{2,6})\\s+(.+)$', line_stripped)
+        caps = re.match(
+            '^([A-Z][A-Z\\s,/&]+?)\\s*(?:\\(make\\s+(\\d+)\\))?\\s*:?\\s*$',
+            line_stripped,
+        )
+        made = re.match(
+            '^([A-Z][A-Za-z][A-Za-z\\s,/&]*?)\\s*\\(make\\s+(\\d+)\\)\\s*:?\\s*$',
+            line_stripped,
         )
 
-        if match:
+        if heading:
+            raw_name = heading.group(2)
+            make_match = re.search('\\(make\\s+(\\d+)\\)', raw_name, re.IGNORECASE)
+            name = re.split('\\s*\\(', raw_name, maxsplit=1)[0].strip(" :")
+            make_count = int(make_match.group(1)) if make_match else 1
+        elif caps or made:
+            match = caps or made
             name = match.group(1).strip()
+            make_count = int(match.group(2)) if match.group(2) else 1
+        else:
+            continue
 
-            # Skip if this is not a real piece name
-            if name in non_piece_words or len(name) < 2:
-                continue
-
-            # Save previous piece
-            if current_piece:
+        if (
+            name.upper() in non_piece_words
+            or len(name) < 2
+            or re.search('\\b(?:round|row|rnd)\\b', name, re.IGNORECASE)
+        ):
+            # A glossary or notes heading ends the previous piece.
+            if current_piece is not None:
                 current_piece["end_line"] = i
                 pieces.append(current_piece)
+                current_piece = None
+            continue
 
-            # Start new piece
-            make_count = int(match.group(2)) if match.group(2) else 1
-            current_piece = {
-                "name": name,
-                "make_count": make_count,
-                "start_line": i + 1,  # +1 to skip the header line
-                "end_line": len(lines),  # Default to end
-            }
+        if current_piece:
+            current_piece["end_line"] = i
+            pieces.append(current_piece)
 
-    # Add last piece
+        current_piece = {
+            "name": name,
+            "make_count": make_count,
+            "start_line": i + 1,
+            "end_line": len(lines),
+        }
+
     if current_piece:
         pieces.append(current_piece)
 

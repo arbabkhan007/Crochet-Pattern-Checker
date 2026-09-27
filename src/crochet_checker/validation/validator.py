@@ -132,8 +132,53 @@ class PatternValidator:
                 continue
 
             prev_count = 0
+            previous_loops = None
+            foundation_chain = None
+            last_number = None
+            round_nodes = piece.rounds
 
             for round_idx, instructions in enumerate(piece_rounds, 1):
+                raw_text = ""
+                line_number = 0
+                number = None
+                if round_idx - 1 < len(round_nodes):
+                    raw_text = round_nodes[round_idx - 1].raw_text
+                    line_number = round_nodes[round_idx - 1].line_number
+                    number = round_nodes[round_idx - 1].number
+                # A repeated "Round 1" is a new piece when headings were not split.
+                if number is not None and last_number is not None and number <= last_number:
+                    previous_loops = None
+                    foundation_chain = None
+                if number is not None:
+                    last_number = number
+                parsed = self._parsed_round_instructions(raw_text)
+                if parsed is not None:
+                    message = self._continuity_message(
+                        raw_text, line_number, previous_loops, foundation_chain
+                    )
+                    if message:
+                        self.errors.append(
+                            ValidationError(
+                                line_number=line_number,
+                                message=message,
+                                severity="error",
+                                piece_name=piece_name,
+                                round_number=round_idx,
+                            )
+                        )
+                    counted = self._loops_after_round(raw_text, previous_loops)
+                    ops = [op for inst in parsed for op in inst.operations]
+                    if ops and all(
+                        getattr(op.stitch_type, "value", "") == "chain" for op in ops
+                    ):
+                        foundation_chain = counted
+                    else:
+                        foundation_chain = None
+                    previous_loops = counted
+                    stitch_counts[(piece_name, round_idx)] = counted
+                    total_stitches += counted
+                    prev_count = counted
+                    continue
                 # Initialize state machine for this round
                 if round_idx == 1:
                     # Foundation round: works into a magic ring / chain,
@@ -180,8 +225,11 @@ class PatternValidator:
                             )
                         self.state_machine.warnings.clear()
 
-                # Finalize round
+                # Finalize round. This path is only for text the live parser
+                # could not read. Parsed rounds are checked above.
                 final_count = self.state_machine.finalize_round()
+                previous_loops = None
+                foundation_chain = None
                 stitch_counts[(piece_name, round_idx)] = final_count
                 total_stitches += final_count
                 prev_count = final_count
@@ -201,6 +249,88 @@ class PatternValidator:
             stitch_counts=stitch_counts,
         )
 
+    def _parsed_round_instructions(self, raw_text: str):
+        """Parse one round with the live instruction parser, not the unroller."""
+        import re
+
+        from ..parser.grammar import is_row_header
+        from ..parser.parser import CrochetParser
+
+        cleaned = re.sub(r"[*`_]", "", raw_text or "").strip()
+        if not cleaned:
+            return None
+        header, _header_type, _number, rest, _end = is_row_header(cleaned)
+        text = rest if header else cleaned
+        return CrochetParser()._parse_instruction_text(text, cleaned)
+
+    def _context_consumed(self, instructions, previous) -> int:
+        """Loops a round works into, expanding 'each st around'."""
+        context = {"each_stitch_around", "each_stitch_across", "remaining"}
+        skip = {"join", "foundation", "foundation_chain"}
+        from ..model.stitch import STITCH_CONSUMPTION
+
+        total = 0
+        for instruction in instructions:
+            for op in instruction.operations:
+                value = getattr(op.stitch_type, "value", "")
+                target = getattr(op, "into_stitch", None)
+                if value in ("chain", "magic_ring") or target in skip:
+                    continue
+                if target in context:
+                    total += 0 if previous is None else previous
+                    continue
+                total += STITCH_CONSUMPTION.get(op.stitch_type, 1) * int(op.count)
+        return total
+
+    def _continuity_message(self, raw_text, line_number, previous, foundation_chain):
+        """Flag a count change that the stitches do not explain.
+
+        '(sc, inc) x 6' after 6 stitches is an increase, so it is not a loop
+        error. '9 sc' after '10 sc' is. A starting chain is the base for the
+        next row, and one turning-chain row may use one less stitch.
+        """
+        instructions = self._parsed_round_instructions(raw_text) or []
+        ops = [op for instruction in instructions for op in instruction.operations]
+        if not ops or previous is None:
+            return None
+        if all(getattr(op.stitch_type, "value", "") == "chain" for op in ops):
+            return None
+        values = {getattr(op.stitch_type, "value", "") for op in ops}
+        produced = self._loops_after_round(raw_text, previous)
+        consumed = self._context_consumed(instructions, previous)
+        if consumed > previous and "increase" not in values:
+            return (
+                f"Line {line_number}: Attempted to work stitch beyond available loops. "
+                f"Position: {previous}, Available: {previous}"
+            )
+        if produced < previous and "decrease" not in values:
+            if foundation_chain and produced == foundation_chain - 1:
+                return None
+            noun = "stitch" if produced == 1 else "stitches"
+            return (
+                f"Line {line_number}: worked {produced} {noun} into {previous} "
+                f"without a decrease."
+            )
+        return None
+
+    def _loops_after_round(self, raw_text: str, previous) -> int:
+        """Stitches the next round can work into."""
+        instructions = self._parsed_round_instructions(raw_text) or []
+        ops = [op for instruction in instructions for op in instruction.operations]
+        if ops and all(
+            getattr(op.stitch_type, "value", "") == "chain" for op in ops
+        ):
+            return sum(int(op.count) for op in ops)
+        total = 0
+        available = previous
+        for instruction in instructions:
+            total += _produced_with_context(instruction, available)
+            if _needs_previous_round(instruction):
+                available = 0
+            elif available is not None:
+                available -= instruction.total_stitches_consumed
+        return total
+
     def _validate_assembly(self, pattern_ast: PatternNode):
         """Validate assembly connections between pieces"""
         # Register all pieces
@@ -217,12 +347,17 @@ class PatternValidator:
         # This would need to be enhanced to detect join instructions
         # For now, just validate completeness
         orphans = self.assembly_graph.detect_orphan_pieces()
+        recorded_joins = bool(getattr(self.assembly_graph, "edges", None))
 
-        if orphans and len(pattern_ast.pieces) > 1:
+        # With no recorded joins, every piece looks orphaned. That is not
+        # evidence of a bad pattern, and a heading used to swallow later
+        # rounds into the piece name.
+        if orphans and recorded_joins:
+            names = [name.splitlines()[0].strip() for name in orphans]
             self.warnings.append(
                 ValidationError(
                     line_number=0,
-                    message=f"Pieces without joins detected: {', '.join(orphans)}",
+                    message=f"Pieces without joins detected: {', '.join(names)}",
                     severity="warning",
                 )
             )
@@ -431,34 +566,68 @@ def validate_pattern(pattern_input, strict=False):
             if not isinstance(pattern_input, str)
             else parse_pattern(pattern_text)
         )
-        rows_or_rounds = parsed.rounds or parsed.rows
-        previous = None
+        if parsed.pieces and len(parsed.pieces) > 1:
+            groups = [
+                piece.rounds or piece.rows
+                for piece in parsed.pieces
+                if piece.rounds or piece.rows
+            ]
+        else:
+            groups = [parsed.rounds or parsed.rows]
 
-        for item in rows_or_rounds:
-            produced_this_round = 0
-            available = previous
-            for instruction in item.instructions:
-                computed = _produced_with_context(instruction, available)
-                produced_this_round += computed
-                if _needs_previous_round(instruction):
-                    available = 0
-                elif available is not None:
-                    available -= instruction.total_stitches_consumed
+        for rows_or_rounds in groups:
+            previous = None
 
-                stated = getattr(instruction, "stated_stitch_count", None)
-                if stated is None:
-                    continue
-                if computed != stated:
-                    message = (
-                        f"Round/row {getattr(item, 'round_number', getattr(item, 'row_number', '?'))}: "
-                        f"stated {stated} stitches but operations produce {computed}"
-                    )
-                    if message not in errors:
-                        errors.append(message)
-            previous = produced_this_round
+            for item in rows_or_rounds:
+                produced_this_round = 0
+                available = previous
+                for instruction in item.instructions:
+                    computed = _produced_with_context(instruction, available)
+                    produced_this_round += computed
+                    if _needs_previous_round(instruction):
+                        available = 0
+                    elif available is not None:
+                        available -= instruction.total_stitches_consumed
+
+                    stated = getattr(instruction, "stated_stitch_count", None)
+                    if stated is None:
+                        continue
+                    if computed != stated:
+                        number = getattr(item, "round_number", getattr(item, "row_number", "?"))
+                        plain = (
+                            _needs_previous_round(instruction)
+                            and previous is not None
+                            and not any(
+                                getattr(getattr(op, "stitch_type", None), "value", "")
+                                in ("increase", "decrease")
+                                for op in instruction.operations
+                            )
+                        )
+                        if plain:
+                            message = (
+                                f"Round/row {number}: plain round received {previous} stitches "
+                                f"and has no increase or decrease, but states {stated}."
+                            )
+                        else:
+                            message = (
+                                f"Round/row {number}: "
+                                f"stated {stated} stitches but operations produce {computed}"
+                            )
+                        if message not in errors:
+                            errors.append(message)
+                previous = produced_this_round
     except Exception:
         # The compiler result remains authoritative if legacy parsing is
         # unavailable for an unusual input.
+        pass
+
+    try:
+        from .joins import join_interface_errors
+
+        for message in join_interface_errors(pattern_text):
+            if message not in errors:
+                errors.append(message)
+    except Exception:
         pass
 
     # Keep the score useful for legacy callers.
