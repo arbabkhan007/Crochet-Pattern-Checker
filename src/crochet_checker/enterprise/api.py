@@ -36,6 +36,13 @@ app = FastAPI(
 )
 
 
+class BatchPatternRequest(BaseModel):
+    patterns: list[PatternRequest] = Field(
+        min_length=1,
+        max_length=100,
+    )
+
+
 class PatternRequest(BaseModel):
     pattern_text: str = Field(min_length=1)
     gauge_verified: bool = False
@@ -261,3 +268,66 @@ def certification_report(
             status_code=400,
             detail=str(exc),
         ) from exc
+
+
+@app.post("/batch/validate")
+def batch_validate(
+    request: BatchPatternRequest,
+    identity: str = Depends(require_api_key),
+) -> dict[str, Any]:
+    """Validate up to 100 patterns and return a production summary."""
+
+    rate_limiter.check(identity)
+
+    results = []
+    passed = 0
+    failed = 0
+
+    for index, item in enumerate(request.patterns):
+        try:
+            pattern = parse_pattern(item.pattern_text)
+            report = validate_pattern(pattern)
+
+            valid = bool(report.valid)
+
+            if valid:
+                passed += 1
+            else:
+                failed += 1
+
+            results.append(
+                {
+                    "index": index,
+                    "valid": valid,
+                    "score": report.score,
+                    "overall_status": report.overall_status,
+                    "errors": _messages(report.errors),
+                    "warnings": _messages(report.warnings),
+                    "stitch_count": report.stitch_count,
+                    "pattern_hash": EnterpriseCertifier.pattern_hash(
+                        pattern
+                    ),
+                }
+            )
+        except Exception as exc:
+            failed += 1
+            results.append(
+                {
+                    "index": index,
+                    "valid": False,
+                    "score": 0,
+                    "overall_status": "ERROR",
+                    "errors": [str(exc)],
+                    "warnings": [],
+                }
+            )
+
+    total = len(request.patterns)
+
+    return {
+        "total": total,
+        "passed": passed,
+        "failed": failed,
+        "success_rate": round(passed / total, 4),
+        "results": results,
+    }
