@@ -27,7 +27,7 @@ Gauge is unimportant - work tightly enough that the bauble holds fill and the st
 
 MR - magic ring  ·  inc - increase (2 sc in one st) / UK: increase (2 dc in one st)
 ch - chain  ·  sc2tog = dc2tog - work 2 stitches together as one (a decrease)
-sl st - slip stitch  ·  FO - fasten off
+sl st = sl st - slip stitch in both US and UK terms  ·  FO - fasten off
 sc = dc - single crochet / double crochet  ·  st(s) - stitch(es)
 hdc = htr - half double crochet / half treble crochet  ·  R - round
 dc = tr - double crochet / treble crochet  ·  (n) - stitch count at round end
@@ -46,6 +46,8 @@ The bauble is worked in continuous rounds (no joins) with the marker in the firs
 3. **Chain spaces (snowflake)** - The snowflake skeleton is 6 ch-5 loops pinned around the 12-dc ring. The arms are worked into the spaces, never into individual chains.
 
 4. **Blocking** - For cotton, wet or mist the piece, pin every point to shape and let it dry fully. Acrylic often does not hold a shape from pins alone; if the yarn label permits, steam-block cautiously with the steamer or iron held above the fabric, never touching it, and test a scrap first. Do not press or iron either piece.
+
+5. **Tall snowflake arms** - US `tr` and UK `dtr` are the same tall stitch in the two terminology systems; the height is intentional. Each R3 arm places only five worked stitches in its ch-5 space—an opening sl st, three tall stitches and a closing sl st. The two ch-3 sections form free side edges and do not consume extra anchors. Keep R2's ch-5 loops relaxed and slide the five R3 stitches apart along the space instead of stacking them tightly at one point.
 
 ## Instructions
 
@@ -89,11 +91,13 @@ Three short rounds. The ring is closed first so the arms hang on real chain spac
 |---|---|---|---|---|
 | R1 | ch 6, sl st in first ch to form a ring; ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3 | ch 6, sl st in first ch to form a ring; ch 3 (counts as first tr), 11 tr in ring, sl st to top of ch-3 | (12) | 12 spokes |
 | R2 | [ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close | [ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close | - | 6 ch-5 spaces |
-| R3 | (sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | (sl st, ch 3, 3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | - | 6 arms - first sl st of each arm loose, last sl st snug |
+| R3 | (sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | (sl st, ch 3, 3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | - | 6 tall arms; 5 worked sts + two ch-3 side spaces per arm |
+
+**R3 space-load check:** across all six arms, R3 anchors 30 arm stitches in the ch-5 spaces—`(1 sl st + 3 tr + 1 sl st) × 6`—plus twelve uncounted ch-3 side spaces. The final sl st joins into the existing first sl st; it is a transition, not a sixth anchor in a ch-5 space. The US `tr` / UK `dtr` translation is deliberate. After completing the first arm, spread its five worked stitches across the ch-5 space and lay it flat. If that single arm buckles, undo it and remake the R2 ch-5 loop and R3 stitches more loosely, using a hook 0.5 mm larger for the lace rounds if needed; do not continue six crowded arms and expect glue or starch to repair the construction.
 
 Hanging loop: join yarn in the ch-3 tip of one arm, ch 18, sl st into the same tip.
 
-Block flat using the fibre-appropriate method in technique 4; let it cool if steamed and dry completely before hanging.
+Block flat using the fibre-appropriate method in technique 4; let it cool if steamed and dry completely before hanging. Glue, starch and fabric stiffener are not part of this pattern. If the complete sample will not lie acceptably flat after the fibre-appropriate blocking route, adjust yarn, hook or tension and remake it before advertising a crisp finished result.
 
 ## Finishing & assembly
 
@@ -105,7 +109,7 @@ Block flat using the fibre-appropriate method in technique 4; let it cool if ste
 
 - **Bauble looks like a lemon.** Too much stuffing late in the game. Stuff a pinch at R8, shape by rolling, and keep the crown pinch tight at R9.
 - **Star will not lie flat.** It needs blocking, not more tugging. Wet-block cotton. For acrylic, pins alone may not set the shape; follow the yarn label and cautiously steam from above without touching or melting the fibres.
-- **Snowflake arms lean one way, or the base bunches.** Both arm-end sl sts share the same ch-5 space, and tension is the whole trick: work the FIRST sl st of each arm loose enough that the base of the arm lies flat (too tight twists the arm into the opening sl st), then work the LAST sl st snug so the arm stands upright.
+- **Snowflake arms lean, crowd or buckle.** Confirm the tall stitch is US tr / UK dtr and that each arm has five worked stitches plus two ch-3 side spaces. Both arm-end sl sts share the same ch-5 space: work the first sl st loose, distribute the three tall stitches across the loop, and work the last sl st snug. If the first arm already buckles, remake the lace rounds more loosely or with a slightly larger hook instead of relying on glue or heavy stiffener.
 
 ## Colorways
 

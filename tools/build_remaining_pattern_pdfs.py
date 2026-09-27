@@ -1201,15 +1201,33 @@ class PrinterNotesPanel(Flowable):
             "[ ] Structural seams and hanging points checked twice",
             "[ ] All yarn ends, knots and attachments inspected",
         )
-        ns14_checks = (
-            "[ ] Centre ring fits the stand relaxed; join and ends secured",
-            "[ ] Every growth round counted; 12 increase columns aligned",
-            "[ ] Final count confirmed: 168 / 276 / 384",
-            "[ ] Optional spokes: 12 separate routes, no puckering or floats",
-            "[ ] Border closed: 28 / 46 / 64 complete scallops",
-            "[ ] Blocked dimensions recorded; stand and cord clearances checked",
-        )
-        checks = ns14_checks if self.spec.number == 14 else default_checks
+        pattern_checks = {
+            12: (
+                "[ ] R9 base ridge and optional disc fit checked",
+                "[ ] Every round count confirmed before narrowing",
+                "[ ] Contrast bobbles use contrast for all five partial dc",
+                "[ ] R22 version recorded: six bobbles or smooth-tip fallback",
+                "[ ] Stuffing stays light at tip; R26 closes at 3 stitches",
+                "[ ] Base, tip, loop and all yarn ends inspected",
+            ),
+            13: (
+                "[ ] Bauble count, stuffing and 6-stitch closure checked",
+                "[ ] Star uses all 10 anchors and has 5 complete points",
+                "[ ] Snowflake has 6 ch-5 spaces and 6 flat arms",
+                "[ ] US tr / UK dtr arm tension checked before blocking",
+                "[ ] Hanging loops and all yarn ends secured",
+                "[ ] Fibre-appropriate blocking completed without direct heat",
+            ),
+            14: (
+                "[ ] Centre ring fits the stand relaxed; join and ends secured",
+                "[ ] Every growth round counted; 12 increase columns aligned",
+                "[ ] Final count confirmed: 168 / 276 / 384",
+                "[ ] Optional spokes: 12 separate routes, no puckering or floats",
+                "[ ] Border closed: 28 / 46 / 64 complete scallops",
+                "[ ] Blocked dimensions recorded; stand and cord clearances checked",
+            ),
+        }
+        checks = pattern_checks.get(self.spec.number, default_checks)
         y = 196 * mm
         for check in checks:
             canvas.drawString(2 * mm, y, check)
@@ -1813,16 +1831,30 @@ def postflight(spec: PatternSpec, output: Path, blocks: list[Block], *, printer_
 
     all_text = "\n".join(page_texts)
     normalized_pdf = canonical_text(all_text)
-    if printer_saver and spec.number == 14:
-        required_checks = (
+    printer_checklists = {
+        12: (
+            "r9 base ridge and optional disc fit checked",
+            "contrast bobbles use contrast for all five partial dc",
+            "r22 version recorded: six bobbles or smooth-tip fallback",
+            "r26 closes at 3 stitches",
+        ),
+        13: (
+            "bauble count, stuffing and 6-stitch closure checked",
+            "star uses all 10 anchors and has 5 complete points",
+            "snowflake has 6 ch-5 spaces and 6 flat arms",
+            "us tr / uk dtr arm tension checked before blocking",
+        ),
+        14: (
             "centre ring fits the stand relaxed",
             "12 increase columns aligned",
             "final count confirmed: 168 / 276 / 384",
             "optional spokes: 12 separate routes",
             "border closed: 28 / 46 / 64 complete scallops",
             "stand and cord clearances checked",
-        )
-        for check in required_checks:
+        ),
+    }
+    if printer_saver and spec.number in printer_checklists:
+        for check in printer_checklists[spec.number]:
             if check not in normalized_pdf:
                 raise ValueError(f"{spec.code} printer checklist missing: {check!r}")
         for stale_check in (

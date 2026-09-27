@@ -81,8 +81,8 @@ Start in the body colour (red or green). The R15-16 line, where you switch back 
 | Rnd | US terms | UK terms | Sts | Note |
 |---|---|---|---|---|
 | R13 | sc in each st around | dc in each st around | (30) | - |
-| R14 | sc in next 14, BO in next st (nose), sc in remaining 15 | dc in next 14, BO in next st (nose), dc in remaining 15 | (30) | bobble = nose |
-| R15 | sc in each st around | dc in each st around | (30) | - |
+| R14 | sc in next 14, BO in next st (nose), sc in remaining 15 | dc in next 14, BO in next st (nose), dc in remaining 15 | (30) | bobble nose; remain in skin tone |
+| R15 | sc in each st around | dc in each st around | (30) | plain face round above nose; change to hat colour after this round |
 
 #### Hat - body colour (R16-23)
 
@@ -97,18 +97,18 @@ Start in the body colour (red or green). The R15-16 line, where you switch back 
 | R22 | sc in each st around | dc in each st around | (12) | top up stuffing |
 | R23 | sc2tog x 6 | dc2tog x 6 | (6) | close |
 
-**Eye and stuffing order:** after Rnd 15, add the chosen eyes one round above the nose, about 3 stitches apart and equally spaced either side. For safety eyes, lock both washers while the 30-stitch opening is unobstructed. For embroidered eyes, knot and bury both ends inside at this same pause. Change to the hat colour for Rnd 16, then begin stuffing through the still-wide opening. Add small amounts every 1-2 rounds; finish filling before Rnd 23.
+**Eye and stuffing order:** after Rnd 15, locate the Rnd-14 bobble nose. Rnd 15 is the one full skin-tone round above it; place the chosen eye centres at the Rnd-15 level, about 3 stitches apart and equally spaced either side of the nose. For safety eyes, lock both washers while the 30-stitch opening is unobstructed. For embroidered eyes, knot and bury both ends inside at this same pause. Change to the hat colour for Rnd 16, then begin stuffing through the still-wide opening. Add small amounts every 1-2 rounds; finish filling before Rnd 23.
 
 Finish: FO with a 15 cm tail, thread through the front loops of the last 6 stitches, pull closed and weave in.
 
 Stuffing shape: pack the base flat and wide so the gnome stands; keep the pointed hat lightly stuffed so it can bend slightly.
 
-The nose sits on the round before the hat-colour change. Because the lower body is symmetrical, let the Rnd 14 bobble DEFINE the front rather than trying to force it onto an earlier marker. Place the optional eyes one round above and equally either side of that bobble.
+The nose is worked in Rnd 14. One complete plain skin-tone round—Rnd 15—sits between the nose round and the change to hat colour for Rnd 16. The nose is therefore two round numbers before the first hat round, not on the round immediately before the colour change. Because the lower body is symmetrical, let the Rnd-14 bobble define the front rather than trying to force it onto an earlier marker. Place the optional eye centres at the Rnd-15 level, equally spaced either side of that bobble.
 
 ## Finishing & assembly
 
 - Hat brim (optional): join white yarn at the R15-16 colour-change line and work sl st around. FO and weave in - it covers the change line neatly.
-- Eyes (optional): 2 embroidered straight stitches or 6-8 mm safety eyes, about 3 stitches apart and equally spaced either side of the nose, one round above it. Add either version after Rnd 15 and before stuffing begins at Rnd 16; lock safety-eye washers or knot embroidery ends inside while the opening is clear.
+- Eyes (optional): 2 embroidered straight stitches or 6-8 mm safety eyes, about 3 stitches apart at the Rnd-15 level and equally spaced either side of the Rnd-14 nose. Add either version after completing Rnd 15 and before stuffing begins at Rnd 16; lock safety-eye washers or knot embroidery ends inside while the opening is clear.
 - Extra beard texture: a few surface sl sts or short tied strands of white over R9-12.
 - Hanging ornament: ch 18 at the hat tip and sl st into the same place to form a loop. FO and weave in.
 

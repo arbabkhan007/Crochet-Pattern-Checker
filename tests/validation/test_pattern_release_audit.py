@@ -37,7 +37,7 @@ def test_current_commercial_pattern_collection_passes_release_gate():
     assert "table rows: 728" in result.stdout
     assert "dual rows: 111" in result.stdout
     assert "count rows checked: 700" in result.stdout
-    assert "assertions: 3233" in result.stdout
+    assert "assertions: 3247" in result.stdout
     assert "PASS - all release-gate checks succeeded" in result.stdout
 
 
@@ -55,6 +55,48 @@ def test_current_commercial_pattern_collection_passes_release_gate():
             "| R1 | 6 sc in MR | 6 dc in MR | (6) | - |",
             "| R1 | 6 sc in MR | 6 tr in MR | (6) | - |",
             "US/UK parity",
+        ),
+        (
+            "11_No-Sew_Christmas_Gnome.md",
+            "One complete plain skin-tone round—Rnd 15—sits between the nose round and the change to hat colour for Rnd 16",
+            "The nose sits on the round immediately before the hat-colour change",
+            "missing release safeguard 'One complete plain skin-tone round",
+        ),
+        (
+            "12_Bobble_Christmas_Tree.md",
+            "The low decrease anchors the bobble",
+            "The following decrease sits beside the bobble",
+            "missing release safeguard 'The low decrease anchors the bobble'",
+        ),
+        (
+            "12_Bobble_Christmas_Tree.md",
+            "| R22 | [BO, sc2tog] x 6 | [BO, dc2tog] x 6 | (12) | 18 to 12; push each BO outward before the adjacent decrease |",
+            "| R22 | [BO, sc2tog] x 6 | [BO, dc2tog] x 6 | (13) | 18 to 13; push each BO outward before the adjacent decrease |",
+            "got 12, expected 13",
+        ),
+        (
+            "12_Bobble_Christmas_Tree.md",
+            "[sc, sc2tog] x 6 (12)",
+            "[sc, sc2tog] x 5 (10)",
+            "missing release safeguard '[sc, sc2tog] x 6 (12)'",
+        ),
+        (
+            "13_Christmas_Ornament_Bundle.md",
+            "sl st = sl st - slip stitch in both US and UK terms",
+            "sl st - slip stitch",
+            "missing release safeguard 'sl st = sl st - slip stitch in both US and UK terms'",
+        ),
+        (
+            "13_Christmas_Ornament_Bundle.md",
+            "3 tr, ch 3, sl st) in each of the 6 ch-5 spaces",
+            "4 tr, ch 3, sl st) in each of the 6 ch-5 spaces",
+            "missing release safeguard '3 tr, ch 3, sl st) in each of the 6 ch-5 spaces'",
+        ),
+        (
+            "13_Christmas_Ornament_Bundle.md",
+            "3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces",
+            "3 tr, ch 3, sl st) in each of the 6 ch-5 spaces",
+            "missing release safeguard '3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces'",
         ),
         (
             "10_Willow_the_Bunny_Lovey.md",
@@ -108,6 +150,13 @@ def test_current_commercial_pattern_collection_passes_release_gate():
     ids=[
         "count",
         "terminology",
+        "ns11-nose-round-order",
+        "ns12-r22-shape-safeguard",
+        "ns12-r22-count",
+        "ns12-smooth-tip-fallback-count",
+        "ns13-slip-stitch-terminology",
+        "ns13-us-tall-arm-load",
+        "ns13-uk-tall-arm-translation",
         "structural-safeguard",
         "front-leg-safeguard",
         "required-care-section",

@@ -37,8 +37,8 @@ separately for use as the two buyer files in each Etsy listing.
 | NS 09 | Shelby the Sea Turtle Bag Charm | [`NS09_Shelby_the_Sea_Turtle_Bag_Charm_Crochet_Pattern.pdf`](NS09_Shelby_the_Sea_Turtle_Bag_Charm_Crochet_Pattern.pdf) | [`NS09_Shelby_the_Sea_Turtle_Bag_Charm_PRINTER_SAVER.pdf`](NS09_Shelby_the_Sea_Turtle_Bag_Charm_PRINTER_SAVER.pdf) | 8 / 8 |
 | NS 10 | Willow the Bunny Lovey | [`NS10_Willow_the_Bunny_Lovey_Crochet_Pattern.pdf`](NS10_Willow_the_Bunny_Lovey_Crochet_Pattern.pdf) | [`NS10_Willow_the_Bunny_Lovey_PRINTER_SAVER.pdf`](NS10_Willow_the_Bunny_Lovey_PRINTER_SAVER.pdf) | 9 / 9 |
 | NS 11 | No-Sew Christmas Gnome | [`NS11_No-Sew_Christmas_Gnome_Crochet_Pattern.pdf`](NS11_No-Sew_Christmas_Gnome_Crochet_Pattern.pdf) | [`NS11_No-Sew_Christmas_Gnome_PRINTER_SAVER.pdf`](NS11_No-Sew_Christmas_Gnome_PRINTER_SAVER.pdf) | 9 / 9 |
-| NS 12 | Bobble Christmas Tree | [`NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf`](NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf) | [`NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf`](NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf) | 8 / 8 |
-| NS 13 | Christmas Ornament Bundle | [`NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf`](NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf) | [`NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf`](NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf) | 8 / 8 |
+| NS 12 | Bobble Christmas Tree | [`NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf`](NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf) | [`NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf`](NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf) | 9 / 9 |
+| NS 13 | Christmas Ornament Bundle | [`NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf`](NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf) | [`NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf`](NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf) | 9 / 9 |
 | NS 14 | Bobble Snowflake Tree Skirt | [`NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf`](NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf) | [`NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf`](NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf) | 11 / 11 |
 | NS 15 | Interchangeable Christmas Wreath | [`NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf`](NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf) | [`NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf`](NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf) | 9 / 9 |
 | NS 16 | Crochet Mini Stocking Advent Garland | [`NS16_Crochet_Mini_Stocking_Advent_Garland_Crochet_Pattern.pdf`](NS16_Crochet_Mini_Stocking_Advent_Garland_Crochet_Pattern.pdf) | [`NS16_Crochet_Mini_Stocking_Advent_Garland_PRINTER_SAVER.pdf`](NS16_Crochet_Mini_Stocking_Advent_Garland_PRINTER_SAVER.pdf) | 11 / 11 |
@@ -72,28 +72,38 @@ sentinels, page identity, metadata, A4 geometry, file-size, bookmark,
 original-colour-name, progress-box and image-inventory checks. Its printer-saver
 gate also rejects any raster object or non-grayscale vector colour.
 
-The current production review through 26 September 2026 reported:
+The current production review through 27 September 2026 reported:
 
 - release-source audit: **17 files, 728 table rows, 111 dual-terminology rows,
-  700 count rows and 3,233 assertions — PASS**;
-- NS 14 second audit: all **32 growth rounds** satisfy the `12 × round number`
-  invariant; all **10 bobble rounds** follow the exact every-third-round
-  sequence; all three gauge-derived body diameters and **28 / 46 / 64** border
-  scallop totals were independently recomputed. The R11-to-R12 transition was
-  rechecked explicitly: `BO + 8 dc + increase` consumes 10 and produces 11 per
-  repeat, then `10 dc + increase` consumes 11 and produces 12; reducing R12 to
-  9 plain dc would leave 12 stitches unworked;
-- NS 14 PDF postflight: **2/2 files — PASS**, each with 11 A4 pages; the
-  full-colour edition has exactly 2 labelled raster visuals and the printer
-  companion has no raster objects or colour vectors. Its finish checklist now
-  uses tree-skirt-specific centre, column, spoke, border and clearance checks;
-- NS 14 all-page render review: **22/22 pages rendered and bounded — PASS**;
+  700 count rows and 3,247 assertions — PASS**;
+- NS 11 now identifies the exact face sequence: R14 bobble nose, one plain
+  skin-tone R15, then the R16 hat-colour change. Eye placement and the assembly
+  note use the same round references;
+- NS 12 R22 was independently recomputed: each `[BO, sc2tog]` repeat consumes
+  3 stitches and makes 2, so six repeats correctly shape **18 → 12**. The
+  instructions now include close-spacing handling and an explicitly optional,
+  count-preserving smooth-tip route rather than changing valid arithmetic;
+- NS 13 retains the correct terminology mappings—`sl st` in both systems and
+  US `tr` = UK `dtr`. Each snowflake arm anchors five worked stitches in its
+  ch-5 space; its two ch-3 sections are side spaces. A first-arm tension check
+  now catches crowding before all six arms are made;
+- NS 11–NS 13 PDF postflight: **6/6 files — PASS**, each with 9 A4 pages;
+  full-colour editions each have exactly 2 labelled raster visuals and printer
+  companions have no raster objects or colour vectors. All **54/54 pages**
+  rendered and remained bounded. NS 12 and NS 13 printer checklists are now
+  motif-specific;
+- NS 14 second audit remains valid: all **32 growth rounds** satisfy the
+  `12 × round number` invariant, all **10 bobble rounds** follow the exact
+  every-third-round sequence, and the border has **28 / 46 / 64** scallops.
+  R12 correctly uses 10 plain dc before each increase; using 9 would leave 12
+  stitches unworked;
 - NS 16–NS 17 PDF postflight and prior all-page review remain **PASS** for all
   4 files and 54 pages;
 - archive integrity: the updated NS 02–NS 15 PDF archive and 45-file NS 01–NS 15
-  complete archive are CRC-clean and byte-identical to the current NS 14 files;
-  the separate six-file NS 16–NS 17 archive remains CRC-clean and unchanged;
-- project regression suite: **105 passed** with one third-party deprecation
+  complete archive are CRC-clean and byte-identical to the current NS 11–NS 13
+  source/PDF files; the separate six-file NS 16–NS 17 archive remains CRC-clean
+  and unchanged;
+- project regression suite: **112 passed** with one third-party deprecation
   warning; spelling, static checks and release integrity: **PASS**.
 
 The full-colour and printer-saver files deliberately can have different page

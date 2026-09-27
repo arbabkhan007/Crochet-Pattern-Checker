@@ -50,7 +50,9 @@ Worked in continuous rounds from the base up - no joins, no starting chains. The
 
 4. **Contrast bobbles** - The bobble itself must be worked in the contrast colour. Complete the final pull-through of the stitch BEFORE a bobble with contrast yarn (for the first bobble of a round, change on the last stitch of the preceding round). Work all five incomplete dc in contrast, then use green for the final yarn-over and pull it through all 6 loops. Continue the next stitch in green, carrying the unused colour loosely inside. Do not work a green bobble and change only its closing loop - that makes a green bobble with a contrast-colour top, not a contrast bobble.
 
-5. **sc2tog decrease** - One decrease per repeat hides inside each bobble round, always in the LAST position, so the bobble columns stay straight.
+5. **sc2tog decrease** - One decrease per repeat sits in the last position of each shaping repeat, so the bobble columns stay aligned. An invisible decrease through the front loops of the next two stitches may replace sc2tog without changing the count.
+
+6. **Close R22 spacing** - `[BO, sc2tog]` is intentionally compact: the bobble uses one old stitch and the following decrease uses the next two. Complete the bobble with relaxed loops, push it to the right side immediately, then work the decrease without yanking its working loop against the bobble. The low decrease anchors the bobble and R23's plain round settles the narrowed fabric; do not insert an extra anchor stitch.
 
 ## Instructions
 
@@ -81,11 +83,15 @@ The cone tapers between bobble tiers; the plain round between them keeps each ti
 | R19 | sc in each st around | dc in each st around | (24) | - |
 | R20 | [BO, sc, sc2tog] x 6 | [BO, dc, dc2tog] x 6 | (18) | - |
 | R21 | sc in each st around | dc in each st around | (18) | - |
-| R22 | [BO, sc2tog] x 6 | [BO, dc2tog] x 6 | (12) | bobble tier at tip - each repeat uses 3 sts, makes 2 |
+| R22 | [BO, sc2tog] x 6 | [BO, dc2tog] x 6 | (12) | 18 to 12; push each BO outward before the adjacent decrease |
 | R23 | sc in each st around | dc in each st around | (12) | - |
 | R24 | sc2tog x 6 | dc2tog x 6 | (6) | final small pinch of stuffing before this round |
 | R25 | sc in each st around | dc in each st around | (6) | - |
 | R26 | sc2tog x 3 | dc2tog x 3 | (3) | tip |
+
+**R22 count and shape check:** each repeat consumes 1 stitch for the BO plus 2 stitches for sc2tog and produces 1 BO plus 1 decrease: 3 consumed and 2 produced. Six repeats therefore use all 18 stitches and leave 12. Work one repeat, confirm the bobble remains on the right side, then continue; after the complete round, use the still-open tip to nudge all six bobbles outward before R23.
+
+If the selected yarn still forces these six close-set bobbles inward after tension adjustment, undo R22 and use the count-preserving smooth-tip fallback `[sc, sc2tog] x 6 (12)` / UK `[dc, dc2tog] x 6 (12)`. This intentionally omits the final bobble tier but keeps the `18 → 12` shaping. Record which version the sample uses; do not add an uncounted anchor stitch.
 
 Finish: FO with a tail, thread through the last 3 stitches, pull the tip closed and weave the end down through the tree.
 
@@ -101,6 +107,7 @@ Stuffing: only the bottom half needs real fill - a lightly stuffed cone that fle
 ## Troubleshooting
 
 - **Bobble columns wander.** Your round start drifted with the spiral - a stitch marker in the first stitch of every round keeps the repeat anchored. A little lag looks natural: real fir boughs point downhill too.
+- **R22 bobbles cave inward.** Undo the affected repeat, remake the BO with relaxed loops, push it outward before the decrease and avoid tightening the decrease against it. If the actual yarn still will not hold the six close-set bobbles, use the documented smooth-tip R22 fallback rather than adding stitches.
 - **Tip flops.** Over-stuffed at the top. Take two pinches of stuffing out of the cone tip and re-cinch R26 tightly.
 - **Base will not sit flat.** You skipped the BLO ridge (R9) or worked it loosely. That ridge is the fold - re-press it with a fingernail while shaping.
 
