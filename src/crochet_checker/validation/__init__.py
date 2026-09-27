@@ -86,3 +86,5 @@ __all__.extend(
 from .stitch_counts import ValidationFinding
 
 __all__.append("ValidationFinding")
+
+__all__.append("Severity")
