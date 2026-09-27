@@ -28,6 +28,10 @@ from .audit_rules import (
     ShortRowPerimeterChecker,
     SpatialFitChecker,
 )
+from .commercial_linters import (
+    AssemblyInterfaceValidator,
+    FabricDensityCalculator,
+)
 from .validator import PatternValidator, ValidationError, ValidationResult
 
 __all__ = [
@@ -49,6 +53,10 @@ __all__ = [
     # Assembly
     "AssemblyGraphValidator",
     "AssemblyError",
+    "AssemblyInterfaceValidator",
+    "FabricDensityCalculator",
+    "GhostMaterialLinter",
+    "PostStitchFoundationValidator",
 ]
 
 

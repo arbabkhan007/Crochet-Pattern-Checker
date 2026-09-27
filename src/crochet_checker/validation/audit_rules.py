@@ -59,6 +59,18 @@ def _messages(items: list[str]) -> list[str]:
 class GhostMaterialLinter:
     """Flag placement materials that the instructions never mention."""
 
+    def audit_materials(self, materials_list, instruction_text):
+        """Direct check: a listed item whose key word never appears in the instructions."""
+        text_lower = instruction_text.lower()
+        ghosts = []
+        for item in materials_list:
+            key_term = str(item).lower().split()[-1]
+            if key_term and key_term not in text_lower:
+                ghosts.append(
+                    "Ghost Material: '" + str(item) + "' listed in Materials but never placed in instructions."
+                )
+        return ghosts
+
     def lint(self, text: str) -> list[str]:
         section, body = _materials_section(text)
         if not section:
@@ -129,6 +141,19 @@ class ModuloDriftChecker:
 
 class PostStitchFoundationValidator:
     """Post stitches need a previous row at least as tall as hdc."""
+
+    TALL_STITCHES = {"hdc", "dc", "tr", "fpdc", "bpdc"}
+
+    def check_foundation_height(self, current_stitch, target_row_stitch_type):
+        """Direct check for one post stitch against the row it enters."""
+        current = str(current_stitch).lower()
+        target = str(target_row_stitch_type).lower()
+        if current in {"fpdc", "bpdc"} and target not in self.TALL_STITCHES:
+            return (
+                "Foundation Failure: Working " + current + " into short '" + target + "' "
+                "row causes severe fabric puckering."
+            )
+        return None
 
     def validate(self, text: str) -> list[str]:
         errors = []
@@ -212,6 +237,9 @@ def audit_findings(text: str) -> tuple[list[str], list[str]]:
     errors.extend(GlossaryLinter().lint(text))
     errors.extend(PostStitchFoundationValidator().validate(text))
     errors.extend(SpatialFitChecker().check(text))
+    from .commercial_linters import AssemblyInterfaceValidator, FabricDensityCalculator
+    errors.extend(AssemblyInterfaceValidator().lint(text))
+    warnings.extend(FabricDensityCalculator.scan(text))
     warnings.extend(ModuloDriftChecker().check(text))
     warnings.extend(ShortRowPerimeterChecker().check(text))
     return _messages(errors), _messages(warnings)
@@ -341,7 +369,10 @@ def _round_bodies(text: str):
         from .validator import _produced_with_context
     except Exception:
         return
-    parsed = parse_pattern(text)
+    try:
+        parsed = parse_pattern(text)
+    except Exception:
+        return
     if parsed.pieces and len(parsed.pieces) > 1:
         groups = [piece.rounds or piece.rows for piece in parsed.pieces if piece.rounds or piece.rows]
     else:
