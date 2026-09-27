@@ -1,4 +1,4 @@
-#!/workspaces/Crochet-Pattern-Checker/.venv/bin/python3
+#!/workspaces/crochet-pattern-checker/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
