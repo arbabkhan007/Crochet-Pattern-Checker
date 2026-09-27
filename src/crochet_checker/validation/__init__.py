@@ -20,6 +20,14 @@ from .chains import ChainAllocation, TurningChainRulesEngine
 from .corners import CornerMismatchError, CornerSequenceValidator
 from .exhaustion import ExhaustionReport, OrphanedStitchAnalyzer, OrphanedStitchError
 from .reporter import PatternReporter
+from .audit_rules import (
+    GhostMaterialLinter,
+    GlossaryLinter,
+    ModuloDriftChecker,
+    PostStitchFoundationValidator,
+    ShortRowPerimeterChecker,
+    SpatialFitChecker,
+)
 from .validator import PatternValidator, ValidationError, ValidationResult
 
 __all__ = [

@@ -642,6 +642,12 @@ class CrochetParser:
             stated_stitch_count=stated_count,
         )
 
+        # "*sc, inc* 6 times" is the same repeat as "(sc, inc) x 6".
+        # Do this before the comma split, which would otherwise cut the group
+        # into "sc" and "inc" and count it once.
+        if self._try_parse_star_repeat(clean_text, instruction):
+            return instruction
+
         # A comma outside parentheses starts another clause. Prefix parsers
         # such as "10 sc" and "ch 40" used to return before reading the rest.
         clauses = self._split_top_level_commas(clean_text)
@@ -724,14 +730,18 @@ class CrochetParser:
         parts: list[str] = []
         buf: list[str] = []
         depth = 0
+        in_star = False
         for ch in text:
-            if ch in "([":
+            if ch == "*" and depth == 0:
+                in_star = not in_star
+                buf.append(ch)
+            elif ch in "([":
                 depth += 1
                 buf.append(ch)
             elif ch in ")]":
                 depth = max(0, depth - 1)
                 buf.append(ch)
-            elif ch == "," and depth == 0:
+            elif ch == "," and depth == 0 and not in_star:
                 part = "".join(buf).strip()
                 if part:
                     parts.append(part)
@@ -750,7 +760,12 @@ class CrochetParser:
         if not text or re.fullmatch(r"turn|to join|join", text, flags=re.IGNORECASE):
             return []
 
-        if re.match(r"sl\s*st\s+(?:to\s+join|in\s+(?:the\s+)?first)", text, re.IGNORECASE):
+        if re.match(
+            r"sl\s*st\s+(?:to\s+join|in\s+(?:the\s+)?first|"
+            r"(?:into|to)\s+(?:the\s+)?first(?:\s+(?:ch|chain))?\s+to\s+join)",
+            text,
+            re.IGNORECASE,
+        ):
             return [
                 ParsedOperation(
                     stitch_type=StitchType.SLIP_STITCH,
@@ -815,6 +830,10 @@ class CrochetParser:
                     count=int(chain.group(1)),
                 )
             ]
+
+        star = Instruction(source_text=text, normalized_text=text)
+        if self._try_parse_star_repeat(text, star):
+            return list(star.operations)
 
         if REPEAT_BLOCK.search(text):
             temp = Instruction(source_text=text, normalized_text=text)
@@ -931,6 +950,45 @@ class CrochetParser:
                     )
                 )
 
+        instruction.confidence = 0.9
+        return True
+
+    def _try_parse_star_repeat(self, text: str, instruction: Instruction) -> bool:
+        """Parse '*sc, inc* 6 times' as one repeat, same as '(sc, inc) x 6'.
+
+        The stated count is checked later. '*sc, inc* 6 times (12)' produces
+        18, so that line stays an error. 'repeat around' is not a fixed count
+        and is left alone.
+        """
+        stripped = text.strip().rstrip(".").strip()
+        match = re.fullmatch(
+            r"\*(.+?)\*\s*(?:rep(?:eat)?\s+)?(?:(\d+)\s+times|[x×]\s*(\d+))",
+            stripped,
+            flags=re.IGNORECASE,
+        )
+        if not match:
+            return False
+        unit = match.group(1).strip()
+        if not unit or "*" in unit:
+            return False
+        count = int(match.group(2) or match.group(3))
+        if count < 1:
+            return False
+        unit_ops = self._parse_operation_sequence(unit)
+        if not unit_ops:
+            return False
+
+        instruction.is_repeat_block = True
+        instruction.repeat_unit = unit_ops
+        instruction.repeat_count = count
+        instruction.operations = []
+        for _ in range(count):
+            for op in unit_ops:
+                instruction.operations.append(
+                    op.model_copy(
+                        update={"is_part_of_repeat": True, "repeat_count": count}
+                    )
+                )
         instruction.confidence = 0.9
         return True
 

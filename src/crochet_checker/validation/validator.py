@@ -251,12 +251,14 @@ class PatternValidator:
 
     def _parsed_round_instructions(self, raw_text: str):
         """Parse one round with the live instruction parser, not the unroller."""
-        import re
-
         from ..parser.grammar import is_row_header
         from ..parser.parser import CrochetParser
 
-        cleaned = re.sub(r"[*`_]", "", raw_text or "").strip()
+        # Bold and code markers hide headers. A single asterisk is a repeat
+        # marker, as in "*sc, inc* 6 times", and must not be deleted.
+        from ..parser.normalizer import sanitize_pattern_text
+
+        cleaned = sanitize_pattern_text(raw_text or "").strip()
         if not cleaned:
             return None
         header, _header_type, _number, rest, _end = is_row_header(cleaned)
@@ -627,6 +629,19 @@ def validate_pattern(pattern_input, strict=False):
         for message in join_interface_errors(pattern_text):
             if message not in errors:
                 errors.append(message)
+    except Exception:
+        pass
+
+    try:
+        from .audit_rules import audit_findings
+
+        audit_errors, audit_warnings = audit_findings(pattern_text)
+        for message in audit_errors:
+            if message not in errors:
+                errors.append(message)
+        for message in audit_warnings:
+            if message not in warnings:
+                warnings.append(message)
     except Exception:
         pass
 

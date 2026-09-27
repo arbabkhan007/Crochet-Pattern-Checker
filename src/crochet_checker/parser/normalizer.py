@@ -162,3 +162,22 @@ def normalize_pattern(text: str, dialect: str = TerminologyDialect.US) -> str:
     """Convenience function to normalize pattern text."""
     normalizer = PatternNormalizer(source_dialect=dialect)
     return normalizer.normalize(text)
+
+
+def sanitize_pattern_text(raw_text: str) -> str:
+    """Clean unicode and markdown before tokenization.
+
+    En-dashes and bold markers were hiding round headers from the parser.
+    Round ranges stay as hyphens. Rewriting them to the word "to" would
+    break the header parser, which already understands "Rounds 6-10".
+    Repeat asterisks are left alone.
+    """
+    text = raw_text.replace("\u00a0", " ").replace("\u2011", "-")
+    text = text.replace("\u2013", "-").replace("\u2014", "-")
+    text = text.replace("\u2018", "'").replace("\u2019", "'")
+    text = text.replace("\u201c", '"').replace("\u201d", '"')
+    text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)
+    text = re.sub(r"__(.+?)__", r"\1", text)
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    text = re.sub(r"(?m)^[ \t]*#(?!#)[ \t]*", "", text)
+    return text
