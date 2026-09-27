@@ -114,54 +114,130 @@ class ASTUnroller:
     def _parse_stitch_instruction(
         self, text: str, line_number: int, prev_stitch_count: int
     ) -> list[InstructionNode]:
-        """Parse a single stitch instruction into InstructionNode(s)"""
-        instructions = []
+        """Parse one clause without treating English words as stitches.
+
+        The old scan matched "ch" inside "each" and "st" inside "each st",
+        then marked "turn" as unknown. Those became false compiler warnings.
+        Repeat counts such as "inc x 6" stay at one state-machine stitch so a
+        correct round is not failed for running past a short canvas.
+        """
         text = text.strip()
-
-        # Check for turning chain
-        turning_chain_match = re.match(
-            r"ch\s+(\d+)\s*(?:\(([^)]+)\))?", text, re.IGNORECASE
+        text = re.sub(
+            r"^(?:row|rnd|round|r)s?\.?\s*\d+(?:\s*[-–—]\s*\d+)?\s*[:.]?\s*",
+            "",
+            text,
+            flags=re.IGNORECASE,
         )
-        if turning_chain_match:
-            ch_count = int(turning_chain_match.group(1))
-            counts_text = turning_chain_match.group(2) or ""
-            counts_as = "counts as" in counts_text.lower()
+        text = re.sub(r"\(\d+\)\s*$", "", text).strip(" ,.")
+        if not text or re.fullmatch(
+            r"(?:turn|to join|join|from hook)\.?",
+            text,
+            flags=re.IGNORECASE,
+        ):
+            return []
 
-            instructions.append(
+        turning = re.match(
+            r"ch\s+(\d+)\s*(?:\(?(counts as(?: a)?[^)]*)\)?)?\s*$",
+            text,
+            flags=re.IGNORECASE,
+        )
+        if turning:
+            return [
                 InstructionNode(
                     action="turning_chain",
                     stitch_type="ch",
-                    count=ch_count,
+                    count=int(turning.group(1)),
                     is_turning_chain=True,
-                    counts_as_stitch=counts_as,
+                    counts_as_stitch="counts as" in text.lower(),
                     line_number=line_number,
                 )
-            )
-            return instructions
+            ]
 
-        # Parse standard stitch instructions
-        stitch_pattern = re.compile(
-            r"(?:(\d+)\s+)?(sc|dc|hdc|tr|dtr|sl\s*st|ch|picot|skip|sp|st|inc|dec)\s*(?:(?:in|into)\s+(?:next\s+)?(\d+)\s*(?:st|sts|ch|ch\-?sp|space|spaces)?)?",
-            re.IGNORECASE,
+        each = re.match(
+            r"(sc|hdc|dc|tr|sl\s*st|inc)\s+in\s+"
+            r"(?:(?:BLO|FLO|back\s+loops?\s+only|front\s+loops?\s+only)\s+of\s+)?"
+            r"each\s+(?:st|sts|ch)\s+(?:around|across)",
+            text,
+            flags=re.IGNORECASE,
         )
-
-        for match in stitch_pattern.finditer(text):
-            count = int(match.group(1)) if match.group(1) else 1
-            stitch_type = match.group(2).strip().lower()
-            target_pos = int(match.group(3)) if match.group(3) else None
-
-            instructions.append(
+        if each:
+            return [
                 InstructionNode(
                     action="stitch",
-                    stitch_type=stitch_type,
-                    count=count,
-                    target_position=target_pos,
+                    stitch_type=re.sub(r"\s+", "", each.group(1).lower()),
+                    count=1,
                     line_number=line_number,
                 )
-            )
+            ]
 
-        # If no stitches parsed, create a generic instruction
-        if not instructions and text:
+        hook = re.match(
+            r"(sc|hdc|dc|tr)\s+in\s+2nd\s+ch\s+from\s+hook",
+            text,
+            flags=re.IGNORECASE,
+        )
+        if hook:
+            return [
+                InstructionNode(
+                    action="stitch",
+                    stitch_type=hook.group(1).lower(),
+                    count=1,
+                    line_number=line_number,
+                )
+            ]
+
+        ring = re.match(
+            r"(\d+)\s+(sc|hdc|dc|tr)\s+(?:in|into)\s+"
+            r"(?:magic\s+ring|mr|magic\s+circle)",
+            text,
+            flags=re.IGNORECASE,
+        )
+        if ring:
+            return [
+                InstructionNode(
+                    action="stitch",
+                    stitch_type=ring.group(2).lower(),
+                    count=int(ring.group(1)),
+                    line_number=line_number,
+                )
+            ]
+
+        instructions = []
+        stitch_pattern = re.compile(
+            r"(?<![A-Za-z])(?:(\d+)\s+)?(sc|hdc|dc|tr|dtr|sl\s*st|inc|dec|picot|skip)"
+            r"(?![A-Za-z])",
+            re.IGNORECASE,
+        )
+        if not re.search(r"\beach\b|\bfrom\s+hook\b", text, flags=re.IGNORECASE):
+            for match in stitch_pattern.finditer(text):
+                instructions.append(
+                    InstructionNode(
+                        action="stitch",
+                        stitch_type=re.sub(r"\s+", "", match.group(2).lower()),
+                        count=int(match.group(1) or 1),
+                        line_number=line_number,
+                    )
+                )
+            for match in re.finditer(
+                r"(?<![A-Za-z])ch\s+(\d+)(?![A-Za-z])",
+                text,
+                flags=re.IGNORECASE,
+            ):
+                instructions.append(
+                    InstructionNode(
+                        action="turning_chain",
+                        stitch_type="ch",
+                        count=int(match.group(1)),
+                        is_turning_chain=True,
+                        counts_as_stitch="counts as" in text.lower(),
+                        line_number=line_number,
+                    )
+                )
+
+        if not instructions and re.search(
+            r"(?<![A-Za-z])(?:sc|hdc|dc|tr|inc|dec|ch)(?![A-Za-z])",
+            text,
+            flags=re.IGNORECASE,
+        ):
             instructions.append(
                 InstructionNode(
                     action="unknown",
@@ -170,8 +246,8 @@ class ASTUnroller:
                     line_number=line_number,
                 )
             )
-
         return instructions
+
 
     def calculate_round_stitch_count(
         self, instructions: list[InstructionNode], prev_count: int

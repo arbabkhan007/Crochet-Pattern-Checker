@@ -24,7 +24,9 @@ REPEAT_BLOCK = re.compile(
 
 # Pattern: "sc in each st around"
 EACH_AROUND = re.compile(
-    r"(sc|hdc|dc|tr|sl\s*st|inc)\s+in\s+each\s+(st|sts|ch)\s+(around|across)",
+    r"(sc|hdc|dc|tr|sl\s*st|inc)\s+in\s+"
+    r"(?:(?:BLO|FLO|back\s+loops?\s+only|front\s+loops?\s+only)\s+of\s+)?"
+    r"each\s+(st|sts|ch)\s+(around|across)",
     re.IGNORECASE,
 )
 

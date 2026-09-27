@@ -130,3 +130,36 @@ def test_foundation_and_clauses():
     messages = [getattr(item, "message", str(item)) for item in boot.errors]
     assert any("produce 20" in message for message in messages)
     assert not any("produce 10" in message for message in messages)
+
+
+def test_markdown_plain_round_and_joins():
+    bold = (
+        "**Round 1:** 6 sc into magic ring (6)\n"
+        "**Round 2:** inc in each st around (12)\n"
+        "**Rounds 6-10:** `sc in each st around` (12)\n"
+    )
+    report = validate_pattern(bold)
+    assert report.valid is True
+    assert report.errors == []
+
+    plain = (
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: sc in each st around (8)\n"
+    )
+    mismatch = validate_pattern(plain)
+    assert mismatch.valid is False
+    assert any("plain round received 6" in getattr(item, "message", str(item)) for item in mismatch.errors)
+
+    flat = (
+        "Row 1: ch 11, sc in 2nd ch from hook, sc in each ch across (10)\n"
+        "Row 2: ch 1, turn, sc in BLO of each st across (10)\n"
+        "Row 3: ch 3, turn, dc in each st across (10)\n"
+    )
+    rows = validate_pattern(flat)
+    assert rows.errors == []
+
+    bad_join = "Join Legs to Body: skip 4 sts on the body, join 6 sts.\n"
+    joined = validate_pattern(bad_join)
+    assert any("Join imbalance" in getattr(item, "message", str(item)) for item in joined.errors)
+    balanced = validate_pattern("Join Legs to Body: skip 4 sts on the body, join 4 sts.\n")
+    assert balanced.errors == []
