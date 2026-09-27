@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 from pydantic import BaseModel, Field
 
 from ..parser.parser import parse_pattern
@@ -12,6 +12,7 @@ from ..validation import validate_pattern
 from .certification import EnterpriseCertifier
 from .gauge import GaugeCalibrator, GaugeMeasurement
 from .security import RateLimiter, require_api_key
+from .vision import GaugeImageIngestor
 
 
 rate_limiter = RateLimiter(
@@ -41,6 +42,14 @@ class PatternRequest(BaseModel):
     ai_conflicts: bool = False
     safety_passed: bool = True
     tolerance_passed: bool = False
+
+
+class ImageGaugeRequest(BaseModel):
+    stitch_count: int = Field(gt=0)
+    row_count: int = Field(gt=0)
+    width_cm: float = Field(gt=0)
+    height_cm: float = Field(gt=0)
+    confidence: float = Field(default=0.90, ge=0.0, le=1.0)
 
 
 class GaugeRequest(BaseModel):
@@ -147,3 +156,66 @@ def calibrate_gauge(
     ).calibrate(target, measured)
 
     return result.to_dict()
+
+
+@app.post("/gauge/image")
+async def calibrate_gauge_image(
+    image: UploadFile = File(...),
+    stitch_count: int = 1,
+    row_count: int = 1,
+    width_cm: float = 1.0,
+    height_cm: float = 1.0,
+    confidence: float = 0.90,
+    identity: str = Depends(require_api_key),
+) -> dict[str, Any]:
+    """Upload a gauge image with confirmed measurements."""
+
+    rate_limiter.check(identity)
+
+    allowed = {
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+    }
+
+    if image.content_type not in allowed:
+        raise HTTPException(
+            status_code=415,
+            detail="Use PNG, JPEG, or WEBP images.",
+        )
+
+    upload_dir = __import__("pathlib").Path(
+        ".crochet_cache/uploads"
+    )
+    upload_dir.mkdir(parents=True, exist_ok=True)
+
+    destination = upload_dir / (
+        image.filename or "gauge-swatch-upload"
+    )
+
+    content = await image.read()
+
+    if len(content) > 10 * 1024 * 1024:
+        raise HTTPException(
+            status_code=413,
+            detail="Image must be smaller than 10 MB.",
+        )
+
+    destination.write_bytes(content)
+
+    try:
+        result = GaugeImageIngestor().calibrate_confirmed_measurement(
+            str(destination),
+            stitch_count=stitch_count,
+            row_count=row_count,
+            width_cm=width_cm,
+            height_cm=height_cm,
+            confirmed_by_user=True,
+            confidence=confidence,
+        )
+        return result.to_dict()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=str(exc),
+        ) from exc
