@@ -32,7 +32,34 @@ echo "[6/8] Feature tests"
 python test_all_features.py
 
 echo "[7/8] Pytest"
-python -m pytest -q
+python -m coverage erase
+
+python -m coverage run -m pytest -q
+
+python -m coverage run --append test_audit_features.py
+python -m coverage run --append test_new_features.py
+python -m coverage run --append test_all_features.py
+
+for file in \
+  scripts/test_ai_quality.py \
+  scripts/test_enterprise_certification.py \
+  scripts/test_enterprise_simulation.py \
+  scripts/test_enterprise_audit.py \
+  scripts/test_yarn_substitution.py \
+  scripts/test_gauge_calibration.py \
+  scripts/test_gauge_image.py \
+  scripts/test_enterprise_report.py
+do
+  if [ -f "$file" ]; then
+    python -m coverage run --append "$file"
+  fi
+done
+
+python -m coverage report \
+  --show-missing \
+  --fail-under=60
+
+python -m coverage html -d test-results/htmlcov
 
 echo "[8/8] Focused correctness lint"
 ruff check src tests \
