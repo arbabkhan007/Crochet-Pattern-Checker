@@ -40,3 +40,17 @@ __all__ += [
     "YarnProfile",
     "YarnSubstitutionAnalyzer",
 ]
+
+from .gauge import (
+    GaugeCalibrationReport,
+    GaugeCalibrator,
+    GaugeMeasurement,
+    gauge_from_counts,
+)
+
+__all__ += [
+    "GaugeCalibrationReport",
+    "GaugeCalibrator",
+    "GaugeMeasurement",
+    "gauge_from_counts",
+]
