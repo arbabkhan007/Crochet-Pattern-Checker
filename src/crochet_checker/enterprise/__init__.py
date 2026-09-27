@@ -62,3 +62,7 @@ __all__ += [
     "GaugeImageResult",
     "ImageMetadata",
 ]
+
+from .report import CertificationReportWriter
+
+__all__ += ["CertificationReportWriter"]
