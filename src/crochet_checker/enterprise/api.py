@@ -4,14 +4,24 @@ from __future__ import annotations
 
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from ..parser.parser import parse_pattern
 from ..validation import validate_pattern
 from .certification import EnterpriseCertifier
 from .gauge import GaugeCalibrator, GaugeMeasurement
+from .security import RateLimiter, require_api_key
 
+
+rate_limiter = RateLimiter(
+    max_requests=int(
+        __import__("os").environ.get(
+            "CROCHET_RATE_LIMIT",
+            "60",
+        )
+    )
+)
 
 app = FastAPI(
     title="Crochet Pattern Enterprise Validator",
@@ -58,7 +68,11 @@ def health() -> dict[str, str]:
 
 
 @app.post("/validate")
-def validate(request: PatternRequest) -> dict[str, Any]:
+def validate(
+    request: PatternRequest,
+    identity: str = Depends(require_api_key),
+) -> dict[str, Any]:
+    rate_limiter.check(identity)
     try:
         pattern = parse_pattern(request.pattern_text)
         report = validate_pattern(pattern)
@@ -80,7 +94,11 @@ def validate(request: PatternRequest) -> dict[str, Any]:
 
 
 @app.post("/certify")
-def certify(request: PatternRequest) -> dict[str, Any]:
+def certify(
+    request: PatternRequest,
+    identity: str = Depends(require_api_key),
+) -> dict[str, Any]:
+    rate_limiter.check(identity)
     try:
         pattern = parse_pattern(request.pattern_text)
         compiler_report = validate_pattern(pattern)
@@ -105,7 +123,11 @@ def certify(request: PatternRequest) -> dict[str, Any]:
 
 
 @app.post("/gauge/calibrate")
-def calibrate_gauge(request: GaugeRequest) -> dict[str, Any]:
+def calibrate_gauge(
+    request: GaugeRequest,
+    identity: str = Depends(require_api_key),
+) -> dict[str, Any]:
+    rate_limiter.check(identity)
     target = GaugeMeasurement(
         stitches_per_10cm=request.target_stitches_per_10cm,
         rows_per_10cm=request.target_rows_per_10cm,
