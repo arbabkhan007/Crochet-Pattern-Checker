@@ -5,11 +5,13 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
 from ..parser.parser import parse_pattern
 from ..validation import validate_pattern
 from .certification import EnterpriseCertifier
+from .report import CertificationReportWriter
 from .gauge import GaugeCalibrator, GaugeMeasurement
 from .security import RateLimiter, require_api_key
 from .vision import GaugeImageIngestor
@@ -214,6 +216,46 @@ async def calibrate_gauge_image(
             confidence=confidence,
         )
         return result.to_dict()
+    except Exception as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=str(exc),
+        ) from exc
+
+
+@app.post("/report", response_class=HTMLResponse)
+def certification_report(
+    request: PatternRequest,
+    identity: str = Depends(require_api_key),
+) -> HTMLResponse:
+    """Generate an HTML commercial certification report."""
+
+    rate_limiter.check(identity)
+
+    try:
+        pattern = parse_pattern(request.pattern_text)
+        compiler_report = validate_pattern(pattern)
+
+        certificate = EnterpriseCertifier().certify(
+            pattern,
+            compiler_report,
+            gauge_verified=request.gauge_verified,
+            yarn_profile_known=request.yarn_profile_known,
+            geometry_verified=request.geometry_verified,
+            ai_conflicts=request.ai_conflicts,
+            safety_passed=request.safety_passed,
+            tolerance_passed=request.tolerance_passed,
+        )
+
+        html = CertificationReportWriter().render(
+            certificate,
+            title="Crochet Pattern Enterprise Certificate",
+        )
+
+        return HTMLResponse(
+            content=html,
+            media_type="text/html",
+        )
     except Exception as exc:
         raise HTTPException(
             status_code=400,
