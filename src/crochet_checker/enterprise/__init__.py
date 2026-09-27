@@ -54,3 +54,11 @@ __all__ += [
     "GaugeMeasurement",
     "gauge_from_counts",
 ]
+
+from .vision import GaugeImageIngestor, GaugeImageResult, ImageMetadata
+
+__all__ += [
+    "GaugeImageIngestor",
+    "GaugeImageResult",
+    "ImageMetadata",
+]
