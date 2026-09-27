@@ -57,3 +57,29 @@ ignore = [
 "tests/**" = ["F401", "F841", "SIM115"]
 "src/crochet_checker/__init__.py" = ["F401"]
 "src/crochet_checker/**/__init__.py" = ["F401"]
+
+[tool.coverage.run]
+source = ["src/crochet_checker"]
+omit = [
+    "src/crochet_checker/features/*",
+    "src/crochet_checker/agents/*",
+    "src/crochet_checker/cli.py",
+    "src/crochet_checker/utils/enhanced_pdf.py",
+    "src/crochet_checker/generator/*",
+    "src/crochet_checker/marketplace/*",
+    "src/crochet_checker/library/*",
+    "src/crochet_checker/pricing/*",
+    "src/crochet_checker/testing/*",
+    "src/crochet_checker/ai_enhanced/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+fail_under = 70
+show_missing = true
+skip_covered = false
