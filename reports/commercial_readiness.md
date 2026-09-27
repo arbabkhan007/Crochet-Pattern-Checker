@@ -1,6 +1,6 @@
 # Crochet Pattern Collection: Technical Edit and Commercial Readiness Report
 
-- **Review date:** 26 September 2026
+- **Review date:** 27 September 2026
 - **Scope:** 17 Markdown pattern masters, Design Codes NS 01–NS 17
 - **Intended channel:** Etsy digital downloads
 
@@ -34,31 +34,32 @@ The final release gate reads the Markdown itself and currently reports:
 - **728** Markdown table rows;
 - **111** side-by-side US/UK instruction rows with exact token translation;
 - **700** count-bearing rows independently evaluated;
-- **3,233** total assertions;
+- **3,247** total assertions;
 - canonical increase/decrease continuity plus explicit arithmetic for every non-canonical count-bearing construction;
 - required safety, materials, gauge, abbreviations, instructions, finishing/assembly, troubleshooting, care and terms sections;
 - semantic heading hierarchy, table shape, file hygiene and high-risk release safeguards.
 
-The gate is `tools/pattern_release_audit.py`. The expanded desk suite passed on 26 September 2026:
+The gate is `tools/pattern_release_audit.py`. The expanded desk suite passed on 27 September 2026:
 
-- release audit: 17 files, 728 table rows, 111 dual-terminology rows, 700 count rows and 3,233 assertions;
-- project Python suite: 105 tests passed, including the release gate, ten mutation checks and byte-level verification of all three collection archives; one third-party FastAPI/Starlette deprecation warning remains outside the pattern masters;
+- release audit: 17 files, 728 table rows, 111 dual-terminology rows, 700 count rows and 3,247 assertions;
+- project Python suite: 112 tests passed, including the release gate, seventeen mutation checks and byte-level verification of all three collection archives; one third-party FastAPI/Starlette deprecation warning remains outside the pattern masters;
 - Python compilation and targeted Ruff static analysis: pass;
 - `codespell` 2.4.3: pass after allowing only the declared crochet abbreviation `FO` and intentional Scots word `wee`;
 - structural Markdownlint and GFM-to-HTML rendering: pass for the pattern, report, release and visual-asset Markdown files;
 - NS 01 full-colour PDF postflight: 13 A4 pages, three distinct raster visuals, construction-table progress boxes, selectable text, metadata, bookmarks and all required critical phrases;
 - NS 01 printer-saver postflight: 13 A4 pages, white backgrounds, no raster images, grayscale-only vectors, selectable text, metadata, bookmarks and all required critical phrases;
-- NS 02–NS 13 and NS 15 PDF postflight and all-page review remain passed for their earlier editions;
+- NS 02–NS 10 and NS 15 PDF postflight and all-page review remain passed for their earlier editions;
+- re-audited NS 11–NS 13 PDF postflight: all six files have 9 A4 pages; each full-colour edition contains exactly two labelled visuals, while each printer companion has no raster images or colour vectors. All 54 pages rendered within bounds. NS 12 and NS 13 now have motif-specific printer checklists;
 - re-audited NS 14 PDF postflight: 11 A4 pages in each edition, 34 construction boxes in colour and 41 total boxes in the printer companion; its full-colour edition contains exactly two labelled visuals, while its printer companion has no raster images or colour vectors. A follow-up challenge confirmed that R12 must retain 10 plain dc before its increase (9 would leave 12 stitches unworked), and the printer finish checklist was replaced with centre-ring, increase-column, surface-spoke, border and clearance checks specific to the flat tree skirt;
 - NS 14 all-page render inspection: 22 of 22 pages rendered; bounds, meaningful-content and replacement-glyph checks passed, followed by visual review of both editions;
 - NS 16 PDF postflight: 11 A4 pages in each edition, 31 construction boxes in colour and 38 total boxes in the printer companion;
 - NS 17 PDF postflight: 16 A4 pages in each edition, 154 construction boxes in colour and 161 total boxes in the printer companion;
 - NS 16–NS 17 image inventory: exactly two labelled raster visuals in each full-colour PDF and no raster objects or colour vectors in either printer companion;
 - NS 16–NS 17 all-page render inspection: 54 of 54 pages rendered; bounds, meaningful-content and replacement-glyph checks passed, followed by visual review of all four editions;
-- archive postflight: the NS 02–NS 15 PDF archive and 45-file NS 01–NS 15 complete archive were rebuilt with the current NS 14 pair and master; the six-file NS 16–NS 17 archive remains unchanged; every archive is CRC clean, byte-identical to its repository inputs and below the 20 MB per-file limit;
+- archive postflight: the NS 02–NS 15 PDF archive and 45-file NS 01–NS 15 complete archive were rebuilt with the current NS 11–NS 14 files; the six-file NS 16–NS 17 archive remains unchanged; every archive is CRC clean, byte-identical to its repository inputs and below the 20 MB per-file limit;
 - `git diff --check`: pass.
 
-The permanent test suite also mutation-tests the gate. Ten defects—an incorrect expected round count, an incorrect UK stitch translation, removal of the NS 10 load-bearing seam wording, removal of NS 01’s explicit front-leg angle, removal of a required care section, removal of a required original-colour section, removal of NS 14’s separate-spoke safeguard, reduction of NS 14 R12 from ten to nine plain stitches, reversal of NS 16's heel turn and corruption of NS 17's even limb opening—each produce a non-zero exit and a localized finding.
+The permanent test suite also mutation-tests the gate. Seventeen defects—an incorrect expected round count; an incorrect UK stitch translation; damage to NS 11's nose/face/hat order; removal of NS 12's shaping safeguard; corruption of NS 12 R22 or its smooth-tip fallback; damage to NS 13's slip-stitch, arm-load or US/UK tall-stitch safeguards; removal of the NS 10 load-bearing seam wording; removal of NS 01’s explicit front-leg angle; removal of a required care section or original-colour section; removal of NS 14’s separate-spoke safeguard; reduction of NS 14 R12 from ten to nine plain stitches; reversal of NS 16's heel turn; and corruption of NS 17's even limb opening—each produce a non-zero exit and a localized finding.
 
 ### Collection-wide corrections
 
@@ -84,9 +85,9 @@ The permanent test suite also mutation-tests the gate. Ten defects—an incorrec
 | NS 08 | Ember the Baby Dragon | Rebuilt the spine to use exactly 33 anchors, retained an 18-to-18 open neck join, corrected face access, supplies and leg closure. | Heavy-head support, spine length, seated balance, four legs, wing/horn seams and whether a belly piece was intended. |
 | NS 09 | Shelby the Sea Turtle Bag Charm | Reworked shell/underside construction to preserve 24 exposed loops for a 24-to-24 seam; enlarged version preserves 42. Plastic eyes were removed from the tiny head fan. | Make both sizes; check seam shape, French-knot placement, stuffing, keyring abrasion and attachment durability. |
 | NS 10 | Willow the Bunny Lovey | Restored head/ear arithmetic, 240 + 12 = 252 border, gauge and diagonal calculations; the head is sewn twice around all 18 marked Head Rnd-12 stitches rather than carried by the six-stitch closure. | Highest-priority destructive seam and laundering test; blanket drape, border corners, shrinkage, infant-sleep wording and 4–6 hour estimate. |
-| NS 11 | No-Sew Christmas Gnome | Verified colour-band shaping and component counts; clarified eye/face access and “no assembly seams” versus nose/beard tacking. | Colour joins, nose/beard anchors, hat tip, stuffing and optional-eye version. |
-| NS 12 | Bobble Christmas Tree | Corrected contrast-bobble colour sequence and insert sizing/timing; full decrease ladder verified. | Base-disc fit, upright stability, bobble columns, three advertised yarn weights and cardboard non-washability. |
-| NS 13 | Christmas Ornament Bundle | Verified the star’s 35 counted stitches plus five uncounted ch-2 spaces and clarified fibre-appropriate blocking and loops. | Make bauble, star and snowflake; blocking repeatability, hanging balance, loop security and storage recovery. |
+| NS 11 | No-Sew Christmas Gnome | Corrected a genuine placement contradiction: R14 forms the nose, R15 is one complete plain skin-tone face round and the eye-centre level, and R16 begins the hat colour. Verified colour-band shaping and component counts; retained the qualified “no assembly seams” wording versus nose/beard tacking. | Confirm the R14 nose sits below eyes centred at R15; also test colour joins, nose/beard anchors, hat tip, stuffing and the optional-eye version. |
+| NS 12 | Bobble Christmas Tree | Retained the mathematically valid R22 `[BO, sc2tog] x 6` / `[BO, dc2tog] x 6`: each repeat consumes three stitches and makes two, so 18 becomes 12. Added outward-push/tension guidance, troubleshooting and the count-preserving smooth-tip fallback `[sc, sc2tog] x 6`; contrast-bobble sequence, insert timing and the full decrease ladder remain verified. | Physically sample R22 first: confirm close bobbles project outward rather than caving inward. Also test the fallback, base-disc fit, upright stability, bobble columns, all three advertised yarn weights and cardboard non-washability. |
+| NS 13 | Christmas Ornament Bundle | Confirmed that `sl st` means slip stitch in both systems and that US `tr` correctly maps to UK `dtr`. The snowflake arm anchors five stitches in each ch-5 space—one slip stitch, three tall stitches and one slip stitch—while its two ch-3 sections are free side spaces. Added a first-arm fit check, looser/larger-hook guidance and an explicit no-glue/no-starch assumption; retained the star’s 35 counted stitches plus five uncounted ch-2 tips. | Make bauble, star and snowflake; confirm the five anchored arm stitches fit without cupping, then test unstarched flatness, blocking repeatability, hanging balance, loop security and storage recovery. |
 | NS 14 | Bobble Snowflake Tree Skirt | Reconfirmed all 32 rounds, including the correct ten-plain-dc R12, the ten-round bobble sequence and 28 / 46 / 64 scallop totals; replaced the undefined continuous surface route with 12 separate no-float spokes; added exact column-marker movement, closed-ring fit check, gauge-derived body diameters, original colour routing, a tree-skirt-specific printer checklist and stronger electrical, trip, blocking and care cautions. | Crochet every advertised size or obtain equivalent tester samples; verify the ch-20/ch-24 opening, 12 separate spokes, border closure, actual diameter, yarn use, drape, flatness and wash change. |
 | NS 15 | Interchangeable Christmas Wreath | Corrected circumference/diameter relationships, round tube ends, full-tube join, two-ended decoration ties and whole-tube hanger. | Build every advertised size; long-term roundness, door exposure, tube seam, decoration ties and complete hanging system under real use. |
 | NS 16 | Crochet Mini Stocking Advent Garland | Restored the mandatory Heel Row-6 turn; replaced a free-placement decrease with an exact 23-to-20 route; defined the 5 + 10 + 5 + 3 perimeter pickup, secure loop and filled-garland support plan; removed unsupported validation language. | Crochet the heel and pickup repeatedly at the stated skill level; make, load and inspect all 24 stockings plus the complete mounted support; measure yarn, size, capacity, timing and cord elongation. |
