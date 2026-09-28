@@ -126,6 +126,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(eye_count(text))
     errors.extend(future_round(text))
     errors.extend(make_count(text))
+    errors.extend(zero_hook(text))
     errors.extend(zero_repeat(text))
     batch_errors, batch_warnings = batch_findings(text)
     errors.extend(batch_errors)
@@ -870,6 +871,22 @@ def make_count(text: str) -> list[str]:
                         f"Make count: {name} is made {count} times, "
                         f"but the line uses {found.group(1)}."
                     )
+    return _unique(errors)
+
+
+def zero_hook(text: str) -> list[str]:
+    """Flag a hook size of 0 mm in any sentence, not only "Hook: 0 mm"."""
+    zero = re.compile(
+        r"\bhook\b[^.\n]{0,48}?(?<![\d.])0(?:\.0+)?\s*mm\b"
+        r"|(?<![\d.])0(?:\.0+)?\s*mm\b[^.\n]{0,48}?\bhook\b",
+        re.IGNORECASE,
+    )
+    errors = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or _prohibition(line):
+            continue
+        if zero.search(line):
+            errors.append("A hook of 0 mm cannot make a stitch.")
     return _unique(errors)
 
 

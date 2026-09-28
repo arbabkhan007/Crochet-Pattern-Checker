@@ -68,3 +68,39 @@ def test_unread_lines_are_disclosed_and_not_errors():
     assert any("lowercase sew" in note.lower() for note in notes)
     assert verdict.not_checked == notes
     assert "photo stitch classifier" in verdict.engines_skipped
+
+
+def test_a_zero_hook_is_an_error_in_any_sentence():
+    bad = validate_pattern("Use a hook of 0 mm.\nRound 1: 6 sc into magic ring (6)\n")
+    exact = validate_pattern("Hook: 0 mm.\n")
+    banned = validate_pattern("Do not use a 0 mm hook.\nRound 1: 6 sc into magic ring (6)\n")
+    sized = validate_pattern("Hook: 3.0 mm\nRound 1: 6 sc into magic ring (6)\n")
+    eyes = validate_pattern("10 mm safety eyes (x2)\nRound 1: 6 sc into magic ring (6)\n")
+    quoted = validate_pattern("> Hook: 0 mm is impossible.\nRound 1: 6 sc into magic ring (6)\n")
+    assert bad.overall_status == "ERROR"
+    assert any("0 mm cannot make a stitch" in message for message in _messages(bad))
+    assert exact.overall_status == "ERROR"
+    assert len(exact.errors) == 1
+    assert banned.overall_status == "PASS"
+    assert sized.overall_status == "PASS"
+    assert eyes.overall_status == "PASS"
+    assert quoted.overall_status == "PASS"
+
+
+def test_an_uncounted_instruction_is_named_and_not_an_error():
+    text = (
+        "Next, make a round of single crochet increases "
+        "until the piece measures 18 stitches.\n"
+    )
+    report = validate_pattern(text)
+    notes = unread_notes(text)
+    assert report.overall_status == "PASS"
+    assert not report.errors and not report.warnings
+    assert any(note.startswith("Not counted:") for note in notes)
+    sphere = (
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: inc x 6 (12)\n"
+        "Round 3: (sc, inc) x 6 (18)\n"
+    )
+    assert unread_notes(sphere) == []
+    assert validate_pattern(sphere).overall_status == "PASS"

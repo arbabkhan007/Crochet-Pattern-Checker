@@ -21,6 +21,10 @@ Two written cases stay unread on purpose, and the checker says so instead of gue
 - a cinch with no stitch count, such as `Cinch shut`
 - a lowercase sew line, such as `sew head to body`
 
+An instruction line the parser did not count is named under Not checked. It is not treated as a passed round.
+
+A hook size of 0 mm is an error in any sentence. The line does not have to say `Hook: 0 mm`. A size such as 3.0 mm or 10 mm is not that error.
+
 A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
 
 ## Install
