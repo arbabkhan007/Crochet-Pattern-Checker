@@ -124,3 +124,23 @@ def test_zero_work_paraphrases_are_errors():
     assert safe.overall_status == "PASS"
     assert gauge.overall_status == "PASS"
     assert "centimeters" not in " ".join(_messages(gauge))
+
+
+def test_large_hook_and_zero_words_are_not_one_sentence():
+    huge = validate_pattern('Use a 40 mm hook for this piece.\n')
+    exact = validate_pattern('Hook: 40 mm.\n')
+    small = validate_pattern('Use a 3.5 mm hook.\nRound 1: 6 sc into magic ring (6)\n')
+    chain = validate_pattern('Chain zero, then single crochet.\n')
+    work = validate_pattern('Work 0 in the next round.\n')
+    cm = validate_pattern('The hook measures 5 centimeters.\n')
+    banned = validate_pattern('Do not use a 5 centimeter hook.\nRound 1: 6 sc into magic ring (6)\n')
+    quoted = validate_pattern('> Use a 40 mm hook.\nRound 1: 6 sc into magic ring (6)\n')
+    assert huge.overall_status == "PASS_WITH_WARNINGS"
+    assert any("40 mm or more" in message for message in _messages(huge))
+    assert len(exact.warnings) == 1
+    assert small.overall_status == "PASS"
+    assert any("makes no chain" in message for message in _messages(chain))
+    assert any("does no work" in message for message in _messages(work))
+    assert any("centimeters" in message for message in _messages(cm))
+    assert banned.overall_status == "PASS"
+    assert quoted.overall_status == "PASS"

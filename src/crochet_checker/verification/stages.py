@@ -131,6 +131,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(zero_repeat(text))
     batch_errors, batch_warnings = batch_findings(text)
     errors.extend(batch_errors)
+    warnings.extend(huge_hook(text))
     warnings.extend(batch_warnings)
     span_errors, span_warnings = span_findings(text)
     errors.extend(span_errors)
@@ -892,14 +893,33 @@ def zero_hook(text: str) -> list[str]:
 
 
 
+
+def huge_hook(text: str) -> list[str]:
+    """Warn when a hook of 30 mm or more is named in any sentence."""
+    huge = re.compile(
+        r"\bhook\b[^.\n]{0,32}?(?<![\d.])(?:[3-9]\d|\d{3,})(?:\.0+)?\s*mm\b"
+        r"|(?<![\d.])(?:[3-9]\d|\d{3,})(?:\.0+)?\s*mm\b[^.\n]{0,16}?\bhook\b",
+        re.IGNORECASE,
+    )
+    warnings = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or _prohibition(line):
+            continue
+        if huge.search(line):
+            warnings.append(
+                "A hook of 40 mm or more is past normal crochet. This is a warning."
+            )
+    return _unique(warnings)
+
+
 def zero_words(text: str) -> list[str]:
     """Flag zero-work and centimeter-hook lines that are not the lesson sentence."""
-    chain = re.compile(r"\bch(?:ains?)?\s+(?:of\s+)?0\b", re.IGNORECASE)
-    work = re.compile(r"\bwork\s+(?:0|zero)\s+stitches\b", re.IGNORECASE)
+    chain = re.compile(r"\bch(?:ains?)?\s+(?:of\s+)?(?:0|zero)\b", re.IGNORECASE)
+    work = re.compile(r"\bwork\s+(?:0|zero)\b", re.IGNORECASE)
     skip = re.compile(r"\bskip\s+(?:0|zero)\b", re.IGNORECASE)
     hook_cm = re.compile(
-        r"\bhook\b[^.\n]{0,24}?(?<![\d.])\d+(?:\.\d+)?\s*cm\b"
-        r"|(?<![\d.])\d+(?:\.\d+)?\s*cm\s+hook\b",
+        r"\bhook\b[^.\n]{0,32}?(?<![\d.])\d+(?:\.\d+)?\s*(?:cm|centimeters?)\b"
+        r"|(?<![\d.])\d+(?:\.\d+)?\s*(?:cm|centimeters?)\s+hook\b",
         re.IGNORECASE,
     )
     errors = []
