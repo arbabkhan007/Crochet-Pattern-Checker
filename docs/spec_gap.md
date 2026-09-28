@@ -14,6 +14,16 @@ The specification describes a multi-year system. This file says what the current
 8. Short-row gap. After short rows, `works 28 of 34` is an error until the 6 row-ends are written. A normal decrease is not a short row.
 9. Prose frill. `756 stitches worked into 108 base stitches` warns at 7.0x. The same 2.5x line used for edging applies. One stitch per base stitch does not warn.
 10. Eyes on a frill. `Mount 2 safety eyes on the frill` is an error. `not on the frill` does not fail.
+11. Closed join. `Join 3 stitches of a closed tentacle` is an error. `Cinch the last round shut and sew it flat` is an error. `Cinch shut` alone is still unread.
+12. Chain underside. A stated 30 that needs both sides of `ch 3`, while the line crosses the chain once, is an error.
+13. Dropped body stitches. `Work 21 body stitches from a 24-stitch body` is an error until the skip of 3 is written.
+14. Front and back post. `bpdc` in `FLO` is an error. A line that starts with `>` is a quote, not an instruction.
+15. Eyes before stuffing. Safety eyes written after `Stuff the head` are an error.
+16. Row-end density. `5 stitches in each row end` warns. One stitch in each row end does not.
+17. Incoming cover. `(5 sc, dec) x 6` on 44 stitches is an error because the repeat uses 42.
+18. Missing color. `Color B` is an error when the yarn line lists only `Color A`. A fragment with no color list is not checked.
+19. Round order. A repeated round number inside one piece is an error. A new piece may start again at Round 1.
+20. Every base stitch. `5 stitches worked into every base stitch` warns. One stitch does not.
 
 `verify_pattern` runs these stages with the existing text checker. `Sew the Ear` is a missing piece only when Ear is capitalized. `attach the safety eyes` and `Attach the tentacle externally` are not piece names.
 

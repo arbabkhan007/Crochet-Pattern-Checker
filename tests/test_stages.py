@@ -53,6 +53,61 @@ def test_each_stage_fails_wrong_and_passes_corrected():
             "Short rows 11a-11c worked over 12 sts, leaving 6 row-ends.\nThe next round works 28 of 34 perimeter positions.\n",
             "Short-row gap",
         ),
+        "closed": (
+            "Join 3 stitches of a closed tentacle.\n",
+            "Join 3 stitches of an open tentacle edge.\n",
+            "closed tentacle",
+        ),
+        "flat-cap": (
+            "Cinch the last round shut and sew it flat to the body.\n",
+            "Leave the last round open and sew it flat to the body.\n",
+            "sealed cap",
+        ),
+        "underside": (
+            "Join: sc 12, ch 3, sc 12, sc 3 across ch (30)\n",
+            "Join: sc 12, ch 3, sc 12, sc 3 across the chain, sc 3 across the underside of the chain (30)\n",
+            "Chain underside",
+        ),
+        "dropped": (
+            "Work 21 body stitches from a 24-stitch body.\n",
+            "Work 21 body stitches from a 24-stitch body and skip 3.\n",
+            "Dropped body",
+        ),
+        "post": (
+            "Switch to gold in FLO, (5 sc, bpdc) x 7\n",
+            "Switch to gold in FLO, (5 sc, fpdc) x 7\n",
+            "back post",
+        ),
+        "stuff": (
+            "Round 1: 6 sc into magic ring (6)\nStuff the head.\nInsert safety eyes between rounds 6 and 7.\n",
+            "Round 1: 6 sc into magic ring (6)\nInsert safety eyes between rounds 6 and 7.\nStuff the head.\n",
+            "after stuffing",
+        ),
+        "row-end": (
+            "5 stitches in each row end.\n",
+            "sc in each row end.\n",
+            "Row-end density",
+        ),
+        "incoming": (
+            "(5 sc, dec) x 6 (36) on 44 stitches.\n",
+            "(5 sc, dec) x 6 (36) on 42 stitches.\n",
+            "Incoming cover",
+        ),
+        "color": (
+            "Yarn: Color A brown.\nSwitch to Color B for the edging.\n",
+            "Yarn: Color A brown and Color B gold.\nSwitch to Color B for the edging.\n",
+            "Color B is used",
+        ),
+        "order": (
+            "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 2: sc in each st around (12)\n",
+            "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: sc in each st around (12)\n",
+            "repeats or goes backwards",
+        ),
+        "every": (
+            "5 stitches worked into every base stitch.\n",
+            "1 stitch worked into every base stitch.\n",
+            "worked 5 times",
+        ),
         "eyes": (
             "Mount 2 safety eyes on the frill.\n",
             "Mount safety eyes on a solid sc round, not on the frill.\n",

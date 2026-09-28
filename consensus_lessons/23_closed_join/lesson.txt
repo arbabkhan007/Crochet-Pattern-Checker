@@ -1,0 +1,5 @@
+Closed join
+
+How: a closed tentacle has no live stitches. Joining 3 stitches of it cannot work.
+
+What: the corrected file joins an open edge. A cinch with no sew-flat sentence is still unread.

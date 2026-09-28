@@ -1,0 +1,5 @@
+Round order
+
+How: Round 2 is written twice. The second one repeats a number that already passed.
+
+What: the corrected file continues at Round 3. A new piece may start again at Round 1.

@@ -1,0 +1,5 @@
+Missing color
+
+How: Color B is used, but the yarn line lists only Color A.
+
+What: the corrected file lists Color B before it is used. A fragment with no color list is not this rule.

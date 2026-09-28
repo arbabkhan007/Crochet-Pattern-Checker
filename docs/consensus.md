@@ -16,7 +16,7 @@ A PASS on the Gemini or ChatGPT file is not proof. `[sc 1, inc] 6 times` and a b
 
 An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.
 
-A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A cinch with no numbers is still unread. A photo is still not classified.
+A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A closed tentacle join, a chain crossed once, a dropped body count, a back post on the front loop, eyes placed after stuffing, more than 3 stitches in each row end, a repeat that misses its incoming count, an unlisted color, a repeated round number, and more than 2.5 stitches in every base stitch are now checked. A cinch with no numbers is still unread. A photo is still not classified.
 
 ## What the checker learned
 
@@ -225,7 +225,7 @@ Corrected result: PASS.
 
 How: short rows that work 28 of 34 perimeter stitches leave 6 row-ends. Those row-ends must be written. The checker does not invent them.
 
-What: the corrected file states the 6 row-ends. Eyes mounted on a frill, and a closed tentacle with no stitch count, are still unread.
+What: the corrected file states the 6 row-ends. A cinch with no numbers is still unread.
 
 ### 21_prose_frill: Prose frill
 
@@ -235,7 +235,7 @@ Corrected result: PASS.
 
 How: 756 stitches worked into 108 base stitches is 7 times full. The edge bunches above 2.5 times. This is a warning, not an error.
 
-What: the corrected file works one stitch into each base stitch. A closed tentacle with no stitch count is still unread.
+What: the corrected file works one stitch into each base stitch. A cinch with no numbers is still unread.
 
 ### 22_eyes_on_frill: Eyes on a frill
 
@@ -245,7 +245,117 @@ Corrected result: PASS.
 
 How: a safety eye mounted on a frill has no solid fabric behind it for the washer. The eye cannot lock.
 
-What: the corrected file mounts the eyes on a solid single-crochet round and says not on the frill. A closed tentacle with no stitch count is still unread.
+What: the corrected file mounts the eyes on a solid single-crochet round and says not on the frill. A cinch with no numbers is still unread.
+
+### 23_closed_join: Closed join
+
+Wrong result: ERROR.
+- A closed tentacle has no live stitches to join. Leave an open edge and state how many stitches it holds.
+Corrected result: PASS.
+
+How: a closed tentacle has no live stitches. Joining 3 stitches of it cannot work.
+
+What: the corrected file joins an open edge. A cinch with no sew-flat sentence is still unread.
+
+### 24_flat_cap: Flat cap
+
+Wrong result: ERROR.
+- A cinched round is a sealed cap. It cannot be sewn flat. Leave the last round open.
+Corrected result: PASS.
+
+How: a round that is cinched shut is a sealed cap. It cannot also be sewn flat.
+
+What: the corrected file leaves the last round open. Cinch shut by itself, with no sew-flat words, is still unread.
+
+### 25_chain_underside: Chain underside
+
+Wrong result: ERROR.
+- Chain underside missing: ch 3 is crossed once, but 30 counts both sides.
+Corrected result: PASS.
+
+How: sc 12, ch 3, sc 12, sc 3 across ch is 27 if the chain is crossed once. A stated 30 needs the underside as well.
+
+What: the corrected file writes both sides of the chain. The checker does not invent the missing 3 stitches.
+
+### 26_dropped_body: Dropped body stitches
+
+Wrong result: ERROR.
+- Dropped body stitches: 21 worked from 24 leaves 3 unwritten. Write the skip, or work the full count.
+Corrected result: PASS.
+
+How: 21 stitches worked from a 24-stitch body leave 3 stitches unwritten unless the skip is written.
+
+What: the corrected file says skip 3. Working the full 24 would also pass.
+
+### 27_front_back_post: Front and back post
+
+Wrong result: ERROR.
+- A back post in the front loop turns the ridge inward. Use a front post if the ridge should show.
+Corrected result: PASS.
+
+How: a back post in the front loop turns the ridge to the inside, where it cannot be seen.
+
+What: the corrected file uses a front post. A quoted original line is not treated as an instruction.
+
+### 28_eyes_before_stuff: Eyes before stuffing
+
+Wrong result: ERROR.
+- This piece: safety eyes are placed after stuffing. Insert them before the piece is stuffed.
+Corrected result: PASS.
+
+How: safety eyes placed after the head is stuffed have no opening for the washer.
+
+What: the corrected file inserts the eyes before stuffing. A piece that never mentions eyes is not this rule.
+
+### 29_row_end_density: Row-end density
+
+Wrong result: PASS_WITH_WARNINGS.
+- Row-end density: 5 stitches in each row end is above 3. The edge will bunch.
+Corrected result: PASS.
+
+How: 5 stitches in each row end is more than 3. The edge bunches. This is a warning.
+
+What: the corrected file works one single crochet in each row end. Two or three would also pass.
+
+### 30_incoming_cover: Incoming cover
+
+Wrong result: ERROR.
+- Incoming cover: the repeat uses 42 of 44 stitches. 2 are unaccounted for.
+Corrected result: PASS.
+
+How: (5 sc, dec) x 6 uses 42 stitches. Written on 44, it leaves 2 unaccounted for.
+
+What: the corrected file says on 42 stitches, which is what the repeat uses.
+
+### 31_missing_color: Missing color
+
+Wrong result: ERROR.
+- Color B is used but the yarn line never lists it.
+Corrected result: PASS.
+
+How: Color B is used, but the yarn line lists only Color A.
+
+What: the corrected file lists Color B before it is used. A fragment with no color list is not this rule.
+
+### 32_round_order: Round order
+
+Wrong result: ERROR.
+- Round 2 repeats or goes backwards. Number the rounds in order.
+Corrected result: PASS.
+
+How: Round 2 is written twice. The second one repeats a number that already passed.
+
+What: the corrected file continues at Round 3. A new piece may start again at Round 1.
+
+### 33_every_base: Every base stitch
+
+Wrong result: PASS_WITH_WARNINGS.
+- Every base stitch is worked 5 times. Above 2.5x the fabric bunches.
+Corrected result: PASS.
+
+How: 5 stitches worked into every base stitch is above 2.5 times. The fabric bunches. This is a warning.
+
+What: the corrected file works 1 stitch into every base stitch.
 
 ## What was checked and not learned
 
@@ -258,7 +368,7 @@ What: the corrected file mounts the eyes on a solid single-crochet round and say
 | Wyvern | 35-stitch fan versus 42-stitch fan | Both still warn above 2.5 times full. Neither is the lesson. |
 | Dragon and Chimera | Which decrease formula to use | The models disagree on the target count. Only the cover-the-round rule is learned. |
 | Leviathan | Rebuild the hub to 64 | One model changes the count to 48. The other rebuilds the join. Only the 48-clause total is learned. |
-| All | Closed tentacle wording | Safety eyes mounted on a frill are now an error. A closed tentacle with no stitch count is still unread. |
+| All | Countless cinch, lowercase sew head to body | A closed tentacle join and a cinched round sewn flat are now errors. A cinch with no numbers is still unread. |
 
 ## Viewpoint check
 
@@ -266,12 +376,12 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 73 | 4 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | PASS | 0 | 0 | none |
-| `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 8 | 1 | Line 43: worked 5 stitches into 15 without a decrease.; Prose frill: 5 times full is above 2.5x. The edge will bunch. |
-| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 12 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated. |
-| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 41 | 1 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 21 | 2 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
+| `wrong_benchmarks.md` | whole file | ERROR | 80 | 6 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | ERROR | 1 | 0 | Round 1 repeats or goes backwards. Number the rounds in order. |
+| `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 9 | 2 | Line 43: worked 5 stitches into 15 without a decrease.; Chain underside missing: ch 3 is crossed once, but 30 counts both sides.; Prose frill: 5 times full is above 2.5x. The edge will bunch. |
+| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 13 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated.; Round 11 repeats or goes backwards. Number the rounds in order. |
+| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 43 | 2 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 23 | 2 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
 | `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |

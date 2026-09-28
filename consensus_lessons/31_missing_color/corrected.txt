@@ -1,0 +1,2 @@
+Yarn: Color A brown and Color B gold.
+Switch to Color B for the edging.

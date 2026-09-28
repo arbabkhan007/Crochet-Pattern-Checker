@@ -1,0 +1,5 @@
+Front and back post
+
+How: a back post in the front loop turns the ridge to the inside, where it cannot be seen.
+
+What: the corrected file uses a front post. A quoted original line is not treated as an instruction.

@@ -1,0 +1,5 @@
+Chain underside
+
+How: sc 12, ch 3, sc 12, sc 3 across ch is 27 if the chain is crossed once. A stated 30 needs the underside as well.
+
+What: the corrected file writes both sides of the chain. The checker does not invent the missing 3 stitches.

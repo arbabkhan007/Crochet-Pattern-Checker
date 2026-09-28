@@ -1,0 +1,5 @@
+Row-end density
+
+How: 5 stitches in each row end is more than 3. The edge bunches. This is a warning.
+
+What: the corrected file works one single crochet in each row end. Two or three would also pass.

@@ -104,6 +104,16 @@ def run_stages(text: str) -> StageReport:
     warnings.extend(gauge_band(text))
     warnings.extend(prose_frill(text))
     errors.extend(eyes_on_frill(text))
+    errors.extend(closed_join(text))
+    errors.extend(chain_underside(text))
+    errors.extend(dropped_body(text))
+    errors.extend(front_back_post(text))
+    errors.extend(eyes_before_stuff(text))
+    warnings.extend(row_end_density(text))
+    errors.extend(incoming_cover(text))
+    errors.extend(missing_color(text))
+    errors.extend(round_order(text))
+    warnings.extend(every_base(text))
     return StageReport(
         errors=_unique(errors),
         warnings=_unique(warnings),
@@ -118,6 +128,16 @@ def run_stages(text: str) -> StageReport:
             "gauge band",
             "prose frill",
             "eyes on a frill",
+            "closed join",
+            "chain underside",
+            "dropped body",
+            "front and back post",
+            "eyes before stuffing",
+            "row-end density",
+            "incoming cover",
+            "missing color",
+            "round order",
+            "every base stitch",
         ],
         engines_skipped=list(_SKIPPED),
     )
@@ -378,6 +398,268 @@ def eyes_on_frill(text: str) -> list[str]:
                 "Mount them on a solid single-crochet round."
             )
     return _unique(errors)
+
+
+
+def closed_join(text: str) -> list[str]:
+    """Flag a join into a closed tentacle, or a cinched round sewn flat."""
+    errors = []
+    for line in text.splitlines():
+        if _prohibition(line):
+            continue
+        if re.search(r"\bjoin\b.{0,50}\b(?:closed|sealed)\s+tentacle\b", line, re.IGNORECASE):
+            errors.append(
+                "A closed tentacle has no live stitches to join. "
+                "Leave an open edge and state how many stitches it holds."
+            )
+        if re.search(r"\bcinch\b.{0,40}\bshut\b.{0,40}\bsew\b.{0,30}\bflat\b", line, re.IGNORECASE):
+            errors.append(
+                "A cinched round is a sealed cap. It cannot be sewn flat. Leave the last round open."
+            )
+    return _unique(errors)
+
+
+def chain_underside(text: str) -> list[str]:
+    """Flag a stated count that needs both sides of a chain when only one is written."""
+    errors = []
+    for line in text.splitlines():
+        if re.search(r"\bunderside\b|\bboth sides\b", line, re.IGNORECASE):
+            continue
+        stated = _STATED.search(line.strip())
+        chains = [int(item) for item in re.findall(r"\bch\s+(\d+)\b", line, re.IGNORECASE)]
+        if not stated or len(chains) != 1:
+            continue
+        chain = chains[0]
+        across = [int(item) for item in re.findall(r"\bsc\s+(\d+)\s+across\b", line, re.IGNORECASE)]
+        if sum(1 for item in across if item == chain) != 1:
+            continue
+        singles = [int(item) for item in re.findall(r"\bsc\s+(\d+)\b", line, re.IGNORECASE)]
+        if chain not in singles:
+            continue
+        singles.remove(chain)
+        both = sum(singles) + (2 * chain)
+        if int(stated.group(1)) == both:
+            errors.append(
+                f"Chain underside missing: ch {chain} is crossed once, "
+                f"but {both} counts both sides."
+            )
+    return _unique(errors)
+
+
+def dropped_body(text: str) -> list[str]:
+    """Flag body stitches taken from a larger count with no skip written."""
+    errors = []
+    for line in text.splitlines():
+        match = re.search(
+            r"\bwork(?:ed)?\s+(\d+)\b.{0,40}?\bfrom\s+(?:an?\s+)?(\d+)-stitch\b",
+            line,
+            re.IGNORECASE,
+        )
+        if not match:
+            continue
+        worked = int(match.group(1))
+        source = int(match.group(2))
+        gap = source - worked
+        if gap <= 0:
+            continue
+        if re.search(rf"\bskip(?:ped)?\s+{gap}\b", line, re.IGNORECASE):
+            continue
+        errors.append(
+            f"Dropped body stitches: {worked} worked from {source} leaves {gap} unwritten. "
+            "Write the skip, or work the full count."
+        )
+    return _unique(errors)
+
+
+def front_back_post(text: str) -> list[str]:
+    """Flag a back post worked in the front loop. A quoted line is not an instruction."""
+    errors = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or _prohibition(line):
+            continue
+        front = re.search(r"\b(?:flo|front loop)\b", line, re.IGNORECASE)
+        back = re.search(r"\bbp(?:sc|hdc|dc|tr)\b", line, re.IGNORECASE)
+        if front and back:
+            errors.append(
+                "A back post in the front loop turns the ridge inward. "
+                "Use a front post if the ridge should show."
+            )
+    return _unique(errors)
+
+
+def eyes_before_stuff(text: str) -> list[str]:
+    """Flag safety eyes placed after the piece has been stuffed."""
+    errors = []
+    for name, body in _pieces(text):
+        stuff_at = None
+        eyes_at = None
+        for index, line in enumerate(body.splitlines()):
+            if stuff_at is None and re.search(r"\bstuff(?:ed)?\b", line, re.IGNORECASE):
+                stuff_at = index
+            if eyes_at is None and re.search(
+                r"\b(?:insert|mount|place|attach)\b.{0,30}\beyes?\b",
+                line,
+                re.IGNORECASE,
+            ):
+                eyes_at = index
+        if stuff_at is not None and eyes_at is not None and stuff_at < eyes_at:
+            label = name or "This piece"
+            errors.append(
+                f"{label}: safety eyes are placed after stuffing. "
+                "Insert them before the piece is stuffed."
+            )
+    return _unique(errors)
+
+
+def row_end_density(text: str) -> list[str]:
+    """Warn when more than 3 stitches are worked in each row end."""
+    warnings = []
+    for line in text.splitlines():
+        if _quoted_or_explained(line):
+            continue
+        match = re.search(
+            r"\b(\d+)\s+stitches\s+in\s+each\s+row[-\s]?ends?\b",
+            line,
+            re.IGNORECASE,
+        )
+        if not match:
+            continue
+        count = int(match.group(1))
+        if count > 3:
+            warnings.append(
+                f"Row-end density: {count} stitches in each row end is above 3. "
+                "The edge will bunch."
+            )
+    return _unique(warnings)
+
+
+def incoming_cover(text: str) -> list[str]:
+    """Flag a written repeat that does not consume the incoming count on the same line."""
+    errors = []
+    for line in text.splitlines():
+        incoming = re.search(r"\bon\s+(\d+)\s+stitches\b", line, re.IGNORECASE)
+        repeat = re.search(r"\(([^)]+)\)\s*[x×]\s*(\d+)", line, re.IGNORECASE)
+        if not incoming or not repeat:
+            continue
+        available = int(incoming.group(1))
+        used = _repeat_use(repeat.group(1), int(repeat.group(2)))
+        if used is None or used == available:
+            continue
+        if re.search(rf"\bskip(?:ped)?\s+{abs(available - used)}\b", line, re.IGNORECASE):
+            continue
+        errors.append(
+            f"Incoming cover: the repeat uses {used} of {available} stitches. "
+            f"{abs(available - used)} are unaccounted for."
+        )
+    return _unique(errors)
+
+
+def missing_color(text: str) -> list[str]:
+    """Flag a Color letter used when a yarn list names other colors but not this one."""
+    listed = set()
+    used = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">"):
+            continue
+        defined = set(re.findall(r"\bColor\s+([A-Z])\s*:", line))
+        if re.match(r"^\s*(?:[-*]\s*)?(?:yarn|materials)\b", line, re.IGNORECASE):
+            defined.update(re.findall(r"\bColor\s+([A-Z])\b", line))
+        if defined:
+            listed.update(defined)
+            continue
+        used.extend(re.findall(r"\bColor\s+([A-Z])\b", line))
+    if not listed:
+        return []
+    return _unique(
+        [
+            f"Color {color} is used but the yarn line never lists it."
+            for color in used
+            if color not in listed
+        ]
+    )
+
+
+def round_order(text: str) -> list[str]:
+    """Flag a round number that repeats or goes backwards inside one piece."""
+    errors = []
+    seen: set[int] = set()
+    last = None
+    for line in text.splitlines():
+        if _is_piece_line(line):
+            seen = set()
+            last = None
+            continue
+        header = _HEADER.match(line.strip())
+        if not header:
+            continue
+        start = int(header.group(2))
+        end_match = re.search(r"\d+\s*[-–—]\s*(\d+)", line)
+        end = int(end_match.group(1)) if end_match else start
+        numbers = range(start, end + 1)
+        if any(number in seen or (last is not None and number < last) for number in numbers):
+            errors.append(
+                f"Round {start} repeats or goes backwards. Number the rounds in order."
+            )
+        seen.update(numbers)
+        last = end
+    return _unique(errors)
+
+
+def every_base(text: str) -> list[str]:
+    """Warn when more than 2.5 stitches are worked into every base stitch."""
+    warnings = []
+    for line in text.splitlines():
+        if _quoted_or_explained(line):
+            continue
+        match = re.search(
+            r"\b(\d+(?:\.\d+)?)\s+stitches\s+worked\s+into\s+every\s+base\b",
+            line,
+            re.IGNORECASE,
+        )
+        if not match:
+            continue
+        count = float(match.group(1))
+        if count > 2.5:
+            warnings.append(
+                f"Every base stitch is worked {count:g} times. Above 2.5x the fabric bunches."
+            )
+    return _unique(warnings)
+
+
+def _prohibition(line: str) -> bool:
+    return bool(re.search(r"\bdo not\b|\bdon't\b|\bshould\s+not\b", line, re.IGNORECASE))
+
+
+def _quoted_or_explained(line: str) -> bool:
+    if line.lstrip().startswith(">") or _prohibition(line):
+        return True
+    return bool(re.search(r"\binstead of\b|\bcreates\b|\bexcessive\b|\bstated\b", line, re.IGNORECASE))
+
+
+def _repeat_use(unit: str, times: int) -> int | None:
+    used = 0
+    found = False
+    for part in unit.split(","):
+        part = part.strip()
+        counted = re.search(
+            r"(\d+)\s+(sc|hdc|dc|tr|inc|dec|sc2tog)\b",
+            part,
+            re.IGNORECASE,
+        )
+        bare = re.search(r"\b(sc|hdc|dc|tr|inc|dec|sc2tog)\b", part, re.IGNORECASE)
+        if counted:
+            count = int(counted.group(1))
+            name = counted.group(2).lower()
+        elif bare:
+            count = 1
+            name = bare.group(1).lower()
+        else:
+            continue
+        found = True
+        used += count * (2 if name in {"dec", "sc2tog"} else 1)
+    if not found:
+        return None
+    return used * times
 
 
 def prose_frill(text: str) -> list[str]:
