@@ -1,0 +1,5 @@
+Dialect scope
+
+How: a piece marked UK cannot use sc, and a piece marked US cannot use htr. Two pieces may use different dialects when each one says so.
+
+What: the corrected file keeps the US term inside the piece marked US. The checker does not treat dc as proof of either dialect, because both countries use that spelling.

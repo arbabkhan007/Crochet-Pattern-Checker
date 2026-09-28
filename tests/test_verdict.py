@@ -7,9 +7,10 @@ def test_verdict_uses_the_real_checker_and_names_the_gaps():
     assert verdict.status == "ERROR"
     assert any("12 stitches jump to 24" in item for item in verdict.errors)
     assert "text checker" in verdict.engines_ran
-    assert "chart parser" in verdict.engines_skipped
+    assert "chart text" in verdict.engines_ran
+    assert "chart image detector" in verdict.engines_skipped
     assert "photo stitch classifier" in verdict.engines_skipped
-    assert "stitch accessibility mesh" in verdict.engines_skipped
+    assert "hosted language model" in verdict.engines_skipped
 
     good = (
         "Round 1: 6 sc into magic ring (6)\n"

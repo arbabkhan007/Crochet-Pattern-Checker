@@ -1,0 +1,5 @@
+Termination
+
+How: a repeat until a length, a stitch count, or a round count can stop. A repeat until the piece is long enough cannot.
+
+What: the corrected file gives the repeat a stitch stop. The checker does not invent the missing count.

@@ -1,0 +1,2 @@
+Chart legend: X = sc, V = dc
+Chart row 1: X V X (4)

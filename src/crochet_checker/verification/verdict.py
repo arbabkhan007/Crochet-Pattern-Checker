@@ -13,12 +13,11 @@ from ..validation.validator import validate_pattern
 
 
 SKIPPED = (
-    "chart parser",
+    "chart image detector",
     "photo stitch classifier",
     "hosted language model",
-    "stitch accessibility mesh",
-    "trained gauge model",
-    "ambiguity classifier",
+    "vision training set",
+    "process cluster",
 )
 
 
@@ -50,6 +49,15 @@ def verify_pattern(text: str) -> Verdict:
         score=int(report.score),
         errors=[str(getattr(item, "message", item)) for item in report.errors],
         warnings=[str(getattr(item, "message", item)) for item in report.warnings],
-        engines_ran=["text checker", "stitch count", "audit rules"],
+        engines_ran=[
+            "text checker",
+            "dialect scope",
+            "termination",
+            "stitch reachability",
+            "references",
+            "chart text",
+            "ambiguity",
+            "gauge band",
+        ],
         engines_skipped=list(SKIPPED),
     )

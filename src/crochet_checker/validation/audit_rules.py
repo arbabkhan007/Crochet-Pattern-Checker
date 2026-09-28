@@ -343,6 +343,10 @@ def audit_findings(text: str) -> tuple[list[str], list[str]]:
     errors.extend(NeckJumpChecker().check(text))
     errors.extend(SeamCountChecker().check(text))
     warnings.extend(InchSpanChecker().check(text))
+    from ..verification.stages import stage_findings
+    stage_errors, stage_warnings = stage_findings(text)
+    errors.extend(stage_errors)
+    warnings.extend(stage_warnings)
     return _messages(errors), _messages(warnings)
 
 

@@ -2,29 +2,29 @@
 
 The specification describes a multi-year system. This file says what the current code does. It does not claim the missing engines exist.
 
-## Have
+## Stages that run on written text
+
+1. Dialect scope. A piece marked UK cannot use `sc` or `hdc`. A piece marked US cannot use `htr` or `trtr`. Pieces may declare different dialects. `dc` is not treated as proof of either dialect.
+2. Termination. `Repeat until the piece is long enough` is an error. A stitch, round, or inch stop passes.
+3. Stitch reachability. The 9th stitch is an error when the previous round has 6. A skip past the live stitches is an error. An unused loop is an error when that round already worked both loops.
+4. References. `Join to Round 9` is an error when Round 9 never starts. `Sew the Ear to the Head` is an error when Ear never starts. A lowercase sentence such as `sew head to body` is still unread.
+5. Chart text. `Chart row 1: X V X (4)` is an error because the symbols produce 3. The legend in the pattern defines the symbols.
+6. Ambiguity. `sc in next st`, with no count and no around or across, warns. This is a written rule, not a language model.
+7. Gauge band. A count outside half to double the Craft Yarn Council crochet single-crochet band warns. Worsted is 11 to 14 per 4 inches, so 40 warns and 12 does not. A tight amigurumi gauge such as 20 does not warn. Lace is not banded. Source: https://www.craftyarncouncil.com/standards/yarn-weight-system
+
+`verify_pattern` runs these stages with the existing text checker.
+
+## Still not run
+
+- A chart image is not detected. `read_chart_image` does not invent symbols.
+- A photo is not classified. `inspect_photo` does not open the file and does not invent stitch or row counts.
+- No hosted language model is installed.
+- No vision training set is installed.
+- No process cluster is installed. The stages run in this process, in order.
+
+## Already had
 
 - A custom text parser for US rounds, rows, repeats, increases, and decreases. It is not tree-sitter.
-- A deterministic checker. The compiler, not a model, decides stitch counts.
-- Proved rules: stated count, repeat cover, post foundation, ghost eyes, equal socket, edging fullness in checker dialect, span match in checker dialect, tab fit, clause total, 12-to-24 neck jump, unequal stitch seam, unequal inch seam.
-- A shape mesh that can export a sphere, hat, tube, cone, or bowl. It does not track each stitch's loops.
-- US/UK term translation and a mixed-term warning. It is not a per-piece dialect scope.
-- PDF text reading, a FastAPI app, and a learning store that does not change the rules by itself.
-- Gauge image intake that stores a photo only after a person confirms the stitch and row counts.
-
-## Partial
-
-- Materials, hook, and gauge lines are read when they match the parser.
-- Assembly joins are checked when the counts are written as numbers.
-- Yarn and gauge estimates are formulas, not trained models.
-- Optional cloud explanation runs only when an API key is set. It cannot override the checker.
-
-## Do not have
-
-- Chart symbol detection.
-- Photo classification of stitch type.
-- A stitch mesh that can say whether a loop is still reachable.
-- A hosted 70B model, a vision training set, or a benchmark corpus.
-- Kubernetes, a job queue, or automatic pattern generation.
-
-`verify_pattern` runs only the text checker. Its result lists the engines that were skipped.
+- Stated count, repeat cover, post foundation, ghost eyes, equal socket, edging fullness, span match, tab fit, clause total, 12-to-24 neck jump, unequal stitch seam, and unequal inch seam.
+- A shape mesh for a sphere, hat, tube, cone, or bowl. It does not track each loop. Stage 3 is the written reachability check, not that shape mesh.
+- PDF text reading, a small web app, and a learning store that does not change the rules by itself.

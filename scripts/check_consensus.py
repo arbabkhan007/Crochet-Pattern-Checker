@@ -143,7 +143,7 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.",
         "",
-        "A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A cinch with no numbers is still unread.",
+        "A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, and a gauge far outside the Craft Yarn Council crochet band are now checked. A cinch with no numbers is still unread. A photo is still not classified.",
         "",
         "## What the checker learned",
         "",

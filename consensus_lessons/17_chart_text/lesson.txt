@@ -1,0 +1,5 @@
+Chart text
+
+How: written chart symbols are counted. X V X is 3 stitches, so a stated 4 is wrong. A chart picture is not read.
+
+What: the corrected file has four symbols and states 4. The legend in the pattern defines the symbols.

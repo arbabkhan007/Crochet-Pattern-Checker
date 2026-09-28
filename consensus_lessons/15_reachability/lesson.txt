@@ -1,0 +1,5 @@
+Stitch reachability
+
+How: a later round cannot work the 9th stitch when the previous round has 6. A loop already used on both sides cannot be used again.
+
+What: the corrected file works each of the 6 stitches. The checker tracks written indexes. It does not build a picture of the fabric.
