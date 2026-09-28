@@ -57,3 +57,14 @@ Thumbs.db
 .env.*
 !.env.example
 test-results/
+
+.venv/
+*.backup
+*.save
+*.bundle
+*.tar.gz
+collection-errors.txt
+pytest-errors.txt
+remaining-errors.txt
+.crochet_ai_knowledge.json
+generated_sphere_small.json
