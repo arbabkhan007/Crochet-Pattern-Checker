@@ -144,3 +144,27 @@ def test_large_hook_and_zero_words_are_not_one_sentence():
     assert any("centimeters" in message for message in _messages(cm))
     assert banned.overall_status == "PASS"
     assert quoted.overall_status == "PASS"
+
+
+def test_spoken_zero_and_one_are_the_same_defects():
+    dec = validate_pattern('Decrease five times across eleven stitches.\n')
+    ok = validate_pattern('Decrease six times across twelve stitches.\n')
+    round_zero = validate_pattern('The piece starts at Round zero.\n')
+    shell = validate_pattern('Work a shell of one.\n')
+    make = validate_pattern('Ears (make zero).\n')
+    yo = validate_pattern('yo zero, then pull through.\n')
+    small = validate_pattern('Use a 3.5 mm hook.\nRound 1: 6 sc into magic ring (6)\n')
+    bad = validate_pattern('Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\n')
+    quoted = validate_pattern('> Work a shell of one.\nRound 1: 6 sc into magic ring (6)\n')
+    banned = validate_pattern('Do not chain zero.\nRound 1: 6 sc into magic ring (6)\n')
+    assert any("uses 10 stitches, not 11" in message for message in _messages(dec))
+    assert ok.overall_status == "PASS"
+    assert any("Round 0 is not a round" in message for message in _messages(round_zero))
+    assert any("not a shell" in message for message in _messages(shell))
+    assert any("Make 0" in message for message in _messages(make))
+    assert any("yo 0" in message for message in _messages(yo))
+    assert small.overall_status == "PASS"
+    assert bad.overall_status == "ERROR"
+    assert any("6 to 18" in message for message in _messages(bad))
+    assert quoted.overall_status == "PASS"
+    assert banned.overall_status == "PASS"

@@ -29,6 +29,8 @@ A chain of 0, work of zero stitches, a skip of zero, and a repeat of zero times 
 
 A hook of 40 mm or more is a warning in any sentence, not only after `Hook:`. Chain zero and work 0 are the same errors as `ch 0` and `work 0 stitches`. A hook size written as centimeters is the same error as cm.
 
+The words zero and one are the same defects as 0 and 1 in those written checks. Decrease five times across eleven stitches is the same error as dec x 5 on 11 stitches.
+
 A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
 
 ## Install

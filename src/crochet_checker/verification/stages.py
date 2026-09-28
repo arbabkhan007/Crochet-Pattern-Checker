@@ -127,6 +127,9 @@ def run_stages(text: str) -> StageReport:
     errors.extend(future_round(text))
     errors.extend(make_count(text))
     errors.extend(zero_hook(text))
+    spoken_errors, spoken_warnings = spoken_forms(text)
+    errors.extend(spoken_errors)
+    warnings.extend(spoken_warnings)
     errors.extend(zero_words(text))
     errors.extend(zero_repeat(text))
     batch_errors, batch_warnings = batch_findings(text)
@@ -910,6 +913,100 @@ def huge_hook(text: str) -> list[str]:
                 "A hook of 40 mm or more is past normal crochet. This is a warning."
             )
     return _unique(warnings)
+
+
+
+def spoken_forms(text: str) -> tuple[list[str], list[str]]:
+    """Accept the words zero and one, and a large hook, in any sentence."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    pairs = (
+        (r"\bch(?:ains?)?\s+(?:of\s+)?(?:0|zero)\b", "ch 0 makes no chain."),
+        (r"\bwork\s+(?:0|zero)\b", "Work 0 stitches does no work."),
+        (r"\bskip\s+(?:0|zero)\b", "Skip 0 does not move the hook."),
+        (r"\bdecrease\s+to\s+(?:0|zero)\s+stitches\b", "Decrease to 0 stitches leaves nothing to fasten."),
+        (r"\buntil\s+(?:0|zero)\s+stitches\b", "Repeat until 0 stitches is not a workable stop."),
+        (r"\bround\s+(?:0|zero)\b", "Round 0 is not a round. Start at Round 1."),
+        (r"\brow\s+(?:0|zero)\b", "Row 0 is not a row. Start at Row 1."),
+        (r"\bmarker in stitch\s+(?:0|zero)\b", "Stitch 0 does not exist. Place the marker in stitch 1 or later."),
+        (r"\bgauge:\s*(?:0|zero)\s+sc\b", "A gauge of 0 sc is not a fabric."),
+        (r"\b(?:0|zero)\s+inches\s+wide\b", "A finished width of 0 inches is not a piece."),
+        (r"\bpicot of\s+(?:0|zero)\b", "A picot of 0 is not a picot."),
+        (r"\bch-(?:0|zero)\s+sp\b", "A ch-0 space has no chains to work into."),
+        (r"\bshell of\s+(?:1|one)\b", "A shell of 1 is not a shell. Use at least 3 stitches."),
+        (r"\b(?:1|one)-dc cluster\b", "A 1-dc cluster is one stitch, not a cluster."),
+        (r"\bbobble of\s+(?:1|one)\b", "A bobble of 1 has nothing to gather."),
+        (r"\bpuff of\s+(?:1|one)\b", "A puff of 1 is not a puff."),
+        (r"\bpopcorn of\s+(?:1|one)\b", "A popcorn of 1 cannot be closed."),
+        (r"\byo\s+(?:0|zero)\b", "yo 0 does not put yarn on the hook."),
+        (r"\bpull through\s+(?:0|zero)\s+loops\b", "Pull through 0 loops leaves the loops on the hook."),
+        (r"\b(?:0|zero)\s+rows tall\b", "A piece that is 0 rows tall was not made."),
+        (r"\b(?:0|zero)\s+rounds tall\b", "A piece that is 0 rounds tall was not made."),
+        (r"\bmake\s+(?:0|zero)\b", "Make 0 asks for none of that piece."),
+        (r"\bwork even for\s+(?:0|zero)\s+rows\b", "Work even for 0 rows does no work."),
+        (r"\bplace\s+(?:0|zero)\s+safety eyes\b", "Place 0 safety eyes mounts nothing."),
+        (r"\b(?:0|zero)\s+yards\b", "0 yards cannot make the piece."),
+        (r"\bstuff with\s+(?:0|zero)\s+g\b", "Stuff with 0 g leaves the piece empty."),
+        (r"\bevery\s+(?:0|zero)\s+(?:rows|rounds)\b", "Every 0 rows or rounds never happens."),
+        (r"\bbullion of\s+(?:0|zero)\b", "A bullion of 0 wraps has no wraps."),
+        (r"\bcable over\s+(?:0|zero)\s+stitches\b", "A cable over 0 stitches does not cross."),
+        (r"\bfringe of\s+(?:0|zero)\b", "A fringe of 0 strands is not a fringe."),
+        (r"\bbuttonhole of\s+(?:0|zero)\b", "A buttonhole of 0 chains has no opening."),
+        (r"\bi-cord of\s+(?:0|zero)\b", "An i-cord of 0 stitches has no cord."),
+        (r"\b(?:oval start with|square of|rectangle of|tube of|corner of)\s+(?:0|zero)\b", "A count of 0 does not make that shape."),
+        (r"\bsolomon knot of\s+(?:0|zero)\b", "A Solomon knot of 0 is not a knot."),
+        (r"\bsurface crochet of\s+(?:0|zero)\b", "Surface crochet of 0 chains draws no line."),
+        (r"\bbead every\s+(?:0|zero)\b", "A bead every 0 stitches is never placed."),
+        (r"\bstripe every\s+(?:0|zero)\b", "A stripe every 0 rounds never stripes."),
+        (r"\b(?:pom-pom|tassel) of\s+(?:0|zero)\b", "A wrap count of 0 has nothing to tie."),
+        (r"\bpineapple of\s+(?:0|zero)\b", "A pineapple of 0 is not a pineapple motif."),
+        (r"\bspike stitch down\s+(?:0|zero)\b", "A spike stitch down 0 rows does not leave the row."),
+        (r"\bloop stitch of\s+(?:0|zero)\b", "A loop stitch of 0 has no loop."),
+        (
+            r"\bhook\b[^.\n]{0,32}?(?<![\d.])\d+(?:\.\d+)?\s*centimeters?\b"
+            r"|(?<![\d.])\d+(?:\.\d+)?\s*centimeters?\s+hook\b",
+            "The hook is written in centimeters. Crochet hooks are written in millimeters.",
+        ),
+    )
+    huge = re.compile(
+        r"\bhook\b[^.\n]{0,32}?(?<![\d.])(?:[3-9]\d|\d{3,})(?:\.0+)?\s*mm\b"
+        r"|(?<![\d.])(?:[3-9]\d|\d{3,})(?:\.0+)?\s*mm\b[^.\n]{0,16}?\bhook\b",
+        re.IGNORECASE,
+    )
+    words = {
+        "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+        "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+        "sixteen": 16, "eighteen": 18, "twenty": 20,
+    }
+    number = r"(?:\d+|" + "|".join(words) + r")"
+    decrease = re.compile(
+        rf"\b(?:decrease|dec)\s+({number})\s+times\s+(?:across|on)\s+({number})\s+stitches\b",
+        re.IGNORECASE,
+    )
+
+    def as_int(token: str) -> int:
+        token = token.lower()
+        return words[token] if token in words else int(token)
+
+    for raw in text.splitlines():
+        if raw.lstrip().startswith(">") or _prohibition(raw):
+            continue
+        for pattern, message in pairs:
+            if re.search(pattern, raw, re.IGNORECASE):
+                errors.append(message)
+        if huge.search(raw):
+            warnings.append("A hook of 40 mm or more is past normal crochet. This is a warning.")
+        found = decrease.search(raw)
+        if found:
+            times = as_int(found.group(1))
+            incoming = as_int(found.group(2))
+            used = times * 2
+            if used != incoming:
+                errors.append(
+                    f"Decrease cover: dec x {times} uses {used} stitches, not {incoming}."
+                )
+    return _unique(errors), _unique(warnings)
 
 
 def zero_words(text: str) -> list[str]:
