@@ -274,6 +274,42 @@ class SeamCountChecker:
         return _messages(errors)
 
 
+
+_INCH_SPAN = re.compile(
+    r"\b(?:sew|attach|graft)(?:n|ed|ing)?\b"
+    r".{0,70}?"
+    r"(\d+(?:\.\d+)?)\s*-?\s*(?:inch(?:es)?|in)\b"
+    r".{0,80}?"
+    r"(\d+(?:\.\d+)?)\s*-?\s*(?:inch(?:es)?|in)\b",
+    re.IGNORECASE,
+)
+
+
+class InchSpanChecker:
+    """Warn when one inch edge is sewn to a much shorter inch edge."""
+
+    def check(self, text: str) -> list[str]:
+        warnings = []
+        for line in text.splitlines():
+            if re.search(r"\bdo not\b|\bdon't\b", line, re.IGNORECASE):
+                continue
+            match = _INCH_SPAN.search(line)
+            if not match:
+                continue
+            left = float(match.group(1))
+            right = float(match.group(2))
+            small = min(left, right)
+            if small <= 0:
+                continue
+            ratio = max(left, right) / small
+            if ratio > 1.25:
+                warnings.append(
+                    f"Span mismatch: {left:g} inches sewn to {right:g} inches "
+                    f"differ by {ratio:.1f}x."
+                )
+        return _messages(warnings)
+
+
 class NeckJumpChecker:
     """Flag a 12-stitch round that doubles to 24 in one step."""
 
@@ -306,6 +342,7 @@ def audit_findings(text: str) -> tuple[list[str], list[str]]:
     warnings.extend(ShortRowPerimeterChecker().check(text))
     errors.extend(NeckJumpChecker().check(text))
     errors.extend(SeamCountChecker().check(text))
+    warnings.extend(InchSpanChecker().check(text))
     return _messages(errors), _messages(warnings)
 
 

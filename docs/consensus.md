@@ -16,7 +16,7 @@ A PASS on the Gemini or ChatGPT file is not proof. `[sc 1, inc] 6 times` and a b
 
 An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.
 
-A 12-to-24 increase is now an error. An unequal sew, cinch, or graft count is now an error. A cinch with no stitch counts is still unread.
+A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A cinch with no numbers is still unread.
 
 ## What the checker learned
 
@@ -135,6 +135,16 @@ How: a seam closes only when both edges have the same number of stitches. Sewing
 
 What: both corrected files agree the counts must match. The checker now reads those sentences. It does not choose 3 and 3 over 4 and 4 when a pattern offers both equal choices.
 
+### 12_inch_span: Inch span
+
+Wrong result: PASS_WITH_WARNINGS.
+- Span mismatch: 3.33 inches sewn to 1.69 inches differ by 2.0x.
+Corrected result: PASS.
+
+How: 3.33 inches sewn flat to 1.69 inches is about twice as long. The edge puckers unless one side is resized or the pattern says to gather it.
+
+What: both corrected files agree those lengths cannot be sewn flat. The checker now warns above 1.25 times. Matching the two inch lengths passes. A gather sentence is still not confirmed.
+
 ## What was checked and not learned
 
 | Pattern | Agreed defect | Why it is not a lesson |
@@ -154,11 +164,11 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 71 | 0 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | whole file | ERROR | 71 | 1 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
 | `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | PASS | 0 | 0 | none |
 | `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 8 | 0 | Line 43: worked 5 stitches into 15 without a decrease. |
 | `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 11 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
-| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 41 | 0 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 41 | 1 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
 | `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 20 | 0 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |

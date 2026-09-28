@@ -143,7 +143,7 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.",
         "",
-        "A 12-to-24 increase is now an error. An unequal sew, cinch, or graft count is now an error. A cinch with no stitch counts is still unread.",
+        "A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A cinch with no numbers is still unread.",
         "",
         "## What the checker learned",
         "",
