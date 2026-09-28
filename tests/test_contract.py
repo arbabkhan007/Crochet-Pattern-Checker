@@ -104,3 +104,23 @@ def test_an_uncounted_instruction_is_named_and_not_an_error():
     )
     assert unread_notes(sphere) == []
     assert validate_pattern(sphere).overall_status == "PASS"
+
+
+def test_zero_work_paraphrases_are_errors():
+    chain = validate_pattern('Make a chain of 0 before the first stitch.\n')
+    work = validate_pattern('Work zero stitches in this round.\n')
+    skip = validate_pattern('Skip zero stitches, then sc.\n')
+    repeat = validate_pattern('Repeat this zero times.\n')
+    hook = validate_pattern('The hook is 5 cm.\n')
+    safe = validate_pattern('Do not make a chain of 0.\nch 10, then sc in the next stitch.\nWork 6 stitches.\nSkip 2 stitches.\nRound 1: 6 sc into magic ring (6)\n')
+    gauge = validate_pattern('Gauge: 20 sts and 22 rnds = 4 inches (10 cm) in sc with a 3.5 mm hook.\nRound 1: 6 sc into magic ring (6)\n')
+    assert chain.overall_status == "ERROR"
+    assert any("makes no chain" in message for message in _messages(chain))
+    assert any("does no work" in message for message in _messages(work))
+    assert any("does not move the hook" in message for message in _messages(skip))
+    assert any("repeat of zero" in message for message in _messages(repeat))
+    assert any("centimeters" in message for message in _messages(hook))
+    assert len(validate_pattern('Hook: 5 cm.\n').errors) == 1
+    assert safe.overall_status == "PASS"
+    assert gauge.overall_status == "PASS"
+    assert "centimeters" not in " ".join(_messages(gauge))

@@ -25,6 +25,8 @@ An instruction line the parser did not count is named under Not checked. It is n
 
 A hook size of 0 mm is an error in any sentence. The line does not have to say `Hook: 0 mm`. A size such as 3.0 mm or 10 mm is not that error.
 
+A chain of 0, work of zero stitches, a skip of zero, and a repeat of zero times are errors in any sentence. A hook size written in centimeters is an error in any sentence. These do not have to match one lesson line.
+
 A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
 
 ## Install

@@ -127,6 +127,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(future_round(text))
     errors.extend(make_count(text))
     errors.extend(zero_hook(text))
+    errors.extend(zero_words(text))
     errors.extend(zero_repeat(text))
     batch_errors, batch_warnings = batch_findings(text)
     errors.extend(batch_errors)
@@ -890,13 +891,42 @@ def zero_hook(text: str) -> list[str]:
     return _unique(errors)
 
 
+
+def zero_words(text: str) -> list[str]:
+    """Flag zero-work and centimeter-hook lines that are not the lesson sentence."""
+    chain = re.compile(r"\bch(?:ains?)?\s+(?:of\s+)?0\b", re.IGNORECASE)
+    work = re.compile(r"\bwork\s+(?:0|zero)\s+stitches\b", re.IGNORECASE)
+    skip = re.compile(r"\bskip\s+(?:0|zero)\b", re.IGNORECASE)
+    hook_cm = re.compile(
+        r"\bhook\b[^.\n]{0,24}?(?<![\d.])\d+(?:\.\d+)?\s*cm\b"
+        r"|(?<![\d.])\d+(?:\.\d+)?\s*cm\s+hook\b",
+        re.IGNORECASE,
+    )
+    errors = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or _prohibition(line):
+            continue
+        if chain.search(line):
+            errors.append("ch 0 makes no chain.")
+        if work.search(line):
+            errors.append("Work 0 stitches does no work.")
+        if skip.search(line):
+            errors.append("Skip 0 does not move the hook.")
+        if hook_cm.search(line):
+            errors.append(
+                "The hook is written in centimeters. "
+                "Crochet hooks are written in millimeters."
+            )
+    return _unique(errors)
+
+
 def zero_repeat(text: str) -> list[str]:
     """Flag a repeat of zero. It does no work."""
     errors = []
     for line in text.splitlines():
         if line.lstrip().startswith(">") or _prohibition(line):
             continue
-        if re.search(r"\b(?:repeat|rep)\b[^.\n]{0,20}?[x×]\s*0\b|\b0\s+times\b", line, re.IGNORECASE):
+        if re.search(r"\b(?:repeat|rep)\b[^.\n]{0,20}?[x×]\s*0\b|\b0\s+times\b|\bzero\s+times\b", line, re.IGNORECASE):
             errors.append("A repeat of zero does no work. Give the repeat a count above zero.")
     return _unique(errors)
 
