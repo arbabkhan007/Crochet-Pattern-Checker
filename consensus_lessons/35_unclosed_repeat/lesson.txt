@@ -1,0 +1,5 @@
+Unclosed repeat
+
+How: a round whose parentheses do not balance cannot be repeated as written.
+
+What: the corrected file closes the repeat. The stitch count is the same 18.

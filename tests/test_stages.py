@@ -53,6 +53,56 @@ def test_each_stage_fails_wrong_and_passes_corrected():
             "Short rows 11a-11c worked over 12 sts, leaving 6 row-ends.\nThe next round works 28 of 34 perimeter positions.\n",
             "Short-row gap",
         ),
+        "chain-short": (
+            "Row 1: ch 10, sc in 2nd ch from hook, sc in each ch across (12)\n",
+            "Row 1: ch 10, sc in 2nd ch from hook, sc in each ch across (9)\n",
+            "cannot hold",
+        ),
+        "paren": (
+            "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc x 6 (18)\n",
+            "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc) x 6 (18)\n",
+            "unclosed",
+        ),
+        "star": (
+            "Rep from * around.\n",
+            "*sc, inc* rep from * around.\n",
+            "opening star",
+        ),
+        "dec-cover": (
+            "dec x 5 on 11 stitches.\n",
+            "dec x 5 on 10 stitches.\n",
+            "Decrease cover",
+        ),
+        "double": (
+            "Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\n",
+            "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc) x 6 (18)\n",
+            "More than doubling",
+        ),
+        "written-as": (
+            "Graft a 30-stitch partition into a round written as 38.\n",
+            "Graft a 30-stitch partition into a round written as 30.\n",
+            "Written count",
+        ),
+        "eye-count": (
+            "10 mm safety eyes (x2)\nMount 4 safety eyes between rounds 6 and 7.\n",
+            "10 mm safety eyes (x2)\nMount 2 safety eyes between rounds 6 and 7.\n",
+            "Eye count",
+        ),
+        "future": (
+            "Round 1: 6 sc into magic ring (6)\nRound 2: sc in each st around to Round 5 (6)\nRound 5: sc in each st around (6)\n",
+            "Round 1: 6 sc into magic ring (6)\nRound 2: sc in each st around (6)\nRound 3: sc in each st around (6)\nRound 4: sc in each st around (6)\nRound 5: sc in each st around (6)\nRound 6: sc in each st around to Round 5 (6)\n",
+            "has not been made",
+        ),
+        "make-count": (
+            "Ears (make 2)\nRound 1: 6 sc into magic ring (6)\nSew 3 ears to the head.\n",
+            "Ears (make 2)\nRound 1: 6 sc into magic ring (6)\nSew 2 ears to the head.\n",
+            "Make count",
+        ),
+        "zero": (
+            "Repeat x 0.\n",
+            "Repeat x 6.\n",
+            "repeat of zero",
+        ),
         "closed": (
             "Join 3 stitches of a closed tentacle.\n",
             "Join 3 stitches of an open tentacle edge.\n",

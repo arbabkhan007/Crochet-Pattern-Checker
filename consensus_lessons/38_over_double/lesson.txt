@@ -1,0 +1,5 @@
+Over-double increase
+
+How: a round that goes from 6 to 18 more than doubles. It skips the 12-stitch size.
+
+What: the corrected file inserts the 12-stitch round. Doubling exactly, 6 to 12, still passes this rule.

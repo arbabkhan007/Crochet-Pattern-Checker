@@ -1,0 +1,5 @@
+Missing star
+
+How: rep from * needs an opening star. One star at the end does not mark the start.
+
+What: the corrected file marks *sc, inc* before rep from *.

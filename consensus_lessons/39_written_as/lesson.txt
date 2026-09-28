@@ -1,0 +1,5 @@
+Written-as count
+
+How: a 30-stitch edge written as 38 does not close. The two numbers are on the same line.
+
+What: the corrected file writes 30. The checker does not pick 38 over 30.

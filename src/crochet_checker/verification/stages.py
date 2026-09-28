@@ -114,6 +114,16 @@ def run_stages(text: str) -> StageReport:
     errors.extend(missing_color(text))
     errors.extend(round_order(text))
     warnings.extend(every_base(text))
+    errors.extend(chain_too_short(text))
+    errors.extend(unclosed_repeat(text))
+    errors.extend(missing_star(text))
+    errors.extend(decrease_cover(text))
+    errors.extend(over_double(text))
+    errors.extend(written_as_mismatch(text))
+    errors.extend(eye_count(text))
+    errors.extend(future_round(text))
+    errors.extend(make_count(text))
+    errors.extend(zero_repeat(text))
     return StageReport(
         errors=_unique(errors),
         warnings=_unique(warnings),
@@ -138,6 +148,16 @@ def run_stages(text: str) -> StageReport:
             "missing color",
             "round order",
             "every base stitch",
+            "chain length",
+            "unclosed repeat",
+            "missing star",
+            "decrease cover",
+            "over-double increase",
+            "written-as count",
+            "eye count",
+            "future round",
+            "make count",
+            "zero repeat",
         ],
         engines_skipped=list(_SKIPPED),
     )
@@ -660,6 +680,202 @@ def _repeat_use(unit: str, times: int) -> int | None:
     if not found:
         return None
     return used * times
+
+
+
+def chain_too_short(text: str) -> list[str]:
+    """Flag a foundation chain that is shorter than the stitches worked into it."""
+    errors = []
+    for line in text.splitlines():
+        if not re.search(r"\b2nd\s+ch\b|\beach\s+ch\b", line, re.IGNORECASE):
+            continue
+        chain = re.search(r"\bch\s+(\d+)\b", line, re.IGNORECASE)
+        stated = _STATED.search(line.strip())
+        if not chain or not stated:
+            continue
+        length = int(chain.group(1))
+        count = int(stated.group(1))
+        limit = length - 1 if re.search(r"\b2nd\s+ch\b", line, re.IGNORECASE) else length
+        if count > limit:
+            errors.append(
+                f"Chain of {length} cannot hold {count} stitches. "
+                f"The most this line can hold is {limit}."
+            )
+    return _unique(errors)
+
+
+def unclosed_repeat(text: str) -> list[str]:
+    """Flag a round whose parentheses do not balance."""
+    errors = []
+    for line in text.splitlines():
+        header = _HEADER.match(line.strip())
+        if not header:
+            continue
+        body = header.group(3)
+        if body.count("(") != body.count(")"):
+            kind = header.group(1).title()
+            errors.append(
+                f"{kind} {header.group(2)} has an unclosed parenthesis. Close the repeat."
+            )
+    return _unique(errors)
+
+
+def missing_star(text: str) -> list[str]:
+    """Flag rep from * when the line never opens the star."""
+    errors = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or _prohibition(line):
+            continue
+        if not re.search(r"\brep(?:eat)?\s+from\s+\*", line, re.IGNORECASE):
+            continue
+        if line.count("*") < 2:
+            errors.append("Rep from * has no opening star. Mark the start of the repeat with *.")
+    return _unique(errors)
+
+
+def decrease_cover(text: str) -> list[str]:
+    """Flag a decrease repeat that does not consume the count written on the same line."""
+    errors = []
+    for line in text.splitlines():
+        match = re.search(
+            r"\bdec(?:rease)?\s*[x×]\s*(\d+)\s+on\s+(\d+)\s+stitches\b",
+            line,
+            re.IGNORECASE,
+        )
+        if not match:
+            continue
+        times = int(match.group(1))
+        incoming = int(match.group(2))
+        used = times * 2
+        if used == incoming:
+            continue
+        errors.append(
+            f"Decrease cover: dec x {times} uses {used} stitches, not {incoming}."
+        )
+    return _unique(errors)
+
+
+def over_double(text: str) -> list[str]:
+    """Flag a stated count that more than doubles the previous round."""
+    errors = []
+    previous = None
+    for line in text.splitlines():
+        if _is_piece_line(line) or line.startswith("## "):
+            previous = None
+            continue
+        header = _HEADER.match(line.strip())
+        stated = _STATED.search(line.strip()) if header else None
+        if not header or not stated:
+            continue
+        produced = int(stated.group(1))
+        if previous is not None and produced > previous * 2:
+            errors.append(
+                f"Round {header.group(2)} jumps from {previous} to {produced}. "
+                "More than doubling in one round skips a size."
+            )
+        previous = produced
+    return _unique(errors)
+
+
+def written_as_mismatch(text: str) -> list[str]:
+    """Flag an N-stitch edge that the same line writes as a different count."""
+    errors = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">"):
+            continue
+        match = re.search(
+            r"\b(\d+)-stitch\b.{0,80}?\bwritten\s+as\s+(\d+)\b",
+            line,
+            re.IGNORECASE,
+        )
+        if not match:
+            continue
+        left = int(match.group(1))
+        right = int(match.group(2))
+        if left != right:
+            errors.append(
+                f"Written count {right} does not match the {left}-stitch edge."
+            )
+    return _unique(errors)
+
+
+def eye_count(text: str) -> list[str]:
+    """Flag a mount count that disagrees with the materials count in the same section."""
+    errors = []
+    for section in _sections(text):
+        listed = re.findall(r"safety\s+eyes?\s*\(x\s*(\d+)\)", section, re.IGNORECASE)
+        mounted = re.findall(
+            r"\b(?:mount|insert|place)\s+(\d+)\s+safety\s+eyes?\b",
+            section,
+            re.IGNORECASE,
+        )
+        if not listed or not mounted:
+            continue
+        if int(listed[0]) != int(mounted[0]):
+            errors.append(
+                f"Eye count: materials list {listed[0]} safety eyes, "
+                f"but the instructions place {mounted[0]}."
+            )
+    return _unique(errors)
+
+
+def future_round(text: str) -> list[str]:
+    """Flag a round that works into a later round number."""
+    errors = []
+    for line in text.splitlines():
+        header = _HEADER.match(line.strip())
+        if not header:
+            continue
+        current = int(header.group(2))
+        for match in re.finditer(r"\b(?:round|rnd)\s+(\d+)\b", header.group(3), re.IGNORECASE):
+            target = int(match.group(1))
+            if target > current:
+                errors.append(
+                    f"Round {current} works into Round {target}, which has not been made yet."
+                )
+    return _unique(errors)
+
+
+def make_count(text: str) -> list[str]:
+    """Flag sewing a different number of a piece than its make count."""
+    errors = []
+    for section in _sections(text):
+        made = {}
+        for line in section.splitlines():
+            match = re.search(
+                r"\b([A-Za-z][A-Za-z]+)\s*\(make\s+(\d+)\)",
+                line,
+                re.IGNORECASE,
+            )
+            if match:
+                made[match.group(1).lower()] = int(match.group(2))
+        for line in section.splitlines():
+            if line.lstrip().startswith(">"):
+                continue
+            for name, count in made.items():
+                found = re.search(rf"\b(\d+)\s+{name}s?\b", line, re.IGNORECASE)
+                if found and int(found.group(1)) != count:
+                    errors.append(
+                        f"Make count: {name} is made {count} times, "
+                        f"but the line uses {found.group(1)}."
+                    )
+    return _unique(errors)
+
+
+def zero_repeat(text: str) -> list[str]:
+    """Flag a repeat of zero. It does no work."""
+    errors = []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or _prohibition(line):
+            continue
+        if re.search(r"\b(?:repeat|rep)\b[^.\n]{0,20}?[x×]\s*0\b|\b0\s+times\b", line, re.IGNORECASE):
+            errors.append("A repeat of zero does no work. Give the repeat a count above zero.")
+    return _unique(errors)
+
+
+def _sections(text: str) -> list[str]:
+    parts = re.split(r"(?=^## )", text, flags=re.MULTILINE)
+    return [part for part in parts if part.strip()]
 
 
 def prose_frill(text: str) -> list[str]:

@@ -1,0 +1,5 @@
+Chain length
+
+How: a chain of 10, started in the second chain, can hold 9 stitches. A stated 12 does not fit.
+
+What: the corrected file states 9. The checker does not add the missing chains.

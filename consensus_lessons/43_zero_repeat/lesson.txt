@@ -1,0 +1,5 @@
+Zero repeat
+
+How: a repeat of zero does no work. The instruction cannot be followed as a repeat.
+
+What: the corrected file repeats 6 times.

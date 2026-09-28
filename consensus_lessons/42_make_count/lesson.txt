@@ -1,0 +1,5 @@
+Make count
+
+How: Ears (make 2) cannot be sewn as 3 ears. The made count and the sewn count disagree.
+
+What: the corrected file sews 2 ears. A line that does not give a number is still unread.

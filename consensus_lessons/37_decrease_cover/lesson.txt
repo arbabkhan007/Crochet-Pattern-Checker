@@ -1,0 +1,5 @@
+Decrease cover
+
+How: dec x 5 uses 10 stitches. Written on 11, one stitch is unaccounted for.
+
+What: the corrected file says on 10 stitches, which is what the decrease uses.

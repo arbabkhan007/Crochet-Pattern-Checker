@@ -1,0 +1,5 @@
+Eye count
+
+How: materials list 2 safety eyes and the instructions place 4. The washer count cannot match.
+
+What: the corrected file places 2. Counts are compared only inside the same pattern section.

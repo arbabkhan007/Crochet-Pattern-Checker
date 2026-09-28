@@ -24,6 +24,16 @@ The specification describes a multi-year system. This file says what the current
 18. Missing color. `Color B` is an error when the yarn line lists only `Color A`. A fragment with no color list is not checked.
 19. Round order. A repeated round number inside one piece is an error. A new piece may start again at Round 1.
 20. Every base stitch. `5 stitches worked into every base stitch` warns. One stitch does not.
+21. Chain length. `ch 10`, started in the second chain, cannot hold a stated 12. Nine is the most.
+22. Unclosed repeat. A round whose parentheses do not balance is an error.
+23. Missing star. `Rep from *` with no opening star is an error.
+24. Decrease cover. `dec x 5 on 11 stitches` is an error because the decrease uses 10.
+25. Over-double increase. A stated jump from 6 to 18 is an error. A jump from 6 to 12 is not.
+26. Written-as count. A 30-stitch edge written as 38 is an error.
+27. Eye count. Materials `(x2)` and `Mount 4 safety eyes` is an error. Counts are compared only inside one pattern section.
+28. Future round. Round 2 cannot work into Round 5.
+29. Make count. `Ears (make 2)` cannot be sewn as 3 ears. A line with no number is still unread.
+30. Zero repeat. `Repeat x 0` is an error.
 
 `verify_pattern` runs these stages with the existing text checker. `Sew the Ear` is a missing piece only when Ear is capitalized. `attach the safety eyes` and `Attach the tentacle externally` are not piece names.
 
