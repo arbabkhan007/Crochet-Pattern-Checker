@@ -31,6 +31,8 @@ A hook of 40 mm or more is a warning in any sentence, not only after `Hook:`. Ch
 
 The words zero and one are the same defects as 0 and 1 in those written checks. Decrease five times across eleven stitches is the same error as dec x 5 on 11 stitches.
 
+Those arithmetic checks also accept the words twelve, six, and the other number words, and they do not have to be the first words of the line. A hook letter such as H/8 can be named in any sentence. A hook written as millimeters is the same size check as mm.
+
 A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
 
 ## Install

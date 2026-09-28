@@ -168,3 +168,42 @@ def test_spoken_zero_and_one_are_the_same_defects():
     assert any("6 to 18" in message for message in _messages(bad))
     assert quoted.overall_status == "PASS"
     assert banned.overall_status == "PASS"
+
+
+def test_spoken_counts_match_the_digit_checks():
+    inc = validate_pattern('Increase from twelve to six.\n')
+    ok_inc = validate_pattern('Increase from six to twelve.\n')
+    mid = validate_pattern('Then increase from 10 to 4.\n')
+    mult = validate_pattern('Use a multiple of six, nineteen stitches.\n')
+    ok_mult = validate_pattern('Multiple of six, eighteen stitches.\n')
+    apart = validate_pattern('Place the eyes twelve stitches apart on a six-stitch round.\n')
+    skipped = validate_pattern('Skip none of the stitches.\n')
+    hook = validate_pattern('Use hook H/8 (2.25 mm).\n')
+    ok_hook = validate_pattern('Use hook H/8 (5 mm).\n')
+    small = validate_pattern('Use a 3.5 mm hook.\n')
+    gauge = validate_pattern('Gauge: 14 sc = 4 inches (10 cm).\nHook: 5 mm.\n')
+    turn = validate_pattern('ch one, turn, tr in the next stitch.\n')
+    ok_turn = validate_pattern('ch 1, turn, sc in the next stitch.\n')
+    quoted = validate_pattern('> Increase from twelve to six.\n')
+    banned = validate_pattern('Do not increase from twelve to six.\n')
+    bad = validate_pattern('Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\n')
+    huge = validate_pattern('Use a forty mm hook.\n')
+    assert any("does not rise" in message for message in _messages(inc))
+    assert ok_inc.overall_status == "PASS"
+    assert any("10 to 4" in message for message in _messages(mid))
+    assert any("not divisible" in message for message in _messages(mult))
+    assert ok_mult.overall_status == "PASS"
+    assert any("do not fit" in message for message in _messages(apart))
+    assert skipped.overall_status == "PASS"
+    assert any("more than 1.5 mm" in message for message in _messages(hook))
+    assert ok_hook.overall_status == "PASS"
+    assert small.overall_status == "PASS"
+    assert gauge.overall_status == "PASS"
+    assert any("too short to turn" in message for message in _messages(turn))
+    assert ok_turn.overall_status == "PASS"
+    assert quoted.overall_status == "PASS"
+    assert banned.overall_status == "PASS"
+    assert bad.overall_status == "ERROR"
+    assert any("6 to 18" in message for message in _messages(bad))
+    assert huge.overall_status == "PASS_WITH_WARNINGS"
+    assert len(huge.errors) == 0 and len(huge.warnings) == 1

@@ -10,7 +10,7 @@ from __future__ import annotations
 import re
 
 from .batch import batch_findings, batch_names
-from .span import span_findings, span_names
+from .span import COUNTS_AS, HOOK_GAP, HOOKS, TURN_MIN, span_findings, span_names
 from dataclasses import dataclass, field
 
 
@@ -127,6 +127,9 @@ def run_stages(text: str) -> StageReport:
     errors.extend(future_round(text))
     errors.extend(make_count(text))
     errors.extend(zero_hook(text))
+    count_errors, count_warnings = spoken_counts(text)
+    errors.extend(count_errors)
+    warnings.extend(count_warnings)
     spoken_errors, spoken_warnings = spoken_forms(text)
     errors.extend(spoken_errors)
     warnings.extend(spoken_warnings)
@@ -914,6 +917,269 @@ def huge_hook(text: str) -> list[str]:
             )
     return _unique(warnings)
 
+
+
+
+def spoken_counts(text: str) -> tuple[list[str], list[str]]:
+    """Accept word counts, and the same arithmetic defects, in any sentence."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    words = {
+        "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+        "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+        "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+        "twenty": 20, "thirty": 30, "forty": 40,
+    }
+    number = "|".join(sorted(words, key=len, reverse=True))
+    token = rf"(?<![\d.])(\d+|{number})(?!\d|\.\d|[A-Za-z])"
+
+    def as_int(raw: str) -> int:
+        raw = raw.lower()
+        return words[raw] if raw in words else int(raw)
+
+    increase = re.compile(
+        rf"\b(increase|decrease)\s+from\s+{token}\s+to\s+{token}\b",
+        re.IGNORECASE,
+    )
+    multiple = re.compile(
+        rf"\bmultiple\s+of\s+{token}\s*,\s*{token}\s+stitches\b",
+        re.IGNORECASE,
+    )
+    plus = re.compile(
+        rf"\bmultiple\s+of\s+{token}\s+plus\s+{token}\s*,\s*{token}\s+stitches\b",
+        re.IGNORECASE,
+    )
+    parity = re.compile(
+        rf"\bcount\s+must\s+be\s+(even|odd)\s*\(\s*{token}\s+stitches\s*\)",
+        re.IGNORECASE,
+    )
+    apart = re.compile(
+        rf"\beyes\s+{token}\s+stitches\s+apart\s+on\s+a\s+{token}-stitch\s+round\b",
+        re.IGNORECASE,
+    )
+    marker = re.compile(
+        rf"\bmarker\s+in\s+stitch\s+{token}\s+on\s+a\s+{token}-stitch\s+round\b",
+        re.IGNORECASE,
+    )
+    skip = re.compile(
+        rf"\bskip\s+{token}\s+on\s+a\s+{token}-stitch\s+row\b",
+        re.IGNORECASE,
+    )
+    rounds = re.compile(
+        rf"\b(rounds|rows)\s+{token}\s*[{chr(45)}{chr(8211)}{chr(8212)}]\s*{token}\b",
+        re.IGNORECASE,
+    )
+    inches = re.compile(
+        rf"\b{token}\s+inches\s*=\s*{token}\s+cm\b",
+        re.IGNORECASE,
+    )
+    centimeters = re.compile(
+        rf"\b{token}\s+cm\s*=\s*{token}\s+inches\b",
+        re.IGNORECASE,
+    )
+    hook_letter = re.compile(
+        r"\bhook:?\s*([A-Z](?:/[A-Z0-9]+)?(?:-\d+(?:\.\d+)?)?)\s*\((\d+(?:\.\d+)?)\s*mm\)",
+        re.IGNORECASE,
+    )
+    turn = re.compile(
+        rf"\bch\s+{token}\s*,\s*turn\s*,\s*(tr|dtr)\b",
+        re.IGNORECASE,
+    )
+    counts_as = re.compile(
+        rf"\bch\s+{token}\s+counts\s+as\s+an?\s+(sc|hdc|dc|tr|dtr)\b",
+        re.IGNORECASE,
+    )
+    zero_mm = re.compile(
+        r"\bhook\b[^.\n]{0,48}?(?<![\d.])(?:0|zero)(?:\.0+)?\s*(?:mm|millimeters?)\b"
+        r"|(?<![\d.])(?:0|zero)(?:\.0+)?\s*(?:mm|millimeters?)\b[^.\n]{0,48}?\bhook\b",
+        re.IGNORECASE,
+    )
+    huge_mm = re.compile(
+        r"\bhook\b[^.\n]{0,32}?(?<![\d.])(?:(?:[3-9]\d|\d{3,})(?:\.0+)?|thirty|forty)\s*(?:mm|millimeters?)\b"
+        r"|(?<![\d.])(?:(?:[3-9]\d|\d{3,})(?:\.0+)?|thirty|forty)\s*(?:mm|millimeters?)\b[^.\n]{0,16}?\bhook\b",
+        re.IGNORECASE,
+    )
+    written = re.compile(
+        rf"\b{token}-stitch\b.{0,80}?\bwritten\s+as\s+{token}\b",
+        re.IGNORECASE,
+    )
+    steel = re.compile(
+        rf"\bsteel\s+hook\s+{token}\b[^.\n]{0,40}?\blarger\s+than\s+(?:a\s+)?steel\s+hook\s+{token}\b",
+        re.IGNORECASE,
+    )
+    reverse = re.compile(r"\breverse\s+sc\s+worked\s+forward\b", re.IGNORECASE)
+    spiral = re.compile(
+        r"\bcontinuous\s+spiral\b[^.\n]{0,40}?\bturn\s+every\s+round\b",
+        re.IGNORECASE,
+    )
+    fasten = re.compile(
+        r"\bfasten\s+off\b[^.\n]{0,24}?\bcontinue\s+in\s+the\s+same\s+yarn\b",
+        re.IGNORECASE,
+    )
+    listed_eyes = re.compile(rf"safety\s+eyes?\s*\(x\s*{token}\)", re.IGNORECASE)
+    mounted_eyes = re.compile(
+        rf"\b(?:mount|insert|place)\s+{token}\s+safety\s+eyes?\b",
+        re.IGNORECASE,
+    )
+    made = re.compile(rf"\b([A-Za-z][A-Za-z]+)\s*\(make\s+{token}\)", re.IGNORECASE)
+    chain_line = re.compile(r"\b(?:2nd|second)\s+ch\b|\beach\s+ch\b", re.IGNORECASE)
+    chain_count = re.compile(rf"\bch\s+{token}\b", re.IGNORECASE)
+
+    for raw in text.splitlines():
+        if raw.lstrip().startswith(">") or _prohibition(raw):
+            continue
+        found = increase.search(raw)
+        if found:
+            left, right = as_int(found.group(2)), as_int(found.group(3))
+            if found.group(1).lower() == "increase" and right <= left:
+                errors.append(
+                    f"Increase from {found.group(2)} to {found.group(3)} does not rise."
+                )
+            if found.group(1).lower() == "decrease" and right >= left:
+                errors.append(
+                    f"Decrease from {found.group(2)} to {found.group(3)} does not fall."
+                )
+        found = plus.search(raw)
+        if found:
+            base, remainder, count = (as_int(found.group(i)) for i in (1, 2, 3))
+            if base > 0 and remainder < base and count % base != remainder:
+                errors.append(
+                    f"{found.group(3)} is not a multiple of {found.group(1)} plus {found.group(2)}."
+                )
+        elif (found := multiple.search(raw)):
+            base, count = as_int(found.group(1)), as_int(found.group(2))
+            if base > 0 and count % base:
+                errors.append(f"{found.group(2)} is not divisible by {found.group(1)}.")
+        found = parity.search(raw)
+        if found:
+            count = as_int(found.group(2))
+            if found.group(1).lower() == "even" and count % 2:
+                errors.append(
+                    f"{found.group(2)} is odd, but the line says the count must be even."
+                )
+            if found.group(1).lower() == "odd" and count % 2 == 0:
+                errors.append(
+                    f"{found.group(2)} is even, but the line says the count must be odd."
+                )
+        found = apart.search(raw)
+        if found and as_int(found.group(1)) >= as_int(found.group(2)):
+            errors.append(
+                f"Eyes {found.group(1)} stitches apart do not fit on a "
+                f"{found.group(2)}-stitch round."
+            )
+        found = marker.search(raw)
+        if found and as_int(found.group(1)) > as_int(found.group(2)):
+            errors.append(
+                f"Stitch {found.group(1)} is past a {found.group(2)}-stitch round."
+            )
+        found = skip.search(raw)
+        if found and as_int(found.group(1)) >= as_int(found.group(2)):
+            errors.append(
+                f"Skip {found.group(1)} does not fit on a {found.group(2)}-stitch row."
+            )
+        for found in rounds.finditer(raw):
+            if as_int(found.group(2)) > as_int(found.group(3)):
+                label = "Rounds" if found.group(1).lower().startswith("round") else "Rows"
+                errors.append(
+                    f"{label} {found.group(2)}-{found.group(3)} run backwards."
+                )
+        found = inches.search(raw)
+        if found and found.group(1).lower() == found.group(2).lower():
+            errors.append(
+                f"{found.group(1)} inches is not {found.group(2)} cm. "
+                "The line copies the same number."
+            )
+        found = centimeters.search(raw)
+        if found and found.group(1).lower() == found.group(2).lower():
+            errors.append(
+                f"{found.group(1)} cm is not {found.group(2)} inches. "
+                "The line copies the same number."
+            )
+        found = hook_letter.search(raw)
+        if found:
+            label = found.group(1).upper().replace("/", "-")
+            if label not in HOOKS:
+                label = found.group(1).upper()
+            nominal = HOOKS.get(label)
+            if nominal is not None and abs(float(found.group(2)) - nominal) > HOOK_GAP:
+                errors.append(
+                    f"Hook {found.group(1)} is written as {found.group(2)} mm, "
+                    f"but the Craft Yarn Council nominal size is {nominal:g} mm. "
+                    "The gap is more than 1.5 mm."
+                )
+        found = turn.search(raw)
+        if found:
+            chains = as_int(found.group(1))
+            stitch = found.group(2).lower()
+            needed = TURN_MIN[stitch]
+            if chains <= needed - 2:
+                errors.append(
+                    f"ch {chains} is too short to turn for a {stitch}. Use ch {needed}."
+                )
+        found = counts_as.search(raw)
+        if found:
+            shown = str(as_int(found.group(1)))
+            pair = (shown, found.group(2).lower())
+            if pair in COUNTS_AS:
+                errors.append(f"ch {shown} cannot count as a {pair[1]}.")
+        if zero_mm.search(raw):
+            errors.append("A hook of 0 mm cannot make a stitch.")
+        if huge_mm.search(raw):
+            warnings.append(
+                "A hook of 40 mm or more is past normal crochet. This is a warning."
+            )
+        found = written.search(raw)
+        if found and as_int(found.group(1)) != as_int(found.group(2)):
+            errors.append(
+                f"Written count {found.group(2)} does not match the {found.group(1)}-stitch edge."
+            )
+        found = steel.search(raw)
+        if found and as_int(found.group(1)) > as_int(found.group(2)):
+            errors.append("A higher steel-hook number is smaller, not larger.")
+        if reverse.search(raw):
+            errors.append("Reverse single crochet is worked backward, not forward.")
+        if spiral.search(raw):
+            errors.append("A continuous spiral does not turn every round.")
+        if fasten.search(raw):
+            errors.append("Fasten off ends the yarn.")
+        if chain_line.search(raw):
+            chain = chain_count.search(raw)
+            stated = _STATED.search(raw.strip())
+            if chain and stated:
+                length = as_int(chain.group(1))
+                count = int(stated.group(1))
+                second = re.search(r"\b(?:2nd|second)\s+ch\b", raw, re.IGNORECASE)
+                limit = length - 1 if second else length
+                if count > limit:
+                    errors.append(
+                        f"Chain of {length} cannot hold {count} stitches. "
+                        f"The most this line can hold is {limit}."
+                    )
+    for section in _sections(text):
+        listed = listed_eyes.findall(section)
+        mounted = mounted_eyes.findall(section)
+        if listed and mounted and as_int(listed[0]) != as_int(mounted[0]):
+            errors.append(
+                f"Eye count: materials list {as_int(listed[0])} safety eyes, "
+                f"but the instructions place {as_int(mounted[0])}."
+            )
+        made_counts = {}
+        for line in section.splitlines():
+            match = made.search(line)
+            if match:
+                made_counts[match.group(1).lower()] = as_int(match.group(2))
+        for line in section.splitlines():
+            if line.lstrip().startswith(">") or _prohibition(line):
+                continue
+            for name, count in made_counts.items():
+                found = re.search(rf"\b{token}\s+{name}s?\b", line, re.IGNORECASE)
+                if found and as_int(found.group(1)) != count:
+                    errors.append(
+                        f"Make count: {name} is made {count} times, "
+                        f"but the line uses {as_int(found.group(1))}."
+                    )
+    return _unique(errors), _unique(warnings)
 
 
 def spoken_forms(text: str) -> tuple[list[str], list[str]]:
