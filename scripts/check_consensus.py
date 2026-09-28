@@ -64,8 +64,8 @@ def lesson_fields(text: str) -> tuple[str, str, str]:
 
 def main() -> int:
     folders = sorted(path for path in LESSONS.iterdir() if path.is_dir())
-    if len(folders) != 9:
-        sys.exit(f"Expected 9 consensus lessons, found {len(folders)}.")
+    if len(folders) < 9:
+        sys.exit(f"Expected at least 9 consensus lessons, found {len(folders)}.")
 
     failed = False
     proved = []

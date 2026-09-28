@@ -67,7 +67,7 @@ class GhostMaterialLinter:
             key_term = str(item).lower().split()[-1]
             if key_term and key_term not in text_lower:
                 ghosts.append(
-                    "Ghost Material: '" + str(item) + "' listed in Materials but never placed in instructions."
+                    f"Ghost Material: '{item}' listed in Materials but never placed in instructions."
                 )
         return ghosts
 
@@ -150,8 +150,8 @@ class PostStitchFoundationValidator:
         target = str(target_row_stitch_type).lower()
         if current in {"fpdc", "bpdc"} and target not in self.TALL_STITCHES:
             return (
-                "Foundation Failure: Working " + current + " into short '" + target + "' "
-                "row causes severe fabric puckering."
+                f"Foundation Failure: Working {current} into short '{target}' "
+                f"row causes severe fabric puckering."
             )
         return None
 
@@ -229,6 +229,24 @@ class ShortRowPerimeterChecker:
         return []
 
 
+
+class NeckJumpChecker:
+    """Flag a 12-stitch round that doubles to 24 in one step."""
+
+    def check(self, text: str) -> list[str]:
+        errors = []
+        for label, previous, produced, source in _round_counts(text):
+            if previous != 12 or produced != 24:
+                continue
+            if not re.search(r"\binc(?:rease)?\b", source, re.IGNORECASE):
+                continue
+            errors.append(
+                f"{label}: 12 stitches jump to 24. "
+                "Insert an 18-stitch round before returning to 24."
+            )
+        return _messages(errors)
+
+
 def audit_findings(text: str) -> tuple[list[str], list[str]]:
     """Return (errors, warnings) for the commercial audit rules."""
     errors: list[str] = []
@@ -242,6 +260,7 @@ def audit_findings(text: str) -> tuple[list[str], list[str]]:
     warnings.extend(FabricDensityCalculator.scan(text))
     warnings.extend(ModuloDriftChecker().check(text))
     warnings.extend(ShortRowPerimeterChecker().check(text))
+    errors.extend(NeckJumpChecker().check(text))
     return _messages(errors), _messages(warnings)
 
 
@@ -360,6 +379,50 @@ def _looks_like_abbreviation(token: str) -> bool:
     if token in _STOP or token in _STANDARD:
         return False
     return 2 <= len(token) <= 8 and token.isalpha() and token not in _STOP
+
+
+
+def _round_counts(text: str):
+    """Yield label, previous produced count, and this round's produced count."""
+    try:
+        from ..parser.parser import parse_pattern
+        from .validator import _produced_with_context
+        parsed = parse_pattern(text)
+    except Exception:
+        return
+    if parsed.pieces and len(parsed.pieces) > 1:
+        groups = [
+            piece.rounds or piece.rows
+            for piece in parsed.pieces
+            if piece.rounds or piece.rows
+        ]
+    else:
+        groups = [parsed.rounds or parsed.rows]
+    for group in groups:
+        previous = None
+        last_number = None
+        for item in group:
+            number = getattr(item, "round_number", getattr(item, "row_number", None))
+            if number is not None and last_number is not None and number <= last_number:
+                previous = None
+            if isinstance(number, int):
+                last_number = number
+            total = 0
+            available = previous
+            for instruction in getattr(item, "instructions", []) or []:
+                total += _produced_with_context(instruction, available)
+                if any(
+                    getattr(op, "into_stitch", None)
+                    in ("each_stitch_around", "each_stitch_across", "remaining")
+                    for op in getattr(instruction, "operations", []) or []
+                ):
+                    available = 0
+                elif available is not None:
+                    available -= instruction.total_stitches_consumed
+            kind = "Round" if hasattr(item, "round_number") else "Row"
+            source = getattr(item, "source_text", "") or ""
+            yield f"{kind} {number}", previous, total, source
+            previous = total
 
 
 def _round_bodies(text: str):

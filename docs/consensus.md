@@ -113,6 +113,16 @@ How: the clauses add to 48. Writing 54 does not create the missing 6 stitches.
 
 What: both corrected files agree 54 is not the sum of those clauses. The consensus changes the stated count to 48. It does not add stitches to build a different join.
 
+### 10_neck_jump: Neck jump
+
+Wrong result: ERROR.
+- Round 2: 12 stitches jump to 24. Insert an 18-stitch round before returning to 24.
+Corrected result: PASS.
+
+How: 12 increases use the 12 stitches and make 24. The count is internally true, so the old checker passed it. The fabric still skips the 18-stitch step and puckers.
+
+What: both corrected files insert an 18-stitch round, then return to 24. The checker now rejects a 12-to-24 jump and accepts the 12, 18, 24 step.
+
 ## What was checked and not learned
 
 | Pattern | Agreed defect | Why it is not a lesson |
