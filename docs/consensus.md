@@ -823,8 +823,8 @@ What: the corrected file changes to Color B.
 ### 80_increase_same: Increase to the same count
 
 Wrong result: ERROR.
-- An increase from 12 to 12 does not increase.
 - Increase from 12 to 12 does not rise.
+- An increase from 12 to 12 does not increase.
 Corrected result: PASS.
 
 How: an increase from 12 to 12 does not increase.
@@ -834,8 +834,8 @@ What: the corrected file increases from 12 to 18.
 ### 81_increase_down: Increase that shrinks
 
 Wrong result: ERROR.
-- An increase from 12 to 6 shrinks. Call it a decrease, or reverse the numbers.
 - Increase from 12 to 6 does not rise.
+- An increase from 12 to 6 shrinks. Call it a decrease, or reverse the numbers.
 Corrected result: PASS.
 
 How: an increase from 12 to 6 is a decrease. The word and the numbers disagree.
@@ -845,8 +845,8 @@ What: the corrected file increases from 6 to 12.
 ### 82_decrease_up: Decrease that grows
 
 Wrong result: ERROR.
-- A decrease from 6 to 12 grows. Call it an increase, or reverse the numbers.
 - Decrease from 6 to 12 does not fall.
+- A decrease from 6 to 12 grows. Call it an increase, or reverse the numbers.
 Corrected result: PASS.
 
 How: a decrease from 6 to 12 grows. The word and the numbers disagree.
@@ -926,8 +926,8 @@ What: the corrected file does not turn.
 ### 90_backward_range: Backward range
 
 Wrong result: ERROR.
-- Rounds 8-5 run backwards. Write the lower number first.
 - Rounds 8-5 run backwards.
+- Rounds 8-5 run backwards. Write the lower number first.
 Corrected result: PASS.
 
 How: Rounds 8-5 run backwards. A range has to climb.
@@ -937,8 +937,8 @@ What: the corrected file uses Rounds 5-8.
 ### 91_not_multiple: Not a multiple
 
 Wrong result: ERROR.
-- 10 is not a multiple of 3.
 - 10 is not divisible by 3.
+- 10 is not a multiple of 3.
 Corrected result: PASS.
 
 How: a multiple of 3 cannot be 10 stitches. 10 is not divisible by 3.
@@ -1148,6 +1148,7 @@ What: the corrected file is 8 rounds tall.
 ### 112_row_zero: Row zero
 
 Wrong result: ERROR.
+- Row 0 is not a row. Start at Row 1.
 - Row 0 is not a row.
 Corrected result: PASS.
 
@@ -1158,6 +1159,7 @@ What: the corrected file starts at Row 1.
 ### 113_make_zero: Make zero
 
 Wrong result: ERROR.
+- Make 0 asks for none of that piece.
 - make 0 asks for none of that piece.
 Corrected result: PASS.
 
@@ -1208,6 +1210,7 @@ What: the corrected file lists 200 yards.
 ### 118_stuff_zero: Stuff zero
 
 Wrong result: ERROR.
+- Stuff with 0 g leaves the piece empty.
 - Stuff with 0 g does not stuff the piece.
 Corrected result: PASS.
 
@@ -1218,6 +1221,7 @@ What: the corrected file stuffs with 20 g.
 ### 119_color_every_zero: Color every zero
 
 Wrong result: ERROR.
+- Every 0 rows or rounds never happens.
 - Change color every 0 rows never changes color.
 Corrected result: PASS.
 
@@ -1228,6 +1232,7 @@ What: the corrected file changes color every 2 rows.
 ### 120_increase_every_zero: Increase every zero
 
 Wrong result: ERROR.
+- Every 0 rows or rounds never happens.
 - Increase every 0 rounds never increases.
 Corrected result: PASS.
 
@@ -1238,6 +1243,7 @@ What: the corrected file increases every 3 rounds.
 ### 121_decrease_every_zero: Decrease every zero
 
 Wrong result: ERROR.
+- Every 0 rows or rounds never happens.
 - Decrease every 0 rows never decreases.
 Corrected result: PASS.
 
@@ -1318,6 +1324,7 @@ What: the corrected file uses 4 stitches.
 ### 129_oval_zero: Oval of zero
 
 Wrong result: ERROR.
+- A count of 0 does not make that shape.
 - An oval cannot start with 0 chains.
 Corrected result: PASS.
 
@@ -1328,6 +1335,7 @@ What: the corrected file starts with 8 chains.
 ### 130_square_zero: Square of zero
 
 Wrong result: ERROR.
+- A count of 0 does not make that shape.
 - A square of 0 rounds was not worked.
 Corrected result: PASS.
 
@@ -1368,6 +1376,7 @@ What: the corrected file places a bead every 4 stitches.
 ### 134_stripe_every_zero: Stripe every zero
 
 Wrong result: ERROR.
+- Every 0 rows or rounds never happens.
 - A stripe every 0 rounds never stripes.
 Corrected result: PASS.
 
@@ -1378,6 +1387,7 @@ What: the corrected file stripes every 2 rounds.
 ### 135_pompom_zero: Pom-pom of zero
 
 Wrong result: ERROR.
+- A wrap count of 0 has nothing to tie.
 - A pom-pom of 0 wraps has nothing to tie.
 Corrected result: PASS.
 
@@ -1388,6 +1398,7 @@ What: the corrected file uses 40 wraps.
 ### 136_tassel_zero: Tassel of zero
 
 Wrong result: ERROR.
+- A wrap count of 0 has nothing to tie.
 - A tassel of 0 wraps has nothing to hang.
 Corrected result: PASS.
 
@@ -1408,6 +1419,7 @@ What: the corrected file uses 7.
 ### 138_spike_zero: Spike of zero
 
 Wrong result: ERROR.
+- A spike stitch down 0 rows does not leave the row.
 - A spike stitch down 0 rows does not leave the current row.
 Corrected result: PASS.
 
@@ -1418,6 +1430,7 @@ What: the corrected file goes down 2 rows.
 ### 139_tube_zero: Tube of zero
 
 Wrong result: ERROR.
+- A count of 0 does not make that shape.
 - A tube of 0 stitches has no opening.
 Corrected result: PASS.
 
@@ -1428,6 +1441,7 @@ What: the corrected file uses 6 stitches.
 ### 140_rectangle_zero: Rectangle of zero
 
 Wrong result: ERROR.
+- A count of 0 does not make that shape.
 - A rectangle of 0 rows was not worked.
 Corrected result: PASS.
 
@@ -1438,6 +1452,7 @@ What: the corrected file has 12 rows.
 ### 141_corner_zero: Corner of zero
 
 Wrong result: ERROR.
+- A count of 0 does not make that shape.
 - A corner of 0 chains does not turn the corner.
 Corrected result: PASS.
 

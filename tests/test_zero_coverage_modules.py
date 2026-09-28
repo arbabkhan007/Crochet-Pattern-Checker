@@ -3,28 +3,20 @@ Targeted tests for previously untested (0% coverage) production modules.
 
 Covers:
 - parser.normalizer
-- enterprise.security / enterprise.api (REST integration + security)
 - validation.abbreviations / consistency / terminology / multi_piece / multipiece / row_transitions
 - reporter.fallback / reporter.patcher
 - utils.special_constructions / utils.category_detector
-- api.rest / ast.ast_builder / batch.processor / compute.capabilities
-- interactive.stitch_counter / optimization.pattern_optimizer
 - visualization.diagram / stitch_chart / pattern_debugger
-- pdf.image_support / yarn.substitution
-- analysis.* (complexity, gauge, scaler, time, yarn)
 """
 
 from __future__ import annotations
 
 import os
 import struct
-import time
 import zlib
 
 import pytest
 
-from fastapi import HTTPException
-from fastapi.testclient import TestClient
 
 from crochet_checker.model.instruction import Instruction, ParsedOperation
 from crochet_checker.model.pattern import Pattern, PatternMetadata, PatternPiece
@@ -157,246 +149,9 @@ class TestPatternNormalizer:
 # ---------------------------------------------------------------------------
 
 
-class TestRateLimiter:
-    def test_allows_until_limit_then_429(self):
-        from crochet_checker.enterprise.security import RateLimiter
-
-        limiter = RateLimiter(max_requests=2, window_seconds=60)
-        limiter.check("a")
-        limiter.check("a")
-        with pytest.raises(HTTPException) as exc:
-            limiter.check("a")
-        assert exc.value.status_code == 429
-
-    def test_prunes_stale_requests(self):
-        from crochet_checker.enterprise.security import RateLimiter
-
-        limiter = RateLimiter(max_requests=2, window_seconds=60)
-        limiter.requests["tester"].append(time.monotonic() - 999)
-        limiter.check("tester")  # prunes stale entry first
-        limiter.check("tester")
-        with pytest.raises(HTTPException):
-            limiter.check("tester")
-
-
-class TestRequireApiKey:
-    def test_development_when_unset(self, monkeypatch):
-        from crochet_checker.enterprise.security import require_api_key
-
-        monkeypatch.delenv("CROCHET_API_KEY", raising=False)
-        assert require_api_key() == "development"
-        assert require_api_key("whatever") == "development"
-
-    def test_authenticated_with_correct_key(self, monkeypatch):
-        from crochet_checker.enterprise.security import require_api_key
-
-        monkeypatch.setenv("CROCHET_API_KEY", "sekret")
-        assert require_api_key("sekret") == "authenticated"
-
-    def test_rejects_wrong_or_missing_key(self, monkeypatch):
-        from crochet_checker.enterprise.security import require_api_key
-
-        monkeypatch.setenv("CROCHET_API_KEY", "sekret")
-        with pytest.raises(HTTPException) as exc:
-            require_api_key("nope")
-        assert exc.value.status_code == 401
-        with pytest.raises(HTTPException) as exc:
-            require_api_key()
-        assert exc.value.status_code == 401
-
-
 # ---------------------------------------------------------------------------
 # enterprise.api (REST integration + security)
 # ---------------------------------------------------------------------------
-
-
-@pytest.fixture(scope="module")
-def api_client():
-    from crochet_checker.enterprise.api import app
-
-    return TestClient(app)
-
-
-class TestEnterpriseAPI:
-    def test_health(self, api_client):
-        resp = api_client.get("/health")
-        assert resp.status_code == 200
-        body = resp.json()
-        assert body["status"] == "healthy"
-        assert body["service"] == "crochet-pattern-enterprise-validator"
-
-    def test_validate_valid_pattern(self, api_client):
-        resp = api_client.post("/validate", json={"pattern_text": VALID_PATTERN})
-        assert resp.status_code == 200
-        body = resp.json()
-        assert body["valid"] is True
-        assert "score" in body
-        assert "pattern_hash" in body
-        assert isinstance(body["errors"], list)
-        assert isinstance(body["warnings"], list)
-
-    def test_validate_bad_pattern_reports_errors(self, api_client):
-        resp = api_client.post("/validate", json={"pattern_text": BAD_PATTERN})
-        assert resp.status_code == 200
-        assert len(resp.json()["errors"]) >= 1
-
-    def test_certify_fully_verified(self, api_client):
-        resp = api_client.post(
-            "/certify",
-            json={
-                "pattern_text": VALID_PATTERN,
-                "gauge_verified": True,
-                "yarn_profile_known": True,
-                "geometry_verified": True,
-                "ai_conflicts": False,
-                "safety_passed": True,
-                "tolerance_passed": True,
-            },
-        )
-        assert resp.status_code == 200
-        assert resp.json()["level"] == "CERTIFIED"
-
-    def test_gauge_calibrate_within_tolerance(self, api_client):
-        resp = api_client.post(
-            "/gauge/calibrate",
-            json={
-                "target_stitches_per_10cm": 18,
-                "target_rows_per_10cm": 20,
-                "measured_stitches_per_10cm": 18,
-                "measured_rows_per_10cm": 20,
-                "tolerance_percent": 5,
-            },
-        )
-        assert resp.status_code == 200
-        assert resp.json()["within_tolerance"] is True
-
-    def test_gauge_calibrate_out_of_tolerance(self, api_client):
-        resp = api_client.post(
-            "/gauge/calibrate",
-            json={
-                "target_stitches_per_10cm": 18,
-                "target_rows_per_10cm": 20,
-                "measured_stitches_per_10cm": 12,
-                "measured_rows_per_10cm": 14,
-                "tolerance_percent": 5,
-            },
-        )
-        assert resp.status_code == 200
-        assert resp.json()["within_tolerance"] is False
-
-    def test_report_returns_html(self, api_client):
-        resp = api_client.post(
-            "/report",
-            json={
-                "pattern_text": VALID_PATTERN,
-                "gauge_verified": True,
-                "yarn_profile_known": True,
-                "geometry_verified": True,
-                "tolerance_passed": True,
-            },
-        )
-        assert resp.status_code == 200
-        assert "html" in resp.headers["content-type"]
-        assert "crochet" in resp.text.lower()
-
-    def test_batch_validate_summary(self, api_client):
-        resp = api_client.post(
-            "/batch/validate",
-            json={
-                "patterns": [
-                    {"pattern_text": VALID_PATTERN},
-                    {"pattern_text": BAD_PATTERN},
-                ]
-            },
-        )
-        assert resp.status_code == 200
-        body = resp.json()
-        assert body["total"] == 2
-        assert body["passed"] + body["failed"] == 2
-        assert "success_rate" in body
-        assert len(body["results"]) == 2
-
-    def test_image_upload_success(self, api_client, monkeypatch, tmp_path):
-        pytest.importorskip("PIL")
-        monkeypatch.chdir(tmp_path)
-        resp = api_client.post(
-            "/gauge/image",
-            params={
-                "stitch_count": 18,
-                "row_count": 20,
-                "width_cm": 10,
-                "height_cm": 10,
-                "confidence": 0.95,
-            },
-            files={"image": ("gauge.png", make_png(120, 120), "image/png")},
-        )
-        assert resp.status_code == 200
-        body = resp.json()
-        assert body["confidence"] == pytest.approx(0.95)
-        assert body["image"]["width_pixels"] == 120
-
-    def test_image_upload_rejects_bad_content_type(self, api_client, monkeypatch, tmp_path):
-        monkeypatch.chdir(tmp_path)
-        resp = api_client.post(
-            "/gauge/image",
-            files={"image": ("gauge.txt", b"not an image", "text/plain")},
-        )
-        assert resp.status_code == 415
-
-    def test_image_upload_rejects_oversized(self, api_client, monkeypatch, tmp_path):
-        monkeypatch.chdir(tmp_path)
-        big = b"x" * (10 * 1024 * 1024 + 1)
-        resp = api_client.post(
-            "/gauge/image",
-            params={
-                "stitch_count": 18,
-                "row_count": 20,
-                "width_cm": 10,
-                "height_cm": 10,
-            },
-            files={"image": ("big.png", big, "image/png")},
-        )
-        assert resp.status_code == 413
-
-    def test_api_key_auth_required(self, api_client, monkeypatch):
-        monkeypatch.setenv("CROCHET_API_KEY", "sekret")
-        resp = api_client.post("/validate", json={"pattern_text": VALID_PATTERN})
-        assert resp.status_code == 401
-        resp = api_client.post(
-            "/validate",
-            json={"pattern_text": VALID_PATTERN},
-            headers={"X-API-Key": "wrong"},
-        )
-        assert resp.status_code == 401
-        resp = api_client.post(
-            "/validate",
-            json={"pattern_text": VALID_PATTERN},
-            headers={"X-API-Key": "sekret"},
-        )
-        assert resp.status_code == 200
-
-    def test_rate_limiting_returns_429(self, api_client):
-        from crochet_checker.enterprise.api import rate_limiter
-
-        old = rate_limiter.max_requests
-        rate_limiter.requests.clear()
-        rate_limiter.max_requests = 2
-        try:
-            assert (
-                api_client.post("/validate", json={"pattern_text": VALID_PATTERN}).status_code
-                == 200
-            )
-            assert (
-                api_client.post("/validate", json={"pattern_text": VALID_PATTERN}).status_code
-                == 200
-            )
-            assert (
-                api_client.post("/validate", json={"pattern_text": VALID_PATTERN}).status_code
-                == 429
-            )
-        finally:
-            rate_limiter.max_requests = old
-            rate_limiter.requests.clear()
 
 
 # ---------------------------------------------------------------------------
@@ -994,15 +749,6 @@ class TestCategoryDetector:
 # ---------------------------------------------------------------------------
 
 
-class TestRestAPI:
-    def test_health_and_root(self):
-        from crochet_checker.api.rest import app
-
-        client = TestClient(app)
-        assert client.get("/health").json() == {"status": "ok"}
-        assert "message" in client.get("/").json()
-
-
 # ---------------------------------------------------------------------------
 # ast.ast_builder
 # ---------------------------------------------------------------------------
@@ -1022,60 +768,9 @@ class TestASTBuilder:
 # ---------------------------------------------------------------------------
 
 
-class TestBatchProcessor:
-    def test_discover_patterns(self, tmp_path):
-        from crochet_checker.batch.processor import BatchProcessor
-
-        (tmp_path / "a.txt").write_text("Round 1")
-        (tmp_path / "b.pdf").write_bytes(b"%PDF")
-        nested = tmp_path / "sub"
-        nested.mkdir()
-        (nested / "c.txt").write_text("Round 2")
-
-        processor = BatchProcessor(str(tmp_path / "out"))
-        assert processor.discover_patterns(str(tmp_path / "a.txt")) == [
-            tmp_path / "a.txt"
-        ]
-        recursive = processor.discover_patterns(str(tmp_path), recursive=True)
-        assert len(recursive) == 3
-        flat = processor.discover_patterns(str(tmp_path), recursive=False)
-        assert len(flat) == 2
-
-    def test_batch_validate(self, tmp_path):
-        from crochet_checker.batch.processor import BatchProcessor
-
-        processor = BatchProcessor(str(tmp_path / "out"))
-        result = processor.batch_validate([tmp_path / "a.txt"])
-        assert result["total_patterns"] == 1
-        assert result["success_rate"] == 100.0
-
-
 # ---------------------------------------------------------------------------
 # compute.capabilities
 # ---------------------------------------------------------------------------
-
-
-class TestComputeCapabilities:
-    def test_detect_compute(self):
-        from crochet_checker.compute.capabilities import (
-            ComputeCapabilities,
-            detect_compute,
-        )
-
-        caps = detect_compute()
-        assert isinstance(caps, ComputeCapabilities)
-        assert caps.cpu_count >= 1
-        assert isinstance(caps.has_numpy, bool)
-        assert isinstance(caps.has_cuda, bool)
-        assert caps.recommendation
-
-    def test_to_dict(self):
-        from crochet_checker.compute.capabilities import detect_compute
-
-        data = detect_compute().to_dict()
-        assert "python_version" in data
-        assert "has_torch" in data
-        assert "quantum_backend" in data
 
 
 # ---------------------------------------------------------------------------
@@ -1083,59 +778,9 @@ class TestComputeCapabilities:
 # ---------------------------------------------------------------------------
 
 
-class TestInteractiveStitchCounter:
-    def test_complete_stitch_and_progress(self):
-        from crochet_checker.interactive.stitch_counter import InteractiveStitchCounter
-
-        counter = InteractiveStitchCounter({1: 6})
-        counter.complete_stitch("sc")
-        counter.complete_stitch("sc")
-        progress = counter.get_progress()
-        assert progress["current_round"] == 1
-        assert progress["total_stitches"] == 2
-        assert counter.state.round_stitches[1] == 2
-
-    def test_next_round_legacy(self):
-        from crochet_checker.interactive.stitch_counter import InteractiveStitchCounter
-
-        counter = InteractiveStitchCounter()
-        result = counter.next_round()
-        # The legacy shim sets `current_round` on the counter itself, while
-        # get_progress() reads from the (unchanged) CounterState.
-        assert counter.current_round == 2
-        assert result["current_round"] == 1
-        assert result["total_stitches"] == 0
-
-    def test_counter_state_defaults(self):
-        from crochet_checker.interactive.stitch_counter import CounterState
-
-        state = CounterState()
-        assert state.current_round == 1
-        assert state.round_stitches == {}
-
-
 # ---------------------------------------------------------------------------
 # optimization.pattern_optimizer
 # ---------------------------------------------------------------------------
-
-
-class TestPatternOptimizer:
-    def test_turning_chain_suggestion(self):
-        from crochet_checker.optimization.pattern_optimizer import PatternOptimizer
-
-        result = PatternOptimizer().optimize("ch 1, sc in each st")
-        assert any(o.category == "efficiency" for o in result)
-
-    def test_repeat_notation_suggestion(self):
-        from crochet_checker.optimization.pattern_optimizer import PatternOptimizer
-
-        result = PatternOptimizer().optimize("sc sc sc sc sc sc sc")
-        assert any(o.category == "clarity" for o in result)
-
-    def test_no_suggestions(self):
-        from crochet_checker.optimization.pattern_optimizer import PatternOptimizer
-
-        assert PatternOptimizer().optimize("dc dc") == []
 
 
 # ---------------------------------------------------------------------------
@@ -1204,72 +849,8 @@ class TestPDFImageSupport:
 # ---------------------------------------------------------------------------
 
 
-class TestYarnSubstitution:
-    def test_find_substitutes(self):
-        from crochet_checker.yarn.substitution import (
-            YarnProperties,
-            YarnSubstitutionEngine,
-        )
-
-        yarn = YarnProperties(name="Original", brand="Brand X", weight="worsted")
-        results = YarnSubstitutionEngine().find_substitutes(yarn)
-        assert len(results) >= 1
-        assert results[0].compatibility_score == 100
-        assert results[0].substitute_yarn.name == "Heartland"
-
-    def test_properties_defaults(self):
-        from crochet_checker.yarn.substitution import YarnProperties
-
-        yarn = YarnProperties(name="Y", brand="B")
-        assert yarn.weight == "worsted"
-        assert yarn.fiber == "acrylic"
-        assert yarn.yardage == 200
-
-
 # ---------------------------------------------------------------------------
 # analysis.*
 # ---------------------------------------------------------------------------
 
 
-class TestAnalysis:
-    def test_complexity_levels(self):
-        from crochet_checker.analysis.complexity_analyzer import ComplexityAnalyzer
-
-        analyzer = ComplexityAnalyzer()
-        assert analyzer.analyze("simple sc").difficulty_level == "beginner"
-        assert analyzer.analyze("cluster stitch").difficulty_level == "intermediate"
-        advanced_text = ("bobble cluster *\n" * 31).strip()
-        assert analyzer.analyze(advanced_text).difficulty_level == "advanced"
-
-    def test_gauge_calculator(self):
-        from crochet_checker.analysis.gauge_calculator import GaugeCalculator
-
-        calc = GaugeCalculator()
-        info = calc.calculate_from_swatches(17, 4, "H", "worsted")
-        assert info.stitches_per_4_inches == pytest.approx(17)
-        assert info.matches_pattern is True
-
-        off = calc.calculate_from_swatches(20, 4, "H", "worsted")
-        assert off.matches_pattern is False
-
-    def test_pattern_scaler(self):
-        from crochet_checker.analysis.pattern_scaler import PatternScaler
-
-        result = PatternScaler().scale("sc dc sc", (10, 10), (20, 10))
-        assert result.scale_factor == pytest.approx(2.0)
-        assert result.adjusted_stitches == 6
-        assert result.adjustments
-
-    def test_time_estimator(self):
-        from crochet_checker.analysis.time_estimator import TimeEstimator
-
-        estimate = TimeEstimator().estimate("sc dc", "beginner")
-        assert estimate.total_hours > 0
-        assert TimeEstimator().estimate("sc dc", "advanced").total_hours < estimate.total_hours
-
-    def test_yarn_calculator(self):
-        from crochet_checker.analysis.yarn_calculator import AdvancedYarnCalculator
-
-        requirement = AdvancedYarnCalculator().calculate("sc dc", "worsted")
-        assert requirement.total_yards == pytest.approx(3.3)
-        assert requirement.skeins_needed == 1

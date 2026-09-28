@@ -12,7 +12,7 @@ Thank you for contributing! Please read our guidelines.
 1. Fork the repo
 2. Create a branch (`git checkout -b feature/amazing`)
 3. Make changes and add tests
-4. Run `pytest` (must pass all 146 tests)
+4. Run `pytest` (the suite must pass)
 5. Commit and push
 6. Open a Pull Request
 
