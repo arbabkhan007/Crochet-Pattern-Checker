@@ -1,0 +1,5 @@
+Clause total
+
+How: the clauses add to 48. Writing 54 does not create the missing 6 stitches.
+
+What: both corrected files agree 54 is not the sum of those clauses. The consensus changes the stated count to 48. It does not add stitches to build a different join.

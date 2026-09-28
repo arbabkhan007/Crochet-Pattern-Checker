@@ -1,0 +1,5 @@
+Post foundation
+
+How: fpdc has to enter a stitch at least as tall as hdc. The previous round is sc, which is too short. (fpdc) x 6 keeps the count at 6 once the foundation is tall enough.
+
+What: both corrected files agree. Do not work a post stitch into a short sc round. Change the previous round to hdc.

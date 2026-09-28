@@ -1,0 +1,5 @@
+Edging fullness
+
+How: 70 stitches on 14 row-ends is 5 times the base. With this gauge the checker warns above 2.5 times full.
+
+What: both corrected files agree 5 times full is too much. The consensus uses one stitch per row-end so the check can pass. A 35-stitch fan and a 42-stitch fan still warn, so neither model's fan is the consensus repair.

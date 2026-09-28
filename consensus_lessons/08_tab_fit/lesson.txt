@@ -1,0 +1,5 @@
+Tab fit
+
+How: the checker reads a skipped chain socket and the next stated tab width. A 12-stitch tab does not fit in a 6-chain socket.
+
+What: both corrected files agree the tab must not be wider than the socket. Inch sizes in prose are not read. This pair uses stitch counts.
