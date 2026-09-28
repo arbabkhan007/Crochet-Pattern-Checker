@@ -68,3 +68,9 @@ pytest-errors.txt
 remaining-errors.txt
 .crochet_ai_knowledge.json
 generated_sphere_small.json
+
+# Not the written checker. Do not commit these.
+pattern_versions/
+tutorials/
+learning_samples/
+experimental/not_the_product/
