@@ -16,7 +16,7 @@ A PASS on the Gemini or ChatGPT file is not proof. `[sc 1, inc] 6 times` and a b
 
 An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.
 
-A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, and a gauge far outside the Craft Yarn Council crochet band are now checked. A cinch with no numbers is still unread. A photo is still not classified.
+A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, and a short-row span that drops 34 to 28 without stating the row-ends are now checked. A cinch with no numbers is still unread. A photo is still not classified.
 
 ## What the checker learned
 
@@ -217,6 +217,16 @@ How: 40 single crochet per 4 inches is far outside the Craft Yarn Council croche
 
 What: the corrected file uses 12, inside the published band. This is not a trained gauge model. Tight amigurumi gauges such as 20 per 4 inches do not warn.
 
+### 20_short_row_gap: Short-row gap
+
+Wrong result: ERROR.
+- Short-row gap: 28 of 34 leaves 6 row-ends unstated.
+Corrected result: PASS.
+
+How: short rows that work 28 of 34 perimeter stitches leave 6 row-ends. Those row-ends must be written. The checker does not invent them.
+
+What: the corrected file states the 6 row-ends. A frill written only as prose, eyes mounted on a frill, and a closed tentacle with no stitch count are still unread.
+
 ## What was checked and not learned
 
 | Pattern | Agreed defect | Why it is not a lesson |
@@ -228,7 +238,7 @@ What: the corrected file uses 12, inside the published band. This is not a train
 | Wyvern | 35-stitch fan versus 42-stitch fan | Both still warn above 2.5 times full. Neither is the lesson. |
 | Dragon and Chimera | Which decrease formula to use | The models disagree on the target count. Only the cover-the-round rule is learned. |
 | Leviathan | Rebuild the hub to 64 | One model changes the count to 48. The other rebuilds the join. Only the 48-clause total is learned. |
-| All | Short rows, frills in prose, eyes on a frill, closed tentacle wording | The checker does not build those sites. |
+| All | Frills in prose, eyes on a frill, closed tentacle wording | The written works-N-of-M short-row gap is now an error. These other sites are still unread. |
 
 ## Viewpoint check
 
@@ -236,24 +246,24 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 74 | 1 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | whole file | ERROR | 72 | 1 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
 | `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | PASS | 0 | 0 | none |
 | `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 8 | 0 | Line 43: worked 5 stitches into 15 without a decrease. |
-| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 12 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Piece 'safety' is named in assembly but never started. |
+| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 12 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated. |
 | `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 41 | 1 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 22 | 0 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 20 | 0 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
 | `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |
 | `gemini_corrected.md` | 3: Clockwork Dragon (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 5: Void-Warped Chimera (Corrected) | PASS | 0 | 0 | none |
-| `chatgpt_corrected.md` | whole file | ERROR | 7 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Piece 'arm' is named in assembly but never started.; Piece 'arms' is named in assembly but never started. |
-| `chatgpt_corrected.md` | 1: Classic Amigurumi Bear — Corrected | ERROR | 4 | 0 | Piece 'arm' is named in assembly but never started.; Piece 'legs' is named in assembly but never started.; Piece 'arms' is named in assembly but never started. |
+| `chatgpt_corrected.md` | whole file | ERROR | 1 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
+| `chatgpt_corrected.md` | 1: Classic Amigurumi Bear — Corrected | PASS | 0 | 0 | none |
 | `chatgpt_corrected.md` | 2: Celestial Wyvern — Corrected | PASS | 0 | 0 | none |
 | `chatgpt_corrected.md` | 3: Clockwork Dragon — Corrected Defect Sections | ERROR | 1 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
-| `chatgpt_corrected.md` | 4: Abyssal Leviathan — Corrected | ERROR | 2 | 0 | Piece 'flattened' is named in assembly but never started.; Piece 'corresponding' is named in assembly but never started. |
-| `chatgpt_corrected.md` | 5: Void-Warped Chimera — Corrected | ERROR | 1 | 0 | Piece 'tentacle' is named in assembly but never started. |
+| `chatgpt_corrected.md` | 4: Abyssal Leviathan — Corrected | PASS | 0 | 0 | none |
+| `chatgpt_corrected.md` | 5: Void-Warped Chimera — Corrected | PASS | 0 | 0 | none |
 
 ## Not merged
 

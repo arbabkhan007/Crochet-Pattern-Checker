@@ -11,8 +11,9 @@ The specification describes a multi-year system. This file says what the current
 5. Chart text. `Chart row 1: X V X (4)` is an error because the symbols produce 3. The legend in the pattern defines the symbols.
 6. Ambiguity. `sc in next st`, with no count and no around or across, warns. This is a written rule, not a language model.
 7. Gauge band. A count outside half to double the Craft Yarn Council crochet single-crochet band warns. Worsted is 11 to 14 per 4 inches, so 40 warns and 12 does not. A tight amigurumi gauge such as 20 does not warn. Lace is not banded. Source: https://www.craftyarncouncil.com/standards/yarn-weight-system
+8. Short-row gap. After short rows, `works 28 of 34` is an error until the 6 row-ends are written. A normal decrease is not a short row.
 
-`verify_pattern` runs these stages with the existing text checker.
+`verify_pattern` runs these stages with the existing text checker. `Sew the Ear` is a missing piece only when Ear is capitalized. `attach the safety eyes` and `Attach the tentacle externally` are not piece names.
 
 ## Still not run
 

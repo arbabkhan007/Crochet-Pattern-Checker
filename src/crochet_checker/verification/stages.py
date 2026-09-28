@@ -99,6 +99,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(reachability(text))
     errors.extend(references(text))
     errors.extend(chart_text(text))
+    errors.extend(short_row_gap(text))
     warnings.extend(ambiguity(text))
     warnings.extend(gauge_band(text))
     return StageReport(
@@ -110,6 +111,7 @@ def run_stages(text: str) -> StageReport:
             "stitch reachability",
             "references",
             "chart text",
+            "short-row gap",
             "ambiguity",
             "gauge band",
         ],
@@ -253,9 +255,8 @@ def references(text: str) -> list[str]:
             if number not in known_rounds:
                 errors.append(f"Round {number} is named but this pattern never starts it.")
         for match in re.finditer(
-            r"\b(?:sew|attach|graft)\b[^.!\n]{0,80}?\bthe\s+([A-Za-z][a-z]+)\b",
+            r"(?i:\b(?:sew|attach|graft)\b)[^.!\n]{0,80}?\bthe\s+([A-Z][a-z]+)\b",
             line,
-            re.IGNORECASE,
         ):
             name = match.group(1)
             if name.lower() in _NOT_A_PIECE or name.lower() in known_pieces:
@@ -264,7 +265,38 @@ def references(text: str) -> list[str]:
     return _unique(errors)
 
 
+def short_row_gap(text: str) -> list[str]:
+    """Flag a short-row span whose missing row-ends are not written."""
+    if not re.search(r"\bshort rows?\b", text, re.IGNORECASE):
+        return []
+    match = re.search(
+        r"\b(?:works?|worked)\s+(\d+)\s+of\s+(\d+)\b",
+        text,
+        re.IGNORECASE,
+    )
+    if not match:
+        return []
+    worked = int(match.group(1))
+    perimeter = int(match.group(2))
+    gap = perimeter - worked
+    if gap <= 0:
+        return []
+    stated = []
+    for left, right in re.findall(
+        r"\b(\d+)\s+row-?ends?\b|\brow-?ends?\s*(?:\(|:)?\s*(\d+)",
+        text,
+        re.IGNORECASE,
+    ):
+        stated.append(int(left or right))
+    if gap in stated or sum(stated) == gap:
+        return []
+    return [
+        f"Short-row gap: {worked} of {perimeter} leaves {gap} row-ends unstated."
+    ]
+
+
 def chart_text(text: str) -> list[str]:
+
     """Count written chart symbols. This does not read a chart image."""
     legend = dict(_DEFAULT_SYMBOLS)
     errors = []

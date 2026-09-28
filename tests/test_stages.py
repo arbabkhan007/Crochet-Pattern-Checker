@@ -48,6 +48,11 @@ def test_each_stage_fails_wrong_and_passes_corrected():
             "Round 1: 6 sc into magic ring (6)\nRound 2: sc in each st around (6)\n",
             "does not say how many",
         ),
+        "short-row": (
+            "Short rows 11a-11c worked over 12 sts.\nThe next round works 28 of 34 perimeter positions.\n",
+            "Short rows 11a-11c worked over 12 sts, leaving 6 row-ends.\nThe next round works 28 of 34 perimeter positions.\n",
+            "Short-row gap",
+        ),
         "gauge": (
             "Yarn: worsted weight\nGauge: 40 sc = 4 inches\nRound 1: 6 sc into magic ring (6)\n",
             "Yarn: worsted weight\nGauge: 12 sc = 4 inches\nRound 1: 6 sc into magic ring (6)\n",
@@ -93,3 +98,14 @@ def test_skipped_engines_stay_named():
     assert "photo stitch classifier" in report.engines_skipped
     assert "process cluster" in report.engines_skipped
     assert "stitch reachability" in report.engines_ran
+
+
+def test_lowercase_assembly_words_are_not_missing_pieces():
+    text = (
+        "Attach the tentacle externally with a sewing seam.\n"
+        "Instructions: attach the safety eyes.\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+    )
+    report = validate_pattern(text)
+    messages = " ".join(_messages(report))
+    assert "Piece" not in messages

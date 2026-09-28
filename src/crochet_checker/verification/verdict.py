@@ -56,6 +56,7 @@ def verify_pattern(text: str) -> Verdict:
             "stitch reachability",
             "references",
             "chart text",
+            "short-row gap",
             "ambiguity",
             "gauge band",
         ],
