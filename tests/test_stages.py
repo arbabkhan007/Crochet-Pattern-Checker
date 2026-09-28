@@ -53,6 +53,11 @@ def test_each_stage_fails_wrong_and_passes_corrected():
             "Short rows 11a-11c worked over 12 sts, leaving 6 row-ends.\nThe next round works 28 of 34 perimeter positions.\n",
             "Short-row gap",
         ),
+        "frill": (
+            "756 stitches worked into 108 base stitches.\n",
+            "108 stitches worked into 108 base stitches.\n",
+            "Prose frill",
+        ),
         "gauge": (
             "Yarn: worsted weight\nGauge: 40 sc = 4 inches\nRound 1: 6 sc into magic ring (6)\n",
             "Yarn: worsted weight\nGauge: 12 sc = 4 inches\nRound 1: 6 sc into magic ring (6)\n",

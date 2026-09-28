@@ -102,6 +102,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(short_row_gap(text))
     warnings.extend(ambiguity(text))
     warnings.extend(gauge_band(text))
+    warnings.extend(prose_frill(text))
     return StageReport(
         errors=_unique(errors),
         warnings=_unique(warnings),
@@ -114,6 +115,7 @@ def run_stages(text: str) -> StageReport:
             "short-row gap",
             "ambiguity",
             "gauge band",
+            "prose frill",
         ],
         engines_skipped=list(_SKIPPED),
     )
@@ -355,7 +357,40 @@ def ambiguity(text: str) -> list[str]:
     return _unique(warnings)
 
 
+def prose_frill(text: str) -> list[str]:
+    """Warn when prose says one edge is worked more than 2.5 times full."""
+    warnings = []
+    for line in text.splitlines():
+        if re.search(r"\bdo not\b|\bdon't\b", line, re.IGNORECASE):
+            continue
+        worked = re.search(
+            r"\b(\d+)\s+stitches\s+worked\s+into\s+(\d+)\s+base\b",
+            line,
+            re.IGNORECASE,
+        )
+        if worked:
+            made = int(worked.group(1))
+            base = int(worked.group(2))
+            if base > 0 and made / base > 2.5:
+                warnings.append(
+                    f"Prose frill: {made} stitches worked into {base} base stitches "
+                    f"is {made / base:.1f}x full. Above 2.5x the edge bunches."
+                )
+        times = re.search(
+            r"\b(\d+(?:\.\d+)?)\s+times\s+full\b",
+            line,
+            re.IGNORECASE,
+        )
+        if times and float(times.group(1)) > 2.5 and re.search(r"\bfrill\b", line, re.IGNORECASE):
+            warnings.append(
+                f"Prose frill: {float(times.group(1)):g} times full is above 2.5x. "
+                "The edge will bunch."
+            )
+    return _unique(warnings)
+
+
 def gauge_band(text: str) -> list[str]:
+
     """Warn when a stated gauge is far outside the published crochet band."""
     weight = _weight(text)
     if weight is None:

@@ -59,6 +59,7 @@ def verify_pattern(text: str) -> Verdict:
             "short-row gap",
             "ambiguity",
             "gauge band",
+            "prose frill",
         ],
         engines_skipped=list(SKIPPED),
     )
