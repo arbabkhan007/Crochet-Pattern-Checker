@@ -1,0 +1,5 @@
+Puff of one
+
+How: a puff of 1 is one yarn over, not a puff.
+
+What: the corrected file uses a puff of 5.

@@ -1,0 +1,5 @@
+Pom-pom of zero
+
+How: a pom-pom of 0 wraps has nothing to tie.
+
+What: the corrected file uses 40 wraps.

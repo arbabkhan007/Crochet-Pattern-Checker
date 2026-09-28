@@ -1,0 +1,5 @@
+Rectangle of zero
+
+How: a rectangle of 0 rows was not worked.
+
+What: the corrected file has 12 rows.

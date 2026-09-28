@@ -1,0 +1,5 @@
+Marker at zero
+
+How: stitch 0 does not exist. The first stitch is stitch 1.
+
+What: the corrected file places the marker in stitch 1.

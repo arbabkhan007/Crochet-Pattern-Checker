@@ -1,0 +1,5 @@
+Negative gauge
+
+How: a gauge of -1 sc is not a fabric.
+
+What: the corrected file uses 12 sc per 4 inches.

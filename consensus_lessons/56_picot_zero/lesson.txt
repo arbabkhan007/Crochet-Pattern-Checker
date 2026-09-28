@@ -1,0 +1,5 @@
+Picot of zero
+
+How: a picot of 0 chains is not a picot.
+
+What: the corrected file uses a picot of 3.

@@ -1,0 +1,5 @@
+Yarn over and under
+
+How: one stitch cannot be both a yarn over and a yarn under.
+
+What: the corrected file uses a yarn over.

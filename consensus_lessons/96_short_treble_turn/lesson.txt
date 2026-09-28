@@ -1,0 +1,5 @@
+Short treble turn
+
+How: ch 1 cannot turn for a treble. A treble turn needs ch 4. ch 2 for a double treble is short as well.
+
+What: the corrected file uses ch 4 before the treble.

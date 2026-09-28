@@ -1,0 +1,5 @@
+Zero rounds tall
+
+How: a piece that is 0 rounds tall was not made.
+
+What: the corrected file is 8 rounds tall.

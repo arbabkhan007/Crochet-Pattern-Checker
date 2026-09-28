@@ -1,0 +1,5 @@
+Plus remainder
+
+How: a count that is not the written multiple plus the written remainder fails.
+
+What: the corrected file uses 13, which is a multiple of 6 plus 1.

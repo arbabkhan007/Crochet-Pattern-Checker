@@ -1,0 +1,5 @@
+Place zero eyes
+
+How: place 0 safety eyes is an instruction that mounts nothing.
+
+What: the corrected file places 2 safety eyes.

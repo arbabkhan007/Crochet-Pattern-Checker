@@ -1,0 +1,5 @@
+Cable of zero
+
+How: a cable over 0 stitches does not cross.
+
+What: the corrected file crosses 2 stitches.

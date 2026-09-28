@@ -1,0 +1,5 @@
+Two foundations
+
+How: foundation single crochet replaces the starting chain for that row.
+
+What: the corrected file starts with foundation sc.

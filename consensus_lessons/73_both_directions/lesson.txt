@@ -1,0 +1,5 @@
+Both directions
+
+How: left to right and right to left, with no or, gives two directions.
+
+What: the corrected file works left to right.

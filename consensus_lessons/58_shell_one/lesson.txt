@@ -1,0 +1,5 @@
+Shell of one
+
+How: a shell needs at least 3 stitches. A shell of 1 is a single stitch.
+
+What: the corrected file uses a shell of 5.

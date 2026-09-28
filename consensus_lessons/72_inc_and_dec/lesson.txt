@@ -1,0 +1,5 @@
+Increase and decrease
+
+How: inc and dec in each stitch cancel, and the line does not say which one.
+
+What: the corrected file increases in each stitch.

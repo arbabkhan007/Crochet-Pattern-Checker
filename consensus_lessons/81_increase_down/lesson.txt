@@ -1,0 +1,5 @@
+Increase that shrinks
+
+How: an increase from 12 to 6 is a decrease. The word and the numbers disagree.
+
+What: the corrected file increases from 6 to 12.

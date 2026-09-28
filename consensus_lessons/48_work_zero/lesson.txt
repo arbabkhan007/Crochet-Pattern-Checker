@@ -1,0 +1,5 @@
+Work zero
+
+How: work 0 stitches is an instruction that does nothing.
+
+What: the corrected file works 6 stitches.

@@ -1,0 +1,5 @@
+Reverse sc direction
+
+How: reverse single crochet is worked backward, not forward.
+
+What: the corrected file works it backward.

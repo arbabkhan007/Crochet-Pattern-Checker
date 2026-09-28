@@ -1,0 +1,5 @@
+Steel hook order
+
+How: on a steel hook, a higher number is smaller. Steel 14 is not larger than steel 1.
+
+What: the corrected file says steel 14 is smaller.

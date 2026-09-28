@@ -1,0 +1,5 @@
+Spiral and join
+
+How: a continuous spiral does not join every round. The two instructions disagree.
+
+What: the corrected file keeps the spiral and says not to join.

@@ -1,0 +1,5 @@
+Stuff zero
+
+How: stuff with 0 g leaves the piece empty while telling the crocheter to stuff.
+
+What: the corrected file stuffs with 20 g.

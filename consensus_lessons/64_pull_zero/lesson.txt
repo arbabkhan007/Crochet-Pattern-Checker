@@ -1,0 +1,5 @@
+Pull through zero
+
+How: pull through 0 loops leaves the loops on the hook.
+
+What: the corrected file pulls through 2 loops.

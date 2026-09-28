@@ -167,7 +167,7 @@ footer{text-align:center;color:white;padding:40px 0 20px;opacity:.8}
 <div class="main-grid">
 <div class="panel"><h2>\xf0\x9f\x93\x9d Enter Your Pattern</h2>
 <div class="upload-zone" id="dropZone"><p>\xf0\x9f\x93\x81 Drop a .txt file here or click to upload</p><input type="file" id="fileInput" accept=".txt" style="display:none"></div>
-<textarea id="patternInput" placeholder="Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\nRound 3: (2 sc, inc) x 6 (24)..."></textarea>
+<textarea id="patternInput" placeholder="Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc) x 6 (18)\nRound 4: (2 sc, inc) x 6 (24)..."></textarea>
 <button class="btn" onclick="checkPattern()">Check Pattern</button>
 <button class="btn" onclick="renderPattern()">Render</button>
 <button class="btn" onclick="simulatePattern()">3D Simulate</button>

@@ -1,0 +1,5 @@
+Both loop claims
+
+How: BLO only and both loops cannot be the same stitch.
+
+What: the corrected file keeps BLO only.

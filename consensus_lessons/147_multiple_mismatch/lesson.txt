@@ -1,0 +1,5 @@
+Multiple mismatch
+
+How: a stated count that is not divisible by the written multiple fails. This is not limited to 3 and 10.
+
+What: the corrected file uses a divisible count.

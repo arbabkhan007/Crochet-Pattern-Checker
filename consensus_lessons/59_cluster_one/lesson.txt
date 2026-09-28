@@ -1,0 +1,5 @@
+Cluster of one
+
+How: a 1-dc cluster is one double crochet, not a cluster.
+
+What: the corrected file uses a 3-dc cluster.

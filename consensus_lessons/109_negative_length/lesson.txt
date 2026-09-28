@@ -1,0 +1,5 @@
+Negative length
+
+How: a finished length of -1 inches is not a piece.
+
+What: the corrected file is 8 inches long.

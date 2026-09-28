@@ -1,0 +1,5 @@
+Chain-zero space
+
+How: a ch-0 space has no chains to work into.
+
+What: the corrected file uses a ch-2 space.

@@ -1,0 +1,5 @@
+Fractional repeat
+
+How: x 2.5 asks for half of a repeat. Repeats are whole numbers.
+
+What: the corrected file repeats 3 times.

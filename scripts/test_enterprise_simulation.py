@@ -12,8 +12,9 @@ from crochet_checker.parser.parser import parse_pattern
 
 pattern = parse_pattern(
     "Round 1: 6 sc into magic ring (6)\n"
-    "Round 2: (sc, inc) x 6 (18)\n"
-    "Round 3: (2 sc, inc) x 6 (24)\n"
+    "Round 2: inc x 6 (12)\n"
+    "Round 3: (sc, inc) x 6 (18)
+Round 4: (2 sc, inc) x 6 (24)\n"
 )
 
 result = MonteCarloSimulator(

@@ -1,0 +1,5 @@
+Copied centimeter measure
+
+How: writing the same number for centimeters and inches is not a conversion.
+
+What: the corrected file converts 10 cm to 3.94 inches.

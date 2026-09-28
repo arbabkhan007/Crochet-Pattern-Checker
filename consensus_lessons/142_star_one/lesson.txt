@@ -1,0 +1,5 @@
+Star of one
+
+How: a star stitch of 1 cannot pull up the loops a star needs.
+
+What: the corrected file uses a star stitch of 5.

@@ -1,0 +1,1 @@
+Change color every 0 rows.

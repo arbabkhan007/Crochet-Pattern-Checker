@@ -1,0 +1,5 @@
+Increase direction
+
+How: any increase whose second number is not higher fails. This is not limited to 12 to 6.
+
+What: the corrected file rises.

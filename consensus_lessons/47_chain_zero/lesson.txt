@@ -1,0 +1,5 @@
+Zero chain
+
+How: ch 0 makes no chain to work into.
+
+What: the corrected file chains 4.

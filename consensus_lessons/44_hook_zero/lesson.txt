@@ -1,0 +1,5 @@
+Zero hook
+
+How: a hook of 0 mm cannot pull up a loop.
+
+What: the corrected file uses a 5 mm hook.

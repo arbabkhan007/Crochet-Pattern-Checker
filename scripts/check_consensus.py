@@ -63,7 +63,11 @@ def lesson_fields(text: str) -> tuple[str, str, str]:
 
 
 def main() -> int:
-    folders = sorted(path for path in LESSONS.iterdir() if path.is_dir())
+    def lesson_key(path: Path) -> tuple[int, str]:
+        head = path.name.split("_", 1)[0]
+        return (int(head) if head.isdigit() else 9999, path.name)
+
+    folders = sorted((path for path in LESSONS.iterdir() if path.is_dir()), key=lesson_key)
     if len(folders) < 9:
         sys.exit(f"Expected at least 9 consensus lessons, found {len(folders)}.")
 
@@ -143,7 +147,7 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.",
         "",
-        "A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A closed tentacle join, a chain crossed once, a dropped body count, a back post on the front loop, eyes placed after stuffing, more than 3 stitches in each row end, a repeat that misses its incoming count, an unlisted color, a repeated round number, and more than 2.5 stitches in every base stitch are now checked. A short chain, an unclosed parenthesis, a missing star, a decrease that misses its count, an increase that more than doubles, a written-as mismatch, an eye-count mismatch, a future round, a make-count mismatch, and a repeat of zero are now checked. A cinch with no numbers is still unread. A photo is still not classified.",
+        "A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A closed tentacle join, a chain crossed once, a dropped body count, a back post on the front loop, eyes placed after stuffing, more than 3 stitches in each row end, a repeat that misses its incoming count, an unlisted color, a repeated round number, and more than 2.5 stitches in every base stitch are now checked. A short chain, an unclosed parenthesis, a missing star, a decrease that misses its count, an increase that more than doubles, a written-as mismatch, an eye-count mismatch, a future round, a make-count mismatch, and a repeat of zero are now checked. Fifty phrase checks, lessons 44 through 93, now catch a zero hook, a one-stitch shell, a backward range, and the other written impossibilities. Lessons 94 through 158 add hook-letter, yarn-weight, UK-gloss, turning-chain, and zero-measure checks, plus general increase, decrease, range, multiple, and measure checks. Those general checks are proved on 5,000 sentences. Five thousand named copies were not added. A cinch with no numbers is still unread. A photo is still not classified.",
         "",
         "## What the checker learned",
         "",

@@ -224,3 +224,16 @@ def test_lowercase_assembly_words_are_not_missing_pieces():
     report = validate_pattern(text)
     messages = " ".join(_messages(report))
     assert "Piece" not in messages
+
+
+def test_fifty_phrase_rules():
+    from crochet_checker.verification.batch import RULES
+
+    assert len(RULES) == 50
+    for rule in RULES:
+        bad = validate_pattern(rule.wrong)
+        good = validate_pattern(rule.corrected)
+        blob = " ".join(_messages(bad))
+        assert bad.overall_status != "PASS", rule.slug
+        assert rule.needle in blob, rule.slug
+        assert good.overall_status == "PASS", (rule.slug, _messages(good))

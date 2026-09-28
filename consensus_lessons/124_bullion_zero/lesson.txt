@@ -1,0 +1,5 @@
+Bullion of zero
+
+How: a bullion of 0 wraps has no wraps to coil.
+
+What: the corrected file uses 7 wraps.

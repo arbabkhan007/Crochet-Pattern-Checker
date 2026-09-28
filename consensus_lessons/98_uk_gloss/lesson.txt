@@ -1,0 +1,5 @@
+UK gloss
+
+How: a US single crochet is a UK double, not a UK treble.
+
+What: the corrected file says sc (UK double).

@@ -16,7 +16,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
           pip install -e ".[dev]" weasyprint python-multipart
-      - run: python -m pytest tests/ -v --tb=short
+      - run: python -m pytest tests/ -q --tb=short
+      - run: python scripts/check_consensus.py
       - run: |
           crochet-check check examples/amigurumi.txt
           crochet-check explain examples/amigurumi.txt

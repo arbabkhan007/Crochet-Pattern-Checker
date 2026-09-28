@@ -1,0 +1,5 @@
+Negative repeat
+
+How: x -1 is not a repeat count.
+
+What: the corrected file repeats 4 times.

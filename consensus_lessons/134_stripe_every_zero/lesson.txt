@@ -1,0 +1,5 @@
+Stripe every zero
+
+How: a stripe every 0 rounds never stripes.
+
+What: the corrected file stripes every 2 rounds.

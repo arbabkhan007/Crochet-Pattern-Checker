@@ -1,0 +1,5 @@
+Work even zero
+
+How: work even for 0 rows does no work.
+
+What: the corrected file works even for 4 rows.

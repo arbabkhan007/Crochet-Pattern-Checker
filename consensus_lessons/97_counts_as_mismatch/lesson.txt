@@ -1,0 +1,5 @@
+Counts-as mismatch
+
+How: ch 1 cannot count as a double crochet. A double crochet turning chain is ch 3.
+
+What: the corrected file lets ch 3 count as the dc.

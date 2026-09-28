@@ -1,0 +1,5 @@
+Hook in centimeters
+
+How: a hook written as 5 cm is 50 mm. Crochet hooks are written in millimeters.
+
+What: the corrected file says 5 mm.

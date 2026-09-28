@@ -1,0 +1,5 @@
+Hook letter gap
+
+How: H/8 written as 2.25 mm is the B-1 size, not a brand variation. The Craft Yarn Council nominal for H-8 is 5 mm. This fires only when the written millimeter is more than 1.5 mm away.
+
+What: the corrected file uses H/8 (5 mm).

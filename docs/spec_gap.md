@@ -51,3 +51,124 @@ The specification describes a multi-year system. This file says what the current
 - Stated count, repeat cover, post foundation, ghost eyes, equal socket, edging fullness, span match, tab fit, clause total, 12-to-24 neck jump, unequal stitch seam, and unequal inch seam.
 - A shape mesh for a sphere, hat, tube, cone, or bowl. It does not track each loop. Stage 3 is the written reachability check, not that shape mesh.
 - PDF text reading, a small web app, and a learning store that does not change the rules by itself.
+
+Fifty phrase checks, lessons 44 through 93. A quoted line is not an instruction.
+
+31. Zero hook. A hook of 0 mm cannot pull up a loop.
+32. Huge hook. A 40 mm hook is past even jumbo crochet. This warns.
+33. Hook in centimeters. A hook written as 5 cm is 50 mm. Crochet hooks are written in millimeters.
+34. Zero chain. Ch 0 makes no chain to work into.
+35. Work zero. Work 0 stitches is an instruction that does nothing.
+36. Skip zero. Skip 0 does not move the hook.
+37. Decrease to zero. Decreasing to 0 stitches leaves nothing to fasten or sew.
+38. Until zero. Repeat until 0 stitches is not a workable stop. A digit of 0 still counts as written, so the termination rule does not catch it.
+39. Round zero. Rounds are numbered from 1. Round 0 is not a round.
+40. Marker at zero. Stitch 0 does not exist. The first stitch is stitch 1.
+41. Zero gauge. A gauge of 0 sc per 4 inches is not a fabric.
+42. Zero inches. A finished width of 0 inches is not a piece.
+43. Picot of zero. A picot of 0 chains is not a picot.
+44. Chain-zero space. A ch-0 space has no chains to work into.
+45. Shell of one. A shell needs at least 3 stitches. A shell of 1 is a single stitch.
+46. Cluster of one. A 1-dc cluster is one double crochet, not a cluster.
+47. Bobble of one. A bobble of 1 has no stitches to gather.
+48. Puff of one. A puff of 1 is one yarn over, not a puff.
+49. Popcorn of one. A popcorn of 1 cannot be folded closed.
+50. Zero yarn over. Yo 0 does not put yarn on the hook.
+51. Pull through zero. Pull through 0 loops leaves the loops on the hook.
+52. Decimal stitch. 6.5 sc is not a whole stitch. The hook cannot make half a single crochet.
+53. Fractional repeat. X 2.5 asks for half of a repeat. Repeats are whole numbers.
+54. Negative repeat. X -1 is not a repeat count.
+55. Round 9000. Round 9000 is not a usable round number in this pattern.
+56. Join contradiction. The same line says to join and not to join.
+57. Spiral and join. A continuous spiral does not join every round. The two instructions disagree.
+58. Both loop claims. BLO only and both loops cannot be the same stitch.
+59. Increase and decrease. Inc and dec in each stitch cancel, and the line does not say which one.
+60. Both directions. Left to right and right to left, with no or, gives two directions.
+61. Two joins. An invisible join and a slip-stitch join are two finishes. The line requires both.
+62. Both sides facing. The right side and the wrong side cannot both face the worker.
+63. Double and single. The yarn cannot be held double and single at the same time.
+64. Inside and out. Turning inside out and keeping the right side out disagree.
+65. Tight and loose. One round cannot be worked tightly and loosely.
+66. Same color change. Changing from Color A to Color A is not a color change.
+67. Increase to the same count. An increase from 12 to 12 does not increase.
+68. Increase that shrinks. An increase from 12 to 6 is a decrease. The word and the numbers disagree.
+69. Decrease that grows. A decrease from 6 to 12 grows. The word and the numbers disagree.
+70. Chain counted twice. A turning chain counted twice is added to the stitch count two times.
+71. Post around a chain. A chain has no post. fpdc cannot go around the chain.
+72. Slip knot as a stitch. The slip knot is not a chain stitch. Do not work into it.
+73. Short turning chain. Ch 1 is the turning chain for sc, not for dc. A dc turn needs ch 3.
+74. Round says across. A round is worked around. Across is the flat-row word.
+75. Row says around. A flat row is worked across. Around is the round word.
+76. Round says turn. A continuous round does not turn. Turn belongs to a flat row.
+77. Backward range. Rounds 8-5 run backwards. A range has to climb.
+78. Not a multiple. A multiple of 3 cannot be 10 stitches. 10 is not divisible by 3.
+79. Odd when even. A count that must be even cannot be 7.
+80. Eyes too far apart. Eyes 8 stitches apart cannot sit on a 6-stitch round.
+
+Lessons 94 through 158. These are new written checks. Five thousand named copies were not added. The increase, decrease, range, multiple, and measure checks are proved on 5,000 sentences in tests/test_span.py. A quoted line is still not an instruction. A photo is still not classified.
+
+81. Hook letter gap. H/8 written as 2.25 mm is the B-1 size, not a brand variation. The Craft Yarn Council nominal for H-8 is 5 mm. This fires only when the written millimeter is more than 1.5 mm away.
+82. Yarn weight number. Worsted is Craft Yarn Council category 4, not 1.
+83. Short treble turn. Ch 1 cannot turn for a treble. A treble turn needs ch 4. ch 2 for a double treble is short as well.
+84. Counts-as mismatch. Ch 1 cannot count as a double crochet. A double crochet turning chain is ch 3.
+85. UK gloss. A US single crochet is a UK double, not a UK treble.
+86. Steel hook order. On a steel hook, a higher number is smaller. Steel 14 is not larger than steel 1.
+87. Spiral turn. A continuous spiral does not turn every round.
+88. Fasten and continue. Fasten off ends that yarn. The same line cannot continue in it.
+89. Yarn over and under. One stitch cannot be both a yarn over and a yarn under.
+90. Reverse sc direction. Reverse single crochet is worked backward, not forward.
+91. Two foundations. Foundation single crochet replaces the starting chain for that row.
+92. Both hands. Right-handed and left-handed work need separate instructions when both are required.
+93. Two starts. A piece cannot have both a magic ring and a chain ring as its only start.
+94. Two seam methods. Whipstitch and mattress stitch are different seams. One line cannot require both for the same seam.
+95. Negative gauge. A gauge of -1 sc is not a fabric.
+96. Negative length. A finished length of -1 inches is not a piece.
+97. Zero rows tall. A piece that is 0 rows tall was not made.
+98. Zero rounds tall. A piece that is 0 rounds tall was not made.
+99. Row zero. Rows are numbered from 1. Row 0 is not a row.
+100. Make zero. Make 0 asks for none of that piece.
+101. Negative times. Repeating a row -1 times is not a repeat. This is not the x -1 form.
+102. Work even zero. Work even for 0 rows does no work.
+103. Place zero eyes. Place 0 safety eyes is an instruction that mounts nothing.
+104. Zero yardage. 0 yards cannot make the piece.
+105. Stuff zero. Stuff with 0 g leaves the piece empty while telling the crocheter to stuff.
+106. Color every zero. Changing color every 0 rows never changes color.
+107. Increase every zero. Increasing every 0 rounds never increases.
+108. Decrease every zero. Decreasing every 0 rows never decreases.
+109. V-stitch of one. A V-stitch needs two tall stitches and a chain. A V-stitch of 1 is one stitch.
+110. Fan of one. A fan needs several stitches in one space. A fan of 1 is one stitch.
+111. Bullion of zero. A bullion of 0 wraps has no wraps to coil.
+112. Cable of zero. A cable over 0 stitches does not cross.
+113. Fringe of zero. A fringe of 0 strands is not a fringe.
+114. Buttonhole of zero. A buttonhole of 0 chains has no opening.
+115. I-cord of zero. An i-cord of 0 stitches has no cord.
+116. Oval of zero. An oval cannot start with 0 chains.
+117. Square of zero. A square of 0 rounds was not worked.
+118. Solomon knot of zero. A Solomon knot of 0 is not a knot.
+119. Surface of zero. Surface crochet of 0 chains draws no line.
+120. Bead every zero. A bead every 0 stitches is never placed.
+121. Stripe every zero. A stripe every 0 rounds never stripes.
+122. Pom-pom of zero. A pom-pom of 0 wraps has nothing to tie.
+123. Tassel of zero. A tassel of 0 wraps has nothing to hang.
+124. Pineapple of zero. A pineapple of 0 is not a pineapple motif.
+125. Spike of zero. A spike stitch down 0 rows does not leave the current row.
+126. Tube of zero. A tube of 0 stitches has no opening.
+127. Rectangle of zero. A rectangle of 0 rows was not worked.
+128. Corner of zero. A corner of 0 chains does not turn the corner.
+129. Star of one. A star stitch of 1 cannot pull up the loops a star needs.
+130. Loop of zero. A loop stitch of 0 has no loop.
+131. Same color letter. Changing from Color Q to Color Q is not a color change. The check is any repeated letter, not only A.
+132. Increase direction. Any increase whose second number is not higher fails. This is not limited to 12 to 6.
+133. Decrease direction. Any decrease whose second number is not lower fails. This is not limited to 6 to 12.
+134. Multiple mismatch. A stated count that is not divisible by the written multiple fails. This is not limited to 3 and 10.
+135. Plus remainder. A count that is not the written multiple plus the written remainder fails.
+136. Backward round range. A round range whose first number is higher runs backwards. This is not limited to 8-5.
+137. Backward row range. A row range whose first number is higher runs backwards.
+138. Even count. An odd number cannot be required to be even. This is not limited to 7.
+139. Odd count. An even number cannot be required to be odd.
+140. Apart span. Eyes farther apart than the round cannot sit on it. This is not limited to 8 on 6.
+141. Stitch past end. A marker past the last stitch cannot be placed.
+142. Skip past count. A skip of the whole row or more does not fit.
+143. Fractional times. Any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
+144. Copied inch measure. The same number in inches and centimeters is not a conversion. One inch is 2.54 cm.
+145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.

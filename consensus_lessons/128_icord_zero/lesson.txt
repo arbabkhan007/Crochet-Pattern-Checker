@@ -1,0 +1,5 @@
+I-cord of zero
+
+How: an i-cord of 0 stitches has no cord.
+
+What: the corrected file uses 4 stitches.

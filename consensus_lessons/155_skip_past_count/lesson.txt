@@ -1,0 +1,5 @@
+Skip past count
+
+How: a skip of the whole row or more does not fit.
+
+What: the corrected file skips 1.

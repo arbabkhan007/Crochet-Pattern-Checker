@@ -1,0 +1,5 @@
+Tassel of zero
+
+How: a tassel of 0 wraps has nothing to hang.
+
+What: the corrected file uses 40 wraps.

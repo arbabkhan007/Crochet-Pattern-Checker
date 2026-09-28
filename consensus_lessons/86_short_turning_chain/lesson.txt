@@ -1,0 +1,5 @@
+Short turning chain
+
+How: ch 1 is the turning chain for sc, not for dc. A dc turn needs ch 3.
+
+What: the corrected file uses ch 3 before the dc.

@@ -1,0 +1,5 @@
+Two starts
+
+How: a piece cannot have both a magic ring and a chain ring as its only start.
+
+What: the corrected file starts with a magic ring.

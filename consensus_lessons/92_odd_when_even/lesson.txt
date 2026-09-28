@@ -1,0 +1,5 @@
+Odd when even
+
+How: a count that must be even cannot be 7.
+
+What: the corrected file uses 8.

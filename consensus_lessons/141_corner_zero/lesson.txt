@@ -1,0 +1,5 @@
+Corner of zero
+
+How: a corner of 0 chains does not turn the corner.
+
+What: the corrected file uses 2 chains.

@@ -1,0 +1,5 @@
+Increase to the same count
+
+How: an increase from 12 to 12 does not increase.
+
+What: the corrected file increases from 12 to 18.

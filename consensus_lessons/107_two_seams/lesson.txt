@@ -1,0 +1,5 @@
+Two seam methods
+
+How: whipstitch and mattress stitch are different seams. One line cannot require both for the same seam.
+
+What: the corrected file uses mattress stitch.

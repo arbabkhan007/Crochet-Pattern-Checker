@@ -1,158 +1,106 @@
 # Crochet Pattern Checker
 
-**Validate, visualize, simulate, and publish crochet patterns — all from the command line.**
+A deterministic checker for written crochet patterns. It parses US rounds and rows, counts the stitches, and reports contradictions. It does not decide those counts with a language model.
 
+Version 1.0.0. Repository: [arbabkhan007/Crochet-Pattern-Checker](https://github.com/arbabkhan007/Crochet-Pattern-Checker).
 
-> Turn raw crochet pattern text into validated documents, 2D diagrams, 3D meshes, professional PDFs, and AI-powered explanations automatically.
+## What a result means
 
----
+`PASS` means the written checks that ran found no error and no warning. It does not mean a photo was counted, a chart image was read, or every English sentence was understood.
 
-## Features
+These engines are not run:
 
-### Parse and Validate
-- Parses any US crochet pattern format (magic ring, sc/hdc/dc/tr, increases, decreases, repeats)
-- Deterministic mathematical validation catches stitch count errors before you crochet
-- Confidence levels: PASS, PASS WITH WARNINGS, NEEDS REVIEW, ERROR
+- a chart image detector
+- a photo stitch classifier
+- a hosted language model
+- a vision training set
+- a process cluster
 
-### 2D Visualization
-- Circle diagrams, stitch count charts, crochet charts, combined preview
+Two written cases stay unread on purpose, and the checker says so instead of guessing:
 
-### 3D Simulation
-- Automatic shape detection (sphere, hat, tube, cone, flat circle, bowl)
-- Export to .obj files — open in Blender, MeshLab, or any 3D viewer
+- a cinch with no stitch count, such as `Cinch shut`
+- a lowercase sew line, such as `sew head to body`
 
-### PDF Publishing
-- Professional pattern documents with cover page, materials, abbreviations
-- Real PDF output via WeasyPrint — no browser needed
+A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
 
-### AI Assistance
-- Plain English pattern explanations
-- Fix suggestions for validation errors
-- US to UK terminology translation (sc to dc, hdc to htr, etc.)
-- Marketing-ready pattern descriptions with tags
+## Install
 
-### Web Interface
-- Beautiful drag-and-drop web UI
-- Real-time validation, rendering, and 3D simulation
-- REST API for integration
-
----
-
-## Quick Start
-
-**Install:**
 ```bash
 git clone https://github.com/arbabkhan007/Crochet-Pattern-Checker.git
 cd Crochet-Pattern-Checker
-pip install -e ".[dev]"
-pip install weasyprint
+python -m pip install -e ".[dev]"
 ```
 
-**Validate:**
+PDF generation also needs WeasyPrint and its system libraries. The other checks do not.
+
+## Check a pattern
+
 ```bash
 crochet-check check examples/amigurumi.txt
 ```
 
-**Generate 2D diagrams:**
-```bash
-crochet-check render examples/simple_hat.txt -o output/
+A correct start for a 6-stitch sphere is:
+
+```text
+Round 1: 6 sc into magic ring (6)
+Round 2: inc x 6 (12)
+Round 3: (sc, inc) x 6 (18)
+Round 4: (2 sc, inc) x 6 (24)
 ```
 
-**Generate 3D mesh:**
-```bash
-crochet-check render-3d examples/amigurumi.txt
-```
+`Round 2: (sc, inc) x 6 (18)` after a 6-stitch round is an error. That round uses 12 stitches and more than doubles the count. It is not a valid example.
 
-**Generate PDF:**
-```bash
-crochet-check pdf examples/amigurumi.txt --designer "Your Name" -o pattern.pdf
-```
+Exit status is 1 when the report has an error. Warnings do not change the exit status. `PASS_WITH_WARNINGS` is still a completed check.
 
-**AI explanation:**
-```bash
-crochet-check explain examples/amigurumi.txt
-```
+## What the checker catches
 
-**Start web UI:**
-```bash
-crochet-check serve --port 8000
-```
+On written US instructions it checks stitch counts, repeats, increases that more than double, decreases that miss their count, round order, dialect scope, a chain that is too short for the stated count, a missing repeat star, an eye count that disagrees with its materials line, a seam whose two stitch counts disagree, and an inch edge sewn to a much shorter edge. The lesson files under `consensus_lessons/` are the proofs: each wrong file is not clean, and each corrected file passes.
 
----
+`docs/spec_gap.md` is the inventory. If this README and that file disagree, the file is the detailed list and this page is the contract.
 
-## All Commands
+## Commands that also exist
 
-| Command | Description |
-|---------|-------------|
-| `crochet-check check pattern.txt` | Validate stitch counts |
-| `crochet-check render pattern.txt -o output/` | Generate 2D SVG diagrams |
-| `crochet-check measure pattern.txt` | Show measurements |
-| `crochet-check render-3d pattern.txt` | Generate 3D mesh (OBJ) |
-| `crochet-check pdf pattern.txt -o out.pdf` | Generate professional PDF |
-| `crochet-check explain pattern.txt` | AI explanation + suggestions |
-| `crochet-check serve --port 8000` | Start web UI |
+| Command | What it does | What it does not do |
+|---|---|---|
+| `crochet-check check` | Runs the written checker | Does not invent counts from a photo |
+| `crochet-check render` | Writes 2D SVG diagrams from parsed rounds | Does not read a chart image |
+| `crochet-check render-3d` | Writes an OBJ mesh for a detected sphere, hat, tube, cone, or bowl | Does not track each loop |
+| `crochet-check measure` | Estimates measurements from the parsed piece | Does not replace a gauge swatch |
+| `crochet-check pdf` | Writes an HTML pattern sheet, and a PDF when WeasyPrint is installed | Does not certify the pattern |
+| `crochet-check explain` | Rule-based explanation. `--ai` can call a configured provider | AI output cannot override the stitch count |
+| `crochet-check image` | Writes a placeholder cover unless a provider is configured | Does not count stitches in the image |
+| `crochet-check yarn-calc` | Rough yardage estimate | Not a substitute for a measured swatch |
+| `crochet-check progress` | Local round checklist | Not a validator |
 
----
+## Examples
 
-## Example Patterns
+| File | Result |
+|---|---|
+| `examples/amigurumi.txt` | PASS |
+| `examples/simple_hat.txt` | PASS |
+| `examples/scarf.txt` | PASS |
+| `examples/baby_booties.txt` | ERROR, 4 |
+| `examples/intentionally_broken_pattern.txt` | ERROR, 3 |
+| `examples/mini_sphere.txt` | ERROR, 4, plus 1 warning |
 
-| File | Shape | Rounds | Description |
-|------|-------|--------|-------------|
-| amigurumi.txt | Sphere | 17 | Classic amigurumi ball |
-| simple_hat.txt | Hat | 10 | Beanie with crown shaping |
-| flat_coaster.txt | Flat Circle | 8 | Simple round coaster |
-| tube_cowl.txt | Tube | 12 | Infinity cowl/scarf |
-| gradual_bowl.txt | Bowl | 10 | Decorative bowl shape |
-| mini_sphere.txt | Sphere | 10 | Small amigurumi sphere |
+## Benchmarks that still report a finding
 
----
+The three viewpoint files are kept as pasted. The checker is not edited to hide their findings.
 
-## Architecture
+- `docs/gemini_corrected.md`, whole file: `PASS_WITH_WARNINGS`. A short-row turn does not state the row-end stitches.
+- `docs/chatgpt_corrected.md`, whole file: `ERROR`. A seam of 3 stitches cannot close 4 stitches.
 
-```
-Pattern Text -> Parser -> Validators -> Report -> AI Explanation
-                                                      |
-                                         2D SVGs | 3D Mesh | PDF
-```
+Those are findings in the source text, not a failed install.
 
-Key principle: AI never decides mathematical correctness. All validation is deterministic code.
-
----
-
-## US to UK Translation
-
-| US Term | UK Term |
-|---------|---------|
-| Single Crochet (sc) | Double Crochet (dc) |
-| Half Double Crochet (hdc) | Half Treble (htr) |
-| Double Crochet (dc) | Treble (tr) |
-
----
-
-## Testing
+## Tests
 
 ```bash
-pytest tests/ -v    # 129 tests
+python -m pytest tests/test_contract.py tests/test_stages.py tests/test_verdict.py tests/test_span.py tests/validation -q
+python scripts/check_consensus.py
 ```
 
----
+`tests/test_span.py` proves 5,000 impossible sentences. Those sentences are cases of the general checks. They are not 5,000 named engines.
 
-## Contributing
+## Not in this package
 
-1. Fork the repo
-2. Create a feature branch
-3. Write tests
-4. Make sure pytest passes
-5. Open a Pull Request
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE)
-
----
-
-Built with love for the crochet community.
-
-Parse -> Validate -> Visualize -> Simulate -> Publish -> Explain
+`experimental/` is not imported and is not part of this contract. A module that is not named on this page is not a feature of the checker.

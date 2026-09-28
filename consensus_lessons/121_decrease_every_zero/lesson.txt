@@ -1,0 +1,5 @@
+Decrease every zero
+
+How: decreasing every 0 rows never decreases.
+
+What: the corrected file decreases every 2 rows.

@@ -1,0 +1,5 @@
+Loop of zero
+
+How: a loop stitch of 0 has no loop.
+
+What: the corrected file uses 1 loop.

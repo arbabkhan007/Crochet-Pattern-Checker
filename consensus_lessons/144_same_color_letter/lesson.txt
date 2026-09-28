@@ -1,0 +1,5 @@
+Same color letter
+
+How: changing from Color Q to Color Q is not a color change. The check is any repeated letter, not only A.
+
+What: the corrected file changes to Color R.

@@ -1,0 +1,5 @@
+Fractional times
+
+How: any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
+
+What: the corrected file repeats a whole number of times.

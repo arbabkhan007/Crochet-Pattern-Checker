@@ -1,0 +1,5 @@
+Fasten and continue
+
+How: fasten off ends that yarn. The same line cannot continue in it.
+
+What: the corrected file fastens off.

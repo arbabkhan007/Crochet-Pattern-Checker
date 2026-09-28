@@ -1,0 +1,5 @@
+Copied inch measure
+
+How: writing the same number for inches and centimeters is not a conversion. One inch is 2.54 cm.
+
+What: the corrected file converts 4 inches to 10.16 cm.

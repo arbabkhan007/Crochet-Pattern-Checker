@@ -1,0 +1,5 @@
+Until zero
+
+How: repeat until 0 stitches is not a workable stop. A digit of 0 still counts as written, so the termination rule does not catch it.
+
+What: the corrected file stops at 6 stitches.

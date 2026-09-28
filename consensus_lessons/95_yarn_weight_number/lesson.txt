@@ -1,0 +1,5 @@
+Yarn weight number
+
+How: worsted is Craft Yarn Council category 4, not 1.
+
+What: the corrected file says worsted (4).

@@ -1,0 +1,5 @@
+Row zero
+
+How: rows are numbered from 1. Row 0 is not a row.
+
+What: the corrected file starts at Row 1.

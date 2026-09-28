@@ -45,6 +45,3 @@ if PDF_OK:
     __all__.extend(["generate_pdf"])
 if UTILS_OK:
     __all__.extend(["read_pattern_file"])
-
-print(f"✅ Crochet Pattern Checker v{__version__} loaded")
-print(f"   Working features: {len(__all__)}")

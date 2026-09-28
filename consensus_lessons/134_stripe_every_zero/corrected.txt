@@ -1,0 +1,1 @@
+Stripe every 2 rounds.

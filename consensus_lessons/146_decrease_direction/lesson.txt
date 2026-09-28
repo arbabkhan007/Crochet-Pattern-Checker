@@ -1,0 +1,5 @@
+Decrease direction
+
+How: any decrease whose second number is not lower fails. This is not limited to 6 to 12.
+
+What: the corrected file falls.

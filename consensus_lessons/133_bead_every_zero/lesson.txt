@@ -1,0 +1,5 @@
+Bead every zero
+
+How: a bead every 0 stitches is never placed.
+
+What: the corrected file places a bead every 4 stitches.

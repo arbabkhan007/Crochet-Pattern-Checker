@@ -1,0 +1,5 @@
+Zero rows tall
+
+How: a piece that is 0 rows tall was not made.
+
+What: the corrected file is 8 rows tall.

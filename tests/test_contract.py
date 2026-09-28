@@ -1,0 +1,70 @@
+"""Lock the public contract: example statuses, known benchmark findings, and unread lines."""
+
+from pathlib import Path
+
+from crochet_checker.validation.validator import validate_pattern
+from crochet_checker.verification.limits import unread_notes
+from crochet_checker.verification.verdict import verify_pattern
+
+ROOT = Path(__file__).resolve().parents[1]
+
+EXAMPLES = {
+    "amigurumi.txt": ("PASS", 0, 0),
+    "amigurumi_bunny.txt": ("PASS", 0, 0),
+    "basket.txt": ("PASS", 0, 0),
+    "flat_coaster.txt": ("PASS", 0, 0),
+    "gradual_bowl.txt": ("PASS", 0, 0),
+    "scarf.txt": ("PASS", 0, 0),
+    "simple_hat.txt": ("PASS", 0, 0),
+    "tube_cowl.txt": ("PASS", 0, 0),
+    "baby_booties.txt": ("ERROR", 4, 0),
+    "intentionally_broken_pattern.txt": ("ERROR", 3, 0),
+    "mini_sphere.txt": ("ERROR", 4, 1),
+}
+
+
+def _messages(report):
+    return [str(getattr(item, "message", item)) for item in list(report.errors) + list(report.warnings)]
+
+
+def test_example_statuses_stay_locked():
+    for name, expected in EXAMPLES.items():
+        report = validate_pattern((ROOT / "examples" / name).read_text(encoding="utf-8"))
+        assert (report.overall_status, len(report.errors), len(report.warnings)) == expected, name
+
+
+def test_benchmark_findings_are_in_the_source():
+    gemini = validate_pattern((ROOT / "docs" / "gemini_corrected.md").read_text(encoding="utf-8"))
+    chatgpt = validate_pattern((ROOT / "docs" / "chatgpt_corrected.md").read_text(encoding="utf-8"))
+    assert gemini.overall_status == "PASS_WITH_WARNINGS"
+    assert len(gemini.errors) == 0 and len(gemini.warnings) == 1
+    assert "row-end" in _messages(gemini)[0]
+    assert chatgpt.overall_status == "ERROR"
+    assert len(chatgpt.errors) == 1 and len(chatgpt.warnings) == 0
+    assert "3 stitches cannot close 4" in _messages(chatgpt)[0]
+
+
+def test_six_to_eighteen_is_not_a_valid_sphere():
+    bad = validate_pattern(
+        "Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\n"
+    )
+    good = validate_pattern(
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: inc x 6 (12)\n"
+        "Round 3: (sc, inc) x 6 (18)\n"
+    )
+    assert bad.overall_status == "ERROR"
+    assert any("6 to 18" in message for message in _messages(bad))
+    assert good.overall_status == "PASS"
+
+
+def test_unread_lines_are_disclosed_and_not_errors():
+    text = "Round 1: 6 sc into magic ring (6)\nCinch shut.\nsew head to body.\n"
+    report = validate_pattern(text)
+    notes = unread_notes(text)
+    verdict = verify_pattern(text)
+    assert report.overall_status == "PASS"
+    assert any("cinch" in note.lower() for note in notes)
+    assert any("lowercase sew" in note.lower() for note in notes)
+    assert verdict.not_checked == notes
+    assert "photo stitch classifier" in verdict.engines_skipped

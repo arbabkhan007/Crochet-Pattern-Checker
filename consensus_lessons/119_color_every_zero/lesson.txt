@@ -1,0 +1,5 @@
+Color every zero
+
+How: changing color every 0 rows never changes color.
+
+What: the corrected file changes color every 2 rows.

@@ -8,6 +8,9 @@ count here.
 from __future__ import annotations
 
 import re
+
+from .batch import batch_findings, batch_names
+from .span import span_findings, span_names
 from dataclasses import dataclass, field
 
 
@@ -124,6 +127,12 @@ def run_stages(text: str) -> StageReport:
     errors.extend(future_round(text))
     errors.extend(make_count(text))
     errors.extend(zero_repeat(text))
+    batch_errors, batch_warnings = batch_findings(text)
+    errors.extend(batch_errors)
+    warnings.extend(batch_warnings)
+    span_errors, span_warnings = span_findings(text)
+    errors.extend(span_errors)
+    warnings.extend(span_warnings)
     return StageReport(
         errors=_unique(errors),
         warnings=_unique(warnings),
@@ -158,6 +167,8 @@ def run_stages(text: str) -> StageReport:
             "future round",
             "make count",
             "zero repeat",
+            *batch_names(),
+            *span_names(),
         ],
         engines_skipped=list(_SKIPPED),
     )

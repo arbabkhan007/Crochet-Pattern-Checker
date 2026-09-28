@@ -1,0 +1,5 @@
+Both hands
+
+How: right-handed and left-handed work need separate instructions when both are required.
+
+What: the corrected file is written for right-handed work.

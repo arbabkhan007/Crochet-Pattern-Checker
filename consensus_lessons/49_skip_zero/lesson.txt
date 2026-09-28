@@ -1,0 +1,5 @@
+Skip zero
+
+How: skip 0 does not move the hook.
+
+What: the corrected file skips 2.

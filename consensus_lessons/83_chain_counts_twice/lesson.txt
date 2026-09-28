@@ -1,0 +1,5 @@
+Chain counted twice
+
+How: a turning chain counted twice is added to the stitch count two times.
+
+What: the corrected file counts the turning chain once.

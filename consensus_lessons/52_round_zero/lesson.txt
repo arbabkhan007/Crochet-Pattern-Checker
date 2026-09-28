@@ -1,0 +1,5 @@
+Round zero
+
+How: rounds are numbered from 1. Round 0 is not a round.
+
+What: the corrected file starts at Round 1.

@@ -1,0 +1,5 @@
+Surface of zero
+
+How: surface crochet of 0 chains draws no line.
+
+What: the corrected file uses 12 chains.

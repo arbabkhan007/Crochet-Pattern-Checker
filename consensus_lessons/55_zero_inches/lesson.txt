@@ -1,0 +1,5 @@
+Zero inches
+
+How: a finished width of 0 inches is not a piece.
+
+What: the corrected file is 4 inches wide.

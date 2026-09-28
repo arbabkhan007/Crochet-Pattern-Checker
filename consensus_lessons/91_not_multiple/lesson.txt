@@ -1,0 +1,5 @@
+Not a multiple
+
+How: a multiple of 3 cannot be 10 stitches. 10 is not divisible by 3.
+
+What: the corrected file uses 12 stitches.

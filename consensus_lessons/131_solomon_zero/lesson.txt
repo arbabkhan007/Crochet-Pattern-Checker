@@ -1,0 +1,5 @@
+Solomon knot of zero
+
+How: a Solomon knot of 0 is not a knot.
+
+What: the corrected file uses 5.

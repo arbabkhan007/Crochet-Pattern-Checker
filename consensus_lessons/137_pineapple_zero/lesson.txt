@@ -1,0 +1,5 @@
+Pineapple of zero
+
+How: a pineapple of 0 is not a pineapple motif.
+
+What: the corrected file uses 7.

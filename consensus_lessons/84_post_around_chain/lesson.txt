@@ -1,0 +1,5 @@
+Post around a chain
+
+How: a chain has no post. fpdc cannot go around the chain.
+
+What: the corrected file works the post around the dc.

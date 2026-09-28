@@ -1,0 +1,5 @@
+Decrease that grows
+
+How: a decrease from 6 to 12 grows. The word and the numbers disagree.
+
+What: the corrected file decreases from 12 to 6.

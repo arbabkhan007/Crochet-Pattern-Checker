@@ -17,7 +17,7 @@ from crochet_checker.validation import validate_pattern
 
 text = (
     "Round 1: 6 sc into magic ring (6)\n"
-    "Round 2: (sc, inc) x 6 (18)"
+    "Round 2: inc x 6 (12)"
 )
 
 pattern = parse_pattern(text)

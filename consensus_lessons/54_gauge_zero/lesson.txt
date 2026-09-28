@@ -1,0 +1,5 @@
+Zero gauge
+
+How: a gauge of 0 sc per 4 inches is not a fabric.
+
+What: the corrected file uses 12 sc per 4 inches.

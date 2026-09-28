@@ -1,0 +1,5 @@
+Same color change
+
+How: changing from Color A to Color A is not a color change.
+
+What: the corrected file changes to Color B.

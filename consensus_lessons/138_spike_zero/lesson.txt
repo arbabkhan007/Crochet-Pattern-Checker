@@ -1,0 +1,5 @@
+Spike of zero
+
+How: a spike stitch down 0 rows does not leave the current row.
+
+What: the corrected file goes down 2 rows.

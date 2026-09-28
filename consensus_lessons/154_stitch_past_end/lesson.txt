@@ -1,0 +1,5 @@
+Stitch past end
+
+How: a marker past the last stitch cannot be placed.
+
+What: the corrected file uses stitch 1.

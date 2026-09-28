@@ -1,0 +1,5 @@
+Fringe of zero
+
+How: a fringe of 0 strands is not a fringe.
+
+What: the corrected file uses 4 strands.

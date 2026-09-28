@@ -1,0 +1,5 @@
+Both sides facing
+
+How: the right side and the wrong side cannot both face the worker.
+
+What: the corrected file keeps the right side facing.
