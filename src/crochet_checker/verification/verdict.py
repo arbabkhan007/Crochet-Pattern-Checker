@@ -1,0 +1,55 @@
+"""Honest verdict over the checkers this repo actually runs.
+
+This is not the full specification. Chart detection, photo stitch
+classification, a hosted language model, and a stitch-accessibility mesh
+are not implemented. Those engines are listed as skipped.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
+from ..validation.validator import validate_pattern
+
+
+SKIPPED = (
+    "chart parser",
+    "photo stitch classifier",
+    "hosted language model",
+    "stitch accessibility mesh",
+    "trained gauge model",
+    "ambiguity classifier",
+)
+
+
+@dataclass
+class Verdict:
+    status: str
+    score: int
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
+    engines_ran: list[str] = field(default_factory=list)
+    engines_skipped: list[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {
+            "status": self.status,
+            "score": self.score,
+            "errors": self.errors,
+            "warnings": self.warnings,
+            "engines_ran": self.engines_ran,
+            "engines_skipped": self.engines_skipped,
+        }
+
+
+def verify_pattern(text: str) -> Verdict:
+    """Run the deterministic checker and label the engines that did not run."""
+    report = validate_pattern(text)
+    return Verdict(
+        status=str(report.overall_status),
+        score=int(report.score),
+        errors=[str(getattr(item, "message", item)) for item in report.errors],
+        warnings=[str(getattr(item, "message", item)) for item in report.warnings],
+        engines_ran=["text checker", "stitch count", "audit rules"],
+        engines_skipped=list(SKIPPED),
+    )
