@@ -53,6 +53,11 @@ def test_each_stage_fails_wrong_and_passes_corrected():
             "Short rows 11a-11c worked over 12 sts, leaving 6 row-ends.\nThe next round works 28 of 34 perimeter positions.\n",
             "Short-row gap",
         ),
+        "eyes": (
+            "Mount 2 safety eyes on the frill.\n",
+            "Mount safety eyes on a solid sc round, not on the frill.\n",
+            "mounted on the frill",
+        ),
         "frill": (
             "756 stitches worked into 108 base stitches.\n",
             "108 stitches worked into 108 base stitches.\n",

@@ -103,6 +103,7 @@ def run_stages(text: str) -> StageReport:
     warnings.extend(ambiguity(text))
     warnings.extend(gauge_band(text))
     warnings.extend(prose_frill(text))
+    errors.extend(eyes_on_frill(text))
     return StageReport(
         errors=_unique(errors),
         warnings=_unique(warnings),
@@ -116,6 +117,7 @@ def run_stages(text: str) -> StageReport:
             "ambiguity",
             "gauge band",
             "prose frill",
+            "eyes on a frill",
         ],
         engines_skipped=list(_SKIPPED),
     )
@@ -357,7 +359,29 @@ def ambiguity(text: str) -> list[str]:
     return _unique(warnings)
 
 
+def eyes_on_frill(text: str) -> list[str]:
+    """Flag safety eyes mounted on a frill. A prohibition does not fail."""
+    errors = []
+    for line in text.splitlines():
+        if re.search(
+            r"\bdo not\b|\bdon't\b|\bnot\s+on\s+the\s+frill\b|\bshould\s+not\b|\bnot\s+be\s+mounted\b",
+            line,
+            re.IGNORECASE,
+        ):
+            continue
+        if not re.search(r"\b(?:safety\s+)?eyes?\b", line, re.IGNORECASE):
+            continue
+        if re.search(r"\bon\s+(?:the|a)\s+frill\b", line, re.IGNORECASE):
+            errors.append(
+                "Safety eyes are mounted on the frill. "
+                "A frill has no fabric behind it for the washer. "
+                "Mount them on a solid single-crochet round."
+            )
+    return _unique(errors)
+
+
 def prose_frill(text: str) -> list[str]:
+
     """Warn when prose says one edge is worked more than 2.5 times full."""
     warnings = []
     for line in text.splitlines():

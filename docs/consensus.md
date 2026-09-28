@@ -16,7 +16,7 @@ A PASS on the Gemini or ChatGPT file is not proof. `[sc 1, inc] 6 times` and a b
 
 An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.
 
-A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, and a prose frill above 2.5 times full are now checked. A cinch with no numbers is still unread. A photo is still not classified.
+A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A cinch with no numbers is still unread. A photo is still not classified.
 
 ## What the checker learned
 
@@ -235,7 +235,17 @@ Corrected result: PASS.
 
 How: 756 stitches worked into 108 base stitches is 7 times full. The edge bunches above 2.5 times. This is a warning, not an error.
 
-What: the corrected file works one stitch into each base stitch. Eyes mounted on a frill, and a closed tentacle with no stitch count, are still unread.
+What: the corrected file works one stitch into each base stitch. A closed tentacle with no stitch count is still unread.
+
+### 22_eyes_on_frill: Eyes on a frill
+
+Wrong result: ERROR.
+- Safety eyes are mounted on the frill. A frill has no fabric behind it for the washer. Mount them on a solid single-crochet round.
+Corrected result: PASS.
+
+How: a safety eye mounted on a frill has no solid fabric behind it for the washer. The eye cannot lock.
+
+What: the corrected file mounts the eyes on a solid single-crochet round and says not on the frill. A closed tentacle with no stitch count is still unread.
 
 ## What was checked and not learned
 
@@ -248,7 +258,7 @@ What: the corrected file works one stitch into each base stitch. Eyes mounted on
 | Wyvern | 35-stitch fan versus 42-stitch fan | Both still warn above 2.5 times full. Neither is the lesson. |
 | Dragon and Chimera | Which decrease formula to use | The models disagree on the target count. Only the cover-the-round rule is learned. |
 | Leviathan | Rebuild the hub to 64 | One model changes the count to 48. The other rebuilds the join. Only the 48-clause total is learned. |
-| All | Eyes on a frill, closed tentacle wording | A prose frill of N stitches worked into M base stitches now warns above 2.5x. These other sites are still unread. |
+| All | Closed tentacle wording | Safety eyes mounted on a frill are now an error. A closed tentacle with no stitch count is still unread. |
 
 ## Viewpoint check
 
@@ -256,12 +266,12 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 72 | 4 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | whole file | ERROR | 73 | 4 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
 | `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | PASS | 0 | 0 | none |
 | `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 8 | 1 | Line 43: worked 5 stitches into 15 without a decrease.; Prose frill: 5 times full is above 2.5x. The edge will bunch. |
 | `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 12 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated. |
 | `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 41 | 1 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 20 | 2 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 21 | 2 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
 | `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |

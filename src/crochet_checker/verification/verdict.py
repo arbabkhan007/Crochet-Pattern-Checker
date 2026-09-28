@@ -60,6 +60,7 @@ def verify_pattern(text: str) -> Verdict:
             "ambiguity",
             "gauge band",
             "prose frill",
+            "eyes on a frill",
         ],
         engines_skipped=list(SKIPPED),
     )

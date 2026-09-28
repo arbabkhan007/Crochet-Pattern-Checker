@@ -13,6 +13,7 @@ The specification describes a multi-year system. This file says what the current
 7. Gauge band. A count outside half to double the Craft Yarn Council crochet single-crochet band warns. Worsted is 11 to 14 per 4 inches, so 40 warns and 12 does not. A tight amigurumi gauge such as 20 does not warn. Lace is not banded. Source: https://www.craftyarncouncil.com/standards/yarn-weight-system
 8. Short-row gap. After short rows, `works 28 of 34` is an error until the 6 row-ends are written. A normal decrease is not a short row.
 9. Prose frill. `756 stitches worked into 108 base stitches` warns at 7.0x. The same 2.5x line used for edging applies. One stitch per base stitch does not warn.
+10. Eyes on a frill. `Mount 2 safety eyes on the frill` is an error. `not on the frill` does not fail.
 
 `verify_pattern` runs these stages with the existing text checker. `Sew the Ear` is a missing piece only when Ear is capitalized. `attach the safety eyes` and `Attach the tentacle externally` are not piece names.
 
