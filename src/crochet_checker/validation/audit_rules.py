@@ -230,6 +230,50 @@ class ShortRowPerimeterChecker:
 
 
 
+
+_SEAM_COUNT = re.compile(
+    r"(?:sew|cinch|graft|attach)(?:ed|ing)?\s+"
+    r"(?:a\s+|the\s+)?"
+    r"(\d+)\s+"
+    r"(?:[\w-]+\s+){0,6}"
+    r"(?:sts?|stitches)\b"
+    r".{0,90}?"
+    r"\bto\s+(?:an?\s+|the\s+)?"
+    r"(\d+)\s+"
+    r"(?:[\w-]+\s+){0,6}"
+    r"(?:sts?|stitches)\b",
+    re.IGNORECASE,
+)
+_SEAM_HYPHEN = re.compile(
+    r"(?:sew|cinch|graft|attach)(?:ed|ing)?\s+"
+    r"(?:a\s+|the\s+)?"
+    r"(\d+)-stitch\b"
+    r".{0,90}?"
+    r"\bto\s+(?:an?\s+|the\s+)?"
+    r"(\d+)-stitch\b",
+    re.IGNORECASE,
+)
+
+
+class SeamCountChecker:
+    """Flag a seam that sews one stitch count to a different stitch count."""
+
+    def check(self, text: str) -> list[str]:
+        errors = []
+        for line in text.splitlines():
+            for pattern in (_SEAM_COUNT, _SEAM_HYPHEN):
+                match = pattern.search(line)
+                if not match:
+                    continue
+                left = int(match.group(1))
+                right = int(match.group(2))
+                if left != right:
+                    errors.append(
+                        f"Seam mismatch: {left} stitches cannot close {right} stitches."
+                    )
+        return _messages(errors)
+
+
 class NeckJumpChecker:
     """Flag a 12-stitch round that doubles to 24 in one step."""
 
@@ -261,6 +305,7 @@ def audit_findings(text: str) -> tuple[list[str], list[str]]:
     warnings.extend(ModuloDriftChecker().check(text))
     warnings.extend(ShortRowPerimeterChecker().check(text))
     errors.extend(NeckJumpChecker().check(text))
+    errors.extend(SeamCountChecker().check(text))
     return _messages(errors), _messages(warnings)
 
 

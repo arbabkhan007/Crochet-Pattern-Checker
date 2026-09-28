@@ -143,11 +143,11 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.",
         "",
-        "The 12-to-24 neck jump passes in checker dialect. Both models agree it is a bad jump. This checker cannot see that puckering, so it is not a learned lesson.",
+        "A 12-to-24 increase is now an error. An unequal sew, cinch, or graft count is now an error. A cinch with no stitch counts is still unread.",
         "",
         "## What the checker learned",
         "",
-        "These nine lessons are the consensus. Each one is agreed by both corrected files and proved by the checker.",
+        "These lessons are the consensus. Each one is agreed by both corrected files and proved by the checker.",
         "",
     ]
     for item in proved:
@@ -168,7 +168,7 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "| Pattern | Agreed defect | Why it is not a lesson |",
         "|---|---|---|",
-        "| Bear | 12 to 24 neck jump | Both the jump and the 18-stitch step pass. The checker cannot see the pucker. |",
+        "| Bear | Do not cinch, with no stitch counts | Cinch and flatten are still prose when no two stitch counts are written. |",
         "| Bear | Do not cinch the arm | Cinch and flatten are prose. The checker does not read them. |",
         "| Bear | Add legs and ears | A missing piece is not an error unless the checker can see a count. |",
         "| Wyvern | 24-stitch join versus a valid 30 | The models disagree. No consensus pattern is written. |",

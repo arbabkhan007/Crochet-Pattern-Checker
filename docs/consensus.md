@@ -16,11 +16,11 @@ A PASS on the Gemini or ChatGPT file is not proof. `[sc 1, inc] 6 times` and a b
 
 An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.
 
-The 12-to-24 neck jump passes in checker dialect. Both models agree it is a bad jump. This checker cannot see that puckering, so it is not a learned lesson.
+A 12-to-24 increase is now an error. An unequal sew, cinch, or graft count is now an error. A cinch with no stitch counts is still unread.
 
 ## What the checker learned
 
-These nine lessons are the consensus. Each one is agreed by both corrected files and proved by the checker.
+These lessons are the consensus. Each one is agreed by both corrected files and proved by the checker.
 
 ### 01_stated_count: Stated count
 
@@ -123,11 +123,23 @@ How: 12 increases use the 12 stitches and make 24. The count is internally true,
 
 What: both corrected files insert an 18-stitch round, then return to 24. The checker now rejects a 12-to-24 jump and accepts the 12, 18, 24 step.
 
+### 11_seam_count: Seam count
+
+Wrong result: ERROR.
+- Seam mismatch: 3 stitches cannot close 4 stitches.
+- Seam mismatch: 5 stitches cannot close 3 stitches.
+- Seam mismatch: 26 stitches cannot close 18 stitches.
+Corrected result: PASS.
+
+How: a seam closes only when both edges have the same number of stitches. Sewing 3 to 4, cinching 5 to 3, or sewing a 26-stitch edge to an 18-stitch edge leaves stitches unmatched.
+
+What: both corrected files agree the counts must match. The checker now reads those sentences. It does not choose 3 and 3 over 4 and 4 when a pattern offers both equal choices.
+
 ## What was checked and not learned
 
 | Pattern | Agreed defect | Why it is not a lesson |
 |---|---|---|
-| Bear | 12 to 24 neck jump | Both the jump and the 18-stitch step pass. The checker cannot see the pucker. |
+| Bear | Do not cinch, with no stitch counts | Cinch and flatten are still prose when no two stitch counts are written. |
 | Bear | Do not cinch the arm | Cinch and flatten are prose. The checker does not read them. |
 | Bear | Add legs and ears | A missing piece is not an error unless the checker can see a count. |
 | Wyvern | 24-stitch join versus a valid 30 | The models disagree. No consensus pattern is written. |
@@ -142,22 +154,22 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 68 | 0 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | whole file | ERROR | 71 | 0 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
 | `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | PASS | 0 | 0 | none |
 | `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 8 | 0 | Line 43: worked 5 stitches into 15 without a decrease. |
-| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 10 | 0 | none |
-| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 40 | 0 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 19 | 0 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller. |
+| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 11 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
+| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 41 | 0 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 20 | 0 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
 | `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |
 | `gemini_corrected.md` | 3: Clockwork Dragon (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 5: Void-Warped Chimera (Corrected) | PASS | 0 | 0 | none |
-| `chatgpt_corrected.md` | whole file | PASS | 0 | 0 | none |
+| `chatgpt_corrected.md` | whole file | ERROR | 1 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
 | `chatgpt_corrected.md` | 1: Classic Amigurumi Bear — Corrected | PASS | 0 | 0 | none |
 | `chatgpt_corrected.md` | 2: Celestial Wyvern — Corrected | PASS | 0 | 0 | none |
-| `chatgpt_corrected.md` | 3: Clockwork Dragon — Corrected Defect Sections | PASS | 0 | 0 | none |
+| `chatgpt_corrected.md` | 3: Clockwork Dragon — Corrected Defect Sections | ERROR | 1 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
 | `chatgpt_corrected.md` | 4: Abyssal Leviathan — Corrected | PASS | 0 | 0 | none |
 | `chatgpt_corrected.md` | 5: Void-Warped Chimera — Corrected | PASS | 0 | 0 | none |
 
