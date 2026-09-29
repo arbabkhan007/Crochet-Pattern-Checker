@@ -454,6 +454,14 @@ def progress(pattern_file, complete, uncomplete, note, save):
     console.print("\n" + tracker.get_summary())
 
 
+@cli.command("standards")
+def standards_cmd():
+    """Print the published yarn, hook, needle, and term reference."""
+    from .standards.reference import summary
+
+    console.print(summary())
+
+
 def main():
     cli()
 

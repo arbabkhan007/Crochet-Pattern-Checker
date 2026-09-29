@@ -113,6 +113,12 @@ python scripts/check_consensus.py
 
 `tests/test_span.py` proves 5,000 impossible sentences. Those sentences are cases of the general checks. They are not 5,000 named engines.
 
+## Published standards
+
+Yarn weights 0-7, hooks, needles, steel pairs, and terms are in `docs/standards.md`.
+Source: Craft Yarn Council's www.YarnStandards.com. Size 8 is announced and not numbered.
+These tables do not change a check result.
+
 ## Not in this package
 
 `experimental/` is not imported and is not part of this contract. A module that is not named on this page is not a feature of the checker.
