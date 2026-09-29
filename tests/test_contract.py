@@ -207,3 +207,20 @@ def test_spoken_counts_match_the_digit_checks():
     assert any("6 to 18" in message for message in _messages(bad))
     assert huge.overall_status == "PASS_WITH_WARNINGS"
     assert len(huge.errors) == 0 and len(huge.warnings) == 1
+
+
+def test_a_round_gauge_can_be_read():
+    from crochet_checker.parser.parser import CrochetParser
+
+    pattern = CrochetParser().parse(
+        "Gauge: 20 sts x 22 rnds = 4 inches (10 cm) in sc with 3.5 mm hook\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+    )
+    assert pattern.gauge is not None
+    assert pattern.gauge.stitches_per_unit == 20
+    assert pattern.gauge.rows_per_unit == 22
+    assert pattern.gauge.unit_size == 4.0
+    unread = CrochetParser().parse(
+        "Gauge: see swatch\nRound 1: 6 sc into magic ring (6)\n"
+    )
+    assert unread.gauge is None

@@ -57,9 +57,12 @@ class TestRender:
 class TestSimulate:
     def test_simulate(self):
         r = client.post("/api/simulate", json={"pattern_text": P})
-        assert r.status_code in [200, 400]
-        if r.status_code == 200:
-            assert r.json()["status"] == "success"
+        assert r.status_code == 200
+        body = r.json()
+        assert body["status"] == "success"
+        assert body["shape"]
+        assert body["vertices"] > 0
+        assert body["faces"] > 0
 
 
 class TestUpload:
@@ -76,3 +79,20 @@ class TestPdf:
         r = client.post("/api/pdf", json={"pattern_text": P})
         assert r.status_code == 200
         assert "<!DOCTYPE html>" in r.json()["html"]
+
+
+def test_check_json_uses_text_keys():
+    import json
+    from pathlib import Path
+
+    from click.testing import CliRunner
+
+    from crochet_checker.cli import cli
+
+    path = Path(__file__).resolve().parents[2] / "examples" / "amigurumi.txt"
+    result = CliRunner().invoke(cli, ["check", str(path), "--json"])
+    assert result.exit_code == 0, result.output
+    data = json.loads(result.output)
+    assert data["overall_status"] == "PASS"
+    assert data["stitch_counts"]
+    assert all(isinstance(key, str) for key in data["stitch_counts"])

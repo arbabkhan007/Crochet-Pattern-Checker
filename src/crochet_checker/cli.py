@@ -4,6 +4,24 @@ import json
 import sys
 from pathlib import Path
 
+
+def _json_key(key):
+    if isinstance(key, tuple):
+        parts = [str(part).splitlines()[0].strip() for part in key]
+        if len(parts) == 2:
+            return parts[0] + " round " + parts[1]
+        return " ".join(parts)
+    return str(key)
+
+
+def _json_ready(value):
+    if isinstance(value, dict):
+        return {_json_key(key): _json_ready(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_json_ready(item) for item in value]
+    return value
+
+
 import click
 from rich.console import Console
 from rich.panel import Panel
@@ -66,7 +84,7 @@ def check(pattern_file, strict, output_json, verbose):
         payload = report.to_dict()
         payload["not_checked"] = notes
         payload["not_run"] = skipped_line()
-        click.echo(json.dumps(payload, indent=2, default=str))
+        click.echo(json.dumps(_json_ready(payload), indent=2, default=str))
         if report.errors:
             sys.exit(1)
         return

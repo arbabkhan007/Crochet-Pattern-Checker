@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from ..parser.parser import CrochetParser
 from ..pdf import PDFConfig, PDFGenerator
-from ..simulation import simulate_surface
+from ..simulation import analyze_pattern_shape, simulate_surface
 from ..validation import validate_pattern
 from ..visualization import measure_pattern, render_2d_preview
 
@@ -91,12 +91,13 @@ async def render_pattern(request: CheckRequest):
 async def simulate_pattern(request: CheckRequest):
     try:
         pattern = CrochetParser().parse(request.pattern_text)
-        result = simulate_surface(pattern)
+        analysis = analyze_pattern_shape(pattern)
+        mesh = simulate_surface(pattern)
         return {
-            "shape": result.detected_shape.value,
-            "confidence": round(result.confidence, 2),
-            "vertices": len(result.mesh.vertices),
-            "faces": len(result.mesh.faces),
+            "shape": analysis.detected_shape.value,
+            "confidence": round(analysis.confidence, 2),
+            "vertices": len(mesh.vertices),
+            "faces": len(mesh.faces),
             "status": "success",
         }
     except Exception as e:

@@ -369,41 +369,39 @@ class CrochetParser:
 
         return hook
 
-    def _parse_gauge(self, text: str) -> Gauge:
-        """Parse gauge information from text."""
+    def _parse_gauge(self, text: str) -> Gauge | None:
+        """Read a gauge only when both counts are written. rnds is a row count."""
         from ..model.yarn import Gauge
 
-        gauge = Gauge()
-
-        # Try "N sts x N rows = X in/cm"
         match = re.search(
-            r"(\d+)\s*sts?\s*[x×]\s*(\d+)\s*rows?\s*=\s*(\d+\.?\d*)\s*(in|cm|inch)",
+            r"(\d+)\s*sts?\s*(?:[x×]|and)\s*(\d+)\s*(?:rows?|rnds?|rounds?)\s*=\s*(\d+\.?\d*)\s*(in|cm|inch)",
             text,
             re.IGNORECASE,
         )
         if match:
-            gauge.stitches_per_unit = int(match.group(1))
-            gauge.rows_per_unit = int(match.group(2))
-            gauge.unit_size = float(match.group(3))
-            gauge.unit = match.group(4).lower()
-            if gauge.unit in ("in", "inch"):
-                gauge.unit = "in"
-            return gauge
+            unit = match.group(4).lower()
+            if unit in ("in", "inch"):
+                unit = "in"
+            return Gauge(
+                stitches_per_unit=int(match.group(1)),
+                rows_per_unit=int(match.group(2)),
+                unit_size=float(match.group(3)),
+                unit=unit,
+            )
 
-        # Try "N sts = X in/cm"
         match = re.search(
             r"(\d+)\s*sts?\s*(?:around)?\s*(?:measures)?\s*(?:about)?\s*(\d+\.?\d*)\s*(mm|in|cm)",
             text,
             re.IGNORECASE,
         )
         if match:
-            gauge.stitches_per_unit = int(match.group(1))
-            gauge.unit_size = float(match.group(2))
-            gauge.unit = match.group(3).lower()
-            gauge.rows_per_unit = 1
-            return gauge
-
-        return gauge
+            return Gauge(
+                stitches_per_unit=int(match.group(1)),
+                rows_per_unit=1,
+                unit_size=float(match.group(2)),
+                unit=match.group(3).lower(),
+            )
+        return None
 
     def _detect_construction(self, lines: list[str]) -> ConstructionType:
         """Detect whether the pattern uses rows or rounds."""
