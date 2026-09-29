@@ -254,7 +254,17 @@ def render_3d(pattern_file, output):
 @click.option("--output", "-o", default=None, help="Output file path")
 @click.option("--designer", default="", help="Designer name")
 @click.option("--template", default="minimal", type=click.Choice(["minimal", "craft", "modern", "ocean", "berry", "sunset"]))
-@click.option("--page-size", default="A4", type=click.Choice(["A4", "Letter", "A5"]))
+@click.option("--page-size", default="A4", type=click.Choice(["A4", "Letter", "A5", "Legal"]))
+@click.option("--large-print", is_flag=True)
+@click.option("--ink-saver", is_flag=True)
+@click.option("--landscape", is_flag=True)
+@click.option("--binding", default="none", type=click.Choice(["none", "left"]))
+@click.option("--compact", is_flag=True)
+@click.option("--no-marks", is_flag=True)
+@click.option("--no-change", is_flag=True)
+@click.option("--no-index", is_flag=True)
+@click.option("--no-ruled-notes", is_flag=True)
+@click.option("--no-used-stitches", is_flag=True)
 @click.option("--copyright", default="", help="Copyright line")
 @click.option("--pattern-version", default="1.0")
 @click.option("--no-cover", is_flag=True)
@@ -262,7 +272,7 @@ def render_3d(pattern_file, output):
 @click.option("--no-validation", is_flag=True)
 @click.option("--no-checklist", is_flag=True)
 @click.option("--no-color-key", is_flag=True)
-def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, pattern_version, no_cover, no_charts, no_validation, no_checklist, no_color_key):
+def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, pattern_version, no_cover, no_charts, no_validation, no_checklist, no_color_key, large_print, ink_saver, landscape, binding, compact, no_marks, no_change, no_index, no_ruled_notes, no_used_stitches):
     """Write a printable pattern sheet. A .pdf path uses WeasyPrint when installed."""
     from crochet_checker.utils import read_pattern_file
 
@@ -282,6 +292,16 @@ def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, patt
         include_validation=not no_validation,
         include_checklist=not no_checklist,
         include_color_key=not no_color_key,
+        large_print=large_print,
+        ink_saver=ink_saver,
+        landscape=landscape,
+        binding=binding,
+        compact=compact,
+        include_marks=not no_marks,
+        include_change=not no_change,
+        include_index=not no_index,
+        include_ruled_notes=not no_ruled_notes,
+        include_used_stitches=not no_used_stitches,
     )
     gen = PDFGenerator(config)
     if output is None:
@@ -293,7 +313,8 @@ def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, patt
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     gen.save(output, pattern, report)
     console.print(f"[green]PDF/HTML saved to: {output}[/green]")
-    console.print(f"  Template: {config.template} | Page: {config.page_size}")
+    page = config.page_size + (" landscape" if config.landscape else "")
+    console.print(f"  Template: {config.template} | Page: {page}")
     console.print("  Open the HTML and print it. A .pdf path uses WeasyPrint when it is installed.")
 
 

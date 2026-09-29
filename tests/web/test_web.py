@@ -104,3 +104,30 @@ def test_pdf_accepts_sheet_options():
     body = response.json()
     assert body["status"] == "success" and body["template"] == "berry" and body["page_size"] == "Letter"
     assert "#6B2D5B" in body["html"] and "Charts" not in body["html"]
+
+
+def test_pdf_print_setup_does_not_restore_charts():
+    response = client.post(
+        "/api/pdf",
+        json={
+            "pattern_text": P,
+            "template": "berry",
+            "page_size": "Legal",
+            "include_charts": False,
+            "large_print": True,
+            "landscape": True,
+            "ink_saver": True,
+            "binding": "left",
+        },
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "success" and body["page_size"] == "Legal" and body["large_print"] is True
+    html = body["html"]
+    assert "Charts" not in html
+    assert "large-print" in html and "Legal landscape" in html and "ink-saver" in html and "2.8cm" in html
+
+def test_sheet_controls_are_on_the_page():
+    page = client.get("/")
+    assert page.status_code == 200
+    assert "pdfLarge" in page.text and "Large print" in page.text and "pdfPage" in page.text

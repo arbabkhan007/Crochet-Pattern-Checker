@@ -93,6 +93,17 @@ TEMPLATES = {
 }
 
 
+
+WRITTEN_COLOR_SWATCHES = {
+    "brown": "#8B5A2B", "indigo": "#3F51B5", "gold": "#C9A227",
+    "white": "#F4F1EA", "black": "#222222", "red": "#C0392B",
+    "blue": "#2471A3", "green": "#1E8449", "pink": "#D4738E",
+    "yellow": "#F4D03F", "orange": "#E67E22", "purple": "#7D3C98",
+    "grey": "#7F8C8D", "gray": "#7F8C8D", "cream": "#F6E7C1",
+    "navy": "#1A365D", "teal": "#148F77",
+}
+
+
 class PDFConfig(BaseModel):
     """Configuration for PDF generation."""
 
@@ -109,6 +120,16 @@ class PDFConfig(BaseModel):
     page_size: str = "A4"
     include_checklist: bool = True
     include_color_key: bool = True
+    large_print: bool = False
+    ink_saver: bool = False
+    landscape: bool = False
+    binding: str = "none"
+    compact: bool = False
+    include_marks: bool = True
+    include_change: bool = True
+    include_index: bool = True
+    include_ruled_notes: bool = True
+    include_used_stitches: bool = True
 
 
 class PDFGenerator:
@@ -123,6 +144,7 @@ class PDFGenerator:
     ) -> str:
         """Generate the complete HTML document."""
         measurements = measure_pattern(pattern)
+        self._sheet_report = validation_report
         sections = []
 
         if self.config.include_cover:
@@ -138,6 +160,10 @@ class PDFGenerator:
         if color_key:
             sections.append(color_key)
 
+        for extra in (self._index_section(pattern), self._used_stitches_section(pattern), self._written_definitions_section(pattern)):
+            if extra:
+                sections.append(extra)
+
         sections.append(self._multi_piece_instructions_section(pattern, measurements))
 
         chart = self._chart_section(pattern)
@@ -149,6 +175,10 @@ class PDFGenerator:
 
         if self.config.include_validation and validation_report:
             sections.append(self._validation_section(validation_report))
+
+        for extra in (self._marks_section(pattern), self._ruled_notes_section(), self._print_note()):
+            if extra:
+                sections.append(extra)
 
         if self.config.copyright_text or self.config.designer_name:
             sections.append(self._footer_section())
@@ -183,7 +213,7 @@ class PDFGenerator:
 
     def _wrap_document(self, body: str, pattern: Pattern) -> str:
         """Wrap body content in a complete HTML document with styles."""
-        styles = self._get_styles()
+        styles = self._get_styles() + self._extra_styles()
         title = html_lib.escape(pattern.metadata.title or "Crochet Pattern")
         return f"""<!DOCTYPE html>
 <html lang="en">
@@ -195,7 +225,7 @@ class PDFGenerator:
 {styles}
     </style>
 </head>
-<body>
+<body class="{self._body_class()}">
 {body}
 </body>
 </html>"""
@@ -203,15 +233,29 @@ class PDFGenerator:
     def _get_styles(self) -> str:
         """Get CSS styles based on template."""
         t = self.theme
+        page_size = self._page_size_css()
+        margin, left = self._margins()
         return f"""
         @page {{
-            size: {self.config.page_size};
-            margin: 1.8cm;
+            size: {page_size};
+            margin: {margin};
+            margin-left: {left};
             @bottom-center {{
                 content: counter(page);
                 font-size: 9pt;
                 color: #666666;
             }}
+            @top-center {{
+                content: "Crochet pattern sheet";
+                font-size: 9pt;
+                color: #666666;
+            }}
+        }}
+        @page:first {{
+            size: {page_size};
+            margin: {margin};
+            margin-left: {left};
+            @bottom-center {{ content: none; }}
         }}
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
         body {{
@@ -876,9 +920,9 @@ class PDFGenerator:
             table_rows.append(f"""
                 <tr>
                     <td class="round-num">{round_display}</td>
-                    <td class="instruction">{html_lib.escape(instruction_text)}</td>
+                    <td class="instruction"{self._row_tint(instruction_text)}>{html_lib.escape(instruction_text)}{self._flag_for_number(round_num)}</td>
                     <td class="stitch-count">({stitch_count})</td>
-                    <td class="note">{note}</td>{self._worked_cell()}
+                    <td class="note">{note}</td>{self._change_cell(prev_count, stitch_count)}{self._worked_cell()}
                 </tr>""")
 
             prev_count = stitch_count if stitch_count > 0 else prev_count
@@ -891,7 +935,7 @@ class PDFGenerator:
                     <th>{label}</th>
                     <th>Instruction</th>
                     <th>Stitches</th>
-                    <th>Notes</th>{self._worked_head()}
+                    <th>Notes</th>{self._change_head()}{self._worked_head()}
                 </tr>
             </thead>
             <tbody>
@@ -921,6 +965,8 @@ class PDFGenerator:
         return f"""
 <h2>Instructions</h2>
 <p class="construction-info"><strong>Construction:</strong> {construction}</p>
+{self._change_note()}
+{self._reminder(pattern)}
 {notes_html}
 {table_html}
 {finishing_html}
@@ -951,6 +997,8 @@ class PDFGenerator:
 <div class="page-break"></div>
 <div class="piece-section">
     <h2>Section {section_num}: {piece.name}{make_text}</h2>
+    {self._reminder(pattern)}
+    {self._change_note()}
 """
 
             # Build table for this piece
@@ -1019,9 +1067,9 @@ class PDFGenerator:
                 table_rows.append(f"""
                     <tr>
                         <td class="round-num">{round_display}</td>
-                        <td class="instruction">{html_lib.escape(instruction_text)}</td>
+                        <td class="instruction"{self._row_tint(instruction_text)}>{html_lib.escape(instruction_text)}{self._flag_for_number(round_num)}</td>
                         <td class="stitch-count">({stitch_count})</td>
-                        <td class="note">{note}</td>{self._worked_cell()}
+                        <td class="note">{note}</td>{self._change_cell(prev_count, stitch_count)}{self._worked_cell()}
                     </tr>""")
 
                 prev_count = stitch_count if stitch_count > 0 else prev_count
@@ -1034,7 +1082,7 @@ class PDFGenerator:
                         <th>{label}</th>
                         <th>Instruction</th>
                         <th>Stitches</th>
-                        <th>Notes</th>{self._worked_head()}
+                        <th>Notes</th>{self._change_head()}{self._worked_head()}
                     </tr>
                 </thead>
                 <tbody>
@@ -1061,6 +1109,7 @@ class PDFGenerator:
         return f"""
 <div class="page-break"></div>
 <h2>Finished Measurements</h2>
+<p class="chart-note">These figures come from the measurement helper. They are not a measured gauge swatch.</p>
 <div class="measurement-grid">
     <div class="measurement-card">
         <div class="measurement-value">{measurements.max_diameter_inches:.1f}"</div>
@@ -1159,14 +1208,7 @@ class PDFGenerator:
 
     def _named_colors(self, pattern: Pattern) -> list[tuple[str, str]]:
         import re
-        swatches = {
-            "brown": "#8B5A2B", "indigo": "#3F51B5", "gold": "#C9A227",
-            "white": "#F4F1EA", "black": "#222222", "red": "#C0392B",
-            "blue": "#2471A3", "green": "#1E8449", "pink": "#D4738E",
-            "yellow": "#F4D03F", "orange": "#E67E22", "purple": "#7D3C98",
-            "grey": "#7F8C8D", "gray": "#7F8C8D", "cream": "#F6E7C1",
-            "navy": "#1A365D", "teal": "#148F77",
-        }
+        swatches = WRITTEN_COLOR_SWATCHES
         text = pattern.source_text or ""
         found, seen = [], set()
         labeled = re.compile(r"\bColor\s+[A-Za-z0-9]+\s*:\s*([A-Za-z]+)")
@@ -1216,6 +1258,292 @@ class PDFGenerator:
             return ""
         return "<h2>Charts</h2>" + "".join(parts) + '<p class="chart-note">Drawn from the parsed rounds. This is not a reading of a chart image.</p>'
 
+
+
+    def _print_note(self) -> str:
+        return (
+            '<p class="print-note">Open this HTML and print it. '
+            "A .pdf path uses WeasyPrint when it is installed. "
+            "This sheet does not certify the pattern.</p>"
+        )
+
+    def _body_class(self) -> str:
+        parts = ["sheet"]
+        if self.config.large_print:
+            parts.append("large-print")
+        if self.config.ink_saver:
+            parts.append("ink-saver")
+        if self.config.compact:
+            parts.append("compact")
+        if self.config.landscape:
+            parts.append("landscape")
+        if self.config.binding == "left":
+            parts.append("binding-left")
+        return " ".join(parts)
+
+    def _page_size_css(self) -> str:
+        allowed = {"A4", "Letter", "A5", "Legal"}
+        size = self.config.page_size if self.config.page_size in allowed else "A4"
+        if self.config.landscape:
+            return size + " landscape"
+        return size
+
+    def _margins(self) -> tuple[str, str]:
+        if self.config.large_print:
+            margin = "2.2cm"
+        elif self.config.compact:
+            margin = "1.2cm"
+        else:
+            margin = "1.8cm"
+        left = "2.8cm" if self.config.binding == "left" else margin
+        return margin, left
+
+    def _extra_styles(self) -> str:
+        return """
+        body.large-print { font-size: 14pt; }
+        body.large-print .box, body.large-print .mark i { width: 16px; height: 16px; }
+        body.compact { font-size: 9.5pt; }
+        body.landscape { max-width: none; }
+        body.ink-saver,
+        body.ink-saver .round,
+        body.ink-saver .info-box,
+        body.ink-saver .material-card,
+        body.ink-saver .measurement-card {
+            background: #FFFFFF !important;
+            color: #111111 !important;
+        }
+        body.ink-saver .box, body.ink-saver .mark i { border-color: #111111; }
+        .delta { text-align: center; width: 58px; font-family: 'Courier New', monospace; }
+        .flag { font-size: 8.5pt; margin-top: 4px; }
+        .marks { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 16px 0; }
+        .mark { display: inline-flex; align-items: center; gap: 4px; font-size: 9pt; }
+        .mark i { display: inline-block; width: 12px; height: 12px; border: 1.5px solid currentColor; }
+        .rule { border-bottom: 1px solid #888888; height: 22px; margin: 6px 0; }
+        .reminder { font-size: 10pt; margin: 6px 0 12px 0; }
+        .print-note { font-size: 9pt; margin-top: 18px; }
+        tr, .round, .piece-section { break-inside: avoid; }
+        """
+
+    def _change_head(self) -> str:
+        if not self.config.include_change:
+            return ""
+        return "<th>Change</th>"
+
+    def _change_cell(self, previous: int, current: int) -> str:
+        if not self.config.include_change:
+            return ""
+        if previous <= 0 or current <= 0:
+            return '<td class="delta">-</td>'
+        delta = current - previous
+        text = f"+{delta}" if delta > 0 else str(delta)
+        return f'<td class="delta">{text}</td>'
+
+    def _change_note(self) -> str:
+        if not self.config.include_change:
+            return ""
+        return (
+            '<p class="chart-note">Change is the difference between the stitch counts '
+            "on this sheet. It is not a measured length.</p>"
+        )
+
+    def _row_tint(self, text: str) -> str:
+        if self.config.ink_saver or not self.config.include_color_key:
+            return ""
+        import re
+
+        low = text.casefold()
+        for word, color in WRITTEN_COLOR_SWATCHES.items():
+            if re.search(r"\b" + re.escape(word) + r"\b", low):
+                return f' style="background:{color}22"'
+        return ""
+
+    def _flag_for_number(self, number: int) -> str:
+        report = getattr(self, "_sheet_report", None)
+        if report is None or not self.config.include_validation:
+            return ""
+        import re
+
+        pattern = re.compile(
+            rf"\b(?:Round|Rnd|Row)(?:/row)?\s+{int(number)}\b",
+            re.IGNORECASE,
+        )
+        hits = []
+        items = list(getattr(report, "errors", []) or []) + list(
+            getattr(report, "warnings", []) or []
+        )
+        for item in items:
+            message = getattr(item, "message", str(item))
+            if pattern.search(message):
+                hits.append(message)
+        if not hits:
+            return ""
+        text = hits[0]
+        if len(text) > 140:
+            text = text[:137] + "..."
+        return '<div class="flag">' + html_lib.escape(text) + "</div>"
+
+    def _reminder(self, pattern: Pattern) -> str:
+        bits = []
+        yarn = pattern.yarn
+        if yarn is not None and (yarn.name or yarn.weight):
+            bits.append(html_lib.escape(yarn.name or yarn.weight or ""))
+        hook = pattern.hook
+        if hook is not None and hook.size_mm:
+            hook_text = f"{hook.size_mm} mm"
+            if hook.us_size:
+                hook_text += f" US {hook.us_size}"
+            bits.append(html_lib.escape(hook_text))
+        gauge = pattern.gauge
+        if gauge is not None and gauge.stitches_per_unit:
+            bits.append(
+                html_lib.escape(
+                    f"{gauge.stitches_per_unit} sts x {gauge.rows_per_unit} rows = "
+                    f"{gauge.unit_size} {gauge.unit}"
+                )
+            )
+        if not bits:
+            return ""
+        return '<p class="reminder">' + " · ".join(bits) + "</p>"
+
+    def _index_section(self, pattern: Pattern) -> str:
+        if not self.config.include_index or len(pattern.pieces) < 2:
+            return ""
+        rows = []
+        for piece in pattern.pieces:
+            kind = "rounds" if piece.rounds else "rows"
+            make = ""
+            if piece.make_count and piece.make_count > 1:
+                make = f"Make {piece.make_count}. "
+            rows.append(
+                "<li>"
+                + html_lib.escape(piece.name)
+                + " — "
+                + make
+                + f"{piece.total_rows_or_rounds} {kind}</li>"
+            )
+        return (
+            "<h2>Pieces</h2><ol>"
+            + "".join(rows)
+            + '</ol><p class="chart-note">Piece names and counts come from the written pattern.</p>'
+        )
+
+    def _used_stitches_section(self, pattern: Pattern) -> str:
+        if not self.config.include_used_stitches:
+            return ""
+        try:
+            from ..model.stitch import STITCH_DEFINITIONS
+        except Exception:
+            return ""
+        found = []
+        seen = set()
+
+        def walk(items) -> None:
+            for item in items or []:
+                for inst in getattr(item, "instructions", []) or []:
+                    ops = list(getattr(inst, "operations", []) or [])
+                    unit = list(getattr(inst, "repeat_unit", None) or [])
+                    for op in ops + unit:
+                        kind = getattr(op, "stitch_type", None)
+                        if kind is None or kind in seen:
+                            continue
+                        if getattr(kind, "value", "") in {"unknown", "repeat", "skip"}:
+                            continue
+                        seen.add(kind)
+                        found.append(kind)
+
+        walk(pattern.rounds)
+        walk(pattern.rows)
+        for piece in pattern.pieces:
+            walk(piece.rounds)
+            walk(piece.rows)
+        rows = []
+        for kind in found:
+            defn = STITCH_DEFINITIONS.get(kind)
+            if defn is None:
+                continue
+            rows.append(
+                "<tr><td>"
+                + html_lib.escape(defn.abbreviation)
+                + "</td><td>"
+                + html_lib.escape(defn.name)
+                + "</td></tr>"
+            )
+        if not rows:
+            return ""
+        return (
+            '<h2>Stitches used</h2><table class="abbrev-table"><tbody>'
+            + "".join(rows)
+            + '</tbody></table><p class="chart-note">These names are the stitches this checker already parsed. They are not a yarn-standard symbol table.</p>'
+        )
+
+    def _written_definitions_section(self, pattern: Pattern) -> str:
+        if not self.config.include_used_stitches:
+            return ""
+        pairs = []
+        seen = set()
+        for source in (pattern.abbreviations, pattern.special_stitches):
+            for key, value in (source or {}).items():
+                item = (str(key), str(value))
+                if not item[0] or not item[1] or item in seen:
+                    continue
+                seen.add(item)
+                pairs.append(item)
+        if not pairs:
+            return ""
+        rows = "".join(
+            "<tr><td>"
+            + html_lib.escape(key)
+            + "</td><td>"
+            + html_lib.escape(value)
+            + "</td></tr>"
+            for key, value in pairs
+        )
+        return (
+            '<h2>Written definitions</h2><table class="abbrev-table"><tbody>'
+            + rows
+            + '</tbody></table><p class="chart-note">Copied from definitions already written in the pattern.</p>'
+        )
+
+    def _marks_section(self, pattern: Pattern) -> str:
+        if not self.config.include_marks:
+            return ""
+        labels = []
+        if len(pattern.pieces) > 1:
+            for piece in pattern.pieces:
+                for item in piece.rounds or piece.rows:
+                    number = item.round_number if hasattr(item, "round_number") else item.row_number
+                    labels.append(f"{piece.name} {number}")
+        else:
+            items = pattern.rounds or pattern.rows
+            if pattern.pieces:
+                items = pattern.pieces[0].rounds or pattern.pieces[0].rows or items
+            for item in items:
+                number = item.round_number if hasattr(item, "round_number") else item.row_number
+                labels.append(str(number))
+        if not labels:
+            return ""
+        boxes = "".join(
+            '<span class="mark"><i></i>' + html_lib.escape(label) + "</span>"
+            for label in labels[:80]
+        )
+        extra = ""
+        if len(labels) > 80:
+            extra = '<p class="chart-note">The first 80 numbers are shown. The rest stay on their rows.</p>'
+        return (
+            "<h2>Round marks</h2>"
+            '<p class="chart-note">Empty boxes to tick while you work. They are not a saved progress file.</p>'
+            '<div class="marks">' + boxes + "</div>" + extra
+        )
+
+    def _ruled_notes_section(self) -> str:
+        if not self.config.include_ruled_notes:
+            return ""
+        lines = "".join('<div class="rule"></div>' for _ in range(5))
+        return (
+            "<h2>Write-in notes</h2>"
+            '<p class="chart-note">Blank lines for this printed copy. They are not saved.</p>'
+            + lines
+        )
 
 def generate_pdf_html(
     pattern: Pattern,

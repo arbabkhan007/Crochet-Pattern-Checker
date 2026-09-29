@@ -119,6 +119,16 @@ class PdfRequest(BaseModel):
     include_materials: bool = True
     include_abbreviations: bool = True
     include_measurements: bool = True
+    large_print: bool = False
+    ink_saver: bool = False
+    landscape: bool = False
+    binding: str = "none"
+    compact: bool = False
+    include_marks: bool = True
+    include_change: bool = True
+    include_index: bool = True
+    include_ruled_notes: bool = True
+    include_used_stitches: bool = True
 
 
 @app.post("/api/pdf")
@@ -126,7 +136,8 @@ async def generate_pdf(request: PdfRequest, designer: str | None = None):
     try:
         pattern = CrochetParser().parse(request.pattern_text)
         report = validate_pattern(pattern)
-        page_size = request.page_size if request.page_size in {"A4", "Letter", "A5"} else "A4"
+        page_size = request.page_size if request.page_size in {"A4", "Letter", "A5", "Legal"} else "A4"
+        binding = request.binding if request.binding in {"none", "left"} else "none"
         template = request.template if request.template in TEMPLATES else "minimal"
         config = PDFConfig(
             designer_name=designer or request.designer or "",
@@ -142,9 +153,19 @@ async def generate_pdf(request: PdfRequest, designer: str | None = None):
             include_materials=request.include_materials,
             include_abbreviations=request.include_abbreviations,
             include_measurements=request.include_measurements,
+            large_print=request.large_print,
+            ink_saver=request.ink_saver,
+            landscape=request.landscape,
+            binding=binding,
+            compact=request.compact,
+            include_marks=request.include_marks,
+            include_change=request.include_change,
+            include_index=request.include_index,
+            include_ruled_notes=request.include_ruled_notes,
+            include_used_stitches=request.include_used_stitches,
         )
         html = PDFGenerator(config).generate(pattern, report)
-        return {"html": html, "status": "success", "template": template, "page_size": page_size}
+        return {"html": html, "status": "success", "template": template, "page_size": page_size, "large_print": bool(request.large_print), "landscape": bool(request.landscape)}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -204,7 +225,7 @@ footer{text-align:center;color:white;padding:40px 0 20px;opacity:.8}
 <textarea id="patternInput" placeholder="Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc) x 6 (18)\nRound 4: (2 sc, inc) x 6 (24)..."></textarea>
 <button class="btn" onclick="checkPattern()">Check Pattern</button>
 <button class="btn" onclick="renderPattern()">Render</button>
-<button class="btn" onclick="simulatePattern()">3D Simulate</button><button class="btn" onclick="makePdf()">Make PDF sheet</button>
+<button class="btn" onclick="simulatePattern()">3D Simulate</button> <label><input id="pdfLarge" type="checkbox"> Large print</label> <label><input id="pdfInk" type="checkbox"> Ink saver</label> <label><input id="pdfLand" type="checkbox"> Landscape</label> <label><input id="pdfBind" type="checkbox"> Binding</label> <label>Page <select id="pdfPage"><option>A4</option><option>Letter</option><option>A5</option><option>Legal</option></select></label> <button class="btn" onclick="makePdf()">Make PDF sheet</button>
 </div>
 <div class="panel"><h2>\xf0\x9f\x93\x8a Results</h2><div id="results"><p style="color:#999;text-align:center;padding:50px 0">Enter a pattern and click "Check Pattern" to see results</p></div></div>
 </div>
@@ -223,7 +244,7 @@ async function checkPattern(){const t=patternInput.value;if(!t.trim())return ale
 async function renderPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const p=document.getElementById('diagramPanel'),c=document.getElementById('svgContainer');p.hidden=false;c.innerHTML='<p style="text-align:center;padding:20px">Generating...</p>';try{const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();c.innerHTML=d.svg}catch(e){c.innerHTML='<p style="color:red">Error: '+e.message+'</p>'}}
 async function simulatePattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Simulating...</p>';try{const r=await fetch('/api/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}res.innerHTML='<div class="result-box status-pass"><h3 style="text-align:center;margin-bottom:15px">3D Simulation</h3><div class="stats"><div class="stat-card"><div class="stat-value">'+d.shape+'</div><div class="stat-label">Detected Shape</div></div><div class="stat-card"><div class="stat-value">'+(d.confidence*100).toFixed(0)+'%</div><div class="stat-label">Confidence</div></div><div class="stat-card"><div class="stat-value">'+d.vertices+'</div><div class="stat-label">Vertices</div></div><div class="stat-card"><div class="stat-value">'+d.faces+'</div><div class="stat-label">Faces</div></div></div></div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 
-async function makePdf(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Making sheet...</p>';try{const r=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t,template:'craft',page_size:'A4'})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const blob=new Blob([d.html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pattern-sheet.html';a.click();res.innerHTML='<div class="result-box status-pass"><b>Sheet ready.</b> The download is HTML. Open it and print. Template: '+d.template+'.</div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
+async function makePdf(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Making sheet...</p>';try{const r=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t,template:'craft',page_size:(document.getElementById('pdfPage')||{}).value||'A4',large_print:!!(document.getElementById('pdfLarge')&&document.getElementById('pdfLarge').checked),ink_saver:!!(document.getElementById('pdfInk')&&document.getElementById('pdfInk').checked),landscape:!!(document.getElementById('pdfLand')&&document.getElementById('pdfLand').checked),binding:(document.getElementById('pdfBind')&&document.getElementById('pdfBind').checked)?'left':'none'})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const blob=new Blob([d.html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pattern-sheet.html';a.click();res.innerHTML='<div class="result-box status-pass"><b>Sheet ready.</b> The download is HTML. Open it and print. Template: '+d.template+'.</div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 </script>
 </body>
 </html>"""

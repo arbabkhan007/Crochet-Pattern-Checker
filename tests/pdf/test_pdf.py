@@ -85,3 +85,57 @@ def test_color_key_uses_only_written_names():
 def test_sections_can_be_left_out():
     html = generate_pdf_html(parse_pattern(T), config=PDFConfig(include_materials=False, include_charts=False, include_checklist=False, copyright_text="Mine"))
     assert "Materials" not in html and "Charts" not in html and "Worked" not in html and "Mine" in html
+
+
+def test_print_setup_is_on_the_sheet_only():
+    text = "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\n"
+    before = validate_pattern(text)
+    html = generate_pdf_html(
+        parse_pattern(text),
+        config=PDFConfig(template="craft", page_size="Letter", large_print=True, ink_saver=True, landscape=True, binding="left", compact=True),
+        validation_report=before,
+    )
+    after = validate_pattern(text)
+    assert before.overall_status == after.overall_status == "PASS"
+    assert "large-print" in html and "ink-saver" in html and "Letter landscape" in html and "2.8cm" in html
+    assert "Crochet pattern sheet" in html and "does not certify the pattern" in html
+    assert "+6" in html and "Round marks" in html and "Change" in html and "not a measured length" in html
+
+def test_new_print_parts_do_not_restore_hidden_sections():
+    html = generate_pdf_html(
+        parse_pattern(T),
+        config=PDFConfig(
+            include_materials=False,
+            include_charts=False,
+            include_checklist=False,
+            copyright_text="Mine",
+            large_print=True,
+            include_marks=True,
+            include_change=True,
+            include_ruled_notes=True,
+            include_used_stitches=True,
+        ),
+    )
+    assert "Materials" not in html and "Charts" not in html and "Worked" not in html and "Mine" in html
+    assert "Round marks" in html and "Write-in notes" in html
+
+def test_optional_print_parts_can_be_left_out():
+    html = generate_pdf_html(
+        parse_pattern(T),
+        config=PDFConfig(include_marks=False, include_change=False, include_ruled_notes=False, include_used_stitches=False, include_index=False),
+    )
+    assert "Round marks" not in html and "Write-in notes" not in html and "<th>Change</th>" not in html and "Stitches used" not in html
+
+def test_written_color_tints_only_a_known_name():
+    named = generate_pdf_html(parse_pattern("Color A: Brown\nRound 1: 6 sc in brown (6)\n"))
+    unknown = generate_pdf_html(parse_pattern("Color A: Chartreuse\nRound 1: 6 sc in Chartreuse (6)\n"))
+    assert "background:#8B5A2B22" in named
+    assert 'style="background:' not in unknown
+
+def test_a_flagged_round_stays_an_error():
+    text = "Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\n"
+    report = validate_pattern(text)
+    html = generate_pdf_html(parse_pattern(text), validation_report=report)
+    again = validate_pattern(text)
+    assert report.overall_status == again.overall_status == "ERROR"
+    assert "6 to 18" in html
