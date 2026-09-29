@@ -63,3 +63,25 @@ class TestPDF:
             assert "<!DOCTYPE html>" in open(fp).read()
         finally:
             os.unlink(fp)
+
+
+def test_sheet_options_do_not_change_a_check():
+    text = "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\n"
+    before = validate_pattern(text)
+    html = generate_pdf_html(parse_pattern(text), config=PDFConfig(template="craft", page_size="Letter"), validation_report=before)
+    after = validate_pattern(text)
+    assert before.overall_status == after.overall_status == "PASS"
+    assert "Letter" in html and "#5B4A69" in html
+    assert "Charts" in html and "<svg" in html and "Worked" in html
+    assert "counter(page)" in html and "not a reading of a chart image" in html
+
+def test_color_key_uses_only_written_names():
+    named = generate_pdf_html(parse_pattern("Color A: Brown\nRound 1: 6 sc into magic ring (6)\n"))
+    plain = generate_pdf_html(parse_pattern("Round 1: 6 sc into magic ring (6)\n"))
+    unknown = generate_pdf_html(parse_pattern("Color A: Chartreuse\nRound 1: 6 sc into magic ring (6)\n"))
+    assert "Color key" in named and "#8B5A2B" in named
+    assert "Color key" not in plain and "Color key" not in unknown
+
+def test_sections_can_be_left_out():
+    html = generate_pdf_html(parse_pattern(T), config=PDFConfig(include_materials=False, include_charts=False, include_checklist=False, copyright_text="Mine"))
+    assert "Materials" not in html and "Charts" not in html and "Worked" not in html and "Mine" in html

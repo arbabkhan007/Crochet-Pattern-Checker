@@ -7,7 +7,7 @@ from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 from ..parser.parser import CrochetParser
-from ..pdf import PDFConfig, PDFGenerator
+from ..pdf import TEMPLATES, PDFConfig, PDFGenerator
 from ..simulation import analyze_pattern_shape, simulate_surface
 from ..validation import validate_pattern
 from ..visualization import measure_pattern, render_2d_preview
@@ -104,14 +104,47 @@ async def simulate_pattern(request: CheckRequest):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+class PdfRequest(BaseModel):
+    pattern_text: str
+    designer: str | None = None
+    template: str = "minimal"
+    page_size: str = "A4"
+    copyright_text: str = ""
+    pattern_version: str = "1.0"
+    include_cover: bool = True
+    include_charts: bool = True
+    include_validation: bool = True
+    include_checklist: bool = True
+    include_color_key: bool = True
+    include_materials: bool = True
+    include_abbreviations: bool = True
+    include_measurements: bool = True
+
+
 @app.post("/api/pdf")
-async def generate_pdf(request: CheckRequest, designer: str | None = None):
+async def generate_pdf(request: PdfRequest, designer: str | None = None):
     try:
         pattern = CrochetParser().parse(request.pattern_text)
         report = validate_pattern(pattern)
-        config = PDFConfig(designer_name=designer or "")
+        page_size = request.page_size if request.page_size in {"A4", "Letter", "A5"} else "A4"
+        template = request.template if request.template in TEMPLATES else "minimal"
+        config = PDFConfig(
+            designer_name=designer or request.designer or "",
+            template=template,
+            page_size=page_size,
+            copyright_text=request.copyright_text,
+            pattern_version=request.pattern_version,
+            include_cover=request.include_cover,
+            include_charts=request.include_charts,
+            include_validation=request.include_validation,
+            include_checklist=request.include_checklist,
+            include_color_key=request.include_color_key,
+            include_materials=request.include_materials,
+            include_abbreviations=request.include_abbreviations,
+            include_measurements=request.include_measurements,
+        )
         html = PDFGenerator(config).generate(pattern, report)
-        return {"html": html, "status": "success"}
+        return {"html": html, "status": "success", "template": template, "page_size": page_size}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -171,7 +204,7 @@ footer{text-align:center;color:white;padding:40px 0 20px;opacity:.8}
 <textarea id="patternInput" placeholder="Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc) x 6 (18)\nRound 4: (2 sc, inc) x 6 (24)..."></textarea>
 <button class="btn" onclick="checkPattern()">Check Pattern</button>
 <button class="btn" onclick="renderPattern()">Render</button>
-<button class="btn" onclick="simulatePattern()">3D Simulate</button>
+<button class="btn" onclick="simulatePattern()">3D Simulate</button><button class="btn" onclick="makePdf()">Make PDF sheet</button>
 </div>
 <div class="panel"><h2>\xf0\x9f\x93\x8a Results</h2><div id="results"><p style="color:#999;text-align:center;padding:50px 0">Enter a pattern and click "Check Pattern" to see results</p></div></div>
 </div>
@@ -189,6 +222,8 @@ function readFile(f){const r=new FileReader();r.onload=e=>patternInput.value=e.t
 async function checkPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Checking...</p>';try{const r=await fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const c=d.status.includes('PASS')&&!d.status.includes('WARNING')?'status-pass':d.status.includes('WARNING')?'status-warn':'status-error';let h='<div class="result-box '+c+'"><div style="text-align:center"><span class="status-badge">'+d.status+'</span><div class="score">'+d.score+'/100</div></div><div class="stats"><div class="stat-card"><div class="stat-value">'+d.rounds+'</div><div class="stat-label">Rounds</div></div><div class="stat-card"><div class="stat-value">'+d.max_stitches+'</div><div class="stat-label">Max Stitches</div></div><div class="stat-card"><div class="stat-value">'+d.max_diameter_inches+'"\'</div><div class="stat-label">Diameter</div></div><div class="stat-card"><div class="stat-value">'+d.total_height_inches+'"\'</div><div class="stat-label">Height</div></div></div></div>';if(d.errors&&d.errors.length>0){h+='<div class="errors-list"><b>Errors:</b><ul>';d.errors.forEach(e=>h+='<li>['+e.location+'] '+e.message+'</li>');h+='</ul></div>'}if(d.warnings&&d.warnings.length>0){h+='<div class="warnings-list"><b>Warnings:</b><ul>';d.warnings.forEach(w=>h+='<li>['+w.location+'] '+w.message+'</li>');h+='</ul></div>'}res.innerHTML=h}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 async function renderPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const p=document.getElementById('diagramPanel'),c=document.getElementById('svgContainer');p.hidden=false;c.innerHTML='<p style="text-align:center;padding:20px">Generating...</p>';try{const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();c.innerHTML=d.svg}catch(e){c.innerHTML='<p style="color:red">Error: '+e.message+'</p>'}}
 async function simulatePattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Simulating...</p>';try{const r=await fetch('/api/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}res.innerHTML='<div class="result-box status-pass"><h3 style="text-align:center;margin-bottom:15px">3D Simulation</h3><div class="stats"><div class="stat-card"><div class="stat-value">'+d.shape+'</div><div class="stat-label">Detected Shape</div></div><div class="stat-card"><div class="stat-value">'+(d.confidence*100).toFixed(0)+'%</div><div class="stat-label">Confidence</div></div><div class="stat-card"><div class="stat-value">'+d.vertices+'</div><div class="stat-label">Vertices</div></div><div class="stat-card"><div class="stat-value">'+d.faces+'</div><div class="stat-label">Faces</div></div></div></div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
+
+async function makePdf(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Making sheet...</p>';try{const r=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t,template:'craft',page_size:'A4'})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const blob=new Blob([d.html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pattern-sheet.html';a.click();res.innerHTML='<div class="result-box status-pass"><b>Sheet ready.</b> The download is HTML. Open it and print. Template: '+d.template+'.</div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 </script>
 </body>
 </html>"""

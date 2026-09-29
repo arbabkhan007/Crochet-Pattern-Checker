@@ -10,9 +10,9 @@ def generate_pdf(pattern, output_path: str, format: str = "modern") -> str:
     The current generator writes PDF-ready HTML or a PDF depending on the
     configured backend. The output path is returned for legacy callers.
     """
-    generator = PDFGenerator()
-    result = generator.save(output_path, pattern)
-    return result if isinstance(result, str) else output_path
+    template = format if format in TEMPLATES else "minimal"
+    PDFGenerator(PDFConfig(template=template)).save(output_path, pattern)
+    return output_path
 
 
 __all__ = [

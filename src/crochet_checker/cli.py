@@ -253,8 +253,17 @@ def render_3d(pattern_file, output):
 @click.argument("pattern_file", type=click.Path(exists=True))
 @click.option("--output", "-o", default=None, help="Output file path")
 @click.option("--designer", default="", help="Designer name")
-def pdf_cmd(pattern_file, output, designer):
-    """Generate professional PDF/HTML from pattern."""
+@click.option("--template", default="minimal", type=click.Choice(["minimal", "craft", "modern", "ocean", "berry", "sunset"]))
+@click.option("--page-size", default="A4", type=click.Choice(["A4", "Letter", "A5"]))
+@click.option("--copyright", default="", help="Copyright line")
+@click.option("--pattern-version", default="1.0")
+@click.option("--no-cover", is_flag=True)
+@click.option("--no-charts", is_flag=True)
+@click.option("--no-validation", is_flag=True)
+@click.option("--no-checklist", is_flag=True)
+@click.option("--no-color-key", is_flag=True)
+def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, pattern_version, no_cover, no_charts, no_validation, no_checklist, no_color_key):
+    """Write a printable pattern sheet. A .pdf path uses WeasyPrint when installed."""
     from crochet_checker.utils import read_pattern_file
 
     from .pdf import PDFConfig, PDFGenerator
@@ -262,7 +271,18 @@ def pdf_cmd(pattern_file, output, designer):
     text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
     report = validate_pattern(pattern)
-    config = PDFConfig(designer_name=designer)
+    config = PDFConfig(
+        designer_name=designer,
+        template=template,
+        page_size=page_size,
+        copyright_text=copyright,
+        pattern_version=pattern_version,
+        include_cover=not no_cover,
+        include_charts=not no_charts,
+        include_validation=not no_validation,
+        include_checklist=not no_checklist,
+        include_color_key=not no_color_key,
+    )
     gen = PDFGenerator(config)
     if output is None:
         output = str(
@@ -273,7 +293,8 @@ def pdf_cmd(pattern_file, output, designer):
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     gen.save(output, pattern, report)
     console.print(f"[green]PDF/HTML saved to: {output}[/green]")
-    console.print("  Open in browser and Ctrl+P to save as PDF")
+    console.print(f"  Template: {config.template} | Page: {config.page_size}")
+    console.print("  Open the HTML and print it. A .pdf path uses WeasyPrint when it is installed.")
 
 
 @cli.command("explain")

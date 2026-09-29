@@ -107,6 +107,8 @@ class PDFConfig(BaseModel):
     copyright_text: str = ""
     pattern_version: str = "1.0"
     page_size: str = "A4"
+    include_checklist: bool = True
+    include_color_key: bool = True
 
 
 class PDFGenerator:
@@ -126,12 +128,21 @@ class PDFGenerator:
         if self.config.include_cover:
             sections.append(self._cover_page(pattern, measurements))
 
-        sections.append(self._materials_section(pattern))
+        if self.config.include_materials:
+            sections.append(self._materials_section(pattern))
 
         if self.config.include_abbreviations:
             sections.append(self._abbreviations_section())
 
+        color_key = self._color_key_section(pattern)
+        if color_key:
+            sections.append(color_key)
+
         sections.append(self._multi_piece_instructions_section(pattern, measurements))
+
+        chart = self._chart_section(pattern)
+        if chart:
+            sections.append(chart)
 
         if self.config.include_measurements:
             sections.append(self._measurements_section(measurements))
@@ -196,6 +207,11 @@ class PDFGenerator:
         @page {{
             size: {self.config.page_size};
             margin: 1.8cm;
+            @bottom-center {{
+                content: counter(page);
+                font-size: 9pt;
+                color: #666666;
+            }}
         }}
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
         body {{
@@ -423,7 +439,7 @@ class PDFGenerator:
             text-align: center;
         }}
 
-        /* Materials grid */
+        /* supply cards */
         .materials-grid {{
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -534,6 +550,14 @@ class PDFGenerator:
             padding-bottom: 10px;
             margin-bottom: 20px;
         }}
+
+        .chart-wrap {{ margin: 12px 0; text-align: center; }}
+        .chart-wrap svg {{ max-width: 100%; height: auto; }}
+        .chart-note {{ font-size: 9pt; color: {t["secondary"]}; }}
+        .worked {{ width: 46px; text-align: center; }}
+        .box {{ display: inline-block; width: 12px; height: 12px; border: 1.5px solid {t["primary"]}; }}
+        .swatch {{ display: inline-block; width: 14px; height: 14px; border: 1px solid {t["border"]}; margin-right: 6px; vertical-align: -2px; }}
+        .color-key {{ margin: 8px 0 16px 0; }}
 
         /* Print */
         @media print {{
@@ -854,7 +878,7 @@ class PDFGenerator:
                     <td class="round-num">{round_display}</td>
                     <td class="instruction">{html_lib.escape(instruction_text)}</td>
                     <td class="stitch-count">({stitch_count})</td>
-                    <td class="note">{note}</td>
+                    <td class="note">{note}</td>{self._worked_cell()}
                 </tr>""")
 
             prev_count = stitch_count if stitch_count > 0 else prev_count
@@ -867,7 +891,7 @@ class PDFGenerator:
                     <th>{label}</th>
                     <th>Instruction</th>
                     <th>Stitches</th>
-                    <th>Notes</th>
+                    <th>Notes</th>{self._worked_head()}
                 </tr>
             </thead>
             <tbody>
@@ -997,7 +1021,7 @@ class PDFGenerator:
                         <td class="round-num">{round_display}</td>
                         <td class="instruction">{html_lib.escape(instruction_text)}</td>
                         <td class="stitch-count">({stitch_count})</td>
-                        <td class="note">{note}</td>
+                        <td class="note">{note}</td>{self._worked_cell()}
                     </tr>""")
 
                 prev_count = stitch_count if stitch_count > 0 else prev_count
@@ -1010,7 +1034,7 @@ class PDFGenerator:
                         <th>{label}</th>
                         <th>Instruction</th>
                         <th>Stitches</th>
-                        <th>Notes</th>
+                        <th>Notes</th>{self._worked_head()}
                     </tr>
                 </thead>
                 <tbody>
@@ -1116,11 +1140,81 @@ class PDFGenerator:
         if self.config.copyright_text:
             parts.append(html_lib.escape(self.config.copyright_text))
         parts.append(
-            f"Generated with Crochet Pattern Checker v0.6.0 · {datetime.now().year}"
+            f"Generated with Crochet Pattern Checker v1.0.0 · {datetime.now().year}"
         )
 
         text = " · ".join(parts)
         return f'<div class="footer">{text}</div>'
+
+
+    def _worked_head(self) -> str:
+        if not self.config.include_checklist:
+            return ""
+        return "<th>Worked</th>"
+
+    def _worked_cell(self) -> str:
+        if not self.config.include_checklist:
+            return ""
+        return '<td class="worked"><span class="box"></span></td>'
+
+    def _named_colors(self, pattern: Pattern) -> list[tuple[str, str]]:
+        import re
+        swatches = {
+            "brown": "#8B5A2B", "indigo": "#3F51B5", "gold": "#C9A227",
+            "white": "#F4F1EA", "black": "#222222", "red": "#C0392B",
+            "blue": "#2471A3", "green": "#1E8449", "pink": "#D4738E",
+            "yellow": "#F4D03F", "orange": "#E67E22", "purple": "#7D3C98",
+            "grey": "#7F8C8D", "gray": "#7F8C8D", "cream": "#F6E7C1",
+            "navy": "#1A365D", "teal": "#148F77",
+        }
+        text = pattern.source_text or ""
+        found, seen = [], set()
+        labeled = re.compile(r"\bColor\s+[A-Za-z0-9]+\s*:\s*([A-Za-z]+)")
+        for match in labeled.finditer(text):
+            name = match.group(1)
+            key = name.casefold()
+            if key in swatches and key not in seen:
+                seen.add(key)
+                found.append((name, swatches[key]))
+        for word, color in swatches.items():
+            if word not in seen and re.search(r"\b" + word + r"\b", text, re.I):
+                seen.add(word)
+                found.append((word.title(), color))
+        return found
+
+    def _color_key_section(self, pattern: Pattern) -> str:
+        if not self.config.include_color_key:
+            return ""
+        found = self._named_colors(pattern)
+        if not found:
+            return ""
+        chips = "".join(
+            '<span class="swatch" style="background:%s"></span>%s ' % (color, html_lib.escape(name))
+            for name, color in found
+        )
+        return "<h2>Color key</h2><p class=\"color-key\">" + chips + "</p><p class=\"chart-note\">These swatches mark color names already written in the pattern. They are not a yarn standard.</p>"
+
+    def _chart_section(self, pattern: Pattern) -> str:
+        if not self.config.include_charts:
+            return ""
+        import re
+        try:
+            from ..visualization import generate_circle_diagram, generate_stitch_count_chart
+        except Exception:
+            return ""
+        parts = []
+        for maker in (generate_circle_diagram, generate_stitch_count_chart):
+            try:
+                svg = maker(pattern) or ""
+            except Exception:
+                continue
+            if "<svg" not in svg:
+                continue
+            svg = re.sub(r"<\?xml[^>]*\?>", "", svg).strip()
+            parts.append('<div class="chart-wrap">' + svg + "</div>")
+        if not parts:
+            return ""
+        return "<h2>Charts</h2>" + "".join(parts) + '<p class="chart-note">Drawn from the parsed rounds. This is not a reading of a chart image.</p>'
 
 
 def generate_pdf_html(

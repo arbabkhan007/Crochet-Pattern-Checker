@@ -96,3 +96,11 @@ def test_check_json_uses_text_keys():
     assert data["overall_status"] == "PASS"
     assert data["stitch_counts"]
     assert all(isinstance(key, str) for key in data["stitch_counts"])
+
+
+def test_pdf_accepts_sheet_options():
+    response = client.post("/api/pdf", json={"pattern_text": P, "template": "berry", "page_size": "Letter", "include_charts": False})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "success" and body["template"] == "berry" and body["page_size"] == "Letter"
+    assert "#6B2D5B" in body["html"] and "Charts" not in body["html"]
