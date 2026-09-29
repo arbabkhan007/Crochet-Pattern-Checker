@@ -78,7 +78,7 @@ On written US instructions it checks stitch counts, repeats, increases that more
 | `crochet-check render` | Writes 2D SVG diagrams from parsed rounds | Does not read a chart image |
 | `crochet-check render-3d` | Writes an OBJ mesh for a detected sphere, hat, tube, cone, or bowl | Does not track each loop |
 | `crochet-check measure` | Estimates measurements from the parsed piece | Does not replace a gauge swatch |
-| `crochet-check pdf` | Writes a printable sheet with template, page size, landscape, large print, ink saver, a binding margin, parsed-round charts, a written color key, count changes, round marks, and empty worked boxes. A .pdf path uses WeasyPrint when installed | Does not certify the pattern, read a chart image, invent a gauge, or change the check |
+| `crochet-check pdf` | Writes a printable sheet with template, page size, landscape, duplex facing pages, crop marks, PDF bookmarks, a count ladder, a text fingerprint, large print, ink saver, a binding margin, parsed-round charts, a written color key, count changes, round marks, and empty worked boxes. A .pdf path uses WeasyPrint when installed | Does not certify the pattern, read a chart image, invent a gauge, or change the check |
 | `crochet-check explain` | Rule-based explanation. `--ai` can call a configured provider | AI output cannot override the stitch count |
 | `crochet-check image` | Writes a placeholder cover unless a provider is configured | Does not count stitches in the image |
 | `crochet-check yarn-calc` | Rough yardage estimate | Not a substitute for a measured swatch |

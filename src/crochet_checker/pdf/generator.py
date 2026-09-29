@@ -130,6 +130,13 @@ class PDFConfig(BaseModel):
     include_index: bool = True
     include_ruled_notes: bool = True
     include_used_stitches: bool = True
+    duplex: bool = False
+    cards: bool = False
+    crop_marks: bool = False
+    include_ladder: bool = True
+    include_parse: bool = True
+    include_maker: bool = True
+    include_map: bool = True
 
 
 class PDFGenerator:
@@ -160,7 +167,7 @@ class PDFGenerator:
         if color_key:
             sections.append(color_key)
 
-        for extra in (self._index_section(pattern), self._used_stitches_section(pattern), self._written_definitions_section(pattern)):
+        for extra in (self._index_section(pattern), self._map_section(pattern), self._used_stitches_section(pattern), self._written_definitions_section(pattern)):
             if extra:
                 sections.append(extra)
 
@@ -176,7 +183,7 @@ class PDFGenerator:
         if self.config.include_validation and validation_report:
             sections.append(self._validation_section(validation_report))
 
-        for extra in (self._marks_section(pattern), self._ruled_notes_section(), self._print_note()):
+        for extra in (self._ladder_section(pattern), self._marks_section(pattern), self._maker_line(), self._text_id(pattern), self._duplex_note(), self._ruled_notes_section(), self._print_note()):
             if extra:
                 sections.append(extra)
 
@@ -215,12 +222,17 @@ class PDFGenerator:
         """Wrap body content in a complete HTML document with styles."""
         styles = self._get_styles() + self._extra_styles()
         title = html_lib.escape(pattern.metadata.title or "Crochet Pattern")
+        author = html_lib.escape(self.config.designer_name or pattern.metadata.designer or "")
+        author_tag = f'<meta name="author" content="{author}">' if author else ""
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
+    {author_tag}
+    <meta name="description" content="Printable crochet sheet. Not a certification.">
+    <meta name="generator" content="Crochet Pattern Checker">
     <style>
 {styles}
     </style>
@@ -235,14 +247,21 @@ class PDFGenerator:
         t = self.theme
         page_size = self._page_size_css()
         margin, left = self._margins()
+        marks = "marks: crop cross; bleed: 3mm;" if self.config.crop_marks else ""
         return f"""
         @page {{
             size: {page_size};
             margin: {margin};
             margin-left: {left};
+            {marks}
             @bottom-center {{
-                content: counter(page);
+                content: counter(page) " / " counter(pages);
                 font-size: 9pt;
+                color: #666666;
+            }}
+            @bottom-right {{
+                content: string(piece-title);
+                font-size: 8pt;
                 color: #666666;
             }}
             @top-center {{
@@ -256,6 +275,15 @@ class PDFGenerator:
             margin: {margin};
             margin-left: {left};
             @bottom-center {{ content: none; }}
+            @top-center {{ content: none; }}
+        }}
+        .cover {{ page: cover; }}
+        @page cover {{
+            size: {page_size};
+            margin: {margin};
+            margin-left: {left};
+            @bottom-center {{ content: none; }}
+            @top-center {{ content: none; }}
         }}
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
         body {{
@@ -920,7 +948,7 @@ class PDFGenerator:
             table_rows.append(f"""
                 <tr>
                     <td class="round-num">{round_display}</td>
-                    <td class="instruction"{self._row_tint(instruction_text)}>{html_lib.escape(instruction_text)}{self._flag_for_number(round_num)}</td>
+                    <td class="instruction"{self._row_tint(instruction_text)}>{html_lib.escape(instruction_text)}{self._parse_line(item)}{self._flag_for_number(round_num)}</td>
                     <td class="stitch-count">({stitch_count})</td>
                     <td class="note">{note}</td>{self._change_cell(prev_count, stitch_count)}{self._worked_cell()}
                 </tr>""")
@@ -965,6 +993,8 @@ class PDFGenerator:
         return f"""
 <h2>Instructions</h2>
 <p class="construction-info"><strong>Construction:</strong> {construction}</p>
+{self._proof_strip()}
+{self._parse_note()}
 {self._change_note()}
 {self._reminder(pattern)}
 {notes_html}
@@ -982,7 +1012,7 @@ class PDFGenerator:
             # Fall back to single-piece format
             return self._instructions_table_section(pattern, measurements)
 
-        sections_html = []
+        sections_html = [part for part in (self._proof_strip(), self._parse_note()) if part]
 
         for i, piece in enumerate(pattern.pieces):
             # Section header
@@ -995,7 +1025,7 @@ class PDFGenerator:
 
             section_header = f"""
 <div class="page-break"></div>
-<div class="piece-section">
+<div class="piece-section" id="piece-{section_num}">
     <h2>Section {section_num}: {piece.name}{make_text}</h2>
     {self._reminder(pattern)}
     {self._change_note()}
@@ -1067,7 +1097,7 @@ class PDFGenerator:
                 table_rows.append(f"""
                     <tr>
                         <td class="round-num">{round_display}</td>
-                        <td class="instruction"{self._row_tint(instruction_text)}>{html_lib.escape(instruction_text)}{self._flag_for_number(round_num)}</td>
+                        <td class="instruction"{self._row_tint(instruction_text)}>{html_lib.escape(instruction_text)}{self._parse_line(item)}{self._flag_for_number(round_num)}</td>
                         <td class="stitch-count">({stitch_count})</td>
                         <td class="note">{note}</td>{self._change_cell(prev_count, stitch_count)}{self._worked_cell()}
                     </tr>""")
@@ -1277,6 +1307,12 @@ class PDFGenerator:
             parts.append("compact")
         if self.config.landscape:
             parts.append("landscape")
+        if self.config.duplex:
+            parts.append("duplex")
+        if self.config.cards:
+            parts.append("cards")
+        if self.config.crop_marks:
+            parts.append("crop-marks")
         if self.config.binding == "left":
             parts.append("binding-left")
         return " ".join(parts)
@@ -1322,7 +1358,7 @@ class PDFGenerator:
         .reminder { font-size: 10pt; margin: 6px 0 12px 0; }
         .print-note { font-size: 9pt; margin-top: 18px; }
         tr, .round, .piece-section { break-inside: avoid; }
-        """
+        """ + self._advanced_styles()
 
     def _change_head(self) -> str:
         if not self.config.include_change:
@@ -1409,22 +1445,24 @@ class PDFGenerator:
         if not self.config.include_index or len(pattern.pieces) < 2:
             return ""
         rows = []
-        for piece in pattern.pieces:
+        for index, piece in enumerate(pattern.pieces, 1):
             kind = "rounds" if piece.rounds else "rows"
             make = ""
             if piece.make_count and piece.make_count > 1:
                 make = f"Make {piece.make_count}. "
             rows.append(
-                "<li>"
+                "<li><a class=\"toc\" href=\"#piece-"
+                + str(index)
+                + "\">"
                 + html_lib.escape(piece.name)
-                + " — "
+                + "</a> — "
                 + make
                 + f"{piece.total_rows_or_rounds} {kind}</li>"
             )
         return (
             "<h2>Pieces</h2><ol>"
             + "".join(rows)
-            + '</ol><p class="chart-note">Piece names and counts come from the written pattern.</p>'
+            + '</ol><p class="chart-note">Piece names link to the written pieces. A PDF reader can show the page. Counts come from the written pattern.</p>'
         )
 
     def _used_stitches_section(self, pattern: Pattern) -> str:
@@ -1543,6 +1581,259 @@ class PDFGenerator:
             "<h2>Write-in notes</h2>"
             '<p class="chart-note">Blank lines for this printed copy. They are not saved.</p>'
             + lines
+        )
+
+
+    def _advanced_styles(self) -> str:
+        parts = [
+            "a.toc { color: inherit; text-decoration: none; }",
+            'a.toc::after { content: leader(".") target-counter(attr(href), page); }',
+            "h1 { bookmark-level: 1; }",
+            "h2 { bookmark-level: 2; bookmark-label: content(); }",
+            "h3 { bookmark-level: 3; }",
+            ".piece-section h2 { string-set: piece-title content(); }",
+            ".instruction, .parse { hyphens: none; }",
+            ".parse { font-size: 8.5pt; margin-top: 3px; }",
+            ".ladder, .make-map { max-width: 100%; height: auto; }",
+            ".make-map { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px 0; }",
+            ".piece-box { border: 1.5px solid #111111; padding: 8px 10px; text-decoration: none; color: inherit; }",
+            ".proof, .text-id, .maker { font-size: 9pt; }",
+        ]
+        if self.config.duplex:
+            margin, left = self._margins()
+            gutter = left if self.config.binding == "left" else "2.4cm"
+            parts.append(
+                "@page :left { margin-left: "
+                + gutter
+                + "; margin-right: "
+                + margin
+                + "; }"
+            )
+            parts.append(
+                "@page :right { margin-left: "
+                + margin
+                + "; margin-right: "
+                + gutter
+                + "; }"
+            )
+            parts.append("body.duplex .piece-section { break-before: right; }")
+        if self.config.cards:
+            parts.append("body.cards .instruction-table tbody tr + tr { break-before: page; }")
+        return "\n".join(parts) + "\n"
+
+    def _proof_strip(self) -> str:
+        report = getattr(self, "_sheet_report", None)
+        if report is None or not self.config.include_validation:
+            return ""
+        status = html_lib.escape(str(getattr(report, "overall_status", "") or ""))
+        if not status:
+            return ""
+        return (
+            f'<p class="proof">Check status: {status}. '
+            "This repeats the written check. It does not change it.</p>"
+        )
+
+    def _parse_note(self) -> str:
+        if not self.config.include_parse:
+            return ""
+        return (
+            '<p class="chart-note">Parsed lines are this checker\'s reading of the written row. '
+            "They do not replace that row and do not change the check.</p>"
+        )
+
+    def _abbr_for(self, kind) -> str:
+        try:
+            from ..model.stitch import STITCH_DEFINITIONS
+        except Exception:
+            return ""
+        defn = STITCH_DEFINITIONS.get(kind)
+        if defn is None:
+            return ""
+        return defn.abbreviation
+
+    def _op_text(self, op) -> str:
+        abbr = self._abbr_for(getattr(op, "stitch_type", None))
+        if not abbr:
+            return ""
+        target = getattr(op, "into_stitch", None)
+        context = {
+            "each_stitch_around": "in each stitch around",
+            "each_stitch_across": "in each stitch across",
+            "remaining": "in the remaining stitches",
+            "foundation": "as a foundation",
+            "join": "to join",
+        }
+        if target in context:
+            return abbr + " " + context[target]
+        count = getattr(op, "count", 1) or 1
+        if count == 1:
+            return abbr
+        return f"{count} {abbr}"
+
+    def _parse_line(self, item) -> str:
+        if not self.config.include_parse:
+            return ""
+        parts = []
+        for inst in getattr(item, "instructions", []) or []:
+            unit = list(getattr(inst, "repeat_unit", None) or [])
+            repeat = getattr(inst, "repeat_count", None)
+            if unit and repeat and repeat > 1:
+                shown = ", ".join(bit for bit in (self._op_text(op) for op in unit) if bit)
+                if shown:
+                    parts.append(f"({shown}) x {repeat}")
+                    continue
+            shown = ", ".join(
+                bit for bit in (self._op_text(op) for op in getattr(inst, "operations", []) or []) if bit
+            )
+            if shown:
+                parts.append(shown)
+        if not parts:
+            return ""
+        return '<div class="parse">Parsed: ' + html_lib.escape(" · ".join(parts)) + "</div>"
+
+    def _row_count(self, item, previous: int) -> int:
+        stitch_count = getattr(item, "computed_stitch_count", 0) or 0
+        if stitch_count == 0 and hasattr(item, "compute_stitch_count_with_context"):
+            stitch_count = item.compute_stitch_count_with_context(previous)
+        for inst in getattr(item, "instructions", []) or []:
+            stated = getattr(inst, "stated_stitch_count", None)
+            if stated is not None:
+                return stated
+        return stitch_count
+
+    def _sheet_counts(self, pattern: Pattern) -> list[tuple[str, int, int]]:
+        rows = []
+        if pattern.pieces:
+            many = len(pattern.pieces) > 1
+            for piece in pattern.pieces:
+                previous = 0
+                for item in piece.rounds or piece.rows:
+                    number = item.round_number if hasattr(item, "round_number") else item.row_number
+                    count = self._row_count(item, previous)
+                    label = f"{piece.name} {number}" if many else str(number)
+                    rows.append((label, count, number))
+                    previous = count if count > 0 else previous
+            return rows
+        previous = 0
+        for item in pattern.rounds or pattern.rows:
+            number = item.round_number if hasattr(item, "round_number") else item.row_number
+            count = self._row_count(item, previous)
+            rows.append((str(number), count, number))
+            previous = count if count > 0 else previous
+        return rows
+
+    def _flagged_numbers(self) -> set[int]:
+        report = getattr(self, "_sheet_report", None)
+        if report is None or not self.config.include_validation:
+            return set()
+        import re
+
+        found = set()
+        items = list(getattr(report, "errors", []) or []) + list(getattr(report, "warnings", []) or [])
+        for item in items:
+            message = getattr(item, "message", str(item))
+            for match in re.finditer(r"\b(?:Round|Rnd|Row)(?:/row)?\s+(\d+)\b", message, re.I):
+                found.add(int(match.group(1)))
+        return found
+
+    def _ladder_section(self, pattern: Pattern) -> str:
+        if not self.config.include_ladder:
+            return ""
+        rows = [(label, count, number) for label, count, number in self._sheet_counts(pattern) if count > 0]
+        if len(rows) < 2:
+            return ""
+        shown = rows[:40]
+        peak = max(count for _, count, _ in shown) or 1
+        flagged = self._flagged_numbers()
+        width = 16 * len(shown) + 8
+        bars = []
+        previous = 0
+        for index, (_label, count, number) in enumerate(shown):
+            height = max(2, round(46 * count / peak))
+            x = 8 + index * 16
+            y = 52 - height
+            if number in flagged:
+                fill, stroke = "#111111", ' stroke="#C0392B" stroke-width="1.5"'
+            elif previous and count > previous:
+                fill, stroke = "#1E8449", ""
+            elif previous and count < previous:
+                fill, stroke = "#C0392B", ""
+            else:
+                fill, stroke = "#555555", ""
+            bars.append(
+                '<rect x="%d" y="%d" width="10" height="%d" fill="%s"%s/>' % (x, y, height, fill, stroke)
+            )
+            previous = count
+        svg = (
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} 64" class="ladder" role="img" aria-label="Count ladder">'
+            + "".join(bars)
+            + "</svg>"
+        )
+        sequence = ", ".join(str(count) for _, count, _ in shown)
+        holds = []
+        start = 0
+        for index in range(1, len(shown) + 1):
+            if index == len(shown) or shown[index][1] != shown[start][1]:
+                if index - start >= 3:
+                    holds.append(f"{shown[start][0]}-{shown[index - 1][0]} hold {shown[start][1]}")
+                start = index
+        hold_html = ""
+        if holds:
+            hold_html = (
+                '<p class="chart-note">Holds: '
+                + html_lib.escape("; ".join(holds))
+                + ". A hold is the same written count on consecutive rows. It is not a measurement.</p>"
+            )
+        extra = ""
+        if len(rows) > 40:
+            extra = '<p class="chart-note">The first 40 counts are drawn.</p>'
+        return (
+            "<h2>Count ladder</h2>"
+            + svg
+            + '<p class="chart-note">Count sequence: '
+            + html_lib.escape(sequence)
+            + ". Each bar is a stitch count already printed on this sheet. Green is up, red is down, gray is the same. "
+            + "An outlined bar is a round named in the check. This is not a finished size and not a reading of a chart image.</p>"
+            + hold_html
+            + extra
+        )
+
+    def _map_section(self, pattern: Pattern) -> str:
+        if not self.config.include_map or len(pattern.pieces) < 2:
+            return ""
+        boxes = []
+        for index, piece in enumerate(pattern.pieces, 1):
+            boxes.append(
+                f'<a class="piece-box" href="#piece-{index}">'
+                + html_lib.escape(piece.name)
+                + "</a>"
+            )
+        return (
+            "<h2>Make order</h2><div class=\"make-map\">"
+            + "".join(boxes)
+            + '</div><p class="chart-note">Boxes follow the written piece order. They are not a photo and not a size.</p>'
+        )
+
+    def _maker_line(self) -> str:
+        if not self.config.include_maker:
+            return ""
+        return '<p class="maker">Maker ________ &nbsp;&nbsp; Date ________</p>'
+
+    def _text_id(self, pattern: Pattern) -> str:
+        import hashlib
+
+        digest = hashlib.sha256((pattern.source_text or "").encode("utf-8")).hexdigest()[:8]
+        return (
+            f'<p class="text-id" id="text-id">Text id {digest}. '
+            "A fingerprint of the written text. Not a certification.</p>"
+        )
+
+    def _duplex_note(self) -> str:
+        if not self.config.duplex:
+            return ""
+        return (
+            '<p class="chart-note">Duplex printing uses facing pages. '
+            "With a left binding, the wider margin is the inside edge.</p>"
         )
 
 def generate_pdf_html(

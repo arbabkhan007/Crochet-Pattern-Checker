@@ -139,3 +139,62 @@ def test_a_flagged_round_stays_an_error():
     again = validate_pattern(text)
     assert report.overall_status == again.overall_status == "ERROR"
     assert "6 to 18" in html
+
+
+def test_advanced_print_does_not_change_a_check():
+    text = "Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: sc in each st around (12)\nRound 4: sc in each st around (12)\nRound 5: sc in each st around (12)\n"
+    before = validate_pattern(text)
+    html = generate_pdf_html(
+        parse_pattern(text),
+        config=PDFConfig(duplex=True, binding="left", cards=True, crop_marks=True),
+        validation_report=before,
+    )
+    after = validate_pattern(text)
+    assert before.overall_status == after.overall_status == "PASS"
+    assert "counter(pages)" in html and "bookmark-level" in html and "target-counter" in html
+    assert "marks: crop cross" in html and "page: cover" in html and "string-set: piece-title" in html
+    assert "Count ladder" in html and "Count sequence:" in html and "hold 12" in html
+    assert "not a finished size" in html and "Text id" in html and "Not a certification." in html
+    assert "Parsed: MR, 6 sc" in html and "Check status: PASS" in html
+    assert "Maker ________" in html and "@page :left" in html and "cards" in html
+    again = generate_pdf_html(parse_pattern(text))
+    assert html.split("Text id ")[1][:8] == again.split("Text id ")[1][:8]
+
+def test_a_flagged_round_is_outlined_on_the_ladder():
+    text = "Round 1: 6 sc into magic ring (6)\nRound 2: (sc, inc) x 6 (18)\n"
+    report = validate_pattern(text)
+    html = generate_pdf_html(parse_pattern(text), validation_report=report)
+    again = validate_pattern(text)
+    assert report.overall_status == again.overall_status == "ERROR"
+    assert 'stroke="#C0392B"' in html and "Check status: ERROR" in html
+    assert "6 to 18" in html
+
+def test_advanced_parts_do_not_restore_hidden_words():
+    html = generate_pdf_html(
+        parse_pattern(T),
+        config=PDFConfig(
+            include_materials=False,
+            include_charts=False,
+            include_checklist=False,
+            copyright_text="Mine",
+            duplex=True,
+            cards=True,
+            crop_marks=True,
+        ),
+    )
+    assert "Materials" not in html and "Charts" not in html and "Worked" not in html and "Mine" in html
+    assert "Count ladder" in html and "Text id" in html
+
+def test_advanced_parts_can_be_left_out():
+    html = generate_pdf_html(
+        parse_pattern(T),
+        config=PDFConfig(include_ladder=False, include_parse=False, include_maker=False, include_map=False),
+    )
+    assert "Count ladder" not in html and "Parsed:" not in html and "Maker ________" not in html and "Make order" not in html
+
+def test_piece_links_follow_written_pieces():
+    from pathlib import Path
+
+    text = (Path(__file__).resolve().parents[2] / "examples" / "amigurumi_bunny.txt").read_text(encoding="utf-8")
+    html = generate_pdf_html(parse_pattern(text))
+    assert 'href="#piece-1"' in html and 'id="piece-1"' in html and "Make order" in html and "HEAD" in html

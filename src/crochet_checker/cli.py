@@ -265,6 +265,13 @@ def render_3d(pattern_file, output):
 @click.option("--no-index", is_flag=True)
 @click.option("--no-ruled-notes", is_flag=True)
 @click.option("--no-used-stitches", is_flag=True)
+@click.option("--duplex", is_flag=True)
+@click.option("--cards", is_flag=True)
+@click.option("--crop-marks", is_flag=True)
+@click.option("--no-ladder", is_flag=True)
+@click.option("--no-parse", is_flag=True)
+@click.option("--no-maker", is_flag=True)
+@click.option("--no-map", is_flag=True)
 @click.option("--copyright", default="", help="Copyright line")
 @click.option("--pattern-version", default="1.0")
 @click.option("--no-cover", is_flag=True)
@@ -272,7 +279,7 @@ def render_3d(pattern_file, output):
 @click.option("--no-validation", is_flag=True)
 @click.option("--no-checklist", is_flag=True)
 @click.option("--no-color-key", is_flag=True)
-def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, pattern_version, no_cover, no_charts, no_validation, no_checklist, no_color_key, large_print, ink_saver, landscape, binding, compact, no_marks, no_change, no_index, no_ruled_notes, no_used_stitches):
+def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, pattern_version, no_cover, no_charts, no_validation, no_checklist, no_color_key, large_print, ink_saver, landscape, binding, compact, no_marks, no_change, no_index, no_ruled_notes, no_used_stitches, duplex, cards, crop_marks, no_ladder, no_parse, no_maker, no_map):
     """Write a printable pattern sheet. A .pdf path uses WeasyPrint when installed."""
     from crochet_checker.utils import read_pattern_file
 
@@ -302,6 +309,13 @@ def pdf_cmd(pattern_file, output, designer, template, page_size, copyright, patt
         include_index=not no_index,
         include_ruled_notes=not no_ruled_notes,
         include_used_stitches=not no_used_stitches,
+        duplex=duplex,
+        cards=cards,
+        crop_marks=crop_marks,
+        include_ladder=not no_ladder,
+        include_parse=not no_parse,
+        include_maker=not no_maker,
+        include_map=not no_map,
     )
     gen = PDFGenerator(config)
     if output is None:

@@ -131,3 +131,21 @@ def test_sheet_controls_are_on_the_page():
     page = client.get("/")
     assert page.status_code == 200
     assert "pdfLarge" in page.text and "Large print" in page.text and "pdfPage" in page.text
+
+
+def test_pdf_advanced_options_do_not_restore_charts():
+    response = client.post(
+        "/api/pdf",
+        json={"pattern_text": P, "include_charts": False, "duplex": True, "cards": True, "crop_marks": True},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "success" and body["duplex"] is True and body["cards"] is True
+    html = body["html"]
+    assert "Charts" not in html
+    assert "counter(pages)" in html and "marks: crop cross" in html and "duplex" in html
+
+def test_advanced_sheet_controls_are_on_the_page():
+    page = client.get("/")
+    assert page.status_code == 200
+    assert "pdfDuplex" in page.text and "pdfCards" in page.text and "pdfCrop" in page.text
