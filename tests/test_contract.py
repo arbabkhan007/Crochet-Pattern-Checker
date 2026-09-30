@@ -252,3 +252,28 @@ def test_a_numberless_sew_is_named_and_not_a_purchase():
     blockers = purchase_blockers()
     assert blockers[0] == "A photo was not opened."
     assert blockers[-1] == "This result is not a purchase check."
+
+
+def test_unverified_customer_claims_are_warnings_and_not_invented():
+    text = (
+        "Finished size: 48-54 inches across.\n"
+        "Match both stitch and round gauge.\n"
+        "Yarn: 700-1,200 g for standard/large.\n"
+        "Centre opening: approximately 1.5-2 in. Check it against your tree stand.\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: inc x 6 (12)\n"
+    )
+    report = validate_pattern(text)
+    messages = _messages(report)
+    assert report.overall_status == "PASS_WITH_WARNINGS"
+    assert any("completed sample" in message for message in messages)
+    assert any("tested sample" in message for message in messages)
+    assert any("not a weighed amount" in message for message in messages)
+    assert any("finished stand" in message for message in messages)
+    stated = validate_pattern(
+        "Gauge: 12 sc = 4 inches\n"
+        "Yarn: worsted\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: inc x 6 (12)\n"
+    )
+    assert not any("tested sample" in message for message in _messages(stated))

@@ -27,6 +27,8 @@ A sew line that names a made piece but gives no number is named. The count is no
 
 A check is not a purchase. A photo was not opened, the piece was not made, and a gauge swatch was not measured.
 
+A finished-size range, a request to match stitch and round gauge with no tested sample, a yarn range that was not weighed, and an approximate opening are warnings. The missing measurements are not invented.
+
 A hook size of 0 mm is an error in any sentence. The line does not have to say `Hook: 0 mm`. A size such as 3.0 mm or 10 mm is not that error.
 
 A chain of 0, work of zero stitches, a skip of zero, and a repeat of zero times are errors in any sentence. A hook size written in centimeters is an error in any sentence. These do not have to match one lesson line.

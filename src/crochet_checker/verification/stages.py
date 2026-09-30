@@ -113,6 +113,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(short_row_gap(text))
     warnings.extend(ambiguity(text))
     warnings.extend(gauge_band(text))
+    warnings.extend(unverified_claims(text))
     warnings.extend(prose_frill(text))
     errors.extend(eyes_on_frill(text))
     errors.extend(cinch_close(text))
@@ -163,6 +164,7 @@ def run_stages(text: str) -> StageReport:
             "short-row gap",
             "ambiguity",
             "gauge band",
+            "unverified claims",
             "prose frill",
             "eyes on a frill",
             "cinch close",
@@ -1398,6 +1400,79 @@ def prose_frill(text: str) -> list[str]:
                 f"Prose frill: {float(times.group(1)):g} times full is above 2.5x. "
                 "The edge will bunch."
             )
+    return _unique(warnings)
+
+
+
+def unverified_claims(text: str) -> list[str]:
+    """Name written size, gauge, yarn, and fit claims that were not measured.
+
+    These are warnings. No finished measurement is invented.
+    """
+    warnings = []
+    size_label = re.compile(
+        r"\b(?:finished\s+(?:size|diameter|width|length|height|dimensions)"
+        r"|target\s+size|size\s+range)\b",
+        re.IGNORECASE,
+    )
+    number_range = re.compile(
+        r"\d+(?:\.\d+)?\s*(?:[–—-]|to)\s*\d{1,3}(?:,\d{3})?(?:\.\d+)?"
+    )
+    measured_sample = re.compile(
+        r"completed sample|finished sample|measured from|measured on the finished"
+        r"|blocked sample measured|tested sample",
+        re.IGNORECASE,
+    )
+    if not measured_sample.search(text):
+        for line in text.splitlines():
+            if line.lstrip().startswith(">"):
+                continue
+            if size_label.search(line) and number_range.search(line):
+                warnings.append(
+                    "Finished size is a target range, not a measurement from a completed sample."
+                )
+                break
+    if re.search(
+        r"\bmatch\b.{0,48}\bgauge\b|\bgauge\b.{0,48}\bmatch\b"
+        r"|\bcheck your gauge\b|\bstitch and round gauge\b",
+        text,
+        re.IGNORECASE,
+    ) and not re.search(
+        r"tested sample|swatch measured|measured swatch|sample result",
+        text,
+        re.IGNORECASE,
+    ):
+        warnings.append(
+            "Gauge asks the maker to match stitch and round gauge, "
+            "but no tested sample result is written."
+        )
+    yarn_range = re.compile(
+        r"\d+(?:\.\d+)?\s*(?:[–—-]|to)\s*\d{1,3}(?:,\d{3})?(?:\.\d+)?\s*(?:g|grams|yards|yd)\b",
+        re.IGNORECASE,
+    )
+    for line in text.splitlines():
+        if line.lstrip().startswith(">") or not yarn_range.search(line):
+            continue
+        if re.search(r"\bweighed\b|\bmeasured\b", line, re.IGNORECASE):
+            continue
+        extra = ""
+        if re.search(r"standard\s*/\s*large|standard or large", text, re.IGNORECASE) and not re.search(
+            r"\bmini\b.{0,40}\d", text, re.IGNORECASE
+        ):
+            extra = " No measured mini-size quantity or colour split is written."
+        warnings.append("Yarn quantity is a range, not a weighed amount." + extra)
+        break
+    for line in text.splitlines():
+        if line.lstrip().startswith(">"):
+            continue
+        opening = re.search(r"\b(?:centre|center)?\s*opening\b|\btree stand\b", line, re.IGNORECASE)
+        approx = re.search(r"\bapprox(?:imate(?:ly)?)?\b|\btarget\b", line, re.IGNORECASE)
+        ranged = number_range.search(line) and re.search(r"\b(?:in|inch|inches|cm)\b", line, re.IGNORECASE)
+        if (opening and (approx or ranged)) or re.search(r"\btree stand\b", line, re.IGNORECASE):
+            warnings.append(
+                "The opening is an approximate target. It was not checked against a finished stand."
+            )
+            break
     return _unique(warnings)
 
 

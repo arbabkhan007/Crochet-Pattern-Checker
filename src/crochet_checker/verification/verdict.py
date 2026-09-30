@@ -67,6 +67,7 @@ def verify_pattern(text: str) -> Verdict:
             "short-row gap",
             "ambiguity",
             "gauge band",
+            "unverified claims",
             "prose frill",
             "eyes on a frill",
             "cinch close",
