@@ -23,6 +23,10 @@ Two assembly lines are read. They are still not a made piece and not a photo:
 
 An instruction line the parser did not count is named under Not checked. It is not treated as a passed round.
 
+A sew line that names a made piece but gives no number is named. The count is not guessed. A flatten line with fewer than two stitch counts is named. The seam is not compared.
+
+A check is not a purchase. A photo was not opened, the piece was not made, and a gauge swatch was not measured.
+
 A hook size of 0 mm is an error in any sentence. The line does not have to say `Hook: 0 mm`. A size such as 3.0 mm or 10 mm is not that error.
 
 A chain of 0, work of zero stitches, a skip of zero, and a repeat of zero times are errors in any sentence. A hook size written in centimeters is an error in any sentence. These do not have to match one lesson line.

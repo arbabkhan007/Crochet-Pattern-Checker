@@ -449,7 +449,7 @@ Corrected result: PASS.
 
 How: Ears (make 2) cannot be sewn as 3 ears. The made count and the sewn count disagree.
 
-What: the corrected file sews 2 ears. A line that does not give a number is still unread.
+What: the corrected file sews 2 ears. A sew line that does not give a number is named. The count is not guessed.
 
 ### 43_zero_repeat: Zero repeat
 
@@ -1635,8 +1635,8 @@ What: the corrected file converts 10 cm to 3.94 inches.
 
 | Pattern | Agreed defect | Why it is not a lesson |
 |---|---|---|
-| Bear | Do not cinch, with no stitch counts | Cinch and flatten are still prose when no two stitch counts are written. |
-| Bear | Do not cinch the arm | Cinch and flatten are prose. The checker does not read them. |
+| Bear | Do not cinch, with no stitch counts | A prohibition is not an instruction. A flatten line without two stitch counts is named and not compared. |
+| Bear | Do not cinch the arm | A prohibition is not an instruction. Flatten without two stitch counts is named, not counted. |
 | Bear | Add legs and ears | A missing piece is not an error unless the checker can see a count. |
 | Wyvern | 24-stitch join versus a valid 30 | The models disagree. No consensus pattern is written. |
 | Wyvern | 35-stitch fan versus 42-stitch fan | Both still warn above 2.5 times full. Neither is the lesson. |

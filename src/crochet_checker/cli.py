@@ -77,12 +77,13 @@ def check(pattern_file, strict, output_json, verbose):
             prev = dc
         console.print()
     report = validate_pattern(pattern, strict=strict)
-    from .verification.limits import skipped_line, unread_notes
+    from .verification.limits import purchase_blockers, skipped_line, unread_notes
 
     notes = unread_notes(text)
     if output_json:
         payload = report.to_dict()
         payload["not_checked"] = notes
+        payload["not_a_purchase"] = purchase_blockers()
         payload["not_run"] = skipped_line()
         click.echo(json.dumps(_json_ready(payload), indent=2, default=str))
         if report.errors:
@@ -93,6 +94,9 @@ def check(pattern_file, strict, output_json, verbose):
         console.print("\n[bold]Not checked[/bold]")
         for note in notes:
             console.print(f"  [dim]-[/dim] {note}")
+    console.print("\n[bold]Not a purchase[/bold]")
+    for item in purchase_blockers():
+        console.print(f"  [dim]-[/dim] {item}")
     console.print(f"\n[dim]{skipped_line()}[/dim]")
     if report.errors:
         sys.exit(1)

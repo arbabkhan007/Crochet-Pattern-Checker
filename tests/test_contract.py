@@ -235,3 +235,20 @@ def test_a_round_gauge_can_be_read():
         "Gauge: see swatch\nRound 1: 6 sc into magic ring (6)\n"
     )
     assert unread.gauge is None
+
+
+def test_a_numberless_sew_is_named_and_not_a_purchase():
+    text = (
+        "Ears (make 2)\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+        "sew ears to head.\n"
+    )
+    report = validate_pattern(text)
+    assert report.overall_status == "ERROR"
+    notes = unread_notes(text)
+    assert any("does not say how many" in note for note in notes)
+    assert any("not guessed" in note for note in notes)
+    from crochet_checker.verification.limits import purchase_blockers
+    blockers = purchase_blockers()
+    assert blockers[0] == "A photo was not opened."
+    assert blockers[-1] == "This result is not a purchase check."

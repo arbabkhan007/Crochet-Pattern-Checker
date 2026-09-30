@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from ..validation.validator import validate_pattern
 
 from .batch import batch_names
-from .limits import unread_notes
+from .limits import purchase_blockers, unread_notes
 from .span import span_names
 
 
@@ -34,6 +34,7 @@ class Verdict:
     engines_ran: list[str] = field(default_factory=list)
     engines_skipped: list[str] = field(default_factory=list)
     not_checked: list[str] = field(default_factory=list)
+    not_a_purchase: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return {
@@ -44,6 +45,7 @@ class Verdict:
             "engines_ran": self.engines_ran,
             "engines_skipped": self.engines_skipped,
             "not_checked": self.not_checked,
+            "not_a_purchase": self.not_a_purchase,
         }
 
 
@@ -93,4 +95,5 @@ def verify_pattern(text: str) -> Verdict:
         ],
         engines_skipped=list(SKIPPED),
         not_checked=unread_notes(text),
+        not_a_purchase=purchase_blockers(),
     )

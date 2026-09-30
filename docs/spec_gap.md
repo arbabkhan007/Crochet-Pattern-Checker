@@ -32,7 +32,7 @@ The specification describes a multi-year system. This file says what the current
 26. Written-as count. A 30-stitch edge written as 38 is an error.
 27. Eye count. Materials `(x2)` and `Mount 4 safety eyes` is an error. Counts are compared only inside one pattern section.
 28. Future round. Round 2 cannot work into Round 5.
-29. Make count. `Ears (make 2)` cannot be sewn as 3 ears. A line with no number is still unread.
+29. Make count. `Ears (make 2)` cannot be sewn as 3 ears. A sew line that names those ears but gives no number is named. The count is not guessed.
 30. Zero repeat. `Repeat x 0` is an error.
 
 `verify_pattern` runs these stages with the existing text checker. `Sew the Ear` is a missing piece when Ear is capitalized. `sew head to body` is a missing piece when those pieces never start. `attach the safety eyes` and `Attach the tentacle externally` are not piece names.
