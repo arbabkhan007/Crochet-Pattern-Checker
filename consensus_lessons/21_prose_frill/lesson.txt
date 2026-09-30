@@ -2,4 +2,4 @@ Prose frill
 
 How: 756 stitches worked into 108 base stitches is 7 times full. The edge bunches above 2.5 times. This is a warning, not an error.
 
-What: the corrected file works one stitch into each base stitch. A cinch with no numbers is still unread.
+What: the corrected file works one stitch into each base stitch. A cinch with no number closes the last stated round.

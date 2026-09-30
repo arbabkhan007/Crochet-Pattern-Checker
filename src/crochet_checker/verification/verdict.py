@@ -67,6 +67,7 @@ def verify_pattern(text: str) -> Verdict:
             "gauge band",
             "prose frill",
             "eyes on a frill",
+            "cinch close",
             "closed join",
             "chain underside",
             "dropped body",

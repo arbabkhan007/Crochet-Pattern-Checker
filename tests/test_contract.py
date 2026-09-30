@@ -58,16 +58,27 @@ def test_six_to_eighteen_is_not_a_valid_sphere():
     assert good.overall_status == "PASS"
 
 
-def test_unread_lines_are_disclosed_and_not_errors():
-    text = "Round 1: 6 sc into magic ring (6)\nCinch shut.\nsew head to body.\n"
-    report = validate_pattern(text)
-    notes = unread_notes(text)
-    verdict = verify_pattern(text)
-    assert report.overall_status == "PASS"
-    assert any("cinch" in note.lower() for note in notes)
-    assert any("lowercase sew" in note.lower() for note in notes)
-    assert verdict.not_checked == notes
-    assert "photo stitch classifier" in verdict.engines_skipped
+def test_cinch_and_lowercase_sew_are_read():
+    missing = "Round 1: 6 sc into magic ring (6)\nCinch shut.\nsew head to body.\n"
+    report = validate_pattern(missing)
+    assert report.overall_status == "ERROR"
+    assert any("Piece 'head'" in message for message in _messages(report))
+    assert any("Piece 'body'" in message for message in _messages(report))
+    assert unread_notes(missing) == []
+
+    closed = (
+        "Head\nRound 1: 6 sc into magic ring (6)\n"
+        "Body\nRound 1: 6 sc into magic ring (6)\n"
+        "Cinch shut.\nsew head to body.\n"
+    )
+    assert validate_pattern(closed).overall_status == "PASS"
+
+    nowhere = "Cinch shut.\n"
+    assert any(
+        "no counted round" in message
+        for message in _messages(validate_pattern(nowhere))
+    )
+    assert "photo stitch classifier" in verify_pattern(missing).engines_skipped
 
 
 def test_a_zero_hook_is_an_error_in_any_sentence():

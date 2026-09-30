@@ -2,4 +2,4 @@ References
 
 How: join to Round 9 is an error when the pattern never starts Round 9.
 
-What: the corrected file joins Round 1, which exists. Sew the Ear to the Head, when Ear never starts, is proved by the stage test. A lowercase sentence such as sew head to body is still unread.
+What: the corrected file joins Round 1, which exists. Sew the Ear to the Head, when Ear never starts, is proved by the stage test. A lowercase sentence such as sew head to body is an error when that piece never starts.

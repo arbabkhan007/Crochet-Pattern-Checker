@@ -2,4 +2,4 @@ Flat cap
 
 How: a round that is cinched shut is a sealed cap. It cannot also be sewn flat.
 
-What: the corrected file leaves the last round open. Cinch shut by itself, with no sew-flat words, is still unread.
+What: the corrected file leaves the last round open. Cinch shut by itself closes the last stated round. It is an error when no counted round comes before it.

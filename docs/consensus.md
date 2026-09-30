@@ -16,7 +16,7 @@ A PASS on the Gemini or ChatGPT file is not proof. `[sc 1, inc] 6 times` and a b
 
 An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.
 
-A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A closed tentacle join, a chain crossed once, a dropped body count, a back post on the front loop, eyes placed after stuffing, more than 3 stitches in each row end, a repeat that misses its incoming count, an unlisted color, a repeated round number, and more than 2.5 stitches in every base stitch are now checked. A short chain, an unclosed parenthesis, a missing star, a decrease that misses its count, an increase that more than doubles, a written-as mismatch, an eye-count mismatch, a future round, a make-count mismatch, and a repeat of zero are now checked. Fifty phrase checks, lessons 44 through 93, now catch a zero hook, a one-stitch shell, a backward range, and the other written impossibilities. Lessons 94 through 158 add hook-letter, yarn-weight, UK-gloss, turning-chain, and zero-measure checks, plus general increase, decrease, range, multiple, and measure checks. Those general checks are proved on 5,000 sentences. Five thousand named copies were not added. A cinch with no numbers is still unread. A photo is still not classified.
+A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A closed tentacle join, a chain crossed once, a dropped body count, a back post on the front loop, eyes placed after stuffing, more than 3 stitches in each row end, a repeat that misses its incoming count, an unlisted color, a repeated round number, and more than 2.5 stitches in every base stitch are now checked. A short chain, an unclosed parenthesis, a missing star, a decrease that misses its count, an increase that more than doubles, a written-as mismatch, an eye-count mismatch, a future round, a make-count mismatch, and a repeat of zero are now checked. Fifty phrase checks, lessons 44 through 93, now catch a zero hook, a one-stitch shell, a backward range, and the other written impossibilities. Lessons 94 through 158 add hook-letter, yarn-weight, UK-gloss, turning-chain, and zero-measure checks, plus general increase, decrease, range, multiple, and measure checks. Those general checks are proved on 5,000 sentences. Five thousand named copies were not added. A cinch with no number closes the last stated round, and is an error when no counted round comes before it. A lowercase sew line is a piece reference. A photo is still not classified.
 
 ## What the checker learned
 
@@ -184,7 +184,7 @@ Corrected result: PASS.
 
 How: join to Round 9 is an error when the pattern never starts Round 9.
 
-What: the corrected file joins Round 1, which exists. Sew the Ear to the Head, when Ear never starts, is proved by the stage test. A lowercase sentence such as sew head to body is still unread.
+What: the corrected file joins Round 1, which exists. Sew the Ear to the Head, when Ear never starts, is proved by the stage test. A lowercase sentence such as sew head to body is an error when that piece never starts.
 
 ### 17_chart_text: Chart text
 
@@ -225,7 +225,7 @@ Corrected result: PASS.
 
 How: short rows that work 28 of 34 perimeter stitches leave 6 row-ends. Those row-ends must be written. The checker does not invent them.
 
-What: the corrected file states the 6 row-ends. A cinch with no numbers is still unread.
+What: the corrected file states the 6 row-ends. A cinch with no number closes the last stated round.
 
 ### 21_prose_frill: Prose frill
 
@@ -235,7 +235,7 @@ Corrected result: PASS.
 
 How: 756 stitches worked into 108 base stitches is 7 times full. The edge bunches above 2.5 times. This is a warning, not an error.
 
-What: the corrected file works one stitch into each base stitch. A cinch with no numbers is still unread.
+What: the corrected file works one stitch into each base stitch. A cinch with no number closes the last stated round.
 
 ### 22_eyes_on_frill: Eyes on a frill
 
@@ -245,7 +245,7 @@ Corrected result: PASS.
 
 How: a safety eye mounted on a frill has no solid fabric behind it for the washer. The eye cannot lock.
 
-What: the corrected file mounts the eyes on a solid single-crochet round and says not on the frill. A cinch with no numbers is still unread.
+What: the corrected file mounts the eyes on a solid single-crochet round and says not on the frill. A cinch with no number closes the last stated round.
 
 ### 23_closed_join: Closed join
 
@@ -255,17 +255,18 @@ Corrected result: PASS.
 
 How: a closed tentacle has no live stitches. Joining 3 stitches of it cannot work.
 
-What: the corrected file joins an open edge. A cinch with no sew-flat sentence is still unread.
+What: the corrected file joins an open edge. A cinch with no sew-flat sentence closes the last stated round.
 
 ### 24_flat_cap: Flat cap
 
 Wrong result: ERROR.
+- Cinch shut has no counted round to close. State the round count before the cinch.
 - A cinched round is a sealed cap. It cannot be sewn flat. Leave the last round open.
 Corrected result: PASS.
 
 How: a round that is cinched shut is a sealed cap. It cannot also be sewn flat.
 
-What: the corrected file leaves the last round open. Cinch shut by itself, with no sew-flat words, is still unread.
+What: the corrected file leaves the last round open. Cinch shut by itself closes the last stated round. It is an error when no counted round comes before it.
 
 ### 25_chain_underside: Chain underside
 
@@ -1641,7 +1642,7 @@ What: the corrected file converts 10 cm to 3.94 inches.
 | Wyvern | 35-stitch fan versus 42-stitch fan | Both still warn above 2.5 times full. Neither is the lesson. |
 | Dragon and Chimera | Which decrease formula to use | The models disagree on the target count. Only the cover-the-round rule is learned. |
 | Leviathan | Rebuild the hub to 64 | One model changes the count to 48. The other rebuilds the join. Only the 48-clause total is learned. |
-| All | Countless cinch, lowercase sew head to body | A closed tentacle join and a cinched round sewn flat are now errors. A cinch with no numbers is still unread. |
+| All | Countless cinch, lowercase sew head to body | A cinch with no number closes the last stated round. A lowercase sew line is a piece reference. The viewpoints do not agree on one written pattern, so this is not a lesson. A photo is still not classified. |
 
 ## Viewpoint check
 
@@ -1649,17 +1650,17 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 82 | 6 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | ERROR | 1 | 0 | Round 1 repeats or goes backwards. Number the rounds in order. |
-| `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 10 | 2 | Line 43: worked 5 stitches into 15 without a decrease.; Chain underside missing: ch 3 is crossed once, but 30 counts both sides.; Round 2 jumps from 14 to 70. More than doubling in one round skips a size. |
+| `wrong_benchmarks.md` | whole file | ERROR | 96 | 9 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | ERROR | 4 | 0 | Round/row 9: plain round received 4 stitches and has no increase or decrease, but states 8.; Round 11: 12 stitches jump to 24. Insert an 18-stitch round before returning to 24.; Piece 'arms' is named in assembly but never started. |
+| `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 14 | 2 | Line 43: worked 5 stitches into 15 without a decrease.; Round/row 13: stated 30 stitches but operations produce 0; Round/row 1: stated 14 stitches but operations produce 0 |
 | `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 13 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated.; Round 11 repeats or goes backwards. Number the rounds in order. |
-| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 43 | 2 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 24 | 2 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Post stitch fptr is worked into a short sc row. Post stitches need a foundation of hdc or taller.; Seam mismatch: 26 stitches cannot close 18 stitches. |
+| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 45 | 3 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 28 | 4 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Round/row 15: stated 38 stitches but operations produce 36; Round/row 17: stated 32 stitches but operations produce 30 |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
 | `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |
 | `gemini_corrected.md` | 3: Clockwork Dragon (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
-| `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
+| `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | ERROR | 1 | 1 | Round/row 15: stated 20 stitches but operations produce 0; Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 5: Void-Warped Chimera (Corrected) | PASS | 0 | 0 | none |
 | `chatgpt_corrected.md` | whole file | ERROR | 1 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
 | `chatgpt_corrected.md` | 1: Classic Amigurumi Bear — Corrected | PASS | 0 | 0 | none |

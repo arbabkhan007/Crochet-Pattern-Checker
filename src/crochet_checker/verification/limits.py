@@ -1,7 +1,8 @@
 """What a passing result does not mean.
 
-These notes are not errors. A cinch with no stitch count, and a lowercase
-sew line, stay unread on purpose. A photo and a chart image are not opened.
+These notes are not errors. A photo and a chart image are not opened.
+A cinch with no number, and a lowercase sew line, are read by the written
+checks. They are not listed here.
 """
 
 from __future__ import annotations
@@ -25,25 +26,8 @@ def skipped_line() -> str:
 
 
 def unread_notes(text: str) -> list[str]:
-    cinch = False
-    sew = False
-    for raw in text.splitlines():
-        line = raw.strip()
-        if not line or line.startswith(">"):
-            continue
-        if re.search(r"\bdo not\b|\bdon't\b|\bshould\s+not\b", line, re.IGNORECASE):
-            continue
-        if re.search(r"\bcinch", line, re.IGNORECASE) and not re.search(r"\d", line):
-            cinch = True
-        if re.search(r"(?<![A-Za-z])sew\s+[a-z]+\s+to\s+[a-z]+\b", line):
-            sew = True
-    notes = []
-    if cinch:
-        notes.append("A cinch with no stitch count is not checked.")
-    if sew:
-        notes.append("A lowercase sew line is not read as a piece name.")
-    notes.extend(unread_instruction_lines(text))
-    return notes
+    """Name stitch lines the parser did not count. Assembly lines are read."""
+    return unread_instruction_lines(text)
 
 _INSTRUCTION = re.compile(
     r"^(?:row|rnd|round|r)s?\.?\s*\d+"
@@ -97,8 +81,8 @@ def _consumed_lines(text: str) -> set[str] | None:
 def unread_instruction_lines(text: str) -> list[str]:
     """Name stitch lines the parser did not count.
 
-    These are not errors. A quoted line, a prohibition, a cinch with no
-    count, and a lowercase sew line keep their own rules.
+    These are not errors. A quoted line and a prohibition are not
+    instructions. A cinch and a lowercase sew line have their own checks.
     """
     consumed = _consumed_lines(text)
     if consumed is None:

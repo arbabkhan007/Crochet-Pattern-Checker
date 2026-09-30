@@ -16,10 +16,10 @@ These engines are not run:
 - a vision training set
 - a process cluster
 
-Two written cases stay unread on purpose, and the checker says so instead of guessing:
+Two assembly lines are read. They are still not a made piece and not a photo:
 
-- a cinch with no stitch count, such as `Cinch shut`
-- a lowercase sew line, such as `sew head to body`
+- `Cinch shut`, with no stitch count, closes the last stated round. It is an error when no counted round comes before it.
+- `sew head to body` is a piece reference. It is an error when head or body never starts.
 
 An instruction line the parser did not count is named under Not checked. It is not treated as a passed round.
 

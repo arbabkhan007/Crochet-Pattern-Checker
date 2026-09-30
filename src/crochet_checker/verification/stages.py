@@ -47,9 +47,17 @@ _META = {
     "abbreviations", "stitch", "stitches", "title",
 }
 _NOT_A_PIECE = {
-    "stitch", "stitches", "round", "row", "edge", "end", "side", "top",
-    "bottom", "front", "back", "loop", "inch", "span", "same", "first",
-    "next", "last", "other", "following", "remaining", "hook", "yarn",
+    "stitch", "stitches", "round", "row", "edge", "end", "side", "sides",
+    "top", "bottom", "front", "back", "loop", "inch", "span", "same",
+    "first", "next", "last", "other", "following", "remaining", "hook",
+    "yarn",
+}
+_SEW_SKIP = _NOT_A_PIECE | {
+    "the", "a", "an", "it", "its", "them", "this", "that", "flat", "shut",
+    "closed", "open", "into", "onto", "and", "of", "with", "for", "from",
+    "each", "both", "firmly", "lightly", "together", "through", "around",
+    "across", "lower", "upper", "left", "right", "portion", "between",
+    "using", "tail", "one", "two", "all", "not",
 }
 _US_ONLY = ("sc", "hdc")
 _UK_ONLY = ("htr", "trtr")
@@ -107,6 +115,7 @@ def run_stages(text: str) -> StageReport:
     warnings.extend(gauge_band(text))
     warnings.extend(prose_frill(text))
     errors.extend(eyes_on_frill(text))
+    errors.extend(cinch_close(text))
     errors.extend(closed_join(text))
     errors.extend(chain_underside(text))
     errors.extend(dropped_body(text))
@@ -156,6 +165,7 @@ def run_stages(text: str) -> StageReport:
             "gauge band",
             "prose frill",
             "eyes on a frill",
+            "cinch close",
             "closed join",
             "chain underside",
             "dropped body",
@@ -326,6 +336,16 @@ def references(text: str) -> list[str]:
             if name.lower() in _NOT_A_PIECE or name.lower() in known_pieces:
                 continue
             errors.append(f"Piece '{name}' is named in assembly but never started.")
+        if _quoted_or_explained(line):
+            continue
+        for match in re.finditer(
+            r"(?i)(?<![A-Za-z])(?:sew|attach|graft)\s+([A-Za-z]+)\s+to\s+([A-Za-z]+)\b",
+            line,
+        ):
+            for name in match.groups():
+                if name.lower() in _SEW_SKIP or name.lower() in known_pieces:
+                    continue
+                errors.append(f"Piece '{name}' is named in assembly but never started.")
     return _unique(errors)
 
 
@@ -439,6 +459,35 @@ def eyes_on_frill(text: str) -> list[str]:
             )
     return _unique(errors)
 
+
+
+def cinch_close(text: str) -> list[str]:
+    """Read a cinch with no stitch count as closing the last stated round."""
+    errors = []
+    last = None
+    count = re.compile(r"\((\d+)\s*(?:sts?|stitches)?\)", re.IGNORECASE)
+    instruction = re.compile(
+        r"(?i)(?:\bcinch\s+shut\b|\bcinch\s+the\s+last\b|\bfasten off\b.{0,40}\bcinch\b|^\s*cinch\b)"
+    )
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or _quoted_or_explained(line):
+            continue
+        found = count.search(line)
+        if found:
+            last = int(found.group(1))
+        if re.search(r"\d", line) or not re.search(r"\bcinch\b", line, re.IGNORECASE):
+            continue
+        if not instruction.search(line):
+            continue
+        if last is None:
+            errors.append(
+                "Cinch shut has no counted round to close. "
+                "State the round count before the cinch."
+            )
+        elif last == 0:
+            errors.append("Cinch shut cannot close a round of 0 stitches.")
+    return _unique(errors)
 
 
 def closed_join(text: str) -> list[str]:
