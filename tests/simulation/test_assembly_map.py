@@ -54,3 +54,19 @@ def test_numberless_sew_does_not_invent_a_count():
     assert _pairs(assembly) == {("EARS", "HEAD")}
     assert len(assembly.edges) == 1
     assert "2" not in " ".join(assembly.edges[0].sources)
+
+
+def test_render_3d_writes_the_assembly_map(tmp_path):
+    from click.testing import CliRunner
+
+    from crochet_checker.cli import cli
+
+    result = CliRunner().invoke(
+        cli,
+        ["render-3d", str(ROOT / "examples" / "amigurumi_bunny.txt"), "-o", str(tmp_path)],
+    )
+    assert result.exit_code == 0, result.output
+    assert "Piece joins: 3" in result.output
+    svg = (tmp_path / "amigurumi_bunny" / "assembly_map.svg").read_text(encoding="utf-8")
+    assert "Not drawn" in svg
+    assert "not a stitch join" in svg

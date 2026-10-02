@@ -1,7 +1,7 @@
 """A stitch color is shown only when one color letter is written."""
 
 from crochet_checker.parser.parser import parse_pattern
-from crochet_checker.simulation.stitch_sim import simulate_stitches, stitch_table_csv
+from crochet_checker.simulation.stitch_sim import simulate_stitches, stitch_model_obj, stitch_table_csv
 from crochet_checker.validation.validator import validate_pattern
 
 
@@ -42,3 +42,18 @@ def test_unknown_color_name_does_not_invent_a_dye():
     assert all(stitch.color_hex != "" for stitch in simulation.stitches)
     assert all("chartreuse" not in stitch.color_hex.lower() for stitch in simulation.stitches)
     assert any("dye was not invented" in note for note in simulation.notes)
+
+
+def test_obj_keeps_a_written_color_label():
+    text = (
+        "Color A: Brown\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: With Color A, inc x 6 (12)\n"
+    )
+    simulation = simulate_stitches(parse_pattern(text))
+    obj = stitch_model_obj(simulation)
+    assert obj.count("\nv ") == len(simulation.stitches)
+    assert "# color A Brown" in obj
+    assert "A dye was not invented" not in obj
+    unlabeled = [stitch for stitch in simulation.stitches if stitch.round_number == 1]
+    assert unlabeled and all(stitch.color_label == "" for stitch in unlabeled)

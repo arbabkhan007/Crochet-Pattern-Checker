@@ -276,6 +276,12 @@ def render_3d(pattern_file, output):
         f"  Saved: [green]{stitch_path}[/green] "
         f"({stitch_sim.stitch_count} written stitches, not a measurement)"
     )
+    from .simulation.assembly_map import assembly_map_svg, written_assembly
+
+    assembly = written_assembly(pattern)
+    (out_dir / "assembly_map.svg").write_text(assembly_map_svg(assembly, stem))
+    console.print(f"Piece joins: {len(assembly.edges)}  Not a stitch map.")
+    console.print(f"  Saved: [green]{out_dir / 'assembly_map.svg'}[/green]")
 
 
 @cli.command("simulate")

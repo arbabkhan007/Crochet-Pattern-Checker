@@ -185,12 +185,15 @@ def stitch_model_obj(simulation: StitchSimulation) -> str:
     lines = [
         "# Crochet stitch model",
         "# " + HONESTY,
+        "# A color comment is a written label, not a measured dye. An empty color was not invented.",
         f"# stitches {simulation.stitch_count}",
     ]
     for stitch in simulation.stitches:
         lines.append(
             f"v {stitch.x:.4f} {stitch.y:.4f} {stitch.z:.4f}"
         )
+        if stitch.color_label:
+            lines.append(f"# color {stitch.color_label}")
     by_key: dict[tuple[str, int, int], list[int]] = {}
     for index, stitch in enumerate(simulation.stitches):
         by_key.setdefault((stitch.piece, stitch.copy_index, stitch.round_number), []).append(index)
