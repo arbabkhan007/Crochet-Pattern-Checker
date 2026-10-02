@@ -15,7 +15,9 @@ PATTERN = (
 class TestYarnCalc:
     def test_estimate(self):
         est = estimate_yarn(CrochetParser().parse(PATTERN))
-        assert est.total_yards > 0 and est.confidence in ["low", "medium", "high"]
+        assert est.total_yards > 0 and est.confidence == "low"
+        assert "Not weighed. Not a finished size." in est.notes
+        assert all("Finished size" not in note for note in est.notes)
 
     def test_weights(self):
         p = CrochetParser().parse(PATTERN)
@@ -55,3 +57,23 @@ class TestProgress:
         t = track_progress(CrochetParser().parse(PATTERN))
         t.complete_round(1)
         assert "1/3" in t.get_summary()
+
+
+def test_commands_name_unweighed_estimates(tmp_path):
+    from click.testing import CliRunner
+
+    from crochet_checker.cli import cli
+
+    pattern = tmp_path / "ball.txt"
+    pattern.write_text("Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\n", encoding="utf-8")
+    runner = CliRunner()
+    yarn = runner.invoke(cli, ["yarn-calc", str(pattern)])
+    explain = runner.invoke(cli, ["explain", str(pattern)])
+    image = runner.invoke(cli, ["image", str(pattern), "-o", str(tmp_path / "cover.svg")])
+    assert yarn.exit_code == 0, yarn.output
+    assert explain.exit_code == 0, explain.output
+    assert image.exit_code == 0, image.output
+    assert "Not weighed. Not a finished size." in yarn.output
+    assert "Finished size:" not in yarn.output
+    assert "Not a made piece. Not a measured size." in explain.output
+    assert "Not a photo of a made piece." in image.output

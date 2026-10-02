@@ -672,8 +672,8 @@ class PDFGenerator:
         <div class="info-grid">
             <div class="info-item"><span class="info-label">Rounds</span><br><span class="info-value">{measurements.total_rounds}</span></div>
             <div class="info-item"><span class="info-label">Max Stitches</span><br><span class="info-value">{measurements.max_stitch_count}</span></div>
-            <div class="info-item"><span class="info-label">Diameter</span><br><span class="info-value">{measurements.max_diameter_inches:.1f} in</span></div>
-            <div class="info-item"><span class="info-label">Height</span><br><span class="info-value">{measurements.total_height_inches:.1f} in</span></div>
+            <div class="info-item"><span class="info-label">Estimate, not measured</span><br><span class="info-value">{measurements.max_diameter_inches:.1f} in</span></div>
+            <div class="info-item"><span class="info-label">Estimate, not measured</span><br><span class="info-value">{measurements.total_height_inches:.1f} in</span></div>
         </div>
     </div>"""
 
@@ -1147,7 +1147,7 @@ class PDFGenerator:
         """Generate the finished measurements section."""
         return f"""
 <div class="page-break"></div>
-<h2>Finished Measurements</h2>
+<h2>Gauge estimate</h2>
 <p class="chart-note">These figures come from the measurement helper. They are not a measured gauge swatch.</p>
 <div class="measurement-grid">
     <div class="measurement-card">

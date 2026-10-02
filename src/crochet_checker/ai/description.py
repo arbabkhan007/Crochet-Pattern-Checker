@@ -65,7 +65,7 @@ class DescriptionGenerator:
         if n:
             parts.append(f"{n}-round pattern")
         if m.max_diameter_inches > 0:
-            parts.append(f"~{m.max_diameter_inches:.1f} inches")
+            parts.append("gauge estimate, not measured")
         return (
             "A " + ", ".join(parts) + " crochet pattern"
             if parts
@@ -80,11 +80,9 @@ class DescriptionGenerator:
                 f"**What You'll Make:** {len(items)} {'rounds' if p.rounds else 'rows'} of stitches."
             )
         if m.max_diameter_inches > 0:
-            lines.append(
-                f"**Size:** ~{m.max_diameter_inches:.1f}in x {m.total_height_inches:.1f}in ({m.max_diameter_inches * 2.54:.1f}cm x {m.total_height_inches * 2.54:.1f}cm)"
-            )
+            lines.append("**Size:** Estimate, not measured. A gauge swatch was not made.")
         if r and "PASS" in r.overall_status:
-            lines.append("**Quality:** Validated pattern!")
+            lines.append("**Check:** Written checks found no error. Not a made piece.")
         lines.append(
             f"**Construction:** {p.construction.value.replace(chr(95), chr(32))}s, US terms."
         )
@@ -120,8 +118,11 @@ class DescriptionGenerator:
 
     def _size(self, m):
         if m.max_diameter_inches <= 0:
-            return "Not determined"
-        return f'{m.max_diameter_inches:.1f}" x {m.total_height_inches:.1f}" ({m.max_diameter_inches * 2.54:.1f}cm x {m.total_height_inches * 2.54:.1f}cm)'
+            return "Not measured"
+        return (
+            "Estimate, not measured: "
+            f"{m.max_diameter_inches:.1f} in x {m.total_height_inches:.1f} in"
+        )
 
     def _tags(self, p, m):
         tags = ["crochet", "pattern"]
@@ -146,8 +147,8 @@ class DescriptionGenerator:
             f.append(f"{len(items)} rounds of instructions")
             f.append("Stitch counts every round")
         if m.max_diameter_inches > 0:
-            f.append(f"~{m.max_diameter_inches:.1f} inches across")
-        f.extend(["US terminology", "Validated pattern"])
+            f.append("Gauge estimate, not a finished size")
+        f.extend(["US terminology", "Written checks only. Not a made piece."])
         return f
 
 

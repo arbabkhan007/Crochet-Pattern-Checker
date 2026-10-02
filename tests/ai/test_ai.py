@@ -87,10 +87,10 @@ class TestDescription:
         )
 
     def test_size(self):
-        assert (
-            "not determined"
-            not in generate_description(parse_pattern(P)).finished_size.lower()
-        )
+        size = generate_description(parse_pattern(P)).finished_size.lower()
+        assert "not determined" not in size
+        assert "not measured" in size
+        assert "validated pattern" not in generate_description(parse_pattern(P)).full_description.lower()
 
     def test_tags(self):
         assert "crochet" in generate_description(parse_pattern(P)).tags

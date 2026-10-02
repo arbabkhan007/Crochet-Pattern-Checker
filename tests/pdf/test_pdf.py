@@ -36,7 +36,7 @@ class TestPDF:
 
     def test_measurements(self):
         html = generate_pdf_html(parse_pattern(T))
-        assert "Finished Measurements" in html
+        assert "Gauge estimate" in html and "not a measured gauge swatch" in html
 
     def test_validation(self):
         p = parse_pattern(T)

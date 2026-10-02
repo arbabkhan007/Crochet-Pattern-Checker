@@ -442,6 +442,7 @@ def explain_cmd(pattern_file, ai_provider):
     console.print(f"  {description.short_description}")
     console.print(f"  Skill: {description.skill_level}")
     console.print(f"  Size: {description.finished_size}")
+    console.print("  Not a made piece. Not a measured size.")
     console.print(f"  Tags: {', '.join(description.tags)}")
 
 
@@ -486,6 +487,7 @@ def image_cmd(pattern_file, output, provider, style):
         out = output.replace(".svg", ".png")
         Path(out).write_bytes(base64.b64decode(img))
         console.print(f"[green]Cover saved to: {out}[/green]")
+    console.print("Not a photo of a made piece. Stitches were not counted from an image.")
     console.print(f"  Provider: {provider} | Style: {style}")
 
 
@@ -562,6 +564,7 @@ def yarn_calc(pattern_file, weight, grams, yards):
         f"Skeins needed: [bold green]{est.skeins_needed:.2f}[/bold green] (with 15% margin)"
     )
     console.print(f"Confidence: [yellow]{est.confidence}[/yellow]")
+    console.print("Not weighed. Not a finished size.")
     if est.notes:
         console.print("\n[bold]Notes:[/bold]")
         for n in est.notes:

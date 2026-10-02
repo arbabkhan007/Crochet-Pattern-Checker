@@ -52,7 +52,10 @@ class YarnCalculator:
         measurements = measure_pattern(pattern)
         rounds = pattern.rounds or []
         if not rounds:
-            return YarnEstimate(confidence="low", notes=["No rounds found"])
+            return YarnEstimate(
+                confidence="low",
+                notes=["No rounds found", "Not weighed. Not a finished size."],
+            )
 
         total_inches = sum(self._round_yarn(r) for r in rounds) * self.weight_multiplier
         total_yards = total_inches / 36
@@ -60,12 +63,16 @@ class YarnCalculator:
         total_grams = total_yards * (self.grams_per_skein / self.yards_per_skein)
         skeins = (total_yards / self.yards_per_skein) * 1.15
 
-        notes = [f"Based on {self.yarn_weight} weight yarn"]
+        notes = [
+            f"Based on {self.yarn_weight} weight yarn",
+            "Not weighed. Not a finished size.",
+        ]
         if pattern.hook:
             notes.append(f"Hook size: {pattern.hook.size_mm}mm")
         if measurements.max_diameter_inches > 0:
             notes.append(
-                f"Finished size: ~{measurements.max_diameter_inches:.1f} diameter"
+                "Gauge estimate, not a finished size: "
+                f"~{measurements.max_diameter_inches:.1f} in across"
             )
 
         return YarnEstimate(
@@ -74,7 +81,7 @@ class YarnCalculator:
             total_meters=round(total_meters, 2),
             total_grams=round(total_grams, 1),
             skeins_needed=round(skeins, 2),
-            confidence="high" if pattern.hook and pattern.yarn else "medium",
+            confidence="low",
             notes=notes,
         )
 
