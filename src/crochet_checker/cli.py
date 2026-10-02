@@ -141,6 +141,13 @@ def render(pattern_file, output):
         f"  OK stitch_map.svg ({stitch_sim.stitch_count} written stitches, not a measurement)"
     )
     console.print("  OK stitch_map.csv (empty color means no color was written)")
+    from .simulation.assembly_map import assembly_map_svg, written_assembly
+
+    assembly = written_assembly(pattern)
+    (out_dir / "assembly_map.svg").write_text(assembly_map_svg(assembly, stem))
+    console.print(
+        f"  OK assembly_map.svg ({len(assembly.edges)} written piece joins, not a stitch map)"
+    )
     m = measure_pattern(pattern)
     console.print("\n[bold]Measurements:[/bold]")
     console.print(
@@ -295,15 +302,19 @@ def simulate_cmd(pattern_file, output):
     (out_dir / "stitch_map.svg").write_text(stitch_map_svg(stitch_sim, stem))
     (out_dir / "stitch_sim.obj").write_text(stitch_model_obj(stitch_sim))
     (out_dir / "stitch_map.csv").write_text(stitch_table_csv(stitch_sim))
+    assembly = written_assembly(pattern)
+    (out_dir / "assembly_map.svg").write_text(assembly_map_svg(assembly, stem))
     console.print(
         f"Stitches: {stitch_sim.stitch_count}  Joins drawn: {stitch_sim.join_count}"
     )
+    console.print(f"Piece joins: {len(assembly.edges)}  Not a stitch map.")
     console.print("Not a measured size. Not a photo. A missing join was not guessed.")
     for note in stitch_sim.notes[1:]:
         console.print(f"  {note}")
     console.print(f"  Saved: [green]{out_dir / 'stitch_map.svg'}[/green]")
     console.print(f"  Saved: [green]{out_dir / 'stitch_sim.obj'}[/green]")
     console.print(f"  Saved: [green]{out_dir / 'stitch_map.csv'}[/green]")
+    console.print(f"  Saved: [green]{out_dir / 'assembly_map.svg'}[/green]")
 
 
 @cli.command("pdf")
