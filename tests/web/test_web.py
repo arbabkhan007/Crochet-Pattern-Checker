@@ -165,3 +165,17 @@ def test_web_returns_written_piece_joins_only():
     page = client.get("/")
     assert page.status_code == 200
     assert "Not a stitch map." in page.text
+
+
+def test_web_returns_geometry_with_the_stitch_map():
+    rendered = client.post("/api/render", json={"pattern_text": P})
+    simulated = client.post("/api/simulate", json={"pattern_text": P})
+    assert rendered.status_code == 200 and simulated.status_code == 200
+    for body in (rendered.json(), simulated.json()):
+        assert body["stitches"] > 0
+        assert "stitch_svg" in body and "<svg" in body["stitch_svg"]
+        assert "Not a millimetre measurement." in body["geometry_svg"]
+        assert "geometry_note" in body
+    page = client.get("/")
+    assert "Geometry map" in page.text
+    assert "Estimate, not measured" in page.text

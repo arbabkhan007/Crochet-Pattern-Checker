@@ -43,6 +43,7 @@ class MappedStitch(BaseModel):
     z: float
     parents: list[int] = Field(default_factory=list)
     is_join_target: bool = True
+    is_round: bool = False
     color_label: str = ""
     color_hex: str = ""
 
@@ -270,6 +271,8 @@ def _place_piece(name, copy_index, units, is_round, origin_x, pattern_text=""):
     previous_targets: list[MappedStitch] = []
     for layer, unit in enumerate(units):
         raw, local_flags = _expand(unit, len(previous_targets), name, copy_index)
+        for item in raw:
+            item.is_round = is_round
         label, hex_color, kind = _color_for_unit(unit, pattern_text)
         for item in raw:
             item.color_label = label

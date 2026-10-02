@@ -182,6 +182,9 @@ class PDFGenerator:
         assembly = self._assembly_map_section(pattern)
         if assembly:
             sections.append(assembly)
+        geometry = self._geometry_map_section(pattern)
+        if geometry:
+            sections.append(geometry)
 
         if self.config.include_measurements:
             sections.append(self._measurements_section(measurements))
@@ -1817,6 +1820,23 @@ class PDFGenerator:
             + assembly_map_svg(assembly, "Assembly map")
             + "</div><p class=\"chart-note\">A line is drawn only when two written pieces are named. "
             "This is not a stitch join and not a photo.</p>"
+        )
+
+    def _geometry_map_section(self, pattern: Pattern) -> str:
+        if not self.config.include_charts:
+            return ""
+        try:
+            from ..simulation.geometry_map import geometry_map_svg, written_geometry
+        except Exception:
+            return ""
+        geometry = written_geometry(pattern)
+        if not geometry.layers:
+            return ""
+        return (
+            "<h2>Geometry map</h2><div class=\"chart-wrap\">"
+            + geometry_map_svg(geometry, "Geometry map")
+            + "</div><p class=\"chart-note\">Radius is the written stitch count divided by 2 pi. "
+            "z is the layer index. This is not a millimetre measurement and not a photo.</p>"
         )
 
     def _stitch_map_section(self, pattern: Pattern) -> str:

@@ -132,22 +132,23 @@ def render(pattern_file, output):
     console.print("  OK crochet_chart.svg")
     (out_dir / "preview.svg").write_text(render_2d_preview(pattern, report))
     console.print("  OK preview.svg")
-    from .simulation.stitch_sim import simulate_stitches, stitch_map_svg, stitch_table_csv
+    from .simulation.written_views import write_written_views
 
-    stitch_sim = simulate_stitches(pattern)
-    (out_dir / "stitch_map.svg").write_text(stitch_map_svg(stitch_sim, stem))
-    (out_dir / "stitch_map.csv").write_text(stitch_table_csv(stitch_sim))
+    views = write_written_views(pattern, out_dir, stem)
+    stitch_sim = views["stitch_sim"]
+    assembly = views["assembly"]
     console.print(
         f"  OK stitch_map.svg ({stitch_sim.stitch_count} written stitches, not a measurement)"
     )
     console.print("  OK stitch_map.csv (empty color means no color was written)")
-    from .simulation.assembly_map import assembly_map_svg, written_assembly
-
-    assembly = written_assembly(pattern)
-    (out_dir / "assembly_map.svg").write_text(assembly_map_svg(assembly, stem))
+    console.print(
+        f"  OK stitch_sim.obj ({stitch_sim.stitch_count} written stitches, not a measurement)"
+    )
     console.print(
         f"  OK assembly_map.svg ({len(assembly.edges)} written piece joins, not a stitch map)"
     )
+    console.print("  OK geometry_map.svg (radius is a stitch count, not a millimetre)")
+    console.print("  OK shape_mesh.obj (does not track each loop, not a measured size)")
     m = measure_pattern(pattern)
     console.print("\n[bold]Measurements:[/bold]")
     console.print(
@@ -159,6 +160,7 @@ def render(pattern_file, output):
     console.print(
         f"  Total height: {m.total_height_mm:.1f} mm ({m.total_height_inches:.2f} in)"
     )
+    console.print("  Not a measured swatch. The millimetres use an untested gauge.")
     console.print(f"  Max stitches: {m.max_stitch_count}")
     console.print(f"\n[green]Done! Files saved to {out_dir}[/green]")
 
@@ -186,6 +188,7 @@ def measure(pattern_file):
     console.print(
         f"  Total height: {m.total_height_mm:.1f} mm ({m.total_height_inches:.2f} in)"
     )
+    console.print("  Not a measured swatch. The millimetres use an untested gauge.")
 
 
 def _display(report, verbose=False):
@@ -267,21 +270,24 @@ def render_3d(pattern_file, output):
     filepath = out_dir / f"{stem}.obj"
     mesh.save_obj(str(filepath))
     console.print(f"  Saved: [green]{filepath}[/green]")
-    from .simulation.stitch_sim import simulate_stitches, stitch_model_obj
+    from .simulation.written_views import write_written_views
 
-    stitch_sim = simulate_stitches(pattern)
-    stitch_path = out_dir / "stitch_sim.obj"
-    stitch_path.write_text(stitch_model_obj(stitch_sim))
+    views = write_written_views(pattern, out_dir, stem)
+    stitch_sim = views["stitch_sim"]
+    assembly = views["assembly"]
     console.print(
-        f"  Saved: [green]{stitch_path}[/green] "
+        f"  Saved: [green]{out_dir / 'stitch_sim.obj'}[/green] "
         f"({stitch_sim.stitch_count} written stitches, not a measurement)"
     )
-    from .simulation.assembly_map import assembly_map_svg, written_assembly
-
-    assembly = written_assembly(pattern)
-    (out_dir / "assembly_map.svg").write_text(assembly_map_svg(assembly, stem))
     console.print(f"Piece joins: {len(assembly.edges)}  Not a stitch map.")
     console.print(f"  Saved: [green]{out_dir / 'assembly_map.svg'}[/green]")
+    console.print(f"  Saved: [green]{out_dir / 'geometry_map.svg'}[/green]")
+    console.print("  Geometry is not a millimetre measurement.")
+    console.print("  Shape mesh does not track each loop. Not a measured size.")
+    console.print(f"  Saved: [green]{out_dir / 'stitch_map.svg'}[/green]")
+    console.print(f"  Saved: [green]{out_dir / 'geometry_map.svg'}[/green]")
+    console.print("  Geometry is not a millimetre measurement.")
+    console.print("  Shape mesh does not track each loop. Not a measured size.")
 
 
 @cli.command("simulate")
@@ -291,25 +297,15 @@ def simulate_cmd(pattern_file, output):
     """Place one point per written stitch. Not a measurement or a photo."""
     from crochet_checker.utils import read_pattern_file
 
-    from .simulation.assembly_map import assembly_map_svg, written_assembly
-    from .simulation.stitch_sim import (
-        simulate_stitches,
-        stitch_map_svg,
-        stitch_model_obj,
-        stitch_table_csv,
-    )
+    from .simulation.written_views import write_written_views
 
     text = read_pattern_file(pattern_file)
     pattern = CrochetParser().parse(text)
-    stitch_sim = simulate_stitches(pattern)
     stem = Path(pattern_file).stem
     out_dir = Path(output) / stem
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "stitch_map.svg").write_text(stitch_map_svg(stitch_sim, stem))
-    (out_dir / "stitch_sim.obj").write_text(stitch_model_obj(stitch_sim))
-    (out_dir / "stitch_map.csv").write_text(stitch_table_csv(stitch_sim))
-    assembly = written_assembly(pattern)
-    (out_dir / "assembly_map.svg").write_text(assembly_map_svg(assembly, stem))
+    views = write_written_views(pattern, out_dir, stem)
+    stitch_sim = views["stitch_sim"]
+    assembly = views["assembly"]
     console.print(
         f"Stitches: {stitch_sim.stitch_count}  Joins drawn: {stitch_sim.join_count}"
     )
