@@ -50,7 +50,7 @@ The specification describes a multi-year system. This file says what the current
 
 - A custom text parser for US rounds, rows, repeats, increases, and decreases. It is not tree-sitter.
 - Stated count, repeat cover, post foundation, ghost eyes, equal socket, edging fullness, span match, tab fit, clause total, 12-to-24 neck jump, unequal stitch seam, and unequal inch seam.
-- A shape mesh for a sphere, hat, tube, cone, or bowl. It does not track each loop. Stage 3 is the written reachability check, not that shape mesh.
+- A shape mesh for a sphere, hat, tube, cone, or bowl. It does not track each loop. `simulate` places one point per written stitch and writes a table of those points. A color is shown only when the round names one color letter. A missing color is not invented. That map is not a measured size and not a photo. An assembly line is drawn only when the line names two written pieces. A missing piece is not invented. Stage 3 is the written reachability check, not that shape mesh.
 - PDF text reading, a small web app, and a learning store that does not change the rules by itself.
 
 Fifty phrase checks, lessons 44 through 93. A quoted line is not an instruction.

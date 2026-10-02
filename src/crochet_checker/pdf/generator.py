@@ -176,6 +176,12 @@ class PDFGenerator:
         chart = self._chart_section(pattern)
         if chart:
             sections.append(chart)
+        stitch_map = self._stitch_map_section(pattern)
+        if stitch_map:
+            sections.append(stitch_map)
+        assembly = self._assembly_map_section(pattern)
+        if assembly:
+            sections.append(assembly)
 
         if self.config.include_measurements:
             sections.append(self._measurements_section(measurements))
@@ -1796,6 +1802,38 @@ class PDFGenerator:
             + "An outlined bar is a round named in the check. This is not a finished size and not a reading of a chart image.</p>"
             + hold_html
             + extra
+        )
+
+    def _assembly_map_section(self, pattern: Pattern) -> str:
+        if not self.config.include_charts or len(pattern.pieces) < 2:
+            return ""
+        try:
+            from ..simulation.assembly_map import assembly_map_svg, written_assembly
+        except Exception:
+            return ""
+        assembly = written_assembly(pattern)
+        return (
+            "<h2>Assembly map</h2><div class=\"chart-wrap\">"
+            + assembly_map_svg(assembly, "Assembly map")
+            + "</div><p class=\"chart-note\">A line is drawn only when two written pieces are named. "
+            "This is not a stitch join and not a photo.</p>"
+        )
+
+    def _stitch_map_section(self, pattern: Pattern) -> str:
+        if not self.config.include_charts:
+            return ""
+        try:
+            from ..simulation.stitch_sim import simulate_stitches, stitch_map_svg
+        except Exception:
+            return ""
+        simulation = simulate_stitches(pattern)
+        if simulation.stitch_count == 0:
+            return ""
+        return (
+            "<h2>Stitch map</h2><div class=\"chart-wrap\">"
+            + stitch_map_svg(simulation, "Stitch map")
+            + "</div><p class=\"chart-note\">Each point is one written stitch. "
+            "This is not a photo and not a measured size. A missing join was not guessed.</p>"
         )
 
     def _map_section(self, pattern: Pattern) -> str:

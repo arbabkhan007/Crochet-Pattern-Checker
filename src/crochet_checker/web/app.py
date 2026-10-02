@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from ..parser.parser import CrochetParser
 from ..pdf import TEMPLATES, PDFConfig, PDFGenerator
 from ..simulation import analyze_pattern_shape, simulate_surface
+from ..simulation.stitch_sim import simulate_stitches, stitch_map_svg
 from ..validation import validate_pattern
 from ..visualization import measure_pattern, render_2d_preview
 
@@ -82,7 +83,13 @@ async def render_pattern(request: CheckRequest):
         pattern = CrochetParser().parse(request.pattern_text)
         report = validate_pattern(pattern)
         svg = render_2d_preview(pattern, report)
-        return {"svg": svg, "status": report.overall_status}
+        stitch_sim = simulate_stitches(pattern)
+        return {
+            "svg": svg,
+            "stitch_svg": stitch_map_svg(stitch_sim, "Stitch map"),
+            "stitches": stitch_sim.stitch_count,
+            "status": report.overall_status,
+        }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -93,11 +100,15 @@ async def simulate_pattern(request: CheckRequest):
         pattern = CrochetParser().parse(request.pattern_text)
         analysis = analyze_pattern_shape(pattern)
         mesh = simulate_surface(pattern)
+        stitch_sim = simulate_stitches(pattern)
         return {
             "shape": analysis.detected_shape.value,
             "confidence": round(analysis.confidence, 2),
             "vertices": len(mesh.vertices),
             "faces": len(mesh.faces),
+            "stitches": stitch_sim.stitch_count,
+            "joins": stitch_sim.join_count,
+            "note": stitch_sim.notes[0],
             "status": "success",
         }
     except Exception as e:
@@ -255,8 +266,8 @@ dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remov
 fileInput.addEventListener('change',e=>{if(e.target.files[0])readFile(e.target.files[0])});
 function readFile(f){const r=new FileReader();r.onload=e=>patternInput.value=e.target.result;r.readAsText(f)}
 async function checkPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Checking...</p>';try{const r=await fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const c=d.status.includes('PASS')&&!d.status.includes('WARNING')?'status-pass':d.status.includes('WARNING')?'status-warn':'status-error';let h='<div class="result-box '+c+'"><div style="text-align:center"><span class="status-badge">'+d.status+'</span><div class="score">'+d.score+'/100</div></div><div class="stats"><div class="stat-card"><div class="stat-value">'+d.rounds+'</div><div class="stat-label">Rounds</div></div><div class="stat-card"><div class="stat-value">'+d.max_stitches+'</div><div class="stat-label">Max Stitches</div></div><div class="stat-card"><div class="stat-value">'+d.max_diameter_inches+'"\'</div><div class="stat-label">Diameter</div></div><div class="stat-card"><div class="stat-value">'+d.total_height_inches+'"\'</div><div class="stat-label">Height</div></div></div></div>';if(d.errors&&d.errors.length>0){h+='<div class="errors-list"><b>Errors:</b><ul>';d.errors.forEach(e=>h+='<li>['+e.location+'] '+e.message+'</li>');h+='</ul></div>'}if(d.warnings&&d.warnings.length>0){h+='<div class="warnings-list"><b>Warnings:</b><ul>';d.warnings.forEach(w=>h+='<li>['+w.location+'] '+w.message+'</li>');h+='</ul></div>'}res.innerHTML=h}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
-async function renderPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const p=document.getElementById('diagramPanel'),c=document.getElementById('svgContainer');p.hidden=false;c.innerHTML='<p style="text-align:center;padding:20px">Generating...</p>';try{const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();c.innerHTML=d.svg}catch(e){c.innerHTML='<p style="color:red">Error: '+e.message+'</p>'}}
-async function simulatePattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Simulating...</p>';try{const r=await fetch('/api/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}res.innerHTML='<div class="result-box status-pass"><h3 style="text-align:center;margin-bottom:15px">3D Simulation</h3><div class="stats"><div class="stat-card"><div class="stat-value">'+d.shape+'</div><div class="stat-label">Detected Shape</div></div><div class="stat-card"><div class="stat-value">'+(d.confidence*100).toFixed(0)+'%</div><div class="stat-label">Confidence</div></div><div class="stat-card"><div class="stat-value">'+d.vertices+'</div><div class="stat-label">Vertices</div></div><div class="stat-card"><div class="stat-value">'+d.faces+'</div><div class="stat-label">Faces</div></div></div></div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
+async function renderPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const p=document.getElementById('diagramPanel'),c=document.getElementById('svgContainer');p.hidden=false;c.innerHTML='<p style="text-align:center;padding:20px">Generating...</p>';try{const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();c.innerHTML=d.svg+(d.stitch_svg?'<p style="font-size:12px;color:#5c6b7a">Stitch map: '+d.stitches+' written stitches. Not a measured size.</p>'+d.stitch_svg:'')}catch(e){c.innerHTML='<p style="color:red">Error: '+e.message+'</p>'}}
+async function simulatePattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Simulating...</p>';try{const r=await fetch('/api/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}res.innerHTML='<div class="result-box status-pass"><h3 style="text-align:center;margin-bottom:15px">3D Simulation</h3><div class="stats"><div class="stat-card"><div class="stat-value">'+d.shape+'</div><div class="stat-label">Detected Shape</div></div><div class="stat-card"><div class="stat-value">'+(d.confidence*100).toFixed(0)+'%</div><div class="stat-label">Confidence</div></div><div class="stat-card"><div class="stat-value">'+d.vertices+'</div><div class="stat-label">Vertices</div></div><div class="stat-card"><div class="stat-value">'+d.faces+'</div><div class="stat-label">Faces</div></div></div><div class="stat-card"><div class="stat-value">'+(d.stitches||0)+'</div><div class="stat-label">Written stitches</div></div></div><p style="font-size:12px;color:#5c6b7a">'+(d.note||'Not a measured size. Not a photo.')+'</p></div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 
 async function makePdf(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Making sheet...</p>';try{const r=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t,template:'craft',page_size:(document.getElementById('pdfPage')||{}).value||'A4',large_print:!!(document.getElementById('pdfLarge')&&document.getElementById('pdfLarge').checked),ink_saver:!!(document.getElementById('pdfInk')&&document.getElementById('pdfInk').checked),landscape:!!(document.getElementById('pdfLand')&&document.getElementById('pdfLand').checked),binding:(document.getElementById('pdfBind')&&document.getElementById('pdfBind').checked)?'left':'none',duplex:!!(document.getElementById('pdfDuplex')&&document.getElementById('pdfDuplex').checked),cards:!!(document.getElementById('pdfCards')&&document.getElementById('pdfCards').checked),crop_marks:!!(document.getElementById('pdfCrop')&&document.getElementById('pdfCrop').checked)})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const blob=new Blob([d.html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pattern-sheet.html';a.click();res.innerHTML='<div class="result-box status-pass"><b>Sheet ready.</b> The download is HTML. Open it and print. Template: '+d.template+'.</div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 </script>

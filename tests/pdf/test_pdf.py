@@ -82,6 +82,18 @@ def test_color_key_uses_only_written_names():
     assert "Color key" in named and "#8B5A2B" in named
     assert "Color key" not in plain and "Color key" not in unknown
 
+def test_sheet_stitch_map_does_not_change_the_check():
+    before = validate_pattern(T)
+    html = generate_pdf_html(parse_pattern(T), validation_report=before)
+    after = validate_pattern(T)
+    assert before.overall_status == after.overall_status
+    assert "Stitch map" in html
+    assert "not a photo" in html
+    assert "not a measured size" in html
+    hidden = generate_pdf_html(parse_pattern(T), config=PDFConfig(include_charts=False))
+    assert "Stitch map" not in hidden
+
+
 def test_sections_can_be_left_out():
     html = generate_pdf_html(parse_pattern(T), config=PDFConfig(include_materials=False, include_charts=False, include_checklist=False, copyright_text="Mine"))
     assert "Materials" not in html and "Charts" not in html and "Worked" not in html and "Mine" in html

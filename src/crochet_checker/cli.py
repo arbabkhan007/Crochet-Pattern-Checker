@@ -132,6 +132,15 @@ def render(pattern_file, output):
     console.print("  OK crochet_chart.svg")
     (out_dir / "preview.svg").write_text(render_2d_preview(pattern, report))
     console.print("  OK preview.svg")
+    from .simulation.stitch_sim import simulate_stitches, stitch_map_svg, stitch_table_csv
+
+    stitch_sim = simulate_stitches(pattern)
+    (out_dir / "stitch_map.svg").write_text(stitch_map_svg(stitch_sim, stem))
+    (out_dir / "stitch_map.csv").write_text(stitch_table_csv(stitch_sim))
+    console.print(
+        f"  OK stitch_map.svg ({stitch_sim.stitch_count} written stitches, not a measurement)"
+    )
+    console.print("  OK stitch_map.csv (empty color means no color was written)")
     m = measure_pattern(pattern)
     console.print("\n[bold]Measurements:[/bold]")
     console.print(
@@ -251,6 +260,50 @@ def render_3d(pattern_file, output):
     filepath = out_dir / f"{stem}.obj"
     mesh.save_obj(str(filepath))
     console.print(f"  Saved: [green]{filepath}[/green]")
+    from .simulation.stitch_sim import simulate_stitches, stitch_model_obj
+
+    stitch_sim = simulate_stitches(pattern)
+    stitch_path = out_dir / "stitch_sim.obj"
+    stitch_path.write_text(stitch_model_obj(stitch_sim))
+    console.print(
+        f"  Saved: [green]{stitch_path}[/green] "
+        f"({stitch_sim.stitch_count} written stitches, not a measurement)"
+    )
+
+
+@cli.command("simulate")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--output", "-o", default="output")
+def simulate_cmd(pattern_file, output):
+    """Place one point per written stitch. Not a measurement or a photo."""
+    from crochet_checker.utils import read_pattern_file
+
+    from .simulation.assembly_map import assembly_map_svg, written_assembly
+    from .simulation.stitch_sim import (
+        simulate_stitches,
+        stitch_map_svg,
+        stitch_model_obj,
+        stitch_table_csv,
+    )
+
+    text = read_pattern_file(pattern_file)
+    pattern = CrochetParser().parse(text)
+    stitch_sim = simulate_stitches(pattern)
+    stem = Path(pattern_file).stem
+    out_dir = Path(output) / stem
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "stitch_map.svg").write_text(stitch_map_svg(stitch_sim, stem))
+    (out_dir / "stitch_sim.obj").write_text(stitch_model_obj(stitch_sim))
+    (out_dir / "stitch_map.csv").write_text(stitch_table_csv(stitch_sim))
+    console.print(
+        f"Stitches: {stitch_sim.stitch_count}  Joins drawn: {stitch_sim.join_count}"
+    )
+    console.print("Not a measured size. Not a photo. A missing join was not guessed.")
+    for note in stitch_sim.notes[1:]:
+        console.print(f"  {note}")
+    console.print(f"  Saved: [green]{out_dir / 'stitch_map.svg'}[/green]")
+    console.print(f"  Saved: [green]{out_dir / 'stitch_sim.obj'}[/green]")
+    console.print(f"  Saved: [green]{out_dir / 'stitch_map.csv'}[/green]")
 
 
 @cli.command("pdf")
