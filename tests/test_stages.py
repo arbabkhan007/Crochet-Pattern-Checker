@@ -207,6 +207,47 @@ def test_photo_and_chart_image_do_not_invent_counts():
     assert read_chart_image()["read"] is False
 
 
+def test_written_seam_rules_do_not_invent_a_join():
+    leaked = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "BODY\nRound 1: sc in each st of the HEAD (6)\n"
+    )
+    isolated = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "BODY\nRound 1: 6 sc into magic ring (6)\n"
+    )
+    missing_edge = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nSew 9 stitches of the head to the body.\n"
+    )
+    stated_edge = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nSew 6 stitches of the head to the body.\n"
+    )
+    closed = "Round 1: 6 sc into magic ring (6)\nSew the ears to the magic ring.\n"
+    open_edge = "Round 1: 6 sc into magic ring (6)\nSew the ears to the head.\n"
+    branch = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "BODY\nRound 1: 6 sc into magic ring (6)\n"
+        "EARS\nRound 1: 6 sc into magic ring (6)\n"
+        "Sew head, body, and ears together.\n"
+    )
+    pair = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "BODY\nRound 1: 6 sc into magic ring (6)\n"
+        "EARS\nRound 1: 6 sc into magic ring (6)\n"
+        "Sew the ears to the head.\n"
+    )
+    quoted = "> Sew the ears to the magic ring.\nRound 1: 6 sc into magic ring (6)\n"
+    assert "outside this round" in " ".join(_messages(validate_pattern(leaked)))
+    assert "outside this round" not in " ".join(_messages(validate_pattern(isolated)))
+    assert "edge was not invented" in " ".join(_messages(validate_pattern(missing_edge)))
+    assert "edge was not invented" not in " ".join(_messages(validate_pattern(stated_edge)))
+    assert "closed magic ring" in " ".join(_messages(validate_pattern(closed)))
+    assert "closed magic ring" not in " ".join(_messages(validate_pattern(open_edge)))
+    assert "Y-branch was not drawn" in " ".join(_messages(validate_pattern(branch)))
+    assert "Y-branch was not drawn" not in " ".join(_messages(validate_pattern(pair)))
+    assert validate_pattern(quoted).overall_status == "PASS"
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"

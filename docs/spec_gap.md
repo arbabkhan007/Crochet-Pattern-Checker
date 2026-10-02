@@ -38,6 +38,8 @@ The specification describes a multi-year system. This file says what the current
 
 `verify_pattern` runs these stages with the existing text checker. `Sew the Ear` is a missing piece when Ear is capitalized. `sew head to body` is a missing piece when those pieces never start. `attach the safety eyes` and `Attach the tentacle externally` are not piece names.
 
+A counted round that works stitches of another written piece does not add them to the local sum. A seam count that no earlier round states is an error, and the missing edge is not invented. A seam aimed at a magic ring or a cinched point is an error. A quoted line is not that seam. One line that names three written pieces is not drawn as a Y-branch, and the missing seams are not invented. None of these is a measured fit.
+
 ## Still not run
 
 - A chart image is not detected. `read_chart_image` does not invent symbols.
@@ -45,6 +47,7 @@ The specification describes a multi-year system. This file says what the current
 - No hosted language model is installed.
 - No vision training set is installed.
 - No process cluster is installed. The stages run in this process, in order.
+- A physical comfort ratio is not calculated. No swatch was measured, so two parts are not declared to fit.
 
 ## Already had
 
@@ -170,6 +173,10 @@ Lessons 94 through 158. These are new written checks. Five thousand named copies
 140. Apart span. Eyes farther apart than the round cannot sit on it. This is not limited to 8 on 6.
 141. Stitch past end. A marker past the last stitch cannot be placed.
 142. Skip past count. A skip of the whole row or more does not fit.
+143. Fractional times. Any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
+144. Copied inch measure. The same number in inches and centimeters is not a conversion. One inch is 2.54 cm.
+145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.
+. A skip of the whole row or more does not fit.
 143. Fractional times. Any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
 144. Copied inch measure. The same number in inches and centimeters is not a conversion. One inch is 2.54 cm.
 145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.

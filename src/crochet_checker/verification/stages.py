@@ -118,6 +118,10 @@ def run_stages(text: str) -> StageReport:
     errors.extend(eyes_on_frill(text))
     errors.extend(cinch_close(text))
     errors.extend(closed_join(text))
+    errors.extend(domain_isolation(text))
+    errors.extend(edge_lineage(text))
+    errors.extend(open_boundary(text))
+    errors.extend(two_sheet_seam(text))
     errors.extend(chain_underside(text))
     errors.extend(dropped_body(text))
     errors.extend(front_back_post(text))
@@ -169,6 +173,10 @@ def run_stages(text: str) -> StageReport:
             "eyes on a frill",
             "cinch close",
             "closed join",
+            "domain isolation",
+            "edge lineage",
+            "open boundary",
+            "two-sheet seam",
             "chain underside",
             "dropped body",
             "front and back post",
@@ -506,6 +514,113 @@ def closed_join(text: str) -> list[str]:
         if re.search(r"\bcinch\b.{0,40}\bshut\b.{0,40}\bsew\b.{0,30}\bflat\b", line, re.IGNORECASE):
             errors.append(
                 "A cinched round is a sealed cap. It cannot be sewn flat. Leave the last round open."
+            )
+    return _unique(errors)
+
+
+def domain_isolation(text: str) -> list[str]:
+    """Flag a counted round that pulls another piece into its local sum."""
+    errors = []
+    pieces = _piece_names(text)
+    current = ""
+    header = re.compile(r"^(?:round|row|rnd)\b", re.IGNORECASE)
+    for raw in text.splitlines():
+        line = raw.strip()
+        name = _piece_name(line)
+        if name:
+            current = name
+            continue
+        plain = re.sub(r"^[*_>#\-\d.\s]+", "", line)
+        if not header.match(plain) or _quoted_or_explained(line):
+            continue
+        for piece in pieces:
+            if piece.lower() == current.lower():
+                continue
+            if re.search(rf"\b(?:of|from)\s+the\s+{re.escape(piece)}\b", line, re.IGNORECASE):
+                errors.append(
+                    f"Stitches of {piece} are outside this round. "
+                    "They were not added to the local sum."
+                )
+    return _unique(errors)
+
+
+def edge_lineage(text: str) -> list[str]:
+    """Flag a seam count that no earlier counted round stated."""
+    errors = []
+    seen: set[int] = set()
+    stated = re.compile(
+        r"\((\d+)\s*(?:sts?|stitches)?\b|\b(\d+)\s+(?:sts?|stitches)\b",
+        re.IGNORECASE,
+    )
+    seam_count = re.compile(r"\b(\d+)\s+(?:sts?|stitches)\b", re.IGNORECASE)
+    verb = re.compile(r"\b(?:sew|sewn|sewing|attach|attached|graft)\b", re.IGNORECASE)
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        prior = set(seen)
+        for match in stated.finditer(line):
+            seen.add(int(match.group(1) or match.group(2)))
+        if _quoted_or_explained(line) or re.search(r"\bdefect\b", line, re.IGNORECASE):
+            continue
+        if not verb.search(line) or re.search(r"\battach(?:ed)?\s+yarn\b", line, re.IGNORECASE):
+            continue
+        for match in seam_count.finditer(line):
+            count = int(match.group(1))
+            if count not in prior:
+                errors.append(
+                    f"The seam names {count} stitches, but no earlier round states that count. "
+                    "The edge was not invented."
+                )
+    return _unique(errors)
+
+
+def open_boundary(text: str) -> list[str]:
+    """Flag a seam aimed at a closed magic ring or a cinched point."""
+    errors = []
+    verb = re.compile(
+        r"\b(?:sew|sewn|seam|graft)\b|\battach(?:ed)?\b(?!\s+yarn)",
+        re.IGNORECASE,
+    )
+    closed = re.compile(r"\bmagic\s+ring\b|\bcinch(?:ed)?(?:\s+shut)?\b", re.IGNORECASE)
+    for raw in text.splitlines():
+        line = raw.strip()
+        if (
+            _quoted_or_explained(line)
+            or line.lstrip().startswith("|")
+            or re.search(r"\bdefect\b", line, re.IGNORECASE)
+        ):
+            continue
+        if verb.search(line) and closed.search(line):
+            errors.append(
+                "A seam cannot target a closed magic ring or a cinched point. "
+                "Leave an open edge and state its stitch count. The join was not invented."
+            )
+    return _unique(errors)
+
+
+def two_sheet_seam(text: str) -> list[str]:
+    """Flag one seam line that names three written pieces."""
+    names = _piece_names(text)
+    if len({name.lower() for name in names}) < 3:
+        return []
+    errors = []
+    verb = re.compile(r"\b(?:sew|sewn|attach|graft)\b", re.IGNORECASE)
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _quoted_or_explained(line) or re.search(r"\bdefect\b", line, re.IGNORECASE):
+            continue
+        if not verb.search(line) or re.search(r"\battach(?:ed)?\s+yarn\b", line, re.IGNORECASE):
+            continue
+        found = {
+            name.lower()
+            for name in names
+            if re.search(rf"\b{re.escape(name)}\b", line, re.IGNORECASE)
+        }
+        if len(found) >= 3:
+            errors.append(
+                "This seam names more than two pieces. A Y-branch was not drawn, "
+                "and the missing seams were not invented."
             )
     return _unique(errors)
 
