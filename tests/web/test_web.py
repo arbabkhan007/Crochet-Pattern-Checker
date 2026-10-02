@@ -149,3 +149,19 @@ def test_advanced_sheet_controls_are_on_the_page():
     page = client.get("/")
     assert page.status_code == 200
     assert "pdfDuplex" in page.text and "pdfCards" in page.text and "pdfCrop" in page.text
+
+
+def test_web_returns_written_piece_joins_only():
+    from pathlib import Path
+
+    bunny = (Path(__file__).resolve().parents[2] / "examples" / "amigurumi_bunny.txt").read_text(encoding="utf-8")
+    rendered = client.post("/api/render", json={"pattern_text": bunny})
+    simulated = client.post("/api/simulate", json={"pattern_text": bunny})
+    assert rendered.status_code == 200 and simulated.status_code == 200
+    for body in (rendered.json(), simulated.json()):
+        assert body["piece_joins"] == 3
+        assert "Not drawn" in body["assembly_svg"]
+        assert "not a stitch join" in body["assembly_svg"]
+    page = client.get("/")
+    assert page.status_code == 200
+    assert "Not a stitch map." in page.text

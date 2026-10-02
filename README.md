@@ -81,9 +81,9 @@ On written US instructions it checks stitch counts, repeats, increases that more
 | Command | What it does | What it does not do |
 |---|---|---|
 | `crochet-check check` | Runs the written checker | Does not invent counts from a photo |
-| `crochet-check render` | Writes 2D SVG diagrams from parsed rounds, plus a stitch map | Does not read a chart image. The stitch map is not a measured size |
+| `crochet-check render` | Writes 2D SVG diagrams from parsed rounds, a stitch map, and an assembly map | Does not read a chart image. The stitch map is not a measured size. An assembly line is drawn only when two written pieces are named |
 | `crochet-check render-3d` | Writes an OBJ mesh for a detected sphere, hat, tube, cone, or bowl, plus one point per written stitch | The shape mesh does not track each loop. The stitch file is a model, not a photo |
-| `crochet-check simulate` | Places one point per written stitch, writes a 2D map, a 3D point file, and a stitch table. A color is shown only when the round names one color letter | Not a photo, not a measured size, not a guessed stitch join, and not an invented dye |
+| `crochet-check simulate` | Places one point per written stitch, writes a 2D map, a 3D point file, a stitch table, and an assembly map. A color is shown only when the round names one color letter | Not a photo, not a measured size, not a guessed stitch join, and not an invented dye. A piece line is not a stitch map |
 | `crochet-check measure` | Estimates measurements from the parsed piece | Does not replace a gauge swatch |
 | `crochet-check pdf` | Writes a printable sheet with template, page size, landscape, duplex facing pages, crop marks, PDF bookmarks, a count ladder, a text fingerprint, large print, ink saver, a binding margin, parsed-round charts, a written-stitch map, a written color key, count changes, round marks, and empty worked boxes. A .pdf path uses WeasyPrint when installed | Does not certify the pattern, read a chart image, invent a gauge, or change the check. The stitch map is not a measured size |
 | `crochet-check explain` | Rule-based explanation. `--ai` can call a configured provider | AI output cannot override the stitch count |
