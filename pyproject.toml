@@ -61,16 +61,7 @@ ignore = [
 [tool.coverage.run]
 source = ["src/crochet_checker"]
 omit = [
-    "src/crochet_checker/features/*",
-    "src/crochet_checker/agents/*",
     "src/crochet_checker/cli.py",
-    "src/crochet_checker/utils/enhanced_pdf.py",
-    "src/crochet_checker/generator/*",
-    "src/crochet_checker/marketplace/*",
-    "src/crochet_checker/library/*",
-    "src/crochet_checker/pricing/*",
-    "src/crochet_checker/testing/*",
-    "src/crochet_checker/ai_enhanced/*",
 ]
 
 [tool.coverage.report]

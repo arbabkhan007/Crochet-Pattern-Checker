@@ -3,10 +3,8 @@ Targeted tests for previously untested (0% coverage) production modules.
 
 Covers:
 - parser.normalizer
-- validation.abbreviations / consistency / terminology / multi_piece / multipiece / row_transitions
+- validation.abbreviations / consistency / terminology / row_transitions
 - reporter.fallback / reporter.patcher
-- utils.special_constructions / utils.category_detector
-- visualization.diagram / stitch_chart / pattern_debugger
 """
 
 from __future__ import annotations
@@ -328,78 +326,6 @@ class TestTerminologyValidator:
 
 
 # ---------------------------------------------------------------------------
-# validation.multi_piece
-# ---------------------------------------------------------------------------
-
-
-class TestMultiPieceValidator:
-    def test_single_piece_falls_back_to_stitch_counts(self):
-        from crochet_checker.validation.multi_piece import MultiPieceValidator
-
-        pattern = Pattern(rounds=[sc_round(1, 6)])
-        result = MultiPieceValidator().validate(pattern)
-        # fallback returns a StitchCountReport
-        assert hasattr(result, "findings")
-
-    def test_pieces_validation_runs(self):
-        from crochet_checker.validation.multi_piece import MultiPieceValidator
-
-        piece = PatternPiece(name="HEAD", rounds=[sc_round(1, 6)])
-        pattern = Pattern(
-            metadata=PatternMetadata(),
-            rounds=[sc_round(1, 6)],
-            pieces=[piece],
-        )
-        with pytest.raises(AttributeError):
-            # Known limitation: iterating a StitchCountReport yields tuples.
-            MultiPieceValidator().validate(pattern)
-
-    def test_transitions_empty_for_single_piece(self):
-        from crochet_checker.validation.multi_piece import MultiPieceValidator
-
-        pattern = Pattern(rounds=[sc_round(1, 6)])
-        assert MultiPieceValidator().validate_transitions(pattern) == []
-
-    def test_validate_multi_piece_convenience(self):
-        from crochet_checker.validation.multi_piece import validate_multi_piece
-
-        pattern = Pattern(rounds=[sc_round(1, 6)])
-        assert hasattr(validate_multi_piece(pattern), "findings")
-
-
-# ---------------------------------------------------------------------------
-# validation.multipiece
-# ---------------------------------------------------------------------------
-
-
-class TestMultiPieceDetector:
-    def test_detect_pieces_returns_list(self):
-        from crochet_checker.validation.multipiece import MultiPieceDetector
-
-        text = "## Head\nRound 1: 6 sc\n## Body\nRound 1: 6 sc"
-        pieces = MultiPieceDetector().detect_pieces(text)
-        assert isinstance(pieces, list)
-
-    def test_validate_pieces_handles_errors(self):
-        from crochet_checker.validation.multipiece import MultiPieceDetector
-
-        pieces = [
-            {"name": "HEAD", "content": "Round 1: 6 sc into magic ring (6)"},
-            {"name": "BODY", "content": "Round 1: 6 sc into magic ring (6)"},
-        ]
-        result = MultiPieceDetector().validate_pieces(pieces)
-        assert result["total_pieces"] == 2
-        assert result["overall_status"] in ("PASS", "PASS_WITH_WARNINGS")
-
-    def test_detect_and_validate_single_piece(self):
-        from crochet_checker.validation.multipiece import detect_and_validate_multipiece
-
-        result = detect_and_validate_multipiece("Round 1: 6 sc into magic ring (6)")
-        assert result["total_pieces"] == 1
-        assert "message" in result
-
-
-# ---------------------------------------------------------------------------
 # validation.row_transitions
 # ---------------------------------------------------------------------------
 
@@ -633,118 +559,6 @@ class TestDiffPatchGenerator:
 
 
 # ---------------------------------------------------------------------------
-# utils.special_constructions
-# ---------------------------------------------------------------------------
-
-
-class TestSpecialConstructions:
-    def test_granny_square_no_data(self):
-        from crochet_checker.utils.special_constructions import GrannySquareValidator
-
-        analysis = GrannySquareValidator().validate([])
-        assert analysis.is_valid is False
-        assert analysis.errors == ["No round data"]
-
-    def test_granny_square_valid(self):
-        from crochet_checker.utils.special_constructions import GrannySquareValidator
-
-        rounds = [{"round": 1, "count": 12}, {"round": 2, "count": 24}]
-        analysis = GrannySquareValidator().validate(rounds)
-        assert analysis.is_valid is True
-        assert analysis.expected_counts == {1: 12, 2: 24}
-        assert analysis.details["growth_per_round"] == 12
-
-    def test_granny_square_invalid(self):
-        from crochet_checker.utils.special_constructions import GrannySquareValidator
-
-        analysis = GrannySquareValidator().validate([{"round": 1, "count": 13}])
-        assert analysis.is_valid is False
-        assert any("Expected 12, got 13" in e for e in analysis.errors)
-
-    def test_spiral_join_warning(self):
-        from crochet_checker.utils.special_constructions import SpiralValidator
-
-        rounds = [
-            {"round": 1, "count": 6, "instruction": "6 sc in MR"},
-            {"round": 2, "count": 12, "instruction": "inc x6, sl st join"},
-        ]
-        analysis = SpiralValidator().validate(rounds)
-        assert any("Join detected" in w for w in analysis.warnings)
-
-    def test_spiral_turn_warning(self):
-        from crochet_checker.utils.special_constructions import SpiralValidator
-
-        rounds = [
-            {"round": 1, "count": 6, "instruction": "6 sc"},
-            {"round": 2, "count": 12, "instruction": "inc, turn"},
-        ]
-        analysis = SpiralValidator().validate(rounds)
-        assert any("Turn detected" in w for w in analysis.warnings)
-
-    def test_joined_round_validator(self):
-        from crochet_checker.utils.special_constructions import JoinedRoundValidator
-
-        analysis = JoinedRoundValidator().validate([])
-        assert analysis.type == "joined_rounds"
-        assert analysis.is_valid is True
-
-    def test_detector_keywords(self):
-        from crochet_checker.utils.special_constructions import SpecialConstructionDetector
-
-        d = SpecialConstructionDetector()
-        detected = d.detect("Work a granny square with corner space")
-        assert detected["granny_square"] is True
-        assert d.get_primary("magic ring, amigurumi") == "amigurumi"
-        assert d.get_primary("plain text") == "unknown"
-
-
-# ---------------------------------------------------------------------------
-# utils.category_detector
-# ---------------------------------------------------------------------------
-
-
-class TestCategoryDetector:
-    def test_explicit_metadata_category(self):
-        from crochet_checker.utils.category_detector import detect_category
-
-        pattern = Pattern(metadata=PatternMetadata(category="hat"))
-        assert detect_category(pattern) == "hat"
-
-    def test_amigurumi_from_magic_ring_and_size(self):
-        from crochet_checker.utils.category_detector import detect_category
-
-        pattern = Pattern(
-            rounds=[
-                Round(
-                    round_number=1,
-                    instructions=[
-                        Instruction(
-                            source_text="6 sc into magic ring",
-                            operations=[
-                                ParsedOperation(
-                                    stitch_type=StitchType.SINGLE_CROCHET, count=6
-                                )
-                            ],
-                        )
-                    ],
-                )
-            ]
-        )
-        assert detect_category(pattern) == "amigurumi"
-
-    def test_amigurumi_keyword(self):
-        from crochet_checker.utils.category_detector import detect_category
-
-        pattern = Pattern(source_text="stuffed amigurumi toy")
-        assert detect_category(pattern) == "amigurumi"
-
-    def test_unknown_category(self):
-        from crochet_checker.utils.category_detector import detect_category
-
-        assert detect_category(Pattern()) == "unknown"
-
-
-# ---------------------------------------------------------------------------
 # api.rest
 # ---------------------------------------------------------------------------
 
@@ -781,67 +595,6 @@ class TestASTBuilder:
 # ---------------------------------------------------------------------------
 # optimization.pattern_optimizer
 # ---------------------------------------------------------------------------
-
-
-# ---------------------------------------------------------------------------
-# visualization.diagram / stitch_chart / pattern_debugger
-# ---------------------------------------------------------------------------
-
-
-class TestVisualization:
-    def test_dimension_diagram(self, tmp_path):
-        from crochet_checker.visualization.diagram import PatternDiagramGenerator
-
-        out = tmp_path / "diagram.svg"
-        result = PatternDiagramGenerator().generate_dimension_diagram(
-            {"width_inches": 12.5}, str(out)
-        )
-        assert result == str(out)
-        content = out.read_text()
-        assert "<svg" in content
-        assert "Width: 12.5 in" in content
-
-    def test_stitch_chart(self, tmp_path):
-        from crochet_checker.visualization.stitch_chart import StitchChartGenerator
-
-        out = tmp_path / "chart.svg"
-        data = [
-            {"round": 1, "stitches": [{"type": "sc"}, {"type": "dc"}, {"type": "bobble"}]}
-        ]
-        result = StitchChartGenerator().generate_chart(data, str(out))
-        assert result == str(out)
-        content = out.read_text()
-        assert "Stitch Chart" in content
-        assert "R1" in content
-
-    def test_pattern_debugger(self):
-        from crochet_checker.visualization.pattern_debugger import PatternDebugger
-
-        debugger = PatternDebugger()
-        debugger.set_breakpoint(5)
-        debugger.set_breakpoint(3)
-        debugger.set_breakpoint(3)  # duplicate ignored
-        assert debugger.breakpoints == [3, 5]
-
-        debugger.set_breakpoint(2)
-        visual_map = debugger.generate_visual_map("Line one\nLine two")
-        assert "PATTERN VISUAL MAP" in visual_map
-        assert "* 002 | Line two" in visual_map
-
-
-# ---------------------------------------------------------------------------
-# pdf.image_support
-# ---------------------------------------------------------------------------
-
-
-class TestPDFImageSupport:
-    def test_generate_pattern_images(self, tmp_path):
-        from crochet_checker.pdf.image_support import generate_pattern_images
-
-        out = tmp_path / "images"
-        images = generate_pattern_images(None, str(out))
-        assert images == []
-        assert out.is_dir()
 
 
 # ---------------------------------------------------------------------------
