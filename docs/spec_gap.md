@@ -42,7 +42,7 @@ A counted round that works stitches of another written piece does not add them t
 
 A seam that names the same piece on both sides is an error. The other side is not invented. Fasten off ends that yarn: a later counted round in the same piece is an error. A new heading, a new piece, a different numbered part, or a line that keeps the working yarn starts again. A round line that also says turn is an error. Turn belongs to a row. A quoted line is not that instruction.
 
-Cinch shut closes the piece. A later counted round, stuffing, or safety eyes in that same piece are an error. A new heading or a new piece starts again. A second magic ring in the same piece is an error. A line that says a chain counts as a stitch and does not count is an error. A line that fastens off and does not fasten off is an error. None of these is a measured fit.
+Cinch shut closes the piece. A later counted round, stuffing, or safety eyes in that same piece are an error. A new heading or a new piece starts again. A second magic ring in the same piece is an error. A line that says a chain counts as a stitch and does not count is an error. A line that fastens off and does not fasten off is an error. A line with two different stitch counts is an error. A line that closes the piece and leaves it open is an error. An invisible join and a slip-stitch join on one line are two endings. A spiral that also joins the round is an error. Stuffing after "do not stuff" in the same piece is an error. One piece written as two different make counts is an error. None of these is a measured fit.
 
 ## Still not run
 

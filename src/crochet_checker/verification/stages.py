@@ -129,6 +129,12 @@ def run_stages(text: str) -> StageReport:
     errors.extend(second_start(text))
     errors.extend(count_role(text))
     errors.extend(fasten_contradiction(text))
+    errors.extend(competing_counts(text))
+    errors.extend(open_and_shut(text))
+    errors.extend(two_endings(text))
+    errors.extend(spiral_join(text))
+    errors.extend(stuff_after_ban(text))
+    errors.extend(make_disagree(text))
     errors.extend(chain_underside(text))
     errors.extend(dropped_body(text))
     errors.extend(front_back_post(text))
@@ -191,6 +197,12 @@ def run_stages(text: str) -> StageReport:
             "second start",
             "count role",
             "fasten contradiction",
+            "competing counts",
+            "open and shut",
+            "two endings",
+            "spiral join",
+            "stuff after ban",
+            "make count",
             "chain underside",
             "dropped body",
             "front and back post",
@@ -871,6 +883,165 @@ def fasten_contradiction(text: str) -> list[str]:
                 "The line fastens off and does not fasten off. The ending was not invented."
             )
     return _unique(errors)
+
+
+def competing_counts(text: str) -> list[str]:
+    """Flag one line that states two different stitch counts."""
+    errors = []
+    group = re.compile(r"\((\d+)\s*(?:sts?|stitches)\b", re.IGNORECASE)
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _skip_line(line):
+            continue
+        counts = {int(match.group(1)) for match in group.finditer(line)}
+        if len(counts) >= 2:
+            errors.append(
+                "This line states more than one stitch count. The extra count was not chosen."
+            )
+    return _unique(errors)
+
+
+def open_and_shut(text: str) -> list[str]:
+    """Flag a line that closes the piece and leaves it open."""
+    errors = []
+    close = re.compile(
+        r"\bcinch(?:ed)?\s+shut\b|\bcinch(?:ed)?\b[^.]{0,40}\bclosed\b",
+        re.IGNORECASE,
+    )
+    leave = re.compile(
+        r"\bleave\b[^.]{0,32}\bopen\b|\bopening\s+open\b|\bkeep\b[^.]{0,24}\bopen\b",
+        re.IGNORECASE,
+    )
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _skip_line(line) or _quoted_or_explained(line):
+            continue
+        if close.search(line) and leave.search(line):
+            errors.append(
+                "The line closes the piece and leaves it open. The opening was not invented."
+            )
+    return _unique(errors)
+
+
+def two_endings(text: str) -> list[str]:
+    """Flag an invisible join and a slip-stitch join on one line."""
+    errors = []
+    invisible = re.compile(r"\binvisible\s+join\b", re.IGNORECASE)
+    slip = re.compile(
+        r"\b(?:slip\s+stitch|sl\s*st)\b[^.]{0,24}\bjoin\b|\bjoin\s+with\s+(?:a\s+)?(?:slip\s+stitch|sl\s*st)\b",
+        re.IGNORECASE,
+    )
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _skip_line(line) or _quoted_or_explained(line):
+            continue
+        if invisible.search(line) and slip.search(line):
+            errors.append(
+                "An invisible join and a slip-stitch join are two endings. "
+                "The extra join was not invented."
+            )
+    return _unique(errors)
+
+
+def spiral_join(text: str) -> list[str]:
+    """Flag a spiral that also joins the round."""
+    errors = []
+    spiral = re.compile(r"\bspiral\b", re.IGNORECASE)
+    join = re.compile(
+        r"\bjoin\s+with\s+(?:a\s+)?(?:slip\s+stitch|sl\s*st)\b"
+        r"|\b(?:slip\s+stitch|sl\s*st)\b[^.]{0,24}\bjoin\b"
+        r"|\bjoin\s+(?:each|every)\s+round\b",
+        re.IGNORECASE,
+    )
+    waiting = False
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if _section_break(line):
+            waiting = False
+            continue
+        if _skip_line(line):
+            continue
+        if _quoted_or_explained(line):
+            if spiral.search(line) and re.search(r"\b(?:do not|don't)\s+join\b", line, re.IGNORECASE):
+                waiting = False
+            continue
+        if spiral.search(line) and join.search(line):
+            errors.append(
+                "A continuous spiral does not join every round. The join was not added."
+            )
+            waiting = False
+            continue
+        if waiting and join.search(line):
+            errors.append(
+                "A continuous spiral does not join every round. The join was not added."
+            )
+            waiting = False
+            continue
+        if spiral.search(line):
+            waiting = True
+    return _unique(errors)
+
+
+def stuff_after_ban(text: str) -> list[str]:
+    """Flag stuffing after the same piece says not to stuff."""
+    errors = []
+    banned = False
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if _section_break(line):
+            banned = False
+            continue
+        if _skip_line(line):
+            continue
+        if re.search(r"\b(?:do not|don't)\s+stuff\b", line, re.IGNORECASE):
+            banned = True
+            continue
+        if banned and re.search(r"\bstuff(?:ing|ed)?\b", line, re.IGNORECASE) and not _quoted_or_explained(line):
+            errors.append(
+                "The piece says not to stuff, then stuffs. The stuffing was not added."
+            )
+            banned = False
+    return _unique(errors)
+
+
+def make_disagree(text: str) -> list[str]:
+    """Flag one piece written with two different make counts."""
+    errors = []
+    seen: dict[str, tuple[str, int]] = {}
+    pattern = re.compile(
+        r"\b([A-Za-z][A-Za-z]+(?:\s+[A-Za-z][A-Za-z]+){0,2})\s*\(make\s+(\d+)\)",
+        re.IGNORECASE,
+    )
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _skip_line(line):
+            continue
+        for match in pattern.finditer(line):
+            key = re.sub(r"\s+", " ", match.group(1)).strip().lower()
+            if key in {"round", "row", "rnd", "hook", "yarn", "color"}:
+                continue
+            count = int(match.group(2))
+            if key in seen and seen[key][1] != count:
+                errors.append(
+                    f"{seen[key][0]} is written as make {seen[key][1]} and make {count}. "
+                    "The extra copies were not invented."
+                )
+            else:
+                seen[key] = (match.group(1).strip(), count)
+    return _unique(errors)
+
+
+def _skip_line(line: str) -> bool:
+    return (
+        not line.strip()
+        or line.lstrip().startswith("|")
+        or line.lstrip().startswith(">")
+        or bool(re.search(r"\bdefect\b", line, re.IGNORECASE))
+    )
 
 
 def chain_underside(text: str) -> list[str]:

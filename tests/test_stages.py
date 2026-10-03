@@ -338,6 +338,46 @@ def test_a_closed_piece_is_not_worked_again():
     assert "closed this piece" not in blob(quoted)
 
 
+def test_a_line_cannot_state_two_endings():
+    blob = lambda text: " ".join(_messages(validate_pattern(text)))
+    two = "Round 2: sc in each st around (12 sts) (18 sts)\n"
+    same = "Round 2: sc in each st around (12 sts) (12 sts)\n"
+    shut = "Round 1: 6 sc into magic ring (6)\nCinch shut and leave the opening open.\n"
+    held = "Cinch 6 held stitches to 6 body stitches.\n"
+    endings = "Finish with an invisible join and sl st to join.\n"
+    one_end = "Finish with an invisible join.\n"
+    spiral = "Work in a continuous spiral and join every round.\n"
+    no_join = "Work in a continuous spiral and do not join.\n"
+    later = (
+        "Work in a continuous spiral.\n"
+        "Join with a slip stitch at the end of each round.\n"
+    )
+    banned = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nDo not stuff.\nStuff the head firmly.\n"
+    )
+    allowed = (
+        "EAR\nRound 1: 6 sc into magic ring (6)\nDo not stuff.\n"
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nStuff the head.\n"
+    )
+    copies = "Ears (make 2)\nEars (make 3)\nRound 1: 6 sc into magic ring (6)\n"
+    once = "Ears (make 2)\nRound 1: 6 sc into magic ring (6)\n"
+    quoted = "> Round 2: sc around (12 sts) (18 sts)\nRound 1: 6 sc into magic ring (6)\n"
+    assert "more than one stitch count" in blob(two)
+    assert "more than one stitch count" not in blob(same)
+    assert "leaves it open" in blob(shut)
+    assert "leaves it open" not in blob(held)
+    assert "two endings" in blob(endings)
+    assert "two endings" not in blob(one_end)
+    assert "does not join every round" in blob(spiral)
+    assert "does not join every round" not in blob(no_join)
+    assert "does not join every round" in blob(later)
+    assert "not to stuff, then stuffs" in blob(banned)
+    assert "not to stuff, then stuffs" not in blob(allowed)
+    assert "make 2 and make 3" in blob(copies)
+    assert "make 2 and make 3" not in blob(once)
+    assert "more than one stitch count" not in blob(quoted)
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"
