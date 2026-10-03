@@ -603,3 +603,26 @@ def test_none_and_made_of_use_the_same_rule():
         "> Work no stitches.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_abbreviations_use_the_same_rule():
+    errors = [
+        "Inc from 12 to 6.",
+        "Rnd 8 to rnd 5.",
+        "Change from colour C to colour C.",
+        "The ch-1 counts as dc.",
+        "Magic circle and a chain ring.",
+        "H/8 measures 2.25 mm.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "Increase 6 to 12.",
+        "Rounds 1 to 8.",
+        "Change from colour C to colour D.",
+        "The ch-3 counts as dc.",
+        "Magic ring or a chain ring.",
+        "H-8 measures 5.0 mm.",
+        "> Inc from 12 to 6.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

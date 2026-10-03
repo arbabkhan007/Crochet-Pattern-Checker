@@ -43,6 +43,8 @@ Those arithmetic checks also accept the words twelve, six, and the other number 
 
 A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
 
+`Inc from 12 to 6`, `rnd 8 to rnd 5`, `colour A to colour A`, and `ch-1 counts as dc` are the same errors as the longer sentences. A line that says `or` is still a choice. No length is invented. This is not a physical proof, and it is not a reason to pay for a pattern.
+
 ## Install
 
 ```bash
