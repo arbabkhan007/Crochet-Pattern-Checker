@@ -122,6 +122,9 @@ def run_stages(text: str) -> StageReport:
     errors.extend(edge_lineage(text))
     errors.extend(open_boundary(text))
     errors.extend(two_sheet_seam(text))
+    errors.extend(self_seam(text))
+    errors.extend(ended_yarn(text))
+    errors.extend(round_turn(text))
     errors.extend(chain_underside(text))
     errors.extend(dropped_body(text))
     errors.extend(front_back_post(text))
@@ -177,6 +180,9 @@ def run_stages(text: str) -> StageReport:
             "edge lineage",
             "open boundary",
             "two-sheet seam",
+            "self seam",
+            "ended yarn",
+            "round turn",
             "chain underside",
             "dropped body",
             "front and back post",
@@ -623,6 +629,121 @@ def two_sheet_seam(text: str) -> list[str]:
                 "and the missing seams were not invented."
             )
     return _unique(errors)
+
+
+def self_seam(text: str) -> list[str]:
+    """Flag a seam that joins a written piece to itself."""
+    errors = []
+    pair = re.compile(
+        r"\b(?:sew|sewn|graft)\s+(?:the\s+)?([A-Za-z][A-Za-z0-9]*)\s+to\s+(?:the\s+)?\1\b",
+        re.IGNORECASE,
+    )
+    itself = re.compile(
+        r"\b(?:sew|sewn|graft|attach)\b(?!\s+yarn).{0,80}\bto\s+itself\b",
+        re.IGNORECASE,
+    )
+    for raw in text.splitlines():
+        line = raw.strip()
+        if (
+            _quoted_or_explained(line)
+            or line.startswith("|")
+            or re.search(r"\bdefect\b", line, re.IGNORECASE)
+        ):
+            continue
+        if pair.search(line) or itself.search(line):
+            errors.append(
+                "This seam joins a piece to itself. The other side was not invented."
+            )
+    return _unique(errors)
+
+
+def ended_yarn(text: str) -> list[str]:
+    """Flag a counted round that continues after fasten off in the same piece."""
+    errors = []
+    closed = False
+    closed_label = ""
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if _section_break(line):
+            closed = False
+            closed_label = ""
+            continue
+        if line.startswith("|") or line.startswith(">"):
+            continue
+        plain = re.sub(r"^[*_]+", "", line)
+        is_round = bool(re.match(r"^(?:round|row|rnd)s?\b", plain, re.IGNORECASE))
+        if (
+            is_round
+            and closed
+            and not _quoted_or_explained(line)
+            and not re.search(r"\bdefect\b", line, re.IGNORECASE)
+        ):
+            round_label = _numbered_part(line)
+            if closed_label and round_label and closed_label != round_label:
+                closed = False
+                closed_label = ""
+            else:
+                errors.append(
+                    "Fasten off ended this yarn. A later round in the same piece "
+                    "was not continued."
+                )
+                closed = False
+                closed_label = ""
+        if (
+            re.search(r"\bfasten\s+off\b", line, re.IGNORECASE)
+            and not re.search(r"\b(?:do not|don't)\s+fasten\s+off\b", line, re.IGNORECASE)
+            and not re.search(
+                r"\bkeep\s+(?:the\s+)?(?:working\s+)?yarn\b|\bkeep yarn\b",
+                line,
+                re.IGNORECASE,
+            )
+            and not re.search(r"\bdefect\b", line, re.IGNORECASE)
+        ):
+            closed = True
+            closed_label = _numbered_part(line)
+    return _unique(errors)
+
+
+def round_turn(text: str) -> list[str]:
+    """Flag a round line that also turns. Turn belongs to a row."""
+    errors = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _quoted_or_explained(line) or line.startswith("|"):
+            continue
+        plain = re.sub(r"^[*_]+", "", line)
+        if re.match(r"^(?:round|rnd)s?\b", plain, re.IGNORECASE) and re.search(
+            r"\bturn\b", line, re.IGNORECASE
+        ):
+            errors.append("A round says turn. A continuous round does not turn.")
+    return _unique(errors)
+
+
+def _section_break(line: str) -> bool:
+    if re.match(r"^(?:#{1,6}\s+|\d+\.\s+|```)", line) or _piece_name(line):
+        return True
+    plain = re.sub(r"^[*_]+", "", line)
+    if (
+        plain.endswith(":")
+        and len(plain) < 80
+        and not re.match(r"^(?:round|row|rnd)s?\b", plain, re.IGNORECASE)
+        and not re.search(r"\b(?:sc|hdc|dc|inc|dec|ch)\b", plain, re.IGNORECASE)
+    ):
+        return True
+    return False
+
+
+def _numbered_part(line: str) -> str:
+    match = re.search(
+        r"\b(leg|arm|ear|head|body|tentacle|wing|fin)\s*(\d+)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if not match:
+        return ""
+    return f"{match.group(1).lower()} {match.group(2)}"
 
 
 def chain_underside(text: str) -> list[str]:

@@ -248,6 +248,46 @@ def test_written_seam_rules_do_not_invent_a_join():
     assert validate_pattern(quoted).overall_status == "PASS"
 
 
+def test_a_piece_does_not_continue_after_it_ends():
+    continued = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "Fasten off.\nRound 2: sc in each st around (6)\n"
+    )
+    restarted = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nFasten off.\n"
+        "EAR\nRound 1: 6 sc into magic ring (6)\n"
+    )
+    kept = (
+        "Rounds 1-12, leg 1: 12 sc around. Fasten off leg 1. "
+        "Keep the working yarn on leg 2.\n"
+        "Round 13: sc 12 around leg 2 (12)\n"
+    )
+    other_part = (
+        "Rounds 1-12, Leg 1: 12 sc around. Fasten off, leaving a tail.\n"
+        "Rounds 1-12, Leg 2: 12 sc around. (12)\n"
+    )
+    self_join = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nSew the head to the head.\n"
+    )
+    other_join = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "BODY\nRound 1: 6 sc into magic ring (6)\nSew the head to the body.\n"
+    )
+    turned = "Round 2: sc in each st around, turn (6)\n"
+    row_turn = "Row 2: sc in each st across, turn (6)\n"
+    quoted = "> Fasten off.\n> Round 2: sc in each st around, turn (6)\nRound 1: 6 sc into magic ring (6)\n"
+    assert "ended this yarn" in " ".join(_messages(validate_pattern(continued)))
+    assert "ended this yarn" not in " ".join(_messages(validate_pattern(restarted)))
+    assert "ended this yarn" not in " ".join(_messages(validate_pattern(kept)))
+    assert "ended this yarn" not in " ".join(_messages(validate_pattern(other_part)))
+    assert "piece to itself" in " ".join(_messages(validate_pattern(self_join)))
+    assert "piece to itself" not in " ".join(_messages(validate_pattern(other_join)))
+    assert "does not turn" in " ".join(_messages(validate_pattern(turned)))
+    assert "does not turn" not in " ".join(_messages(validate_pattern(row_turn)))
+    assert "ended this yarn" not in " ".join(_messages(validate_pattern(quoted)))
+    assert "does not turn" not in " ".join(_messages(validate_pattern(quoted)))
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"

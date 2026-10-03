@@ -40,6 +40,8 @@ The specification describes a multi-year system. This file says what the current
 
 A counted round that works stitches of another written piece does not add them to the local sum. A seam count that no earlier round states is an error, and the missing edge is not invented. A seam aimed at a magic ring or a cinched point is an error. A quoted line is not that seam. One line that names three written pieces is not drawn as a Y-branch, and the missing seams are not invented. None of these is a measured fit.
 
+A seam that names the same piece on both sides is an error. The other side is not invented. Fasten off ends that yarn: a later counted round in the same piece is an error. A new heading, a new piece, a different numbered part, or a line that keeps the working yarn starts again. A round line that also says turn is an error. Turn belongs to a row. A quoted line is not that instruction.
+
 ## Still not run
 
 - A chart image is not detected. `read_chart_image` does not invent symbols.
