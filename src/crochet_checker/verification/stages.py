@@ -125,6 +125,10 @@ def run_stages(text: str) -> StageReport:
     errors.extend(self_seam(text))
     errors.extend(ended_yarn(text))
     errors.extend(round_turn(text))
+    errors.extend(closed_piece(text))
+    errors.extend(second_start(text))
+    errors.extend(count_role(text))
+    errors.extend(fasten_contradiction(text))
     errors.extend(chain_underside(text))
     errors.extend(dropped_body(text))
     errors.extend(front_back_post(text))
@@ -183,6 +187,10 @@ def run_stages(text: str) -> StageReport:
             "self seam",
             "ended yarn",
             "round turn",
+            "closed piece",
+            "second start",
+            "count role",
+            "fasten contradiction",
             "chain underside",
             "dropped body",
             "front and back post",
@@ -744,6 +752,125 @@ def _numbered_part(line: str) -> str:
     if not match:
         return ""
     return f"{match.group(1).lower()} {match.group(2)}"
+
+
+def closed_piece(text: str) -> list[str]:
+    """Flag stuffing, eyes, or a later round after the piece is cinched shut."""
+    errors = []
+    closed = False
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if _section_break(line):
+            closed = False
+            continue
+        if line.startswith("|") or line.startswith(">"):
+            continue
+        if re.search(r"\bdefect\b", line, re.IGNORECASE):
+            continue
+        plain = re.sub(r"^[*_]+", "", line)
+        is_round = bool(re.match(r"^(?:round|row|rnd)s?\b", plain, re.IGNORECASE))
+        close_at = _close_at(line)
+        if closed and not _quoted_or_explained(line):
+            if is_round or re.search(r"\bstuff(?:ing|ed)?\b", line, re.IGNORECASE) or re.search(
+                r"\bsafety\s+eyes\b", line, re.IGNORECASE
+            ):
+                errors.append(
+                    "Cinch shut closed this piece. Stuffing, safety eyes, or a later "
+                    "round were not added after it."
+                )
+                closed = False
+        if close_at is not None and not _quoted_or_explained(line):
+            rest = line[close_at:]
+            if re.search(r"\bstuff(?:ing|ed)?\b", rest, re.IGNORECASE) or re.search(
+                r"\bsafety\s+eyes\b", rest, re.IGNORECASE
+            ):
+                errors.append(
+                    "Cinch shut closed this piece. Stuffing, safety eyes, or a later "
+                    "round were not added after it."
+                )
+            closed = True
+    return _unique(errors)
+
+
+def _close_at(line: str) -> int | None:
+    if re.search(
+        r"\b(?:do not|don't|cannot|can't)\b[^.]{0,48}\bcinch\b|\bnot\s+cinch\b",
+        line,
+        re.IGNORECASE,
+    ):
+        return None
+    match = re.search(
+        r"\bcinch(?:ed)?\s+shut\b|\bcinch(?:ed)?\b[^.]{0,48}\bclosed\b",
+        line,
+        re.IGNORECASE,
+    )
+    if not match:
+        return None
+    return match.end()
+
+
+def second_start(text: str) -> list[str]:
+    """Flag a second magic ring in the same written piece."""
+    errors = []
+    seen = False
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if _section_break(line):
+            seen = False
+            continue
+        if (
+            line.startswith("|")
+            or line.startswith(">")
+            or _quoted_or_explained(line)
+            or re.search(r"\bdefect\b", line, re.IGNORECASE)
+        ):
+            continue
+        plain = re.sub(r"^[*_]+", "", line)
+        if re.match(r"^(?:round|row|rnd)s?\b", plain, re.IGNORECASE) and re.search(
+            r"\bmagic\s+ring\b", line, re.IGNORECASE
+        ):
+            if seen:
+                errors.append(
+                    "This piece already started. A second magic ring was not added."
+                )
+            seen = True
+    return _unique(errors)
+
+
+def count_role(text: str) -> list[str]:
+    """Flag a chain that counts as a stitch and does not count."""
+    errors = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if line.startswith("|") or line.startswith(">") or re.search(r"\bdefect\b", line, re.IGNORECASE):
+            continue
+        if re.search(r"\bcounts\s+as\b", line, re.IGNORECASE) and re.search(
+            r"\bdoes\s+not\s+count\b", line, re.IGNORECASE
+        ):
+            errors.append(
+                "The line says the chain counts as a stitch and does not count. "
+                "The count was not invented."
+            )
+    return _unique(errors)
+
+
+def fasten_contradiction(text: str) -> list[str]:
+    """Flag a line that fastens off and does not fasten off."""
+    errors = []
+    ban = re.compile(r"\b(?:do not|don't)\s+fasten\s+off\b", re.IGNORECASE)
+    for raw in text.splitlines():
+        line = raw.strip()
+        if line.startswith("|") or line.startswith(">") or re.search(r"\bdefect\b", line, re.IGNORECASE):
+            continue
+        if ban.search(line) and re.search(r"\bfasten\s+off\b", ban.sub("", line), re.IGNORECASE):
+            errors.append(
+                "The line fastens off and does not fasten off. The ending was not invented."
+            )
+    return _unique(errors)
 
 
 def chain_underside(text: str) -> list[str]:

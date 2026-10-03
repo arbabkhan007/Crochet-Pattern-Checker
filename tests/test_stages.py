@@ -288,6 +288,56 @@ def test_a_piece_does_not_continue_after_it_ends():
     assert "does not turn" not in " ".join(_messages(validate_pattern(quoted)))
 
 
+def test_a_closed_piece_is_not_worked_again():
+    stuffed = (
+        "Round 1: 6 sc into magic ring (6)\nCinch shut.\nStuff the head.\n"
+    )
+    eyed = (
+        "Round 1: 6 sc into magic ring (6)\nCinch shut.\n"
+        "Insert safety eyes between rounds 4 and 5.\n"
+    )
+    continued = (
+        "Round 1: 6 sc into magic ring (6)\nCinch shut.\n"
+        "Round 2: sc in each st around (6)\n"
+    )
+    before = (
+        "Round 1: 6 sc into magic ring (6)\nStuff the head.\n"
+        "Insert safety eyes between rounds 4 and 5.\nCinch shut.\n"
+    )
+    restarted = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\nCinch shut.\n"
+        "EAR\nRound 1: 6 sc into magic ring (6)\nStuff the ear lightly.\n"
+    )
+    joined = "Cinch 6 held stitches to 6 body stitches.\nMount 2 safety eyes on the body.\n"
+    twice = (
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: 6 sc into magic ring (6)\n"
+    )
+    two_pieces = (
+        "HEAD\nRound 1: 6 sc into magic ring (6)\n"
+        "EAR\nRound 1: 6 sc into magic ring (6)\n"
+    )
+    both_counts = "ch 3 counts as a dc and does not count as a dc.\n"
+    one_count = "ch 3 counts as a dc.\n"
+    both_endings = "Fasten off and do not fasten off.\n"
+    one_ending = "Do not fasten off.\nRound 1: 6 sc into magic ring (6)\n"
+    quoted = "> Cinch shut.\n> Stuff the head.\nRound 1: 6 sc into magic ring (6)\n"
+    blob = lambda text: " ".join(_messages(validate_pattern(text)))
+    assert "closed this piece" in blob(stuffed)
+    assert "closed this piece" in blob(eyed)
+    assert "closed this piece" in blob(continued)
+    assert "closed this piece" not in blob(before)
+    assert "closed this piece" not in blob(restarted)
+    assert "closed this piece" not in blob(joined)
+    assert "second magic ring" in blob(twice)
+    assert "second magic ring" not in blob(two_pieces)
+    assert "does not count" in blob(both_counts)
+    assert "does not count" not in blob(one_count)
+    assert "does not fasten off" in blob(both_endings)
+    assert "does not fasten off" not in blob(one_ending)
+    assert "closed this piece" not in blob(quoted)
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"
