@@ -183,3 +183,5 @@ Lessons 94 through 158. These are new written checks. Five thousand named copies
 145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.
 
 A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical size. `ch 1, turn for dc` is too short. `ch 1 counts as dc` cannot count as that stitch. A V-stitch, fan, star, or cluster of one is not that stitch. A loop of zero has no loop. An oval of zero chains and a rectangle of zero rows were not worked. Yarn held doubled and single is both. Eyes twelve apart on a round of six do not fit. Foundation sc and a chain used to start are two starts. A fringe of no strands is not a fringe. A quoted line is not an instruction. No length is invented.
+
+`Work no stitches`, `round none`, and `made of zero` are the same empty counts. `ch one, turn for dc` is still too short. `Rounds 8 to 5` run backwards. A quoted line and a line that says `or` stay choices. No length is invented.

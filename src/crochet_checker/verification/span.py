@@ -504,7 +504,7 @@ _INCH_CM = re.compile(r"^(\d+(?:\.\d+)?) inches = \1 cm\b", re.IGNORECASE)
 _CM_INCH = re.compile(r"^(\d+(?:\.\d+)?) cm = \1 inches\b", re.IGNORECASE)
 _TURN = re.compile(r"\bch (\d+), turn, (tr|dtr)\b", re.IGNORECASE)
 _COUNTS = re.compile(r"\bch (\d+) counts as an? (sc|hdc|dc|tr|dtr)\b", re.IGNORECASE)
-_COLOR = re.compile(r"\bChange from Color ([A-Z]) to Color \1\b")
+_COLOR = re.compile(r"\bChange (?:from )?Color ([A-Z]) to Color \1\b", re.IGNORECASE)
 _PROHIBITION = re.compile(r"\bdo not\b|\bdon't\b|\bshould\s+not\b", re.IGNORECASE)
 
 
@@ -749,6 +749,7 @@ def _line_errors(line: str) -> list[str]:
     found.extend(_rest_wording(line))
     found.extend(_word_gaps(line))
     found.extend(_missed_wording(line))
+    found.extend(_none_wording(line))
     if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
         found.append("A slip knot is not a stitch.")
     return found
@@ -1047,6 +1048,195 @@ def _missed_wording(line: str) -> list[str]:
     return found
 
 
+
+def _none_wording(line: str) -> list[str]:
+    """Catch no, none, and made-of where the digit rule already exists."""
+    found: list[str] = []
+    if re.search(r"\bwork\s+no\s+stitches\b", line, re.IGNORECASE):
+        found.append("Work 0 stitches does no work.")
+    if re.search(r"\bskip\s+no\s+stitches\b", line, re.IGNORECASE):
+        found.append("Skip 0 does not move the hook.")
+    if re.search(r"\bdecrease\s+to\s+no\s+stitches\b", line, re.IGNORECASE):
+        found.append("Decrease to 0 stitches leaves nothing to fasten.")
+    if re.search(r"\bpicot\b.{0,16}\b(?:of|with)\s+no\s+chains\b", line, re.IGNORECASE):
+        found.append("A picot of 0 is not a picot.")
+    if re.search(r"\bchain\s+space\s+of\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("A ch-0 space has no chains to work into.")
+    if re.search(r"\bchain of none\b", line, re.IGNORECASE):
+        found.append("ch 0 makes no chain.")
+    if re.search(r"\bzero\s+inches\b", line, re.IGNORECASE) and not re.search(
+        r"\bnot\s+zero\s+inches\b", line, re.IGNORECASE
+    ):
+        found.append("A finished width of 0 inches is not a piece.")
+    if re.search(r"\bpull through\s+(?:no|zero)(?:\s+loops)?\b", line, re.IGNORECASE):
+        found.append("Pull through 0 loops leaves the loops on the hook.")
+    if re.search(r"\bwork even for\s+no\s+rows\b", line, re.IGNORECASE):
+        found.append("Work even for 0 rows does no work.")
+    if re.search(r"\bplace\s+no\s+safety eyes\b", line, re.IGNORECASE):
+        found.append("Place 0 safety eyes mounts nothing.")
+    if re.search(r"\bstuff(?:ing|ed)?\s+with\s+(?:0|zero)\s+(?:g|grams|ounces)\b", line, re.IGNORECASE):
+        found.append("Stuffing with 0 does not fill the piece.")
+    if re.search(r"\bevery\s+no\s+(?:rows|rounds)\b", line, re.IGNORECASE):
+        found.append("Every 0 rows or rounds never happens.")
+    if re.search(r"\bbuttonhole\b.{0,16}\bwith\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("A buttonhole of 0 chains has no opening.")
+    if re.search(r"\bfringe\b.{0,20}\busing\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("A fringe of 0 strands is not a fringe.")
+    if re.search(r"\bcable\b.{0,16}\bof\s+zero\b", line, re.IGNORECASE):
+        found.append("A cable over 0 stitches does not cross.")
+    if re.search(r"\bspike\b.{0,20}\bof\s+(?:0|zero)\s+rows\b", line, re.IGNORECASE):
+        found.append("A spike stitch down 0 rows does not leave the current row.")
+    if re.search(r"\bi[ -]?cord\b.{0,16}\bof\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("An i-cord of 0 stitches has no cord.")
+    if re.search(r"\b(?:corner|tube|square)\s+made of\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("A count of 0 does not make that shape.")
+    if re.search(r"\bsurface\s+slip\s+stitch\b.{0,16}\bof\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("Surface crochet of 0 chains draws no line.")
+    if re.search(r"\bshell\s+made of\s+(?:1|one)\b", line, re.IGNORECASE):
+        found.append("A shell of 1 is not a shell. Use at least 3 stitches.")
+    if re.search(r"\bbobble\s+made of\s+(?:1|one)\b", line, re.IGNORECASE):
+        found.append("A bobble of 1 has nothing to gather.")
+    if re.search(r"\bpuff\s+made of\s+(?:1|one)\b", line, re.IGNORECASE):
+        found.append("A puff of 1 is not a puff.")
+    if re.search(r"\bpopcorn\s+made of\s+(?:1|one)\b", line, re.IGNORECASE):
+        found.append("A popcorn of 1 cannot be closed.")
+    if re.search(r"\bgauge\b.{0,16}\bno\s+stitches\b", line, re.IGNORECASE):
+        found.append("A gauge of 0 sc is not a fabric.")
+    if re.search(r"\bstitch\s+none\b", line, re.IGNORECASE):
+        found.append("Stitch 0 does not exist. The first stitch is stitch 1.")
+    if re.search(r"\bround\s+none\b", line, re.IGNORECASE):
+        found.append("Round 0 is not a round. Start at Round 1.")
+    if re.search(r"\brow\s+none\b", line, re.IGNORECASE):
+        found.append("Row 0 is not a row. Start at Row 1.")
+    if re.search(
+        r"\b(?:front post|back post|fpdc|bpdc|fptr|bptr)\b.{0,32}\baround an? chain\b",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("A chain has no post. Do not work a post around the chain.")
+    if (
+        re.search(r"\bback loop only\b", line, re.IGNORECASE)
+        and re.search(r"\bboth loops\b", line, re.IGNORECASE)
+        and not re.search(r"\bor\b", line, re.IGNORECASE)
+    ):
+        found.append("BLO only and both loops cannot be the same stitch.")
+    if re.search(r"\b(?:turning )?chain\b.{0,24}\bcounted two times\b", line, re.IGNORECASE):
+        found.append("A turning chain counted twice is added two times.")
+    for match in re.finditer(r"\b(rounds|rows)\s+(\d+)\s+to\s+(\d+)\b", line, re.IGNORECASE):
+        start, end = int(match.group(2)), int(match.group(3))
+        if start > end:
+            label = "Rounds" if match.group(1).lower().startswith("round") else "Rows"
+            found.append(f"{label} {start}-{end} run backwards.")
+    if re.search(r"\bthe round is worked across\b", line, re.IGNORECASE):
+        found.append("A round says across. Rounds are worked around.")
+    if re.search(r"\bthe row is worked around\b", line, re.IGNORECASE):
+        found.append("A row says around. Rows are worked across.")
+    if re.search(r"\bthis round turns\b(?!\s+the corner)", line, re.IGNORECASE):
+        found.append("A continuous round does not turn. Turn belongs to a flat row.")
+    if re.search(r"\bspiral\b", line, re.IGNORECASE) and re.search(
+        r"\bclosed by a slip stitch\b", line, re.IGNORECASE
+    ):
+        found.append("A continuous spiral does not join every round. The join was not added.")
+    if re.search(r"\bfasten off\b.{0,40}\bkeep going\b", line, re.IGNORECASE):
+        found.append("Fasten off ended this yarn. The later work was not continued.")
+    if (
+        re.search(r"\bwhip\s*stitch\b", line, re.IGNORECASE)
+        and re.search(r"\bmattress\b", line, re.IGNORECASE)
+        and not re.search(r"\bor\b", line, re.IGNORECASE)
+    ):
+        found.append("Whipstitch and mattress stitch are two seams. The extra seam was not invented.")
+    chain_of = re.search(
+        r"\bchain of\s+(one|\d+)\s+counts as\s+(?:an? |the )?(dc|double crochet|hdc|tr|treble)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if chain_of:
+        raw = chain_of.group(1).lower()
+        chains = "1" if raw == "one" else raw
+        names = {"dc": "dc", "double crochet": "dc", "hdc": "hdc", "tr": "tr", "treble": "tr"}
+        stitch = names[chain_of.group(2).lower()]
+        if (chains, stitch) in COUNTS_AS:
+            found.append(f"ch {chains} cannot count as a {stitch}.")
+    risen = re.search(r"^Increase (\d+) to (\d+)\b", line, re.IGNORECASE)
+    if risen and int(risen.group(2)) <= int(risen.group(1)):
+        found.append(
+            f"Increase from {risen.group(1)} to {risen.group(2)} does not rise."
+        )
+    even = re.search(r"\beven count that is (\d+)\b", line, re.IGNORECASE)
+    if even and int(even.group(1)) % 2:
+        found.append(f"{even.group(1)} is odd, but the line says the count must be even.")
+    odd = re.search(r"\bodd count that is (\d+)\b", line, re.IGNORECASE)
+    if odd and int(odd.group(1)) % 2 == 0:
+        found.append(f"{odd.group(1)} is even, but the line says the count must be odd.")
+    past = re.search(
+        r"\bstitch\s+(\d+|[A-Za-z]+)\s+of\s+(?:a|the)\s+(\d+|[A-Za-z]+)[- ]stitch\s+round\b",
+        line,
+        re.IGNORECASE,
+    )
+    if past:
+        left, right = _gap_count(past.group(1)), _gap_count(past.group(2))
+        if left is not None and right is not None and left > right:
+            found.append(f"Stitch {left} is past a {right}-stitch round.")
+    skipped = re.search(
+        r"\bskip\s+(\d+|[A-Za-z]+)\s+stitches\s+of\s+(?:a|the)\s+(\d+|[A-Za-z]+)[- ]stitch\s+row\b",
+        line,
+        re.IGNORECASE,
+    )
+    if skipped:
+        left, right = _gap_count(skipped.group(1)), _gap_count(skipped.group(2))
+        if left is not None and right is not None and left >= right:
+            found.append(f"Skip {left} does not fit on a {right}-stitch row.")
+    words = {"one": 1, "two": 2, "three": 3}
+    turn = re.search(
+        r"\bch(?:ain)?\s+(one|two|three|\d+)\s*(?:,\s*)?(?:to\s+)?turn(?:,|\s+for(?:\s+an?)?)?(?:\s+then)?\s+"
+        r"(sc|hdc|dc|single crochet|half double(?: crochet)?|double crochet)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if turn:
+        raw = turn.group(1).lower()
+        chains = words[raw] if raw in words else int(raw)
+        names = {
+            "sc": "sc",
+            "hdc": "hdc",
+            "dc": "dc",
+            "single crochet": "sc",
+            "half double": "hdc",
+            "half double crochet": "hdc",
+            "double crochet": "dc",
+        }
+        stitch = names[turn.group(2).lower()]
+        needed = {"sc": 1, "hdc": 2, "dc": 3}[stitch]
+        if chains < needed:
+            found.append(f"ch {chains} is too short to turn for a {stitch}. Use ch {needed}.")
+    counts = re.search(
+        r"\b(?:chain of\s+)?ch(?:ain)?\s+(one|two|three|\d+)\s+counts\s+as\s+(?:an?\s+|the\s+)?"
+        r"(sc|hdc|dc|tr|dtr|single crochet|half double(?: crochet)?|double crochet|treble|double treble)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if counts:
+        raw = counts.group(1).lower()
+        chains = str(words[raw] if raw in words else int(raw))
+        names = {
+            "sc": "sc",
+            "single crochet": "sc",
+            "hdc": "hdc",
+            "half double": "hdc",
+            "half double crochet": "hdc",
+            "dc": "dc",
+            "double crochet": "dc",
+            "tr": "tr",
+            "treble": "tr",
+            "dtr": "dtr",
+            "double treble": "dtr",
+        }
+        stitch = names[counts.group(2).lower()]
+        if (chains, stitch) in COUNTS_AS:
+            found.append(f"ch {chains} cannot count as a {stitch}.")
+    return found
+
+
 def _weight_category(line: str) -> list[str]:
     low = line.lower()
     best: tuple[str, tuple[int, ...], int] | None = None
@@ -1099,7 +1289,7 @@ def _nearby_counts(line: str) -> list[str]:
 
 def _steel_order(line: str) -> list[str]:
     larger = re.search(
-        r"steel(?:\s+hook)?\s+(\d+).{0,40}\blarger\b.{0,30}steel(?:\s+hook)?\s+(\d+)",
+        r"steel(?:\s+hook)?\s+(\d+).{0,40}\b(?:larger|bigger)\b.{0,30}steel(?:\s+hook)?\s+(\d+)",
         line,
         re.IGNORECASE,
     )

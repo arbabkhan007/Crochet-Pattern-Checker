@@ -1134,11 +1134,11 @@ def _pair_messages(line: str) -> list[str]:
         found.append("The right side and the wrong side cannot both face the worker.")
     if _has(line, r"yarn over") and _has(line, r"yarn under"):
         found.append("Yarn over and yarn under cannot be the same stitch.")
-    if _has(line, r"reverse (?:sc|single crochet)") and _has(line, r"\bforward\b") and not _has(line, r"\bbackward\b"):
+    if _has(line, r"reverse (?:sc|single crochet)") and _has(line, r"\bforwards?\b") and not _has(line, r"\bbackward\b"):
         found.append("Reverse single crochet is worked backward, not forward.")
     if _has(line, r"right-handed") and _has(line, r"left-handed") and not _has(line, r"\bseparate\b"):
         found.append("Right-handed and left-handed work need separate instructions.")
-    if _has(line, r"whipstitch") and _has(line, r"mattress stitch"):
+    if _has(line, r"whip\s*stitch") and _has(line, r"mattress stitch"):
         found.append("Whipstitch and mattress stitch are two seams. The extra seam was not invented.")
     if _has(line, r"magic ring") and _has(line, r"chain ring|form(?:ed|ing)? (?:a |an )?(?:open )?ring"):
         found.append("A piece cannot start with both a magic ring and a chain ring.")

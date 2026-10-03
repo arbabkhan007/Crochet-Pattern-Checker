@@ -256,7 +256,7 @@ RULES: tuple[PhraseRule, ...] = (
         "the same line says to join and not to join.",
         "the corrected file joins with a slip stitch.",
         "Join with a sl st and do not join.\n", "Join with a sl st.\n",
-        r"\bjoin\b.*\bdo not join\b",
+        r"\bjoin\b.*\b(?:do not|don\'t) join\b",
         "The line says to join and not to join.",
         "join and not to join",
         True,

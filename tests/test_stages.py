@@ -581,3 +581,25 @@ def test_fifty_phrase_rules():
         assert bad.overall_status != "PASS", rule.slug
         assert rule.needle in blob, rule.slug
         assert good.overall_status == "PASS", (rule.slug, _messages(good))
+
+
+def test_none_and_made_of_use_the_same_rule():
+    errors = [
+        "Work no stitches.",
+        "Round none.",
+        "Corner made of zero chains.",
+        "ch one, turn for dc.",
+        "Rounds 8 to 5.",
+        "Steel hook 7 is bigger than steel 1.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "No stitches are left unworked.",
+        "Rounds 1 to 8.",
+        "ch three, turn for dc.",
+        "Back loop only or both loops.",
+        "> Work no stitches.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line
