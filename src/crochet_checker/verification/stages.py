@@ -135,6 +135,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(spiral_join(text))
     errors.extend(stuff_after_ban(text))
     errors.extend(make_disagree(text))
+    errors.extend(written_pairs(text))
     errors.extend(chain_underside(text))
     errors.extend(dropped_body(text))
     errors.extend(front_back_post(text))
@@ -203,6 +204,7 @@ def run_stages(text: str) -> StageReport:
             "spiral join",
             "stuff after ban",
             "make count",
+            "written pairs",
             "chain underside",
             "dropped body",
             "front and back post",
@@ -1042,6 +1044,136 @@ def _skip_line(line: str) -> bool:
         or line.lstrip().startswith(">")
         or bool(re.search(r"\bdefect\b", line, re.IGNORECASE))
     )
+
+
+_COUNT_WORDS = {
+    "one": 1,
+    "two": 2,
+    "three": 3,
+    "four": 4,
+    "five": 5,
+    "six": 6,
+    "seven": 7,
+    "eight": 8,
+    "nine": 9,
+    "ten": 10,
+    "eleven": 11,
+    "twelve": 12,
+    "thirteen": 13,
+    "fourteen": 14,
+    "fifteen": 15,
+    "sixteen": 16,
+    "seventeen": 17,
+    "eighteen": 18,
+    "nineteen": 19,
+    "twenty": 20,
+}
+_WORD_LIST = "|".join(_COUNT_WORDS)
+_WORD_DIGIT = re.compile(rf"\b({_WORD_LIST})\b\s*\(\s*(\d+)\s*\)", re.IGNORECASE)
+_DIGIT_WORD = re.compile(rf"\b(\d+)\s*\(\s*({_WORD_LIST})\s*\)", re.IGNORECASE)
+_NEGATIVE_MEASURE = re.compile(
+    r"(?<![\d.])-\d+(?:\.\d+)?\s*(?:inches?|cm|mm|sts?|stitches|sc|hdc|dc)\b",
+    re.IGNORECASE,
+)
+
+
+def written_pairs(text: str) -> list[str]:
+    """Flag a contradiction in any sentence, not only one copied lesson line."""
+    errors = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if _skip_line(line):
+            continue
+        if _banned_and_done(line, r"\b(?:do not|don't)\s+stuff(?:ing)?\b", r"\bstuff(?:ing|ed)?\b"):
+            errors.append("The line stuffs and does not stuff. The stuffing was not added.")
+        if _banned_and_done(line, r"\b(?:do not|don't)\s+turn\b", r"\bturn\b"):
+            errors.append("The line turns and does not turn. The turn was not added.")
+        if _quoted_or_explained(line):
+            continue
+        errors.extend(_pair_messages(line))
+        errors.extend(_word_digit(line))
+        if _NEGATIVE_MEASURE.search(line):
+            errors.append("A negative measure is not a size. No length was invented.")
+        if _copied_unit(line):
+            errors.append("The line copies the same number into both units. The length was not converted.")
+    return _unique(errors)
+
+
+def _choice(line: str) -> bool:
+    return bool(re.search(r"\bor\b|\bcannot\b", line, re.IGNORECASE))
+
+
+def _has(line: str, pattern: str) -> bool:
+    return bool(re.search(pattern, line, re.IGNORECASE))
+
+
+def _pair_messages(line: str) -> list[str]:
+    if _choice(line):
+        return []
+    found = []
+    both_ways = _has(line, r"left to right") and _has(line, r"right to left")
+    if both_ways or _has(line, r"\bboth directions\b"):
+        found.append("The line gives both directions and does not say or.")
+    if _has(line, r"right side") and _has(line, r"wrong side"):
+        found.append("The right side and the wrong side cannot both face the worker.")
+    if _has(line, r"yarn over") and _has(line, r"yarn under"):
+        found.append("Yarn over and yarn under cannot be the same stitch.")
+    if _has(line, r"reverse (?:sc|single crochet)") and _has(line, r"\bforward\b") and not _has(line, r"\bbackward\b"):
+        found.append("Reverse single crochet is worked backward, not forward.")
+    if _has(line, r"right-handed") and _has(line, r"left-handed") and not _has(line, r"\bseparate\b"):
+        found.append("Right-handed and left-handed work need separate instructions.")
+    if _has(line, r"whipstitch") and _has(line, r"mattress stitch"):
+        found.append("Whipstitch and mattress stitch are two seams. The extra seam was not invented.")
+    if _has(line, r"magic ring") and _has(line, r"chain ring|form(?:ed|ing)? (?:a |an )?(?:open )?ring"):
+        found.append("A piece cannot start with both a magic ring and a chain ring.")
+    if _has(line, r"\bFLO\s+and\s+BLO\b|\bBLO\s+and\s+FLO\b|\bBLO only and both loops\b"):
+        found.append("FLO and BLO cannot be the same stitch.")
+    if _has(line, r"in the round") and _has(line, r"back and forth"):
+        found.append("In the round and back and forth are two fabrics. The extra fabric was not invented.")
+    if _has(line, r"\binc(?:rease)?\b") and _has(line, r"\bdec(?:rease)?\b") and _has(line, r"\bsame stitch\b"):
+        found.append("Increase and decrease cannot be the same stitch.")
+    plain = re.sub(r"^[*_]+", "", line)
+    if re.match(r"^rows?\b", plain, re.IGNORECASE) and _has(line, r"\baround\b"):
+        found.append("A row says around. Rows are worked across.")
+    return found
+
+
+def _word_digit(line: str) -> list[str]:
+    errors = []
+    for pattern, word_group, digit_group in (
+        (_WORD_DIGIT, 1, 2),
+        (_DIGIT_WORD, 2, 1),
+    ):
+        for match in pattern.finditer(line):
+            before = line[max(0, match.start() - 12):match.start()]
+            if re.search(r"\b(?:round|row|rnd)s?\s*$", before, re.IGNORECASE):
+                continue
+            word = match.group(word_group).lower()
+            digit = int(match.group(digit_group))
+            if _COUNT_WORDS[word] != digit:
+                errors.append(
+                    "The word and the digit are different counts. The extra count was not chosen."
+                )
+    return errors
+
+
+def _copied_unit(line: str) -> bool:
+    patterns = (
+        r"\b(\d+(?:\.\d+)?)\s*inches\b[^.]{0,40}\b(\d+(?:\.\d+)?)\s*cm\b",
+        r"\b(\d+(?:\.\d+)?)\s*cm\b[^.]{0,40}\b(\d+(?:\.\d+)?)\s*inches\b",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, line, re.IGNORECASE)
+        if match and match.group(1) == match.group(2):
+            return True
+    return False
+
+
+def _banned_and_done(line: str, ban: str, verb: str) -> bool:
+    pattern = re.compile(ban, re.IGNORECASE)
+    if not pattern.search(line):
+        return False
+    return bool(re.search(verb, pattern.sub("", line), re.IGNORECASE))
 
 
 def chain_underside(text: str) -> list[str]:

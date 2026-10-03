@@ -378,6 +378,41 @@ def test_a_line_cannot_state_two_endings():
     assert "more than one stitch count" not in blob(quoted)
 
 
+def test_a_contradiction_is_caught_in_any_sentence():
+    blob = lambda text: " ".join(_messages(validate_pattern(text)))
+    assert "different counts" in blob("Repeat six (5) times.\n")
+    assert "different counts" not in blob("Repeat six (6) times.\n")
+    assert "different counts" not in blob("Round one (6)\nRound 1: 6 sc into magic ring (6)\n")
+    assert "same stitch" in blob("Work the next stitch in FLO and BLO.\n")
+    assert "same stitch" not in blob("Round 2: sc in BLO, sc in FLO (12)\n")
+    assert "both directions" in blob("Work the round in both directions.\n")
+    assert "both directions" not in blob("Work left to right or right to left.\n")
+    assert "cannot both face" in blob("Keep the right side and the wrong side facing.\n")
+    assert "cannot both face" not in blob("With the right side facing.\n")
+    assert "yarn under" in blob("Yarn over and yarn under the same stitch.\n")
+    assert "yarn under" not in blob("Work yarn over for the same stitch.\n")
+    assert "not forward" in blob("Reverse single crochet worked forward.\n")
+    assert "not forward" not in blob("Reverse sc worked backward.\n")
+    assert "separate instructions" in blob("Work this row right-handed and left-handed.\n")
+    assert "separate instructions" not in blob("Written for right-handed work.\n")
+    assert "two seams" in blob("Sew with a whipstitch and a mattress stitch.\n")
+    assert "two seams" not in blob("Seam with mattress stitch.\n")
+    assert "chain ring" in blob("Begin with a magic ring and a chain ring.\n")
+    assert "chain ring" not in blob("Round 1: 6 sc into magic ring (6)\n")
+    assert "two fabrics" in blob("Work in the round and back and forth.\n")
+    assert "Rows are worked across" in blob("Row 4: sc in each stitch around.\n")
+    assert "Rows are worked across" not in blob("Round 4: sc in each st around (12)\n")
+    assert "negative measure" in blob("The piece is 8 inches long and -8 inches long.\n")
+    assert "negative measure" not in blob("The cuff is 1-2 inches.\n")
+    assert "not converted" in blob("The edge is 4 inches, which is 4 cm.\n")
+    assert "not converted" not in blob("Gauge: 20 sts = 4 inches (10 cm).\n")
+    assert "does not stuff" in blob("Stuff the head and do not stuff the head.\n")
+    assert "does not stuff" not in blob("Do not stuff.\n")
+    assert "does not turn" in blob("Turn the row and do not turn the row.\n")
+    quoted = "> Work the round in both directions.\nRound 1: 6 sc into magic ring (6)\n"
+    assert "both directions" not in blob(quoted)
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"
