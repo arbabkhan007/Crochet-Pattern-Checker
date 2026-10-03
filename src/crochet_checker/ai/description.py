@@ -130,12 +130,6 @@ class DescriptionGenerator:
         if items:
             if p.rounds:
                 tags.extend(["rounds", "circular"])
-            if m.max_diameter_inches < 4:
-                tags.extend(["amigurumi", "small"])
-            elif m.max_diameter_inches < 8:
-                tags.append("medium")
-            else:
-                tags.append("large")
             if any("magic ring" in r.source_text.lower() for r in items[:2]):
                 tags.extend(["magic ring", "center start"])
         return tags

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "crochet-pattern-checker"
 version = "1.0.0"
-description = "Crochet Pattern Verification, Visualization & PDF Publishing Engine"
+description = "Written crochet pattern checker"
 requires-python = ">=3.10"
 dependencies = [
     "PyPDF2>=3.0.0",

@@ -5,8 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from .provider import AIConfig, AIProvider
-
 
 @dataclass
 class AIClaim:
@@ -48,86 +46,38 @@ class ConsensusReport:
 
 class AIConsensusChecker:
     """
-    Compare independent AI opinions against deterministic validation.
-
-    The compiler remains authoritative. AI output is advisory only.
+    Record the compiler result. A hosted chat is not called.
     """
 
     def __init__(
         self,
-        openai_config: AIConfig | None = None,
-        gemini_config: AIConfig | None = None,
+        openai_config: object | None = None,
+        gemini_config: object | None = None,
     ):
-        self.openai = AIProvider(
-            openai_config
-            or AIConfig(provider="openai", model="gpt-4o-mini")
-        )
-        self.gemini = AIProvider(
-            gemini_config
-            or AIConfig(provider="gemini", model="gemini-1.5-flash")
-        )
+        del openai_config, gemini_config
 
     def compare(self, pattern, report) -> ConsensusReport:
+        del pattern
         compiler_errors = [
             getattr(error, "message", str(error))
             for error in getattr(report, "errors", [])
         ]
-
-        claims: list[AIClaim] = []
-        disagreements: list[str] = []
-
-        provider_results = []
-
-        for name, provider in (
-            ("openai", self.openai),
-            ("gemini", self.gemini),
-        ):
-            try:
-                response = provider.explain_pattern(pattern, report)
-                claim = AIClaim(
-                    provider=name,
-                    claim=response,
-                    confidence=0.5,
-                    verified=False,
-                )
-                claims.append(claim)
-                provider_results.append((name, response))
-            except Exception as exc:
-                disagreements.append(
-                    f"{name} provider unavailable: {type(exc).__name__}: {exc}"
-                )
-
-        if len(provider_results) == 2:
-            left = provider_results[0][1].strip()
-            right = provider_results[1][1].strip()
-
-            if left != right:
-                disagreements.append(
-                    "ChatGPT and Gemini returned different explanations. "
-                    "Use compiler findings as the authoritative result."
-                )
-
+        disagreements = [
+            "Hosted chat was not called. The compiler result stands."
+        ]
         if compiler_errors:
             recommendation = (
                 "Resolve deterministic compiler errors first. "
-                "AI explanations are advisory and must not override "
-                "compiler stitch counts."
-            )
-        elif disagreements:
-            recommendation = (
-                "The pattern passed deterministic validation, but AI opinions "
-                "differ. Review the exact round counts manually."
+                "A chat model was not called and cannot override the stitch count."
             )
         else:
             recommendation = (
-                "The pattern passed deterministic validation and AI responses "
-                "did not produce a detected disagreement."
+                "The compiler result stands. A chat model was not called."
             )
-
         return ConsensusReport(
-            compiler_valid=getattr(report, "valid", False),
+            compiler_valid=not compiler_errors,
             compiler_errors=compiler_errors,
-            claims=claims,
+            claims=[],
             disagreements=disagreements,
             recommendation=recommendation,
         )

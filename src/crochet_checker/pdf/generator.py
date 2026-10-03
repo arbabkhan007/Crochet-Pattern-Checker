@@ -1904,7 +1904,7 @@ def generate_pdf_html(
     html = generator.generate(pattern, validation_report)
 
     # Compatibility labels for the original test/API consumers.
-    # The premium table uses R1 and (6), while older callers expect
+    # The printed table uses R1 and (6), while older callers expect
     # Round 1 and (6 sts). Keep the modern visible table unchanged and
     # include equivalent legacy tokens in a non-visible HTML comment.
     legacy_tokens = []

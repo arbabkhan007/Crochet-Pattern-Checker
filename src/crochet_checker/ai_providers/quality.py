@@ -190,76 +190,10 @@ class AIQualityChecker:
         return result
 
     def _query_cloud_models(self, result, pattern, compiler_report):
-        from .provider import AIConfig, AIProvider
-
-        providers = [
-            (
-                "openai",
-                "OPENAI_API_KEY",
-                AIConfig(
-                    provider="openai",
-                    model=os.environ.get(
-                        "OPENAI_MODEL",
-                        "gpt-4o-mini",
-                    ),
-                ),
-            ),
-            (
-                "gemini",
-                "GOOGLE_API_KEY",
-                AIConfig(
-                    provider="gemini",
-                    model=os.environ.get(
-                        "GEMINI_MODEL",
-                        "gemini-1.5-flash",
-                    ),
-                ),
-            ),
-        ]
-
-        responses: list[str] = []
-
-        for name, key_name, config in providers:
-            if not os.environ.get(key_name):
-                result.disagreements.append(
-                    f"{name} skipped: {key_name} is not configured."
-                )
-                continue
-
-            started = time.perf_counter()
-
-            try:
-                response = AIProvider(config).explain_pattern(
-                    pattern,
-                    compiler_report,
-                )
-                latency = int(
-                    (time.perf_counter() - started) * 1000
-                )
-
-                responses.append(response.strip())
-                result.providers_used.append(name)
-                result.claims.append(
-                    AIClaim(
-                        provider=name,
-                        model=config.model or "default",
-                        claim_type="explanation",
-                        message=response,
-                        confidence=0.5,
-                        status="UNVERIFIED",
-                        latency_ms=latency,
-                    )
-                )
-            except Exception as exc:
-                result.disagreements.append(
-                    f"{name} failed safely: "
-                    f"{type(exc).__name__}: {exc}"
-                )
-
-        if len(responses) >= 2 and responses[0] != responses[1]:
-            result.disagreements.append(
-                "ChatGPT and Gemini returned different explanations."
-            )
+        del pattern, compiler_report
+        result.disagreements.append(
+            "Hosted chat was not called. The compiler result stands."
+        )
 
     @staticmethod
     def _from_dict(data: dict[str, Any]) -> AIQualityReport:

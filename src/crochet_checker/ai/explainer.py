@@ -44,10 +44,7 @@ class PatternExplainer:
             else "has errors"
         )
         parts = [f"{title} has {n} {label} and {v}."]
-        if m.max_diameter_inches > 0:
-            parts.append(
-                f"It produces approximately {m.max_diameter_inches:.1f} inches across and {m.total_height_inches:.1f} inches tall."
-            )
+        parts.append("This is not a measured size.")
         return " ".join(parts)
 
     def _explanation(self, p, r, m):
@@ -105,8 +102,7 @@ class PatternExplainer:
         h.append(
             f"Total {len(items)} rounds" if p.rounds else f"Total {len(items)} rows"
         )
-        if m.max_diameter_inches > 0:
-            h.append(f"~{m.max_diameter_inches:.1f} inches across")
+        h.append("Not a measured size.")
         h.append(f"Score: {r.score}/100")
         return h
 

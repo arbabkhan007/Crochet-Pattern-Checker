@@ -48,7 +48,8 @@ Cinch shut closes the piece. A later counted round, stuffing, or safety eyes in 
 
 - A chart image is not detected. `read_chart_image` does not invent symbols.
 - A photo is not classified. `inspect_photo` does not open the file and does not invent stitch or row counts.
-- No hosted language model is installed.
+- No hosted language model is installed. A support chat is not called.
+- A cover image is not generated. No photo is invented.
 - No vision training set is installed.
 - No process cluster is installed. The stages run in this process, in order.
 - A physical comfort ratio is not calculated. No swatch was measured, so two parts are not declared to fit.
@@ -177,10 +178,6 @@ Lessons 94 through 158. These are new written checks. Five thousand named copies
 140. Apart span. Eyes farther apart than the round cannot sit on it. This is not limited to 8 on 6.
 141. Stitch past end. A marker past the last stitch cannot be placed.
 142. Skip past count. A skip of the whole row or more does not fit.
-143. Fractional times. Any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
-144. Copied inch measure. The same number in inches and centimeters is not a conversion. One inch is 2.54 cm.
-145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.
-. A skip of the whole row or more does not fit.
 143. Fractional times. Any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
 144. Copied inch measure. The same number in inches and centimeters is not a conversion. One inch is 2.54 cm.
 145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.

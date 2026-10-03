@@ -11,14 +11,14 @@ The deterministic compiler is authoritative for:
 - Multi-piece state
 - Assembly checks
 
-ChatGPT and Gemini are advisory providers only.
+ChatGPT and Gemini are not called. The compiler result stands.
 
 ## AI modes
 
 - `offline`: compiler only
-- `cloud`: configured provider responses
-- `consensus`: compare ChatGPT and Gemini
-- `rule_based`: deterministic fallback
+- `cloud`: not called
+- `consensus`: not a second model opinion
+- `rule_based`: deterministic wording only
 
 ## Safe learning
 

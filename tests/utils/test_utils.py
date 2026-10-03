@@ -69,11 +69,11 @@ def test_commands_name_unweighed_estimates(tmp_path):
     runner = CliRunner()
     yarn = runner.invoke(cli, ["yarn-calc", str(pattern)])
     explain = runner.invoke(cli, ["explain", str(pattern)])
-    image = runner.invoke(cli, ["image", str(pattern), "-o", str(tmp_path / "cover.svg")])
+    missing = runner.invoke(cli, ["image", str(pattern)])
     assert yarn.exit_code == 0, yarn.output
     assert explain.exit_code == 0, explain.output
-    assert image.exit_code == 0, image.output
+    assert missing.exit_code != 0
     assert "Not weighed. Not a finished size." in yarn.output
     assert "Finished size:" not in yarn.output
     assert "Not a made piece. Not a measured size." in explain.output
-    assert "Not a photo of a made piece." in image.output
+    assert "A chat model was not called." in explain.output
