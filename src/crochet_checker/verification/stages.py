@@ -279,6 +279,16 @@ def termination(text: str) -> list[str]:
             errors.append("This repeat does not terminate. Give it a stitch, round, or inch stop.")
             continue
         if not match:
+            if (
+                not line.lstrip().startswith(">")
+                and not line.lstrip().startswith("|")
+                and re.search(r"\buntil\b.{0,48}\blong enough\b", line, re.IGNORECASE)
+                and not re.search(r"\d", line)
+            ):
+                errors.append(
+                    "This repeat does not terminate. "
+                    "Say the stitch count, the round count, or the length."
+                )
             continue
         clause = match.group(2)
         if re.search(r"\d|one|two|three|four|five|six|seven|eight|nine|ten|twelve", clause, re.IGNORECASE):

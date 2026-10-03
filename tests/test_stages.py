@@ -413,6 +413,34 @@ def test_a_contradiction_is_caught_in_any_sentence():
     assert "both directions" not in blob(quoted)
 
 
+def test_nearby_wording_uses_the_same_rule():
+    blob = lambda text: " ".join(_messages(validate_pattern(text)))
+    assert "more than 1.5 mm" in blob("Use an H/8 (2.25 mm) hook.\n")
+    assert "more than 1.5 mm" not in blob("Use an H/8 (5 mm) hook.\n")
+    assert "more than 1.5 mm" not in blob("Use a 3.5 mm hook.\n")
+    assert "category 4, not 1" in blob("Yarn: worsted weight (1).\n")
+    assert "category 4, not 1" not in blob("Yarn: worsted weight (4).\n")
+    assert "not a UK treble" in blob("A US sc is a UK treble.\n")
+    assert "not a UK treble" not in blob("A US sc is a UK double.\n")
+    assert "smaller, not larger" in blob("Steel hook 14 is larger than steel hook 1.\n")
+    assert "smaller, not larger" not in blob("Steel hook 14 is smaller than steel hook 1.\n")
+    assert "must be even" in blob("The count must be even: 7 stitches.\n")
+    assert "must be even" not in blob("The count must be even (8 stitches).\n")
+    assert "past a 6-stitch" in blob("Work stitch 12 of the 6-stitch round.\n")
+    assert "past a" not in blob("Work stitch 4 of the 24-stitch round.\n")
+    assert "do not fit" in blob("The eyes are 10 stitches apart on an 8-stitch round.\n")
+    assert "does not fit" in blob("Skip 8 stitches on a 6-stitch row.\n")
+    assert "too short to turn for a dc" in blob("ch 2, turn, dc in the next stitch.\n")
+    assert "too short to turn for a dc" not in blob("ch 3, turn, dc in the next stitch.\n")
+    assert "too short to turn" not in blob("Row 2: ch 1, turn, sc in each st across (19)\n")
+    assert "not a stitch" in blob("The slip knot counts as stitch 1.\n")
+    assert "not a color change" in blob("Switch to Color B, then switch to Color B.\n")
+    assert "not a color change" not in blob("Switch to Color B, then switch to Color A.\n")
+    assert "does not terminate" in blob("Keep going until it looks long enough.\n")
+    assert "does not terminate" not in blob("Repeat until the piece is 8 inches long.\n")
+    assert "not a UK treble" not in blob("> A US sc is a UK treble.\nRound 1: 6 sc into magic ring (6)\n")
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"

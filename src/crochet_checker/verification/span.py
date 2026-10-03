@@ -451,6 +451,16 @@ COUNTS_AS = {
     ("4", "hdc"): "hdc",
 }
 UK_GLOSS = {
+    "us single crochet is a uk double treble": "A US single crochet is a UK double, not a UK double treble.",
+    "us sc is a uk double treble": "A US single crochet is a UK double, not a UK double treble.",
+    "us single crochet is a uk treble": "A US single crochet is a UK double, not a UK treble.",
+    "us sc is a uk treble": "A US single crochet is a UK double, not a UK treble.",
+    "us double crochet is a uk double treble": "A US double crochet is a UK treble, not a UK double treble.",
+    "us dc is a uk double treble": "A US double crochet is a UK treble, not a UK double treble.",
+    "us double crochet is a uk double": "A US double crochet is a UK treble, not a UK double.",
+    "us dc is a uk double": "A US double crochet is a UK treble, not a UK double.",
+    "us treble is a uk treble": "A US treble is a UK double treble, not a UK treble.",
+    "us tr is a uk treble": "A US treble is a UK double treble, not a UK treble.",
     "sc (uk treble)": "A US single crochet is a UK double, not a UK treble.",
     "sc (uk double treble)": "A US single crochet is a UK double, not a UK double treble.",
     "hdc (uk treble)": "A US half double is a UK half treble, not a UK treble.",
@@ -461,6 +471,10 @@ UK_GLOSS = {
 
 _HOOK = re.compile(
     r"Hook:\s*([A-Z](?:/[A-Z])?(?:-\d+(?:\.\d+)?)?)\s*\((\d+(?:\.\d+)?)\s*mm\)",
+    re.IGNORECASE,
+)
+_HOOK_ANY = re.compile(
+    r"\b([A-P](?:/[A-Z])?-\d+(?:\.\d+)?|[A-P]/\d+(?:\.\d+)?|[A-P]/[A-Z](?:-\d+(?:\.\d+)?)?)\s*\(?(\d+(?:\.\d+)?)\s*mm\)?",
     re.IGNORECASE,
 )
 _INCREASE = re.compile(r"^Increase from (\d+) to (\d+)\b", re.IGNORECASE)
@@ -717,24 +731,108 @@ def _line_errors(line: str) -> list[str]:
         found.append(
             f"Changing from Color {match.group(1)} to Color {match.group(1)} is not a color change."
         )
+    again = re.search(
+        r"\b(?:switch|change) to Color ([A-Z])\b.{0,60}\b(?:switch|change) to Color \1\b",
+        line,
+        re.IGNORECASE,
+    )
+    if again:
+        found.append(
+            f"Changing from Color {again.group(1)} to Color {again.group(1)} is not a color change."
+        )
+    found.extend(_nearby_counts(line))
+    found.extend(_steel_order(line))
+    found.extend(_flat_turn(line))
+    if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
+        found.append("A slip knot is not a stitch.")
     return found
 
 
-def _hook_gap(line: str) -> list[str]:
-    match = _HOOK.search(line)
+def _nearby_counts(line: str) -> list[str]:
+    """Catch the same count contradiction when it is not the copied lesson sentence."""
+    found: list[str] = []
+    even = re.search(r"\bmust be even\D{0,16}(\d+)", line, re.IGNORECASE)
+    if even and int(even.group(1)) % 2:
+        found.append(f"{even.group(1)} is odd, but the line says the count must be even.")
+    odd = re.search(r"\bmust be odd\D{0,16}(\d+)", line, re.IGNORECASE)
+    if odd and int(odd.group(1)) % 2 == 0:
+        found.append(f"{odd.group(1)} is even, but the line says the count must be odd.")
+    if not re.search(r"\bplus\b", line, re.IGNORECASE):
+        match = re.search(r"\bmultiple of (\d+)\D{0,12}(\d+) stitches\b", line, re.IGNORECASE)
+        if match and int(match.group(1)) and int(match.group(2)) % int(match.group(1)):
+            found.append(f"{match.group(2)} is not divisible by {match.group(1)}.")
+    for match in re.finditer(r"\bstitch (\d+)\b.{0,32}\b(\d+)-stitch\b", line, re.IGNORECASE):
+        if int(match.group(1)) > int(match.group(2)):
+            found.append(
+                f"Stitch {match.group(1)} is past a {match.group(2)}-stitch round."
+            )
+    apart = re.search(r"\b(\d+) stitches apart\b.{0,40}\b(\d+)-stitch\b", line, re.IGNORECASE)
+    if apart and int(apart.group(1)) >= int(apart.group(2)):
+        found.append(
+            f"Eyes {apart.group(1)} stitches apart do not fit on a "
+            f"{apart.group(2)}-stitch round."
+        )
+    skip = re.search(r"\bskip (\d+)\b.{0,24}\bon an? (\d+)-stitch\b", line, re.IGNORECASE)
+    if skip and int(skip.group(1)) >= int(skip.group(2)):
+        found.append(f"Skip {skip.group(1)} does not fit on a {skip.group(2)}-stitch row.")
+    return found
+
+
+def _steel_order(line: str) -> list[str]:
+    larger = re.search(
+        r"steel(?:\s+hook)?\s+(\d+).{0,40}\blarger\b.{0,30}steel(?:\s+hook)?\s+(\d+)",
+        line,
+        re.IGNORECASE,
+    )
+    if larger and int(larger.group(1)) > int(larger.group(2)):
+        return ["A higher steel-hook number is smaller, not larger."]
+    smaller = re.search(
+        r"steel(?:\s+hook)?\s+(\d+).{0,40}\bsmaller\b.{0,30}steel(?:\s+hook)?\s+(\d+)",
+        line,
+        re.IGNORECASE,
+    )
+    if smaller and int(smaller.group(1)) < int(smaller.group(2)):
+        return ["A higher steel-hook number is smaller, not larger."]
+    return []
+
+
+def _flat_turn(line: str) -> list[str]:
+    needed = {"sc": 1, "hdc": 2, "dc": 3}
+    match = re.search(r"\bch (\d+), turn, (sc|hdc|dc)\b", line, re.IGNORECASE)
     if not match:
         return []
-    label = match.group(1).upper().replace("/", "-")
-    if label not in HOOKS:
-        label = match.group(1).upper()
+    chains = int(match.group(1))
+    stitch = match.group(2).lower()
+    if chains >= needed[stitch]:
+        return []
+    return [f"ch {chains} is too short to turn for a {stitch}. Use ch {needed[stitch]}."]
+
+
+def _hook_gap(line: str) -> list[str]:
+    errors = []
+    for match in _HOOK.finditer(line):
+        errors.extend(_hook_gap_match(match.group(1), match.group(2)))
+    for match in _HOOK_ANY.finditer(line):
+        errors.extend(_hook_gap_match(match.group(1), match.group(2)))
+    return _unique(errors)
+
+
+def _hook_gap_match(raw: str, millimetres: str) -> list[str]:
+    label = raw.upper()
+    if re.fullmatch(r"[A-P]/\d+(?:\.\d+)?", label):
+        label = label.replace("/", "-")
     nominal = HOOKS.get(label)
     if nominal is None:
+        folded = raw.upper().replace("/", "-")
+        nominal = HOOKS.get(folded)
+        label = raw.upper() if nominal is None else folded
+    if nominal is None:
         return []
-    written = float(match.group(2))
+    written = float(millimetres)
     if abs(written - nominal) <= HOOK_GAP:
         return []
     return [
-        f"Hook {match.group(1)} is written as {match.group(2)} mm, "
+        f"Hook {raw} is written as {millimetres} mm, "
         f"but the Craft Yarn Council nominal size is {nominal:g} mm. "
         "The gap is more than 1.5 mm."
     ]
@@ -745,7 +843,7 @@ def _weight_number(line: str) -> list[str]:
     occupied: list[tuple[int, int]] = []
     errors = []
     for name, allowed in WEIGHTS:
-        for match in re.finditer(rf"(?<![a-z]){re.escape(name)}\s*\((\d+)\)", low):
+        for match in re.finditer(rf"(?<![a-z]){re.escape(name)}(?:\s+weight)?\s*\((\d+)\)", low):
             span = match.span()
             if any(start <= span[0] and span[1] <= end for start, end in occupied):
                 continue
