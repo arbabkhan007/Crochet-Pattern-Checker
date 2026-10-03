@@ -181,3 +181,5 @@ Lessons 94 through 158. These are new written checks. Five thousand named copies
 143. Fractional times. Any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
 144. Copied inch measure. The same number in inches and centimeters is not a conversion. One inch is 2.54 cm.
 145. Copied centimeter measure. The same number in centimeters and inches is not a conversion.
+
+A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical size. `ch 1, turn for dc` is too short. `ch 1 counts as dc` cannot count as that stitch. A V-stitch, fan, star, or cluster of one is not that stitch. A loop of zero has no loop. An oval of zero chains and a rectangle of zero rows were not worked. Yarn held doubled and single is both. Eyes twelve apart on a round of six do not fit. Foundation sc and a chain used to start are two starts. A fringe of no strands is not a fringe. A quoted line is not an instruction. No length is invented.

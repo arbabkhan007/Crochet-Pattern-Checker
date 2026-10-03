@@ -520,6 +520,37 @@ def test_zero_and_word_gaps_are_named():
     assert "does not terminate" not in blob("> Repeat until done.\nRound 1: 6 sc into magic ring (6)\n")
 
 
+def test_other_wording_uses_the_same_rule():
+    blob = lambda text: " ".join(_messages(validate_pattern(text)))
+    assert "more than 1.5 mm" in blob("Hook H/8 is 2.25 mm.\n")
+    assert "more than 1.5 mm" not in blob("Hook H/8 is 5 mm.\n")
+    assert "too short to turn" in blob("Ch 1, turn for dc.\n")
+    assert "too short to turn" not in blob("ch 3, turn for dc.\n")
+    assert "cannot count as a dc" in blob("ch 1 counts as dc.\n")
+    assert "cannot count as a dc" not in blob("ch 3 counts as a dc.\n")
+    assert "not a V-stitch" in blob("A V-stitch of one.\n")
+    assert "not a V-stitch" not in blob("Work a V-stitch of 2 dc.\n")
+    assert "not a fan" in blob("Fan of 1.\n")
+    assert "not a fan" not in blob("Work a fan of 5.\n")
+    assert "cannot make a star" in blob("A star stitch of one.\n")
+    assert "not a cluster" in blob("A cluster of one dc.\n")
+    assert "not a cluster" not in blob("Work a cluster of 3.\n")
+    assert "no loop" in blob("A loop of zero.\n")
+    assert "no loop" not in blob("Work a loop stitch of 1.\n")
+    assert "0 chains" in blob("Start the oval with zero chains.\n")
+    assert "0 chains" not in blob("Oval start with 8 chains.\n")
+    assert "0 rows" in blob("The rectangle is zero rows.\n")
+    assert "0 rows" not in blob("Rectangle of 12 rows.\n")
+    assert "double and single" in blob("Hold the yarn doubled and single.\n")
+    assert "double and single" not in blob("Work yarn double or single.\n")
+    assert "do not fit" in blob("Eyes twelve apart on a round of six stitches.\n")
+    assert "do not fit" not in blob("Eyes two apart on a round of six stitches.\n")
+    assert "starting chain" in blob("Foundation sc and also chain 20 to start.\n")
+    assert "starting chain" not in blob("Start with foundation sc.\n")
+    assert "not a fringe" in blob("Make a fringe using no strands.\n")
+    assert "more than 1.5 mm" not in blob("> Hook H/8 is 2.25 mm.\n")
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"
