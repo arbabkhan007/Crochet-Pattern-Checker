@@ -747,6 +747,7 @@ def _line_errors(line: str) -> list[str]:
     found.extend(_steel_order(line))
     found.extend(_flat_turn(line))
     found.extend(_rest_wording(line))
+    found.extend(_word_gaps(line))
     if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
         found.append("A slip knot is not a stitch.")
     return found
@@ -850,6 +851,97 @@ def _rest_wording(line: str) -> list[str]:
         found.append(f"A shell of {shell.group(1)} is not a shell. Use at least 3 stitches.")
     if re.search(r"\b(?:ch|chain)\s*-?\s*0\s+(?:space|sp)\b", line, re.IGNORECASE):
         found.append("A ch-0 space has no chains to work into.")
+    return found
+
+
+_GAP_WORDS = {
+    "zero": 0,
+    "one": 1,
+    "two": 2,
+    "three": 3,
+    "four": 4,
+    "five": 5,
+    "six": 6,
+    "seven": 7,
+    "eight": 8,
+    "nine": 9,
+    "ten": 10,
+    "eleven": 11,
+    "twelve": 12,
+    "thirteen": 13,
+    "fourteen": 14,
+    "fifteen": 15,
+    "sixteen": 16,
+    "seventeen": 17,
+    "eighteen": 18,
+    "nineteen": 19,
+    "twenty": 20,
+}
+
+
+def _gap_count(raw: str) -> int | None:
+    if raw.isdigit():
+        return int(raw)
+    return _GAP_WORDS.get(raw.lower())
+
+
+def _word_gaps(line: str) -> list[str]:
+    """Catch a copied rule when the sentence uses another word or a zero."""
+    found: list[str] = []
+    if re.search(r"\bcable\b.{0,20}\b(?:of|over)\s+0\b", line, re.IGNORECASE):
+        found.append("A cable over 0 stitches does not cross.")
+    if re.search(r"\bi-?cord\b.{0,16}\bof\s+0\b", line, re.IGNORECASE):
+        found.append("An i-cord of 0 stitches has no cord.")
+    if re.search(r"\bspike\b.{0,24}\bdown\s+0\b", line, re.IGNORECASE):
+        found.append("A spike stitch down 0 rows does not leave the current row.")
+    if re.search(r"\bsurface crochet\b.{0,16}\b(?:of\s+)?0\b", line, re.IGNORECASE):
+        found.append("Surface crochet of 0 chains draws no line.")
+    if re.search(r"\bpom-?pom\b.{0,16}\bof\s+0\b", line, re.IGNORECASE):
+        found.append("A pom-pom of 0 wraps has nothing to tie.")
+    if re.search(r"\bstuff", line, re.IGNORECASE) and re.search(
+        r"\bstuff(?:ing|ed)?\s+with\s+0\b|\b0\s+(?:ounces|grams)\b",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("Stuffing with 0 does not fill the piece.")
+    if re.search(r"\bmake\s+-\d+\b", line, re.IGNORECASE):
+        found.append("A negative make count is not a piece. The copies were not invented.")
+    if re.search(r"(?<![\d])\b(?:round|row|rnd)s?\s+-\d+\b", line, re.IGNORECASE):
+        found.append("A negative round or row number is not a round. Start at 1.")
+    if re.search(r"\bshell of zero\b", line, re.IGNORECASE):
+        found.append("A shell of 0 is not a shell. Use at least 3 stitches.")
+    if re.search(r"\b(?:fpdc|bpdc|fptr|bptr)\s+around\s+ch\b", line, re.IGNORECASE):
+        found.append("A chain has no post. Do not work a post around the chain.")
+    if re.search(r"\bFLO\b", line) and re.search(r"both loops", line, re.IGNORECASE) and not re.search(r"\bor\b", line, re.IGNORECASE):
+        found.append("FLO and both loops cannot be the same stitch.")
+    if re.search(r"\bcontinuous rounds\b", line, re.IGNORECASE) and re.search(
+        r"\bjoin (?:each|every) round\b|\bjoin with a slip stitch\b",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("Continuous rounds do not join every round. The join was not added.")
+    if re.search(r"\bin the round\b", line, re.IGNORECASE) and re.search(r"\bin rows\b", line, re.IGNORECASE) and not re.search(r"\bor\b", line, re.IGNORECASE):
+        found.append("In the round and in rows are two fabrics. The extra fabric was not invented.")
+    if re.search(r"\bfasten off\b.{0,40}\bkeep working\b", line, re.IGNORECASE):
+        found.append("Fasten off ended this yarn. The later work was not continued.")
+    if re.search(r"\bstitch zero\b", line, re.IGNORECASE):
+        found.append("Stitch 0 does not exist. The first stitch is stitch 1.")
+    if re.search(r"\bstuff\b", line, re.IGNORECASE) and re.search(r"\bleave\b.{0,24}\bempty\b", line, re.IGNORECASE) and not re.search(r"\bor\b", line, re.IGNORECASE):
+        found.append("The line stuffs and leaves the piece empty. The stuffing was not added.")
+    skip = re.search(r"\bskip ([A-Za-z]+)\b.{0,32}\brow of ([A-Za-z]+) stitches\b", line, re.IGNORECASE)
+    if skip:
+        left, right = _gap_count(skip.group(1)), _gap_count(skip.group(2))
+        if left is not None and right is not None and left >= right:
+            found.append(f"Skip {left} does not fit on a {right}-stitch row.")
+    apart = re.search(
+        r"\b([A-Za-z]+) stitches apart\b.{0,48}\bround of ([A-Za-z]+) stitches\b",
+        line,
+        re.IGNORECASE,
+    )
+    if apart:
+        left, right = _gap_count(apart.group(1)), _gap_count(apart.group(2))
+        if left is not None and right is not None and left >= right:
+            found.append(f"Eyes {left} stitches apart do not fit on a {right}-stitch round.")
     return found
 
 

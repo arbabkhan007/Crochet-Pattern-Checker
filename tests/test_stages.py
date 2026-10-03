@@ -483,6 +483,43 @@ def test_remaining_copied_rules_apply_in_any_sentence():
     assert "plus 2" not in blob("> It needs a multiple of 6 plus 2, and the count is 21 stitches.\n")
 
 
+def test_zero_and_word_gaps_are_named():
+    blob = lambda text: " ".join(_messages(validate_pattern(text)))
+    assert "does not terminate" in blob("Repeat until done.\n")
+    assert "does not terminate" not in blob("Repeat until 6 stitches.\n")
+    assert "does not cross" in blob("Cross a cable of 0 stitches.\n")
+    assert "does not cross" not in blob("Cable over 2 stitches.\n")
+    assert "no cord" in blob("Make an icord of 0 stitches.\n")
+    assert "no cord" not in blob("I-cord of 4 stitches.\n")
+    assert "does not leave" in blob("Work a spike down 0 rows.\n")
+    assert "does not leave" not in blob("Spike stitch down 2 rows.\n")
+    assert "draws no line" in blob("Surface crochet 0 stitches.\n")
+    assert "draws no line" not in blob("Surface crochet of 12 chains.\n")
+    assert "nothing to tie" in blob("Make a pompom of 0 wraps.\n")
+    assert "nothing to tie" not in blob("Pom-pom of 40 wraps.\n")
+    assert "does not fill" in blob("Stuff with 0 ounces.\n")
+    assert "not a piece" in blob("Ears (make -1).\n")
+    assert "not a piece" not in blob("Ears (make 2).\n")
+    assert "Start at 1" in blob("Row -1: sc across (6).\n")
+    assert "Start at 1" not in blob("Row 1: sc across (6).\n")
+    assert "not a shell" in blob("Work a shell of zero.\n")
+    assert "no post" in blob("fpdc around ch 4.\n")
+    assert "no post" not in blob("fpdc around the dc.\n")
+    assert "same stitch" in blob("Work FLO only and both loops of that stitch.\n")
+    assert "same stitch" not in blob("Work FLO or both loops.\n")
+    assert "The join was not added" in blob("Work continuous rounds and join each round with a slip stitch.\n")
+    assert "The join was not added" not in blob("Worked in continuous rounds.\n")
+    assert "two fabrics" in blob("Work this piece in the round and in rows.\n")
+    assert "two fabrics" not in blob("Work this piece in the round or in rows.\n")
+    assert "not continued" in blob("Fasten off and keep working the next round.\n")
+    assert "stitch 1" in blob("Place the marker at stitch zero.\n")
+    assert "does not fit" in blob("Skip twelve on a row of six stitches.\n")
+    assert "does not fit" not in blob("Skip two on a row of six stitches.\n")
+    assert "do not fit" in blob("Place the eyes twelve stitches apart on a round of six stitches.\n")
+    assert "leaves the piece empty" in blob("Stuff the head and leave the head empty.\n")
+    assert "does not terminate" not in blob("> Repeat until done.\nRound 1: 6 sc into magic ring (6)\n")
+
+
 def test_skipped_engines_stay_named():
     report = run_stages("Round 1: 6 sc into magic ring (6)\n")
     assert report.status == "PASS"

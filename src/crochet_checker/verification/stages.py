@@ -263,6 +263,8 @@ def termination(text: str) -> list[str]:
     """Flag a repeat that has no stitch, round, or inch stop."""
     errors = []
     for line in text.splitlines():
+        if line.lstrip().startswith(">") or line.lstrip().startswith("|"):
+            continue
         if re.search(r"\bdo not\b|\bdon't\b", line, re.IGNORECASE):
             continue
         match = re.search(
@@ -291,7 +293,11 @@ def termination(text: str) -> list[str]:
                 )
             continue
         clause = match.group(2)
-        if re.search(r"\d|one|two|three|four|five|six|seven|eight|nine|ten|twelve", clause, re.IGNORECASE):
+        if re.search(
+            r"\d|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b",
+            clause,
+            re.IGNORECASE,
+        ):
             continue
         errors.append(
             "This repeat does not terminate. "
