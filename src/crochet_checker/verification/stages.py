@@ -1140,7 +1140,7 @@ def _pair_messages(line: str) -> list[str]:
         found.append("FLO and BLO cannot be the same stitch.")
     if _has(line, r"in the round") and _has(line, r"back and forth"):
         found.append("In the round and back and forth are two fabrics. The extra fabric was not invented.")
-    if _has(line, r"\binc(?:rease)?\b") and _has(line, r"\bdec(?:rease)?\b") and _has(line, r"\bsame stitch\b"):
+    if _has(line, r"\binc(?:rease)?\b") and _has(line, r"\bdec(?:rease)?\b") and _has(line, r"\b(?:same|every|each) stitch\b"):
         found.append("Increase and decrease cannot be the same stitch.")
     plain = re.sub(r"^[*_]+", "", line)
     if re.match(r"^rows?\b", plain, re.IGNORECASE) and _has(line, r"\baround\b"):

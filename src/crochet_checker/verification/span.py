@@ -451,6 +451,9 @@ COUNTS_AS = {
     ("4", "hdc"): "hdc",
 }
 UK_GLOSS = {
+    "us half double crochet is a uk treble": "A US half double is a UK half treble, not a UK treble.",
+    "us half double is a uk treble": "A US half double is a UK half treble, not a UK treble.",
+    "us hdc is a uk treble": "A US half double is a UK half treble, not a UK treble.",
     "us single crochet is a uk double treble": "A US single crochet is a UK double, not a UK double treble.",
     "us sc is a uk double treble": "A US single crochet is a UK double, not a UK double treble.",
     "us single crochet is a uk treble": "A US single crochet is a UK double, not a UK treble.",
@@ -743,9 +746,131 @@ def _line_errors(line: str) -> list[str]:
     found.extend(_nearby_counts(line))
     found.extend(_steel_order(line))
     found.extend(_flat_turn(line))
+    found.extend(_rest_wording(line))
     if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
         found.append("A slip knot is not a stitch.")
     return found
+
+
+def _rest_wording(line: str) -> list[str]:
+    """Catch the remaining copied-lesson rules in any sentence."""
+    found: list[str] = []
+    plus = re.search(
+        r"\bmultiple of (\d+) plus (\d+)\D{0,32}(\d+) stitches\b",
+        line,
+        re.IGNORECASE,
+    )
+    if plus:
+        multiple, remainder, count = (int(plus.group(i)) for i in (1, 2, 3))
+        if multiple > 0 and remainder < multiple and count % multiple != remainder:
+            found.append(f"{count} is not a multiple of {multiple} plus {remainder}.")
+    if re.search(r"(?:turning )?chain (?:is )?counted twice|counts the (?:turning )?chain twice|chain counts twice", line, re.IGNORECASE):
+        found.append("A turning chain counted twice is added two times.")
+    if re.search(r"\b0\s+inches\b", line, re.IGNORECASE):
+        found.append("A finished width of 0 inches is not a piece.")
+    if re.search(
+        r"\b\d+\.\d+\s*(?:sc|hdc|dc|tr|dtr|sts?|stitches)\b|(?:\b(?:sc|hdc|dc|tr|dtr)\s+\d+\.\d+)\b",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("A decimal stitch is not a whole stitch.")
+    if re.search(r"\b(?:repeat|rep)\b.{0,30}\d+\.\d+\s+times\b", line, re.IGNORECASE):
+        found.append("A fractional repeat is not a whole repeat.")
+    if re.search(r"(?<![\d.])-\d+\s+times\b", line):
+        found.append("A negative repeat count is not a repeat.")
+    huge = re.search(r"\b(?:round|row|rnd)\s+(\d+)\b", line, re.IGNORECASE)
+    if huge and int(huge.group(1)) >= 200:
+        found.append(f"Round {huge.group(1)} is not a usable round number.")
+    if re.search(r"\bBLO\b", line) and re.search(r"both loops", line, re.IGNORECASE) and not re.search(r"\bor\b", line, re.IGNORECASE):
+        found.append("BLO only and both loops cannot be the same stitch.")
+    if re.search(r"(?:front post|back post|fpdc|bpdc|fptr|bptr|post stitch).{0,24}around the chain", line, re.IGNORECASE):
+        found.append("A chain has no post. Do not work a post around the chain.")
+    if re.search(r"\bslip knot\b", line, re.IGNORECASE) and re.search(
+        r"first stitch|as a stitch|(?:sc|hdc|dc|tr) in the slip knot|work into the slip knot",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("The slip knot is not a chain stitch.")
+    if re.search(r"\bfasten off\b.{0,40}\bcontinue in (?:the |that |this )?(?:same )?yarn\b", line, re.IGNORECASE):
+        found.append("Fasten off ends the yarn. The same yarn was not continued.")
+    if (
+        re.search(r"\bfoundation (?:single crochet|sc)\b", line, re.IGNORECASE)
+        and re.search(r"\bstarting chain\b", line, re.IGNORECASE)
+        and not re.search(r"\bor\b|instead|without", line, re.IGNORECASE)
+    ):
+        found.append("Foundation single crochet replaces the starting chain.")
+    if re.search(r"\bspiral\b", line, re.IGNORECASE) and re.search(
+        r"slip stitches? the round closed|sl st the round closed",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("A continuous spiral does not join every round. The join was not added.")
+    for match in re.finditer(r"\bstitch (\d+) of (?:the )?(\d+)\b", line, re.IGNORECASE):
+        if int(match.group(1)) > int(match.group(2)):
+            found.append(f"Stitch {match.group(1)} is past a {match.group(2)}-stitch round.")
+    apart = re.search(r"\b(\d+) stitches apart\b.{0,48}\bround of (\d+) stitches\b", line, re.IGNORECASE)
+    if apart and int(apart.group(1)) >= int(apart.group(2)):
+        found.append(
+            f"Eyes {apart.group(1)} stitches apart do not fit on a {apart.group(2)}-stitch round."
+        )
+    skip = re.search(r"\bskip (\d+)\b.{0,32}\brow of (\d+) stitches\b", line, re.IGNORECASE)
+    if skip and int(skip.group(1)) >= int(skip.group(2)):
+        found.append(f"Skip {skip.group(1)} does not fit on a {skip.group(2)}-stitch row.")
+    even = re.search(r"\beven count of (\d+)\b", line, re.IGNORECASE)
+    if even and int(even.group(1)) % 2:
+        found.append(f"{even.group(1)} is odd, but the line says the count must be even.")
+    odd = re.search(r"\bodd count of (\d+)\b", line, re.IGNORECASE)
+    if odd and int(odd.group(1)) % 2 == 0:
+        found.append(f"{odd.group(1)} is even, but the line says the count must be odd.")
+    hook = re.search(
+        r"\b([A-P])\s+(\d+(?:\.\d+)?)\s+is\s+(\d+(?:\.\d+)?)\s*mm\b",
+        line,
+        re.IGNORECASE,
+    )
+    if hook:
+        label = f"{hook.group(1).upper()}-{hook.group(2)}"
+        nominal = HOOKS.get(label)
+        if nominal is not None and abs(float(hook.group(3)) - nominal) > HOOK_GAP:
+            found.append(
+                f"Hook {hook.group(1)}-{hook.group(2)} is written as {hook.group(3)} mm, "
+                f"but the Craft Yarn Council nominal size is {nominal:g} mm. "
+                "The gap is more than 1.5 mm."
+            )
+    found.extend(_weight_category(line))
+    if re.search(
+        r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+centimet(?:er|re)s?\b",
+        line,
+        re.IGNORECASE,
+    ) and re.search(r"\bhook\b", line, re.IGNORECASE):
+        found.append("The hook is written in centimeters. Crochet hooks are written in millimeters.")
+    if re.search(r"\bgauge\b.{0,32}\bzero\b|\bzero\s+sc\b", line, re.IGNORECASE):
+        found.append("A gauge of 0 sc is not a fabric.")
+    shell = re.search(r"\bshell of ([0-2])\b", line, re.IGNORECASE)
+    if shell:
+        found.append(f"A shell of {shell.group(1)} is not a shell. Use at least 3 stitches.")
+    if re.search(r"\b(?:ch|chain)\s*-?\s*0\s+(?:space|sp)\b", line, re.IGNORECASE):
+        found.append("A ch-0 space has no chains to work into.")
+    return found
+
+
+def _weight_category(line: str) -> list[str]:
+    low = line.lower()
+    best: tuple[str, tuple[int, ...], int] | None = None
+    for name, allowed in WEIGHTS:
+        match = re.search(
+            rf"\bcategory\s+(\d+)\b.{{0,24}}(?<![a-z]){re.escape(name)}\b"
+            rf"|(?<![a-z]){re.escape(name)}\b.{{0,24}}\bcategory\s+(\d+)\b",
+            low,
+        )
+        if not match:
+            continue
+        number = int(match.group(1) or match.group(2))
+        if best is None or len(name) > len(best[0]):
+            best = (name, allowed, number)
+    if best and best[2] not in best[1]:
+        shown = "/".join(str(item) for item in best[1])
+        return [f"{best[0].title()} is Craft Yarn Council category {shown}, not {best[2]}."]
+    return []
 
 
 def _nearby_counts(line: str) -> list[str]:
