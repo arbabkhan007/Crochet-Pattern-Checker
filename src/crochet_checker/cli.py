@@ -531,6 +531,39 @@ def standards_cmd():
     console.print(summary())
 
 
+@cli.command("diff")
+@click.argument("first_file", type=click.Path(exists=True))
+@click.argument("second_file", type=click.Path(exists=True))
+def diff_cmd(first_file, second_file):
+    """Compare written stitch counts. Not a measured shape."""
+    from crochet_checker.utils import read_pattern_file
+
+    from .written_diff import diff_counts
+
+    lines, changed = diff_counts(
+        read_pattern_file(first_file),
+        read_pattern_file(second_file),
+    )
+    for line in lines:
+        console.print(line)
+    if changed:
+        sys.exit(1)
+
+
+@cli.command("export")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--format", "fmt", type=click.Choice(["obj", "gltf", "svg", "html"]), required=True)
+@click.option("--output", "-o", type=click.Path(), required=True)
+def export_cmd(pattern_file, fmt, output):
+    """Write an existing written view. Coordinates are not millimetres."""
+    from crochet_checker.utils import read_pattern_file
+
+    from .written_export import export_text
+
+    Path(output).write_text(export_text(read_pattern_file(pattern_file), fmt), encoding="utf-8")
+    console.print(f"Wrote {output}. Coordinates are not millimetres. This is not a print-shop file.")
+
+
 def main():
     cli()
 

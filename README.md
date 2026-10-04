@@ -103,6 +103,8 @@ On written US instructions it checks stitch counts, repeats, increases that more
 | `crochet-check explain` | Names the written result in words | Does not call a chat model, invent a finished size, or override the stitch count |
 | `crochet-check yarn-calc` | Rough yardage estimate | Not weighed, not a finished size, and not a substitute for a measured swatch |
 | `crochet-check progress` | Local round checklist | Not a validator |
+| `crochet-check diff` | Compares the written stitch counts of two files | Does not call a count change a cone or a disk, and does not measure a shape |
+| `crochet-check export` | Writes the existing stitch points as obj or gltf, the stitch map as svg, or the sheet as html | Does not write InDesign, does not use millimetres, and does not certify a print file |
 
 ## Examples
 
