@@ -1,6 +1,8 @@
 # Bobble Snowflake Tree Skirt
 
-**Design Code NS 14 · Novality Crochet Studio · Corrected Edition**
+**Design Code NS-14 · Novality Crochet Studio · Corrected Edition**
+
+*Novality Crochet Studio is the crochet pattern line of Novality Store.*
 
 US + UK terms · Easy–Intermediate · Worsted/Aran (#4) · 5–5.5 mm hook · Three sizes, 48–110 cm
 
@@ -37,7 +39,7 @@ reservoir, fasteners or manufacturer-required clearances. Inspect for loose surf
 stretched joins and snagged yarn before each season, and supervise children and animals around the
 complete tree arrangement.
 
-No finished NS 14 skirt has been independently crocheted, fit-tested, wash-tested or assessed for
+No finished NS-14 skirt has been independently crocheted, fit-tested, wash-tested or assessed for
 flammability. Before sale or supply, the finished-item maker or seller must determine the applicable
 classification, assessment, testing, documentation, labelling and traceability duties for every
 destination market.
@@ -471,8 +473,11 @@ properties outside any written check. Yarn quantities are calculated from stitch
 
 ## Terms of Use
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch
-counts, editorial layout and design elements are protected material. Design Code NS 14.
+© 2026 Novality Store. All rights reserved. This crochet pattern, its instructions, stitch
+counts, editorial layout and design elements are protected material. Design Code NS-14.
+
+Published under the **Novality Crochet Studio** imprint, the crochet pattern line of Novality Store.
+Copyright in all Novality Store product lines, crochet and non-crochet, is held by Novality Store.
 
 Licensed to the purchaser for personal use and for small-batch sale of finished physical tree skirts.
 The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or
@@ -480,7 +485,7 @@ any substantial part of it in digital or printed form.
 
 **You may** make finished tree skirts for yourself, gifts or charity, and sell finished physical
 skirts in small quantities, provided the listing credits *"Pattern by Novality Crochet Studio ·
-Design Code NS 14"* and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
+Design Code NS-14"* and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
 
 **You may not** resell or distribute this file; convert it into another pattern product; use its text,
 tables or visuals as listing assets for a competing pattern; claim authorship; or mass-produce
@@ -494,4 +499,4 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 
 ---
 
-*Novality Crochet Studio · NS 14 · corrected edition · keep this page with your project notes*
+*Novality Crochet Studio · NS-14 · corrected edition · keep this page with your project notes*

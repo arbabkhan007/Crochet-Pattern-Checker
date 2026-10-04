@@ -135,15 +135,36 @@ selling precision as the product.
 
 ---
 
-## 7. Open items needing your decision
+## 7. Brand architecture — resolved
 
-**Brand name collision.** The pattern body, the © notice and the Terms of Use say **Novality Crochet
-Studio** (4 occurrences). The new header and footer say **Novality Store**. Page 9 currently carries
-both — the running footer reads "© 2026 Novality Store" directly beneath a Terms section reading
-"© 2026 Novality Crochet Studio." Two different copyright holders on one page is a real problem.
-Pick one and I will rename globally, including the credit line the Terms require buyers to use and
-the `#NovalityCrochetStudio` hashtag.
+**Novality Store** is the business. **Novality Crochet Studio** is its crochet pattern line. This is
+a parent-and-imprint structure, the same way a publisher issues books under an imprint, and it is
+worth keeping: it lets the crochet patterns carry a craft-specific identity while the spreadsheets
+and any future product line sit under the same business.
 
-**Design code format.** The header uses **NS-14**; the body, Terms and project-notes line use
-**NS 14**. The pattern calls the code "the permanent identity of this pattern," so a single form
-should win. Say which and I will normalise.
+The rule applied throughout:
+
+| Element | Name used | Why |
+|:--|:--|:--|
+| Copyright holder | **Novality Store** | One owner across every product line, crochet and non-crochet. A single © holder is what makes the Terms enforceable. |
+| Running header | **Novality Store** | Identifies the business on every page. |
+| Imprint on the pattern | **Novality Crochet Studio** | This is a crochet product, so it carries the crochet line's name on the cover and sign-off. |
+| Credit buyers must give | **"Pattern by Novality Crochet Studio · Design Code NS-14"** | Buyers credit the line they actually bought from. |
+| Hashtags | `#NovalityCrochetStudio` · `#NovalityTreeSkirt` | Unchanged — the craft audience follows the craft line. |
+
+The relationship is now stated twice in the pattern so neither name looks like a typo: once as a
+colophon under the title, once in the Terms of Use.
+
+> *Novality Crochet Studio is the crochet pattern line of Novality Store.*
+
+The previous conflict — the running footer reading "© 2026 Novality Store" directly above a Terms
+section reading "© 2026 Novality Crochet Studio" — is gone. Copyright now reads **Novality Store**
+in both places.
+
+**Design code normalised to `NS-14`** (hyphenated) in every file, matching the header standard.
+
+### If you ever register a company
+
+Should Novality Store become a registered entity, the © line should become the registered name —
+for example *"© 2026 Novality Store Ltd"* — with the imprint line unchanged. That is a one-line edit
+in the markdown and a rebuild.

@@ -1,4 +1,4 @@
-# NS 14 — Bobble Snowflake Tree Skirt · Check Report
+# NS-14 — Bobble Snowflake Tree Skirt · Check Report
 
 **Checked:** 2026-10-04 · `crochet-check` v1.0.0 · Novality Crochet Studio, printer-saver edition
 
