@@ -74,3 +74,6 @@ pattern_versions/
 tutorials/
 learning_samples/
 experimental/not_the_product/
+
+# Shop pattern PDFs. Other PDF output stays ignored.
+!shop/*.pdf
