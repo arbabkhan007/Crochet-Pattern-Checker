@@ -39,6 +39,9 @@ batch_output/
 test_batch_output/
 *.db
 
+# Delivered pattern editions are tracked on purpose, despite the *.pdf rule above
+!NS14_corrected/*.pdf
+
 # Testing
 .pytest_cache/
 .coverage
