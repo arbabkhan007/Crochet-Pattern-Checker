@@ -28,10 +28,12 @@ US + UK terms · Easy–Intermediate · Worsted/Aran (#4) · 5–5.5 mm hook · 
 
 ## Safety — read this first
 
-This design is **home decor, not a toy, and it is not flameproof.** Keep it away from candles,
-fireplaces, heaters, hot lamps and every ignition source. Use only cool-running lights approved for
-the tree and location. Do not cover plugs, adapters, power strips or electrical connections with the
-skirt, and route cords so the skirt cannot pull on them.
+> **Fire and electrical warning**
+>
+> This design is **home decor, not a toy, and it is not flameproof.** Keep it away from candles,
+> fireplaces, heaters, hot lamps and every ignition source. Use only cool-running lights approved
+> for the tree and location. Do not cover plugs, adapters, power strips or electrical connections
+> with the skirt, and route cords so the skirt cannot pull on them.
 
 Keep the skirt clear of walking routes where its edge could cause a trip or slip. It must not
 support, level or stabilize a tree stand. Fit the closed centre without obstructing the stand, water
@@ -311,15 +313,20 @@ changing the last scallop.
 **The relaxed centre ring does not fit.** Stop before R1. Try the ch-24 option and recheck. Do not
 stretch the ring over hardware, cut the finished skirt, or assume blocking will create a safe fit.
 
-**The body ruffles.** Recount the round and confirm there are exactly 12 increases. If the count is
-correct, measure the gauge piece after resting: a 6-round radius appreciably **under 3.8 in / 9.7 cm**
-means the rounds are too short for the stitch gauge. Go up a hook size or use a slightly heavier
-yarn. **Do not omit increases** — that breaks the size and the border route.
+> **The body ruffles — gauge rule**
+>
+> Recount the round and confirm there are exactly 12 increases. If the count is correct, measure the
+> gauge piece after resting: a 6-round radius appreciably **under 3.8 in / 9.7 cm** means the rounds
+> are too short for the stitch gauge. Go up a hook size or use a slightly heavier yarn.
+> **Do not omit increases** — that breaks the size and the border route.
 
-**The body cups.** First check for a short repeat or skipped increase, especially R9 (seven plain dc)
-and R10 (eight). If the count is correct this is a **gauge** problem, not a count problem: a 6-round
-radius appreciably **over 3.8 in / 9.7 cm** means the rounds are gaining more radius than the stitch
-count supports. Go down a hook size or use a slightly lighter yarn. Do not add unrecorded stitches.
+> **The body cups — gauge rule**
+>
+> First check for a short repeat or skipped increase, especially R9 (seven plain dc) and R10
+> (eight). If the count is correct this is a **gauge** problem, not a count problem: a 6-round
+> radius appreciably **over 3.8 in / 9.7 cm** means the rounds are gaining more radius than the
+> stitch count supports. Go down a hook size or use a slightly lighter yarn. Do not add unrecorded
+> stitches.
 
 **A surface spoke puckers the skirt.** Remove that spoke and remake it with looser slip stitches. Each
 spoke needs its own centre join and outer-edge fasten-off; there should be no long float on the wrong side.

@@ -85,6 +85,47 @@ python scripts/md_to_pdf.py pattern.md pattern.pdf \
   --footer "© 2026 Novality Store. All rights reserved. 5-Axiom Mathematically Verified Pattern."
 ```
 
+### Two renderers, one source file
+
+Both read the same `*_CORRECTED.md`, so the content can never drift between them.
+
+| Script | Output | Use it for |
+|:--|:--|:--|
+| `scripts/md_to_pdf.py` | `*_CORRECTED.pdf` | Print edition. Low-ink, greyscale-safe. The one to send to a buyer who prints at home. |
+| `scripts/novality_pdf.py` | `*_FULLCOLOR.pdf` | Shop edition. The full-colour house layout — this is the file to list. |
+
+The full-colour renderer carries the brand design system and is reusable from NS-15 onward:
+
+```bash
+python scripts/novality_pdf.py pattern.md pattern_FULLCOLOR.pdf \
+  --title "Pattern Name" --code NS-15 --edition "First Edition" \
+  --difficulty "Intermediate" --colourway "Navy + Silver Grey"
+```
+
+What it applies automatically:
+
+- **Cover banner** — forest-green card, `N STORE` logo badge, title, imprint line, and tag pills for design code, difficulty and colourway.
+- **Section bars** — every `##` becomes a forest bar with a gold end cap and white text.
+- **Instruction tables** — green header with gold rule, alternating `#F8F9FA`/white rows, the `Sts` column auto-detected and filled oat so counts pop, and a gold vertical divider between the US and UK columns.
+- **Size pills** — `**MINI**`, `**STANDARD**`, `**LARGE**` anywhere in the text render as filled badges.
+- **Callouts** — any markdown blockquote becomes a rounded box. A title containing *safety*, *warning* or *disregard* turns amber with ⚠; anything else turns sage with ❖.
+- **Code blocks** — grey panel with a forest left bar, used for Appendix A.
+- **5-Axiom badge** — on page 1, and as a full end card on the last page.
+- **`Page X of Y`** — the page furniture is drawn at save time, so the total is real.
+
+### Palette
+
+| Role | Hex |
+|:--|:--|
+| Primary — headers, bars, borders | `#1E3A2B` Deep Forest Green |
+| Primary light — subheads | `#2E5440` |
+| Accent — rules, pills, badge | `#D4AF37` Gold |
+| Secondary — stitch-count fill | `#E6D7C3` Oat Cream → `#F3EADF` at text size |
+| Info callout | `#E8F0EC` Soft Muted Sage |
+| Warning callout | `#FFF8E7` Pale Amber, edge `#E0B84C` |
+| Body text | `#1A1A1A` on white |
+| Table alternate row | `#F8F9FA` |
+
 ---
 
 ## 5. The five axioms — reusable boilerplate
