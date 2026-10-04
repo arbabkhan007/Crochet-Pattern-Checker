@@ -757,6 +757,7 @@ def _line_errors(line: str) -> list[str]:
     found.extend(_uses_none(line))
     found.extend(_has_one(line))
     found.extend(_word_order(line))
+    found.extend(_of_no(line))
     if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
         found.append("A slip knot is not a stitch.")
     return found
@@ -2187,6 +2188,46 @@ def _word_order(line: str) -> list[str]:
         found.append("BLO only and both loops cannot be the same stitch.")
     if re.search(r"\bus treble called a uk treble\b", line, re.IGNORECASE) and not re.search(r"\bnot a uk treble\b", line, re.IGNORECASE):
         found.append("A US treble is a UK double treble, not a UK treble.")
+    return found
+
+
+
+def _of_no(line: str) -> list[str]:
+    """Catch the same empty count written with of, number, or x."""
+    found: list[str] = []
+    empty = r"(?:no(?!\s+more)|zero|0)"
+    if re.search(rf"\bi-?cord\b.{{0,24}}\b(?:of|with)\s+{empty}\b", line, re.IGNORECASE):
+        found.append("An i-cord of 0 stitches has no cord.")
+    if re.search(rf"\b(?:pom-?pom|pom|tassel)\b.{{0,20}}\bof\s+{empty}\s+wraps\b", line, re.IGNORECASE):
+        found.append("A wrap count of 0 has nothing to tie.")
+    if re.search(rf"\bpineapple\b.{{0,20}}\bof\s+{empty}\b", line, re.IGNORECASE):
+        found.append("A pineapple of 0 is not a pineapple motif.")
+    if re.search(rf"\bbullion\b.{{0,16}}\bof\s+{empty}\b", line, re.IGNORECASE):
+        found.append("A bullion of 0 wraps has no wraps.")
+    if re.search(rf"\bsolomon(?:'s)?\s+knot\b.{{0,20}}\bof\s+{empty}\b", line, re.IGNORECASE):
+        found.append("A Solomon knot of 0 is not a knot.")
+    if re.search(rf"\bbuttonhole\b.{{0,20}}\bof\s+{empty}\b", line, re.IGNORECASE):
+        found.append("A buttonhole of 0 chains has no opening.")
+    if re.search(rf"\bsurface\b.{{0,24}}\b(?:with|of)\s+{empty}\s+chains\b", line, re.IGNORECASE):
+        found.append("Surface crochet of 0 chains draws no line.")
+    if re.search(r"\bheight of\s+(?:0|zero)\s+rows\b", line, re.IGNORECASE):
+        found.append("A piece that is 0 rows tall was not made.")
+    if re.search(r"\bwork even across\s+(?:0|zero)\s+rows\b|\bstraight for zero rounds\b", line, re.IGNORECASE):
+        found.append("Work even for 0 rows does no work.")
+    if re.search(r"\b(?:0|zero)\s+stitches per\b", line, re.IGNORECASE):
+        found.append("A gauge of 0 sc is not a fabric.")
+    if re.search(r"\bround number\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("Round 0 is not a round. Start at Round 1.")
+    if re.search(r"\bstitch number\s+(?:0|zero)\b", line, re.IGNORECASE):
+        found.append("Stitch 0 does not exist. The first stitch is stitch 1.")
+    if re.search(r"\b(?:repeat|rep)\s+x\s+zero\b|\bx\s+zero\b", line, re.IGNORECASE):
+        found.append("A repeat of 0 does no work.")
+    if re.search(r"\buntil zero remain\b", line, re.IGNORECASE):
+        found.append("Repeat until 0 stitches is not a workable stop.")
+    if re.search(r"\b(?:0|zero)\s+cm wide\b", line, re.IGNORECASE):
+        found.append("A finished width of 0 inches is not a piece.")
+    if re.search(r"\bhook\b.{0,24}\bnought\s+millimetres\b", line, re.IGNORECASE):
+        found.append("A hook of 0 mm cannot make a stitch.")
     return found
 
 

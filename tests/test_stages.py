@@ -714,3 +714,25 @@ def test_another_word_order_uses_the_same_rule():
         "> Magic loop plus a chain-2 start.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_of_no_uses_the_same_empty_count():
+    errors = [
+        "I-cord of no stitches.",
+        "Round number 0.",
+        "Repeat x zero.",
+        "A hook of nought millimetres.",
+        "Finished size 0 cm wide.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "I-cord of 6 stitches.",
+        "Round number 1.",
+        "Repeat x 6.",
+        "A hook of 5 millimetres.",
+        "Finished size 10 cm wide.",
+        "No stitches are left unworked.",
+        "> I-cord of no stitches.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

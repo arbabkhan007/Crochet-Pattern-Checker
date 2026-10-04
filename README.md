@@ -53,6 +53,8 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `Righties and lefties`, `Fsc and ch 12 to start`, and `increase shrinks, 12 to 6` are the same written rules. A line that says `or` stays a choice. No length is invented.
 
+`I-cord of no stitches`, `round number 0`, and `repeat x zero` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
+
 ## Install
 
 ```bash

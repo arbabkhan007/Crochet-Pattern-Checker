@@ -195,3 +195,5 @@ A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical s
 `Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written rules. `sc (UK double)` stays correct. No length is invented.
 
 `Righties and lefties`, `Fsc and ch 12 to start`, and `increase shrinks, 12 to 6` are the same written rules. A line that says `or` stays a choice. No length is invented.
+
+`I-cord of no stitches`, `round number 0`, and `repeat x zero` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
