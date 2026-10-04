@@ -648,3 +648,25 @@ def test_glued_forms_use_the_same_rule():
         "> ch1, turn for dc.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_uses_and_has_none_use_the_same_rule():
+    errors = [
+        "I-cord uses no stitch.",
+        "Cable crosses no stitch.",
+        "Ears, make none.",
+        "US dc called a UK double.",
+        "10 sts, multiple of 3.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "I-cord of 4 stitches.",
+        "Cable over 2 stitches.",
+        "Make no more than 2 ears.",
+        "sc (UK double).",
+        "12 sts, multiple of 3.",
+        "No stitches are left unworked.",
+        "> I-cord uses no stitch.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

@@ -47,6 +47,8 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `ch1, turn for dc`, `8in = 8cm`, and `H/8 = 2.25mm` are the same errors without the space. A real conversion such as `4 inches = 10.16 cm` is not that error. No length is invented.
 
+`I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
+
 ## Install
 
 ```bash

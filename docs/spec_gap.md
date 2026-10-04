@@ -189,3 +189,5 @@ A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical s
 `Inc from 12 to 6`, `rnd 8 to rnd 5`, `colour A to colour A`, and `ch-1 counts as dc` are the same written rules. A line that says `or` stays a choice. No length is invented.
 
 `ch1, turn for dc`, `8in = 8cm`, and `H/8 = 2.25mm` are the same written rules with the space left out. `4 inches = 10.16 cm` stays a real conversion. No length is invented.
+
+`I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` stays a valid sentence. No length is invented.
