@@ -736,3 +736,28 @@ def test_of_no_uses_the_same_empty_count():
         "> I-cord of no stitches.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_nothing_is_the_same_empty_count():
+    errors = [
+        "Cable that crosses nothing.",
+        "Yardage listed as nothing.",
+        "Round numbered nothing.",
+        "Hook of nothing millimetres.",
+        "ch nothing.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "Leave nothing unworked.",
+        "Skip nothing.",
+        "No stitches are left unworked.",
+        "Cable over 4 stitches.",
+        "Yardage: 200 yards.",
+        "Round 1.",
+        "Hook: H/8 (5 mm).",
+        "ch 3, turn, dc.",
+        "Make nothing else.",
+        "> Cable that crosses nothing.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

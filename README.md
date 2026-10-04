@@ -55,6 +55,8 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `I-cord of no stitches`, `round number 0`, and `repeat x zero` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
 
+`Cable that crosses nothing`, `yardage listed as nothing`, and `round numbered nothing` are the same empty counts. `Leave nothing unworked` is not that error. No length is invented.
+
 ## Install
 
 ```bash

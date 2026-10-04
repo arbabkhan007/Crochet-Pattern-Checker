@@ -758,6 +758,7 @@ def _line_errors(line: str) -> list[str]:
     found.extend(_has_one(line))
     found.extend(_word_order(line))
     found.extend(_of_no(line))
+    found.extend(_nothing(line))
     if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
         found.append("A slip knot is not a stitch.")
     return found
@@ -2228,6 +2229,86 @@ def _of_no(line: str) -> list[str]:
         found.append("A finished width of 0 inches is not a piece.")
     if re.search(r"\bhook\b.{0,24}\bnought\s+millimetres\b", line, re.IGNORECASE):
         found.append("A hook of 0 mm cannot make a stitch.")
+    return found
+
+
+
+
+def _nothing(line: str) -> list[str]:
+    """Catch the same empty count written as nothing."""
+    if re.search(r"\bunworked\b", line, re.IGNORECASE):
+        return []
+    found: list[str] = []
+    if re.search(r"\bi-?cord\b.{0,32}\bnothing\b", line, re.IGNORECASE):
+        found.append("An i-cord of 0 stitches has no cord.")
+    if re.search(r"\bcable\b.{0,40}\bcross(?:es)?\s+nothing\b", line, re.IGNORECASE):
+        found.append("A cable over 0 stitches does not cross.")
+    if re.search(r"\bspike\b.{0,32}\b(?:drops?|down)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A spike stitch down 0 rows does not leave the current row.")
+    if re.search(r"\bsurface\b.{0,32}\b(?:draws?|uses|of)\s+nothing\b", line, re.IGNORECASE):
+        found.append("Surface crochet of 0 chains draws no line.")
+    if re.search(r"\bfringe\b.{0,32}\b(?:cuts?|of|from)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A fringe of 0 strands is not a fringe.")
+    if re.search(r"\bbuttonhole\b.{0,32}\b(?:of|from|uses)\s+nothing\b|\bbuttonhole\b.{0,24}\bchained\s+from\s+nothing\b", line, re.IGNORECASE):
+        found.append("A buttonhole of 0 chains has no opening.")
+    if re.search(r"\b(?:pom-?pom|tassel)\b.{0,32}\b(?:wrap(?:ped|s)?|of)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A wrap count of 0 has nothing to tie.")
+    if re.search(r"\bpineapple\b.{0,32}\b(?:built|made|of|from)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A pineapple of 0 is not a pineapple motif.")
+    if re.search(r"\bbullion\b.{0,32}\b(?:wrap(?:ped|s)?|of)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A bullion of 0 wraps has no wraps.")
+    if re.search(r"\bsolomon(?:'s)?\s+knot\b.{0,32}\b(?:tied|of|from)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A Solomon knot of 0 is not a knot.")
+    if re.search(r"\byardage\b.{0,24}\bnothing\b(?!\s+(?:special|else|more|extra))", line, re.IGNORECASE):
+        found.append("0 yards cannot make the piece.")
+    if re.search(r"\bstuff(?:ing|ed)?\b.{0,20}\b(?:using|with)\s+nothing\b(?!\s+(?:extra|else|more))", line, re.IGNORECASE):
+        found.append("Stuffing with 0 does not fill the piece.")
+    if re.search(r"\bwork even\b.{0,20}\bfor\s+nothing\b", line, re.IGNORECASE):
+        found.append("Work even for 0 rows does no work.")
+    if re.search(r"\bheight\b.{0,16}\bof\s+nothing\b", line, re.IGNORECASE):
+        found.append("A piece that is 0 rows tall was not made.")
+    if re.search(r"\bbead\b.{0,24}\b(?:on|every|after)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A bead every 0 stitches is never placed.")
+    if re.search(r"\bstripe\b.{0,24}\b(?:after|every|on)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A stripe every 0 rounds never stripes.")
+    if re.search(r"\bgauge\b.{0,24}\b(?:reads|of|is)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A gauge of 0 sc is not a fabric.")
+    if re.search(r"\b(?:repeat|rep)\s+(?:x\s+)?nothing\b|\btimes\s+nothing\b", line, re.IGNORECASE):
+        found.append("A repeat of 0 does no work.")
+    if re.search(r"\bround\b.{0,24}\bnumbered\s+nothing\b", line, re.IGNORECASE):
+        found.append("Round 0 is not a round. Start at Round 1.")
+    if re.search(r"\brow\b.{0,24}\bnumbered\s+nothing\b", line, re.IGNORECASE):
+        found.append("Row 0 is not a row. Start at Row 1.")
+    if re.search(r"\bstitch\b.{0,24}\bnumbered\s+nothing\b", line, re.IGNORECASE):
+        found.append("Stitch 0 does not exist. The first stitch is stitch 1.")
+    if re.search(r"\bhook\b.{0,32}\bnothing\s+(?:mm|millimet(?:er|re)s?|millimeters?)\b", line, re.IGNORECASE):
+        found.append("A hook of 0 mm cannot make a stitch.")
+    if re.search(r"\b(?:ch|chain)\s+(?:of\s+)?nothing\b", line, re.IGNORECASE):
+        found.append("ch 0 makes no chain.")
+    if re.search(r"\bdec(?:rease)?\b.{0,16}\bto\s+nothing\b", line, re.IGNORECASE):
+        found.append("Decrease to 0 stitches leaves nothing to fasten.")
+    if re.search(r"\bmake\s+nothing\b(?!\s+(?:else|extra|more|up))", line, re.IGNORECASE):
+        found.append("Make 0 asks for none of that piece.")
+    if re.search(r"\bsafety eyes?\b.{0,16}(?::|are|is)\s*nothing\b|\b(?:place|mount)\s+nothing\b.{0,20}\beyes\b", line, re.IGNORECASE):
+        found.append("Place 0 safety eyes mounts nothing.")
+    if re.search(r"\bloop stitch\b.{0,24}\b(?:of|uses|has)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A loop stitch of 0 has no loop.")
+    if re.search(r"\bsquare\b.{0,24}\b(?:of|from|for)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A square of 0 rounds was not worked.")
+    if re.search(r"\brectangle\b.{0,24}\b(?:of|for|from)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A rectangle of 0 rows was not worked.")
+    if re.search(r"\btube\b.{0,24}\b(?:of|with|from)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A tube of 0 stitches has no opening.")
+    if re.search(r"\bcorner\b.{0,24}\b(?:of|uses)\s+nothing\b", line, re.IGNORECASE):
+        found.append("A corner of 0 chains does not turn the corner.")
+    if re.search(r"\boval\b.{0,24}\b(?:of|with|from)\s+nothing\b", line, re.IGNORECASE):
+        found.append("An oval cannot start with 0 chains.")
+    if re.search(r"\bpicot\b.{0,16}\bof\s+nothing\b", line, re.IGNORECASE):
+        found.append("A picot of 0 is not a picot.")
+    if re.search(r"\bshell\b.{0,16}\bof\s+nothing\b", line, re.IGNORECASE):
+        found.append("A shell of 0 is not a shell. Use at least 3 stitches.")
+    if re.search(r"\b(?:width of nothing|nothing inches wide|nothing cm wide)\b", line, re.IGNORECASE):
+        found.append("A finished width of 0 inches is not a piece.")
     return found
 
 
