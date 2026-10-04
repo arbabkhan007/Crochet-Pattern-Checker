@@ -191,3 +191,5 @@ A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical s
 `ch1, turn for dc`, `8in = 8cm`, and `H/8 = 2.25mm` are the same written rules with the space left out. `4 inches = 10.16 cm` stays a real conversion. No length is invented.
 
 `I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` stays a valid sentence. No length is invented.
+
+`Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written rules. `sc (UK double)` stays correct. No length is invented.

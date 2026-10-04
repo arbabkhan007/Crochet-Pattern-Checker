@@ -670,3 +670,25 @@ def test_uses_and_has_none_use_the_same_rule():
         "> I-cord uses no stitch.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_has_no_and_is_one_use_the_same_rule():
+    errors = [
+        "Puff is one stitch.",
+        "Picot = 0.",
+        "Round goes side to side.",
+        "dc UK double.",
+        "chain1, turn, dc.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "Puff of 5.",
+        "Picot of 3.",
+        "The round is worked around.",
+        "sc (UK double).",
+        "ch 3, turn, dc.",
+        "No stitches are left unworked.",
+        "> Picot = 0.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

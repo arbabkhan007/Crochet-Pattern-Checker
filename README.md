@@ -49,6 +49,8 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
 
+`Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written errors. `sc (UK double)` stays correct. No length is invented.
+
 ## Install
 
 ```bash
