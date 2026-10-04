@@ -45,6 +45,8 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `Inc from 12 to 6`, `rnd 8 to rnd 5`, `colour A to colour A`, and `ch-1 counts as dc` are the same errors as the longer sentences. A line that says `or` is still a choice. No length is invented. This is not a physical proof, and it is not a reason to pay for a pattern.
 
+`ch1, turn for dc`, `8in = 8cm`, and `H/8 = 2.25mm` are the same errors without the space. A real conversion such as `4 inches = 10.16 cm` is not that error. No length is invented.
+
 ## Install
 
 ```bash

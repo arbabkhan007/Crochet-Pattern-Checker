@@ -626,3 +626,25 @@ def test_abbreviations_use_the_same_rule():
         "> Inc from 12 to 6.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_glued_forms_use_the_same_rule():
+    errors = [
+        "ch1, turn for dc.",
+        "8in = 8cm.",
+        "H/8 = 2.25mm.",
+        "Decrease from 6 up to 12.",
+        "Eyes placed 8 sts apart on a 6-st round.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "ch 3, turn, dc.",
+        "4 inches = 10.16 cm.",
+        "H-8 = 5.0mm.",
+        "Increase from 6 up to 12.",
+        "Eyes placed 2 sts apart on a 6-st round.",
+        "Turn inside out.",
+        "> ch1, turn for dc.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line
