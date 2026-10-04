@@ -796,14 +796,24 @@ class PDFGenerator:
         return groups
 
     def _strip_round_header(self, text: str) -> str:
-        """Remove round/row header from text."""
+        """Remove round/row header from text and tighten printed notation."""
         import re
 
         # Remove "Round N:" or "Round N-M:" or "Row N:" prefix
         stripped = re.sub(
             r"^(Round|Rnd|Row)\s+\d+(-\d+)?:\s*", "", text, flags=re.IGNORECASE
         )
-        return stripped.strip()
+        return self._tighten_notation(stripped.strip())
+
+    def _tighten_notation(self, text: str) -> str:
+        """Close spaces the printer inserted around commas and parentheses.
+
+        Display only. The written check still uses the original line.
+        """
+        import re
+
+        tightened = re.sub(r"\s+([,)])", r"\1", text)
+        return re.sub(r"\(\s+", "(", tightened)
 
     def _instructions_section(
         self, pattern: Pattern, measurements: PatternMeasurements

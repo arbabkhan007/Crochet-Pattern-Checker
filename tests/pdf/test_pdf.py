@@ -210,3 +210,11 @@ def test_piece_links_follow_written_pieces():
     text = (Path(__file__).resolve().parents[2] / "examples" / "amigurumi_bunny.txt").read_text(encoding="utf-8")
     html = generate_pdf_html(parse_pattern(text))
     assert 'href="#piece-1"' in html and 'id="piece-1"' in html and "Make order" in html and "HEAD" in html
+
+def test_printed_notation_closes_spaces_around_commas():
+    html = generate_pdf_html(parse_pattern("Round 8: (2 dc , inc ) x 12 ( 60)\n"))
+    assert "(2 dc, inc) x 12 (60)" in html
+    assert "(2 dc , inc )" not in html
+    assert "( 60)" not in html
+    report = validate_pattern("Round 8: (2 dc , inc ) x 12 ( 60)\n")
+    assert report.overall_status
