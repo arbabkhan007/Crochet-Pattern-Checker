@@ -692,3 +692,25 @@ def test_has_no_and_is_one_use_the_same_rule():
         "> Picot = 0.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_another_word_order_uses_the_same_rule():
+    errors = [
+        "For righties and lefties with the same instructions.",
+        "Begin with Fsc and ch 12 to start.",
+        "Increase shrinks, 12 to 6.",
+        "Magic loop plus a chain-2 start.",
+        "On steel, hook 7 is bigger than hook 1.",
+    ]
+    for line in errors:
+        result = validate_pattern(line + "\n")
+        assert result.errors, line
+    for line in (
+        "For righties or lefties.",
+        "Begin with Fsc.",
+        "Increase from 6 to 12.",
+        "Magic loop or a chain-2 start.",
+        "On steel, hook 1 is bigger than hook 7.",
+        "sc (UK double).",
+        "> Magic loop plus a chain-2 start.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

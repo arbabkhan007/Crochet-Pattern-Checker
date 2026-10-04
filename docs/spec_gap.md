@@ -193,3 +193,5 @@ A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical s
 `I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` stays a valid sentence. No length is invented.
 
 `Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written rules. `sc (UK double)` stays correct. No length is invented.
+
+`Righties and lefties`, `Fsc and ch 12 to start`, and `increase shrinks, 12 to 6` are the same written rules. A line that says `or` stays a choice. No length is invented.

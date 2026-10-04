@@ -756,6 +756,7 @@ def _line_errors(line: str) -> list[str]:
     found.extend(_glued_wording(line))
     found.extend(_uses_none(line))
     found.extend(_has_one(line))
+    found.extend(_word_order(line))
     if re.search(r"\bslip knot counts as\b", line, re.IGNORECASE):
         found.append("A slip knot is not a stitch.")
     return found
@@ -2087,6 +2088,106 @@ def _has_one(line: str) -> list[str]:
         found.append(f"Decrease from {together.group(1)} to {together.group(2)} does not fall.")
     return found
 
+
+
+
+def _word_order(line: str) -> list[str]:
+    """Catch the same written rule when the words are in another order."""
+    found: list[str] = []
+    choice = re.search(r"\bor\b", line, re.IGNORECASE)
+    if (
+        re.search(r"\brighties\b", line, re.IGNORECASE)
+        and re.search(r"\blefties\b", line, re.IGNORECASE)
+        and not choice
+        and not re.search(r"\bseparate\b", line, re.IGNORECASE)
+    ):
+        found.append("Right-handed and left-handed work need separate instructions.")
+    if re.search(r"\binstructions for right hand and left hand\b", line, re.IGNORECASE) and not choice:
+        found.append("Right-handed and left-handed work need separate instructions.")
+    if (
+        re.search(r"\btwo strands\b", line, re.IGNORECASE)
+        and re.search(r"\bone strand\b", line, re.IGNORECASE)
+        and not choice
+    ):
+        found.append("The yarn cannot be held double and single at the same time.")
+    if (
+        re.search(r"\b(?:flo|front loop only)\b", line, re.IGNORECASE)
+        and re.search(r"\bback loop\b", line, re.IGNORECASE)
+        and re.search(r"\b(?:same stitch|plus)\b", line, re.IGNORECASE)
+        and not choice
+    ):
+        found.append("FLO and BLO cannot be the same stitch.")
+    if (
+        re.search(r"\b(?:magic loop|adjustable ring)\b", line, re.IGNORECASE)
+        and re.search(r"\bchain(?:-\d+)? start\b", line, re.IGNORECASE)
+        and not choice
+        and not re.search(r"\binstead\b|\bwithout\b", line, re.IGNORECASE)
+    ):
+        found.append("A piece cannot start with both a magic ring and a chain ring.")
+    turn = re.search(
+        r"\b(?:chain of (one|1)|turning chain of (one|1)|ch (one|1) is the turning chain)\b.{0,32}\b(dc|double crochet|tr|treble)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if turn:
+        number = next(group for group in turn.groups()[:3] if group)
+        found.extend(_short_turn(number, turn.group(4)))
+    steel = re.search(
+        r"\bsteel\b.{0,24}\bhook\s+(\d+)\s+is\s+(?:bigger|larger)\s+than\s+hook\s+(\d+)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if steel and int(steel.group(1)) > int(steel.group(2)):
+        found.append("A higher steel-hook number is smaller, not larger.")
+    if re.search(r"\bwork toward the left and the right\b|\bleftwards and rightwards\b", line, re.IGNORECASE) and not choice:
+        found.append("The line gives both directions and does not say or.")
+    if re.search(r"\byo plus under in one stitch\b", line, re.IGNORECASE):
+        found.append("Yarn over and yarn under cannot be the same stitch.")
+    if re.search(
+        r"\bcount the turning chain a second time\b|\bthe chain is counted again\b|\badd the turning chain a second time\b",
+        line,
+        re.IGNORECASE,
+    ):
+        found.append("A turning chain counted twice is added two times.")
+    if re.search(r"\bturning chain counts and does not count\b", line, re.IGNORECASE):
+        found.append("The line says the chain counts as a stitch and does not count. The count was not invented.")
+    if (
+        re.search(r"\bfsc\b", line, re.IGNORECASE)
+        and re.search(r"\bch\s+\d+\s+to\s+start\b", line, re.IGNORECASE)
+        and not choice
+        and not re.search(r"\binstead\b|\bwithout\b", line, re.IGNORECASE)
+    ):
+        found.append("Foundation single crochet replaces the starting chain.")
+    if re.search(r"\bcontinuous rounds joined\b", line, re.IGNORECASE) and not choice:
+        found.append("A continuous spiral does not join every round. The join was not added.")
+    shrunk = re.search(r"\bincrease shrinks,\s*(\d+)\s+to\s+(\d+)\b", line, re.IGNORECASE)
+    if shrunk and int(shrunk.group(2)) <= int(shrunk.group(1)):
+        found.append(f"Increase from {shrunk.group(1)} to {shrunk.group(2)} does not rise.")
+    grown = re.search(r"\bdecrease grows,\s*(\d+)\s+to\s+(\d+)\b", line, re.IGNORECASE)
+    if grown and int(grown.group(2)) >= int(grown.group(1)):
+        found.append(f"Decrease from {grown.group(1)} to {grown.group(2)} does not fall.")
+    if (
+        re.search(r"\bin the round and also worked flat\b|\bcircular and flat for the same piece\b", line, re.IGNORECASE)
+        and not choice
+    ):
+        found.append("In the round and in rows are two fabrics. The extra fabric was not invented.")
+    if re.search(r"\bbreak the yarn and continue with it\b|\bfasten off and keep the yarn\b", line, re.IGNORECASE):
+        found.append("Fasten off ends the yarn. The same yarn was not continued.")
+    claimed = re.search(
+        r"\b(\d+) is not a multiple, it is claimed as a multiple of (\d+)\b",
+        line,
+        re.IGNORECASE,
+    )
+    if claimed and int(claimed.group(2)) and int(claimed.group(1)) % int(claimed.group(2)):
+        found.append(f"{claimed.group(1)} is not divisible by {claimed.group(2)}.")
+    skipped = re.search(r"\bskip\s+(\d+)\s+sts?\b.{0,40}\brow is\s+(\d+)\s+stitches\b", line, re.IGNORECASE)
+    if skipped and int(skipped.group(1)) >= int(skipped.group(2)):
+        found.append(f"Skip {skipped.group(1)} does not fit on a {skipped.group(2)}-stitch row.")
+    if re.search(r"\bboth loops and the back loop\b", line, re.IGNORECASE) and not choice:
+        found.append("BLO only and both loops cannot be the same stitch.")
+    if re.search(r"\bus treble called a uk treble\b", line, re.IGNORECASE) and not re.search(r"\bnot a uk treble\b", line, re.IGNORECASE):
+        found.append("A US treble is a UK double treble, not a UK treble.")
+    return found
 
 
 def _weight_category(line: str) -> list[str]:

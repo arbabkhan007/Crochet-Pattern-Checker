@@ -51,6 +51,8 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written errors. `sc (UK double)` stays correct. No length is invented.
 
+`Righties and lefties`, `Fsc and ch 12 to start`, and `increase shrinks, 12 to 6` are the same written rules. A line that says `or` stays a choice. No length is invented.
+
 ## Install
 
 ```bash
