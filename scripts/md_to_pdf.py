@@ -306,11 +306,12 @@ def parse(md: str, width: float) -> list:
     return flow
 
 
-def render(md_path: Path, pdf_path: Path) -> None:
+def render(md_path: Path, pdf_path: Path, header: str = "", footer: str = "") -> None:
     md = md_path.read_text(encoding="utf-8")
     page = A4
     lm = rm = 16 * mm
-    tm, bm = 15 * mm, 16 * mm
+    tm = 21 * mm if header else 15 * mm
+    bm = 16 * mm
     fw = page[0] - lm - rm
 
     doc = BaseDocTemplate(
@@ -320,8 +321,8 @@ def render(md_path: Path, pdf_path: Path) -> None:
         rightMargin=rm,
         topMargin=tm,
         bottomMargin=bm,
-        title="Bobble Snowflake Tree Skirt - NS 14 (Corrected Edition)",
-        author="Novality Crochet Studio",
+        title="Bobble Snowflake Tree Skirt - NS-14 (Corrected Edition)",
+        author=header.split("|")[0].strip() or "Novality Store",
         subject="Crochet pattern, corrected edition",
     )
     frame = Frame(lm, bm, fw, page[1] - tm - bm, id="body",
@@ -329,13 +330,20 @@ def render(md_path: Path, pdf_path: Path) -> None:
 
     def furniture(canvas, _doc):
         canvas.saveState()
-        canvas.setFont(BODY, 7.2)
-        canvas.setFillColor(MUTED)
-        canvas.drawString(lm, bm - 8.5 * mm,
-                          "NS 14 \u00b7 Bobble Snowflake Tree Skirt \u00b7 Corrected Edition")
-        canvas.drawRightString(page[0] - rm, bm - 8.5 * mm, f"Page {canvas.getPageNumber()}")
         canvas.setStrokeColor(RULE)
         canvas.setLineWidth(0.4)
+
+        if header:
+            hy = page[1] - tm + 5.5 * mm
+            canvas.setFont(BOLD, 7.4)
+            canvas.setFillColor(ACCENT)
+            canvas.drawString(lm, hy, header)
+            canvas.line(lm, hy - 2.6 * mm, page[0] - rm, hy - 2.6 * mm)
+
+        canvas.setFont(BODY, 7.0)
+        canvas.setFillColor(MUTED)
+        canvas.drawString(lm, bm - 8.5 * mm, footer)
+        canvas.drawRightString(page[0] - rm, bm - 8.5 * mm, f"Page {canvas.getPageNumber()}")
         canvas.line(lm, bm - 5.5 * mm, page[0] - rm, bm - 5.5 * mm)
         canvas.restoreState()
 
@@ -343,9 +351,26 @@ def render(md_path: Path, pdf_path: Path) -> None:
     doc.build(parse(md, fw))
 
 
+DEFAULT_HEADER = "Novality Store  |  Design Code NS-14  |  Corrected Edition"
+DEFAULT_FOOTER = (
+    "\u00a9 2026 Novality Store. All rights reserved. "
+    "5-Axiom Mathematically Verified Pattern."
+)
+
+
 if __name__ == "__main__":
-    src = Path(sys.argv[1])
-    dst = Path(sys.argv[2])
+    import argparse
+
+    ap = argparse.ArgumentParser(description="Render a pattern markdown file to PDF.")
+    ap.add_argument("source")
+    ap.add_argument("dest")
+    ap.add_argument("--header", default=DEFAULT_HEADER, help="running header text")
+    ap.add_argument("--footer", default=DEFAULT_FOOTER, help="running footer text")
+    ap.add_argument("--no-header", action="store_true", help="omit the running header")
+    a = ap.parse_args()
+
+    dst = Path(a.dest)
     dst.parent.mkdir(parents=True, exist_ok=True)
-    render(src, dst)
+    render(Path(a.source), dst, "" if a.no_header else a.header, a.footer)
     print(f"wrote {dst}  ({dst.stat().st_size:,} bytes)")
+

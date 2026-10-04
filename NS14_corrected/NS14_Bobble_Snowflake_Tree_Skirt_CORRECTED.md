@@ -416,19 +416,42 @@ Round 32: (30 dc, inc) x 12 (384)
 
 ---
 
-## Appendix B — Verification record
+## Appendix B — The 5-Axiom Verification Record
+
+Every pattern is audited against five stated axioms. An axiom is a property that can be decided
+from the written text by arithmetic alone — not an opinion, and not a physical test. The result of
+each is published below, pass or fail.
 
 Checked with `crochet-check` v1.0.0 plus independent arithmetic.
 
+| # | Axiom | What it means | Result |
+|:--|:--|:--|:--|
+| **1** | **Count closure** | Each round consumes exactly the stitch total the previous round produced — nothing left unworked, nothing worked twice | **PASS** · 32/32 rounds |
+| **2** | **Stated-count parity** | Each printed `(n)` equals the count computed from that round's own operations | **PASS** · 32/32 rounds |
+| **3** | **Repeat & closure divisibility** | Each repeat divides its round evenly, and the final count divides evenly by the border repeat span | **PASS** · 12 repeats/round; 168/276/384 ÷ 6 = 28/46/64 |
+| **4** | **Dialect parity** | The US and UK columns describe the same operations in the same order and resolve to identical counts | **PASS** · every round and the border |
+| **5** | **Geometric consistency** | The stated gauge agrees with the increase rate the shape requires | **FAILED at audit, now corrected** — see below |
+
+### Axiom 5 is why this is the Corrected Edition
+
+The source edition asked makers to match a round gauge of 6 rounds = 4 in / 10 cm. A flat circle
+gaining 12 stitches per round at 3 sts/in can only gain `12 ÷ 3 ÷ 2π = 0.637 in` of radius per
+round, or 3.8 in over six rounds. The published figure demanded **4.7% more radius than the
+circumference supports** — a target that cannot be met on a flat circle, and the direct cause of the
+cupping the troubleshooting section then had to explain. It is corrected to 3.8 in / 9.7 cm
+throughout. Three further non-stitch corrections followed from the same audit and are listed on
+page 1.
+
+**No stitch count was altered.** Axioms 1–4 passed on the source text as written.
+
+### Supporting checks
+
 | Check | Result |
 |:--|:--|
-| Stitch ladder, all 32 rounds | **0 mismatches** — every round consumes the previous total exactly; every count = 12 × N |
-| Border closure, 3 sizes | **Exact** — 168/276/384 all divisible by 6; worked total = anchor total |
 | Bobble loop arithmetic | **Correct** — 5 incomplete dc legs leave 6 loops, closed as 1 stitch |
 | Bobble round spacing | **Correct** — every 3rd round from R5; all three size stop-points are bobble rounds |
 | R11 → R12 worked example | **Correct**, including its counterfactual |
 | Hook sizes vs Craft Yarn Council | **Exact** — H-8 = 5.0 mm, I-9 = 5.5 mm |
-| US/UK translation | **Correct** on every round and the border |
 | Diameter arithmetic | **Correct** — 17.8 / 29.3 / 40.7 in, all three reproduce |
 | Checker verdict, 3 sizes | **PASS 100/100** |
 
