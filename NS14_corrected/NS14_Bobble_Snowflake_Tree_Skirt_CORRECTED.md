@@ -109,6 +109,8 @@ hook or yarn, not the increase rate.
 | Standard | R23 | 276 | 46 | 29.3 in / 74 cm | **30–32 in / 77–81 cm** |
 | Large | R32 | 384 | 64 | 40.7 in / 103 cm | **42–43 in / 106–110 cm** |
 
+[[figure:growth_chart]] Every round gains exactly 12 stitches. The three gold bars are the size stop-points, and every bar is a published count from Appendix A.
+
 Unbordered diameters are exact at target gauge: stitches ÷ 3 = circumference, ÷ π = diameter.
 The finished target adds the scalloped border, roughly 0.6–0.9 in of depth at each edge. Blocking
 moves the result further. **Measure a complete sample before publishing a size or fit claim.**
@@ -147,6 +149,8 @@ are identical.** Prose uses US terms unless both names are shown.
 Closed joined rounds are worked **without turning**. The starting ch 2 **never counts as a stitch.**
 Work the first dc — or first BO on a bobble round — into the **same stitch as the join**, mark it, and
 slip stitch to that marked stitch at round end. Do not work into the ch 2 or the joining slip stitch.
+
+[[figure:symbol_chart]] One of the twelve repeats in standard symbols. Round r holds r stitches per repeat, so the round closes at 12r.
 
 **1. Fit the closed centre first.** Make the relaxed ch-20 ring and pass it over the actual central
 pole or trunk area before R1. The ch-24 option makes a larger ring without changing R1. If neither
@@ -347,6 +351,8 @@ bobble to the right side before the next stitch.
 |:--|:--|
 | **MC — forest green** | R1–R4 and every non-bobble growth round |
 | **CC — oat cream** | every bobble round, all 12 optional spokes, and the scalloped border |
+
+[[figure:colour_route]] The written colour route drawn out: ten complete oat cream bobble rounds on a forest green ground, and the twelve increase columns the optional spokes follow.
 
 Alternative palettes: snow white MC with deep red CC; navy MC with silver-grey CC; or a single-colour
 cream version in which MC and CC are the same yarn. Use comparable worsted/aran yarns so colour

@@ -17,10 +17,14 @@ Pure ReportLab - no WeasyPrint and no system libraries beyond the DejaVu fonts.
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 from reportlab.lib import colors
+from reportlab.lib.utils import ImageReader
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
@@ -40,6 +44,8 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
+
+from novality_figures import FIGURES
 
 # ---------------------------------------------------------------- brand theme
 
@@ -99,6 +105,10 @@ def register_fonts() -> tuple[str, str, str]:
 
 
 BODY, BOLD, MONO = register_fonts()
+
+import novality_figures as _figs  # noqa: E402
+
+_figs.use_fonts(BODY, BOLD)
 
 SIZE_WORDS = ("MINI", "STANDARD", "LARGE")
 
@@ -242,6 +252,80 @@ class VerifiedBadge(Flowable):
             c.setFont(BODY, 6.8)
             c.drawString(15 * mm, h / 2 - 3.4 * mm,
                          "Written stitch-count audit. Results published in Appendix B, pass or fail.")
+
+
+class HeroImage(Flowable):
+    """Cover photograph: soft drop shadow, rounded corners, thin gold edge."""
+
+    def __init__(self, width, path, caption=None, ratio=1.0, max_h=62 * mm):
+        super().__init__()
+        self.width = width
+        self.path = str(path)
+        self.caption = caption
+        # Fit the whole image inside the cap without letterboxing: when it is
+        # squarer than the column, narrow the box and centre it rather than
+        # padding the sides.
+        self.img_h = min(width * ratio, max_h)
+        self.img_w = min(self.img_h / ratio, width)
+        self.x0 = (width - self.img_w) / 2
+        self.cap_h = 16 if caption else 0
+        self.height = self.img_h + self.cap_h
+
+    def draw(self):
+        c = self.canv
+        w, h = self.img_w, self.img_h
+        x = self.x0
+        y = self.cap_h
+        rad = 4.2 * mm
+        c.saveState()
+        c.translate(x, 0)
+
+        # stacked translucent rounds make a soft shadow without an alpha image
+        for i in range(6, 0, -1):
+            c.saveState()
+            c.setFillColor(colors.Color(0, 0, 0, alpha=0.030))
+            c.roundRect(i * 0.5, y - i * 0.75, w - i, h, rad, stroke=0, fill=1)
+            c.restoreState()
+
+        c.saveState()
+        clip = c.beginPath()
+        clip.roundRect(0, y, w, h, rad)
+        c.clipPath(clip, stroke=0, fill=0)
+        c.drawImage(ImageReader(self.path), 0, y, width=w, height=h,
+                    preserveAspectRatio=True, anchor="c", mask="auto")
+        c.restoreState()
+
+        c.setStrokeColor(GOLD)
+        c.setLineWidth(1.2)
+        c.roundRect(0, y, w, h, rad, stroke=1, fill=0)
+
+        c.restoreState()
+        if self.caption:
+            c.setFillColor(MUTED)
+            c.setFont(BODY, 6.9)
+            c.drawCentredString(self.width / 2, 5, self.caption)
+
+
+class FigureBlock(Flowable):
+    """A generated vector figure plus its caption, kept together on one page."""
+
+    def __init__(self, drawing, caption=None):
+        super().__init__()
+        self.drawing = drawing
+        self.caption = caption
+        self.width = drawing.width
+        self.cap_h = 13 if caption else 0
+        self.height = drawing.height + self.cap_h
+
+    def wrap(self, aw, ah):
+        return self.width, self.height
+
+    def draw(self):
+        self.drawing.drawOn(self.canv, 0, self.cap_h)
+        if self.caption:
+            self.canv.setFillColor(MUTED)
+            self.canv.setFont(BODY, 6.9)
+            self.canv.drawString(2, 4, self.caption)
 
 
 class EndCard(Flowable):
@@ -578,6 +662,16 @@ def parse(md: str, width: float, inner: bool = False) -> list:
             flow += [Spacer(1, 2), *items, Spacer(1, 5)]
             continue
 
+        m_fig = re.match(r"^\[\[figure:([a-z_]+)\]\]\s*(.*)$", st)
+        if m_fig:
+            name, cap = m_fig.group(1), m_fig.group(2).strip() or None
+            i += 1
+            if name in FIGURES:
+                flow += [Spacer(1, 4),
+                         FigureBlock(FIGURES[name](width), cap),
+                         Spacer(1, 9)]
+            continue
+
         buf = [st]
         i += 1
         while (i < len(lines) and lines[i].strip()
@@ -675,6 +769,16 @@ def render(md_path: Path, pdf_path: Path, meta: dict) -> None:
         CoverBanner(fw, meta["title"], meta["code"], meta["imprint"],
                     meta["owner"], meta["difficulty"], meta["colourway"]),
         Spacer(1, 7),
+    ]
+    hero = meta.get("hero")
+    if hero and Path(hero).exists():
+        from PIL import Image as _PILImage
+        with _PILImage.open(hero) as im:
+            ratio = im.height / im.width
+        story += [HeroImage(fw, hero, meta.get("hero_caption"),
+                            ratio=ratio),
+                  Spacer(1, 8)]
+    story += [
         VerifiedBadge(fw),
         Spacer(1, 9),
     ]
@@ -697,12 +801,18 @@ if __name__ == "__main__":
     ap.add_argument("--difficulty", default="Easy-Intermediate")
     ap.add_argument("--colourway", default="Forest Green + Oat Cream")
     ap.add_argument("--owner", default="Novality Store")
+    ap.add_argument("--hero", default="NS14_corrected/assets/NS14_hero_cover.png",
+                    help="cover photograph; omit to keep the typographic banner")
+    ap.add_argument("--hero-caption",
+                    default="Design illustration - not a photograph of a "
+                            "finished sample. No NS-14 skirt has been crocheted.")
     ap.add_argument("--imprint", default="Novality Crochet Studio \u00b7 the crochet pattern line")
     a = ap.parse_args()
 
     meta = dict(
         title=a.title, code=a.code, edition=a.edition, difficulty=a.difficulty,
         colourway=a.colourway, owner=a.owner, imprint=a.imprint,
+        hero=a.hero, hero_caption=a.hero_caption,
         header=f"{a.owner}  |  Design Code {a.code}  |  {a.edition}",
         footer=f"\u00a9 2026 {a.owner}. All rights reserved.",
     )
