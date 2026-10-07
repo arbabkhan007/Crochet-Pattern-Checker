@@ -1,36 +1,24 @@
-"""
-Video Tutorial Generator - Generate video scripts and storyboards
-"""
+"""Does not invent a video length."""
 
 class VideoTutorialGenerator:
     def __init__(self):
-        self.video_formats = ["mp4", "webm", "avi"]
-    
+        self.video_formats = []
+
     def generate_script(self, pattern_text: str) -> dict:
-        lines = pattern_text.split('\n')
-        script = {
-            "intro": "Welcome to this crochet tutorial!",
-            "steps": [{"step": i+1, "instruction": line} for i, line in enumerate(lines)],
-            "outro": "Thanks for watching! Happy crocheting!"
+        lines = [line for line in pattern_text.split("\n") if line.strip()]
+        return {
+            "intro": None,
+            "steps": [{"step": index + 1, "instruction": line} for index, line in enumerate(lines)],
+            "outro": None,
+            "note": "No video was made. No duration was invented.",
         }
-        return script
-    
+
     def create_storyboard(self, script: dict) -> list:
-        storyboard = []
-        for step in script["steps"]:
-            storyboard.append({
-                "scene": step["step"],
-                "description": step["instruction"],
-                "duration": "30s"
-            })
-        return storyboard
+        return [
+            {"scene": step["step"], "description": step["instruction"], "duration": None}
+            for step in script.get("steps", [])
+        ]
 
 if __name__ == "__main__":
-    print("🎬 Video Tutorial Generator")
-    print("=" * 60)
-    gen = VideoTutorialGenerator()
-    script = gen.generate_script("Row 1: sc in 2nd ch\nRow 2: sc across")
-    print(f"\nGenerated script with {len(script['steps'])} steps")
-    storyboard = gen.create_storyboard(script)
-    print(f"Created storyboard with {len(storyboard)} scenes")
-    print("\n✨ Video Tutorial Generator complete!")
+    result = VideoTutorialGenerator().generate_script("Row 1: sc in 2nd ch\nRow 2: sc across")
+    print(result["note"])

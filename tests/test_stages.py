@@ -761,3 +761,26 @@ def test_nothing_is_the_same_empty_count():
         "> Cable that crosses nothing.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+def test_the_remaining_sentences_use_the_same_rule():
+    errors = [
+        "Inc that shrinks from 12 to 6.",
+        "Gauge of minus 1 sc.",
+        "Switch from colour B back to colour B.",
+        "H/8 written 2.25 mm.",
+        "ch one, then turn, then dc.",
+    ]
+    for line in errors:
+        assert validate_pattern(line + "\n").errors, line
+    for line in (
+        "Inc that shrinks from 6 to 12.",
+        "Gauge: 12 sc = 4 inches.",
+        "Change from Color Q to Color R.",
+        "H/8 written 5 mm.",
+        "ch 3, turn, dc.",
+        "Magic ring or ch 2 to start.",
+        "The cuff is 1-2 inches.",
+        "sc (UK double).",
+        "> Inc that shrinks from 12 to 6.",
+    ):
+        assert validate_pattern(line + "\n").errors == [], line

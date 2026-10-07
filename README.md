@@ -57,6 +57,9 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `Cable that crosses nothing`, `yardage listed as nothing`, and `round numbered nothing` are the same empty counts. `Leave nothing unworked` is not that error. No length is invented.
 
+
+`Inc that shrinks from 12 to 6`, `gauge of minus 1 sc`, and `colour B back to colour B` are the same written rules. A line that says `or` stays a choice. The kept scripts do not set a price, a score, or a gauge. No length is invented.
+
 ## Install
 
 ```bash

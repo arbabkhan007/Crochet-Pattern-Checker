@@ -1,33 +1,21 @@
-"""
-Etsy Listing Optimizer - Optimize Etsy listings
-"""
+"""Does not score a listing."""
 
 class EtsyListingOptimizer:
     def __init__(self):
-        self.seo_keywords = {
-            "high_volume": ["crochet pattern", "pdf pattern"],
-            "medium_volume": ["beginner crochet", "easy pattern"],
-        }
-    
+        self.seo_keywords = {}
+
     def analyze_listing(self, title: str, description: str, tags: list) -> dict:
         return {
             "title_length": len(title),
             "description_length": len(description),
             "tags_count": len(tags),
-            "seo_score": min(100, len(tags) * 10 + len(title) * 2),
+            "seo_score": None,
+            "note": "No listing score was invented.",
         }
-    
+
     def generate_optimized_title(self, original_title: str, keywords: list) -> str:
-        optimized = original_title
-        for keyword in keywords[:3]:
-            if keyword.lower() not in optimized.lower():
-                optimized = f"{keyword} - {optimized}"
-        return optimized[:140]
+        return original_title
 
 if __name__ == "__main__":
-    print("🏷️ Etsy Listing Optimizer")
-    print("=" * 60)
-    optimizer = EtsyListingOptimizer()
-    analysis = optimizer.analyze_listing("Bunny Pattern", "Adorable bunny", ["crochet"])
-    print(f"\nSEO Score: {analysis['seo_score']}/100")
-    print("\n✨ Etsy Listing Optimizer complete!")
+    result = EtsyListingOptimizer().analyze_listing("Bunny Pattern", "Adorable bunny", ["crochet"])
+    print(result["note"])
