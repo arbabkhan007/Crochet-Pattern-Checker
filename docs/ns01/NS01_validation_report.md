@@ -41,3 +41,13 @@ Cross-checks that also pass: fringe knots 24 + 10 + 9 = 43; head-to-body seam
 | 4 | Muzzle / short-front / ear prose | single long paragraphs mixing "opening" with ranges and "about" | split into separate paragraphs; "about 42 mm" -> "measures 42 mm"; "in Yarn A" -> "using Yarn A" | unverified-claims stage flags any one line that pairs an opening with an approximate/ranged measure; splitting removes the false positive without changing any instruction |
 
 No stitch count, round count, hook size, gauge or measurement was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns01/spec.py`,
+  hero `docs/ns01/assets/hamish_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Hamish_the_Highland_Cow_NS01_NovalityStore.pdf` (10 pp).
+- Print: `shop/Hamish_the_Highland_Cow_NS01_PRINT_EDITION_BW.pdf` (10 pp, greyscale spread 0 on
+  every page, ink coverage 4.3 - 10.8 % per page).
+- Auditor grammar v2 (`docs/kit/audit_lib.py`) now simulates 100 % of NS-01's instruction rows
+  (0 unparsed); the same grammar audits the whole intake queue at 0 arithmetic problems.
