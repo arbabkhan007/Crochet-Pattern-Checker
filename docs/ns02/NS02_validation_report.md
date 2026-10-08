@@ -44,3 +44,11 @@ with three of each mini; gauge line 36 sts ≈ 40 mm across a stuffed Pip body m
 | 7 | Garland yarn | "an extra 3-5 g of sage", "allow another 3-5 g sage" | "an extra 4 g of sage", "allow another 4 g sage" | yarn quantity must be a weighed amount, not a range |
 
 No stitch count, repeat multiplier, chain length or finished measurement was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns02/spec.py`,
+  hero `docs/ns02/assets/halloween_trio_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Kawaii_Halloween_Mini_Set_NS02_NovalityStore.pdf` (9 pp).
+- Print: `shop/Kawaii_Halloween_Mini_Set_NS02_PRINT_EDITION_BW.pdf` (9 pp, greyscale spread 0 on
+  every page, ink coverage 4.2 - 10.8 % per page).
