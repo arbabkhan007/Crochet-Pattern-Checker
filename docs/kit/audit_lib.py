@@ -36,6 +36,33 @@ def parse_tables(text):
     return out
 
 
+_GRP = re.compile(r"(?:sc|dc|hdc|tr|dtr|htr)(?:,\s*(?:sc|dc|hdc|tr|dtr|htr|ch\s*\d+|picot))+")
+
+
+def _strip_parens(low):
+    out, i = "", 0
+    while i < len(low):
+        ch = low[i]
+        if ch == "(":
+            j = i + 1
+            depth = 1
+            while j < len(low) and depth:
+                if low[j] == "(":
+                    depth += 1
+                if low[j] == ")":
+                    depth -= 1
+                j += 1
+            inner = low[i + 1:j - 1]
+            keep = "counts as first" in inner or bool(_GRP.fullmatch(inner.strip()))
+            if keep:
+                out += low[i:j]
+            i = j
+        else:
+            out += ch
+            i += 1
+    return out
+
+
 def _split_ops(s):
     parts, depth, cur = [], 0, ""
     for ch in s:
@@ -62,6 +89,7 @@ def _ops_make_consume(instr):
     s = instr.lower()
     s = re.sub(r"\bblo\b|\bflo\b", " ", s)
     s = s.replace(";", ",")
+    s = s.replace(":", ",")
     s = re.sub(r",?\s*\bthen\b\s*", ", ", s)
     total_m = total_c = 0
     saw_op = False
@@ -71,6 +99,12 @@ def _ops_make_consume(instr):
             continue
         if part == "inc":
             total_c += 1; total_m += 2; saw_op = True; continue
+        m = re.fullmatch(r"inc in each of next (\d+)", part)
+        if m:
+            k = int(m.group(1)); total_c += k; total_m += 2 * k; saw_op = True; continue
+        m = re.fullmatch(_ST + r"\s+in\s+(\d+)", part)
+        if m:
+            k = int(m.group(1)); total_c += k; total_m += k; saw_op = True; continue
         if part in ("dec", "sc2tog", "dc2tog", "invdec"):
             total_c += 2; total_m += 1; saw_op = True; continue
         if part in ("bo", "bo in next st"):
@@ -101,9 +135,10 @@ def _ops_make_consume(instr):
         if m:
             k = int(m.group(1))
             total_c += k; total_m += k; saw_op = True; continue
-        if part.startswith("sl st") and re.match(
-                r"sl st (?:to|in) (?:the )?(?:top|first|base|beginning|next \d+ dc and into)",
-                part) or "to form a ring" in part or "and into the next corner" in part:
+        if re.match(r"sl st (?:to|in) (?:the )?(?:top|base|beginning)(?!\s*\d)", part) \
+                or re.match(r"sl st (?:to|in) first (?!\d)", part) \
+                or re.match(r"sl st in next \d+ dc and into", part) \
+                or "to form a ring" in part or "and into the next corner" in part:
             continue
         if part.startswith("sl st") and " in " in part:
             total_c += 1; total_m += 1; saw_op = True; continue
@@ -141,10 +176,11 @@ def sim_round(instr, prev):
     s = " ".join(instr.split())
     low = s.lower()
     low = re.sub(r"^(with|in|using)\b[^,]*?,\s*", "", low)
-    low = re.sub(r"\s*\([^)]*\)", lambda m: m.group(0) if "counts as first" in m.group(0) else "", low)
+    low = _strip_parens(low)
     low = low.replace(";", ",")
     low = re.sub(r"\bblo\b|\bflo\b", " ", low)
     low = re.sub(r"^flo:\s*|^\blo:\s*", "", low)
+    low = low.replace(":", " ")
     unworked = 0
     mu = re.search(r"leave (?:final|the final) (\d+)?\s*(?:sts?|st)?\s*unworked", low)
     if mu:
@@ -251,10 +287,19 @@ def audit_tables(text, overrides=None, skip_tables=()):
                 continue
             stated = stated_count(sts_cell)
             key = label.strip().lower()
-            mch = re.fullmatch(r"ch (\d+)", il0 := instr.strip().lower()) or \
+            il0 = instr.strip().lower()
+            mch = re.fullmatch(r"ch (\d+)", il0) or \
                 re.search(r"^ch (\d+), sl st to first ch to form a ring", il0)
             if mch:
                 last_chain = int(mch.group(1))
+                continue
+            mcf = re.search(r"^ch (\d+);\s*from the 2nd ch, work (\d+) sc in each chain", il0)
+            if mcf:
+                made = int(mcf.group(2)) * (int(mcf.group(1)) - 1)
+                if stated is not None and stated != made:
+                    problems.append(f"{label}: {mcf.group(2)} sc in each of ch "
+                                    f"{int(mcf.group(1))-1} should make {made}, stated {stated}")
+                prev = stated if stated is not None else made
                 continue
             if key in overrides:
                 exp = overrides[key]
@@ -276,6 +321,15 @@ def audit_tables(text, overrides=None, skip_tables=()):
                 last_chain = None
                 continue
             il = instr.strip().lower()
+            mce = re.search(r"(\d+) sc in each chain", il) if last_chain else None
+            if last_chain and mce:
+                made = int(mce.group(1)) * (last_chain - 1)
+                if stated is not None and stated != made:
+                    problems.append(f"{label}: {mce.group(1)} sc in each of ch "
+                                    f"{last_chain}-1 should make {made}, stated {stated}")
+                prev = stated if stated is not None else made
+                last_chain = None
+                continue
             if last_chain and re.fullmatch(r"sc in each ch around", il):
                 if stated is not None and stated != last_chain:
                     problems.append(f"{label}: ring of ch {last_chain} should make "
