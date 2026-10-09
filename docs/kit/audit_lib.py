@@ -36,7 +36,8 @@ def parse_tables(text):
     return out
 
 
-_GRP = re.compile(r"(?:sc|dc|hdc|tr|dtr|htr)(?:,\s*(?:sc|dc|hdc|tr|dtr|htr|ch\s*\d+|picot))+")
+_TOK = r"(?:\d+\s+)?(?:sl st|sc|dc|hdc|tr|dtr|htr|ch\s*\d+|picot)"
+_GRP = re.compile(_TOK + r"(?:,\s*" + _TOK + r")+")
 
 
 def _strip_parens(low):
@@ -80,8 +81,15 @@ def _split_ops(s):
     return parts
 
 
+def _group_count(group):
+    return _count_stitches(group) + len(re.findall(r"\bsl st\b", group))
+
+
 def _count_stitches(group):
-    return len(re.findall(r"\b" + _ST + r"\b", group))
+    total = 0
+    for cnt, _st in re.findall(r"(?:(\d+)\s+)?(" + _ST.strip("()?:") .replace("|", "|") + r")\b", group):
+        total += int(cnt) if cnt else 1
+    return total
 
 
 def _ops_make_consume(instr):
@@ -99,9 +107,15 @@ def _ops_make_consume(instr):
             continue
         if part == "inc":
             total_c += 1; total_m += 2; saw_op = True; continue
+        m = re.fullmatch(r"join (?:bl|fl)\s*\d\s+(\d+) sc", part)
+        if m:
+            k = int(m.group(1)); total_c += k; total_m += k; saw_op = True; continue
         m = re.fullmatch(r"inc in each of next (\d+)", part)
         if m:
             k = int(m.group(1)); total_c += k; total_m += 2 * k; saw_op = True; continue
+        m = re.fullmatch(_ST + r"\s+in\s+(?:remaining|the remaining)?\s*(\d+)", part)
+        if m:
+            k = int(m.group(1)); total_c += k; total_m += k; saw_op = True; continue
         m = re.fullmatch(_ST + r"\s+in\s+(\d+)", part)
         if m:
             k = int(m.group(1)); total_c += k; total_m += k; saw_op = True; continue
@@ -129,7 +143,11 @@ def _ops_make_consume(instr):
             saw_op = True; continue
         m = re.fullmatch(r"\(([^)]+)\)\s*(?:all )?in (?:next|same|the next) st", part)
         if m:
-            total_c += 1; total_m += _count_stitches(m.group(1)); saw_op = True; continue
+            total_c += 1; total_m += _group_count(m.group(1)); saw_op = True; continue
+        m = re.fullmatch(r"\(([^)]+)\)\s+in each of (?:the )?(\d+)\s+[a-z0-9-]+ spaces?", part)
+        if m:
+            k = int(m.group(2))
+            total_m += _group_count(m.group(1)) * k; saw_op = True; continue
         m = re.fullmatch(r"(\d+)\s*sl st\b.*", part) or re.fullmatch(
             r"sl st in (?:next|first|last) (\d+).*", part)
         if m:
@@ -142,8 +160,15 @@ def _ops_make_consume(instr):
             continue
         if part.startswith("sl st") and " in " in part:
             total_c += 1; total_m += 1; saw_op = True; continue
-        if part.startswith("sl st to") or part in ("sl st", "sl st, fo"):
+        if part.startswith("sl st to") or part in ("sl st", "sl st, fo", "fo", "fo.",
+                                                   "fasten off"):
             continue
+        if part in ("mr", "magic ring", "do not turn", "do not turn.") or \
+                part.startswith("do not "):
+            continue
+        m = re.fullmatch(r"sc in 2nd ch and next (\d+) ch", part)
+        if m:
+            total_m += int(m.group(1)) + 1; saw_op = True; continue
         if part.startswith("ch") and "counts as" not in part:
             continue
         if "skip next" in part or part.startswith("skip"):
@@ -175,11 +200,12 @@ def sim_round(instr, prev):
     starts a table fragment, so prev-dependent rules report unknown."""
     s = " ".join(instr.split())
     low = s.lower()
-    low = re.sub(r"^(with|in|using)\b[^,]*?,\s*", "", low)
+    low = re.sub(r"^(with|in|using)\b[^:\n]*:\s*", "", low)
+    low = re.sub(r"^(with|in|using)\s+[a-z0-9&#/ -]+,\s*", "", low)
     low = _strip_parens(low)
     low = low.replace(";", ",")
     low = re.sub(r"\bblo\b|\bflo\b", " ", low)
-    low = re.sub(r"^flo:\s*|^\blo:\s*", "", low)
+    low = re.sub(r"^flo\s*:\s*|^\blo\s*:\s*", "", low)
     low = low.replace(":", " ")
     unworked = 0
     mu = re.search(r"leave (?:final|the final) (\d+)?\s*(?:sts?|st)?\s*unworked", low)
@@ -205,6 +231,14 @@ def sim_round(instr, prev):
         return int(m.group(1)), None
     if low in ("inc in each st around", "inc in each st around."):
         return (2 * prev, prev) if prev is not None else (None, None)
+    if re.fullmatch(r"sc in each st around until .+", low):
+        return (prev, prev) if prev is not None else (None, None)
+    m = re.fullmatch(r"ch (\d+), sc in 2nd ch from hook and across.*", low)
+    if m:
+        return int(m.group(1)) - 1, None
+    m = re.fullmatch(r"ch (\d+) ring; sc in each ch.*", low)
+    if m:
+        return int(m.group(1)), None
     if low in ("sc in each st around", "sc in each st around, then fo", "sc in each st around.",
                "blo sc around", "blo sc in each st around", "blo: sc in each st around",
                "sc in each st across", "blo sc in each st across", "sc in each st across, turn",
