@@ -359,15 +359,21 @@ def is_round_table(rows):
 def main_counts(blocks, spec):
     """Stated counts of the spec's main piece table (for ladder + chart)."""
     want = spec.get("main_section", "").lower()
-    cur, counts, labels = "", [], []
+    cur3 = cur4 = ""
+    counts, labels = [], []
     for kind, payload in blocks:
-        if kind in ("h3", "h4"):
-            cur = payload.lower()
+        if kind == "h3":
+            cur3, cur4 = payload.lower(), ""
+        elif kind == "h4":
+            cur4 = payload.lower()
         elif kind == "table" and is_round_table(payload):
+            cur = cur3 + " | " + cur4
             if want and want not in cur:
                 continue
+            hdr = [h.strip().lower() for h in payload[0]]
+            i_sts = next((i for i, h in enumerate(hdr) if h in ("sts", "stitch count")), 2)
             for r in payload[1:]:
-                m = re.search(r"\((\d+)\)", r[2] if len(r) > 2 else "")
+                m = re.search(r"\((\d+)\)", r[i_sts] if len(r) > i_sts else "")
                 if m:
                     counts.append(int(m.group(1)))
                     labels.append(r[0])
