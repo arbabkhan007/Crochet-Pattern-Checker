@@ -22,3 +22,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 6 | Rnd 5 arithmetic note | parenthesised '(7 stitches made)' counts | spelled 'making seven/ten/seven' | one line stated more than one stitch count |
 | 7 | Muzzle seam | Sew about three quarters ... through the remaining opening | 'three quarters'; opening sentence reworded | opening + approximate pair on one line |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns04/spec.py`,
+  hero `docs/ns04/assets/coco_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Coco_the_Capybara_NS04_NovalityStore.pdf`.
+- Print: `shop/Coco_the_Capybara_NS04_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

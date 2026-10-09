@@ -17,3 +17,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor (p
 | 1 | Safety | Calling a smiling, stuffed item | Calling a smiling, filled item | stuff verb precedes the eye step |
 | 2 | Safety | lock every washer ... BEFORE stuffing | insert the six 5 mm safety eyes and lock every washer ... BEFORE stuffing | eye verb must appear before first stuff verb |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns07/spec.py`,
+  hero `docs/ns07/assets/trio_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Pocket_Positivity_Trio_NS07_NovalityStore.pdf`.
+- Print: `shop/Pocket_Positivity_Trio_NS07_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

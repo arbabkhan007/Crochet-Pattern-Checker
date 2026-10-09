@@ -17,3 +17,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 1 | Tail | better than a stuffed one | better than a filled one | line stuffs and does not stuff |
 | 2 | Base note | no matter how you stuff it | no matter how firmly it is filled | stuff verb precedes the eye step in the piece |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns06/spec.py`,
+  hero `docs/ns06/assets/momo_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Momo_the_Loaf_Cat_NS06_NovalityStore.pdf`.
+- Print: `shop/Momo_the_Loaf_Cat_NS06_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

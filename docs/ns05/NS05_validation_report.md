@@ -20,3 +20,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 4 | Troubleshooting | **Stuffing shows / head flops.** | **Fill shows / head flops.** | piece says do not stuff, then stuffs |
 | 5 | Troubleshooting | **Cannot reach the body to stuff.** | **Cannot reach the body to fill.** | same ordering rule |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns05/spec.py`,
+  hero `docs/ns05/assets/duck_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Little_Duck_Plushie_NS05_NovalityStore.pdf`.
+- Print: `shop/Little_Duck_Plushie_NS05_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

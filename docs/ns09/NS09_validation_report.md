@@ -16,3 +16,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 |---|---|---|---|---|
 | 1 | Shell join | Sl st to the first Rnd-8 sc | Sl st to the first sc of this round | '-8 sc' read as a negative measure |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns09/spec.py`,
+  hero `docs/ns09/assets/shelby_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Shelby_Sea_Turtle_Bag_Charm_NS09_NovalityStore.pdf`.
+- Print: `shop/Shelby_Sea_Turtle_Bag_Charm_NS09_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

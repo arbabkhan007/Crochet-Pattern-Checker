@@ -20,3 +20,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 4 | Materials | (5-15 g) | (about 10 g each) | quantity range |
 | 5 | Yarn table | 8-10 g / 6-8 g / 4-6 g | 9 g / 7 g / 5 g | quantity ranges |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns13/spec.py`,
+  hero `docs/ns13/assets/ornament_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Christmas_Ornament_Bundle_NS13_NovalityStore.pdf`.
+- Print: `shop/Christmas_Ornament_Bundle_NS13_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

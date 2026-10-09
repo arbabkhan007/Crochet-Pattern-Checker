@@ -20,3 +20,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor (p
 | 4 | Finished size | three tube ranges + poinsettia/bow ranges | single nominal values (22/92/125 cm; 3.5 in) | target ranges |
 | 5 | Materials | 150-200 g | 175 g | quantity range |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns15/spec.py`,
+  hero `docs/ns15/assets/wreath_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Interchangeable_Christmas_Wreath_NS15_NovalityStore.pdf`.
+- Print: `shop/Interchangeable_Christmas_Wreath_NS15_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

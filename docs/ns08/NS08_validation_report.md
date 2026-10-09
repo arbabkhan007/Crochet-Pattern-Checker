@@ -22,3 +22,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 6 | Size maths | 13 rounds x 4.3 mm ... x 4.3 mm ... x 4.3 mm | rounds at 4.3 mm each | fractional repeat |
 | 7 | Head intro | left open - stop at 18 stitches ... | added 'Place the eye stems after Rnd 8 ...' | eye step must precede first stuff verb |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns08/spec.py`,
+  hero `docs/ns08/assets/ember_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Ember_the_Baby_Dragon_NS08_NovalityStore.pdf`.
+- Print: `shop/Ember_the_Baby_Dragon_NS08_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

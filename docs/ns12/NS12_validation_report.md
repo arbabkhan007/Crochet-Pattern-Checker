@@ -18,3 +18,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 2 | Finished size | About 15-16 cm tall in chunky | About 15.5 cm tall in chunky | target range |
 | 3 | Materials | 60-80 g | 70 g | quantity range |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns12/spec.py`,
+  hero `docs/ns12/assets/tree_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Bobble_Christmas_Tree_NS12_NovalityStore.pdf`.
+- Print: `shop/Bobble_Christmas_Tree_NS12_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

@@ -19,3 +19,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor (b
 | 3 | Materials | 40-50 g / 10-15 g / 20-30 g | 45 g / 12 g / 25 g | quantity ranges |
 | 4 | Safety | Lock their washers ... BEFORE stuffing | Insert the safety eyes and lock their washers ... BEFORE stuffing | eye verb before first stuff verb |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns11/spec.py`,
+  hero `docs/ns11/assets/gnome_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/NoSew_Christmas_Gnome_NS11_NovalityStore.pdf`.
+- Print: `shop/NoSew_Christmas_Gnome_NS11_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

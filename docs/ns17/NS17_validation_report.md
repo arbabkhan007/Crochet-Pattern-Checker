@@ -21,3 +21,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 5 | Muzzle embroidery | mouth in black | mouth using black | same pair rule |
 | 6 | Hoof/leg stuffing | fill in the hoof / amount in both legs / remains in the flattened seam | inside the hoof / for both legs equally / within the flattened seam | same pair rule |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns17/spec.py`,
+  hero `docs/ns17/assets/goat_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Year_of_the_Fire_Goat_2027_Plushie_Set_NS17_NovalityStore.pdf`.
+- Print: `shop/Year_of_the_Fire_Goat_2027_Plushie_Set_NS17_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

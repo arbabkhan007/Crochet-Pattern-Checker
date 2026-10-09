@@ -18,3 +18,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor (g
 | 2 | Finished size | approximately 40-44 cm (16-17.5 in) | about 42 cm (16.5 in) | finished size must not be a target range |
 | 3 | Head finish | opening ... The finished head is about 4.9 cm | measurements moved to their own line | opening + approximate pair |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns10/spec.py`,
+  hero `docs/ns10/assets/willow_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Willow_the_Bunny_Lovey_NS10_NovalityStore.pdf`.
+- Print: `shop/Willow_the_Bunny_Lovey_NS10_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).

@@ -20,3 +20,10 @@ on the engine and **0 problems / 0 unparsed rows** on the independent auditor.
 | 4 | Gauge note | opening circumference | leg circumference | opening + approximate pair |
 | 5 | Notions | 2–2.5 m / 6–8 ft | 2.2 m / 7 ft | quantity range |
 No stitch count, repeat multiplier, chain length or decrease schedule was altered.
+
+## Store edition
+
+- Compiler: `docs/kit/build_store_pdf.py` (generic, spec-file driven), spec `docs/ns16/spec.py`,
+  hero `docs/ns16/assets/stocking_hero.png` (illustrative render, labelled as such on the cover).
+- Colour: `shop/Mini_Stocking_Advent_Garland_NS16_NovalityStore.pdf`.
+- Print: `shop/Mini_Stocking_Advent_Garland_NS16_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
