@@ -60,6 +60,30 @@ A line that starts with `>` is a quote. A line that says `do not` is a prohibiti
 
 `Inc that shrinks from 12 to 6`, `gauge of minus 1 sc`, and `colour B back to colour B` are the same written rules. A line that says `or` stays a choice. The kept scripts do not set a price, a score, or a gauge. No length is invented.
 
+## Web companion (optional)
+
+`web/studio/` is a browser companion for this checker: pattern library, row counter, PDF and web
+import, a pattern canvas, courses, and a photo texture aid. It is built with React and TypeScript and
+is separate from the Python package.
+
+It does not change what this checker does. The studio calls `POST /api/check` and shows that verdict;
+the Python engine still owns parsing, validation and measurement. The studio's own score is labelled
+in its interface as a browser-side pre-check.
+
+```bash
+cd web/studio
+npm install
+npm run build
+cd ../..
+uvicorn crochet_checker.web.app:app --port 8000
+```
+
+Open `http://localhost:8000/studio/`. The existing checker UI at `/` is unchanged. Without a built
+`web/studio/dist`, the mount is skipped and the API behaves exactly as before.
+
+The photo aid measures image texture and ranks stitches by fit. It is not a chart image detector and
+it does not count a photo, so it does not change the non-goals listed above.
+
 ## Install
 
 ```bash

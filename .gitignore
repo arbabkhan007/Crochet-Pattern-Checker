@@ -77,3 +77,12 @@ experimental/not_the_product/
 
 # Shop pattern PDFs. Other PDF output stays ignored.
 !shop/*.pdf
+
+# Web companion build output and dependencies
+web/studio/node_modules/
+web/studio/dist/
+
+# The Python rules above ignore any directory named lib/ or build/. The studio's
+# source lives in src/client/lib/, so re-include it explicitly.
+!web/studio/src/client/lib/
+!web/studio/src/client/lib/**

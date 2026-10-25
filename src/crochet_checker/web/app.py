@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from ..parser.parser import CrochetParser
@@ -13,10 +16,20 @@ from ..simulation.assembly_map import assembly_map_svg, written_assembly
 from ..simulation.geometry_map import geometry_map_svg, written_geometry
 from ..simulation.stitch_sim import stitch_model_obj
 from ..simulation.stitch_sim import simulate_stitches, stitch_map_svg
+from .import_url import ImportError_, import_pattern_page
 from ..validation import validate_pattern
 from ..visualization import measure_pattern, render_2d_preview
 
 app = FastAPI(title="Crochet Pattern Checker", version="0.5.0")
+
+# Optional web companion ("studio"). Built from web/studio with `npm run build`.
+# Mounted only when the bundle exists, so the API works with or without it.
+# The Python engine in this module stays authoritative: the studio calls
+# /api/check rather than reimplementing validation, and its own scoring is
+# labelled in the UI as a browser-side pre-check.
+_STUDIO_DIR = Path(__file__).resolve().parents[3] / "web" / "studio" / "dist"
+if _STUDIO_DIR.is_dir():
+    app.mount("/studio", StaticFiles(directory=str(_STUDIO_DIR), html=True), name="studio")
 
 
 class CheckRequest(BaseModel):
@@ -50,6 +63,30 @@ async def check_pattern(request: CheckRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+class ImportUrlRequest(BaseModel):
+    url: str
+
+
+@app.post("/api/import/url")
+async def import_url(request: ImportUrlRequest):
+    """Fetch a public pattern page and return its text.
+
+    This returns text only. Whether that text is a pattern, and whether its
+    counts are consistent, is decided by /api/check - not here.
+    """
+    try:
+        page = import_pattern_page(request.url)
+    except ImportError_ as error:
+        raise HTTPException(status_code=error.status, detail=str(error)) from error
+    return {
+        "url": page.url,
+        "title": page.title,
+        "text": page.text,
+        "content_type": page.content_type,
+        "truncated": page.truncated,
+    }
 
 
 @app.post("/api/upload")
