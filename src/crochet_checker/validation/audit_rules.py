@@ -21,6 +21,11 @@ _STOP = {
     "make", "row", "round", "rnd", "rows", "rounds", "turn", "then",
     "remaining", "rem", "stitch", "stitches", "space", "skip", "same",
     "all", "end", "ends", "fasten", "off", "stuff", "sew", "attach",
+    "chain", "chains", "foundation", "only", "along", "working", "worked",
+    "work", "into", "on", "one", "two", "three", "evenly", "spaced",
+    "until", "base", "edge", "edges", "heel", "instep", "toe", "leg",
+    "round", "row", "make", "made", "using", "change", "changing",
+    "do", "not", "times", "turning", "height", "towards",
 }
 _PLACEMENT = (
     "safety eye", "safety eyes", "eye", "eyes", "button", "buttons",

@@ -8,24 +8,24 @@ Three palm-sized amigurumi that slip into a coat pocket - Sunny the Sunflower, W
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 The set uses 5 mm black safety eyes (six in total) - small parts and a choking hazard, not intended for children under 3. These toys are tiny: lock every washer from the inside BEFORE you stuff and close each piece, and pull-test. For young children, embroider the eyes and mouths instead.
 
 Sellers: do not market as “baby-safe”; sell as adult collectibles, desk companions or keychain charms, and tag with materials, your maker name and “Not suitable for children under 3 years.”
 
-### Materials
+## Materials
 
 - Yarn: #4 worsted (~250 m / 100 g). The three toys use roughly 8 m total (under 4 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
 - Hook: 3.5 mm (US E/4).
 - Eyes: six 5 mm black safety eyes, or embroidery thread.
 - Also: about 3 g fibre fill total, blunt tapestry needle, stitch marker, scissors.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: about 3.5 mm per stitch and 3.2 mm per round in sc. Pocket size means gauge shows - work a swatch; the stated sizes follow from it.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  hdc - half double crochet
@@ -35,13 +35,13 @@ sl st - slip stitch  ·  st(s) - stitch(es)
 
 Techniques: continuous spiral rounds with a marker (no joins); magic-ring start for Sunny's centre and Waddle's body; invisible decreases; petal CLUSTERS worked into one stitch with a slip stitch between petals; an OVAL worked around a chain for Spud; and simple sewing / embroidery.
 
-### Instructions
+## Instructions
 
 ### 1. Sunny the Sunflower
 
 A small brown cushion; nine yellow petals are worked straight into Rnd 3.
 
-**Centre - chocolate**
+#### Centre - chocolate
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -52,7 +52,7 @@ A small brown cushion; nine yellow petals are worked straight into Rnd 3.
 | R5 | [sc, dec] x 6 | (12) | - |
 | R6 | dec x 6 | (6) | stuff firmly before closing |
 
-**Petals - yellow (worked in the round)**
+#### Petals - yellow (worked in the round)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -64,7 +64,7 @@ Face: embroider a smiling mouth between Rnd 2-3 and add eyes 3 stitches apart on
 
 ### 2. Waddle the Penguin
 
-**Body - black**
+#### Body - black
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -73,12 +73,12 @@ Face: embroider a smiling mouth between Rnd 2-3 and add eyes 3 stitches apart on
 | R3 | [sc, inc] x 6 | (18) | eyes on R3 |
 | R4-6 | sc in each st around (3 rnd) | (18) | - |
 | R7 | [2 sc, inc] x 6 | (24) | chest over R4-8 |
-| R8-9 | sc in each st around (2 rnd) | (24) | wings at R6 |
+| R8-9 | sc in each st around (2 rnd) | (24) | wings at R6; after R9: lock eyes, attach all pieces and embroider blush before R10 |
 | R10 | [2 sc, dec] x 6 | (18) | - |
 | R11 | [sc, dec] x 6 | (12) | - |
 | R12 | dec x 6 | (6) | stuff as you go, close |
 
-**Wings - black (make 2)**
+#### Wings - black (make 2)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -88,7 +88,7 @@ Face: embroider a smiling mouth between Rnd 2-3 and add eyes 3 stitches apart on
 
 FO with a 15 cm tail, do not stuff; sew to the sides at Rnd 6 angled backward.
 
-**Chest patch - cream (flat oval)**
+#### Chest patch - cream (flat oval)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -98,7 +98,7 @@ FO with a 15 cm tail, do not stuff; sew to the sides at Rnd 6 angled backward.
 
 FO with a tail; sew onto the front covering Rnds 4-8, stitching top and bottom edges only so the middle puffs.
 
-**Beak - yellow**
+#### Beak - yellow
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -112,14 +112,14 @@ FO, do not stuff; sew centred between the eyes, angled slightly down. Eyes 3 sti
 
 Spud is worked as an oval around a chain, then flat-stitched closed so the seam reads as a natural crease.
 
-**Body - warm tan**
+#### Body - warm tan
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
 | Found. | ch 7 | - | - |
 | R1 | sc in 2nd ch, 4 sc, 3 sc in last ch; other side: 4 sc, 2 sc in last ch | (14) | around the chain |
 | R2 | inc, 4 sc, inc x 3, 4 sc, inc x 2 | (20) | - |
-| R3-6 | sc in each st around (4 rnd) | (20) | - |
+| R3-6 | sc in each st around (4 rnd) | (20) | after R6: lock eyes and embroider mouth before R7 |
 | R7 | [3 sc, dec] x 4 | (16) | - |
 | R8 | [2 sc, dec] x 4 | (12) | - |
 | R9 | [sc, dec] x 4 | (8) | begin stuffing |
@@ -129,11 +129,11 @@ Closing: leave a 20 cm tail. With the body flat, whip-stitch the remaining openi
 
 Face: eyes about 5 stitches apart on the broad side around Rnd 4 (Spud's face is ~27 mm wide, so 4 or 5 apart both fit), with a small open mouth below.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Before you finish, check each toy: Sunny has 9 even petals and a closed brown centre; Waddle has 2 wings, a cream chest and a yellow beak; Spud's seam reads as a crease. Every safety-eye washer is locked from the inside (before stuffing and closing) or the eyes are embroidered, and every end is woven in at least 5 cm.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Petal edges curl / centre will not close.** Use invisible decreases on the centre's Rnd 5 and pull the closing snug. Nine petal repeats use exactly 18 stitches (two each) - check Rnd 3 is (18) and you slip-stitched once per repeat.
 - **Petals sit flat.** Work the three stitches in one stitch loosely, or use a 4 mm hook for the petal round only.
@@ -142,17 +142,21 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 - **Spud's seam shows.** Whip-stitch along the flat top so the seam reads as a crease, and stuff evenly before closing.
 - **Eyes too near the edge.** On Sunny and Waddle place them three stitches apart, not four.
 
-### Making a bigger trio
+## Making a bigger trio
 
 Use chunky/aran or hold #4 double on a 3.5 mm hook (~4.5 mm per stitch, about 1.3x): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change.
 
-### Selling & care
+## Colorways
+
+Original trio: Sunny uses golden-yellow petals with a chocolate-brown centre; Waddle uses a black body, cream chest and golden-yellow beak; Spud uses warm tan. Faces are black. Optional coordinated variations: mustard and cocoa for Sunny, charcoal and oat for Waddle, and russet or sandy beige for Spud.
+
+## Selling & care
 
 Sell as adult collectibles, desk companions or keychain charms - not “baby-safe”. Stuff firmly and evenly. Spot clean with a damp cloth; do not machine wash; fluff pulled loops with a clean slicker brush or toothbrush.
 
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 07.
 
@@ -160,18 +164,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished toys as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 This set uses 5 mm safety eyes (small parts) and is not intended for children under 3. Finished items sold for children must meet local toy-safety laws (EN 71 / CE in the EU; CPSIA and ASTM F963 in the US); for young children embroider the eyes and mouths and secure every end.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#PocketPositivityTrio** - We love seeing your makes. Thank you for supporting an independent pattern designer.

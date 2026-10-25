@@ -8,13 +8,13 @@ A shaggy, sturdy Highland cow with a flattened brow, a wide cream muzzle and a w
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Hamish has two 12 mm safety eyes - small parts. Reach through the open head and lock the washers firmly from the inside BEFORE you stuff and close the head (Rnd 16) - once closed you cannot get back inside. Pull-test each eye. The horns, ears, muzzle, legs and tail are sewn on, and the fringe and tail are knotted yarn: sew every seam twice, weave ends in at least 5 cm, and knot the fringe and tail securely.
 
 Not tested to ASTM F963 or EN 71 - do not describe finished Hamishes as “baby-safe”. For children under three, embroider the eyes with black floss instead of safety eyes.
 
-### Materials
+## Materials
 
 - Yarn A - Ginger: worsted / aran (#4), about 25 g used. Caramel, toffee or ginger gold. One 80 g / 150 m ball covers several cows and re-dos.
 - Yarn B - Oat cream: worsted / aran (#4), about 12 g. Muzzle, horns, inner ears, optional belly patch.
@@ -24,13 +24,13 @@ Not tested to ASTM F963 or EN 71 - do not describe finished Hamishes as “baby-
 - Eyes: 2 x 12 mm black safety eyes, or embroider for under-threes.
 - Stuffing & notions: polyester fibre fill about 30 g (buy 50 g to over-stuff the base); stitch marker, tapestry needle, pins, scissors.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: 11 sc x 12 rounds = 5 cm / 2 in in Yarn A. Not critical, but loose tension lets stuffing show - drop half a millimetre if your fabric is gappy.
 
 Finished size: about 15 cm / 6 in sitting.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sl st - slip stitch  ·  sc - single crochet
@@ -40,7 +40,7 @@ FO - fasten off  ·  (n) - stitch count at round end
 
 Work in a continuous spiral unless a round says join. Mark the first stitch of every round. Leave 30-40 cm tails on every piece you will sew.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **The magic ring** - Wrap yarn around two fingers, insert the hook, pull up a loop and work the first round into the ring; pull the tail tight once the round is complete.
 
@@ -56,7 +56,7 @@ Work in a continuous spiral unless a round says join. Mark the first stitch of e
 
 7. **Ladder stitch** - The invisible seam: out on one side, pick up one bar on the opposite side, then one bar back, alternating, pulling snug every few stitches. The head-to-body join needs two full passes.
 
-### Instructions
+## Instructions
 
 ### 1. Head - Yarn A
 
@@ -169,9 +169,13 @@ All four identical; the sitting pose comes from where and at what angle you sew 
 
 Leg length - read before you sew. A 67 mm leg joins much lower than it is long, so it splays: front about 55 degrees from vertical, back about 68-70 degrees (near horizontal) - that is the low Highland sit. For a tidier upright sit, work the FRONT pair only to Rnd 10 (42 mm); leave the back pair at 16 rounds as haunches.
 
+#### Shortened front legs - upright option only (make 2)
+
+Short-front finish and placement: each leg is about 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening. Pin both front legs before sewing, centred across Body Rnds 8-9 and about 8 body stitches apart. Start each leg 25 degrees forward from vertical; mirror the pair and adjust only within 20-30 degrees until both hooves rest level. Sew all 12 opening stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
+
 ### 6. Ears - make 2 of each layer
 
-**INNER ear - Yarn B (make 2) & OUTER ear - Yarn A (make 2)**
+#### INNER ear - Yarn B (make 2) & OUTER ear - Yarn A (make 2)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -219,7 +223,7 @@ Tousle, then trim so the fringe grazes the eyes and breaks into uneven points. H
 
 FO; add a 3-strand tassel at each end or weave a second colour as a slip-stitch stripe to hint at tartan, then tie loosely under the muzzle. Ribbon shortcut: 28 cm of 12 mm rust tartan ribbon, knotted once.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Assembly - work in this order:
 
@@ -231,7 +235,7 @@ Assembly - work in this order:
 
 4. Fringe attached and trimmed (section 9), parting around horns and ears.
 
-5. Head to body: closed head on the open 18-st neck ring (Rnd 19). Ball-on-ring join - pack the neck firmly, ladder-stitch around TWICE, tilt the muzzle slightly down.
+5. Head to body: closed head on the open 18-st neck ring (Rnd 19). Ball-on-ring join - pack the neck firmly, ladder-stitch around TWICE. Match the 18 body Rnd-19 stitches one-for-one to the 18 head stitches of Rnd 14, forming a full circular seam around the nub; do not bunch all 18 neck stitches into the 6-stitch closure. Tilt the muzzle slightly down.
 
 6. Back legs: lower sides across Rnds 3-6, almost on the base, splayed near horizontal.
 
@@ -241,7 +245,7 @@ Assembly - work in this order:
 
 9. Tail & scarf: attach the tassel tail, tie the scarf, weave in every end and fluff the fringe.
 
-### Troubleshooting
+## Troubleshooting
 
 - **He will not sit.** Restuff the body base firmly and sew the back legs lower and wider - closer to horizontal than you think.
 - **Front hooves float.** Sewn too high - they belong on Rnds 8-9, not under the neck. If they still float, the legs are too long: work the front pair to Rnd 10.
@@ -251,11 +255,11 @@ Assembly - work in this order:
 - **Horns flop.** Under-stuffed at the tip, or sewn only at the edge - stitch a full round into the head fabric.
 - **Head tips forward.** The neck ring grips the head only about 8 mm up. Pack the neck before closing and make the second ladder-stitch pass tight.
 
-### Colorways
+## Colorways
 
 Ginger  ·  Caramel  ·  Highland black  ·  Cream  ·  Roan red
 
-### Three sizes, one pattern
+## Three sizes, one pattern
 
 | Version | Yarn / hook | Eyes | Height |
 |---|---|---|---|
@@ -265,14 +269,18 @@ Ginger  ·  Caramel  ·  Highland black  ·  Cream  ·  Roan red
 
 Stitch counts stay the same; only yarn, hook and stuffing change. Yarn scales with the square of the height and stuffing with the cube - buy generously for the big chenille version.
 
-### Designer notes
+## Designer notes
 
 - Why the legs join so low: back legs (16 rnd, 67 mm, sewn to Rnds 3-6) and front legs (sewn to Rnds 8-9) splay at the checked angles so all four hooves land level. This low join is the most common failure on sitting Highland cows.
 - Bottom-heavy by design: stuff the lower body firmly and keep the shape squat. Hamish is meant to settle onto his base and stare.
 
+## Care
+
+Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Hamishes, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, loosened fringe, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check all eyes, knots and attachments again after cleaning.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 01.
 
@@ -280,18 +288,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished Hamishes as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 This pattern has not been tested to a toy-safety standard (ASTM F963 / EN 71) and uses 12 mm safety eyes and knotted yarn fringe. Finished items made for sale must be assessed by the seller against local toy-safety laws; for young children, embroider the eyes and secure every seam and knot.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#HamishTheHighlandCow** - We love seeing your coos. Thank you for supporting an independent pattern designer.

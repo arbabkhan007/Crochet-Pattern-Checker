@@ -8,13 +8,13 @@ A low, round, bottom-heavy capybara with a blunt sewn-on muzzle, plump stuffed l
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Coco has no safety eyes and no small plastic parts, which makes the face safer than a safety-eyed toy. That does not make the finished toy suitable for babies: Coco is a stuffed toy with a sewn-on muzzle and sewn-on ears, and it has not been tested to a toy-safety standard such as ASTM F963 or EN 71.
 
 Intended as a decorative item or a gift for a child old enough not to chew it. Check every seam - especially the muzzle and ears - before giving Coco to a young child.
 
-### Materials
+## Materials
 
 - Main yarn: worsted weight (#4), warm brown, about 30 g. A smooth matte yarn shows the stitch texture best.
 - Face yarn: worsted weight (#4), dark brown, about 5 g, for the closed eyes, nose and mouth. Use the same weight as the main yarn.
@@ -22,13 +22,13 @@ Intended as a decorative item or a gift for a child old enough not to chew it. C
 - Eyes: none. The sleeping face is embroidered - no safety eyes.
 - Also needed: polyester fiber filling about 5-8 g; yarn needle; stitch marker; pins. Pins matter: the muzzle and ears are pinned before sewing.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: 36 sc around measures about 52 mm in diameter when stuffed (4.5 mm per stitch, 4.3 mm per round). Check it on the body after Rnd 6 - a stuffed tube, not a flat swatch. If your 36 sts measure wider than 52 mm, crochet more tightly or go down a hook size; a loose gauge will show stuffing.
 
 Finished size: about 10.3 cm (4 in) tall, 5 cm (2 in) wide.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  inc - increase (2 sc in one st)
@@ -38,7 +38,7 @@ FO - fasten off  ·  (n) - stitch count at round end
 
 Work in a continuous spiral - do not join and do not chain 1 between rounds. Keep a marker in the first stitch of every round. Work every stitch through both loops unless a note says otherwise.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **The magic ring** - Every piece begins with a magic ring. Pull the tail tight once the first round is complete.
 
@@ -46,11 +46,11 @@ Work in a continuous spiral - do not join and do not chain 1 between rounds. Kee
 
 3. **The two-layer leg join** - This is the only fiddly step - worth practising once on a scrap magic ring. Hold a finished leg against the body with the pinched-flat top of the leg lying against the outside of the body. Insert the hook through BOTH the leg and the body stitch and work one single crochet; the leg edge and body stitch are treated as one stitch. They still count as one stitch each, so every count in the body table stays correct. Pinch the leg top flat first - a round, un-pinched top will not lie against the curved body and the join will pucker. A 9-stitch leg top flattens to about 5 stitches across - pinch it down to a strip about 3 stitches wide and hold it while you join. The stitches you don't join bunch up inside, and that bunch makes the leg look plump rather than tubular.
 
-### Notes
+## Notes
 
 How the height adds up: the body (Rnd 1-20) is 20 rounds x 4.3 mm = 86 mm; the short 8/9-round legs lift the body about 17 mm off the table, for a total standing height of about 103 mm = 10.3 cm.
 
-### Instructions
+## Instructions
 
 ### 1. Legs - make 4
 
@@ -72,7 +72,7 @@ Finish: FO with a long tail for sewing. Before joining, pinch the whole 9-stitch
 
 ### 2. Ears (make 2) & muzzle (make 1)
 
-**Ears - make 2 (do not stuff)**
+#### Ears - make 2 (do not stuff)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -82,7 +82,7 @@ Finish: FO with a long tail for sewing. Before joining, pinch the whole 9-stitch
 | R4 | sc in each st around | (9) | - |
 | R5 | sc in each st around, then FO | (9) | - |
 
-**Muzzle - make 1 (stuff lightly)**
+#### Muzzle - make 1 (stuff lightly)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -135,7 +135,7 @@ Work the numbers exactly. If the front legs line up directly behind the back leg
 
 The legs join low (Rnd 4-5) so every foot hangs about 17 mm below the body and Coco stands on her feet.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Muzzle: stuff lightly and pin it to the front of the head over Rnd 12-14, centred, then sew all the way around with matching brown. It should sit proud of the head, not flush. Centring matters - the eyes go 6 stitches apart and a muzzle pinned even slightly off-centre crowds one eye.
 
@@ -151,7 +151,7 @@ Final shaping: roll the finished piece gently between your palms to settle the s
 
 Before you sew - lay every component out and check: 4 legs (2 back of 8 rounds, 2 front of 9), 2 ears, 1 muzzle, 1 body & head, closed at the crown. The sleeping face is all embroidery - closed-eye arcs, a small triangle nose and a soft curved mouth.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Coco looks too tall.** Almost always too many plain rounds. Rnd 12-15 is the straight head section the face is positioned on; adding 'just one more' round turns the shape into a tower and moves the face.
 - **Coco will not stand.** Check the join height, not the leg spacing. The legs belong on Rnd 4 and Rnd 5; joined any higher, they cannot clear the underside of the body and the belly rests on the table.
@@ -161,18 +161,22 @@ Before you sew - lay every component out and check: 4 legs (2 back of 8 rounds, 
 - **Small hole where a leg meets the body.** You joined a flat, wide leg top instead of a pinched one. Flatten the whole 9-stitch top into a strip about 3 stitches wide before joining, so the un-joined stitches bunch up inside.
 - **Muzzle looks flat / stuffing shows.** Stuff the muzzle just enough to hold a dome. If stuffing shows through the body, your gauge is too loose - 36 sts should measure 52 mm; crochet tighter or go down a hook size.
 
-### Colorways
+## Colorways
 
 Classic warm brown  ·  Soft grey  ·  Sandy beige  ·  Cocoa
 
-### Designer notes
+## Designer notes
 
 - Why the legs join so low: back legs (8 rnd, ~34 mm) join at Rnd 4, only 17 mm above the base; front legs (9 rnd, ~39 mm) join at Rnd 5, 21 mm up. Different lengths, same result: every foot hangs about 17 mm below the body so all four land level. This is the most common failure on round-bodied animals.
 - Bottom-heavy by design: stuff the lower body firmly and keep the shape squat. Coco is meant to be one continuous curve from base to crown - she stands on her feet, not her belly.
 
+## Care
+
+Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Cocos, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, distorted embroidery and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check the muzzle, ears and leg joins again after cleaning.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 04.
 
@@ -180,18 +184,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished Coco plushies as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store” (a link or tag is always appreciated).
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos in your own listings beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 This pattern has not been tested to a toy-safety standard (ASTM F963 / EN 71). Although Coco has no plastic parts, finished items made for sale must be assessed by the seller against local toy-safety laws. Reinforce all sewn-on parts before giving to a young child.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#CocoTheCapybara** - We love seeing your Cocos. Thank you for supporting an independent pattern designer.

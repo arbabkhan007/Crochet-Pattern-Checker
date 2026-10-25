@@ -8,13 +8,13 @@ A pocket sea turtle on a keyring - the classic market impulse buy. Under half an
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Two 4 mm safety eyes are small parts. At this size French knots are the better fit (see section 4). Not tested to ASTM F963 or EN 71; for children under 3 use French knots.
 
 The keyring is the other hazard: attach it through TWO stitches at the back of the shell and knot the yarn inside - a charm that comes off a bag is a small part with a metal ring.
 
-### Materials
+## Materials
 
 - Shell yarn: DK / light worsted (#3) cotton, about 1 g - sage, teal, mustard or rust.
 - Body yarn: DK cotton, about 1 g in contrast cream, sand or pale green.
@@ -22,11 +22,11 @@ The keyring is the other hazard: attach it through TWO stitches at the back of t
 - Eyes: two 4 mm safety eyes or two black French knots.
 - Also: a pinch of polyfill (under 1 g), tapestry needle, one 25 mm keyring or lobster clasp per turtle.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: about 3.5 mm per stitch and 3.2 mm per round. The whole charm is 203 stitches (~3 m of DK); 24 stitches = a 26.7 mm disc that sets the size.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  hdc - half double crochet
@@ -36,7 +36,7 @@ FO - fasten off  ·  (n) - stitch count at round end
 
 Start in a magic ring and work continuous spiral rounds with a marker - no joins, no chain 1 between rounds.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **Magic ring & spiral** - Start in a magic ring and work continuous spiral rounds with a marker - no joins, no chain 1 between rounds.
 
@@ -46,7 +46,7 @@ Start in a magic ring and work continuous spiral rounds with a marker - no joins
 
 4. **Whip stitch & French knots** - Join shell and underside with an even whip stitch so the seam does not pucker. Eyes: bring the needle up, wrap the floss once or twice around the needle, push back down close by and pull slowly.
 
-### Instructions
+## Instructions
 
 ### 1. Shell - DK cotton (sage, teal, mustard or rust)
 
@@ -70,7 +70,7 @@ Before joining, embroider five or six shallow V shapes in a darker shade across 
 | R3 | [sc, inc] x 6 | (18) | - |
 | R4 | [2 sc, inc] x 6 | (24) | do NOT fasten off - work head & flippers next |
 
-**Head & flippers (work from the live edge)**
+#### Head & flippers (work from the live edge)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -84,27 +84,35 @@ The head bump is only ~7-10 mm across, and a 4 mm safety-eye washer (6-7 mm) oft
 
 The BLO rim ridge and embroidered V markings turn the dome into a shell.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Joining the shell (section 5): fix the eyes first. Hold the shell to the underside, wrong sides together, head pointing away from the shell's tail. Whip-stitch with the shell's 30 cm tail, matching 24 to 24 - NOT 24 to 35: the underside's outer round has 35 stitches but only 24 anchor positions (19 plain + 5 clusters). Put one shell stitch against each anchor; at a bump, pass through the BASE stitch the bump was worked into, not the bump itself.
 
 Add a small pinch of stuffing about three-quarters of the way round (keep it flat - the shell holds only ~8 cm3). Weave in ends. Attach the keyring through TWO stitches at the back, opposite the head, and knot inside.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Flippers uneven.** Count the plain runs between bumps: 3, 4, 3, 4, 3, then 2 at the end.
 - **Keyring pulls out / too fat to hang.** Attach through two stitches and knot inside. Use less stuffing so the charm stays flat against a bag.
 - **Shell and base won't pair.** Count anchor positions (19 plain + 5 bumps = 24), not the 35 outer stitches.
 
-### Bigger Shelby (~5.7 cm across)
+## Bigger Shelby (~5.7 cm across)
 
 Work the shell to 42 stitches: Rnd 1 (6), Rnd 2 (12), Rnd 3 (18), Rnd 4 (24), Rnd 5 [3 sc, inc] x 6 (30), Rnd 6 [4 sc, inc] x 6 (36), Rnd 7 [5 sc, inc] x 6 (42), Rnd 8 BLO sc around (42), Rnd 9 sc around (42). Work underside Rnd 1-7 the same to 42 stitches, and do not fasten off.
 
 Underside Rnd 8 (head & flippers): 7 sc, (sc, hdc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st = 53 stitches, consuming all 42 anchors. Join 42 to 42 by the same rule as the small version. Allow 45-50 minutes and about 4 g of yarn.
 
+## Care
+
+Follow the labels for the yarn, embroidery floss and keyring. Before publishing a care claim or supplying finished charms, clean and dry a complete sample by the proposed method, then inspect for dye transfer, corrosion, distortion, stuffing migration and damage to the ring attachment or seam. Until that sample test passes, recommend wiping the crochet surface with a barely damp cloth, keeping the metal ring as dry as possible, then drying the charm flat. Check the ring, doubled attachment yarn and surrounding shell stitches before each use and after cleaning.
+
+## Colorways
+
+Original colourway: sage-green shell, cream underside/head/flippers, darker-sage embroidered shell markings and black French-knot eyes. Optional shell variations: teal, mustard or rust; pair each with a clearly contrasting sand, cream or pale-green body.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 09.
 
@@ -112,18 +120,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished charms as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 Shelby uses 4 mm safety eyes (French knots recommended at this size) and a metal keyring. Sold as a keyring/bag charm; not tested to ASTM F963 or EN 71. For children under 3 use French knots, attach the ring through two stitches and knot inside.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#ShelbyTheSeaTurtle** - We love seeing your makes. Thank you for supporting an independent pattern designer.

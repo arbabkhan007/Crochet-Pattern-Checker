@@ -842,15 +842,21 @@ def _close_at(line: str) -> int | None:
 
 
 def second_start(text: str) -> list[str]:
-    """Flag a second magic ring in the same written piece."""
+    """Flag a second magic ring within one piece, but allow a numbered restart.
+
+    A new Round/Row 1 with a magic-ring foundation is an explicit signal that
+    the writer has begun another piece even when a heading was omitted.
+    """
     errors = []
     seen = False
+    last_number = None
     for raw in text.splitlines():
         line = raw.strip()
         if not line:
             continue
         if _section_break(line):
             seen = False
+            last_number = None
             continue
         if (
             line.startswith("|")
@@ -860,14 +866,20 @@ def second_start(text: str) -> list[str]:
         ):
             continue
         plain = re.sub(r"^[*_]+", "", line)
-        if re.match(r"^(?:round|row|rnd)s?\b", plain, re.IGNORECASE) and re.search(
-            r"\bmagic\s+ring\b", line, re.IGNORECASE
-        ):
+        header = _HEADER.match(plain)
+        if not header:
+            continue
+        number = int(header.group(2))
+        has_ring = bool(re.search(r"\bmagic\s+ring\b", line, re.IGNORECASE))
+        if has_ring and last_number is not None and number <= last_number:
+            seen = False
+        if has_ring:
             if seen:
                 errors.append(
                     "This piece already started. A second magic ring was not added."
                 )
             seen = True
+        last_number = number
     return _unique(errors)
 
 
@@ -1368,6 +1380,13 @@ def round_order(text: str) -> list[str]:
         start = int(header.group(2))
         end_match = re.search(r"\d+\s*[-–—]\s*(\d+)", line)
         end = int(end_match.group(1)) if end_match else start
+        # A numbered round restart at a magic ring begins a new piece; do not
+        # treat the reset as a duplicate round in the prior piece.
+        if last is not None and start <= last and re.search(
+            r"\bmagic\s+ring\b", line, re.IGNORECASE
+        ):
+            seen = set()
+            last = None
         numbers = range(start, end + 1)
         if any(number in seen or (last is not None and number < last) for number in numbers):
             errors.append(

@@ -8,13 +8,13 @@ A soft pink axolotl with six fluffy gills, a round head and a shell-edged paddle
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Axel has two 6 mm safety eyes. Safety eyes are small parts: lock the washers firmly from the inside before stuffing, and pull-test every eye on the finished toy - a properly locked washer will not come off by hand. The gills, arms, feet and tail fin are all sewn or worked on: sew each seam twice and weave every end in for at least 5 cm, then trim close - a loose gill is the first thing a child will pull.
 
 This pattern has not been tested to ASTM F963 or EN 71, so do not describe finished Axels as “baby-safe”. For children under 3, skip the safety eyes and stitch the eyes with black floss instead.
 
-### Materials
+## Materials
 
 - Main yarn: worsted #4, pale pink, about 15 g. Cotton or acrylic with a smooth matte finish - one 25 g ball covers the whole axolotl.
 - Gill yarn: fuzzy / eyelash / fur yarn, dark pink, about 8 g. Essential: smooth worsted will not give fluffy gills, and the gills are the whole look.
@@ -23,11 +23,11 @@ This pattern has not been tested to ASTM F963 or EN 71, so do not describe finis
 - Eyes: two 6 mm safety eyes (9 mm reads as buggy on this head).
 - Also: polyester filling about 8 g; tapestry needle; black embroidery floss; pink pastel or chalk; stitch marker.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: 36 sc around measures about 52 mm across when stuffed (4.5 mm per stitch, 4.3 mm per round). Wider than 55 mm? Drop to a 3.0 mm hook; under 48 mm? Go up to a 4.0 mm hook.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  dc - double crochet
@@ -37,7 +37,7 @@ FO - fasten off  ·  (n) - stitch count at round end
 
 Worked in a continuous spiral: do not join and do not chain 1 between rounds - just keep going round after round.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **The magic ring** - Every piece begins with a magic ring. Wrap the yarn once around two fingers, insert the hook, pull up a loop and work your first round into the ring, then pull the tail to close it tight once the first round is complete.
 
@@ -49,7 +49,7 @@ Worked in a continuous spiral: do not join and do not chain 1 between rounds - j
 
 5. **The shell (scallop)** - Work all the stitches of the group into one stitch, then slip stitch into the next stitch to anchor it. The group fans into a cup. Working the dc loosely makes each scallop cup outward instead of lying flat.
 
-### Instructions
+## Instructions
 
 ### 1. Head, body & tail - one piece, main pink
 
@@ -65,7 +65,7 @@ Worked in a single spiral from the top of the head straight through to the tail 
 | R6 | [4 sc, inc] x 6 | (36) | head at full width |
 | R7 | sc in each st around | (36) | eyes between R7 / R8 |
 | R8 | sc in each st around | (36) | - |
-| R9 | sc in each st around | (36) | smile on R8 - R9 |
+| R9 | sc in each st around | (36) | smile on R8 - R9; lock eye washers and embroider face now |
 | R10 | [4 sc, invdec] x 6 | (30) | - |
 | R11 | [3 sc, invdec] x 6 | (24) | STUFF HEAD FIRMLY |
 | R12 | [2 sc, invdec] x 6 | (18) | - |
@@ -102,7 +102,7 @@ The tail runs R27-R36 - ten rounds, about 43 mm - giving the fin a long enough r
 
 Arms and feet are sewn on, not worked into the body - bobbles will not give you rounded limbs.
 
-**Arms (make 2)**
+#### Arms (make 2)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -115,7 +115,7 @@ Arms and feet are sewn on, not worked into the body - bobbles will not give you 
 
 Arms: FO with a long tail, do not stuff. Flatten the open end and sew it closed as you attach, so the arms hang softly.
 
-**Feet (make 2)**
+#### Feet (make 2)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -155,7 +155,7 @@ Work the dc groups loosely so each scallop cups outward. For a fuller paddle, wo
 
 A note on fullness: five shells over ten rounds is meant to ruffle - the cupped, frilly edge is the look, not a mistake. If the scallops seem crowded, work the dc even more loosely, use half a hook size larger for the fin yarn only, or work 4 scallops on a shorter ridge.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Eyes: insert the 6 mm safety eyes between R7 and R8, 6 stitches apart, centred on the front of the head. Six stitches spans about 27 mm on the 52 mm head - about half the width. Fix the washers before stuffing, and pull-test each eye once it is locked.
 
@@ -171,7 +171,7 @@ Feet: sew one foot to each side of the centre front at R24-R25, about 4 stitches
 
 Before you sew - lay every component out and check: 1 body, 2 arms, 2 feet, 6 gills, 1 fin. Check each against the pattern before attaching anything.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Head firm, body soft.** Stuff the head hard at R11 so it holds a sphere and the eyes stay level. Keep the body light so Axel stays squishy and sits down.
 - **Neck collapsing.** The 18-stitch neck is deliberately narrow. First pack a little more stuffing into the neck through the body opening before closing R25. For a permanently sturdier neck, work R13 as [7 sc, inc] x 2, 2 sc (20), then change R14 to [4 sc, inc] x 4 (24) so it consumes all 20 stitches; R15 onward is unchanged.
@@ -180,13 +180,17 @@ Before you sew - lay every component out and check: 1 body, 2 arms, 2 feet, 6 gi
 - **Stuffing shows through.** Go down to a 3.0 mm hook. Loose gauge on a 3.5 mm hook is the usual cause.
 - **Axel will not sit.** Move the feet one round lower and make sure the R23-R26 decreases are centred on the underside, not the back.
 
-### Colorways
+## Colorways
 
 Classic pink  ·  White leucistic  ·  Melanoid black  ·  Mint  ·  Lavender
 
+## Care
+
+Follow the labels for every yarn and component used, especially the fuzzy gill yarn. Before publishing a care claim or supplying finished Axels, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre shedding or matting, stuffing migration, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check every eye, gill and limb again after cleaning.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 03.
 
@@ -194,18 +198,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished axolotl plushies as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 This pattern has not been tested to a toy-safety standard such as ASTM F963 or EN 71, so please do not describe finished Axels as “baby-safe” or “suitable from birth”. Axel uses two 6 mm safety eyes (small parts): for children under 3, embroider the eyes instead. Finished items made for sale must be assessed by the seller against local toy-safety laws.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#AxelTheAxolotl** - We love seeing your makes. Thank you for supporting an independent pattern designer.

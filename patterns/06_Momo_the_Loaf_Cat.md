@@ -8,13 +8,13 @@ A cat folded into a perfect loaf. One no-sew piece on an oval base - ears croche
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Momo has two 8 mm safety eyes - small parts. Lock the washers firmly from the inside and pull-test each eye. Embroidering the eyes is safer, but it does not make Momo a tested toy: not tested to ASTM F963 or EN 71, so do not describe finished Momos as “baby-safe”. For a child under three, embroider and say “embroidered, no small parts”.
 
 The ears and tail are worked into the body (stronger than sewing), but still weave every end in at least 5 cm and knot the embroidery floss inside.
 
-### Materials
+## Materials
 
 - Main yarn: worsted #4, about 10 g. Grey, ginger, cream or black - all sell equally well. One 25 g ball makes two.
 - Contrast: small amounts of white for the chest and paws, pink for the nose and inner ears.
@@ -22,11 +22,11 @@ The ears and tail are worked into the body (stronger than sewing), but still wea
 - Eyes: 2 x 8 mm safety eyes, or embroider in black.
 - Also needed: polyfill about 10 g; tapestry needle; stitch marker; black embroidery floss.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: about 4.5 mm per stitch and 4.3 mm per round. Finished size about 7.9 cm long, 5.2 cm wide and 4.3 cm tall - a low, wide loaf. The 48-stitch oval base sets the whole size of the cat.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  inc - increase (2 sc in one st)
@@ -36,7 +36,7 @@ BLO - back loop only  ·  FO - fasten off
 
 Work in a continuous spiral unless a piece says otherwise - no joins, no chain 1 between rounds; move the marker up each round.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **Around a chain (oval base)** - THE step that makes the loaf. Crochet into BOTH sides of a starting chain: across the front, corner increases into the last chain, then back along the opposite side and into the last loop. That turns a chain into a flat oval instead of a strip. Do NOT use a magic-ring circle here - a round base gives a sphere every time.
 
@@ -52,7 +52,7 @@ Work in a continuous spiral unless a piece says otherwise - no joins, no chain 1
 
 7. **Working into body fabric** - The tail starts by pushing the hook through the finished body wall - go under a WHOLE stitch, not just one loop, or it will pull out.
 
-### Instructions
+## Instructions
 
 ### 1. Body - one no-sew piece
 
@@ -92,13 +92,13 @@ Join the main yarn to the head at Rnd 12, leaving about 6 stitches between the t
 
 The row maths: Row 1 makes 5 stitches; Row 2 works dec, sc, dec (consumes 5, makes 3); Row 3 works dec, sc (consumes 3, makes 2) - those 2 stitches form the tip.
 
-After Row 3, work 1 sl st into the next head stitch to anchor the ear flat, then FO with a short tail; pull it through the 2 tip stitches to close the point and bury inside the head. Embroider a small pink triangle on the front of each ear for lining.
+After Row 3, do NOT try to slip-stitch from the ear tip back to the head. Work 1 sl st into the next head stitch to anchor the ear flat, then FO with a short tail; pull it through the 2 tip stitches to close the point and bury inside the head. Embroider a small pink triangle on the front of each ear for lining.
 
 ### 3. Tail - worked off the body
 
-Join the main yarn to the back of the body at about Rnd 9 on the centre line. Insert the hook under a whole body stitch, pull up a loop, and work the first 4 sc into the body fabric in a tight square; then continue in a normal spiral off those 4 stitches: Rnds 1-8 are 4 sc in each round. Do NOT stuff - a thin tail curls around the loaf far better than a stuffed one. FO and bury.
+Join the main yarn to the back of the body at about Rnd 9 on the centre line. Insert the hook under a whole body stitch, pull up a loop, and work the first 4 sc into the body fabric in a tight square; then continue in a normal spiral off those 4 stitches: Rnds 1-8 are 4 sc in each round. do not make a magic ring - the body fabric provides the tail's starting stitches. Do NOT stuff - a thin tail curls around the loaf far better than a stuffed one. FO and bury.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Face & markings:
 
@@ -112,7 +112,7 @@ Chest & paws: with white yarn, embroider a soft oval on the chest and two small 
 
 Long, low and wide - the BLO ridge and tucked paws make the loaf read as a folded cat.
 
-### Troubleshooting
+## Troubleshooting
 
 - **It came out round.** You stopped increasing at Rnd 4 instead of Rnd 6, worked too many plain rounds at Rnds 8-9, or used a magic-ring base instead of the oval. The base must reach 48 stitches.
 - **Tall and narrow.** The base did not reach 48. Count the stitches at Rnd 6 before the BLO round - that one number decides the whole shape.
@@ -121,17 +121,21 @@ Long, low and wide - the BLO ridge and tucked paws make the loaf read as a folde
 - **Stuffing shows.** Go down to a 3.0 mm hook - loose gauge on 3.5 mm is the usual cause.
 - **Face looks like a bear.** Eyes too high and too close. Drop them a round and widen to 7 stitches.
 
-### Colorways
+## Colorways
 
 Grey tabby  ·  Orange ginger  ·  Cream  ·  Black  ·  Calico
 
-### Designer notes
+## Designer notes
 
 - Grey tabby, orange ginger, cream, black, and calico (grey base with ginger and cream patches embroidered on afterwards). Listing all five as photos in one listing outperforms separate listings - buyers choose a cat, not a pattern.
 
+## Care
+
+Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Momos, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes and loosened surface-worked ears or tail. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check all facial components and yarn anchors again after cleaning.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 06.
 
@@ -139,18 +143,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished Momos as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 Not tested to a toy-safety standard (ASTM F963 / EN 71) and uses 8 mm safety eyes. Finished items sold for children must be assessed against local toy-safety laws; for young children, embroider the eyes and secure every end.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#MomoTheLoafCat** - We love seeing your loaves. Thank you for supporting an independent pattern designer.

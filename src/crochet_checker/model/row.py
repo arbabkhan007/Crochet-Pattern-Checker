@@ -58,7 +58,13 @@ class Row(BaseModel):
                 continue
 
             for op in inst.operations:
-                if op.into_stitch in ("each_stitch_around", "remaining"):
+                if op.into_stitch == "foundation":
+                    total_produced += op.count
+                    remaining = op.count
+                    continue
+                if op.into_stitch in ("join", "foundation_chain"):
+                    continue
+                if op.into_stitch in ("each_stitch_around", "each_stitch_across", "remaining"):
                     per = STITCH_PRODUCTION.get(op.stitch_type, 1)
                     total_produced += remaining * per
                     remaining = 0
@@ -135,12 +141,13 @@ class Round(BaseModel):
                 continue
 
             for op in inst.operations:
-                if op.into_stitch == "each_stitch_around":
-                    # Each remaining stitch gets this operation
-                    per = STITCH_PRODUCTION.get(op.stitch_type, 1)
-                    total_produced += remaining * per
-                    remaining = 0
-                elif op.into_stitch == "remaining":
+                if op.into_stitch == "foundation":
+                    total_produced += op.count
+                    remaining = op.count
+                    continue
+                if op.into_stitch in ("join", "foundation_chain"):
+                    continue
+                if op.into_stitch in ("each_stitch_around", "each_stitch_across", "remaining"):
                     per = STITCH_PRODUCTION.get(op.stitch_type, 1)
                     total_produced += remaining * per
                     remaining = 0

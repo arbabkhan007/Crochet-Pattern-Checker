@@ -717,7 +717,8 @@ class CrochetParser:
         """Extract stated stitch count from end of instruction."""
         match = STATED_COUNT.search(text.strip())
         if match:
-            count = int(match.group(1))
+            count_text = next(group for group in match.groups() if group is not None)
+            count = int(count_text)
             clean = text[: match.start()].strip().rstrip(",")
             return clean, count
         return text, None
@@ -757,6 +758,18 @@ class CrochetParser:
         text = re.sub(r"^turn\b\s*", "", text, flags=re.IGNORECASE).strip(" ,.")
         if not text or re.fullmatch(r"turn|to join|join", text, flags=re.IGNORECASE):
             return []
+        # Loop-placement prefixes do not add a separate stitch operation.
+        text = re.sub(r"^(?:BLO|FLO)\s+", "", text, flags=re.IGNORECASE)
+
+        exact_next = NEXT_N.match(text)
+        if exact_next:
+            return [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(exact_next.group(1)),
+                    count=int(exact_next.group(2)),
+                    into_stitch="next",
+                )
+            ]
 
         if re.match(
             r"sl\s*st\s+(?:to\s+join|in\s+(?:the\s+)?first|"
@@ -807,6 +820,19 @@ class CrochetParser:
                 )
             ]
 
+        times_phrase = re.fullmatch(
+            r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s+(\d+)\s+times",
+            text,
+            re.IGNORECASE,
+        )
+        if times_phrase:
+            return [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(times_phrase.group(1)),
+                    count=int(times_phrase.group(2)),
+                )
+            ]
+
         counted = re.match(
             r"(\d+)\s+(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\b",
             text,
@@ -817,6 +843,19 @@ class CrochetParser:
                 ParsedOperation(
                     stitch_type=self._resolve_stitch(counted.group(2)),
                     count=int(counted.group(1)),
+                )
+            ]
+
+        counted_after = re.fullmatch(
+            r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s+(\d+)",
+            text,
+            re.IGNORECASE,
+        )
+        if counted_after:
+            return [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(counted_after.group(1)),
+                    count=int(counted_after.group(2)),
                 )
             ]
 
@@ -837,6 +876,19 @@ class CrochetParser:
             temp = Instruction(source_text=text, normalized_text=text)
             if self._try_parse_repeat_block(text, temp):
                 return list(temp.operations)
+
+        bare = re.fullmatch(
+            r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)",
+            text,
+            re.IGNORECASE,
+        )
+        if bare:
+            return [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(bare.group(1)),
+                    count=1,
+                )
+            ]
         return []
 
     def _apply_foundation_count(self, instruction: Instruction, text: str) -> None:
@@ -915,11 +967,22 @@ class CrochetParser:
         return True
 
     def _try_parse_repeat_block(self, text: str, instruction: Instruction) -> bool:
-        """Try to parse '(stuff) x N' style instructions.
+        """Parse repeated units and the compact "stitch N times" form."""
+        single_times = re.fullmatch(
+            r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s+(\d+)\s+times",
+            text.strip().rstrip("."),
+            re.IGNORECASE,
+        )
+        if single_times:
+            instruction.operations = [
+                ParsedOperation(
+                    stitch_type=self._resolve_stitch(single_times.group(1)),
+                    count=int(single_times.group(2)),
+                )
+            ]
+            instruction.confidence = 0.9
+            return True
 
-        A nested repeat such as '[(sc, inc) x 2] x 3' must multiply the
-        outer count too. The first bracket match is only the inner repeat.
-        """
         wrapped = self._wrapping_repeat(text)
         if wrapped:
             repeat_text, repeat_count = wrapped
@@ -929,7 +992,7 @@ class CrochetParser:
             if not match:
                 return False
             repeat_text = match.group(1)
-            repeat_count = int(match.group(2))
+            repeat_count = int(match.group(2) or match.group(3))
             unit_ops = self._parse_operation_sequence(repeat_text)
         if not unit_ops:
             return False
@@ -1008,10 +1071,14 @@ class CrochetParser:
         if end is None:
             return None
         tail = stripped[end + 1 :].strip()
-        count_match = re.fullmatch(r"[x×]\s*(\d+)", tail, flags=re.IGNORECASE)
+        count_match = re.fullmatch(
+            r"(?:[x×]\s*(\d+)|(\d+)\s+times)",
+            tail,
+            flags=re.IGNORECASE,
+        )
         if not count_match:
             return None
-        return stripped[1:end], int(count_match.group(1))
+        return stripped[1:end], int(count_match.group(1) or count_match.group(2))
 
     def _operations_for_repeat_unit(self, text: str) -> list[ParsedOperation]:
         """Parse a repeat unit, including a repeat nested inside it."""
@@ -1023,7 +1090,8 @@ class CrochetParser:
 
     def _try_parse_each_around(self, text: str, instruction: Instruction) -> bool:
         """Try to parse 'sc in each st around' style instructions."""
-        match = EACH_AROUND.match(text)
+        normalized = re.sub(r"^(?:BLO|FLO)\s+", "", text.strip(), flags=re.IGNORECASE)
+        match = EACH_AROUND.match(normalized)
         if not match:
             return False
 
@@ -1208,32 +1276,62 @@ class CrochetParser:
         return False
 
     def _parse_operation_sequence(self, text: str) -> list[ParsedOperation]:
-        """Parse a sequence of operations (typically from within parentheses)."""
+        """Parse a sequence of operations inside a repeat unit."""
         ops: list[ParsedOperation] = []
+        for part in self._split_top_level_commas(text):
+            part = part.strip().rstrip(".")
+            if not part or re.search(r"2nd\s+ch\s+from\s+hook", part, re.IGNORECASE):
+                continue
+            part = re.sub(r"^(?:BLO|FLO)\s+", "", part, flags=re.IGNORECASE)
 
-        # Split on commas
-        parts = [p.strip() for p in text.split(",")]
-
-        for part in parts:
-            part = part.strip()
-            if not part:
+            # Preserve explicitly counted groups in either common word order.
+            patterns = (
+                (r"(\d+)\s+(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\b", 2, 1),
+                (r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s+(\d+)\b", 1, 2),
+                (r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)\s*[x×]\s*(\d+)\b", 1, 2),
+            )
+            parsed = False
+            for pattern, stitch_group, count_group in patterns:
+                match = re.fullmatch(pattern, part, flags=re.IGNORECASE)
+                if match:
+                    ops.append(
+                        ParsedOperation(
+                            stitch_type=self._resolve_stitch(match.group(stitch_group)),
+                            count=int(match.group(count_group)),
+                        )
+                    )
+                    parsed = True
+                    break
+            if parsed:
                 continue
 
-            # Try "N stitch" pattern
-            match = re.match(r"(\d+)\s+(.+)", part)
-            if match:
-                count = int(match.group(1))
-                rest = match.group(2).strip()
-                stitch = self._resolve_stitch_from_text(rest)
-                if stitch:
-                    ops.append(ParsedOperation(stitch_type=stitch, count=count))
-                    continue
+            exact_next = NEXT_N.match(part)
+            if exact_next:
+                ops.append(
+                    ParsedOperation(
+                        stitch_type=self._resolve_stitch(exact_next.group(1)),
+                        count=int(exact_next.group(2)),
+                        into_stitch="next",
+                    )
+                )
+                continue
 
-            # Try just a stitch abbreviation
+            bare = re.fullmatch(
+                r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)",
+                part,
+                flags=re.IGNORECASE,
+            )
+            if bare:
+                ops.append(
+                    ParsedOperation(
+                        stitch_type=self._resolve_stitch(bare.group(1)), count=1
+                    )
+                )
+                continue
+
             stitch = self._resolve_stitch_from_text(part)
             if stitch:
                 ops.append(ParsedOperation(stitch_type=stitch, count=1))
-
         return ops
 
     def _resolve_stitch(self, abbrev: str) -> StitchType:
@@ -1300,9 +1398,11 @@ def parse_pattern(text: str) -> Pattern:
 
 
 def parse_instruction(text: str) -> Instruction:
-    """Parse a single instruction."""
+    """Parse a single instruction, allowing an optional row/round header."""
     parser = CrochetParser()
-    result = parser._parse_single_instruction(text)
+    is_header, _, _, rest, _ = is_row_header(text.strip())
+    instruction_text = rest if is_header else text
+    result = parser._parse_single_instruction(instruction_text)
     if result is None:
         return Instruction(
             source_text=text,
@@ -1310,6 +1410,8 @@ def parse_instruction(text: str) -> Instruction:
             parse_warnings=["Could not parse instruction"],
             confidence=0.0,
         )
+    if result.source_text != text:
+        result = result.model_copy(update={"source_text": text})
     return result
 
 

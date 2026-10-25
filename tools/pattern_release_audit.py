@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Release-gate audit for the 15 Novality crochet pattern Markdown masters.
+"""Release-gate audit for the 17 Novality crochet pattern Markdown masters.
 
 This checker intentionally has no third-party dependencies.  It validates the
 customer-facing files themselves (rather than trusting generator source data):
@@ -349,6 +349,17 @@ MANUAL = _manual([
     ("Ch 15, sc in 2nd ch from hook and across (14 sc), sl st to bow base; repeat for second tail", 14, 14),
     ("Ch 6, sc in 2nd ch from hook and across (5); rows 2-4: ch 1, turn, sc across (5)", None, 5),
     ("Ch 8 ring; sc in each ch (8); spiral in 8 sc until the tube measures 20-24 cm; join the 8 end pairs ROUND as for the base; wrap a separate doubled yarn tie twice around the whole tube for hanging", 8, 8),
+
+    # Strict-latest NS 02-15 forms added after the release audit was authored.
+    ("ch 20; from the 2nd ch, sl st in each chain to the end (19 sl st)", None, 19),
+    ("from the 2nd ch: sc in next 3, 3 sc in last ch, rotate, sc in next 3, 2 sc in last loop", None, 11),
+    ("inc, 2 sc, inc, 2 sc, inc, 2 sc, inc, sc", 11, 15),
+    ("join yellow with a sl st in any st of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next st, [sl st in next st, (sc, hdc, sc) in next st] x 8, sl st to the first sl st, FO", 18, 36),
+    ("3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 2 sc", 24, 35),
+    ("sl st into the next corner space; ch 3, 2 dc in that space, ch 2, 3 dc in the same space (first corner); then (3 dc, ch 2, 3 dc) into each remaining corner space; sl st to close", None, 24),
+    ("[Ch 5, skip next dc, sl st in next dc] x 6", 12, 6),
+    ("Sl st into each ch-5 space in turn; in each space work (sl st, ch 3, 3 tr, ch 3, sl st)", 6, 6),
+    ("Ch 8 ring; sc in each ch (8); spiral rounds of 8 sc until 20-24 cm; join ends as base; ch 14 hanging loop", None, 8),
 ])
 
 
@@ -576,20 +587,20 @@ def run() -> int:
     must_contain = {
         "01_Hamish_the_Highland_Cow.md": [
             "18 head stitches of Rnd 14",
-            "INNER ear through Rnd 6 only",
+            "Work BOTH layers through all 7 rounds.",
             "Shortened front legs - upright option only (make 2)",
             "12-stitch top opening",
             "Start each leg 25 degrees forward from vertical",
         ],
-        "02_Kawaii_Halloween_Mini_Set.md": ["UP THE OUTSIDE", "(38)", "FIRST fan in the written Row-3 sequence", "lock eye washers and embroider fangs/blush now"],
-        "04_Coco_the_Capybara.md": ["Immediately after Rnd 15", "through all three layers"],
-        "03_Axel_the_Axolotl.md": ["lock eye washers and embroider face now", "TEN marked surface anchors"],
-        "05_Little_Duck_Plushie.md": ["Rnd 1 has 10 stitches", "inc x 3", "(16)", "PAUSE: embroider eyes", "before stuffing, sew one wing"] ,
-        "06_Momo_the_Loaf_Cat.md": ["do not make a magic ring", "do NOT try to slip-stitch from the ear tip", "lock eyes; embroider face/chest/paws; then stuff"],
-        "07_Pocket_Positivity_Trio.md": ["EXPOSED front loop", "after R6: lock eyes and embroider mouth", "after R9: lock eyes, attach all pieces"],
-        "08_Ember_the_Baby_Dragon.md": ["ch 34", "3 + 27 + 3 = 33", "LOCK eye washers now", "nostrils inside the still-open snout"],
-        "09_Shelby_the_Sea_Turtle_Bag_Charm.md": ["no plastic eyes", "Do not wait until the seam is closed", "24 exposed front loops"],
-        "10_Willow_the_Bunny_Lovey.md": ["sl st in next 2 dc", "cotton does not felt", "immediately after Head Rnd 10", "18 marked Rnd-12 stitches"],
+        "02_Kawaii_Halloween_Mini_Set.md": ["UP THE OUTSIDE", "from the 2nd ch, sl st in each chain to the end (19 sl st)", "the middle is 7 stitches tall with a dc peak (the pointed wing tip)", "lock eye washers and embroider fangs/blush now"],
+        "04_Coco_the_Capybara.md": ["Eyes: embroider - do not use safety eyes.", "through BOTH the leg and the body stitch"],
+        "03_Axel_the_Axolotl.md": ["lock eye washers and embroider face now", "The tail from R27 to R36 gives a ridge of about 10 workable stitches along one side"],
+        "05_Little_Duck_Plushie.md": ["from the 2nd ch: sc in next 3, 3 sc in last ch, rotate, sc in next 3, 2 sc in last loop | (11)", "inc, 2 sc, inc, 2 sc, inc, 2 sc, inc, sc | (15)", "PAUSE: embroider eyes", "Wings: sew one to each side at R6-R9, angled slightly back."],
+        "06_Momo_the_Loaf_Cat.md": ["do not make a magic ring", "do NOT try to slip-stitch from the ear tip", "LOCK the washers from the inside BEFORE you stuff and close the loaf"],
+        "07_Pocket_Positivity_Trio.md": ["join yellow with a sl st in any st of Rnd 3", "after R6: lock eyes and embroider mouth before R7", "after R9: lock eyes, attach all pieces and embroider blush before R10"],
+        "08_Ember_the_Baby_Dragon.md": ["Ch 11. Work in turned rows", "ten chain-4 groups and 40 chains in total", "LOCK eye washers now", "Embroider two small nostrils at the tip."],
+        "09_Shelby_the_Sea_Turtle_Bag_Charm.md": ["Use two small black FRENCH KNOTS", "Attach the keyring through TWO stitches at the back, opposite the head, and knot inside.", "only 24 anchor positions (19 plain + 5 clusters)"],
+        "10_Willow_the_Bunny_Lovey.md": ["sl st into the next corner space", "Before publishing a machine-wash, hand-wash or other care claim", "immediately after Head Rnd 10", "18 marked Rnd-12 stitches"],
         "11_No-Sew_Christmas_Gnome.md": [
             "after Rnd 15",
             "begin stuffing through the still-wide opening",
@@ -623,7 +634,7 @@ def run() -> int:
             "STANDARD SIZE — stop growth; optional spokes, then border",
             "LARGE SIZE — stop growth; optional spokes, then border",
         ],
-        "15_Interchangeable_Christmas_Wreath.md": ["20-24 cm / 8-9.5 in", "Keep both openings ROUND", "folded 55 cm tie under at least 2 sturdy", "does not rely on individual crochet sts"],
+        "15_Interchangeable_Christmas_Wreath.md": ["20-24 cm / 8-9.5 in", "Keep both openings ROUND", "folded 55 cm tie under at least 2 sturdy", "hang it on a proper hook, not a suction cup"],
         "16_Crochet_Mini_Stocking_Advent_Garland.md": [
             "Row 6 | BLO sc in each st across, ch 1, turn",
             "5 + 10 + 5 + 3 = 23 stitches",

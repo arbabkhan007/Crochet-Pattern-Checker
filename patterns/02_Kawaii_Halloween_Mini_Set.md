@@ -8,11 +8,11 @@ Three pocket-sized spookies - Boo the ruffled ghost, Pip the sculpted pumpkin an
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Boo and Bramble use 6 mm safety eyes - small parts and a choking hazard. Lock the washers from the inside and pull-test each eye. These minis are decorative pieces, not toys for young children, and have not been tested to ASTM F963 or EN 71. To give them to a child, embroider the faces instead and check every seam first. Pip has an embroidered face and no safety eyes.
 
-### Materials
+## Materials
 
 - Yarn: DK / light worsted (#3) cotton - cream ~8 g (Boo), pastel orange ~10 g (Pip), lavender ~9 g (Bramble), sage green ~4 g (stem, tendril, leaf), pale pink ~2 g (ear linings). One small ball of each is plenty.
 - Hook: 2.5 mm - tight enough that stuffing cannot show.
@@ -20,11 +20,11 @@ Boo and Bramble use 6 mm safety eyes - small parts and a choking hazard. Lock th
 - Floss: black for Boo's smile and Pip's face, pink for blush, white for Bramble's fangs.
 - Stuffing & notions: polyester fibre fill (~5 g covers the set; Pip ~2 g, Bramble ~1 g, Boo none). Tapestry needle, stitch markers, pins, scissors.
 
-**Gauge & size**
+## Gauge & size
 
 About 3.5 mm per stitch and 3.2 mm per round. Check on Pip after Rnd 6 - 36 stitches should measure about 40 mm across a firmly stuffed body. Finished minis are 48-51 mm tall.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sl st - slip stitch  ·  sc - single crochet
@@ -34,7 +34,7 @@ FLO / BLO - front / back loop only  ·  picot - ch 3, sl st in 3rd ch from hook
 
 Work the bodies in a continuous spiral - no joins, no chain 1 between rounds; mark the first stitch of every round. Bramble's wings and Pip's leaf are the exceptions: worked flat in turned rows.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **The picot** - Chain 3, then slip stitch into the 3rd chain from the hook - one small pointed bump. Picots edge Bramble's wings and make them read as bat wings rather than leaves. Keep tension even: a loose picot loops, a tight one curls under.
 
@@ -44,13 +44,13 @@ Work the bodies in a continuous spiral - no joins, no chain 1 between rounds; ma
 
 4. **Needle sculpting** - Turns Pip from an orange ball into a pumpkin using the long tail. Run the tail through the stuffed body with a tapestry needle, in at the top centre and out at the bottom, then pull and anchor; each pass pins a channel. Six evenly spaced passes make six ribs. OVERSTUFF FIRST - sculpting compresses the filling and a soft pumpkin will not hold a rib.
 
-### Instructions
+## Instructions
 
 ### 1. Boo the Ghost - cream
 
 Worked top-down in cream. Boo is an OPEN BELL - no closed bottom and NO stuffing; he stands on the weight of his ruffled hem. Do not fasten off after Rnd 12 - continue straight into the hem.
 
-**Body**
+#### Body
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -76,7 +76,7 @@ Eyes: insert the 6 mm safety eyes BEFORE you sew anything, while the open bottom
 
 Smile & blush: black floss curved smile centred below the eyes, pink floss horizontal stitches either side for blush.
 
-**Arms - cream (make 2, no stuffing)**
+#### Arms - cream (make 2, no stuffing)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -86,7 +86,7 @@ Smile & blush: black floss curved smile centred below the eyes, pink floss horiz
 
 FO with a tail, do not stuff; sew to the sides at Rnd 10, angled slightly forward.
 
-**Flat base - cream (optional, make 1)**
+#### Flat base - cream (optional, make 1)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -97,7 +97,7 @@ FO with a tail, do not stuff; sew to the sides at Rnd 10, angled slightly forwar
 
 Base (optional): the flat disc matches the 24 back loops of Rnd 12. Sew it to the BACK loops from the inside, leaving the hem free to flare below; a few stitches can be lightly padded for weight.
 
-**Bonus mini witch hat - black or charcoal**
+#### Bonus mini witch hat - black or charcoal
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -114,7 +114,7 @@ Sl st, FO. The brim stops at 20 stitches (outer edge about 24 mm) so the hat sit
 
 Worked bottom-up in pastel orange. Only two straight rounds - that keeps Pip squat rather than tall like a lemon. Do NOT cut the yarn short: leave a 25 in / 65 cm tail for sculpting.
 
-**Body**
+#### Body
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -132,11 +132,11 @@ Worked bottom-up in pastel orange. Only two straight rounds - that keeps Pip squ
 | R12 | [sc, dec] x 6 | (12) | - |
 | R13 | dec x 6 | (6) | leave a 65 cm tail |
 
-Sculpting six ribs (overstuff first): thread the tail; anchor points are the top centre (Rnd 13) and bottom centre (Rnd 1). Bring the needle down through the top and out the bottom, pull gently until the surface dimples (do not strangle it). Move 6 stitches sideways along the bottom, come back up to the top centre, pull and anchor with a small stitch. Repeat - six passes divide the 36-stitch body into six even ribs. Pull every rib to the SAME tension; finish by knotting, running the needle out the side, and pulling the knot inside.
+Sculpting six ribs (overstuff first): thread the tail; anchor points are the top centre (Rnd 13) and bottom centre (Rnd 1). Bring the needle down through the top and out the bottom, pull gently until the surface dimples (do not strangle it). Move 6 stitches sideways along the bottom, come back up to the top centre, carry the yarn UP THE OUTSIDE along that rib guide, then pass through the core to the bottom again. Repeat - six passes divide the 36-stitch body into six even ribs. Pull every rib to the SAME tension; finish by knotting, running the needle out the side, and pulling the knot inside.
 
 Face: with black floss, embroider two small triangle eyes on the front, roughly level with the middle of the body and about 6 stitches apart, then a short zigzag mouth below. Keep the face inside one rib panel so the sculpting does not cross it.
 
-**Stem cone - sage (make 1)**
+#### Stem cone - sage (make 1)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -148,7 +148,7 @@ Face: with black floss, embroider two small triangle eyes on the front, roughly 
 
 FO with a tail, stuff very lightly, sew to the top centre over the Rnd 13 opening.
 
-**Leaf - sage (make 1, worked flat)**
+#### Leaf - sage (make 1, worked flat)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -159,7 +159,7 @@ FO with a tail, stuff very lightly, sew to the top centre over the Rnd 13 openin
 
 FO with a tail. The final sl-st row gives a firm rolled edge - sew to the stem base, angled out to one side.
 
-**Tendril - sage**
+#### Tendril - sage
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -173,7 +173,7 @@ Pip's six needle-sculpted ribs, sage stem, curly tendril and leaf.
 
 Worked top-down in lavender. Eyes go in after Rnd 8, before Rnd 9 narrows the body and closes at Rnd 16 - that is your last chance to fit the washers from inside.
 
-**Body**
+#### Body
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -184,7 +184,7 @@ Worked top-down in lavender. Eyes go in after Rnd 8, before Rnd 9 narrows the bo
 | R5 | sc in each st around | (24) | - |
 | R6 | sc in each st around | (24) | - |
 | R7 | sc in each st around | (24) | eyes at R7 - R8 |
-| R8 | sc in each st around | (24) | fit washers now |
+| R8 | sc in each st around | (24) | lock eye washers and embroider fangs/blush now |
 | R9 | [3 sc, inc] x 6 | (30) | wings at R9 - R11 |
 | R10 | sc in each st around | (30) | - |
 | R11 | sc in each st around | (30) | - |
@@ -196,7 +196,7 @@ Worked top-down in lavender. Eyes go in after Rnd 8, before Rnd 9 narrows the bo
 
 Eyes: place on Rnd 7-8, just 4 stitches apart and centred - close on purpose, since the head is only 24 stitches around and wide eyes wrap to the sides. Fangs: two small white V-stitches just under the eyes; add pink blush.
 
-**Ears - lavender outer x 2, pink inner x 2**
+#### Ears - lavender outer x 2, pink inner x 2
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -207,7 +207,7 @@ Eyes: place on Rnd 7-8, just 4 stitches apart and centred - close on purpose, si
 
 Flatten and do not stuff. Sew a pink inner onto each lavender outer, then sew the pairs to the top of the head at about Rnd 4-5, angled slightly outward.
 
-**Wings - lavender (make 2, worked flat)**
+#### Wings - lavender (make 2, worked flat)
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
@@ -222,7 +222,7 @@ Assembly: pin the wings to the back and sides between Rnd 9 and Rnd 11, angled o
 
 Bramble's three-lobed picot wings, pink-lined ears and little fangs.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Before you assemble, lay every component out and check it against the pattern; pin each piece and look at the toy from the front before committing a single stitch.
 
@@ -232,11 +232,9 @@ Pip: 1 sculpted body, 1 stem cone, 1 tendril, 1 leaf.
 
 Bramble: 1 body, 2 lavender outer ears, 2 pink inner ears, 2 picot wings.
 
-
-
 Display - Halloween garland: cut 6 ft of jute twine, or chain about 450 in sage (a chained cord is shorter than it looks - 150 chains is only ~60 cm). Make 3 of each mini, thread 20 mm felt balls between them, and tie or slip-stitch each piece 4-5 in apart. A full garland uses about 25 g cream, 30 g orange, 27 g lavender, 12 g sage.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Pumpkin looks tall.** More than two straight rounds at Rnd 7-8 - extra plain rounds turn a pumpkin into a lemon.
 - **Ribs vanish.** Overstuff before sculpting and pull each rib firmly to the same tension; one over-tight rib pulls the body out of round.
@@ -247,17 +245,21 @@ Display - Halloween garland: cut 6 ft of jute twine, or chain about 450 in sage 
 - **Hat swamps the ghost.** Stop the brim at Rnd 6, 20 stitches - a wider brim flares past Boo's 27 mm head.
 - **Cannot fit the eye washers.** You closed the piece first. Boo's eyes go in through his open bottom; Bramble's go in after Rnd 8 before the body narrows.
 
-### Colorways
+## Colorways
 
 Classic cream  ·  Pumpkin orange  ·  Bat lavender  ·  Ghostly white  ·  Charcoal  ·  Sage & oat
 
-### Designer notes
+## Designer notes
 
 - Also try: all-white with silver wings, charcoal with orange, or sage-and-oatmeal for a muted autumn set. Jewel and pastel tones both photograph well against a pale background.
 
+## Care
+
+Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished minis, clean and dry a complete sample by the proposed method, then inspect for dye transfer, distortion, stuffing migration, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Do not wash an assembled garland unless the cord, felt balls, wall-hanging attachments and all nine minis have been assessed for that method.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern set - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 02.
 
@@ -265,18 +267,18 @@ This crochet pattern set - including all instructions, stitch counts, photograph
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished minis and garlands as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 This pattern has not been tested to a toy-safety standard (ASTM F963 / EN 71) and uses 6 mm safety eyes. Finished items made for sale must be assessed by the seller against local toy-safety laws; for young children, embroider the faces and secure every seam.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#KawaiiHalloweenSet** - We love seeing your spookies. Thank you for supporting an independent pattern designer.

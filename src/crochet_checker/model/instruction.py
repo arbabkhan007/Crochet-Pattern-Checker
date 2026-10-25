@@ -37,18 +37,34 @@ class Instruction(BaseModel):
     is_ambiguous: bool = False
     parse_warnings: list[str] = Field(default_factory=list)
 
+    @staticmethod
+    def _operation_consumed(op: ParsedOperation) -> int:
+        if op.into_stitch in ("foundation", "foundation_chain", "join"):
+            return 0
+        return op.stitches_consumed
+
+    @staticmethod
+    def _operation_produced(op: ParsedOperation) -> int:
+        if op.into_stitch == "foundation":
+            return op.count
+        if op.into_stitch in ("foundation_chain", "join"):
+            return 0
+        return op.stitches_produced
+
     @property
     def total_stitches_consumed(self):
         if self.is_repeat_block and self.repeat_unit and self.repeat_count:
             return (
-                sum(op.stitches_consumed for op in self.repeat_unit) * self.repeat_count
+                sum(self._operation_consumed(op) for op in self.repeat_unit)
+                * self.repeat_count
             )
-        return sum(op.stitches_consumed for op in self.operations)
+        return sum(self._operation_consumed(op) for op in self.operations)
 
     @property
     def total_stitches_produced(self):
         if self.is_repeat_block and self.repeat_unit and self.repeat_count:
             return (
-                sum(op.stitches_produced for op in self.repeat_unit) * self.repeat_count
+                sum(self._operation_produced(op) for op in self.repeat_unit)
+                * self.repeat_count
             )
-        return sum(op.stitches_produced for op in self.operations)
+        return sum(self._operation_produced(op) for op in self.operations)

@@ -18,7 +18,7 @@ COUNT_STITCH = re.compile(
 
 # Pattern: "(stuff) x N" or "(stuff) × N"
 REPEAT_BLOCK = re.compile(
-    r"[\(\[]([^)\]]+)[\)\]]\s*[x×]\s*(\d+)",
+    r"[\(\[]([^)\]]+)[\)\]]\s*(?:[x×]\s*(\d+)|\s+(\d+)\s+times)",
     re.IGNORECASE,
 )
 
@@ -32,7 +32,7 @@ EACH_AROUND = re.compile(
 
 # Pattern: "sc in each st around (N)" or "sc around (N)"
 STATED_COUNT = re.compile(
-    r"\((\d+)\)\s*$",
+    r"(?:\((\d+)\)|\[(\d+)\])\s*$",
     re.IGNORECASE,
 )
 
@@ -56,7 +56,10 @@ CHAIN_START = re.compile(
 
 # Pattern: "sc in next N sts"
 NEXT_N = re.compile(
-    r"(sc|hdc|dc|tr|sl\s*st|inc|dec)\s+in\s+(?:each\s+)?(?:next\s+)?(\d+)\s+(sts?)",
+    r"(sc|hdc|dc|tr|sl\s*st|inc|dec)\s+in\s+"
+    r"(?:(?:BLO|FLO|back\s+loops?\s+only|front\s+loops?\s+only)\s+of\s+)?"
+    r"(?:(?:each\s+(?:of\s+)?(?:the\s+)?(?:next\s+)?)|(?:the\s+)?(?:next\s+)?)"
+    r"(\d+)\s+(?:sts?|stitches?)(?:\s+only)?\b",
     re.IGNORECASE,
 )
 
@@ -86,7 +89,8 @@ def extract_stated_count(text: str) -> tuple[str, int | None]:
     """
     match = STATED_COUNT.search(text.strip())
     if match:
-        count = int(match.group(1))
+        count_text = next(group for group in match.groups() if group is not None)
+        count = int(count_text)
         clean_text = text[: match.start()].strip().rstrip(",")
         return clean_text, count
     return text, None

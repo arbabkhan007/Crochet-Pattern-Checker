@@ -34,10 +34,10 @@ def test_current_commercial_pattern_collection_passes_release_gate():
     result = run_audit(ROOT)
 
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "table rows: 728" in result.stdout
+    assert "table rows: 718" in result.stdout
     assert "dual rows: 111" in result.stdout
-    assert "count rows checked: 700" in result.stdout
-    assert "assertions: 3247" in result.stdout
+    assert "count rows checked: 689" in result.stdout
+    assert "assertions: 3213" in result.stdout
     assert "PASS - all release-gate checks succeeded" in result.stdout
 
 

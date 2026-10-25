@@ -8,11 +8,11 @@ A chunky, big-headed baby dragon with a stubby snout, scalloped wings and a ridg
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 Ember uses 10 mm safety eyes, which are a small part and a choking hazard. Lock the washers from the inside before the head is joined to the body, and pull-test each eye. She is a decorative piece, not a toy for young children, and has not been tested to ASTM F963 or EN 71. To give her to a child, embroider the eyes instead and check every seam first.
 
-### Materials
+## Materials
 
 - Main yarn: worsted #4, about 30 g used (buy a 50 g ball) - sage green, dusty teal, lilac or charcoal. The extra allows for tails, sewing and a second attempt.
 - Contrast yarn: worsted #4, about 20 g in a contrast cream or pale gold - used for the wings, horns and spikes, so all the details match.
@@ -20,11 +20,11 @@ Ember uses 10 mm safety eyes, which are a small part and a choking hazard. Lock 
 - Eyes: 2 x 10 mm safety eyes - slit-pupil dragon eyes if you can get them.
 - Also needed: polyester fibre fill about 10 g; tapestry needle; stitch markers; pins.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: about 4.5 mm per stitch and 4.3 mm per round. Check on the body after Rnd 5 - 30 stitches should measure about 43 mm across when stuffed. If your stitches are wider, crochet more tightly or drop to a 3.0 mm hook or the stuffing will show.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  hdc - half double crochet
@@ -34,7 +34,7 @@ FO - fasten off  ·  (n) - stitch count at round end
 
 Work in a continuous spiral unless a row says to turn; mark the first stitch of every round. The wings and the spike strip are the exceptions - both are worked flat. Work every stitch through both loops unless a note says otherwise.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **The magic ring** - Every piece begins with a magic ring. Pull the tail tight once the first round is complete.
 
@@ -42,11 +42,11 @@ Work in a continuous spiral unless a row says to turn; mark the first stitch of 
 
 3. **Matched open joins** - Ember's head and her neck are BOTH left open at 18 stitches, so the two edges are the same size and can be ladder-stitched together cleanly. This is the single most important structural detail - the head is heavy and this joint carries all of it. Do not close the head down to a point; stop at 18 stitches. Closing a heavy dragon head down to 6 stitches leaves a small gathered point sewn to a wide neck ring - a tiny seam carrying a big head, which is exactly why a dragon's head flops.
 
-### Notes
+## Notes
 
 How the size adds up: body Rnd 1-13 is 13 rounds x 4.3 mm = 56 mm; head Rnd 1-11 is 11 rounds x 4.3 mm = 47 mm; seated together 56 + 47 = 103 mm - about 10.5 cm. Wingspan: 45 + 34 + 45 = 124 mm - just under 12.5 cm. Tail: 12 rounds x 4.3 mm = 52 mm - about 5 cm.
 
-### Instructions
+## Instructions
 
 ### 1. Head - main colour (worked top-down)
 
@@ -61,7 +61,7 @@ Worked top-down and LEFT OPEN - do not close it and do not fasten off. A big hea
 | R5 | [3 sc, inc] x 6 | (30) | - |
 | R6 | [4 sc, inc] x 6 | (36) | head at full width |
 | R7 | sc in each st around | (36) | eyes at R7 - R8 |
-| R8 | sc in each st around | (36) | - |
+| R8 | sc in each st around | (36) | insert and LOCK eye washers now |
 | R9 | [4 sc, dec] x 6 | (30) | - |
 | R10 | [3 sc, dec] x 6 | (24) | stuff firmly |
 | R11 | [2 sc, dec] x 6 | (18) | LEAVE OPEN - matches neck |
@@ -174,7 +174,7 @@ The strip is one starting chain of 4 plus nine chain-4 spike units - ten chain-4
 
 The strip is about 13.5-15 cm long - slightly under the crown-to-tail path, so it goes on slightly snug. PIN it from crown to tail tip first; if it runs short add one more spike (about 13.5 mm), if long unpick from the plain end. The spikes deliberately touch - do not add plain stitches between them.
 
-### Finishing & assembly
+## Finishing & assembly
 
 Assembly - work in this order:
 
@@ -194,7 +194,7 @@ Assembly - work in this order:
 
 8. Spike strip LAST - pin from crown to tail tip before you sew a single stitch.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Head flops forward.** Pack the neck firmly before closing and make the second ladder-stitch pass tight. If it still moves, the edges did not match - both head and neck must be open at 18 stitches.
 - **Rocks back onto haunches.** The legs are all the same length and they cannot be. Back legs attach 26 mm up, front 34 mm up - work the back legs 6 rounds and the front 8.
@@ -204,17 +204,21 @@ Assembly - work in this order:
 - **Looks like a bear.** The snout is missing or under-stuffed - it must project past the dome of the head.
 - **Stuffing shows through.** Gauge too loose - 30 stitches should measure 43 mm across. Crochet tighter or drop to a 3.0 mm hook.
 
-### Colorways
+## Colorways
 
 Sage green  ·  Dusty teal  ·  Lilac  ·  Charcoal  ·  Blush pink
 
-### Designer notes
+## Designer notes
 
 - The continuous spike ridge runs from crown to tail tip - it is sewn on last and pinned before any stitch.
 
+## Care
+
+Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Embers, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes, a loosened neck seam and opened limb, wing, horn or spine seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the wings and recheck every attachment after cleaning.
+
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 08.
 
@@ -222,18 +226,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished Embers as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 This pattern has not been tested to a toy-safety standard (ASTM F963 / EN 71) and uses 10 mm safety eyes. Finished items made for sale must be assessed by the seller against local toy-safety laws; for young children, embroider the eyes.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#EmberTheBabyDragon** - We love seeing your dragons. Thank you for supporting an independent pattern designer.

@@ -8,24 +8,24 @@ A bunny comforter: a soft, firmly stuffed head above a light, drapey granny-squa
 
 ---
 
-**SAFETY - READ THIS FIRST**
+## Safety — read this first
 
 No safety eyes, buttons, beads or removable parts; the face is embroidered and every floss end is knotted inside the head. That is safer, but it is not a tested toy - do not describe Willow as “baby-safe” without ASTM F963 / EN 71 testing.
 
 Comforters are not recommended in the cot for babies under 12 months and should be used with supervision; put that in your listing. Sew every seam twice and weave ends in at least 5 cm. Say “embroidered face, no small parts” - a claim you can stand behind.
 
-### Materials
+## Materials
 
 - Yarn: DK (#3) 100% cotton (or a baby-safe certified blend), about 60 g - cream, sage, dusty pink or pale grey. Only the head is stuffed.
 - Hook: 3.5 mm (US E/4) for the blanket; use 3.0 mm for the head if your tension is loose.
 - Eyes / floss: none - the face is embroidered in dark brown or charcoal cotton floss, ends knotted inside.
 - Also: about 8 g fibre fill, tapestry needle, stitch marker.
 
-**Gauge & size**
+## Gauge & size
 
 Gauge: about 4.3 mm per stitch and 3.8 mm per round. Check on the blanket after Rnd 3: 9 dc along an edge should measure ~39 mm; narrower and the blanket comes out small.
 
-### Abbreviations (US terms)
+## Abbreviations (US terms)
 
 MR - magic ring  ·  ch - chain
 sc - single crochet  ·  dc - double crochet
@@ -36,7 +36,7 @@ sp - space  ·  FO - fasten off
 
 The HEAD and EARS are worked in a continuous spiral (no joins, marker in the first stitch). The BLANKET is worked in JOINED rounds: each round closes with a slip stitch and the next begins with a turning chain - a different rhythm that lets the square grow out evenly. Work every stitch through both loops unless noted.
 
-### Techniques used, in the order you will meet them
+## Techniques used, in the order you will meet them
 
 1. **Magic ring & spiral** - The head and each ear begin with a magic ring; pull the tail tight after round one.
 
@@ -44,11 +44,11 @@ The HEAD and EARS are worked in a continuous spiral (no joins, marker in the fir
 
 3. **The border round** - One final round of single crochet around the edge with 3 sc into each corner space squares the edge and stops the blanket curling. Do not skip it.
 
-### Notes
+## Notes
 
 Sizing the blanket: the square grows ~1.3 cm per side per round - 18 rounds ~23 cm, 20 rounds ~26 cm, 22 rounds ~28 cm. Add rounds to make a bigger lovey.
 
-### Instructions
+## Instructions
 
 ### 1. Head - worked top-down
 
@@ -101,36 +101,40 @@ Border: work one final round of sc all the way around - 1 sc into each dc, and 3
 
 Open dc clusters and crisp (3 dc, ch 2, 3 dc) corners keep the square true round after round.
 
-### Finishing & assembly
+## Finishing & assembly
 
-Face (embroidery only): two small oval eyes about 8 stitches apart across Rnds 8-9, a small inverted-triangle nose centred between and below them, and a shallow Y for the mouth. KNOT every end inside the head and bury the tails before closing. Skip blush - chalk rubs off on bedding and is not washable.
+Face (embroidery only): complete this immediately after Head Rnd 10, before stuffing begins. Make two small oval eyes about 8 stitches apart across Rnds 8-9, a small inverted-triangle nose centred between and below them, and a shallow Y for the mouth. KNOT every end inside the head and bury the tails before closing. Skip blush - chalk rubs off on bedding and is not washable.
 
-Joining: centre the head over one corner of the square, overlapping the blanket by about 3 cm. Sew all the way around the base of the head, THEN sew it a second time - this is the only structural seam and it will be pulled, chewed and washed. Weave every end in at least 5 cm.
+Joining: mark all 18 stitches of Head Rnd 12. Centre the head over one corner of the square, overlapping the blanket by about 3 cm and tucking the small Rnds 13-14 closing nub against the fabric. Sew the blanket corner to the 18 marked Rnd-12 stitches in a complete circle; do NOT attach the load only to the 6-stitch closure. Sew all the way around the base of the head, THEN sew it a second time - this is the only structural seam and it will be pulled, chewed and washed. Weave every end in at least 5 cm.
 
-### Troubleshooting
+## Troubleshooting
 
 - **Blanket curls / not square.** You skipped the sc border, or missed a (3 dc, ch 2, 3 dc) corner - check all four corners at the end of every round.
 - **Came out too small / head flops.** Tighter than 4.3 mm/dc: go up a hook or add rounds (22 rounds = ~28 cm). Stuff the head firmly and sew the base seam twice.
 
-### Colorways
+## Colorways
 
 Cream  ·  Sage  ·  Dusty pink  ·  Pale grey  ·  Butter yellow
 
-### For your listing
+## For your listing
 
 Materials: 100% cotton, embroidered face, no safety eyes, no buttons, beads or removable parts.
 
-Care: machine wash cool on a gentle cycle inside a mesh bag; reshape while damp and dry flat. Do not tumble dry - it will felt and shrink.
-
 Supervision: comforters are not recommended in the cot for babies under 12 months; use with supervision.
 
-### Designer notes
+## Care
+
+Machine wash cool on a gentle cycle inside a mesh bag; reshape while damp and dry flat. Do not tumble dry - it will felt and shrink.
+
+Before publishing a machine-wash, hand-wash or other care claim, clean and fully dry a complete sample by that method; remeasure it and inspect for dye transfer, shrinkage, stuffing migration, distorted embroidery, opened ear seams and any movement at the twice-sewn 18-stitch head-to-blanket join.
+
+## Designer notes
 
 - Colorways: cream, sage, dusty pink, pale grey and butter yellow - neutrals outsell brights in the baby category.
 
 ## Terms of Use
 
-#### Copyright & ownership
+### Copyright & ownership
 
 This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 10.
 
@@ -138,18 +142,18 @@ This crochet pattern - including all instructions, stitch counts, photography an
 
 This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
 
-#### You may
+### You may
 
 Make as many finished loveys as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
 
-#### You may not
+### You may not
 
 Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
-#### Safety reminder
+### Safety reminder
 
 Willow has NO safety eyes, buttons, beads or removable parts - the face is embroidered and floss ends are knotted inside the head. Even so she is not a tested toy (ASTM F963 / EN 71): do not claim “baby-safe”. Comforters are not recommended in a cot for babies under 12 months and should be used with supervision; sew every seam twice and weave ends in at least 5 cm.
 
-### Happy crocheting!
+## Happy crocheting!
 
 Tag your makes with **#NovalityStore** and **#WillowTheBunnyLovey** - We love seeing your makes. Thank you for supporting an independent pattern designer.

@@ -84,11 +84,15 @@ except ImportError:
     StitchCountReport = None
 
 
-class OverallStatus(_Enum):
-    PASS = "pass"
-    WARNING = "warning"
-    FAIL = "fail"
-    ERROR = "error"
+class OverallStatus(str, _Enum):
+    """String-compatible status labels used by legacy report consumers."""
+
+    PASS = "PASS"
+    WARNING = "WARNING"
+    PASS_WITH_WARNINGS = "PASS_WITH_WARNINGS"
+    FAIL = "FAIL"
+    ERROR = "ERROR"
+    NEEDS_REVIEW = "NEEDS_REVIEW"
 
 
 __all__.extend(

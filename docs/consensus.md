@@ -25,7 +25,7 @@ These lessons are the consensus. Each one is agreed by both corrected files and 
 ### 01_stated_count: Stated count
 
 Wrong result: ERROR.
-- Round/row 1: stated 16 stitches but operations produce 14
+- Round 1 states 16 stitches, but operations produce 14.
 Corrected result: PASS.
 
 How: (5 sc, dec) makes 6. Twice is 12. The last 2 sc makes 14. The line consumes 16 and produces 14, so a written 16 is false.
@@ -35,7 +35,7 @@ What: Gemini and ChatGPT both say this line cannot make 16. The consensus repair
 ### 02_repeat_cover: Repeat cover
 
 Wrong result: ERROR.
-- Round/row 2: stated 32 stitches but operations produce 30
+- Round 2 states 32 stitches, but operations produce 30.
 - Non-modulo consumption: Round 2 has 38 incoming stitches, but the repeat consumes 6. 2 stitches would be left unworked.
 Corrected result: PASS.
 
@@ -106,7 +106,7 @@ What: both corrected files agree the tab must not be wider than the socket. Inch
 ### 09_clause_total: Clause total
 
 Wrong result: ERROR.
-- Round/row 15: stated 54 stitches but operations produce 48
+- Round 15 states 54 stitches, but operations produce 48.
 Corrected result: PASS.
 
 How: the clauses add to 48. Writing 54 does not create the missing 6 stitches.
@@ -262,6 +262,7 @@ What: the corrected file joins an open edge. A cinch with no sew-flat sentence c
 Wrong result: ERROR.
 - Cinch shut has no counted round to close. State the round count before the cinch.
 - A cinched round is a sealed cap. It cannot be sewn flat. Leave the last round open.
+- A seam cannot target a closed magic ring or a cinched point. Leave an open edge and state its stitch count. The join was not invented.
 Corrected result: PASS.
 
 How: a round that is cinched shut is a sealed cap. It cannot also be sewn flat.
@@ -361,7 +362,7 @@ What: the corrected file works 1 stitch into every base stitch.
 ### 34_chain_length: Chain length
 
 Wrong result: ERROR.
-- Round/row 1: stated 12 stitches but operations produce 9
+- Row 1 states 12 stitches, but operations produce 9.
 - Chain of 10 cannot hold 12 stitches. The most this line can hold is 9.
 Corrected result: PASS.
 
@@ -373,7 +374,7 @@ What: the corrected file states 9. The checker does not add the missing chains.
 
 Wrong result: ERROR.
 - Line 3: worked 3 stitches into 12 without a decrease.
-- Round/row 3: stated 18 stitches but operations produce 3
+- Round 3 states 18 stitches, but operations produce 3.
 - Round 3 has an unclosed parenthesis. Close the repeat.
 Corrected result: PASS.
 
@@ -455,6 +456,7 @@ What: the corrected file sews 2 ears. A sew line that does not give a number is 
 
 Wrong result: ERROR.
 - A repeat of zero does no work. Give the repeat a count above zero.
+- A repeat of 0 does no work.
 Corrected result: PASS.
 
 How: a repeat of zero does no work. The instruction cannot be followed as a repeat.
@@ -675,6 +677,7 @@ What: the corrected file pulls through 2 loops.
 
 Wrong result: ERROR.
 - 6.5 sc is not a whole stitch.
+- A decimal stitch is not a whole stitch.
 Corrected result: PASS.
 
 How: 6.5 sc is not a whole stitch. The hook cannot make half a single crochet.
@@ -685,6 +688,7 @@ What: the corrected file works 6 sc.
 
 Wrong result: ERROR.
 - x 2.5 is not a whole repeat.
+- A fractional repeat is not a whole repeat.
 Corrected result: PASS.
 
 How: x 2.5 asks for half of a repeat. Repeats are whole numbers.
@@ -724,6 +728,7 @@ What: the corrected file joins with a slip stitch.
 ### 70_spiral_and_join: Spiral and join
 
 Wrong result: ERROR.
+- A continuous spiral does not join every round. The join was not added.
 - A continuous spiral cannot also join every round.
 Corrected result: PASS.
 
@@ -734,6 +739,7 @@ What: the corrected file keeps the spiral and says not to join.
 ### 71_blo_and_both: Both loop claims
 
 Wrong result: ERROR.
+- FLO and BLO cannot be the same stitch.
 - BLO only and both loops cannot be the same stitch.
 Corrected result: PASS.
 
@@ -764,6 +770,7 @@ What: the corrected file works left to right.
 ### 74_two_joins: Two joins
 
 Wrong result: ERROR.
+- An invisible join and a slip-stitch join are two endings. The extra join was not invented.
 - An invisible join and a slip-stitch join cannot both finish the round.
 Corrected result: PASS.
 
@@ -868,6 +875,7 @@ What: the corrected file counts the turning chain once.
 
 Wrong result: ERROR.
 - A chain has no post. Do not work fpdc around the chain.
+- A chain has no post. Do not work a post around the chain.
 Corrected result: PASS.
 
 How: a chain has no post. fpdc cannot go around the chain.
@@ -1040,6 +1048,7 @@ What: the corrected file keeps the spiral and does not turn.
 
 Wrong result: ERROR.
 - Fasten off ends the yarn.
+- Fasten off ends the yarn. The same yarn was not continued.
 Corrected result: PASS.
 
 How: fasten off ends that yarn. The same line cannot continue in it.
@@ -1099,6 +1108,7 @@ What: the corrected file starts with a magic ring.
 ### 107_two_seams: Two seam methods
 
 Wrong result: ERROR.
+- Whipstitch and mattress stitch are two seams. The extra seam was not invented.
 - Whipstitch and mattress stitch are two seams.
 Corrected result: PASS.
 
@@ -1109,6 +1119,7 @@ What: the corrected file uses mattress stitch.
 ### 108_negative_gauge: Negative gauge
 
 Wrong result: ERROR.
+- A negative measure is not a size. No length was invented.
 - A negative gauge is not a fabric.
 Corrected result: PASS.
 
@@ -1119,6 +1130,7 @@ What: the corrected file uses 12 sc per 4 inches.
 ### 109_negative_length: Negative length
 
 Wrong result: ERROR.
+- A negative measure is not a size. No length was invented.
 - A negative length is not a piece.
 Corrected result: PASS.
 
@@ -1172,6 +1184,8 @@ What: the corrected file makes 2.
 
 Wrong result: ERROR.
 - -1 times is not a repeat count.
+- A negative repeat count is not a repeat.
+- A negative round or row number is not a round. Start at 1.
 Corrected result: PASS.
 
 How: repeating a row -1 times is not a repeat. This is not the x -1 form.
@@ -1213,6 +1227,7 @@ What: the corrected file lists 200 yards.
 Wrong result: ERROR.
 - Stuff with 0 g leaves the piece empty.
 - Stuff with 0 g does not stuff the piece.
+- Stuffing with 0 does not fill the piece.
 Corrected result: PASS.
 
 How: stuff with 0 g leaves the piece empty while telling the crocheter to stuff.
@@ -1605,6 +1620,7 @@ What: the corrected file skips 1.
 
 Wrong result: ERROR.
 - x 1.5 is not a whole repeat.
+- A fractional repeat is not a whole repeat.
 Corrected result: PASS.
 
 How: any repeat written as x N.N is not a whole repeat. This is not limited to 2.5.
@@ -1614,6 +1630,7 @@ What: the corrected file repeats a whole number of times.
 ### 157_copied_inch: Copied inch measure
 
 Wrong result: ERROR.
+- The line copies the same number into both units. The length was not converted.
 - 4 inches is not 4 cm. The line copies the same number.
 Corrected result: PASS.
 
@@ -1624,6 +1641,7 @@ What: the corrected file converts 4 inches to 10.16 cm.
 ### 158_copied_cm: Copied centimeter measure
 
 Wrong result: ERROR.
+- The line copies the same number into both units. The length was not converted.
 - 10 cm is not 10 inches. The line copies the same number.
 Corrected result: PASS.
 
@@ -1650,17 +1668,17 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 96 | 9 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | ERROR | 4 | 0 | Round/row 9: plain round received 4 stitches and has no increase or decrease, but states 8.; Round 11: 12 stitches jump to 24. Insert an 18-stitch round before returning to 24.; Piece 'arms' is named in assembly but never started. |
-| `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 14 | 2 | Line 43: worked 5 stitches into 15 without a decrease.; Round/row 13: stated 30 stitches but operations produce 0; Round/row 1: stated 14 stitches but operations produce 0 |
-| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 13 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated.; Round 11 repeats or goes backwards. Number the rounds in order. |
-| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 45 | 3 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 28 | 4 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Round/row 15: stated 38 stitches but operations produce 36; Round/row 17: stated 32 stitches but operations produce 30 |
+| `wrong_benchmarks.md` | whole file | ERROR | 84 | 9 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | ERROR | 3 | 0 | Round 9: plain round received 4 stitches without an increase or decrease; the row states 8.; Round 11: 12 stitches jump to 24. Insert an 18-stitch round before returning to 24.; Piece 'arms' is named in assembly but never started. |
+| `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 10 | 2 | Line 43: worked 5 stitches into 15 without a decrease.; Round 13 states 30 stitches, but operations produce 0.; Row 1 states 14 stitches, but operations produce 0. |
+| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 12 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated.; Round 11 repeats or goes backwards. Number the rounds in order. |
+| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 39 | 3 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 23 | 4 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Round 15 states 38 stitches, but operations produce 36.; Round 17 states 32 stitches, but operations produce 30. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
 | `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |
-| `gemini_corrected.md` | 3: Clockwork Dragon (Corrected) | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
-| `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | ERROR | 1 | 1 | Round/row 15: stated 20 stitches but operations produce 0; Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
+| `gemini_corrected.md` | 3: Clockwork Dragon (Corrected) | PASS_WITH_WARNINGS | 0 | 2 | Row 11 turns with 9 stitches unworked; check the short-row shaping.; Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
+| `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | ERROR | 1 | 1 | Round 15 states 20 stitches, but operations produce 0.; Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 5: Void-Warped Chimera (Corrected) | PASS | 0 | 0 | none |
 | `chatgpt_corrected.md` | whole file | ERROR | 1 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches. |
 | `chatgpt_corrected.md` | 1: Classic Amigurumi Bear — Corrected | PASS | 0 | 0 | none |
