@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="800" height="1100">
+<rect width="800" height="1100" fill="white"/>
+<text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#2C3E50">Crochet Pattern Preview</text>
+<text x="400" y="50" text-anchor="middle" font-family="Arial" font-size="12" fill="#7F8C8D">Construction: flat</text>
+<rect x="30" y="65" width="200" height="30" rx="5" fill="#95A5A6" opacity="0.15" stroke="#95A5A6"/>
+<text x="130" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#95A5A6" font-family="Arial">NEEDS_REVIEW | Score: 85/100</text>
+<text x="30" y="640" font-family="Arial" font-size="14" font-weight="bold" fill="#2C3E50">Pattern Instructions</text>
+<text x="50" y="660" font-family="monospace" font-size="10" fill="#444">Row 1: Row 1: sc in 4, hdc in 3, dc in 3 (10)</text>
+<text x="50" y="676" font-family="monospace" font-size="10" fill="#444">Row 2: Row 2: sc in 3, hdc in 3, dc in 4 (10)</text>
+<text x="50" y="692" font-family="monospace" font-size="10" fill="#444">Row 3: Row 3: sc in 2, hdc in 4, dc in 4 (10)</text>
+<text x="50" y="708" font-family="monospace" font-size="10" fill="#444">Row 4: Row 4: sl st in the first 2, (sc, hdc, dc, hdc, sc) in next st, sl st in next 2,</text>
+</svg>

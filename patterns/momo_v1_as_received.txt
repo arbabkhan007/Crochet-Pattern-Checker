@@ -1,0 +1,41 @@
+# Momo the Loaf Cat — v1 AS RECEIVED (machine-checkable transcription)
+# Design Code NS 06. US terms, 3.5 mm hook, worsted #4. Gauge 4.5 mm/st, 4.3 mm/rnd.
+# Claims: loaf 7.9 x 5.2 x 4.3 cm; base oval ~79 x 52 mm (48 sts);
+# eyes 7 sts ~ 32 mm apart; 10 wall rounds = 43 mm tall.
+#
+# MINOR ARITHMETIC NOTE (fixed in v2): "Stopping at 36 gives a body about
+# 34 mm across" — at the stated gauge a 36-st oval is ~60 x 40 mm
+# (perimeter 162 mm), so "34 mm across" is not reproducible.
+
+=== BASE & BODY (oval base, BLO ridge at R7) ===
+Rnd 1: 18 sc (18)
+Rnd 2: inc, 6 sc, inc x 3, 6 sc, inc x 2 (24)
+Rnd 3: sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2 (30)
+Rnd 4: 2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2 (36)
+Rnd 5: 3 sc, inc, 6 sc, [3 sc, inc] x 3, 6 sc, [3 sc, inc] x 2 (42)
+Rnd 6: 4 sc, inc, 6 sc, [4 sc, inc] x 3, 6 sc, [4 sc, inc] x 2 (48)
+Rnd 7: sc in each st around (48)
+Rnd 8: sc in each st around (48)
+Rnd 9: sc in each st around (48)
+Rnd 10: [6 sc, dec] x 6 (42)
+Rnd 11: [5 sc, dec] x 6 (36)
+Rnd 12: [4 sc, dec] x 6 (30)
+Rnd 13: [3 sc, dec] x 6 (24)
+Rnd 14: [2 sc, dec] x 6 (18)
+Rnd 15: [sc, dec] x 6 (12)
+Rnd 16: dec x 6 (6)
+
+=== EARS (worked onto Rnd 12, 6 sts apart) ===
+Row 1: sc 5 (5)
+Row 2: dec, sc, dec (3)
+Row 3: dec, sc (2)
+
+=== TAIL (worked off the body, 4 sts) ===
+Rnd 1: 4 sc (4)
+Rnd 2: sc in each st around (4)
+Rnd 3: sc in each st around (4)
+Rnd 4: sc in each st around (4)
+Rnd 5: sc in each st around (4)
+Rnd 6: sc in each st around (4)
+Rnd 7: sc in each st around (4)
+Rnd 8: sc in each st around (4)

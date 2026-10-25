@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="800" height="1100">
+<rect width="800" height="1100" fill="white"/>
+<text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#2C3E50">Crochet Pattern Preview</text>
+<text x="400" y="50" text-anchor="middle" font-family="Arial" font-size="12" fill="#7F8C8D">Construction: in_the_round</text>
+<rect x="30" y="65" width="200" height="30" rx="5" fill="#F39C12" opacity="0.15" stroke="#F39C12"/>
+<text x="130" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#F39C12" font-family="Arial">PASS_WITH_WARNINGS | Score: 90/100</text>
+<text x="30" y="640" font-family="Arial" font-size="14" font-weight="bold" fill="#2C3E50">Pattern Instructions</text>
+<text x="50" y="660" font-family="monospace" font-size="10" fill="#444">Round 1: Round 1: 6 sc in MR (6)</text>
+<text x="50" y="676" font-family="monospace" font-size="10" fill="#444">Round 2: Round 2: inc in each st around (12)</text>
+<text x="50" y="692" font-family="monospace" font-size="10" fill="#444">Round 3: Round 3: [sc, inc] x 6 (18)</text>
+<text x="50" y="708" font-family="monospace" font-size="10" fill="#444">Round 4: Round 4: [2 sc, inc] x 6 (24)</text>
+<text x="50" y="724" font-family="monospace" font-size="10" fill="#444">Round 5: Round 5: [3 sc, inc] x 6 (30)</text>
+<text x="50" y="740" font-family="monospace" font-size="10" fill="#444">Round 6: Round 6: [4 sc, inc] x 6 (36)</text>
+<text x="50" y="756" font-family="monospace" font-size="10" fill="#444">Round 7: Round 7: sc in each st around (36)</text>
+<text x="50" y="772" font-family="monospace" font-size="10" fill="#444">Round 8: Round 8: sc in each st around (36)</text>
+<text x="50" y="788" font-family="monospace" font-size="10" fill="#444">Round 9: Round 9: [4 sc, dec] x 6 (30)</text>
+<text x="50" y="804" font-family="monospace" font-size="10" fill="#444">Round 10: Round 10: [3 sc, dec] x 6 (24)</text>
+<text x="50" y="820" font-family="monospace" font-size="10" fill="#444">Round 11: Round 11: [2 sc, dec] x 6 (18)</text>
+</svg>

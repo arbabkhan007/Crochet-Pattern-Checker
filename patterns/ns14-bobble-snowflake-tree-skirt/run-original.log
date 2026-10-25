@@ -1,0 +1,127 @@
+========================================================================
+NS 14 Bobble Snowflake Tree Skirt - full stitch-level simulation
+source: original.md
+========================================================================
+
+1. Tokenising + US/UK equivalence
+---------------------------------
+   rounds parsed          : 32
+   US/UK stream mismatches: 0
+   OK - every UK instruction reduces to the identical operation stream.
+
+2. Round-by-round simulation (consume / produce / columns)
+----------------------------------------------------------
+    Rnd  avail   used   made  stated   12N  inc  BO  anchor  col-err
+   R1        0      0     12      12    12    0   0    join        0
+   R2       12     12     24      24    24   12   0    next        0
+   R3       24     24     36      36    36   12   0    next       12
+   R4       36     36     48      48    48   12   0    next       12
+   R5       48     48     60      60    60   12  12    next       12
+   R6       60     60     72      72    72   12   0    next       12
+   R7       72     72     84      84    84   12   0    next       12
+   R8       84     84     96      96    96   12  12    next       12
+   R9       96     96    108     108   108   12   0    next       12
+   R10     108    108    120     120   120   12   0    next       12
+   R11     120    120    132     132   132   12  12    next       12
+   R12     132    132    144     144   144   12   0    next       12
+   R13     144    144    156     156   156   12   0    next       12
+   R14     156    156    168     168   168   12  12    next       12
+   R15     168    168    180     180   180   12   0    next       12
+   R16     180    180    192     192   192   12   0    next       12
+   R17     192    192    204     204   204   12  12    next       12
+   R18     204    204    216     216   216   12   0    next       12
+   R19     216    216    228     228   228   12   0    next       12
+   R20     228    228    240     240   240   12  12    next       12
+   R21     240    240    252     252   252   12   0    next       12
+   R22     252    252    264     264   264   12   0    next       12
+   R23     264    264    276     276   276   12  12    next       12
+   R24     276    276    288     288   288   12   0    next       12
+   R25     288    288    300     300   300   12   0    next       12
+   R26     300    300    312     312   312   12  12    next       12
+   R27     312    312    324     324   324   12   0    next       12
+   R28     324    324    336     336   336   12   0    next       12
+   R29     336    336    348     348   348   12  12    next       12
+   R30     348    348    360     360   360   12   0    next       12
+   R31     360    360    372     372   372   12   0    next       12
+   R32     372    372    384     384   384   12  12    next       12
+
+3. Round-start anchor / spoke geometry
+--------------------------------------
+   FAIL - the column slips 1 stitch per round, every round
+   FAIL - cumulative column rotation R1->R32: 120.8 degrees
+   FAIL - rounds whose repeats straddle two parent repeats: 30
+   R32 increase spacing on the parent round: [31] (even spacing = 31)
+
+4. Bobble cadence
+-----------------
+   bobble rounds found   : [5, 8, 11, 14, 17, 20, 23, 26, 29, 32]
+   every 3rd round from 5: [5, 8, 11, 14, 17, 20, 23, 26, 29, 32]
+   OK - matches 'every third round from R5'.
+
+5. 5-dc bobble loop simulation
+------------------------------
+   loops on hook after each incomplete dc: [2, 3, 4, 5, 6]
+   OK - 6 loops on the hook, closed with one yarn-over through all 6.
+
+6. Scalloped border
+-------------------
+   Mini      edge 168 sts -> consumed 168, 28 scallops, 168 sts made  [OK]
+   Standard  edge 276 sts -> consumed 276, 46 scallops, 276 sts made  [OK]
+   Large     edge 384 sts -> consumed 384, 64 scallops, 384 sts made  [OK]
+   note: every round total is 12N, and 12N is always divisible by 6,
+         so the 6-stitch shell repeat closes after ANY round (scallops = 2N).
+
+7. Centre ring vs. round 1
+--------------------------
+   ch 20 ring  : max circumference 15.8 cm -> hole up to 5.0 cm (1.98 in) when stretched open
+   R1 = 12 dc: base span 10.0 cm -> hole gathers to 3.2 cm (1.25 in) at rest
+   pattern claims    : 1.5-2.0 in at rest
+
+8. Flat-circle geometry from the stated gauge
+---------------------------------------------
+   +12 sts per round = +10.00 cm circumference -> needs +1.59 cm radius per round
+   stated row gauge  = +1.67 cm radius per round
+   ratio             = 1.047  (1.00 = perfectly flat)
+   OK - 5% tall; blocks flat, slight cup if worked tight.
+
+9. Finished diameters (simulated, both gauge directions)
+--------------------------------------------------------
+   R14  stitch-gauge  19.0 in | row-gauge  21.0 in -> 19-21 in (48-53 cm); pattern says 18.0-21.0 in  [OK]
+   R23  stitch-gauge  30.2 in | row-gauge  32.9 in -> 30-33 in (77-83 cm); pattern says 29.0-33.0 in  [OK]
+   R32  stitch-gauge  41.5 in | row-gauge  44.7 in -> 42-45 in (105-113 cm); pattern says 38.0-43.0 in  [MISMATCH]
+
+10. Yarn requirement (from the stated gauge, not a guess)
+---------------------------------------------------------
+   model: 10 cm of yarn per dc, worsted 180 m/100 g, aran 150 m/100 g
+   Mini       1260 body sts ->   161 m ( 176 yd) ->  89 g worsted / 107 g aran
+   Standard   3312 body sts ->   390 m ( 427 yd) -> 217 g worsted / 260 g aran
+   Large      6336 body sts ->   717 m ( 784 yd) -> 398 g worsted / 478 g aran
+   pattern states    : 700-1200 g for standard or large
+
+11. Prose / summary-table cross-check
+-------------------------------------
+   OK - prose R9 = 7 plain dc matches the N-2 rule
+   OK - prose R10 = 8 plain dc matches the N-2 rule
+   OK - prose R9 = 7 plain dc matches the N-2 rule
+   Mini/tabletop  R14  sts 168 (need 168), scallops 28 (need 28)  [OK]
+   Standard       R23  sts 276 (need 276), scallops 46 (need 46)  [OK]
+   Large          R32  sts 384 (need 384), scallops 64 (need 64)  [OK]
+   OK - 'one plain dc short leaves 12 stitches unworked' (12 repeats x 1 st)
+
+RESULT
+------
+3 ERROR(S):
+  E1. Round-start anchor contradiction on 31 rounds (R2-R32): the construction notes say 'work the first dc or BO into the SAME stitch as the join', but the round text says 'in next st', which starts one stitch past the join.
+  E2. Simulated consequence: the 12 increase/bobble columns rotate by 120.8 degrees from R1 to R32 - the 'snowflake' spirals instead of radiating. Stitch counts stay correct, so a count-only checker cannot see this.
+  E3. stated yarn 700-1200 g is far above the simulated requirement (standard 217-260 g, large 398-478 g). A maker would buy roughly 2-3x too much yarn.
+
+3 WARNING(S):
+  W1. claimed hole 1.5-2.0 in does not contain the simulated relaxed value 1.25 in (R1's 12 dc gather the ch 20 ring from 15.8 cm down to 10.0 cm)
+  W2. R32: simulated finished diameter 42-45 in is not covered by the printed 38.0-43.0 in
+  W3. gauge is measured on a 'flat swatch' but quoted in 'rounds'; say 'rows'
+
+1 NOTE(S):
+  N1. R14 (a size stopping point) is a bobble round, so a few edge bobbles fall inside the border's 'skip 2'. Cosmetic only; an extra plain round before the border avoids it and keeps the 12N/2N maths.
+
+FAIL - correct the errors above before publishing.
+

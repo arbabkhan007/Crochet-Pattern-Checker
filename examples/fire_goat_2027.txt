@@ -1,0 +1,91 @@
+Year of the Goat 2027 - Amigurumi Fire Goat (multi-piece reference transcript)
+Note: multi-piece amigurumi - each piece is validated separately (see output/goat2027/).
+
+HEAD (cream)
+Rnd 1: 6 sc in MR [6]
+Rnd 2: Inc in each st around [12]
+Rnd 3: (sc 1, inc) x 6 [18]
+Rnd 4: (sc 2, inc) x 6 [24]
+Rnd 5: (sc 3, inc) x 6 [30]
+Rnd 6: (sc 4, inc) x 6 [36]
+Rnd 7: (sc 5, inc) x 6 [42]
+Rnd 8-14: sc in each st around [42]
+Rnd 15: (sc 5, dec) x 6 [36]
+Rnd 16: (sc 4, dec) x 6 [30]
+Rnd 17: (sc 3, dec) x 6 [24]
+Rnd 18: (sc 2, dec) x 6 [18]
+Rnd 19: (sc 1, dec) x 6 [12]
+Rnd 20: dec x 6 [6]
+
+MUZZLE (light beige)
+Rnd 1: 6 sc in MR [6]
+Rnd 2: Inc in each st [12]
+Rnd 3: (sc 1, inc) x 6 [18]
+Rnd 4-5: sc in each st around [18]
+
+HORNS make 2 (dark brown/gray)
+Rnd 1: 4 sc in MR [4]
+Rnd 2: (sc 1, inc) x 2 [6]
+Rnd 3-5: sc in each st around [6]
+Rnd 6: BLO sc in each st around [6]
+Rnd 7-9: sc in each st around [6]
+Rnd 10: (sc 1, inc) x 3 [9]
+Rnd 11: sc in each st around [9]
+
+EARS make 2 (worked flat)
+Row 1: ch 7, sc 6 starting in 2nd ch from hook [6]
+Row 2: ch 1, turn, dec, sc 2, dec [4]
+Row 3: ch 1, turn, sc in each of the 4 sts [4]
+Row 4: ch 1, turn, dec, dec [2]
+
+BODY (cream, bottom-up)
+Rnd 1: 6 sc in MR [6]
+Rnd 2: Inc in each st [12]
+Rnd 3: (sc 1, inc) x 6 [18]
+Rnd 4: (sc 2, inc) x 6 [24]
+Rnd 5: (sc 3, inc) x 6 [30]
+Rnd 6: (sc 4, inc) x 6 [36]
+Rnd 7-8: sc in each st around [36]
+Rnd 9: BLO sc in each st around [36]
+Rnd 10-14: sc in each st around [36]
+Rnd 15: (sc 4, dec) x 6 [30]
+Rnd 16-17: sc in each st around [30]
+Rnd 18: (sc 3, dec) x 6 [24]
+Rnd 19: sc in each st around [24]
+Rnd 20: (sc 2, dec) x 6 [18]
+Rnd 21: sc in each st around [18]
+Rnd 22: (sc 1, dec) x 6 [12]
+Rnd 23: sc in each st around [12]
+
+ARMS make 2 (beige hoof then cream)
+Rnd 1: 5 sc in MR [5]
+Rnd 2: Inc in each st [10]
+Rnd 3: BLO sc in each st around [10]
+Rnd 4-12: sc in each st around [10]
+Rnd 13: (sc 3, dec) x 2 [8]
+
+LEGS make 2 (beige hoof then cream)
+Rnd 1: 6 sc in MR [6]
+Rnd 2: Inc in each st [12]
+Rnd 3: BLO sc in each st around [12]
+Rnd 4-12: sc in each st around [12]
+Rnd 13: (sc 2, dec) x 3 [9]
+
+TAIL (cream)
+Rnd 1: 4 sc in MR [4]
+Rnd 2: (sc 1, inc) x 2 [6]
+Rnd 3-6: sc in each st around [6]
+
+LAMB TAIL VARIATION (fluffy white)
+Rnd 1: 5 sc in MR [5]
+Rnd 2: Inc in each st [10]
+Rnd 3-5: sc in each st [10]
+Rnd 6: dec x 5 [5]
+
+FLAME COLLAR (red, flat)
+Row 1: ch 36, sc 35 starting in 2nd ch from hook [35]
+Row 2: ch 1, turn, sc in each of the 35 sts [35]
+
+LAMB RED COLLAR (red, flat)
+Row 1: ch 32, sc 31 starting in 2nd ch from hook [31]
+Row 2: ch 1, turn, sc in each of the 31 sts [31]

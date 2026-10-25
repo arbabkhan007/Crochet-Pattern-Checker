@@ -1,0 +1,5 @@
+# Generated visual deliverables must never be treated as line-oriented text.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.zip binary

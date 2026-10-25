@@ -1,0 +1,126 @@
+"""Ember the Baby Dragon - Novality NS 08. Corrections applied: spike strip rewritten on a foundation chain so it really
+spans crown to tail tip (~13.5 cm); wing described as a scalloped triangle with the attach edge separate from the wingspan.
+All counts verified."""
+
+P = dict(
+    slug="ember", title="Ember the Baby Dragon", design_code="NS 08", terms="US terms", skill="Intermediate", time="4 - 5 hours",
+    hashtag="#EmberTheBabyDragon",
+    tagline=["A chubby sitting baby dragon with a round head, a cream belly, scalloped wings",
+             "and a ridge of nine little spikes from crown to tail tip."],
+    intro=("A chubby sitting baby dragon with a big round head, a pale belly patch, two scalloped wings and a ridge of nine spikes running from the crown to the tail tip. "
+           "The head and body are worked separately and joined open-edge to open-edge, so the neck join is sturdy and invisible."),
+    size_chip="11 cm / 4.3 in seated",
+    stats=[("11 cm", "TALL, SEATED"), ("12.5 cm", "WINGSPAN"), ("5 cm", "TAIL"), ("18 sts", "HEAD-TO-NECK JOIN")],
+    feats=[("36", "stitches around\nthe head"), ("18", "open head meets\n18 open neck"), ("9", "spikes, crown\nto tail tip"), ("2", "scalloped wings")],
+    palette=dict(accent="#9DBBA0", deep="#4E7A5A", pale="#EEF5EE", rule="#D5E3D6", hilite="#DDEBDD"),
+    materials=[
+        ("Main yarn", "Worsted #4, sage green, about 45 g."),
+        ("Belly & wings", "Worsted #4, cream, about 12 g."),
+        ("Spikes & horns", "Worsted #4, cream or pale gold, about 6 g."),
+        ("Hook", "3.5 mm (US E/4)."),
+        ("Eyes", "Two 10 mm safety eyes."),
+        ("Also needed", "Polyester fibre filling about 25 g; yarn needle; stitch marker; pins; black embroidery floss for the nostrils."),
+    ],
+    gauge=("36 sc around measures about 52 mm across when stuffed (4.5 mm per stitch, 4.3 mm per round). Check on the head after R6. "
+           "Too wide? Go down to a 3.0 mm hook."),
+    abbreviations=[("MR", "magic ring"), ("ch", "chain"), ("sc", "single crochet"), ("hdc", "half double crochet"), ("dc", "double crochet"), ("inc", "increase (2 sc in one st)"),
+                   ("invdec", "invisible decrease"), ("sl st", "slip stitch"), ("picot", "ch 3, sl st in the first ch"), ("FO", "fasten off"), ("(n)", "stitch count at row/round end")],
+    techniques=[
+        ("Magic ring & spiral", "Every round piece starts with a magic ring and is worked in a continuous spiral. Move the marker up every round; do not join or chain 1."),
+        ("Invisible decrease", "Front loops only of the next two stitches, yarn over, pull through both, yarn over, pull through two. No ridge on the head or neck."),
+        ("Open-to-open join", "Head and body both end with an 18-stitch opening. Stuff both, hold the openings together and whip-stitch stitch-for-stitch, all 18 pairs - the join is invisible and the head cannot wobble."),
+        ("Spikes on a chain", "The spike strip is worked along a foundation chain: each spike is a ch 4 worked back down (sl st, sc, hdc), then a slip stitch two chains further along. The chain length sets where the spikes sit; the spikes themselves add no length."),
+    ],
+    sections=[
+        dict(id="head", title="3 · Head - main colour", image="hero", caption="A 36-stitch sphere; the eyes go between R9 and R10, 8 stitches apart.",
+             lead="A 36-stitch sphere with three straight rounds. Leave the last round open - it joins to the neck.",
+             tables=[dict(heading="Head · R1 - R16", rounds=[
+                 ("R1", "6 sc in MR", 6, ""), ("R2", "inc in each st around", 12, ""), ("R3", "[1 sc, inc] x 6", 18, ""), ("R4", "[2 sc, inc] x 6", 24, ""),
+                 ("R5", "[3 sc, inc] x 6", 30, ""), ("R6", "[4 sc, inc] x 6", 36, "full width - check gauge"), ("R7", "sc in each st around", 36, ""),
+                 ("R8", "sc in each st around", 36, ""), ("R9", "sc in each st around", 36, "eyes between R9 / R10, 8 sts apart"), ("R10", "sc in each st around", 36, ""),
+                 ("R11", "sc in each st around", 36, ""), ("R12", "[4 sc, invdec] x 6", 30, ""), ("R13", "[3 sc, invdec] x 6", 24, "stuff firmly"),
+                 ("R14", "[2 sc, invdec] x 6", 18, ""), ("R15", "sc in each st around", 18, ""), ("R16", "sc in each st around", 18, "leave OPEN - joins to neck")],
+                 finish="Insert the 10 mm eyes between R9 and R10, 8 stitches apart, and lock the washers before stuffing. Stuff firmly. FO with a long tail for the join."),
+                 dict(heading="Snout · make 1 · main colour", rounds=[
+                     ("R1", "6 sc in MR", 6, ""), ("R2", "inc in each st around", 12, ""), ("R3", "[1 sc, inc] x 6", 18, ""), ("R4", "sc in each st around", 18, ""), ("R5", "sc in each st around", 18, "")],
+                     finish="FO with a long tail. Stuff lightly and sew over R10-R14 below the eyes; embroider two small nostrils with black floss.")]),
+        dict(id="body", title="4 · Body - main colour", image="inhand", caption="The body ends at 18 stitches - the same as the head opening.",
+             lead="An egg shape, wider at the bottom so Ember sits. The last round is 18 stitches, matching the head opening exactly.",
+             tables=[dict(heading="Body · R1 - R19", rounds=[
+                 ("R1", "6 sc in MR", 6, "start at the base"), ("R2", "inc in each st around", 12, ""), ("R3", "[1 sc, inc] x 6", 18, ""), ("R4", "[2 sc, inc] x 6", 24, ""),
+                 ("R5", "[3 sc, inc] x 6", 30, ""), ("R6", "[4 sc, inc] x 6", 36, ""), ("R7", "[5 sc, inc] x 6", 42, "widest - the seat"), ("R8", "sc in each st around", 42, ""),
+                 ("R9", "sc in each st around", 42, ""), ("R10", "sc in each st around", 42, ""), ("R11", "[5 sc, invdec] x 6", 36, ""), ("R12", "sc in each st around", 36, "wings at R12 - R14"),
+                 ("R13", "sc in each st around", 36, ""), ("R14", "[4 sc, invdec] x 6", 30, ""), ("R15", "sc in each st around", 30, ""), ("R16", "[3 sc, invdec] x 6", 24, "stuff firmly"),
+                 ("R17", "sc in each st around", 24, ""), ("R18", "[2 sc, invdec] x 6", 18, ""), ("R19", "sc in each st around", 18, "leave OPEN - joins to head")],
+                 finish="Stuff firmly, especially the base so Ember sits square. FO leaving the 18-stitch neck open.")],
+             panels=[("Belly patch", "With cream, work a flat oval: ch 6, sc in 2nd ch and next 3, 3 sc in last; other side: 3 sc, 2 sc in last (12); then [1 sc, inc] x 6 (18); then [2 sc, inc] x 6 (24). FO and sew to the front of the body over R5-R14, centred.", "note")]),
+        dict(id="limbs", title="5 · Legs - make 4, and horns - make 2", image=None,
+             lead="Back legs are fat little ovals so Ember sits on them; front legs are shorter tubes sewn to the chest. Horns are tiny cones.",
+             tables=[dict(heading="Back leg · make 2 · stuff firmly", rounds=[
+                         ("R1", "6 sc in MR", 6, ""), ("R2", "inc in each st around", 12, ""), ("R3", "[1 sc, inc] x 6", 18, ""), ("R4", "sc in each st around", 18, ""),
+                         ("R5", "sc in each st around", 18, ""), ("R6", "[1 sc, invdec] x 6", 12, "stuff"), ("R7", "sc in each st around", 12, "")],
+                         finish="FO with a long tail; flatten the opening and sew to the body at R4-R8, one each side of the base, toes forward."),
+                     dict(heading="Front leg · make 2 · stuff lightly", rounds=[
+                         ("R1", "6 sc in MR", 6, ""), ("R2", "inc in each st around", 12, ""), ("R3", "sc in each st around", 12, ""), ("R4", "sc in each st around", 12, ""),
+                         ("R5", "sc in each st around", 12, ""), ("R6", "sc in each st around", 12, "")],
+                         finish="FO with a long tail; sew to the chest at R12-R14, 6 stitches apart, angled slightly inward so the paws meet the belly patch."),
+                     dict(heading="Horn · make 2 · cream", rounds=[
+                         ("R1", "4 sc in MR", 4, ""), ("R2", "[1 sc, inc] x 2", 6, ""), ("R3", "sc in each st around", 6, ""), ("R4", "[2 sc, inc] x 2", 8, ""), ("R5", "sc in each st around", 8, "")],
+                         finish="FO, stuff with a wisp, and sew to the top of the head at R4-R5, about 8 stitches apart, pointing slightly back.")]),
+        dict(id="tail", title="6 · Tail - main colour", image=None,
+             lead="A tapered cone, stuffed lightly, sewn low at the back so Ember can lean on it.",
+             tables=[dict(heading="Tail · R1 - R12", rounds=[
+                 ("R1", "4 sc in MR", 4, "tail tip"), ("R2", "[1 sc, inc] x 2", 6, ""), ("R3", "sc in each st around", 6, ""), ("R4", "[2 sc, inc] x 2", 8, ""),
+                 ("R5", "sc in each st around", 8, ""), ("R6", "[3 sc, inc] x 2", 10, ""), ("R7", "sc in each st around", 10, ""), ("R8", "[4 sc, inc] x 2", 12, ""),
+                 ("R9", "sc in each st around", 12, ""), ("R10", "[5 sc, inc] x 2", 14, ""), ("R11", "sc in each st around", 14, ""), ("R12", "[6 sc, inc] x 2", 16, "stuff lightly")],
+                 finish="FO with a long tail. About 5 cm long. Sew the 16-stitch opening to the back of the body over R3-R7, centred, so the tail curls out along the table.")]),
+        dict(id="wings", title="7 · Wings - make 2, worked flat", image="detail", caption="A scalloped triangle: the straight edge sews to the body, the picot edge points up and back.",
+             lead=("Each wing is a small flat triangle worked in rows with a scalloped picot edge along the top. The 6-stitch starting edge is the ATTACH edge and sews to the body; "
+                   "the wingspan is the scalloped edge, about 6 cm per wing, giving the 12.5 cm span tip to tip once both are sewn on angled back."),
+             steps=["Row 1 - with cream, ch 7. Sc in 2nd ch from the hook and in each ch across. Ch 1, turn. (6)",
+                    "Row 2 - sc in first 5, 2 sc in last. Ch 1, turn. (7)",
+                    "Row 3 - sc in first 6, 2 sc in last. Ch 1, turn. (8)",
+                    "Row 4 - sc in first 7, 2 sc in last. Ch 1, turn. (9)",
+                    "Row 5 - sc in first 8, 2 sc in last. Do not turn. (10)",
+                    "Scallop edge - working down the long, slanted edge just made: [sl st in next row-end, (sc, hdc, picot, hdc, sc) in next row-end] x 2, sl st in the last row-end. Three cupped scallops with picot tips.",
+                    "FO leaving a long tail. Pin the straight 6-stitch starting edge (Row 1) to the back of the body at R12-R14, about 4 stitches out from the spine on each side, scallops up and back. Sew along the attach edge only, so the wing flaps."]),
+        dict(id="spikes", title="8 · Spike strip - contrast colour", image=None,
+             lead=("Nine spikes on one strip that runs from the crown of the head, down the back of the neck and body, to the tail tip - about 13.5 cm. "
+                   "The length comes from the foundation chain (28 ch x ~4.8 mm ≈ 13.5 cm); each spike is a tiny triangle worked back down a ch 4."),
+             steps=["With cream or pale gold, ch 28.",
+                    "*Ch 4, sl st in 2nd ch from the hook, sc in the next ch, hdc in the last ch (one spike); skip the next 2 foundation chains, sl st in the next foundation ch.* Repeat from * to * 9 times in total - 9 spikes, ending at the last foundation chain.",
+                    "FO leaving a long tail. Lay the strip along the spine: start at the crown between the horns, run down the back of the head, across the neck join, down the centre back of the body and along the top of the tail to its tip. Pin, then sew the base chain down with small stitches, leaving the spikes free.",
+                    "Check: 9 spikes x 3 chains = 27 chains consumed plus the first sl st chain = 28. If your strip comes up short, your foundation chain is tight - chain loosely or use a hook half a size larger for the chain only."]),
+    ],
+    assembly=[
+        ("Head to body", "Both openings are 18 stitches. Stuff both firmly, hold the head on the neck with the snout facing the belly patch, and whip-stitch stitch-for-stitch through all 18 pairs. Go round twice - this join carries the whole head."),
+        ("Snout & nostrils", "Sew the stuffed snout over R10-R14, centred under the eyes. Embroider two short black nostrils and, if you like, a tiny smile line under the snout."),
+        ("Legs", "Back legs at R4-R8 either side of the base, toes forward, so Ember sits on them. Front legs at R12-R14 on the chest, 6 stitches apart."),
+        ("Tail", "Sew the 16-stitch opening low on the back over R3-R7, centred, curling out along the table. It is a third point of contact - Ember should not rock."),
+        ("Wings", "Attach edge (the 6-stitch Row 1) to the back at R12-R14, 4 stitches out from the spine each side, scalloped edge up and back. Sew the attach edge only."),
+        ("Spike strip", "Pin from the crown to the tail tip along the centre line, over the neck join and between the wings, then sew the base chain down. The strip should lie flat with no slack."),
+        ("Horns & blush", "Horns at R4-R5 on the head, 8 stitches apart. A little pink pastel on the cheeks finishes the face."),
+    ],
+    checklist=["1 head (open, 18 sts)", "1 snout", "1 body (open, 18 sts)", "1 belly patch", "2 back legs", "2 front legs", "2 horns", "1 tail", "2 wings", "1 spike strip with 9 spikes"],
+    troubleshooting=[
+        ("The head wobbles.", "The 18-to-18 join must be stitch-for-stitch and stuffed hard on both sides. Add stuffing to the neck through the last gap before you close it, and go round the join twice."),
+        ("The spike strip is too short.", "The strip's length is the foundation chain, not the spikes. Chain 28 loosely - about 13.5 cm laid flat - and check it against the crown-to-tail line before you work the spikes."),
+        ("Wings look like rectangles.", "Each row must add one stitch at the same end (the last stitch), so the slanted edge grows on one side only. If you increased at both ends you get a fan, not a triangle."),
+        ("Ember tips backwards.", "The tail is the third foot: sew it low over R3-R7 and stuff the base of the body more firmly than the top."),
+        ("Eyes look too far apart.", "8 stitches on a 36-stitch head is about 36 mm on a 52 mm sphere. Wider than that reads as startled; move them in to 7 if you prefer."),
+        ("Scallops curl instead of cupping.", "Work the hdc loosely and block the wing flat under a damp cloth before sewing it on."),
+        ("Stuffing shows through.", "Go down to a 3.0 mm hook. 36 stitches should measure about 52 mm."),
+    ],
+    colorways=[("Sage green", "#8FB48E", "#F3EBD8"), ("Dusty teal", "#6FA3A5", "#F3EBD8"), ("Lilac", "#B8A4D3", "#F7F1F9"), ("Charcoal", "#4A4A50", "#D9C28A"), ("Blush pink", "#E5B4BE", "#FBF1EA")],
+    colorways_caption="Left to right: sage green, dusty teal, lilac, charcoal with gold spikes, blush pink. Belly, wings and spikes in cream unless noted.",
+    terms_may=("Make as many finished dragons as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, "
+               "in shops, markets and online, provided credit is given to \"Novality Crochet Studio\"."),
+    thanks="Tag your makes with #NovalityCrochetStudio and #EmberTheBabyDragon - we love seeing your dragons. Thank you for supporting an independent pattern designer.",
+    images={"hero": "hero.png", "inhand": "inhand.png", "detail": "detail.png", "colorways": "colorways.png"},
+    image_prompts={
+        "hero": "Product photograph of a handmade crocheted amigurumi baby dragon plush toy, sage green worsted yarn with cream belly, big round head, stubby snout, two small cream horns, two scalloped cream wings, a ridge of small spikes down the back, sitting upright with haunches folded, 10 mm safety eyes, on a soft cream linen surface, pastel sage backdrop, soft natural window light, shallow depth of field, clean etsy product photo",
+        "inhand": "A handmade crocheted amigurumi sage green baby dragon plush toy held in two open adult hands to show scale, about eleven centimetres tall, cream belly and scalloped wings, soft cream background, natural light, shallow depth of field, product photo",
+        "detail": "Close-up macro photograph of the back of a handmade crocheted sage green amigurumi baby dragon showing the cream scalloped picot-edged wings and a row of small cream crocheted spikes running down the spine to the tail, visible stitch texture, soft light, shallow depth of field",
+        "colorways": "Five small handmade crocheted amigurumi baby dragon plush toys in a row, identical shape, in sage green, dusty teal, lilac, charcoal with gold spikes, and blush pink yarn, cream bellies and wings, on a cream linen surface, pastel backdrop, soft natural light, product photo",
+    },
+)

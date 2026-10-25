@@ -1,0 +1,124 @@
+# Kawaii Halloween Mini Set — v1 AS RECEIVED (machine-checkable transcription)
+# Design Code NS 02. US terms, 2.5 mm hook, DK #3. Boo + Pip + Bramble.
+# Gauge: 3.5 mm/st, 3.2 mm/rnd. Claims: minis 48-51 mm; Boo 48 mm incl. hem.
+#
+# AS-RECEIVED LAYOUT FAULTS (three interleaved tables):
+# 1) Boo ARM/BASE table:
+#   | R1 | (5) R1 5 sc in MR 6 sc in MR | (6) |
+#   | R2 | (5) R2 sc around inc x 6 | (12) |
+#   | R3 | (5) R3 sc around [sc,inc] x 6 | (18) |  + R4 [2 sc,inc] x 6 (24)
+#   Decoded: ARM = R1 5 sc in MR (5), R2-R3 sc (5); BASE = R1 6 (6), R2 12, R3 18, R4 24.
+# 2) Pip STEM/LEAF table:
+#   | R1 | (6) Found 6 sc in MR ch 7 | | - |
+#   | R2 | (6) R1 sc around | sc 5, 3 sc in last, back sc 4, inc | - |
+#   | R3 | (9) R2 [sc,inc] x 3 | ch1 turn; sc 4, inc x3, sc 4 to end | - |
+#   | R4 | (9) R3 sc around ch1 turn; sl st around; FO | | - |
+#   | R5 | (12) [2 sc,inc] x 3 | | |
+#   Decoded: STEM = R1 6, R2 6, R3 9, R4 9, R5 12;
+#            LEAF (flat) = Found ch 7; Row1 sc 5, 3 sc in last, sc 4, inc (14);
+#                          Row2 ch1 turn, sc 4, inc x3, sc 4 (consumes 11 of 14);
+#                          Row3 ch1 turn, sl st around, FO.
+#   NOTE: leaf Row 2 consumes 11 of Row 1's 14 sts — by design (leaf tapers);
+#         the final sl-st round closes the remaining edge.
+# 3) Bramble OUTER/INNER ear table:
+#   | R1 | (4) R1 4 sc in MR 4 sc in MR | (4) |
+#   | R2 | (6) R2 [sc,inc] x 2 [sc,inc] x 2 | (6) |
+#   | R3 | (8) R3 [2 sc,inc] x 2 [2 sc,inc] x 2 | (8) |
+#   | R4 | (10) [3 sc,inc] x 2 | |
+#   Decoded: OUTER (lavender) = R1-R3 ends 8; INNER (pink) = R1-R4 ends 10.
+#
+# MINOR CLAIM NOTES (corrected in v2): Boo head = 26 sts = ~29 mm dia
+# (source said ~27 mm); witch-hat brim = 20 sts = ~22 mm (source said ~26 mm).
+
+=== BOO BODY (open bell) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: sc in each st around (24)
+Rnd 6: sc in each st around (24)
+Rnd 7: sc in each st around (24)
+Rnd 8: [11 sc, inc] x 2 (26)
+Rnd 9: sc in each st around (26)
+Rnd 10: sc in each st around (26)
+Rnd 11: sc in each st around (26)
+Rnd 12: [11 sc, dec] x 2 (24)
+Rnd 13: [sl st 2, (sc, hdc, dc, hdc, sc) in next st, sl st 1] x 6 (48)
+
+=== BOO ARMS (make 2) ===
+Rnd 1: 5 sc in MR (5)
+Rnd 2: sc in each st around (5)
+Rnd 3: sc in each st around (5)
+
+=== BOO BASE (optional) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+
+=== WITCH HAT (bonus) ===
+Rnd 1: 4 sc in MR (4)
+Rnd 2: [sc, inc] x 2 (6)
+Rnd 3: [2 sc, inc] x 2 (8)
+Rnd 4: [3 sc, inc] x 2 (10)
+Rnd 5: sc in each st around (10)
+Rnd 6: inc in each st around (20)
+
+=== PIP BODY (pumpkin) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: [3 sc, inc] x 6 (30)
+Rnd 6: [4 sc, inc] x 6 (36)
+Rnd 7: sc in each st around (36)
+Rnd 8: sc in each st around (36)
+Rnd 9: [4 sc, dec] x 6 (30)
+Rnd 10: [3 sc, dec] x 6 (24)
+Rnd 11: [2 sc, dec] x 6 (18)
+Rnd 12: [sc, dec] x 6 (12)
+Rnd 13: dec x 6 (6)
+
+=== PIP STEM (cone) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: sc in each st around (6)
+Rnd 3: [sc, inc] x 3 (9)
+Rnd 4: sc in each st around (9)
+Rnd 5: [2 sc, inc] x 3 (12)
+
+=== PIP LEAF (flat) ===
+Row 1: sc 5, 3 sc in last ch, sc 4, inc (14)
+Row 2: sc 4, inc x 3, sc 4 (14) %%partial
+Row 3: sl st around
+
+=== PIP TENDRIL ===
+Rnd 1: 20 ch (0)
+
+=== BRAMBLE BODY (bat) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: sc in each st around (24)
+Rnd 6: sc in each st around (24)
+Rnd 7: sc in each st around (24)
+Rnd 8: sc in each st around (24)
+Rnd 9: [3 sc, inc] x 6 (30)
+Rnd 10: sc in each st around (30)
+Rnd 11: sc in each st around (30)
+Rnd 12: sc in each st around (30)
+Rnd 13: [3 sc, dec] x 6 (24)
+Rnd 14: [2 sc, dec] x 6 (18)
+Rnd 15: [sc, dec] x 6 (12)
+Rnd 16: dec x 6 (6)
+
+=== BRAMBLE EARS (outer lavender make 2, inner pink make 2) ===
+Rnd 1: 4 sc in MR (4)
+Rnd 2: [sc, inc] x 2 (6)
+Rnd 3: [2 sc, inc] x 2 (8)
+Rnd 4: [3 sc, inc] x 2 (10) %%partial
+
+=== BRAMBLE WINGS (flat, make 2) ===
+Row 1: sc 4, hdc 4, dc 4 (12)
+Row 2: sc 3, hdc 4, dc 5 (12)
+Row 3: sl st 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st 3, (sc, hdc, picot, hdc, sc) in next st, sl st 2, (sc, hdc, picot, hdc, sc) in next st, sl st 2
