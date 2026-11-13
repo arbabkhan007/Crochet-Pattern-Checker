@@ -16,9 +16,9 @@ No finished Ember has been shown by Novality Store to comply with ASTM F963, EN 
 
 ## Materials
 
-- Main yarn: worsted #4, about 30 g used (buy a 50 g ball) - sage green, dusty teal, lilac or charcoal. The extra allows for tails, seaming and a gauge swatch.
+- Main yarn: worsted #4, about 12 g used (a 25 g ball is plenty) - sage green, dusty teal, lilac or charcoal. The extra allows for tails, seaming and a gauge swatch.
 
-- Contrast yarn: worsted #4, about 20 g in a contrast cream or pale gold - used for the wings, horns and spikes, so all the details match.
+- Contrast yarn: worsted #4, about 5 g in a contrast cream or pale gold - used for the wings, horns and spikes, so all the details match.
 
 - Hook: 3.5 mm (US E/4).
 

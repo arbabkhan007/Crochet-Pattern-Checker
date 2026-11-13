@@ -4,7 +4,7 @@
 
 A soft standing fir built in one piece: plain rounds, then tier after tier of bobbles that thin out toward the tip. Contrast-colour bobbles turn it into baubles-on-a-tree in a single round.
 
-**FINISHED SIZE**  About 12 cm (4.7 in) tall and 7 cm (2.8 in) wide in worsted / aran on a 4 mm hook.  About 15.5 cm tall in chunky yarn on a 5 mm hook.  One piece; a felt or cardboard base disc is optional.
+**FINISHED SIZE**  About 7 cm (2.8 in) tall and 7 cm (2.8 in) wide in worsted / aran on a 4 mm hook. The flat base rounds R1 to R9 add width, not height, so standing height counts the tapering cone rounds only (paper estimate - measure your sample).  About 9.5 cm tall in chunky yarn on a 5 mm hook.  One piece; a felt or cardboard base disc is optional.
 
 ---
 
@@ -16,7 +16,7 @@ No finished tree has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ## Materials
 
-- Main yarn: worsted / aran (#4) in green, 70 g.
+- Main yarn: worsted / aran (#4) in green, about 15 g (paper estimate at roughly 1.6 g per 100 stitches, bobbles included).
 
 - Contrast (optional): small amounts of red, gold, cream for contrast bobbles.
 
@@ -136,7 +136,7 @@ Stuffing: only the bottom half needs real fill - a lightly stuffed cone that fle
 
 - Hanging: join any colour at the tip, ch 18, sl st into the same place.
 
-- Set of three: DK + 3 mm hook, worsted + 4 mm hook, chunky + 5 mm hook - counts are identical, sizes stair-step from about 9 cm to 16 cm.
+- Set of three: DK + 3 mm hook, worsted + 4 mm hook, chunky + 5 mm hook - counts are identical, sizes stair-step from about 5.5 cm to 9.5 cm.
 
 ## Troubleshooting
 

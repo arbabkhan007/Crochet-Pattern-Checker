@@ -29,3 +29,9 @@ No stitch count, repeat multiplier, chain length or decrease schedule was altere
   hero `docs/ns08/assets/ember_hero.png` (illustrative render, labelled as such on the cover).
 - Colour: `shop/Ember_the_Baby_Dragon_NS08_NovalityStore.pdf`.
 - Print: `shop/Ember_the_Baby_Dragon_NS08_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Yarn quantities inflated.** At about 1.6 g per 100 stitches (the NS-03 yardstick) and this pattern's ~848 made stitches, the whole dragon needs roughly 14 g of yarn, of which the contrast details (wings, horns, spikes) are about 300 stitches. **Fix:** main colour 30 g → about 12 g (a 25 g ball is plenty), contrast 20 g → about 5 g. Stuffing was not flagged and is unchanged.
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 9 pp, print 9 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

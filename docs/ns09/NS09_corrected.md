@@ -16,7 +16,7 @@ No finished Shelby has been shown by Novality Store to comply with ASTM F963, EN
 
 ## Materials
 
-- Shell yarn: DK / light worsted (#3) cotton, about 1 g - sage, teal, mustard or rust.
+- Shell yarn: DK / light worsted (#3) cotton, about 2 g - sage, teal, mustard or rust.
 
 - Body yarn: DK cotton, about 1 g in contrast cream, sand or pale green.
 

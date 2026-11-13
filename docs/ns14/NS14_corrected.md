@@ -9,7 +9,7 @@ US + UK TERMS · EASY–INTERMEDIATE · TIME UNVERIFIED · RECORD SAMPLE · TARG
 
 Designed for economical home printing and progress tracking. Large artwork is omitted; the written directions match the full-colour edition.
 
-© 2026 Novality Crochet Studio · All rights reserved · PERSONAL LICENSE · SEE TERMS
+© 2026 Novality Store · All rights reserved · PERSONAL LICENSE · SEE TERMS
 NS 14 · PRINTER-SAVER CROCHET PATTERN
 
 ---
@@ -40,11 +40,11 @@ Every construction-table row begins with a printable `[ ]` box. Tick it only aft
 
 ### Read before making
 
-Read every component and finishing note before beginning. Mark completed rows, confirm the count at each row end, and stop immediately if your count differs. Complete the centre-ring join, the optional surface spokes and the border in that order, and weave every tail while the centre opening is still open and accessible.
+Read every component and finishing note before beginning. Mark completed rows, confirm the count at each row end, and stop immediately if your count differs. Work the skirt outward from the centre ring, add the optional surface spokes, then work the border, and weave every tail on the wrong side once all components are complete (see Finishing, step 3).
 
 Safety: this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.
 
-Copyright notice © 2026 Novality Crochet Studio. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.
+Copyright notice © 2026 Novality Store. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.
 
 ---
 
@@ -56,7 +56,7 @@ Safety — read this first 4 · Materials 4 · Gauge & size 4 · Abbreviations (
 
 Read the complete component before beginning it. Move the marker at the start of every crochet round unless the master says otherwise. Diagrams and illustrations support orientation only; the numbered written directions control construction.
 
-*Design Code NS 14 · Novality Crochet Studio · US and UK crochet terms*
+*Design Code NS 14 · Novality Store · US and UK crochet terms*
 
 ---
 
@@ -74,7 +74,7 @@ This design is home decor, not a toy, and it is not flameproof. Keep it away fro
 
 Keep the skirt clear of walking routes where its edge could cause a trip or slip. It must not support, level or stabilize a tree stand. Fit the closed centre without obstructing the stand, water reservoir, fasteners or manufacturer-required clearances. Inspect the skirt for loose surface stitches, stretched joins and snagged yarn before each season, and supervise children and animals around the complete tree arrangement.
 
-No finished NS 14 skirt has been independently crocheted, fit-tested, wash-tested, assessed for flammability or shown by Novality Crochet Studio to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
+No finished NS 14 skirt has been independently crocheted, fit-tested, wash-tested, assessed for flammability or shown by Novality Store to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
 
 ---
 
@@ -305,13 +305,13 @@ Until that complete-sample test passes, do not make a machine-wash or tumble-dry
 
 ### Copyright & ownership
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch counts, editorial layout and design elements are protected material. Design Code NS 14.
+© 2026 Novality Store. All rights reserved. This crochet pattern - including all instructions, stitch counts, editorial layout, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 14.
 
 This pattern is licensed to the purchaser for personal use and for small-batch sale of finished physical tree skirts under the terms below. The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or any substantial part of it in digital or printed form.
 
 ### You may
 
-Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Crochet Studio · Design Code NS 14" and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
+Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Store · Design Code NS 14" and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
 
 ### You may not
 
@@ -321,7 +321,7 @@ Resell or distribute this PDF or Markdown source; convert it into another patter
 
 The finished-item maker or seller remains responsible for the actual materials, intended use, classification, assessment, testing, warnings, documentation, labelling and traceability required wherever a finished item is supplied.
 
-Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
+Tag finished projects with #NovalityStore and #NovalityTreeSkirt.
 
 ---
 
@@ -334,26 +334,6 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 - [ ] Border closed: 28 / 46 / 64 complete scallops
 - [ ] Blocked dimensions recorded; stand and cord clearances checked
 
-**PROJECT NOTES** — Novality Crochet Studio · NS 14 · printer-saver companion. Keep this page with your project notes.
+**PROJECT NOTES** — Novality Store · NS 14 · printer-saver companion. Keep this page with your project notes.
 
 ---
-
-## Revision notes — delete before publishing
-
-Corrections applied to the source text, in order of severity. Full evidence: `NS14_validation_report.md`.
-
-1. **Read before making:** removed the amigurumi template sentence "Complete internal eyes, embroidery, knots and joins…". A tree skirt has no eyes and no embroidery. Replaced with the design's real closing work (ring join, spokes, border, tails).
-2. **Materials:** the unmeasured 700–1,200 g allowance is roughly 3–5× what the written stitch counts imply. Replaced with labelled per-size estimates (mini 70–95 g, standard 165–225 g, large 305–410 g) and the missing colour split (CC ≈ 44–52 %), still flagged as unweighed.
-3. **Gauge & size:** the two stated gauges could not both be exact on a flat twelve-increase circle. The radial figure is now derived (0.64 in / 1.6 cm per round ≈ 6¼ rounds = 4 in), with the resulting mild cupping tendency named. Troubleshooting "body cups" now points at it.
-4. **Care & storage:** "make no machine-wash or tumble-dry claim" → "do not make a machine-wash or tumble-dry claim" (same meaning; the old wording is read by count checkers as "make 0 of that piece").
-5. **R11-to-R12 count check:** the note's arithmetic is correct and is unchanged. Only its opening words changed — a line beginning `R11-to-R12` is read by round-header parsers as a second Round 11 appearing after Round 16, which reports "Round 11 repeats or goes backwards". It now begins `Count check for the R11-to-R12 step:` and sits directly under the R12 row. **R12 stays `dc in next 10 sts`; do not change it to 9.** With 132 stitches available, 10 plain dc + 1 increase anchor consumes 11 per repeat (132 total, none left over) and produces 12 per repeat = 144. Nine plain dc would consume 120, leave 12 stitches unworked and give 132.
-6. **Design description:** "a contrast bobble round every third round" → "every third round from R5", matching technique 4 and the ladder (R3, R6, R9 … are plain).
-7. **Border note:** added the fact that the join stitch is consumed by the final skip, so the closing slip stitch lands one stitch past the join. This is required for exact closure and must not be "fixed".
-8. **Technique 5:** stated that R2 contains exactly 12 increases, so "the second dc of each R2 increase" yields exactly 12 markers.
-9. **Centre ring row:** the `Rnd` cell was empty; labelled `Ring`.
-10. **Cover:** "BLACK + WHITE · WHITE BACKGROUNDS" prefixed with `DOCUMENT INK:` so it cannot be misread as the yarn colourway two lines below it.
-11. **Helpful tips:** the heading had no content of its own; the sizes table, count rule and time note are now placed under it, and the bobble-round list is spelled out.
-12. **Word joins:** repaired throughout the instruction cells (`against thestand`, `slst`, `2 dcin next st`, `x12`, `stopgrowth`, `thenborder`, `growthround`, `6edge sts`, `1scallop`, `writtenlarger-opening option;recheck`, `relaxedsurface`, `pinnedguide`, `FO atthe`, `noreverse-side`, `immediatelyoutside`, `routeseparately`, `markedcolumn`). Confirm these against the source PDF — if they are printed there, they are typos inside the instruction tables.
-13. **Safety heading:** restored as a visible section heading; the Contents advertises it as the first section but the supplied text carried the paragraphs without it.
-
-**Not changed — verified correct:** all 32 growth rounds (consumption, production, repeat count and stated totals), the bobble cadence and all three size stops, the border closure at 28 / 46 / 64 scallops, the 5-dc bobble loop count, the increase-column marker route, the ch-2-not-counted join method, the US/UK term pairs, the hook conversion (5 mm = H/8, 5.5 mm = I/9), and the gauge→diameter arithmetic for all three sizes.

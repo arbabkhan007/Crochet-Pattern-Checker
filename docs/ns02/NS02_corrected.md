@@ -154,7 +154,7 @@ Base (optional): hold the flat disc under the opening with wrong sides together 
 
 | R6 | FLO: inc in each st around | (20) | brim |
 
-Sl st, FO. The brim stops at 20 stitches (outer edge about 24 mm) so the hat sits on Boo's ~27 mm head instead of swamping him. Sew it on tilted.
+Sl st, FO. The brim stops at 20 stitches (outer edge about 22 mm at 3.5 mm per stitch) so the hat sits on Boo's ~27 mm head instead of swamping him. Sew it on tilted.
 
 ### 2. Pip the Pumpkin - pastel orange
 

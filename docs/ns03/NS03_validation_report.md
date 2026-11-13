@@ -40,3 +40,9 @@ Arms 6×6 · Feet 6→9→9→9→6 · Gills 6→12→12→12→8 (open 8-st edg
 ## Safety & compliance notes (unchanged, retained verbatim in the corrected file)
 
 6 mm safety eyes with washers locked before stuffing; double-sewn seams and 5 cm woven ends for gills/arms/feet/fin; no ASTM F963 / EN 71 compliance claim; seller retains classification, assessment, testing, documentation, labelling and traceability duties; care claims require a cleaned-and-remeasured sample first.
+
+## Review round 2 (7 October 2026)
+
+The round-2 hand review of 7 October 2026 examined geometry, finished sizes and gauge, yarn quantities, front-matter claims, leftover editorial text and branding across all seventeen masters. **No defect was raised for NS-03** and the pattern text is unchanged from the version audited in this report.
+
+Both store PDFs were nevertheless recompiled so that all seventeen editions carry the same cover framing: the chip now reads *5-AXIOM MATH VERIFIED ON PAPER*, the verification card reads "Paper-verified: no sample crocheted", and the cover carries the explicit note that no sample was crocheted, blocked, weighed or measured. Page counts are unchanged (colour 9 pp, print 9 pp, greyscale spread 0 on every page).

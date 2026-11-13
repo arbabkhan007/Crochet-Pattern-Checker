@@ -25,3 +25,13 @@ No stitch count, repeat multiplier, chain length or decrease schedule was altere
   hero `docs/ns12/assets/tree_hero.png` (illustrative render, labelled as such on the cover).
 - Colour: `shop/Bobble_Christmas_Tree_NS12_NovalityStore.pdf`.
 - Print: `shop/Bobble_Christmas_Tree_NS12_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Finished height counted the flat base rounds (geometry).** Rnds 1-9 are worked flat and form the tree's base disc; they add width, not standing height. The remaining 17 rounds taper by six decreases every two rounds, which gives a cone about 7 cm tall — not the stated 12 cm, which is what counting all 26 rounds produces. **Fix:** finished size now reads about 7 cm (2.8 in) tall and 7 cm wide, with the reasoning stated and labelled a paper estimate. The chunky-yarn option follows: 15.5 cm → about 9.5 cm.
+2. **Three-size set range.** "Sizes stair-step from about 9 cm to 16 cm" was derived from the same over-count. **Fix:** about 5.5 cm to 9.5 cm (DK + 3 mm, worsted + 4 mm, chunky + 5 mm).
+3. **Yarn quantity inflated.** ~700 made stitches plus 42 bobbles is about 15 g at 1.6 g per 100 stitches (bobbles consume several times the yarn of a plain stitch, which is why the estimate sits above the bare stitch count), against the 70 g previously listed. **Fix:** main yarn 70 g → about 15 g, labelled a paper estimate. Stuffing unchanged.
+
+**Sampling caveat:** as for NS-11, the cone height is arithmetic, not a measurement; confirm on a sample.
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 7 pp, print 7 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

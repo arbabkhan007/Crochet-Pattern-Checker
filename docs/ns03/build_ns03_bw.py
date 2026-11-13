@@ -216,7 +216,7 @@ def _footer(cv, doc):
     cv.setLineWidth(0.5)
     cv.line(M, 0.62 * inch, W - M, 0.62 * inch)
     total = TOTAL_PAGES if TOTAL_PAGES else doc.page
-    stamp = f"Novality Store | Design Code NS-03 | Page {doc.page} of {total}  ·  \u2713 5-AXIOM VERIFIED"
+    stamp = f"Novality Store | Design Code NS-03 | Page {doc.page} of {total}  ·  \u2713 5-AXIOM MATH VERIFIED"
     if TOTAL_PAGES and doc.page == TOTAL_PAGES:
         cv.setFillColor(FOREST_DK)
         cv.setFont("DJ", 6.6)
@@ -296,7 +296,7 @@ def on_cover(cv, doc):
     cv.drawString(M, ty - 0.48 * inch,
                   "CROCHET PATTERN · US TERMS · ADVANCED BEGINNER · INK-FRIENDLY PRINT LAYOUT")
     y = ty - 0.90 * inch
-    big = "\u2713 5-AXIOM MATHEMATICALLY VERIFIED"
+    big = "\u2713 5-AXIOM MATH VERIFIED ON PAPER"
     bw = cv.stringWidth(big, "DJ-B", 8.4) + 18
     cv.setFillColor(PAPER)
     cv.setStrokeColor(FOREST)
@@ -331,7 +331,7 @@ def on_cover(cv, doc):
     cards = [("WHAT YOU GET", ["36-round one-piece spiral body", "Arms, feet, gills and fin tables",
                                "Component tick-box checklist"]),
              ("VERIFICATION", ["\u2713 5-axiom mathematical audit", "63 / 63 count checks pass",
-                               "Deterministic static analysis engine"]),
+                               "Paper-verified: no sample crocheted"]),
              ("PRINT NOTES", ["9 pages on US Letter", "No full-bleed colour pages",
                               "Tables sized for home printers"])]
     y3 = y2 - 1.62 * inch

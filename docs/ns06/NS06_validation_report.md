@@ -24,3 +24,9 @@ No stitch count, repeat multiplier, chain length or decrease schedule was altere
   hero `docs/ns06/assets/momo_hero.png` (illustrative render, labelled as such on the cover).
 - Colour: `shop/Momo_the_Loaf_Cat_NS06_NovalityStore.pdf`.
 - Print: `shop/Momo_the_Loaf_Cat_NS06_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
+
+## Review round 2 (7 October 2026)
+
+The round-2 hand review of 7 October 2026 examined geometry, finished sizes and gauge, yarn quantities, front-matter claims, leftover editorial text and branding across all seventeen masters. **No defect was raised for NS-06** and the pattern text is unchanged from the version audited in this report.
+
+Both store PDFs were nevertheless recompiled so that all seventeen editions carry the same cover framing: the chip now reads *5-AXIOM MATH VERIFIED ON PAPER*, the verification card reads "Paper-verified: no sample crocheted", and the cover carries the explicit note that no sample was crocheted, blocked, weighed or measured. Page counts are unchanged (colour 7 pp, print 7 pp, greyscale spread 0 on every page).

@@ -16,7 +16,8 @@ No finished wreath or hanging system has been independently load-tested or asses
 
 ## Materials
 
-- Wreath base: 175 g green worsted/aran (#4), 4 mm hook, fibre fill.
+- Wreath base yarn: green worsted/aran (#4), on the hook given in the size table. Paper estimates at roughly 1.6 g per 100 stitches - weigh your first tube. Mini tube (22 cm) about 12 g including attachments. Standard tube (92 cm) about 40 g. Large tube (125 cm) about 55 g.
+- Stuffing (fibre fill, paper estimates): mini about 2 g, standard about 8 g, large about 12 g.
 
 - Decorations: small amounts of red, white, yellow and green yarn; optional metallic thread held with the snowflake yarn; 3.5-4 mm hook.
 

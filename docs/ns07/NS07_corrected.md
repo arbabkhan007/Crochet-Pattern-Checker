@@ -4,7 +4,7 @@
 
 Three palm-sized amigurumi that slip into a coat pocket - Sunny the Sunflower, Waddle the Penguin and Spud the Potato. They share one easy construction and work up in an evening or two.
 
-**FINISHED SIZE**  Sunny: about 3.0 cm across the petals.  Waddle: about 3.8 cm tall.  Spud: about 2.7 cm long.  #4 worsted on a 3.5 mm hook. Sunny’s petals are worked directly onto her centre; Waddle’s wings, chest and beak are sewn on; Spud starts around a chain and closes with one short seam.
+**FINISHED SIZE**  Sunny: about 3.0 cm across the petals.  Waddle: about 3.8 cm tall.  Spud: about 2.7 cm long.  DK cotton (#3) on a 2.5 mm hook. Sunny’s petals are worked directly onto her centre; Waddle’s wings, chest and beak are sewn on; Spud starts around a chain and closes with one short seam.
 
 ---
 
@@ -16,9 +16,9 @@ No finished trio has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ## Materials
 
-- Yarn: #4 worsted (~250 m / 100 g). The three toys use roughly 8 m total (under 4 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
+- Yarn: DK cotton (#3, ~300 m / 100 g). The three toys use roughly 8 m total (under 3 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
 
-- Hook: 3.5 mm (US E/4).
+- Hook: 2.5 mm (US C-2).
 
 - Eyes: six 5 mm black safety eyes, or embroidery thread.
 
@@ -74,7 +74,7 @@ A small brown cushion; Rnd 4 is worked in the back loops so nine yellow petals c
 
 | Petal | after closing the centre, join yellow with a sl st in any EXPOSED front loop of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next front loop, [sl st in next front loop, (sc, hdc, sc) in next front loop] x 8, sl st to the first sl st, FO | (36) | 9 petals; use Rnd 3 front loops only |
 
-Count check: Rnd 4 was worked BLO, so all 18 front loops of Rnd 3 are visible after the cushion is closed. The joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 exposed front loops per petal set. The slip stitch sits in the valley between petals; work this round loosely (use a 4 mm hook for this round only if it pulls tight). FO and weave in.
+Count check: Rnd 4 was worked BLO, so all 18 front loops of Rnd 3 are visible after the cushion is closed. The joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 exposed front loops per petal set. The slip stitch sits in the valley between petals; work this round loosely (use a 3 mm hook for this round only if it pulls tight). FO and weave in.
 
 Face: if using safety eyes, insert the posts between Rnds 2 and 3, 3 stitches apart, and LOCK the washers immediately after Rnd 4. At the same pause, embroider a smiling mouth across Rnds 2-3 and knot its ends inside before the decreases and stuffing; do not wait until the centre is closed. If embroidering the eyes, 4 stitches apart also fits - complete and secure them at this same pause.
 
@@ -186,9 +186,9 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 
 - **Petal edges curl / centre will not close.** Use invisible decreases on the centre's Rnd 5 and pull the closing snug. Nine petal repeats use exactly 18 stitches (two each) - check Rnd 3 is (18) and you slip-stitched once per repeat.
 
-- **Petals sit flat.** Work the three stitches in one stitch loosely, or use a 4 mm hook for the petal round only.
+- **Petals sit flat.** Work the three stitches in one stitch loosely, or use a 3 mm hook for the petal round only.
 
-- **Toys come out smaller / larger.** Tighter than 3.5 mm per stitch: go up half a hook size. Looser: drop to a 3 mm hook. If changing yarn weight, make a new dense swatch instead of forcing doubled yarn onto the original hook.
+- **Toys come out smaller / larger.** Tighter than 3.5 mm per stitch: go up half a hook size. Looser: drop to a 2.25 mm hook. If changing yarn weight, make a new dense swatch instead of forcing doubled yarn onto the original hook.
 
 - **Waddle's wings flop.** Sew at Rnd 6 and catch a stitch of the body with each pass.
 
@@ -198,7 +198,7 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 
 ## Making a bigger trio
 
-Use bulky (#5) yarn with a 4.5 mm hook and make a dense swatch targeting about 4.5 mm per sc (about 1.3x the original gauge): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change. Do not hold worsted yarn double on the original 3.5 mm hook; that combination is usually too tight to work safely or evenly.
+Use bulky (#5) yarn with a 4.5 mm hook and make a dense swatch targeting about 4.5 mm per sc (about 1.3x the original gauge): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change. Do not hold DK yarn double on the original 2.5 mm hook; that combination is usually too tight to work safely or evenly.
 
 ## Colorways
 

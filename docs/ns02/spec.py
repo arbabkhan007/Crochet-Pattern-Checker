@@ -18,7 +18,7 @@ SPEC = {
                           "Bramble: picot wings and fang stitches"]),
         ("VERIFICATION", ["✓ 5-axiom mathematical audit",
                           "All round counts re-derived exactly",
-                          "Deterministic static analysis engine"]),
+                          "Paper-verified: no sample crocheted"]),
         ("PRINT NOTES", ["US Letter, no full-bleed colour",
                          "Tables sized for home printers",
                          "Checklist and record pages included"]),

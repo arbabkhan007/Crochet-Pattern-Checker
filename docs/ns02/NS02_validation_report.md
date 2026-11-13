@@ -52,3 +52,9 @@ No stitch count, repeat multiplier, chain length or finished measurement was alt
 - Colour: `shop/Kawaii_Halloween_Mini_Set_NS02_NovalityStore.pdf` (9 pp).
 - Print: `shop/Kawaii_Halloween_Mini_Set_NS02_PRINT_EDITION_BW.pdf` (9 pp, greyscale spread 0 on
   every page, ink coverage 4.2 - 10.8 % per page).
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Brim width not derivable from the stitch count.** The brim was described as stopping at 20 stitches with an "outer edge about 24 mm". At this pattern's own 3.5 mm per stitch, 20 stitches give about 70 mm of circumference, i.e. about 22 mm across — and Boo's head is given as about 27 mm, so the corrected figure still leaves the brim slightly smaller than the head, which is the intent of the sentence. **Fix:** "about 22 mm at 3.5 mm per stitch". No counts involved.
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 9 pp, print 9 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

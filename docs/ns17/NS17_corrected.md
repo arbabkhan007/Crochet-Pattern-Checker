@@ -1,6 +1,6 @@
 # Year of the Fire Goat 2027 Plushie Set
 
-> Design Code NS 17 · Novality Crochet Studio · US crochet terms
+> Design Code NS 17 · Novality Store · US crochet terms
 
 > A seated Fire Goat and companion lamb with matched 12-to-12 neck seams, layered ears, embroidered faces and securely sewn festive accessories.
 
@@ -10,7 +10,7 @@ These instructions do not establish that either finished plush is suitable for a
 
 Keep every finished item away from naked flames and heat despite the decorative “fire” theme. Do not use a finished plush as a cot item, baby mobile, keychain or hanging ornament without a qualified assessment for that exact use. Before sale or supply, the finished-item maker or seller must determine the applicable classification, mechanical, flammability, chemical, hygiene, documentation, warning, labelling and traceability duties in every destination market.
 
-No NS 17 sample has been independently crocheted, load-tested, wash-tested or shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another product-safety regime. All dimensions, yarn quantities and active times remain targets until confirmed on complete samples.
+No NS 17 sample has been independently crocheted, load-tested, wash-tested or shown by Novality Store to comply with ASTM F963, EN 71 or another product-safety regime. All dimensions, yarn quantities and active times remain targets until confirmed on complete samples.
 
 ## Quick facts
 
@@ -36,7 +36,7 @@ No NS 17 sample has been independently crocheted, load-tested, wash-tested or sh
 
 Chinese Lunar New Year begins on 6 February 2027; in the Chinese zodiac, 2027 is commonly described in English as the Year of the Fire Goat, Sheep or Ram. The source term 羊 (*yáng*) is broader than one English species label. This pattern uses “Goat” for the horned design and “lamb” for its companion; the names are design labels, not claims of cultural authenticity.
 
-Calendar reference (accessed 18 September 2026): Smithsonian Institution, “2027: Year of the Goat” (si.edu/spotlight/lunar-year-goat).
+Calendar reference: the 6 February 2027 lunar-new-year date and the Fire Goat (Ding Wei) naming follow the traditional sixty-year sexagenary cycle. No external source is cited in this edition.
 
 ## Materials
 
@@ -60,7 +60,7 @@ Calendar reference (accessed 18 September 2026): Smithsonian Institution, “202
 
 - Worsted (#4) light tan / beige, about 27 m / 30 yd for the muzzle and hooves.
 
-- Worsted (#4) scarlet red, about 9 m / 10 yd for the fixed collar.
+- Worsted (#4) scarlet red, about 6 m / 7 yd for the fixed collar.
 
 - Small amounts of pale-pink worsted yarn for the original inner ears, plus black embroidery thread and optional pink embroidery thread for blush.
 
@@ -564,15 +564,15 @@ Sew all five edge stitches to the centre back around Lamb Body Rnds 20–21, ang
 
 #### 14. Fixed red lamb collar
 
-Do not make the collar until the lamb's 12-to-12 neck seam is complete. With scarlet, ch 22. Before Row 1, check that the relaxed chain reaches around the assembled neck with one-stitch overlap and without tightening the neck; if your gauge differs, remake and record the adjusted foundation.
+Do not make the collar until the lamb's 12-to-12 neck seam is complete. With scarlet, ch 14 (about 6.5 cm relaxed at DK gauge, against an assembled neck of about 6 cm around). Before Row 1, check that the relaxed chain reaches around the assembled neck with one-stitch overlap and without tightening the neck; if your gauge differs, remake and record the adjusted foundation.
 
 | Row | Instruction | Sts | Note |
 
 |---|---|---|---|
 
-| Row 1 | sc in 2nd ch and next 20 ch, ch 1, turn | (21) | - |
+| Row 1 | sc in 2nd ch and next 12 ch, ch 1, turn | (13) | - |
 
-| Row 2 | sc in each st across | (21) | FO with sewing tail |
+| Row 2 | sc in each st across | (13) | FO with sewing tail |
 
 If the fit check required an adjusted foundation of **N** chains, work one sc in the second chain and every remaining chain for **N − 1** stitches in Row 1, then work **N − 1** sc in Row 2. Record that count on both rows; do not increase or decrease within the strip.
 
@@ -634,13 +634,13 @@ Until that complete-sample test passes, recommend gentle surface cleaning with a
 
 ### Copyright & ownership
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch counts, editorial layout and design elements are protected material. Design Code NS 17.
+© 2026 Novality Store. All rights reserved. This crochet pattern - including all instructions, stitch counts, editorial layout, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 17.
 
 This pattern is licensed to the purchaser for personal use and for small-batch sale of finished physical items under the terms below. The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or any substantial part of it in digital or printed form.
 
 ### You may
 
-Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 17” and does not claim unverified safety, testing, measurements, cultural authenticity or care results.
+Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Store · Design Code NS 17” and does not claim unverified safety, testing, measurements, cultural authenticity or care results.
 
 ### You may not
 
@@ -650,7 +650,7 @@ Resell or distribute this PDF or Markdown source; convert it into another patter
 
 The finished-item maker or seller remains responsible for the actual materials, classification, assessment, testing, warnings, documentation, labelling and traceability required wherever a finished item is supplied.
 
-Tag finished projects with **#NovalityCrochetStudio** and **#NovalityFireGoat**.
+Tag finished projects with **#NovalityStore** and **#NovalityFireGoat**.
 
 ## Happy crocheting!
 

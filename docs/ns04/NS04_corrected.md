@@ -16,9 +16,9 @@ No finished Coco has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ## Materials
 
-- Main yarn: worsted weight (#4), warm brown, about 30 g. A smooth matte yarn shows the stitch texture best.
+- Main yarn: worsted weight (#4), warm brown, about 16 g (paper estimate at roughly 1.6 g per 100 stitches; weigh your first Coco and adjust). A smooth matte yarn shows the stitch texture best.
 
-- Face yarn: worsted weight (#4), dark brown, about 5 g, for the closed eyes, nose and mouth. Use the same weight as the main yarn.
+- Face yarn: worsted weight (#4), dark brown, about 2 g, for the closed eyes, nose and mouth. Use the same weight as the main yarn.
 
 - Hook: 3.0 mm. The gauge is written for this hook.
 
@@ -141,7 +141,7 @@ Both are 36 stitches around with only a shallow waist between them - that is wha
 
 | R4 | join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3 | (24) | join the BACK legs |
 
-| R5 | 1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc | (30) | join the FRONT legs |
+| R5 | [sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc | (30) | join the FRONT legs |
 
 | R6 | [4 sc, inc] x 6 | (36) | full width - check gauge |
 
@@ -179,11 +179,11 @@ How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds b
 
 Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
 
-Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc, making seven; join a leg over the next 3 sc; work [sc, inc] x 3 and 1 sc, making ten; join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end, making seven. In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, all six increases falling inside the plain runs. The 7-10-7 spacing centres each front leg between the two back legs.
+Rnd 5 - the FRONT legs (30 stitches): work [sc, inc] x 3, making nine; join a leg over the next 3 sc; work [sc, inc] x 3 and then 3 sc, making twelve; join the second leg over the next 3 sc; work 3 sc to the end, making three. In the finished round that is 9 - 3 - 12 - 3 - 3 = 30, all six increases falling inside the plain runs and none through a leg. Counted in body columns the four legs sit at columns 1 to 3, 7 to 9, 13 to 15 and 19 to 21, so exactly three plain columns separate every neighbouring pair of legs. That is a true rectangle and it centres each front leg halfway between the two back legs.
 
-Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 5 + 3 + 7 + 3 + 6 = 24, using every stitch of Rnd 4; made = 7 + 3 + 10 + 3 + 7 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
+Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 6 + 3 + 9 + 3 + 3 = 24, using every stitch of Rnd 4; made = 9 + 3 + 12 + 3 + 3 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
 
-Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. The correct spacing covers the deepest footprint this shape allows - about 65 mm across and 29 mm front to back. Hold the piece upside down and check all four legs sit square before you stuff the body.
+Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. At thirty stitches and roughly 3.5 mm per stitch the body itself measures about 34 mm across at the leg joins in Rnds 4 and 5; the splayed legs widen the standing footprint beyond that, so measure your own piece rather than relying on a printed number. Hold the piece upside down and check all four legs sit square before you stuff the body.
 
 The legs join low (Rnd 4-5) so every foot hangs about 17 mm below the body and Coco stands on her feet.
 

@@ -27,3 +27,9 @@ No stitch count, repeat multiplier, chain length or decrease schedule was altere
   hero `docs/ns13/assets/ornament_hero.png` (illustrative render, labelled as such on the cover).
 - Colour: `shop/Christmas_Ornament_Bundle_NS13_NovalityStore.pdf`.
 - Print: `shop/Christmas_Ornament_Bundle_NS13_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Yarn quantities inflated across all three ornaments.** The bundle's ~177 made stitches total about 2.8 g at 1.6 g per 100 stitches, yet the table listed 9 g + 7 g + 5 g = 21 g. The bauble alone is about 144 stitches ≈ 2.3 g. **Fix:** bauble 9 g → 3 g, star 7 g → 2 g, snowflake 5 g → 2 g (each with a little allowance for tails and a hanging loop).
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 7 pp, print 7 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

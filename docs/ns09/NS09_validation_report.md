@@ -23,3 +23,9 @@ No stitch count, repeat multiplier, chain length or decrease schedule was altere
   hero `docs/ns09/assets/shelby_hero.png` (illustrative render, labelled as such on the cover).
 - Colour: `shop/Shelby_Sea_Turtle_Bag_Charm_NS09_NovalityStore.pdf`.
 - Print: `shop/Shelby_Sea_Turtle_Bag_Charm_NS09_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Header and materials disagreed.** The header promised "~3 g of yarn" while the materials listed 1 g shell + 1 g body = 2 g. The stitch count supports the header: ~203 made stitches ≈ 3.2 g at 1.6 g per 100 stitches. **Fix:** shell yarn 1 g → about 2 g, so the list totals about 3 g and matches the header. (The header figure is grams of yarn, not metres; ~203 stitches is about 3 m of DK, which is where the slip came from.)
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 6 pp, print 6 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

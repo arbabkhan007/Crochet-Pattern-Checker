@@ -51,3 +51,10 @@ No stitch count, round count, hook size, gauge or measurement was altered.
   every page, ink coverage 4.3 - 10.8 % per page).
 - Auditor grammar v2 (`docs/kit/audit_lib.py`) now simulates 100 % of NS-01's instruction rows
   (0 unparsed); the same grammar audits the whole intake queue at 0 arithmetic problems.
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Muzzle placement collides with the neck seam.** The muzzle was pinned from head Rnd 10 down to "Rnds 15-16 near the chin". Head Rnds 15-16 are the closing nub, and assembly step 5 seats that nub *inside* the body's 18-stitch neck, with the neck seam worked around head Rnd 14. A muzzle edge pinned at Rnds 15-16 would therefore be buried in the seam. **Fix:** the lower edge now falls at Rnd 13, clear of the Rnd-14 seam, and the rim span is stated as roughly four rounds of head instead of six. No counts involved.
+2. **Short-front leg angle contradicted the standard assembly.** Assembly step 7 pins the front legs about 55 degrees from vertical, while the short-front option said "start each leg 25 degrees forward from vertical ... adjust only within 20-30 degrees". The option shortens the leg; it does not change the sit, so a 25-degree pin would leave the short front legs far more upright than the standard pair. **Fix:** the option now starts at 55 degrees with a 45-65 degree adjustment window, matching step 7. No counts involved.
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 10 pp, print 10 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

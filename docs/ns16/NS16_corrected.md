@@ -1,6 +1,6 @@
 # Crochet Mini Stocking Advent Garland
 
-> Design Code NS 16 · Novality Crochet Studio · US crochet terms
+> Design Code NS 16 · Novality Store · US crochet terms
 
 > Twenty-four small cuff-down stockings for an Advent garland. Each stocking has an exact turned heel, a counted 23-to-20 foot transition and a closed four-stitch toe.
 
@@ -10,7 +10,7 @@ This pattern makes a decoration and small treat holder; it does not establish th
 
 For the plain version, embroider or securely sew decorations and avoid glue-only attachments. A stitched decoration can still detach, so inspect every attachment and hanging point before each season and after filling. Use a support and wall fixings rated for the complete filled garland, not just the empty crochet. Food should remain in its own wrapper and must be selected with the recipient's allergies and age in mind.
 
-No finished NS 16 stocking or garland has been independently load-tested, wash-tested or shown by Novality Crochet Studio to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
+No finished NS 16 stocking or garland has been independently load-tested, wash-tested or shown by Novality Store to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
 
 ## Quick facts
 
@@ -167,7 +167,7 @@ The corrected Row-6 turn is essential: without it there are no stitches ahead of
 
 After Row 10, do not turn. The hook is at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
 
-1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
+1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. That is about one pickup for every two row ends; if the edge puckers, spread the same five pickups over a longer span of the edge and note the change on your sample. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
 
 2. Work 1 sc in each of the 10 waiting instep stitches.
 
@@ -279,13 +279,13 @@ Store clean, empty and completely dry. Do not fold heavy objects into the heel o
 
 ### Copyright & ownership
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch counts, editorial layout and design elements are protected material. Design Code NS 16.
+© 2026 Novality Store. All rights reserved. This crochet pattern - including all instructions, stitch counts, editorial layout, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 16.
 
 This pattern is licensed to the purchaser for personal use and for small-batch sale of finished physical stockings or garlands under the terms below. The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or any substantial part of it in digital or printed form.
 
 ### You may
 
-Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 16” and does not claim unverified safety, testing, size, capacity or care results.
+Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Store · Design Code NS 16” and does not claim unverified safety, testing, size, capacity or care results.
 
 ### You may not
 
@@ -295,7 +295,7 @@ Resell or distribute this PDF or Markdown source; convert it into another patter
 
 The finished-item maker or seller remains responsible for the actual materials, classification, assessment, testing, warnings, documentation, labelling and traceability required in every market where a finished item is supplied.
 
-Tag finished projects with **#NovalityCrochetStudio** and **#NovalityMiniStocking**.
+Tag finished projects with **#NovalityStore** and **#NovalityMiniStocking**.
 
 ## Happy crocheting!
 

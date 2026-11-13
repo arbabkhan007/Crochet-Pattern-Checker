@@ -27,3 +27,10 @@ No stitch count, repeat multiplier, chain length or decrease schedule was altere
   hero `docs/ns05/assets/duck_hero.png` (illustrative render, labelled as such on the cover).
 - Colour: `shop/Little_Duck_Plushie_NS05_NovalityStore.pdf`.
 - Print: `shop/Little_Duck_Plushie_NS05_PRINT_EDITION_BW.pdf` (greyscale spread 0 on every page).
+
+## Review round 2 — hand-review corrections (7 October 2026)
+
+1. **Troubleshooting contradicted the size table.** "DK on 3.0 mm gives 7-8 cm" disagreed with the table row *DK / light worsted (#3) - 2.5-2.75 mm | 7.5 - 8.5 cm*. **Fix:** the troubleshooting line now quotes the table's own hook range and height.
+2. **Wing width not derivable (geometry).** A wing closed to 6 stitches across both layers is 12 stitches wide; at this chenille yarn's roughly 8 mm per stitch that flattens to about 45-50 mm, not the stated "about 30 mm across". **Fix:** the width is now given as roughly 45 mm to 50 mm and labelled a paper estimate. No counts involved.
+
+Re-verification after these edits: engine **0 errors / 0 warnings**; independent table audit **0 problems / 0 unparsed rows**. Both store PDFs were recompiled from this master (colour 7 pp, print 7 pp, greyscale spread 0 on every page) and the cover now reads *5-AXIOM MATH VERIFIED ON PAPER* with an explicit paper-verified note: no sample was crocheted, blocked, weighed or measured, so sizes, yarn quantities and times remain targets.

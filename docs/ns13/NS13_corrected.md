@@ -148,11 +148,11 @@ Snow white  ·  Classic red & white  ·  Gold  ·  Evergreen trio  ·  Frost blu
 
 |---|---|---|---|
 
-| Bauble | ~25 min | 9 g | Tree ornament, garland |
+| Bauble | ~25 min | 3 g | Tree ornament, garland |
 
-| Star | ~20 min | 7 g | Gift topper, garland |
+| Star | ~20 min | 2 g | Gift topper, garland |
 
-| Snowflake | ~15 min | 5 g | Window, gift tag, garland |
+| Snowflake | ~15 min | 2 g | Window, gift tag, garland |
 
 All three string neatly on one length of yarn - a matching garland is just all three patterns on repeat.
 

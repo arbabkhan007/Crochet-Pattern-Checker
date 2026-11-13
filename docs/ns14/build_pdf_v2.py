@@ -209,7 +209,7 @@ def _footer(cv, doc):
     cv.setLineWidth(0.5)
     cv.line(M, 0.62 * inch, W - M, 0.62 * inch)
     total = TOTAL_PAGES if TOTAL_PAGES else doc.page
-    stamp = f"Novality Store | Design Code NS-14 | Page {doc.page} of {total}  ·  \u2713 5-AXIOM VERIFIED"
+    stamp = f"Novality Store | Design Code NS-14 | Page {doc.page} of {total}  ·  \u2713 5-AXIOM MATH VERIFIED"
     if TOTAL_PAGES and doc.page == TOTAL_PAGES:
         cv.setFillColor(FOREST_DK)
         cv.setFont("DJ", 6.6)
@@ -289,7 +289,7 @@ def on_cover(cv, doc):
     cv.drawString(M, ty - 0.48 * inch,
                   "CROCHET PATTERN · US + UK TERMS SIDE BY SIDE · INK-FRIENDLY PRINT LAYOUT")
     y = ty - 0.90 * inch
-    big = "\u2713 5-AXIOM MATHEMATICALLY VERIFIED"
+    big = "\u2713 5-AXIOM MATH VERIFIED ON PAPER"
     bw = cv.stringWidth(big, "DJ-B", 8.4) + 18
     cv.setFillColor(PAPER)
     cv.setStrokeColor(FOREST)
@@ -324,7 +324,7 @@ def on_cover(cv, doc):
     cards = [("WHAT YOU GET", ["32 numbered rounds, US + UK columns", "Printable tick-box count checklist",
                                "Spokes, scalloped border, three sizes"]),
              ("VERIFICATION", ["\u2713 5-axiom mathematical audit", "32 / 32 rounds and closures pass",
-                               "Deterministic static analysis engine"]),
+                               "Paper-verified: no sample crocheted"]),
              ("PRINT NOTES", ["10 pages on US Letter, light ink load", "No full-bleed colour pages",
                               "Tables sized for home printers"])]
     y3 = y2 - 1.62 * inch
@@ -858,7 +858,7 @@ story.append(Paragraph(md("Terms of Use"), S["h3"]))
 story.append(Paragraph("<b>Personal &amp; Small-Batch License:</b> " +
                        md("This pattern is licensed to the purchaser for personal use and for the small-batch "
                           "sale of finished physical items. Listings for finished items must credit "
-                          "“Pattern by Novality Crochet Studio · Design Code NS-14”."), S["body"]))
+                          "“Pattern by Novality Store · Design Code NS-14”."), S["body"]))
 story.append(Paragraph("<b>Restrictions:</b> " +
                        md("You may not copy, share, translate, upload, redistribute, resell, or publish the "
                           "pattern or any substantial part of it in digital or printed form."), S["body"]))

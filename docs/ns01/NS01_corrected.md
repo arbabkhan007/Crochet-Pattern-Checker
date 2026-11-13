@@ -134,7 +134,7 @@ Eyes & head size: the 12 mm eyes go in between Rnds 9 and 10, 7 stitches apart a
 
 | R8 | [2 sc, dec] x 6 | (18) | rim = 26 mm across |
 
-Finish: FO with a 40 cm tail and stuff lightly. The muzzle FACE is about 35 mm across (the wide cream patch you see); the RIM it sews by is about 26 mm, spanning roughly six rounds of head. Pin the top edge just under the eyes at Rnd 10 and let the lower edge fall at Rnds 15-16 near the chin. Centre it, let the face sit a little wider than the eye spacing, and sew about three quarters of the rim with small whip stitches. Add a whisper more stuffing, then embroider the nostrils and mouth.
+Finish: FO with a 40 cm tail and stuff lightly. The muzzle FACE is about 35 mm across (the wide cream patch you see); the RIM it sews by is about 26 mm, spanning roughly four rounds of head. Pin the top edge just under the eyes at Rnd 10 and let the lower edge fall at Rnd 13, clear of the Rnd-14 neck seam. Centre it, let the face sit a little wider than the eye spacing, and sew about three quarters of the rim with small whip stitches. Add a whisper more stuffing, then embroider the nostrils and mouth.
 
 Knot the nostril and mouth ends inside the muzzle through the remaining opening before finishing the seam.
 
@@ -286,7 +286,7 @@ A standard leg is about 67 mm. For the low Highland sit, pin the front pair abou
 
 Short-front finish: each leg measures 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening.
 
-Short-front placement: pin both front legs before sewing, centred across Body Rnds 8-9, 8 body stitches apart. Start each leg 25 degrees forward from vertical; mirror the pair and adjust only within 20-30 degrees until both hooves rest level. Sew all 12 top stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
+Short-front placement: pin both front legs before sewing, centred across Body Rnds 8-9, 8 body stitches apart. Start each leg 55 degrees forward from vertical, the same angle as the standard front legs; mirror the pair and adjust only within 45-65 degrees until both hooves rest level. Sew all 12 top stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
 
 ### 6. Ears - make 2 of each layer
 

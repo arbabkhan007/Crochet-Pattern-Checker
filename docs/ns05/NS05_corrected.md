@@ -128,7 +128,7 @@ Smaller head option: skip the R14 reflare (keep R14-R19 at 24) and close with R2
 
 | R4 | sc in each st around | (12) | flatten, sc 6 across both layers |
 
-Do not stuff. Flatten and sc 6 across both layers to close (12 sts to 6), leaving a flat half-disc about 30 mm across. Sew to the sides spanning R6-R9, angled slightly back.
+Do not stuff. Flatten and sc 6 across both layers to close (12 sts to 6), leaving a flat half-disc roughly 45 mm to 50 mm across at chenille gauge (paper estimate). Sew to the sides spanning R6-R9, angled slightly back.
 
 ### 3. Beak - orange (make 1, worked around a chain)
 
@@ -164,7 +164,7 @@ The flat orange beak and embroidered eyes avoid plastic facial parts; all sewn a
 
 - **Much taller than 16 cm.** Your chenille is thicker than gauge. A 12-stitch swatch at 10 mm per stitch finishes near 20 cm.
 
-- **Much shorter.** Finer yarn - see the size table; DK on 3.0 mm gives 7-8 cm, not 10-12.
+- **Much shorter.** Finer yarn - see the size table; DK on 2.5-2.75 mm gives 7.5-8.5 cm, not 10-12.
 
 - **Wings sit on the neck.** Too high. R6-R9 is the body; R10-R12 is the waist.
 

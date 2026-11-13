@@ -102,7 +102,7 @@ class Doc(BaseDocTemplate):
         cv.setLineWidth(0.8)
         cv.line(M, 0.52 * inch, W - M, 0.52 * inch)
         stamp = (f"Novality Store | Design Code {s['code']} | Page {pg} of "
-                 f"{doc.total_pages}  ·  \u2713 5-AXIOM VERIFIED")
+                 f"{doc.total_pages}  ·  \u2713 5-AXIOM MATH VERIFIED")
         cv.setFillColor(P["GREY"] if not self.bw else P["INK"])
         cv.setFont("DJ", 7)
         cv.drawCentredString(W / 2, 0.36 * inch, stamp)
@@ -465,7 +465,7 @@ def build(spec_path, bw=False):
             "tg", fontName="DJ-B", fontSize=7.8, leading=10, textColor=P["GOLD_DK"] if not bw
             else HexColor("#000000"))))
         st.append(Spacer(1, 6))
-        chips = [Paragraph("<b>&#10003; 5-AXIOM MATHEMATICALLY VERIFIED</b>",
+        chips = [Paragraph("<b>&#10003; 5-AXIOM MATH VERIFIED ON PAPER</b>",
                            ParagraphStyle("bd", fontName="DJ-B", fontSize=8, textColor=P["INK"]))]
         for c in spec["chips"]:
             chips.append(Paragraph(f"<b>{md(c)}</b>", ParagraphStyle(
@@ -530,7 +530,15 @@ def build(spec_path, bw=False):
         st.append(Paragraph(md(spec["cover_note"]), ParagraphStyle(
             "cn", fontName="DJ", fontSize=7.8, leading=10.2, textColor=P["INK"],
             alignment=TA_CENTER)))
-        st.append(Spacer(1, 12))
+        st.append(Spacer(1, 5))
+        st.append(Paragraph(
+            "Paper-verified edition: every stitch count, repeat multiplier, chain length and "
+            "decrease schedule in this document was re-derived from its own instruction text. "
+            "No sample was crocheted, blocked, weighed or measured, so all sizes, yarn "
+            "quantities and times are targets for you to confirm on your first make.",
+            ParagraphStyle("pv", fontName="DJ", fontSize=6.9, leading=9,
+                           textColor=P["GREY"] if not bw else P["INK"], alignment=TA_CENTER)))
+        st.append(Spacer(1, 10))
         st.append(rule(P, bw, 1.4))
         st.append(Paragraph("© 2026 Novality Store. All rights reserved. Published under the "
                             "Novality Crochet Studio imprint.",

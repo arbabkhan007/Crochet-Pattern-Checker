@@ -4,7 +4,7 @@
 
 A plump little gnome worked as ONE continuous piece - body, beard, face and hat all in one tube with simple colour changes and a bobble nose. No assembly seams. A straightforward first amigurumi and a quick seasonal project.
 
-**FINISHED SIZE**  About 12 cm (4.75 in) tall in worsted / aran on a 3.5 mm hook.  About 5 cm (2 in) wide at the base.  One piece - no assembly, no sewing.
+**FINISHED SIZE**  About 8 cm (3.25 in) tall in worsted / aran on a 3.5 mm hook. The flat base rounds R1 to R5 add width, not height, so standing height counts the wall rounds plus the hat taper only (paper estimate - measure your sample).  About 5 cm (2 in) wide at the base.  One piece - no assembly, no sewing.
 
 ---
 
@@ -16,17 +16,17 @@ No finished gnome has been shown by Novality Store to comply with ASTM F963, EN 
 
 ## Materials
 
-- Body + hat yarn: worsted / aran (#4), 45 g, red or green.
+- Body + hat yarn: worsted / aran (#4), about 9 g, red or green (paper estimate at roughly 1.6 g per 100 stitches).
 
-- Beard yarn: worsted or fluffy white, 12 g.
+- Beard yarn: worsted or fluffy white, about 2 g.
 
-- Face yarn: skin tone, about 10 g.
+- Face yarn: skin tone, about 1 g.
 
 - Optional: dark yarn for embroidered eyes, or 2 x 6-8 mm safety eyes.
 
 - Hook: 3.5 mm (US E-4) - or whatever size makes a dense, no-see-through fabric.
 
-- Stuffing: fibre fill about 25 g.
+- Stuffing: fibre fill about 10 g.
 
 - Notions: stitch marker, tapestry needle, scissors.
 
@@ -136,7 +136,7 @@ Finish: FO with a 15 cm tail, thread through the front loops of the last 6 stitc
 
 Stuffing shape: pack the base flat and wide so the gnome stands; keep the pointed hat lightly stuffed so it can bend slightly.
 
-The nose sits on the round before the hat-colour change. Because the lower body is symmetrical, let the Rnd 14 bobble DEFINE the front rather than trying to force it onto an earlier marker. Place the optional eyes one round above and equally either side of that bobble.
+The nose sits on Rnd 14, two rounds below the hat-colour change at Rnd 16. Because the lower body is symmetrical, let the Rnd 14 bobble DEFINE the front rather than trying to force it onto an earlier marker. Place the optional eyes one round above and equally either side of that bobble.
 
 ## Finishing & assembly
 
@@ -164,9 +164,9 @@ Santa red  ·  Forest green  ·  Nordic grey  ·  Candy pink  ·  Midnight navy
 
 ### Size variations
 
-Mini ornament: use DK yarn and a 3 mm hook. Work through Rnd 21 (12 sts), omit the plain Rnd 22, then work sc2tog around (6) and close as usual - about 8-9 cm tall.
+Mini ornament: use DK yarn and a 3 mm hook. Work through Rnd 21 (12 sts), omit the plain Rnd 22, then work sc2tog around (6) and close as usual - about 6 to 6.5 cm tall.
 
-Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, work 3 MORE plain 30-stitch body rounds, then continue with the beard instructions. All later section labels shift by three physical rounds; the stitch counts and shaping sequence are unchanged. Expect about 15 cm, but measure your sample.
+Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, work 3 MORE plain 30-stitch body rounds, then continue with the beard instructions. All later section labels shift by three physical rounds; the stitch counts and shaping sequence are unchanged. Expect about 11 to 12 cm, but measure your sample.
 
 - Why sc2tog here: the classic decrease is simple and grips the stuffing firmly. If you prefer a smoother visible hat, use the invisible-decrease method given in technique 4; both consume two stitches and make one.
 

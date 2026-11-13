@@ -1,43 +1,106 @@
 # Novality Store — The Grand Crochet Pattern Collection
-### Design codes NS-01 … NS-17 · seventeen verified amigurumi & decor masters in one volume
+### Design codes NS-01 … NS-17 · seventeen **paper-verified** amigurumi & decor masters in one volume
 
 Every pattern in this volume has been through the Novality verification pipeline:
 
-1. **Deterministic static-analysis engine** (`src/crochet_checker`) — each corrected master runs
-   **0 errors / 0 warnings**.
+1. **Deterministic static-analysis engine** (`src/crochet_checker`) — each corrected master is
+   re-read and re-checked; the live error/warning count per pattern is in the ledger below.
 2. **Independent stitch arithmetic auditor** (`docs/kit/audit_lib.py`) — every round/row table is
-   re-derived from its own instruction text: **0 problems** across all seventeen patterns; the
-   handful of prose/continuation rows are carried as explicit expected counts in
-   `docs/kit/audit_overrides.py`.
+   re-derived from its own instruction text and compared with the count the pattern states. The
+   handful of prose/continuation rows the generic grammar cannot simulate are carried as explicit
+   expected counts in `docs/kit/audit_overrides.py`.
 3. **Two store editions per pattern** — a colour Novality Store edition and a monochrome
-   ink-friendly print edition (greyscale spread 0 on every page), compiled from the verified
-   master by `docs/kit/build_store_pdf.py`.
+   ink-friendly print edition (greyscale spread 0 on every page), compiled from the corrected
+   master by `docs/kit/build_store_pdf.py` (NS-03 and NS-14 by their own compilers).
 
-Corrections against the originals were wording/clarity only — **no stitch count, repeat
-multiplier, chain length or decrease schedule was ever changed**. Per-pattern correction tables
-live in each pattern's validation report.
+### What "verified" means here — read this before you buy or sell anything
+
+**No sample of any pattern in this volume was crocheted, blocked, weighed, measured, washed or
+safety-tested.** Everything was verified on paper: the arithmetic of every table, the internal
+consistency of gauge against finished size, and the geometry implied by the stitch counts. So:
+
+* **Stitch arithmetic is exact.** Where the audit reports 0 problems, every stated count re-derives
+  from the instruction text that precedes it. That is a proof about the numbers, not about yarn.
+* **Sizes, yarn quantities and times are targets.** They are computed from the patterns' own gauge
+  figures at roughly 1.6 g of worsted per 100 stitches (the NS-03 yardstick) and from row heights —
+  never from a finished object. Weigh and measure your first make and correct the figure.
+* **Geometry findings are reasoned, not sampled.** The leg-alignment, cone-height and collar-fit
+  corrections in review round 2 follow from column counts and circumferences; confirm them on a
+  swatch or a first sample before repeating them in a listing.
+
+### Corrections against the originals — what was and was not changed
+
+Most corrections are wording, clarity, layout and derived-figure fixes: they change no stitch.
+Three exceptions are recorded here rather than hidden behind a blanket claim:
+
+* **NS-16** — the source's Row 6 lacked its `ch 1, turn`, leaving no stitches ahead of the hook for
+  Row 7. The corrected turn is a real change to the instruction sequence (stitch counts unchanged).
+* **NS-17** — the source's leg Rnd 13 decreased 12 → 9, which leaves an unmatched stitch in the
+  flattened four-pair seam; it is corrected to 12 → 8. That is a change to a decrease schedule.
+* **NS-17** — review round 2 resized the lamb's fixed collar from `ch 22` / 21 stitches to `ch 14` /
+  13 stitches, because a 22-chain (about 10.5 cm) cannot fit an assembled 12-stitch neck (about
+  6 cm). That is a change to a component's stitch count.
+
+**NS-04 Rnd 5** was also re-spaced in round 2, but count-preserving: the same 24 stitches are
+worked, the same 30 are made and the same six increases are used — only the columns the front legs
+join over changed, from 6-8 / 16-18 to 7-9 / 19-21, which is what makes the four legs a rectangle.
+
+Per-pattern correction tables and the round-2 findings live in each pattern's validation report.
+
+## Review round 2 — hand review of all seventeen masters (7 October 2026)
+
+A line-by-line hand review of the geometry, sizes and gauge, yarn quantities, front-matter claims,
+leftover editorial text and branding found **no stitch-count errors** — the arithmetic stands, and
+the audit still reports 0 problems on all seventeen. It did find the defects below, all now fixed in
+the masters, the reports and both PDF editions of each affected pattern.
+
+| # | Pattern | Defect | Correction |
+|---|---|---|---|
+| 1 | NS-04 | Front legs joined over columns 6-8 / 16-18 against back legs at 1-3 / 13-15 → leg gaps 5/7/3/9 columns: not a rectangle, and the text's "centres each front leg" claim was false | Rnd 5 re-spaced to `[sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc` → joins at columns 7-9 / 19-21, gaps 3/3/3/3; 24 worked → 30 made, six increases, counts unchanged |
+| 2 | NS-04 | "About 65 mm across" footprint not derivable — 30 stitches at ~3.5 mm give ~34 mm across the body | Derived body width stated (~34 mm) plus an instruction to measure the splayed footprint |
+| 3 | NS-07 | Materials said #4 worsted on 3.5 mm but the gauge (3.5 mm/st, 3.2 mm/row), the ~8 m yarn use and the "1.3×" bigger-trio comparison are all the DK-on-2.5 mm figures; as written the trio would be 3.9/4.9/3.5 cm, not 3.0/3.8/2.7 cm | Materials changed to DK cotton (#3) on a 2.5 mm hook; gauge, counts and finished sizes unchanged; escape hooks 4 mm → 3 mm and 3 mm → 2.25 mm |
+| 4 | NS-11 | 12 cm height counted the flat base rounds R1-R5, which add width only | ~8 cm (walls R6-R15 ≈ 4.6 cm + hat taper ≈ 3.2 cm); mini 8-9 cm → 6-6.5 cm; large 15 cm → 11-12 cm |
+| 5 | NS-12 | 12 cm height counted the flat base rounds R1-R9 | ~7 cm cone; chunky 15.5 cm → 9.5 cm; three-size set 9-16 cm → 5.5-9.5 cm |
+| 6 | NS-11, NS-12, NS-13, NS-15, NS-08, NS-04, NS-09 | Yarn quantities inflated against the patterns' own stitch counts (NS-11 67 g for ~530 sts; NS-12 70 g for ~700 sts; NS-13 21 g for ~177 sts; NS-15 one 175 g figure for three tube lengths and no stuffing; NS-08 30 g + 20 g; NS-04 30 g + 5 g; NS-09 materials 2 g vs header 3 g) | Re-derived at ~1.6 g per 100 sts: NS-11 9 g / 2 g / 1 g / 10 g stuffing; NS-12 15 g; NS-13 3 g / 2 g / 2 g; NS-15 12 g / 40 g / 55 g by tube length plus 2 g / 8 g / 12 g stuffing; NS-08 12 g / 5 g; NS-04 16 g / 2 g; NS-09 shell 2 g — all labelled paper estimates |
+| 7 | Front matter | Claimed no stitch count, repeat multiplier or decrease schedule was ever changed, while NS-16 has a corrected Row-6 turn and NS-17 a corrected leg Rnd 13 (12 → 8) | Rewritten above: the three genuine changes are listed explicitly |
+| 8 | NS-14, NS-16, NS-17 | "Verified" read as tested, though each file states no sample was crocheted | Reframed as **paper-verified** throughout this volume, in every report, and on every PDF cover (*5-AXIOM MATH VERIFIED ON PAPER* chip + "Paper-verified: no sample crocheted" card) |
+| 9 | NS-14 | The internal "Revision notes — delete before publishing" section was still in the published volume; "Read before making" carried amigurumi-template wording (weave tails "while the centre opening is still open") contradicting its own Finishing section | Section deleted from the master (its substance stays in the report); the sentence now gives the real order and cross-references Finishing step 3 |
+| 10 | NS-01 | Muzzle lower edge pinned at head Rnds 15-16 — the closing nub that assembly step 5 tucks inside the neck seam, with the seam itself at Rnd 14 | Lower edge now falls at Rnd 13; rim span reworded six rounds → four |
+| 11 | NS-01 | Short-front option pinned the legs at 25° while assembly step 7 uses 55° | Option now starts at 55° with a 45-65° window |
+| 12 | NS-02 | 20 brim stitches at 3.5 mm/st ≈ 22 mm across, not the stated 24 mm | Corrected to ~22 mm |
+| 13 | NS-05 | Troubleshooting said "DK on 3.0 mm" against the size table's DK row (2.5-2.75 mm, 7.5-8.5 cm); a 12-stitch wing at ~8 mm/st flattens to ~45-50 mm, not 30 mm | Both corrected |
+| 14 | NS-11 | "The nose sits on the round before the hat-colour change" — the nose is Rnd 14, the change is Rnd 16 | Both rounds now named |
+| 15 | NS-16 | 5 heel pickups over ~10 row ends ≈ 1 per 2 rows, which can pucker | Ratio stated; the same five pickups may be spread over a longer edge span and recorded — count unchanged, flagged for testing |
+| 16 | NS-17 | Lamb collar `ch 22` (~10.5 cm) on an assembled 12-stitch neck (~6 cm) | `ch 14` (~6.5 cm), Row 1 = 13 sts, Row 2 = 13 sts; collar yarn 9 m → 6 m |
+| 17 | NS-17 | Smithsonian citation URL could not be resolved from the build environment | Citation removed; the reference now states only the checkable calendar facts (6 February 2027; Fire Goat / Ding Wei in the sixty-year sexagenary cycle) — both confirmed correct |
+| 18 | NS-14, NS-16, NS-17 | Branding split: "Novality Crochet Studio" used for copyright, finished-item credit and hashtag, against "Novality Store" in NS-01-13 and NS-15 | Unified: copyright, credit and hashtag are Novality Store (#NovalityStore), with the designer credit "designed by Novality Crochet Studio" matching the other fourteen; NS-14's PDF compilers, which hard-coded the old credit, were patched and both editions recompiled |
+
+NS-03, NS-06 and NS-10 raised no defect and their pattern text is unchanged; their PDFs were
+recompiled only so all seventeen editions carry the same cover framing.
 
 ## Contents
 
-01. NS-01 — Hamish the Highland Cow (colour 10 pp / print 10 pp)
-02. NS-02 — Kawaii Halloween Mini Set (colour 9 pp / print 9 pp)
-03. NS-03 — Axel the Axolotl (colour 9 pp / print 9 pp)
-04. NS-04 — Coco the Capybara (colour 8 pp / print 8 pp)
-05. NS-05 — Little Duck Plushie (colour 7 pp / print 7 pp)
-06. NS-06 — Momo the Loaf Cat (colour 7 pp / print 7 pp)
-07. NS-07 — Pocket Positivity Trio (colour 7 pp / print 7 pp)
-08. NS-08 — Ember the Baby Dragon (colour 9 pp / print 9 pp)
-09. NS-09 — Shelby Sea Turtle Bag Charm (colour 6 pp / print 6 pp)
-10. NS-10 — Willow the Bunny Lovey (colour 7 pp / print 7 pp)
-11. NS-11 — No-Sew Christmas Gnome (colour 7 pp / print 7 pp)
-12. NS-12 — Bobble Christmas Tree (colour 7 pp / print 7 pp)
-13. NS-13 — Christmas Ornament Bundle (colour 7 pp / print 7 pp)
-14. NS-14 — Bobble Snowflake Tree Skirt (colour 10 pp / print 10 pp)
-15. NS-15 — Interchangeable Christmas Wreath (colour 11 pp / print 11 pp)
-16. NS-16 — Mini Stocking Advent Garland (colour 9 pp / print 9 pp)
-17. NS-17 — Year of the Fire Goat 2027 Plushie Set (colour 14 pp / print 14 pp)
+01. NS-01 — Hamish the Highland Cow (10 pp colour / 10 pp print)
+02. NS-02 — Kawaii Halloween Mini Set (9 pp colour / 9 pp print)
+03. NS-03 — Axel the Axolotl (9 pp colour / 9 pp print)
+04. NS-04 — Coco the Capybara (8 pp colour / 8 pp print)
+05. NS-05 — Little Duck Plushie (7 pp colour / 7 pp print)
+06. NS-06 — Momo the Loaf Cat (7 pp colour / 7 pp print)
+07. NS-07 — Pocket Positivity Trio (7 pp colour / 7 pp print)
+08. NS-08 — Ember the Baby Dragon (9 pp colour / 9 pp print)
+09. NS-09 — Shelby Sea Turtle Bag Charm (6 pp colour / 6 pp print)
+10. NS-10 — Willow the Bunny Lovey (7 pp colour / 7 pp print)
+11. NS-11 — No-Sew Christmas Gnome (7 pp colour / 7 pp print)
+12. NS-12 — Bobble Christmas Tree (7 pp colour / 7 pp print)
+13. NS-13 — Christmas Ornament Bundle (7 pp colour / 7 pp print)
+14. NS-14 — Bobble Snowflake Tree Skirt (10 pp colour / 10 pp print)
+15. NS-15 — Interchangeable Christmas Wreath (11 pp colour / 11 pp print)
+16. NS-16 — Mini Stocking Advent Garland (9 pp colour / 9 pp print)
+17. NS-17 — Year of the Fire Goat 2027 Plushie Set (14 pp colour / 14 pp print)
 
 ## Verification ledger
+
+Counts below were recomputed at build time by `docs/kit/build_grand.py`, not typed.
 
 | Code | Pattern | Engine E / W | Audit problems / unparsed | Colour pp | Print pp |
 |---|---|---|---|---|---|
@@ -54,21 +117,24 @@ live in each pattern's validation report.
 | NS-11 | No-Sew Christmas Gnome | 0 / 0 | 0 / 0 | 7 | 7 |
 | NS-12 | Bobble Christmas Tree | 0 / 0 | 0 / 0 | 7 | 7 |
 | NS-13 | Christmas Ornament Bundle | 0 / 0 | 0 / 0 | 7 | 7 |
-| NS-14 | Bobble Snowflake Tree Skirt | 0 / 0 | 0 / 0 | 10 | 10 |
+| NS-14 | Bobble Snowflake Tree Skirt | 2 / 3 † | 0 / 0 | 10 | 10 |
 | NS-15 | Interchangeable Christmas Wreath | 0 / 0 | 0 / 0 | 11 | 11 |
 | NS-16 | Mini Stocking Advent Garland | 0 / 0 | 0 / 0 | 9 | 9 |
 | NS-17 | Year of the Fire Goat 2027 Plushie Set | 0 / 0 | 0 / 0 | 14 | 14 |
+
+† NS-14 prints its US and UK terms side by side. The engine's dialect-scope rule assumes one dialect per piece, so the two sections that name UK terms and also contain a US term are flagged; §5.2 of `NS14_validation_report.md` documents this and §2.4 machine-verifies all 36 UK rows as exact translations of the US rows. It cannot be cleared without abandoning the dual-column format.
 
 *Cover artwork in the PDF editions is an illustrative render of the written design, not a
 photograph of a sample; each cover says so. Etsy-style listings must carry the matching
 AI-disclosure sentence.*
 
-
 ---
 
 # Part 01 of 17 — NS-01 · Hamish the Highland Cow
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 10 pp · print edition 10 pp · reports: `docs/ns01/NS01_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · report: `docs/ns01/NS01_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Hamish the Highland Cow
 
@@ -206,7 +272,7 @@ Eyes & head size: the 12 mm eyes go in between Rnds 9 and 10, 7 stitches apart a
 
 | R8 | [2 sc, dec] x 6 | (18) | rim = 26 mm across |
 
-Finish: FO with a 40 cm tail and stuff lightly. The muzzle FACE is about 35 mm across (the wide cream patch you see); the RIM it sews by is about 26 mm, spanning roughly six rounds of head. Pin the top edge just under the eyes at Rnd 10 and let the lower edge fall at Rnds 15-16 near the chin. Centre it, let the face sit a little wider than the eye spacing, and sew about three quarters of the rim with small whip stitches. Add a whisper more stuffing, then embroider the nostrils and mouth.
+Finish: FO with a 40 cm tail and stuff lightly. The muzzle FACE is about 35 mm across (the wide cream patch you see); the RIM it sews by is about 26 mm, spanning roughly four rounds of head. Pin the top edge just under the eyes at Rnd 10 and let the lower edge fall at Rnd 13, clear of the Rnd-14 neck seam. Centre it, let the face sit a little wider than the eye spacing, and sew about three quarters of the rim with small whip stitches. Add a whisper more stuffing, then embroider the nostrils and mouth.
 
 Knot the nostril and mouth ends inside the muzzle through the remaining opening before finishing the seam.
 
@@ -358,7 +424,7 @@ A standard leg is about 67 mm. For the low Highland sit, pin the front pair abou
 
 Short-front finish: each leg measures 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening.
 
-Short-front placement: pin both front legs before sewing, centred across Body Rnds 8-9, 8 body stitches apart. Start each leg 25 degrees forward from vertical; mirror the pair and adjust only within 20-30 degrees until both hooves rest level. Sew all 12 top stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
+Short-front placement: pin both front legs before sewing, centred across Body Rnds 8-9, 8 body stitches apart. Start each leg 55 degrees forward from vertical, the same angle as the standard front legs; mirror the pair and adjust only within 45-65 degrees until both hooves rest level. Sew all 12 top stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
 
 #### 6. Ears - make 2 of each layer
 
@@ -522,12 +588,13 @@ No finished item made from this pattern has been shown by Novality Store to comp
 
 Tag your makes with **#NovalityStore** and **#HamishTheHighlandCow** - We love seeing your coos. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 02 of 17 — NS-02 · Kawaii Halloween Mini Set
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 9 pp · print edition 9 pp · reports: `docs/ns02/NS02_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · report: `docs/ns02/NS02_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Kawaii Halloween Mini Set
 
@@ -685,7 +752,7 @@ Base (optional): hold the flat disc under the opening with wrong sides together 
 
 | R6 | FLO: inc in each st around | (20) | brim |
 
-Sl st, FO. The brim stops at 20 stitches (outer edge about 24 mm) so the hat sits on Boo's ~27 mm head instead of swamping him. Sew it on tilted.
+Sl st, FO. The brim stops at 20 stitches (outer edge about 22 mm at 3.5 mm per stitch) so the hat sits on Boo's ~27 mm head instead of swamping him. Sew it on tilted.
 
 #### 2. Pip the Pumpkin - pastel orange
 
@@ -923,12 +990,13 @@ No finished mini has been shown by Novality Store to comply with ASTM F963, EN 7
 
 Tag your makes with **#NovalityStore** and **#KawaiiHalloweenSet** - We love seeing your spookies. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 03 of 17 — NS-03 · Axel the Axolotl
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 9 pp · print edition 9 pp · reports: `docs/ns03/NS03_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · report: `docs/ns03/NS03_validation_report.md`*
+
+*Review round 2 (7 October 2026): no defect raised; text unchanged, PDFs recompiled for cover framing only.*
 
 ## Axel the Axolotl
 
@@ -1164,12 +1232,13 @@ No finished Axel has been shown by Novality Store to comply with ASTM F963, EN 7
 
 Tag your makes with **#NovalityStore** and **#AxelTheAxolotl** - We love seeing your makes. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 04 of 17 — NS-04 · Coco the Capybara
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 8 pp · print edition 8 pp · reports: `docs/ns04/NS04_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 8 pp · print edition 8 pp · report: `docs/ns04/NS04_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Coco the Capybara
 
@@ -1189,9 +1258,9 @@ No finished Coco has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ### Materials
 
-- Main yarn: worsted weight (#4), warm brown, about 30 g. A smooth matte yarn shows the stitch texture best.
+- Main yarn: worsted weight (#4), warm brown, about 16 g (paper estimate at roughly 1.6 g per 100 stitches; weigh your first Coco and adjust). A smooth matte yarn shows the stitch texture best.
 
-- Face yarn: worsted weight (#4), dark brown, about 5 g, for the closed eyes, nose and mouth. Use the same weight as the main yarn.
+- Face yarn: worsted weight (#4), dark brown, about 2 g, for the closed eyes, nose and mouth. Use the same weight as the main yarn.
 
 - Hook: 3.0 mm. The gauge is written for this hook.
 
@@ -1314,7 +1383,7 @@ Both are 36 stitches around with only a shallow waist between them - that is wha
 
 | R4 | join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3 | (24) | join the BACK legs |
 
-| R5 | 1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc | (30) | join the FRONT legs |
+| R5 | [sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc | (30) | join the FRONT legs |
 
 | R6 | [4 sc, inc] x 6 | (36) | full width - check gauge |
 
@@ -1352,11 +1421,11 @@ How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds b
 
 Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
 
-Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc, making seven; join a leg over the next 3 sc; work [sc, inc] x 3 and 1 sc, making ten; join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end, making seven. In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, all six increases falling inside the plain runs. The 7-10-7 spacing centres each front leg between the two back legs.
+Rnd 5 - the FRONT legs (30 stitches): work [sc, inc] x 3, making nine; join a leg over the next 3 sc; work [sc, inc] x 3 and then 3 sc, making twelve; join the second leg over the next 3 sc; work 3 sc to the end, making three. In the finished round that is 9 - 3 - 12 - 3 - 3 = 30, all six increases falling inside the plain runs and none through a leg. Counted in body columns the four legs sit at columns 1 to 3, 7 to 9, 13 to 15 and 19 to 21, so exactly three plain columns separate every neighbouring pair of legs. That is a true rectangle and it centres each front leg halfway between the two back legs.
 
-Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 5 + 3 + 7 + 3 + 6 = 24, using every stitch of Rnd 4; made = 7 + 3 + 10 + 3 + 7 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
+Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 6 + 3 + 9 + 3 + 3 = 24, using every stitch of Rnd 4; made = 9 + 3 + 12 + 3 + 3 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
 
-Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. The correct spacing covers the deepest footprint this shape allows - about 65 mm across and 29 mm front to back. Hold the piece upside down and check all four legs sit square before you stuff the body.
+Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. At thirty stitches and roughly 3.5 mm per stitch the body itself measures about 34 mm across at the leg joins in Rnds 4 and 5; the splayed legs widen the standing footprint beyond that, so measure your own piece rather than relying on a printed number. Hold the piece upside down and check all four legs sit square before you stuff the body.
 
 The legs join low (Rnd 4-5) so every foot hangs about 17 mm below the body and Coco stands on her feet.
 
@@ -1432,12 +1501,13 @@ No finished Coco has been shown by Novality Store to comply with ASTM F963, EN 7
 
 Tag your makes with **#NovalityStore** and **#CocoTheCapybara** - We love seeing your Cocos. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 05 of 17 — NS-05 · Little Duck Plushie
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns05/NS05_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns05/NS05_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Little Duck Plushie
 
@@ -1569,7 +1639,7 @@ Smaller head option: skip the R14 reflare (keep R14-R19 at 24) and close with R2
 
 | R4 | sc in each st around | (12) | flatten, sc 6 across both layers |
 
-Do not stuff. Flatten and sc 6 across both layers to close (12 sts to 6), leaving a flat half-disc about 30 mm across. Sew to the sides spanning R6-R9, angled slightly back.
+Do not stuff. Flatten and sc 6 across both layers to close (12 sts to 6), leaving a flat half-disc roughly 45 mm to 50 mm across at chenille gauge (paper estimate). Sew to the sides spanning R6-R9, angled slightly back.
 
 #### 3. Beak - orange (make 1, worked around a chain)
 
@@ -1605,7 +1675,7 @@ The flat orange beak and embroidered eyes avoid plastic facial parts; all sewn a
 
 - **Much taller than 16 cm.** Your chenille is thicker than gauge. A 12-stitch swatch at 10 mm per stitch finishes near 20 cm.
 
-- **Much shorter.** Finer yarn - see the size table; DK on 3.0 mm gives 7-8 cm, not 10-12.
+- **Much shorter.** Finer yarn - see the size table; DK on 2.5-2.75 mm gives 7.5-8.5 cm, not 10-12.
 
 - **Wings sit on the neck.** Too high. R6-R9 is the body; R10-R12 is the waist.
 
@@ -1663,12 +1733,13 @@ Eyes are embroidered and there are no plastic eye components. Finished items mus
 
 Tag your makes with **#NovalityStore** and **#LittleDuckPlushie** - We love seeing your ducklings. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 06 of 17 — NS-06 · Momo the Loaf Cat
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns06/NS06_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns06/NS06_validation_report.md`*
+
+*Review round 2 (7 October 2026): no defect raised; text unchanged, PDFs recompiled for cover framing only.*
 
 ## Momo the Loaf Cat
 
@@ -1864,12 +1935,13 @@ No finished Momo has been shown by Novality Store to comply with ASTM F963, EN 7
 
 Tag your makes with **#NovalityStore** and **#MomoTheLoafCat** - We love seeing your loaves. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 07 of 17 — NS-07 · Pocket Positivity Trio
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns07/NS07_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns07/NS07_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Pocket Positivity Trio
 
@@ -1877,7 +1949,7 @@ Tag your makes with **#NovalityStore** and **#MomoTheLoafCat** - We love seeing 
 
 Three palm-sized amigurumi that slip into a coat pocket - Sunny the Sunflower, Waddle the Penguin and Spud the Potato. They share one easy construction and work up in an evening or two.
 
-**FINISHED SIZE**  Sunny: about 3.0 cm across the petals.  Waddle: about 3.8 cm tall.  Spud: about 2.7 cm long.  #4 worsted on a 3.5 mm hook. Sunny’s petals are worked directly onto her centre; Waddle’s wings, chest and beak are sewn on; Spud starts around a chain and closes with one short seam.
+**FINISHED SIZE**  Sunny: about 3.0 cm across the petals.  Waddle: about 3.8 cm tall.  Spud: about 2.7 cm long.  DK cotton (#3) on a 2.5 mm hook. Sunny’s petals are worked directly onto her centre; Waddle’s wings, chest and beak are sewn on; Spud starts around a chain and closes with one short seam.
 
 ---
 
@@ -1889,9 +1961,9 @@ No finished trio has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ### Materials
 
-- Yarn: #4 worsted (~250 m / 100 g). The three toys use roughly 8 m total (under 4 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
+- Yarn: DK cotton (#3, ~300 m / 100 g). The three toys use roughly 8 m total (under 3 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
 
-- Hook: 3.5 mm (US E/4).
+- Hook: 2.5 mm (US C-2).
 
 - Eyes: six 5 mm black safety eyes, or embroidery thread.
 
@@ -1947,7 +2019,7 @@ A small brown cushion; Rnd 4 is worked in the back loops so nine yellow petals c
 
 | Petal | after closing the centre, join yellow with a sl st in any EXPOSED front loop of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next front loop, [sl st in next front loop, (sc, hdc, sc) in next front loop] x 8, sl st to the first sl st, FO | (36) | 9 petals; use Rnd 3 front loops only |
 
-Count check: Rnd 4 was worked BLO, so all 18 front loops of Rnd 3 are visible after the cushion is closed. The joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 exposed front loops per petal set. The slip stitch sits in the valley between petals; work this round loosely (use a 4 mm hook for this round only if it pulls tight). FO and weave in.
+Count check: Rnd 4 was worked BLO, so all 18 front loops of Rnd 3 are visible after the cushion is closed. The joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 exposed front loops per petal set. The slip stitch sits in the valley between petals; work this round loosely (use a 3 mm hook for this round only if it pulls tight). FO and weave in.
 
 Face: if using safety eyes, insert the posts between Rnds 2 and 3, 3 stitches apart, and LOCK the washers immediately after Rnd 4. At the same pause, embroider a smiling mouth across Rnds 2-3 and knot its ends inside before the decreases and stuffing; do not wait until the centre is closed. If embroidering the eyes, 4 stitches apart also fits - complete and secure them at this same pause.
 
@@ -2059,9 +2131,9 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 
 - **Petal edges curl / centre will not close.** Use invisible decreases on the centre's Rnd 5 and pull the closing snug. Nine petal repeats use exactly 18 stitches (two each) - check Rnd 3 is (18) and you slip-stitched once per repeat.
 
-- **Petals sit flat.** Work the three stitches in one stitch loosely, or use a 4 mm hook for the petal round only.
+- **Petals sit flat.** Work the three stitches in one stitch loosely, or use a 3 mm hook for the petal round only.
 
-- **Toys come out smaller / larger.** Tighter than 3.5 mm per stitch: go up half a hook size. Looser: drop to a 3 mm hook. If changing yarn weight, make a new dense swatch instead of forcing doubled yarn onto the original hook.
+- **Toys come out smaller / larger.** Tighter than 3.5 mm per stitch: go up half a hook size. Looser: drop to a 2.25 mm hook. If changing yarn weight, make a new dense swatch instead of forcing doubled yarn onto the original hook.
 
 - **Waddle's wings flop.** Sew at Rnd 6 and catch a stitch of the body with each pass.
 
@@ -2071,7 +2143,7 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 
 ### Making a bigger trio
 
-Use bulky (#5) yarn with a 4.5 mm hook and make a dense swatch targeting about 4.5 mm per sc (about 1.3x the original gauge): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change. Do not hold worsted yarn double on the original 3.5 mm hook; that combination is usually too tight to work safely or evenly.
+Use bulky (#5) yarn with a 4.5 mm hook and make a dense swatch targeting about 4.5 mm per sc (about 1.3x the original gauge): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change. Do not hold DK yarn double on the original 2.5 mm hook; that combination is usually too tight to work safely or evenly.
 
 ### Colorways
 
@@ -2107,12 +2179,13 @@ This set uses 5 mm plastic safety eyes that may become small parts if the eye, w
 
 Tag your makes with **#NovalityStore** and **#PocketPositivityTrio** - We love seeing your makes. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 08 of 17 — NS-08 · Ember the Baby Dragon
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 9 pp · print edition 9 pp · reports: `docs/ns08/NS08_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · report: `docs/ns08/NS08_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Ember the Baby Dragon
 
@@ -2132,9 +2205,9 @@ No finished Ember has been shown by Novality Store to comply with ASTM F963, EN 
 
 ### Materials
 
-- Main yarn: worsted #4, about 30 g used (buy a 50 g ball) - sage green, dusty teal, lilac or charcoal. The extra allows for tails, seaming and a gauge swatch.
+- Main yarn: worsted #4, about 12 g used (a 25 g ball is plenty) - sage green, dusty teal, lilac or charcoal. The extra allows for tails, seaming and a gauge swatch.
 
-- Contrast yarn: worsted #4, about 20 g in a contrast cream or pale gold - used for the wings, horns and spikes, so all the details match.
+- Contrast yarn: worsted #4, about 5 g in a contrast cream or pale gold - used for the wings, horns and spikes, so all the details match.
 
 - Hook: 3.5 mm (US E/4).
 
@@ -2444,12 +2517,13 @@ No finished Ember has been shown by Novality Store to comply with ASTM F963, EN 
 
 Tag your makes with **#NovalityStore** and **#EmberTheBabyDragon** - We love seeing your dragons. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 09 of 17 — NS-09 · Shelby Sea Turtle Bag Charm
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 6 pp · print edition 6 pp · reports: `docs/ns09/NS09_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · report: `docs/ns09/NS09_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Shelby the Sea Turtle Bag Charm
 
@@ -2469,7 +2543,7 @@ No finished Shelby has been shown by Novality Store to comply with ASTM F963, EN
 
 ### Materials
 
-- Shell yarn: DK / light worsted (#3) cotton, about 1 g - sage, teal, mustard or rust.
+- Shell yarn: DK / light worsted (#3) cotton, about 2 g - sage, teal, mustard or rust.
 
 - Body yarn: DK cotton, about 1 g in contrast cream, sand or pale green.
 
@@ -2615,12 +2689,13 @@ Shelby uses embroidered French-knot eyes and a metal keyring and is designed as 
 
 Tag your makes with **#NovalityStore** and **#ShelbyTheSeaTurtle** - We love seeing your makes. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 10 of 17 — NS-10 · Willow the Bunny Lovey
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns10/NS10_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns10/NS10_validation_report.md`*
+
+*Review round 2 (7 October 2026): no defect raised; text unchanged, PDFs recompiled for cover framing only.*
 
 ## Willow the Bunny Lovey
 
@@ -2819,12 +2894,13 @@ Willow has an embroidered face and no plastic safety eyes, buttons or beads, but
 
 Tag your makes with **#NovalityStore** and **#WillowTheBunnyLovey** - We love seeing your makes. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 11 of 17 — NS-11 · No-Sew Christmas Gnome
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns11/NS11_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns11/NS11_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## No-Sew Christmas Gnome
 
@@ -2832,7 +2908,7 @@ Tag your makes with **#NovalityStore** and **#WillowTheBunnyLovey** - We love se
 
 A plump little gnome worked as ONE continuous piece - body, beard, face and hat all in one tube with simple colour changes and a bobble nose. No assembly seams. A straightforward first amigurumi and a quick seasonal project.
 
-**FINISHED SIZE**  About 12 cm (4.75 in) tall in worsted / aran on a 3.5 mm hook.  About 5 cm (2 in) wide at the base.  One piece - no assembly, no sewing.
+**FINISHED SIZE**  About 8 cm (3.25 in) tall in worsted / aran on a 3.5 mm hook. The flat base rounds R1 to R5 add width, not height, so standing height counts the wall rounds plus the hat taper only (paper estimate - measure your sample).  About 5 cm (2 in) wide at the base.  One piece - no assembly, no sewing.
 
 ---
 
@@ -2844,17 +2920,17 @@ No finished gnome has been shown by Novality Store to comply with ASTM F963, EN 
 
 ### Materials
 
-- Body + hat yarn: worsted / aran (#4), 45 g, red or green.
+- Body + hat yarn: worsted / aran (#4), about 9 g, red or green (paper estimate at roughly 1.6 g per 100 stitches).
 
-- Beard yarn: worsted or fluffy white, 12 g.
+- Beard yarn: worsted or fluffy white, about 2 g.
 
-- Face yarn: skin tone, about 10 g.
+- Face yarn: skin tone, about 1 g.
 
 - Optional: dark yarn for embroidered eyes, or 2 x 6-8 mm safety eyes.
 
 - Hook: 3.5 mm (US E-4) - or whatever size makes a dense, no-see-through fabric.
 
-- Stuffing: fibre fill about 25 g.
+- Stuffing: fibre fill about 10 g.
 
 - Notions: stitch marker, tapestry needle, scissors.
 
@@ -2964,7 +3040,7 @@ Finish: FO with a 15 cm tail, thread through the front loops of the last 6 stitc
 
 Stuffing shape: pack the base flat and wide so the gnome stands; keep the pointed hat lightly stuffed so it can bend slightly.
 
-The nose sits on the round before the hat-colour change. Because the lower body is symmetrical, let the Rnd 14 bobble DEFINE the front rather than trying to force it onto an earlier marker. Place the optional eyes one round above and equally either side of that bobble.
+The nose sits on Rnd 14, two rounds below the hat-colour change at Rnd 16. Because the lower body is symmetrical, let the Rnd 14 bobble DEFINE the front rather than trying to force it onto an earlier marker. Place the optional eyes one round above and equally either side of that bobble.
 
 ### Finishing & assembly
 
@@ -2992,9 +3068,9 @@ Santa red  ·  Forest green  ·  Nordic grey  ·  Candy pink  ·  Midnight navy
 
 #### Size variations
 
-Mini ornament: use DK yarn and a 3 mm hook. Work through Rnd 21 (12 sts), omit the plain Rnd 22, then work sc2tog around (6) and close as usual - about 8-9 cm tall.
+Mini ornament: use DK yarn and a 3 mm hook. Work through Rnd 21 (12 sts), omit the plain Rnd 22, then work sc2tog around (6) and close as usual - about 6 to 6.5 cm tall.
 
-Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, work 3 MORE plain 30-stitch body rounds, then continue with the beard instructions. All later section labels shift by three physical rounds; the stitch counts and shaping sequence are unchanged. Expect about 15 cm, but measure your sample.
+Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, work 3 MORE plain 30-stitch body rounds, then continue with the beard instructions. All later section labels shift by three physical rounds; the stitch counts and shaping sequence are unchanged. Expect about 11 to 12 cm, but measure your sample.
 
 - Why sc2tog here: the classic decrease is simple and grips the stuffing firmly. If you prefer a smoother visible hat, use the invisible-decrease method given in technique 4; both consume two stitches and make one.
 
@@ -3028,12 +3104,13 @@ No finished gnome has been shown by Novality Store to comply with ASTM F963, EN 
 
 Tag your makes with **#NovalityStore** and **#NovalityGnome** - We love seeing gnome gatherings. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 12 of 17 — NS-12 · Bobble Christmas Tree
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns12/NS12_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns12/NS12_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Bobble Christmas Tree
 
@@ -3041,7 +3118,7 @@ Tag your makes with **#NovalityStore** and **#NovalityGnome** - We love seeing g
 
 A soft standing fir built in one piece: plain rounds, then tier after tier of bobbles that thin out toward the tip. Contrast-colour bobbles turn it into baubles-on-a-tree in a single round.
 
-**FINISHED SIZE**  About 12 cm (4.7 in) tall and 7 cm (2.8 in) wide in worsted / aran on a 4 mm hook.  About 15.5 cm tall in chunky yarn on a 5 mm hook.  One piece; a felt or cardboard base disc is optional.
+**FINISHED SIZE**  About 7 cm (2.8 in) tall and 7 cm (2.8 in) wide in worsted / aran on a 4 mm hook. The flat base rounds R1 to R9 add width, not height, so standing height counts the tapering cone rounds only (paper estimate - measure your sample).  About 9.5 cm tall in chunky yarn on a 5 mm hook.  One piece; a felt or cardboard base disc is optional.
 
 ---
 
@@ -3053,7 +3130,7 @@ No finished tree has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ### Materials
 
-- Main yarn: worsted / aran (#4) in green, 70 g.
+- Main yarn: worsted / aran (#4) in green, about 15 g (paper estimate at roughly 1.6 g per 100 stitches, bobbles included).
 
 - Contrast (optional): small amounts of red, gold, cream for contrast bobbles.
 
@@ -3173,7 +3250,7 @@ Stuffing: only the bottom half needs real fill - a lightly stuffed cone that fle
 
 - Hanging: join any colour at the tip, ch 18, sl st into the same place.
 
-- Set of three: DK + 3 mm hook, worsted + 4 mm hook, chunky + 5 mm hook - counts are identical, sizes stair-step from about 9 cm to 16 cm.
+- Set of three: DK + 3 mm hook, worsted + 4 mm hook, chunky + 5 mm hook - counts are identical, sizes stair-step from about 5.5 cm to 9.5 cm.
 
 ### Troubleshooting
 
@@ -3221,12 +3298,13 @@ No finished tree has been shown by Novality Store to comply with ASTM F963, EN 7
 
 Tag your makes with **#NovalityStore** and **#NovalityTree** - Show us your forest. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 13 of 17 — NS-13 · Christmas Ornament Bundle
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 7 pp · print edition 7 pp · reports: `docs/ns13/NS13_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · report: `docs/ns13/NS13_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Christmas Ornament Bundle
 
@@ -3378,11 +3456,11 @@ Snow white  ·  Classic red & white  ·  Gold  ·  Evergreen trio  ·  Frost blu
 
 |---|---|---|---|
 
-| Bauble | ~25 min | 9 g | Tree ornament, garland |
+| Bauble | ~25 min | 3 g | Tree ornament, garland |
 
-| Star | ~20 min | 7 g | Gift topper, garland |
+| Star | ~20 min | 2 g | Gift topper, garland |
 
-| Snowflake | ~15 min | 5 g | Window, gift tag, garland |
+| Snowflake | ~15 min | 2 g | Window, gift tag, garland |
 
 All three string neatly on one length of yarn - a matching garland is just all three patterns on repeat.
 
@@ -3416,12 +3494,13 @@ These are intended as decorations, not toys. Keep ornaments and hanging loops ou
 
 Tag your makes with **#NovalityStore** and **#NovalityOrnaments** - Tag us in your trees and tables. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 14 of 17 — NS-14 · Bobble Snowflake Tree Skirt
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 10 pp · print edition 10 pp · reports: `docs/ns14/NS14_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 2 errors / 3 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · report: `docs/ns14/NS14_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## NOVALITY CROCHET STUDIO — PRINTER-SAVER EDITION
 
@@ -3434,7 +3513,7 @@ US + UK TERMS · EASY–INTERMEDIATE · TIME UNVERIFIED · RECORD SAMPLE · TARG
 
 Designed for economical home printing and progress tracking. Large artwork is omitted; the written directions match the full-colour edition.
 
-© 2026 Novality Crochet Studio · All rights reserved · PERSONAL LICENSE · SEE TERMS
+© 2026 Novality Store · All rights reserved · PERSONAL LICENSE · SEE TERMS
 NS 14 · PRINTER-SAVER CROCHET PATTERN
 
 ---
@@ -3465,11 +3544,11 @@ Every construction-table row begins with a printable `[ ]` box. Tick it only aft
 
 #### Read before making
 
-Read every component and finishing note before beginning. Mark completed rows, confirm the count at each row end, and stop immediately if your count differs. Complete the centre-ring join, the optional surface spokes and the border in that order, and weave every tail while the centre opening is still open and accessible.
+Read every component and finishing note before beginning. Mark completed rows, confirm the count at each row end, and stop immediately if your count differs. Work the skirt outward from the centre ring, add the optional surface spokes, then work the border, and weave every tail on the wrong side once all components are complete (see Finishing, step 3).
 
 Safety: this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.
 
-Copyright notice © 2026 Novality Crochet Studio. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.
+Copyright notice © 2026 Novality Store. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.
 
 ---
 
@@ -3481,7 +3560,7 @@ Safety — read this first 4 · Materials 4 · Gauge & size 4 · Abbreviations (
 
 Read the complete component before beginning it. Move the marker at the start of every crochet round unless the master says otherwise. Diagrams and illustrations support orientation only; the numbered written directions control construction.
 
-*Design Code NS 14 · Novality Crochet Studio · US and UK crochet terms*
+*Design Code NS 14 · Novality Store · US and UK crochet terms*
 
 ---
 
@@ -3499,7 +3578,7 @@ This design is home decor, not a toy, and it is not flameproof. Keep it away fro
 
 Keep the skirt clear of walking routes where its edge could cause a trip or slip. It must not support, level or stabilize a tree stand. Fit the closed centre without obstructing the stand, water reservoir, fasteners or manufacturer-required clearances. Inspect the skirt for loose surface stitches, stretched joins and snagged yarn before each season, and supervise children and animals around the complete tree arrangement.
 
-No finished NS 14 skirt has been independently crocheted, fit-tested, wash-tested, assessed for flammability or shown by Novality Crochet Studio to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
+No finished NS 14 skirt has been independently crocheted, fit-tested, wash-tested, assessed for flammability or shown by Novality Store to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
 
 ---
 
@@ -3730,13 +3809,13 @@ Until that complete-sample test passes, do not make a machine-wash or tumble-dry
 
 #### Copyright & ownership
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch counts, editorial layout and design elements are protected material. Design Code NS 14.
+© 2026 Novality Store. All rights reserved. This crochet pattern - including all instructions, stitch counts, editorial layout, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 14.
 
 This pattern is licensed to the purchaser for personal use and for small-batch sale of finished physical tree skirts under the terms below. The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or any substantial part of it in digital or printed form.
 
 #### You may
 
-Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Crochet Studio · Design Code NS 14" and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
+Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Store · Design Code NS 14" and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
 
 #### You may not
 
@@ -3746,7 +3825,7 @@ Resell or distribute this PDF or Markdown source; convert it into another patter
 
 The finished-item maker or seller remains responsible for the actual materials, intended use, classification, assessment, testing, warnings, documentation, labelling and traceability required wherever a finished item is supplied.
 
-Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
+Tag finished projects with #NovalityStore and #NovalityTreeSkirt.
 
 ---
 
@@ -3759,36 +3838,17 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 - [ ] Border closed: 28 / 46 / 64 complete scallops
 - [ ] Blocked dimensions recorded; stand and cord clearances checked
 
-**PROJECT NOTES** — Novality Crochet Studio · NS 14 · printer-saver companion. Keep this page with your project notes.
+**PROJECT NOTES** — Novality Store · NS 14 · printer-saver companion. Keep this page with your project notes.
 
 ---
-
-### Revision notes — delete before publishing
-
-Corrections applied to the source text, in order of severity. Full evidence: `NS14_validation_report.md`.
-
-1. **Read before making:** removed the amigurumi template sentence "Complete internal eyes, embroidery, knots and joins…". A tree skirt has no eyes and no embroidery. Replaced with the design's real closing work (ring join, spokes, border, tails).
-2. **Materials:** the unmeasured 700–1,200 g allowance is roughly 3–5× what the written stitch counts imply. Replaced with labelled per-size estimates (mini 70–95 g, standard 165–225 g, large 305–410 g) and the missing colour split (CC ≈ 44–52 %), still flagged as unweighed.
-3. **Gauge & size:** the two stated gauges could not both be exact on a flat twelve-increase circle. The radial figure is now derived (0.64 in / 1.6 cm per round ≈ 6¼ rounds = 4 in), with the resulting mild cupping tendency named. Troubleshooting "body cups" now points at it.
-4. **Care & storage:** "make no machine-wash or tumble-dry claim" → "do not make a machine-wash or tumble-dry claim" (same meaning; the old wording is read by count checkers as "make 0 of that piece").
-5. **R11-to-R12 count check:** the note's arithmetic is correct and is unchanged. Only its opening words changed — a line beginning `R11-to-R12` is read by round-header parsers as a second Round 11 appearing after Round 16, which reports "Round 11 repeats or goes backwards". It now begins `Count check for the R11-to-R12 step:` and sits directly under the R12 row. **R12 stays `dc in next 10 sts`; do not change it to 9.** With 132 stitches available, 10 plain dc + 1 increase anchor consumes 11 per repeat (132 total, none left over) and produces 12 per repeat = 144. Nine plain dc would consume 120, leave 12 stitches unworked and give 132.
-6. **Design description:** "a contrast bobble round every third round" → "every third round from R5", matching technique 4 and the ladder (R3, R6, R9 … are plain).
-7. **Border note:** added the fact that the join stitch is consumed by the final skip, so the closing slip stitch lands one stitch past the join. This is required for exact closure and must not be "fixed".
-8. **Technique 5:** stated that R2 contains exactly 12 increases, so "the second dc of each R2 increase" yields exactly 12 markers.
-9. **Centre ring row:** the `Rnd` cell was empty; labelled `Ring`.
-10. **Cover:** "BLACK + WHITE · WHITE BACKGROUNDS" prefixed with `DOCUMENT INK:` so it cannot be misread as the yarn colourway two lines below it.
-11. **Helpful tips:** the heading had no content of its own; the sizes table, count rule and time note are now placed under it, and the bobble-round list is spelled out.
-12. **Word joins:** repaired throughout the instruction cells (`against thestand`, `slst`, `2 dcin next st`, `x12`, `stopgrowth`, `thenborder`, `growthround`, `6edge sts`, `1scallop`, `writtenlarger-opening option;recheck`, `relaxedsurface`, `pinnedguide`, `FO atthe`, `noreverse-side`, `immediatelyoutside`, `routeseparately`, `markedcolumn`). Confirm these against the source PDF — if they are printed there, they are typos inside the instruction tables.
-13. **Safety heading:** restored as a visible section heading; the Contents advertises it as the first section but the supplied text carried the paragraphs without it.
-
-**Not changed — verified correct:** all 32 growth rounds (consumption, production, repeat count and stated totals), the bobble cadence and all three size stops, the border closure at 28 / 46 / 64 scallops, the 5-dc bobble loop count, the increase-column marker route, the ch-2-not-counted join method, the US/UK term pairs, the hook conversion (5 mm = H/8, 5.5 mm = I/9), and the gauge→diameter arithmetic for all three sizes.
-
 
 ---
 
 # Part 15 of 17 — NS-15 · Interchangeable Christmas Wreath
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 11 pp · print edition 11 pp · reports: `docs/ns15/NS15_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 11 pp · print edition 11 pp · report: `docs/ns15/NS15_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Interchangeable Christmas Wreath
 
@@ -3808,7 +3868,8 @@ No finished wreath or hanging system has been independently load-tested or asses
 
 ### Materials
 
-- Wreath base: 175 g green worsted/aran (#4), 4 mm hook, fibre fill.
+- Wreath base yarn: green worsted/aran (#4), on the hook given in the size table. Paper estimates at roughly 1.6 g per 100 stitches - weigh your first tube. Mini tube (22 cm) about 12 g including attachments. Standard tube (92 cm) about 40 g. Large tube (125 cm) about 55 g.
+- Stuffing (fibre fill, paper estimates): mini about 2 g, standard about 8 g, large about 12 g.
 
 - Decorations: small amounts of red, white, yellow and green yarn; optional metallic thread held with the snowflake yarn; 3.5-4 mm hook.
 
@@ -4006,16 +4067,17 @@ Intended as home decor, not a toy. Keep away from open flames and keep loose or 
 
 Tag your makes with **#NovalityStore** and **#NovalityWreath** - swap the decoration, swap the mood. Thank you for supporting an independent pattern designer.
 
-
 ---
 
 # Part 16 of 17 — NS-16 · Mini Stocking Advent Garland
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 9 pp · print edition 9 pp · reports: `docs/ns16/NS16_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · report: `docs/ns16/NS16_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Crochet Mini Stocking Advent Garland
 
-> Design Code NS 16 · Novality Crochet Studio · US crochet terms
+> Design Code NS 16 · Novality Store · US crochet terms
 
 > Twenty-four small cuff-down stockings for an Advent garland. Each stocking has an exact turned heel, a counted 23-to-20 foot transition and a closed four-stitch toe.
 
@@ -4025,7 +4087,7 @@ This pattern makes a decoration and small treat holder; it does not establish th
 
 For the plain version, embroider or securely sew decorations and avoid glue-only attachments. A stitched decoration can still detach, so inspect every attachment and hanging point before each season and after filling. Use a support and wall fixings rated for the complete filled garland, not just the empty crochet. Food should remain in its own wrapper and must be selected with the recipient's allergies and age in mind.
 
-No finished NS 16 stocking or garland has been independently load-tested, wash-tested or shown by Novality Crochet Studio to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
+No finished NS 16 stocking or garland has been independently load-tested, wash-tested or shown by Novality Store to comply with a product-safety regime. Before sale or supply, the finished-item maker or seller must determine the applicable classification, assessment, testing, documentation, labelling and traceability duties for every destination market.
 
 ### Quick facts
 
@@ -4182,7 +4244,7 @@ The corrected Row-6 turn is essential: without it there are no stitches ahead of
 
 After Row 10, do not turn. The hook is at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
 
-1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
+1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. That is about one pickup for every two row ends; if the edge puckers, spread the same five pickups over a longer span of the edge and note the change on your sample. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
 
 2. Work 1 sc in each of the 10 waiting instep stitches.
 
@@ -4294,13 +4356,13 @@ Store clean, empty and completely dry. Do not fold heavy objects into the heel o
 
 #### Copyright & ownership
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch counts, editorial layout and design elements are protected material. Design Code NS 16.
+© 2026 Novality Store. All rights reserved. This crochet pattern - including all instructions, stitch counts, editorial layout, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 16.
 
 This pattern is licensed to the purchaser for personal use and for small-batch sale of finished physical stockings or garlands under the terms below. The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or any substantial part of it in digital or printed form.
 
 #### You may
 
-Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 16” and does not claim unverified safety, testing, size, capacity or care results.
+Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Store · Design Code NS 16” and does not claim unverified safety, testing, size, capacity or care results.
 
 #### You may not
 
@@ -4310,22 +4372,23 @@ Resell or distribute this PDF or Markdown source; convert it into another patter
 
 The finished-item maker or seller remains responsible for the actual materials, classification, assessment, testing, warnings, documentation, labelling and traceability required in every market where a finished item is supplied.
 
-Tag finished projects with **#NovalityCrochetStudio** and **#NovalityMiniStocking**.
+Tag finished projects with **#NovalityStore** and **#NovalityMiniStocking**.
 
 ### Happy crocheting!
 
 Check every box, preserve the 5 + 10 + 5 + 3 pickup and enjoy building the colour sequence one stocking at a time.
 
-
 ---
 
 # Part 17 of 17 — NS-17 · Year of the Fire Goat 2027 Plushie Set
 
-*Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 14 pp · print edition 14 pp · reports: `docs/ns17/NS17_validation_report.md`*
+*Paper-verified master — no sample crocheted · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 14 pp · print edition 14 pp · report: `docs/ns17/NS17_validation_report.md`*
+
+*Review round 2 (7 October 2026): corrections applied — see this pattern's report.*
 
 ## Year of the Fire Goat 2027 Plushie Set
 
-> Design Code NS 17 · Novality Crochet Studio · US crochet terms
+> Design Code NS 17 · Novality Store · US crochet terms
 
 > A seated Fire Goat and companion lamb with matched 12-to-12 neck seams, layered ears, embroidered faces and securely sewn festive accessories.
 
@@ -4335,7 +4398,7 @@ These instructions do not establish that either finished plush is suitable for a
 
 Keep every finished item away from naked flames and heat despite the decorative “fire” theme. Do not use a finished plush as a cot item, baby mobile, keychain or hanging ornament without a qualified assessment for that exact use. Before sale or supply, the finished-item maker or seller must determine the applicable classification, mechanical, flammability, chemical, hygiene, documentation, warning, labelling and traceability duties in every destination market.
 
-No NS 17 sample has been independently crocheted, load-tested, wash-tested or shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another product-safety regime. All dimensions, yarn quantities and active times remain targets until confirmed on complete samples.
+No NS 17 sample has been independently crocheted, load-tested, wash-tested or shown by Novality Store to comply with ASTM F963, EN 71 or another product-safety regime. All dimensions, yarn quantities and active times remain targets until confirmed on complete samples.
 
 ### Quick facts
 
@@ -4361,7 +4424,7 @@ No NS 17 sample has been independently crocheted, load-tested, wash-tested or sh
 
 Chinese Lunar New Year begins on 6 February 2027; in the Chinese zodiac, 2027 is commonly described in English as the Year of the Fire Goat, Sheep or Ram. The source term 羊 (*yáng*) is broader than one English species label. This pattern uses “Goat” for the horned design and “lamb” for its companion; the names are design labels, not claims of cultural authenticity.
 
-Calendar reference (accessed 18 September 2026): Smithsonian Institution, “2027: Year of the Goat” (si.edu/spotlight/lunar-year-goat).
+Calendar reference: the 6 February 2027 lunar-new-year date and the Fire Goat (Ding Wei) naming follow the traditional sixty-year sexagenary cycle. No external source is cited in this edition.
 
 ### Materials
 
@@ -4385,7 +4448,7 @@ Calendar reference (accessed 18 September 2026): Smithsonian Institution, “202
 
 - Worsted (#4) light tan / beige, about 27 m / 30 yd for the muzzle and hooves.
 
-- Worsted (#4) scarlet red, about 9 m / 10 yd for the fixed collar.
+- Worsted (#4) scarlet red, about 6 m / 7 yd for the fixed collar.
 
 - Small amounts of pale-pink worsted yarn for the original inner ears, plus black embroidery thread and optional pink embroidery thread for blush.
 
@@ -4889,15 +4952,15 @@ Sew all five edge stitches to the centre back around Lamb Body Rnds 20–21, ang
 
 ##### 14. Fixed red lamb collar
 
-Do not make the collar until the lamb's 12-to-12 neck seam is complete. With scarlet, ch 22. Before Row 1, check that the relaxed chain reaches around the assembled neck with one-stitch overlap and without tightening the neck; if your gauge differs, remake and record the adjusted foundation.
+Do not make the collar until the lamb's 12-to-12 neck seam is complete. With scarlet, ch 14 (about 6.5 cm relaxed at DK gauge, against an assembled neck of about 6 cm around). Before Row 1, check that the relaxed chain reaches around the assembled neck with one-stitch overlap and without tightening the neck; if your gauge differs, remake and record the adjusted foundation.
 
 | Row | Instruction | Sts | Note |
 
 |---|---|---|---|
 
-| Row 1 | sc in 2nd ch and next 20 ch, ch 1, turn | (21) | - |
+| Row 1 | sc in 2nd ch and next 12 ch, ch 1, turn | (13) | - |
 
-| Row 2 | sc in each st across | (21) | FO with sewing tail |
+| Row 2 | sc in each st across | (13) | FO with sewing tail |
 
 If the fit check required an adjusted foundation of **N** chains, work one sc in the second chain and every remaining chain for **N − 1** stitches in Row 1, then work **N − 1** sc in Row 2. Record that count on both rows; do not increase or decrease within the strip.
 
@@ -4959,13 +5022,13 @@ Until that complete-sample test passes, recommend gentle surface cleaning with a
 
 #### Copyright & ownership
 
-© 2026 Novality Crochet Studio. All rights reserved. This crochet pattern, its instructions, stitch counts, editorial layout and design elements are protected material. Design Code NS 17.
+© 2026 Novality Store. All rights reserved. This crochet pattern - including all instructions, stitch counts, editorial layout, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 17.
 
 This pattern is licensed to the purchaser for personal use and for small-batch sale of finished physical items under the terms below. The purchaser may not copy, share, translate, upload, redistribute, resell or publish the pattern or any substantial part of it in digital or printed form.
 
 #### You may
 
-Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 17” and does not claim unverified safety, testing, measurements, cultural authenticity or care results.
+Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Store · Design Code NS 17” and does not claim unverified safety, testing, measurements, cultural authenticity or care results.
 
 #### You may not
 
@@ -4975,7 +5038,7 @@ Resell or distribute this PDF or Markdown source; convert it into another patter
 
 The finished-item maker or seller remains responsible for the actual materials, classification, assessment, testing, warnings, documentation, labelling and traceability required wherever a finished item is supplied.
 
-Tag finished projects with **#NovalityCrochetStudio** and **#NovalityFireGoat**.
+Tag finished projects with **#NovalityStore** and **#NovalityFireGoat**.
 
 ### Happy crocheting!
 
@@ -4983,4 +5046,4 @@ Keep both necks open at 12 stitches, flatten every corrected limb opening into f
 
 ---
 
-*End of the Grand Collection — Novality Store · seventeen patterns, one verified volume.*
+*End of the Grand Collection — Novality Store · seventeen patterns, one paper-verified volume.*
