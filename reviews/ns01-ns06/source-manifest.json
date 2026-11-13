@@ -1,0 +1,26 @@
+[
+  {
+    "source": "NS01_corrected.md",
+    "sha256": "fc06fe76d4a5c0f6c0b059472cf92fae5b8380913476bb0342f4444b32102cd6"
+  },
+  {
+    "source": "NS02_corrected.md",
+    "sha256": "e8731935ad31503051ac69ccd0fc8fb54d7400ec17d96e4665d09403691843a3"
+  },
+  {
+    "source": "NS03_corrected.md",
+    "sha256": "7f283ac002764d9e65c57584b60453679bc76570fa8ee2708e9d156926949de4"
+  },
+  {
+    "source": "NS04_corrected.md",
+    "sha256": "e4d83dac76eed8291396315810e397ccf363d7bc437b67d1f61a2fd689da256f"
+  },
+  {
+    "source": "NS05_corrected.md",
+    "sha256": "ed60a3a5cd4ec2d99666266ecf3c085bca41d0a91798d53e574cee2abad5cbfa"
+  },
+  {
+    "source": "NS06_corrected.md",
+    "sha256": "5663ebdd1b52fac3269d917f04a0cd00cb42bf693d695d1b6865251cbbe7a88e"
+  }
+]

@@ -1,0 +1,1811 @@
+[
+  {
+    "file": "NS07_reviewed.md",
+    "line": 59,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 60,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 61,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 62,
+    "round": "R4",
+    "instruction": "BLO sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 63,
+    "round": "R5",
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 64,
+    "round": "R6",
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 72,
+    "round": "Petal",
+    "instruction": "after closing the centre, join yellow with a sl st in any EXPOSED front loop of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next front loop, [sl st in next front loop, (sc, hdc, sc) in next front loop] x 8, sl st to the first sl st, FO",
+    "consumed": 18,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 86,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 87,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 88,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 89,
+    "round": 4,
+    "instruction": "sc in each st around (3 rnd)",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 89,
+    "round": 5,
+    "instruction": "sc in each st around (3 rnd)",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 89,
+    "round": 6,
+    "instruction": "sc in each st around (3 rnd)",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 90,
+    "round": "R7",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 91,
+    "round": 8,
+    "instruction": "sc in each st around (2 rnd)",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 91,
+    "round": 9,
+    "instruction": "sc in each st around (2 rnd)",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 92,
+    "round": "R10",
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 93,
+    "round": "R11",
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 94,
+    "round": "R12",
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 102,
+    "round": "R1",
+    "instruction": "4 sc in MR",
+    "consumed": 0,
+    "produced": 4,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 103,
+    "round": "R2",
+    "instruction": "[sc, inc] x 2",
+    "consumed": 4,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 104,
+    "round": 3,
+    "instruction": "sc in each st around (2 rnd)",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 104,
+    "round": 4,
+    "instruction": "sc in each st around (2 rnd)",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 113,
+    "round": "R1",
+    "instruction": "sc in 2nd ch, 3 sc, 3 sc in last ch, then down the other side 3 sc, 2 sc in last ch",
+    "consumed": 5,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 114,
+    "round": "R2",
+    "instruction": "inc, 3 sc, inc x 3, 3 sc, inc x 2",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 122,
+    "round": "R1",
+    "instruction": "ch 2, 3 sc in 2nd ch from hook",
+    "consumed": 1,
+    "produced": 3,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 123,
+    "round": "R2",
+    "instruction": "inc x 3",
+    "consumed": 3,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 124,
+    "round": "R3",
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 137,
+    "round": "R1",
+    "instruction": "sc in 2nd ch, 4 sc, 3 sc in last ch; other side: 4 sc, 2 sc in last ch",
+    "consumed": 6,
+    "produced": 14,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 138,
+    "round": "R2",
+    "instruction": "inc, 4 sc, inc x 3, 4 sc, inc x 2",
+    "consumed": 14,
+    "produced": 20,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 139,
+    "round": 3,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 20,
+    "produced": 20,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 139,
+    "round": 4,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 20,
+    "produced": 20,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 139,
+    "round": 5,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 20,
+    "produced": 20,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 139,
+    "round": 6,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 20,
+    "produced": 20,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 140,
+    "round": "R7",
+    "instruction": "[3 sc, dec] x 4",
+    "consumed": 20,
+    "produced": 16,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 141,
+    "round": "R8",
+    "instruction": "[2 sc, dec] x 4",
+    "consumed": 16,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 142,
+    "round": "R9",
+    "instruction": "[sc, dec] x 4",
+    "consumed": 12,
+    "produced": 8,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "line": 143,
+    "round": "R10",
+    "instruction": "dec x 4",
+    "consumed": 8,
+    "produced": 4,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 73,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 74,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 75,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 76,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 77,
+    "round": "R5",
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 78,
+    "round": "R6",
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 79,
+    "round": "R7",
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 80,
+    "round": "R8",
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 81,
+    "round": "R9",
+    "instruction": "[4 sc, dec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 82,
+    "round": "R10",
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 83,
+    "round": "R11",
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 91,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 92,
+    "round": "R2",
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 93,
+    "round": "R3",
+    "instruction": "[2 sc, inc] x 3",
+    "consumed": 9,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 94,
+    "round": "R4",
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 95,
+    "round": "R5",
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 105,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 106,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 107,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 108,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 109,
+    "round": "R5",
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 110,
+    "round": "R6",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 111,
+    "round": "R7",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 112,
+    "round": "R8",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 113,
+    "round": "R9",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 114,
+    "round": "R10",
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 115,
+    "round": "R11",
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 116,
+    "round": "R12",
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 117,
+    "round": "R13",
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 125,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 126,
+    "round": "R2",
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 127,
+    "round": "R3",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 128,
+    "round": "R4",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 129,
+    "round": "R5",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 130,
+    "round": "R6",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 131,
+    "round": "R7",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 132,
+    "round": "R8",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 142,
+    "round": "R1",
+    "instruction": "4 sc in MR",
+    "consumed": 0,
+    "produced": 4,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 143,
+    "round": "R2",
+    "instruction": "sc in each st around",
+    "consumed": 4,
+    "produced": 4,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 144,
+    "round": "R3",
+    "instruction": "[sc, inc] x 2",
+    "consumed": 4,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 145,
+    "round": "R4",
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 146,
+    "round": "R5",
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 147,
+    "round": "R6",
+    "instruction": "[2 sc, inc] x 2",
+    "consumed": 6,
+    "produced": 8,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 148,
+    "round": "R7",
+    "instruction": "sc in each st around",
+    "consumed": 8,
+    "produced": 8,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 149,
+    "round": "R8",
+    "instruction": "sc in each st around",
+    "consumed": 8,
+    "produced": 8,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 150,
+    "round": "R9",
+    "instruction": "[3 sc, inc] x 2",
+    "consumed": 8,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 151,
+    "round": "R10",
+    "instruction": "sc in each st around",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 152,
+    "round": "R11",
+    "instruction": "sc in each st around",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 153,
+    "round": "R12",
+    "instruction": "sc in each st around",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 161,
+    "round": "R1",
+    "instruction": "4 sc in MR",
+    "consumed": 0,
+    "produced": 4,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 162,
+    "round": "R2",
+    "instruction": "sc in each st around",
+    "consumed": 4,
+    "produced": 4,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 163,
+    "round": "R3",
+    "instruction": "[sc, inc] x 2",
+    "consumed": 4,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 164,
+    "round": "R4",
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 165,
+    "round": "R5",
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 176,
+    "round": "Row 1",
+    "instruction": "from the 2nd ch: sc in 4, hdc in 3, dc in 3",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 177,
+    "round": "Row 2",
+    "instruction": "sc in 3, hdc in 3, dc in 4",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 178,
+    "round": "Row 3",
+    "instruction": "sc in 2, hdc in 4, dc in 4",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "line": 179,
+    "round": "Row 4",
+    "instruction": "sl st in first 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in next 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in last 4",
+    "consumed": 10,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 69,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 70,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 71,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 72,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 73,
+    "round": "R5",
+    "instruction": "BLO sc around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 74,
+    "round": "R6",
+    "instruction": "sc in each st around, then FO",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 82,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 83,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 84,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 85,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "line": 91,
+    "round": "R5",
+    "instruction": "BLO: 3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 2 sc",
+    "consumed": 24,
+    "produced": 35,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 69,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 70,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 71,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 72,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 73,
+    "round": "R5",
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 74,
+    "round": "R6",
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 75,
+    "round": "R7",
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 76,
+    "round": "R8",
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 77,
+    "round": "R9",
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 78,
+    "round": "R10",
+    "instruction": "[4 sc, dec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 79,
+    "round": "R11",
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 80,
+    "round": "R12",
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 81,
+    "round": "R13",
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 82,
+    "round": "R14",
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 91,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 92,
+    "round": "R2",
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 93,
+    "round": "R3",
+    "instruction": "[2 sc, inc] x 3",
+    "consumed": 9,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 94,
+    "round": 4,
+    "instruction": "sc in each st around (5 rnd)",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 94,
+    "round": 5,
+    "instruction": "sc in each st around (5 rnd)",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 94,
+    "round": 6,
+    "instruction": "sc in each st around (5 rnd)",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 94,
+    "round": 7,
+    "instruction": "sc in each st around (5 rnd)",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 94,
+    "round": 8,
+    "instruction": "sc in each st around (5 rnd)",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 95,
+    "round": "R9",
+    "instruction": "[2 sc, dec] x 3",
+    "consumed": 12,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 96,
+    "round": "R10",
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 97,
+    "round": "R11",
+    "instruction": "[sc, dec] x 3",
+    "consumed": 9,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 107,
+    "round": "Rnd 1",
+    "instruction": "ch 3 (counts as first dc), 2 dc in the ring, [ch 2, 3 dc in the ring] x 3, ch 2, sl st to the ch-3 top",
+    "consumed": 0,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 108,
+    "round": "Rnd 2",
+    "instruction": "sl st in next 2 dc and into the next corner space; ch 3 (counts as first dc), 2 dc, ch 2, 3 dc in that same space (first corner); then (3 dc, ch 2, 3 dc) into each remaining corner space; sl st to top of ch-3",
+    "consumed": 12,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 3,
+    "consumed_groups": 4,
+    "corners": 4,
+    "produced": 36,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 4,
+    "consumed_groups": 8,
+    "corners": 4,
+    "produced": 48,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 5,
+    "consumed_groups": 12,
+    "corners": 4,
+    "produced": 60,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 6,
+    "consumed_groups": 16,
+    "corners": 4,
+    "produced": 72,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 7,
+    "consumed_groups": 20,
+    "corners": 4,
+    "produced": 84,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 8,
+    "consumed_groups": 24,
+    "corners": 4,
+    "produced": 96,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 9,
+    "consumed_groups": 28,
+    "corners": 4,
+    "produced": 108,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 10,
+    "consumed_groups": 32,
+    "corners": 4,
+    "produced": 120,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 11,
+    "consumed_groups": 36,
+    "corners": 4,
+    "produced": 132,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 12,
+    "consumed_groups": 40,
+    "corners": 4,
+    "produced": 144,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 13,
+    "consumed_groups": 44,
+    "corners": 4,
+    "produced": 156,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 14,
+    "consumed_groups": 48,
+    "corners": 4,
+    "produced": 168,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 15,
+    "consumed_groups": 52,
+    "corners": 4,
+    "produced": 180,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 16,
+    "consumed_groups": 56,
+    "corners": 4,
+    "produced": 192,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 17,
+    "consumed_groups": 60,
+    "corners": 4,
+    "produced": 204,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 18,
+    "consumed_groups": 64,
+    "corners": 4,
+    "produced": 216,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 19,
+    "consumed_groups": 68,
+    "corners": 4,
+    "produced": 228,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "line": 109,
+    "round": 20,
+    "consumed_groups": 72,
+    "corners": 4,
+    "produced": 240,
+    "method": "explicit granny spaces"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 81,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 82,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 83,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 84,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 85,
+    "round": "R5",
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 86,
+    "round": 6,
+    "instruction": "sc in each st around (3 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 86,
+    "round": 7,
+    "instruction": "sc in each st around (3 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 86,
+    "round": 8,
+    "instruction": "sc in each st around (3 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 92,
+    "round": 9,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 92,
+    "round": 10,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 92,
+    "round": 11,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 92,
+    "round": 12,
+    "instruction": "sc in each st around (4 rnd)",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 98,
+    "round": "R13",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 99,
+    "round": "R14",
+    "instruction": "sc in next 14, BO in next st (nose), sc in remaining 15",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 100,
+    "round": "R15",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 106,
+    "round": "R16",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 107,
+    "round": "R17",
+    "instruction": "[3 sc, sc2tog] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 108,
+    "round": "R18",
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 109,
+    "round": "R19",
+    "instruction": "[2 sc, sc2tog] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 110,
+    "round": "R20",
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 111,
+    "round": "R21",
+    "instruction": "[sc, sc2tog] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 112,
+    "round": "R22",
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "line": 113,
+    "round": "R23",
+    "instruction": "sc2tog x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 77,
+    "round": "R1",
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 78,
+    "round": "R2",
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 79,
+    "round": "R3",
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 80,
+    "round": "R4",
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 81,
+    "round": "R5",
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 82,
+    "round": "R6",
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 83,
+    "round": "R7",
+    "instruction": "[5 sc, inc] x 6",
+    "consumed": 36,
+    "produced": 42,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 84,
+    "round": "R8",
+    "instruction": "[6 sc, inc] x 6",
+    "consumed": 42,
+    "produced": 48,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 85,
+    "round": "R9",
+    "instruction": "BLO: sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 86,
+    "round": "R10",
+    "instruction": "[BO, 7 sc] x 6",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 87,
+    "round": "R11",
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 88,
+    "round": "R12",
+    "instruction": "[BO, 5 sc, sc2tog] x 6",
+    "consumed": 48,
+    "produced": 42,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 89,
+    "round": "R13",
+    "instruction": "sc in each st around",
+    "consumed": 42,
+    "produced": 42,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 90,
+    "round": "R14",
+    "instruction": "[BO, 4 sc, sc2tog] x 6",
+    "consumed": 42,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 91,
+    "round": "R15",
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 92,
+    "round": "R16",
+    "instruction": "[BO, 3 sc, sc2tog] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 93,
+    "round": "R17",
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 94,
+    "round": "R18",
+    "instruction": "[BO, 2 sc, sc2tog] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 95,
+    "round": "R19",
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 96,
+    "round": "R20",
+    "instruction": "[BO, sc, sc2tog] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 97,
+    "round": "R21",
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 98,
+    "round": "R22",
+    "instruction": "[BO, sc2tog] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 99,
+    "round": "R23",
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 100,
+    "round": "R24",
+    "instruction": "sc2tog x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 101,
+    "round": "R25",
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical or exact-text arithmetic"
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "line": 102,
+    "round": "R26",
+    "instruction": "sc2tog x 3",
+    "consumed": 6,
+    "produced": 3,
+    "method": "canonical or exact-text arithmetic"
+  }
+]

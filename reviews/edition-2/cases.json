@@ -1,0 +1,936 @@
+[
+  {
+    "file": "NS13_edition2.md",
+    "instruction": "(sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO",
+    "stated": "-",
+    "method": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional",
+    "arithmetic": [
+      {
+        "label": "tall and slip stitches",
+        "terms": [
+          30
+        ],
+        "expected": 30
+      },
+      {
+        "label": "side chains",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "In each ch-5 space work (sl st, ch 3, 3 tr, ch 3, sl st); sl st to the first sl st, FO",
+    "stated": "-",
+    "method": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional",
+    "arithmetic": [
+      {
+        "label": "tall and slip stitches",
+        "terms": [
+          30
+        ],
+        "expected": 30
+      },
+      {
+        "label": "side chains",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS14_edition2.md",
+    "instruction": "Ch 20, check the relaxed ring against the stand, then sl st to first ch without twisting",
+    "stated": "\u2013",
+    "method": "20-chain foundation ring, or explicitly allowed 24-chain alternative; R1 is into ring not chains",
+    "arithmetic": []
+  },
+  {
+    "file": "NS14_edition2.md",
+    "instruction": "Join CC through the fabric immediately outside the centre ring; work relaxed surface sl sts outward along one pinned guide to its marked increase column; FO at the outer edge",
+    "stated": "\u2013",
+    "method": "Variable number of surface slip stitches; no growth stitches added",
+    "arithmetic": []
+  },
+  {
+    "file": "NS14_edition2.md",
+    "instruction": "Repeat the complete join-to-FO spoke route separately at each remaining marked column",
+    "stated": "\u2013",
+    "method": "12 independently anchored surface spokes",
+    "arithmetic": [
+      {
+        "label": "remaining spokes",
+        "terms": [
+          1,
+          11
+        ],
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "Ch 12, sl st to first ch to form a ring; place marker",
+    "stated": "-",
+    "method": "12-chain closed foundation, no turning chain counted",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "FO with a 40 cm tail; keep openings round, align the 12 final-round sts with the 12 foundation ch, and whip-stitch 12 pairs around",
+    "stated": "-",
+    "method": "12 matched seam pairs; final 3 pairs closed after stuffing",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "Join red with a sl st in any centre sc; (ch 4, 3 tr, ch 4, sl st) in that same centre stitch; [sl st in next centre sc, (ch 4, 3 tr, ch 4, sl st) in that same stitch] x 5; FO",
+    "stated": "-",
+    "method": "Six separately anchored petals; tall stitches and chains checked; positioning and end sl sts are not new centre anchors",
+    "arithmetic": [
+      {
+        "label": "centre anchors",
+        "terms": [
+          1,
+          5
+        ],
+        "expected": 6
+      },
+      {
+        "label": "tall stitches",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      },
+      {
+        "label": "chain links",
+        "terms": [
+          48
+        ],
+        "expected": 48
+      }
+    ]
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "Attach one folded 55 cm green tie under at least 2 sturdy back sts as in technique 4",
+    "stated": "-",
+    "method": "Removable folded tie, anchored under at least two back stitches; no round count",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "Attach one folded 55 cm white/silver tie under at least 2 sturdy back sts as in technique 4",
+    "stated": "-",
+    "method": "Removable folded tie, anchored under at least two back stitches; no round count",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "Ch 8 ring; sc in each ch (8); spiral in 8 sc until the tube measures 20-24 cm; join the 8 end pairs ROUND as for the base; wrap a separate load-rated woven cord or ribbon twice around the whole tube for hanging",
+    "stated": "(8)",
+    "method": "One representative round of eight stitches; length is measured, total rounds unspecified",
+    "arithmetic": [
+      {
+        "label": "seam pairs",
+        "terms": [
+          8
+        ],
+        "expected": 8
+      }
+    ],
+    "produced": 8
+  },
+  {
+    "file": "NS16_edition2.md",
+    "instruction": "ch 1, sc in same st as join and next 9 sts, ch 1, turn",
+    "stated": "(10)",
+    "method": "Partial heel start on 10 of 20 leg stitches, with ten waiting instep stitches",
+    "arithmetic": [
+      {
+        "label": "available leg stitches",
+        "terms": [
+          10,
+          10
+        ],
+        "expected": 20
+      }
+    ],
+    "produced": 10,
+    "previous": 20
+  },
+  {
+    "file": "NS16_edition2.md",
+    "instruction": "6 sc, dec; leave final 2 sts unworked, ch 1, turn",
+    "stated": "(7)",
+    "method": "Partial heel Row 7: eight anchors worked, two left unworked",
+    "arithmetic": [
+      {
+        "label": "used",
+        "terms": [
+          6,
+          2
+        ],
+        "expected": 8
+      },
+      {
+        "label": "available",
+        "terms": [
+          8,
+          2
+        ],
+        "expected": 10
+      },
+      {
+        "label": "output",
+        "terms": [
+          6,
+          1
+        ],
+        "expected": 7
+      }
+    ],
+    "produced": 7,
+    "previous": 10
+  },
+  {
+    "file": "NS16_edition2.md",
+    "instruction": "4 sc, dec; leave final st unworked, ch 1, turn",
+    "stated": "(5)",
+    "method": "Partial heel Row 8: six anchors worked, one left unworked",
+    "arithmetic": [
+      {
+        "label": "used",
+        "terms": [
+          4,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "label": "available",
+        "terms": [
+          6,
+          1
+        ],
+        "expected": 7
+      },
+      {
+        "label": "output",
+        "terms": [
+          4,
+          1
+        ],
+        "expected": 5
+      }
+    ],
+    "produced": 5,
+    "previous": 7
+  },
+  {
+    "file": "NS01_edition2.md",
+    "instruction": "sc in 2nd ch, 3 sc, 3 sc in last ch; opposite side: 3 sc, 2 sc in first working ch",
+    "stated": "12",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          1,
+          3,
+          3,
+          3,
+          2
+        ],
+        "expected": 12
+      }
+    ],
+    "produced": 12
+  },
+  {
+    "file": "NS01_edition2.md",
+    "instruction": "sc, inc, 3 sc, [sc, inc] x 3, 3 sc, [sc, inc] x 2",
+    "stated": "24",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "input",
+        "terms": [
+          1,
+          1,
+          3,
+          6,
+          3,
+          4
+        ],
+        "expected": 18
+      },
+      {
+        "label": "output",
+        "terms": [
+          1,
+          2,
+          3,
+          9,
+          3,
+          6
+        ],
+        "expected": 24
+      }
+    ],
+    "produced": 24,
+    "previous": 18
+  },
+  {
+    "file": "NS01_edition2.md",
+    "instruction": "sc around in Yarn C",
+    "stated": "(18)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      }
+    ],
+    "produced": 18,
+    "previous": 18
+  },
+  {
+    "file": "NS01_edition2.md",
+    "instruction": "BLO sc in Yarn A around",
+    "stated": "(18)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      }
+    ],
+    "produced": 18,
+    "previous": 18
+  },
+  {
+    "file": "NS02_edition2.md",
+    "instruction": "sc in 2nd ch, 4 sc, 3 sc in last ch; opposite side: 4 sc; stop, ch 1, turn",
+    "stated": "12",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          1,
+          4,
+          3,
+          4
+        ],
+        "expected": 12
+      }
+    ],
+    "produced": 12
+  },
+  {
+    "file": "NS02_edition2.md",
+    "instruction": "4 sc, inc in next 3 sts, 4 sc; leave final st unworked; ch 1, turn",
+    "stated": "14",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "available",
+        "terms": [
+          4,
+          3,
+          4,
+          1
+        ],
+        "expected": 12
+      },
+      {
+        "label": "output",
+        "terms": [
+          4,
+          6,
+          4
+        ],
+        "expected": 14
+      }
+    ],
+    "produced": 14,
+    "previous": 12
+  },
+  {
+    "file": "NS02_edition2.md",
+    "instruction": "sl st in each of the 14 stitches across",
+    "stated": "14",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          14
+        ],
+        "expected": 14
+      }
+    ],
+    "produced": 14,
+    "previous": 14
+  },
+  {
+    "file": "NS02_edition2.md",
+    "instruction": "from the 4th ch: dc in 4, hdc in 4, sc in 4; ch 1, turn",
+    "stated": "(12)",
+    "method": "Ch15 skips three height chains, leaving12; generic foundation context had reserved only one",
+    "arithmetic": [
+      {
+        "label": "working chains",
+        "terms": [
+          15,
+          -3
+        ],
+        "expected": 12
+      },
+      {
+        "label": "output",
+        "terms": [
+          4,
+          4,
+          4
+        ],
+        "expected": 12
+      }
+    ],
+    "produced": 12,
+    "previous": 14
+  },
+  {
+    "file": "NS04_edition2.md",
+    "instruction": "join BL1: 3 sc, [sc, inc] x 1, join BL2: 3 sc, [sc, inc] x 5",
+    "stated": "(24)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "input",
+        "terms": [
+          3,
+          2,
+          3,
+          10
+        ],
+        "expected": 18
+      },
+      {
+        "label": "output",
+        "terms": [
+          3,
+          3,
+          3,
+          15
+        ],
+        "expected": 24
+      }
+    ],
+    "produced": 24,
+    "previous": 18
+  },
+  {
+    "file": "NS04_edition2.md",
+    "instruction": "[2 sc, inc] x 4, join FL1: 3 sc, sc, inc, sc, join FL2: 3 sc, sc, inc, sc",
+    "stated": "(30)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "input",
+        "terms": [
+          12,
+          3,
+          3,
+          3,
+          3
+        ],
+        "expected": 24
+      },
+      {
+        "label": "output",
+        "terms": [
+          16,
+          3,
+          4,
+          3,
+          4
+        ],
+        "expected": 30
+      }
+    ],
+    "produced": 30,
+    "previous": 24
+  },
+  {
+    "file": "NS05_edition2.md",
+    "instruction": "flatten into four pairs; sc once through each pair",
+    "stated": "4",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "pairs use",
+        "terms": [
+          8
+        ],
+        "expected": 8
+      },
+      {
+        "label": "made",
+        "terms": [
+          4
+        ],
+        "expected": 4
+      }
+    ],
+    "produced": 4,
+    "previous": 8
+  },
+  {
+    "file": "NS06_edition2.md",
+    "instruction": "sc in 2nd ch, 6 sc, 3 sc in last ch; opposite side: 6 sc, 2 sc in first working ch",
+    "stated": "18",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          1,
+          6,
+          3,
+          6,
+          2
+        ],
+        "expected": 18
+      }
+    ],
+    "produced": 18,
+    "previous": 8
+  },
+  {
+    "file": "NS08_edition2.md",
+    "instruction": "dc in 4, hdc in 3, sc in 3",
+    "stated": "(10)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "input/output",
+        "terms": [
+          4,
+          3,
+          3
+        ],
+        "expected": 10
+      }
+    ],
+    "produced": 10,
+    "previous": 10
+  },
+  {
+    "file": "NS09_edition2.md",
+    "instruction": "FLO: 3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 5 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 1 sc",
+    "stated": "(35)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          3,
+          1,
+          4,
+          1,
+          3,
+          1,
+          5,
+          1,
+          3,
+          1,
+          1
+        ],
+        "expected": 24
+      },
+      {
+        "label": "output",
+        "terms": [
+          3,
+          4,
+          4,
+          3,
+          3,
+          3,
+          5,
+          3,
+          3,
+          3,
+          1
+        ],
+        "expected": 35
+      }
+    ],
+    "produced": 35,
+    "previous": 24
+  },
+  {
+    "file": "NS10_edition2.md",
+    "instruction": "sl st in next 2 dc and into the next corner ch-2 space; ch 3 (counts as first dc), 2 dc, ch 2, 3 dc in that same corner. Work 3 dc in every GAP between adjacent 3-dc groups along each side (these are not chain spaces), and (3 dc, ch 2, 3 dc) in each remaining corner; sl st to top of ch-3. Each round adds one 3-dc group to every side (+12 dc per round)",
+    "stated": "-",
+    "method": "R3\u2013R20: four corners produce24 dc plus 4*(N-2) side gaps each producing3; exact formula checked for every round",
+    "arithmetic": [
+      {
+        "label": "R3",
+        "terms": [
+          24,
+          12
+        ],
+        "expected": 36
+      },
+      {
+        "label": "R4",
+        "terms": [
+          24,
+          24
+        ],
+        "expected": 48
+      },
+      {
+        "label": "R5",
+        "terms": [
+          24,
+          36
+        ],
+        "expected": 60
+      },
+      {
+        "label": "R6",
+        "terms": [
+          24,
+          48
+        ],
+        "expected": 72
+      },
+      {
+        "label": "R7",
+        "terms": [
+          24,
+          60
+        ],
+        "expected": 84
+      },
+      {
+        "label": "R8",
+        "terms": [
+          24,
+          72
+        ],
+        "expected": 96
+      },
+      {
+        "label": "R9",
+        "terms": [
+          24,
+          84
+        ],
+        "expected": 108
+      },
+      {
+        "label": "R10",
+        "terms": [
+          24,
+          96
+        ],
+        "expected": 120
+      },
+      {
+        "label": "R11",
+        "terms": [
+          24,
+          108
+        ],
+        "expected": 132
+      },
+      {
+        "label": "R12",
+        "terms": [
+          24,
+          120
+        ],
+        "expected": 144
+      },
+      {
+        "label": "R13",
+        "terms": [
+          24,
+          132
+        ],
+        "expected": 156
+      },
+      {
+        "label": "R14",
+        "terms": [
+          24,
+          144
+        ],
+        "expected": 168
+      },
+      {
+        "label": "R15",
+        "terms": [
+          24,
+          156
+        ],
+        "expected": 180
+      },
+      {
+        "label": "R16",
+        "terms": [
+          24,
+          168
+        ],
+        "expected": 192
+      },
+      {
+        "label": "R17",
+        "terms": [
+          24,
+          180
+        ],
+        "expected": 204
+      },
+      {
+        "label": "R18",
+        "terms": [
+          24,
+          192
+        ],
+        "expected": 216
+      },
+      {
+        "label": "R19",
+        "terms": [
+          24,
+          204
+        ],
+        "expected": 228
+      },
+      {
+        "label": "R20",
+        "terms": [
+          24,
+          216
+        ],
+        "expected": 240
+      }
+    ],
+    "previous": 24
+  },
+  {
+    "file": "NS13_edition2.md",
+    "instruction": "[ch 5, skip next st, sl st in next st] x 6",
+    "stated": "-",
+    "method": "Six chain spaces, final repeat lands on initial anchor; no duplicate joining slip stitch",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "label": "spaces",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ],
+    "previous": 12
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "[Ch 5, skip next dc, sl st in next dc] x 6",
+    "stated": "-",
+    "method": "Six chain spaces, final repeat lands on initial anchor; no duplicate joining slip stitch",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "label": "spaces",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ],
+    "previous": 12
+  },
+  {
+    "file": "NS14_edition2.md",
+    "instruction": "Join CC in any st; ch 1, sc in SAME st, skip 2 sts, 5 dc in next st, skip 2 sts; repeat [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] to end, sl st to first sc, FO",
+    "stated": "same worked-st total as the final growth round",
+    "method": "Starting sc in same joining anchor. Border checked at all three stop sizes",
+    "arithmetic": [
+      {
+        "label": "anchors perrepeat",
+        "terms": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "label": "made perrepeat",
+        "terms": [
+          1,
+          5
+        ],
+        "expected": 6
+      },
+      {
+        "label": "mini",
+        "terms": [
+          168
+        ],
+        "expected": 168
+      },
+      {
+        "label": "standard",
+        "terms": [
+          276
+        ],
+        "expected": 276
+      },
+      {
+        "label": "large",
+        "terms": [
+          384
+        ],
+        "expected": 384
+      }
+    ]
+  },
+  {
+    "file": "NS15_edition2.md",
+    "instruction": "For the standard/large version, lay the joined loop on a fully supporting display surface; no unsupported vertical hanger is specified",
+    "stated": "-",
+    "method": "Supported flat display only; no crochet count or load certification",
+    "arithmetic": []
+  },
+  {
+    "file": "NS16_edition2.md",
+    "instruction": "2 sc, dec; ch 1, turn",
+    "stated": "(3)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "used",
+        "terms": [
+          2,
+          2
+        ],
+        "expected": 4
+      },
+      {
+        "label": "made",
+        "terms": [
+          2,
+          1
+        ],
+        "expected": 3
+      }
+    ],
+    "produced": 3,
+    "previous": 4
+  },
+  {
+    "file": "NS16_edition2.md",
+    "instruction": "3 heel-centre sc, 5 side sc, 10 instep sc, 5 side sc",
+    "stated": "(23)",
+    "method": "RS pickup uses3 live heel stitches,10 waiting instep and10 side pickups",
+    "arithmetic": [
+      {
+        "label": "pickup",
+        "terms": [
+          3,
+          5,
+          10,
+          5
+        ],
+        "expected": 23
+      }
+    ],
+    "produced": 23,
+    "previous": 3
+  },
+  {
+    "file": "NS16_edition2.md",
+    "instruction": "7 sc, dec, 5 sc, dec, 5 sc, dec",
+    "stated": "(20)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "used",
+        "terms": [
+          7,
+          2,
+          5,
+          2,
+          5,
+          2
+        ],
+        "expected": 23
+      },
+      {
+        "label": "made",
+        "terms": [
+          7,
+          1,
+          5,
+          1,
+          5,
+          1
+        ],
+        "expected": 20
+      }
+    ],
+    "produced": 20,
+    "previous": 23
+  },
+  {
+    "file": "NS17_edition2.md",
+    "instruction": "sc in 2nd ch and next 12 ch, ch 1, turn",
+    "stated": "(13)",
+    "method": "Independent arithmetic for exact written instruction",
+    "arithmetic": [
+      {
+        "label": "foundation",
+        "terms": [
+          14,
+          -1
+        ],
+        "expected": 13
+      }
+    ],
+    "produced": 13
+  }
+]

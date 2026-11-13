@@ -1,0 +1,359 @@
+[
+  {
+    "file": "NS13_reviewed.md",
+    "instruction": "[ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close",
+    "stated": "-",
+    "method": "Six chain spaces; 12 ring anchors, six anchoring slip stitches, closing join excluded",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "label": "chain spaces",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ],
+    "previous": 12
+  },
+  {
+    "file": "NS13_reviewed.md",
+    "instruction": "(sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO",
+    "stated": "-",
+    "method": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional",
+    "arithmetic": [
+      {
+        "label": "tall and slip stitches",
+        "terms": [
+          30
+        ],
+        "expected": 30
+      },
+      {
+        "label": "side chains",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "[Ch 5, skip next dc, sl st in next dc] x 6, sl st to the base of the first ch-5",
+    "stated": "-",
+    "method": "Six chain spaces; 12 ring anchors, six anchoring slip stitches, closing join excluded",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "label": "chain spaces",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ],
+    "previous": 12
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "In each ch-5 space work (sl st, ch 3, 3 tr, ch 3, sl st); sl st to the first sl st, FO",
+    "stated": "-",
+    "method": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional",
+    "arithmetic": [
+      {
+        "label": "tall and slip stitches",
+        "terms": [
+          30
+        ],
+        "expected": 30
+      },
+      {
+        "label": "side chains",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS14_reviewed.md",
+    "instruction": "Ch 20, check the relaxed ring against the stand, then sl st to first ch without twisting",
+    "stated": "\u2013",
+    "method": "20-chain foundation ring, or explicitly allowed 24-chain alternative; R1 is into ring not chains",
+    "arithmetic": []
+  },
+  {
+    "file": "NS14_reviewed.md",
+    "instruction": "Join CC through the fabric immediately outside the centre ring; work relaxed surface sl sts outward along one pinned guide to its marked increase column; FO at the outer edge",
+    "stated": "\u2013",
+    "method": "Variable number of surface slip stitches; no growth stitches added",
+    "arithmetic": []
+  },
+  {
+    "file": "NS14_reviewed.md",
+    "instruction": "Repeat the complete join-to-FO spoke route separately at each remaining marked column",
+    "stated": "\u2013",
+    "method": "12 independently anchored surface spokes",
+    "arithmetic": [
+      {
+        "label": "remaining spokes",
+        "terms": [
+          1,
+          11
+        ],
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "file": "NS14_reviewed.md",
+    "instruction": "Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO",
+    "stated": "same worked-st total as the final growth round",
+    "method": "Border independently checked at all three stop sizes; does not consume a joining extra anchor",
+    "arithmetic": [
+      {
+        "label": "repeat anchors",
+        "terms": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "label": "repeat stitches",
+        "terms": [
+          1,
+          5
+        ],
+        "expected": 6
+      },
+      {
+        "label": "mini anchors",
+        "terms": [
+          168
+        ],
+        "expected": 168
+      },
+      {
+        "label": "standard anchors",
+        "terms": [
+          276
+        ],
+        "expected": 276
+      },
+      {
+        "label": "large anchors",
+        "terms": [
+          384
+        ],
+        "expected": 384
+      }
+    ]
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "Ch 12, sl st to first ch to form a ring; place marker",
+    "stated": "-",
+    "method": "12-chain closed foundation, no turning chain counted",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "FO with a 40 cm tail; keep openings round, align the 12 final-round sts with the 12 foundation ch, and whip-stitch 12 pairs around",
+    "stated": "-",
+    "method": "12 matched seam pairs; final 3 pairs closed after stuffing",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "After joining the ring, wrap a load-rated woven cord or ribbon TWICE around the entire tube at the top; tie and secure it according to the cord/ribbon maker\u2019s instructions, with the knot at the back",
+    "stated": "-",
+    "method": "External hanger; not a crochet round, no load rating inferred",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "Join red with a sl st in any centre sc; (ch 4, 3 tr, ch 4, sl st) in that same centre stitch; [sl st in next centre sc, (ch 4, 3 tr, ch 4, sl st) in that same stitch] x 5; FO",
+    "stated": "-",
+    "method": "Six separately anchored petals; tall stitches and chains checked; positioning and end sl sts are not new centre anchors",
+    "arithmetic": [
+      {
+        "label": "centre anchors",
+        "terms": [
+          1,
+          5
+        ],
+        "expected": 6
+      },
+      {
+        "label": "tall stitches",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      },
+      {
+        "label": "chain links",
+        "terms": [
+          48
+        ],
+        "expected": 48
+      }
+    ]
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "Attach one folded 55 cm green tie under at least 2 sturdy back sts as in technique 4",
+    "stated": "-",
+    "method": "Removable folded tie, anchored under at least two back stitches; no round count",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "Attach one folded 55 cm white/silver tie under at least 2 sturdy back sts as in technique 4",
+    "stated": "-",
+    "method": "Removable folded tie, anchored under at least two back stitches; no round count",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "Attach one folded 55 cm tie under at least 2 sturdy sts on the finished band back as in technique 4",
+    "stated": "-",
+    "method": "Removable folded tie, anchored under at least two back stitches; no round count",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "With red: ch 24, sl st to first ch (loop 1 - untwisted); ch 24 again, sl st to same base point (loop 2)",
+    "stated": "-",
+    "method": "Two closed chain loops",
+    "arithmetic": [
+      {
+        "label": "chains",
+        "terms": [
+          24,
+          24
+        ],
+        "expected": 48
+      }
+    ]
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "instruction": "Ch 8 ring; sc in each ch (8); spiral in 8 sc until the tube measures 20-24 cm; join the 8 end pairs ROUND as for the base; wrap a separate load-rated woven cord or ribbon twice around the whole tube for hanging",
+    "stated": "(8)",
+    "method": "One representative round of eight stitches; length is measured, total rounds unspecified",
+    "arithmetic": [
+      {
+        "label": "seam pairs",
+        "terms": [
+          8
+        ],
+        "expected": 8
+      }
+    ],
+    "produced": 8
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "instruction": "ch 1, sc in same st as join and next 9 sts, ch 1, turn",
+    "stated": "(10)",
+    "method": "Partial heel start on 10 of 20 leg stitches, with ten waiting instep stitches",
+    "arithmetic": [
+      {
+        "label": "available leg stitches",
+        "terms": [
+          10,
+          10
+        ],
+        "expected": 20
+      }
+    ],
+    "produced": 10,
+    "previous": 20
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "instruction": "6 sc, dec; leave final 2 sts unworked, ch 1, turn",
+    "stated": "(7)",
+    "method": "Partial heel Row 7: eight anchors worked, two left unworked",
+    "arithmetic": [
+      {
+        "label": "used",
+        "terms": [
+          6,
+          2
+        ],
+        "expected": 8
+      },
+      {
+        "label": "available",
+        "terms": [
+          8,
+          2
+        ],
+        "expected": 10
+      },
+      {
+        "label": "output",
+        "terms": [
+          6,
+          1
+        ],
+        "expected": 7
+      }
+    ],
+    "produced": 7,
+    "previous": 10
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "instruction": "4 sc, dec; leave final st unworked, ch 1, turn",
+    "stated": "(5)",
+    "method": "Partial heel Row 8: six anchors worked, one left unworked",
+    "arithmetic": [
+      {
+        "label": "used",
+        "terms": [
+          4,
+          2
+        ],
+        "expected": 6
+      },
+      {
+        "label": "available",
+        "terms": [
+          6,
+          1
+        ],
+        "expected": 7
+      },
+      {
+        "label": "output",
+        "terms": [
+          4,
+          1
+        ],
+        "expected": 5
+      }
+    ],
+    "produced": 5,
+    "previous": 7
+  }
+]

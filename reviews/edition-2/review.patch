@@ -1,0 +1,1740 @@
+--- reviews/ns01-ns06/NS01_reviewed.md
++++ reviews/edition-2/NS01_edition2.md
+@@ -4,13 +4,13 @@
+ 
+ A shaggy, sturdy Highland cow with a flattened brow, a wide cream muzzle and a weather-beaten fringe. Worked in pieces so every proportion can be pinned and checked before sewing.
+ 
+-**FINISHED SIZE**  About 15 cm (6 in) sitting in worsted weight.  A 70 mm wide body and a 70 x 67 mm head.  A low, sprawling Highland sit.
++**FINISHED DIMENSIONS PENDING SAMPLE:** this edition changes construction or proportions. Measure the fully assembled sample; earlier edition dimensions are not validated for this revision.
+ 
+ ---
+ 
+ ## Safety — read this first
+ 
+-Hamish uses two 12 mm plastic safety eyes. If an eye, washer or surrounding stitch fails, it can release a small part: reach through the open head and lock each washer firmly from the inside BEFORE stuffing and closing the head (Rnd 16), then check the eye and fabric by hand. The horns, ears, muzzle, legs and tail are sewn on, and the fringe and tail are knotted yarn: sew every seam twice, weave ends in at least 5 cm, and secure every knot.
++Hamish uses two 12 mm plastic safety eyes. If an eye, washer or surrounding stitch fails, it can release a small part: reach through the open head and lock each washer firmly from the inside before stuffing and joining the head, then check the eye and fabric by hand. The horns, ears, muzzle, legs and tail are sewn on, and the fringe and tail are knotted yarn: sew every seam twice, weave ends in at least 5 cm, and secure every knot.
+ 
+ No finished Hamish has been shown by Novality Store to comply with ASTM F963, EN 71 or another toy-safety regime; do not describe one as “baby-safe” or compliant. Embroidered eyes remove the plastic-eye detachment hazard but do not by themselves establish suitability for any age. Before supplying a finished item, its maker or seller must determine all classification, assessment, testing, documentation, labelling and traceability duties for the intended and reasonably foreseeable use in every destination market.
+ 
+@@ -22,7 +22,7 @@
+ 
+ - Yarn C - Dark chocolate: worsted / aran (#4), about 5 g. Hooves and nostrils.
+ 
+-- Yarn D - Rust (optional): about 6 g for the scarf, or 28 cm of 12 mm tartan ribbon.
++- Yarn D - Rust (optional): about 6 g for the scarf, or an initially generous 40 cm ribbon length, subject to fitting.
+ 
+ - Hook: 3.5 mm (US E-4) - smaller than the ball band so stuffing cannot show.
+ 
+@@ -30,15 +30,15 @@
+ 
+ - Stuffing & notions: polyester fibre fill about 30 g (have extra available; fill the base firmly without stretching the stitches); stitch marker, tapestry needle, pins, scissors.
+ 
+-## Review status
+-
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted. All sizes, timings, yarn and filling quantities are estimates, not measured sample results. Round height is not the same as vertical height on curved increases/decreases; circumference divided by pi is only a rough diameter model. Swatch and make a complete sample before promising dimensions, quantities or stability. Follow eye manufacturers’ fitting instructions; not every washer clicks. Never force or modify a washer.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+ Gauge in Yarn A: 11 sc x 12 rounds = 5 cm / 2 in. Not critical, but loose tension lets stuffing show - drop half a millimetre if your fabric is gappy.
+ 
+-Finished size: about 15 cm / 6 in sitting.
++Unverified historical size target (not measured for Edition 2): about 15 cm / 6 in sitting.
+ 
+ ## Abbreviations (US terms)
+ 
+@@ -62,7 +62,7 @@
+ 
+ 2. **Working in a spiral** - Do not join and do not chain 1 between rounds. Move the marker up each time - there is no join to count from.
+ 
+-3. **The invisible decrease** - Insert the hook through the FRONT loops only of the next two stitches, yarn over and pull through both, then yarn over and pull through the remaining two. Every dec is worked this way - no ridge on visible rounds.
++3. **The invisible decrease** - Insert the hook through the FRONT loops only of the next two stitches, yarn over and pull through both, then yarn over and pull through the remaining two. Every dec in spiral pieces is worked this way - no ridge on visible rounds.
+ 
+ 4. **Back loop only (BLO)** - Work into the far loop only, leaving the near loop unused; the unused loops form a raised ridge. Hamish's hoof line is one BLO round.
+ 
+@@ -74,30 +74,34 @@
+ 
+ ## Instructions
+ 
+-### 1. Head - Yarn A
+-
+-Worked from the crown down toward the neck. One straight round only - that is what keeps the brow flat and wide instead of egg-shaped. Decrease to 6 stitches at the end, then FO with a tail, thread through the six remaining front loops, pull closed and secure the tail.
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 6 sc in MR | (6) | - |
+-| R2 | inc in each st around | (12) | - |
+-| R3 | [sc, inc] x 6 | (18) | - |
+-| R4 | [2 sc, inc] x 6 | (24) | - |
+-| R5 | [3 sc, inc] x 6 | (30) | - |
+-| R6 | [4 sc, inc] x 6 | (36) | fringe row 3 |
+-| R7 | [5 sc, inc] x 6 | (42) | fringe row 2 / horns |
+-| R8 | [6 sc, inc] x 6 | (48) | fringe row 1 / ears |
+-| R9 | sc in each st around | (48) | eyes at R9 - R10 |
+-| R10 | [6 sc, dec] x 6 | (42) | - |
+-| R11 | [5 sc, dec] x 6 | (36) | decreases 42 to 36 |
+-| R12 | [4 sc, dec] x 6 | (30) | lock eye washers, then stuff firmly |
+-| R13 | [3 sc, dec] x 6 | (24) | - |
+-| R14 | [2 sc, dec] x 6 | (18) | - |
+-| R15 | [sc, dec] x 6 | (12) | last pinch of stuffing |
+-| R16 | dec x 6 | (6) | close the hole |
+-
+-Eyes & head size: the 12 mm eyes go in between Rnds 9 and 10, 7 stitches apart and a touch low on the face (7 sts is about 32 mm, just under half the head width). LOCK THE WASHERS at about Rnd 12, while you can still reach the inside: fit each washer according to its manufacturer’s instructions. The head stays open until Rnd 16 closes it - after that the washers are unreachable. Finished head about 70 mm wide x 67 mm tall.
++### 1. Head — Yarn A, open-neck prototype
++
++Work from crown to neck. Seven plain rounds provide a longer facial panel; this is a proposed fuller shape, not a measured sphere. Mark the face centre independently of the spiral start.
++
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| R1 | 6 sc in MR | 6 |
++| R2 | inc in each st around | 12 |
++| R3 | [1 sc, inc] x 6 | 18 |
++| R4 | [2 sc, inc] x 6 | 24 |
++| R5 | [3 sc, inc] x 6 | 30 |
++| R6 | [4 sc, inc] x 6 | 36 |
++| R7 | [5 sc, inc] x 6 | 42 |
++| R8 | [6 sc, inc] x 6 | 48 |
++| R9 | sc in each st around | 48 |
++| R10 | sc in each st around | 48 |
++| R11 | sc in each st around | 48 |
++| R12 | sc in each st around | 48 |
++| R13 | sc in each st around | 48 |
++| R14 | sc in each st around | 48 |
++| R15 | sc in each st around | 48 |
++| R16 | [6 sc, dec] x 6 | 42 |
++| R17 | [5 sc, dec] x 6 | 36 |
++| R18 | [4 sc, dec] x 6 | 30 |
++| R19 | [3 sc, dec] x 6 | 24 |
++| R20 | [2 sc, dec] x 6 | 18 |
++
++After R15, place the eye centres between R11 and R12, seven stitch positions centre-to-centre. Fit washers before stuffing, following their manufacturer’s instructions, or embroider eyes and secure ends inside now. Stuff progressively from R16 without stretching the fabric. After R20, FO with a 40 cm sewing tail and LEAVE ALL 18 STITCHES OPEN. Do not cinch the head.
+ 
+ ### 2. Muzzle & nostrils - Yarn B
+ 
+@@ -112,13 +116,7 @@
+ | R7 | sc in each st around | (24) | - |
+ | R8 | [2 sc, dec] x 6 | (18) | rim = 26 mm across |
+ 
+-Finish: FO with a 40 cm tail and stuff lightly. The muzzle FACE is about 35 mm across (the wide cream patch you see); the RIM it sews by is about 26 mm, spanning roughly four rounds of head. Pin the top edge just under the eyes at Rnd 10 and let the lower edge fall at Rnd 13, clear of the Rnd-14 neck seam. Centre it, let the face sit a little wider than the eye spacing, and sew about three quarters of the rim with small whip stitches. Add a whisper more stuffing, then embroider the nostrils and mouth.
+-
+-Knot the nostril and mouth ends inside the muzzle through the remaining opening before finishing the seam.
+-
+-Nostrils (Yarn C): two short vertical satin stitches, 3 stitches apart, on the lower third. Mouth: one tiny horizontal stitch or a shallow V below them. Secure both before the last quarter of the muzzle seam is closed. (The eye washers were already locked before the head was closed at Rnd 16.)
+-
+-The wide cream muzzle, low-set eyes and shaggy fringe give the Highland stare.
++Finish the muzzle with an open 18-stitch rim and a sewing tail. This is a round projecting muzzle, not a rectangular or oval one. Embroider nostrils and mouth before attachment and secure their ends through the open rim. Add light filling. Pin below the eyes, approximately over Head R13–R16, keeping its full seam clear of the eye hardware and open R20 neck. Adjust the footprint to the actual piece rather than forcing it across four rounds. Sew every rim stitch, adjusting fill before the last few stitches, then secure and bury the tail.
+ 
+ ### 3. Body - Yarn A
+ 
+@@ -146,21 +144,19 @@
+ | R18 | [3 sc, dec] x 6 | (24) | - |
+ | R19 | [2 sc, dec] x 6 | (18) | leave neck OPEN |
+ 
+-Finish: FO with a 40 cm tail; do not close. Body is about 19 rounds (79 mm); with the head seated on the neck ring the finished sitting height is about 15 cm / 6 in.
+-
+-### 4. Belly patch - Yarn B (optional)
+-
+-A flat oval worked around a chain, sewn on last.
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| Found. | ch 9 | - | - |
+-| R1 | sc in 2nd ch, sc in next 6, 3 sc in last ch, sc in next 6, 2 sc in last loop | (18) | - |
+-| R2 | inc, 6 sc, inc x 3, 6 sc, inc x 2 | (24) | - |
+-| R3 | sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2 | (30) | - |
+-| R4 | 2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2 | (36) | - |
+-
+-Sl st, FO with a long tail; sew centred on the front with the lower edge about 3 rounds up from the base. Skip it for a plain ginger front - both are correct.
++Finish: FO with a 40 cm tail; do not close. Its vertical height is not 19 times the round gauge. Measure the stuffed body and complete seated cow; the historical 15 cm target is unverified.
++
++### 4. Belly patch — Yarn B, optional smaller oval
++
++Chain 6. Work around both sides of the five working chains; the skipped chain does not count.
++
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| R1 | sc in 2nd ch, 3 sc, 3 sc in last ch; opposite side: 3 sc, 2 sc in first working ch | 12 |
++| R2 | inc, 3 sc, inc x 3, 3 sc, inc x 2 | 18 |
++| R3 | sc, inc, 3 sc, [sc, inc] x 3, 3 sc, [sc, inc] x 2 | 24 |
++
++FO with a sewing tail. Pin vertically between the already pinned legs, below the neck. Sew its full perimeter only if it fits without crossing a leg seam; omit it otherwise. No finished patch dimensions are guaranteed.
+ 
+ ### 5. Legs - start with Yarn C, change to Yarn A (make 4)
+ 
+@@ -179,8 +175,8 @@
+ | R3 | [sc, inc] x 6 | (18) | - |
+ | R4 | sc in each st around | (18) | - |
+ | R5 | sc in each st around | (18) | - |
+-| R6 | BLO sc around in Yarn C | (18) | change to Yarn A after this round |
+-| R7 | sc in each st around | (18) | - |
++| R6 | sc around in Yarn C | (18) | change to Yarn A on final pull-through |
++| R7 | BLO sc in Yarn A around | (18) | - |
+ | R8 | [sc, dec] x 6 | (12) | stuff hoof firmly |
+ | R9 | sc in each st around | (12) | - |
+ | R10 | sc in each st around | (12) | - |
+@@ -191,7 +187,7 @@
+ | R15 | sc in each st around | (9) | - |
+ | R16 | sc in each st around | (9) | leave top open |
+ 
+-A standard leg is about 67 mm. For the low Highland sit, pin the front pair about 55 degrees from vertical and the back pair about 68-70 degrees from vertical (nearly horizontal). The low join and long leg create the splay.
++A standard leg has sixteen rounds; its measured length depends on shaping and filling. For the low Highland sit, pin the front pair about 55 degrees from vertical and the back pair about 68-70 degrees from vertical (nearly horizontal). The low join and long leg create the splay.
+ 
+ #### Shortened front legs - upright option (make 2)
+ 
+@@ -202,31 +198,21 @@
+ | R3 | [sc, inc] x 6 | (18) |
+ | R4 | sc in each st around | (18) |
+ | R5 | sc in each st around | (18) |
+-| R6 | BLO sc in each st around; change to Yarn A after the round | (18) |
+-| R7 | sc in each st around | (18) |
++| R6 | sc in each st around in Yarn C; change to Yarn A on the final pull-through | (18) |
++| R7 | BLO sc in Yarn A around | (18) |
+ | R8 | [sc, dec] x 6 | (12) |
+ | R9 | sc in each st around | (12) |
+ | R10 | sc in each st around; stop here | (12) |
+ 
+-Short-front finish: each leg measures 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening.
+-
+-Short-front placement: pin both front legs before sewing, centred across Body Rnds 8-9, 8 body stitches apart. Start each shortened front leg about 25 degrees forward from vertical (more upright than the standard long legs); mirror the pair and adjust angle and placement until both hooves rest level. This is a pinning starting point, not a tested angle. Sew all 12 top stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
+-
+-### 6. Ears - make 2 of each layer
+-
+-#### INNER ear - Yarn B (make 2) & OUTER ear - Yarn A (make 2)
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 6 sc in MR | (6) | - |
+-| R2 | [sc, inc] x 3 | (9) | - |
+-| R3 | [2 sc, inc] x 3 | (12) | - |
+-| R4 | sc in each st around | (12) | - |
+-| R5 | sc in each st around | (12) | - |
+-| R6 | [2 sc, dec] x 3 | (9) | - |
+-| R7 | sc in each st around | (9) | OUTER ear only |
+-
+-Work the INNER ear through Rnd 6 only and the OUTER ear through Rnd 7; do not stuff either layer. Both openings have 9 stitches, but the one-round-shorter inner cup nests without bunching. If your cream yarn is thicker, use a 3.0 mm hook for the inner layer only. FO the inner ear with a short tail and the outer with a long tail. Push the inner cup inside the outer cup, aligning the magic-ring tips and the two 9-stitch openings, with cream visible at the front. Tack the two tips together with the inner-ear tail so the layers cannot shift. Join the openings stitch-for-stitch with 9 whip stitches (or 9 sc through one opening stitch from each layer) using Yarn A. Flatten the joined opening and pinch it with 2-3 stitches so the ear cups forward.
++Short-front finish: length is unmeasured (the former 42 mm figure was a row-depth estimate) with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening.
++
++Short-front placement: pin both front legs before sewing, centred near Body Rnds 8-9, with the circular seam extending onto surrounding rounds as needed, 8 body stitches apart. Start each shortened front leg about 25 degrees forward from vertical (more upright than the standard long legs); mirror the pair and adjust angle and placement until both hooves rest level. This is a pinning starting point, not a tested angle. Sew all 12 top stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
++
++### 6. Flat layered ears — make two complete ears
++
++For each ear make one ginger outer and one cream inner flat disc. Both: R1 6 sc in MR; R2 inc around (12); R3 [sc, inc] x 6 (18). FO the cream disc; retain ginger yarn for joining. Do not stuff.
++
++Place wrong sides together with cream facing the front. Match the 18 edge pairs and work one ginger sc through each pair (18 joining sc). FO with a sewing tail. Pinch only a small section of the joined bottom edge and secure it, leaving the cream face exposed. Attach this pinched base beside the head around R8–R10, behind and outside the eyes. Mirror the pair and check clearance for horns and fringe before sewing. This flat-disc option replaces the nested tubes entirely.
+ 
+ ### 7. Horns - Yarn B (make 2)
+ 
+@@ -240,49 +226,29 @@
+ | R6 | sc in each st around | (8) | - |
+ | R7 | sc in each st around | (8) | stuff tip only |
+ 
+-FO with a tail; stuff the tip only. Short and slightly curved - tilt each horn out and a little back when you sew.
++FO with a tail; stuff the tip only. The symmetrical shaping makes a tapered horn, not a built-in curve. Tilt it outward/back when pinning. For a gentle bend, use a small hidden yarn shaping tack between two inner-side stitches; do not insert wire.
+ 
+ ### 8. Tail - Yarn A
+ 
+ Cut 6 strands of Yarn A, each 22 cm / 8.5 in. Fold the bundle in half and attach with a lark's head at the centre-back just above the last increase round: pull the folded loop through a stitch, then the tails through the loop. Folding gives 12 hanging ends; divide into 3 groups of 4, braid 4 cm, knot firmly and trim into a small tassel.
+ 
+-### 9. Fringe - Yarn A
+-
+-Attach AFTER the horns and ears so you can part the hair around them. Cut 45 strands, each 14 cm / 5.5 in (43 to use plus 2 spares; swap up to 6 for Yarn C for depth). Attach 43 strands with lark's head knots in a horseshoe from one ear, across the brow, to the other, filling three rows across the front of the head: every stitch along the front of Rnd 8 (24 knots), then every other stitch along the front of Rnd 7 (about 10 knots) and Rnd 6 (about 9 knots) - 24 + 10 + 9 = 43 knots.
+-
+-Tousle, then trim so the fringe grazes the eyes and breaks into uneven points. Highland hair is weather-beaten, not a salon fringe.
+-
+-### 10. Tartan scarf - Yarn D (optional)
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| Found. | ch 61 | - | - |
+-| Row 1 | hdc in 2nd ch from hook and in each ch across | (60) | - |
+-| Row 2 | ch 2, turn, hdc across | (60) | turning ch does not count |
+-
+-FO; add a 3-strand tassel at each end or weave a second colour as a slip-stitch stripe to hint at tartan, then tie loosely under the muzzle. Ribbon shortcut: 28 cm of 12 mm rust tartan ribbon, knotted once.
++### 9. Fringe — Yarn A
++
++Attach after horns and ears. Cut an initial allowance of 35–45 strands, each 14 cm long. Lay out a horseshoe across the front of R8 and sparse rows on R7 and R6. Skip every anchor occupied by a horn or ear seam and keep eye hardware clear. Attach with secure lark’s-head knots, adding strands only where fabric remains accessible. The final count is determined by fit, not a mandatory 43 knots. Trim only after checking the eyes remain visible and all strands secure. Loose fringe remains an attachment hazard requiring assessment.
++
++### 10. Optional display scarf — Yarn D
++
++Measure the assembled neck and the intended loose knot with spare yarn first. A candidate starting length is ch 91: Row 1 hdc in 2nd chain and every remaining chain (90); Row 2 ch 2, turn, hdc across (90), starting chain not counted. FO and weave ends. The hdc gauge differs from sc; remake the foundation to the measured length if necessary. For N starting chains, each row has N − 1 hdc. A ribbon alternative may start at 40 cm, but measure before cutting. Avoid tight knots and long loose ends; omit removable scarves/ribbons where the intended-use assessment requires it.
+ 
+ ## Finishing & assembly
+ 
+-Assembly - work in this order:
+-
+-1. Muzzle & face sewn (section 2) - the eye washers were locked before the head was closed at Rnd 16.
+-
+-2. Horns between Rnds 5 and 7, 6 stitches apart, angled out and slightly back.
+-
+-3. Ears just outside and below each horn, centred on Rnds 8-9, cupped forward.
+-
+-4. Fringe attached and trimmed (section 9), parting around horns and ears.
+-
+-5. Head to body: seat the head’s small Rnds 15-16 closing nub INSIDE the body’s open 18-stitch neck. Match the 18 body Rnd-19 stitches one-for-one to the 18 head stitches of Rnd 14, forming a full circular seam around the nub; do not bunch all 18 neck stitches into the 6-stitch closure. Pack the neck firmly, ladder-stitch around TWICE and tilt the muzzle slightly down.
+-
+-6. Back legs: lower sides across Rnds 3-6, almost on the base, splayed near horizontal.
+-
+-7. Front legs: FRONT across Rnds 8-9, about 8 sts apart, angled forward about 55 degrees.
+-
+-8. Belly patch - only if you made it.
+-
+-9. Tail & scarf: attach the tassel tail, tie the scarf, weave in every end and fluff the fringe.
++Assembly — work in this order:
++
++1. Fit eyes at the after-R15 pause before stuffing; complete the muzzle embroidery before attaching the muzzle below them.
++2. Pin horns, layered ears and fringe; sew horns and ears before adding fringe.
++3. Match the open Head R20 (18) to open Body R19 (18), one pair at a time. Sew all 18 pairs, adding neck filling before the last pairs. Reinforce with a second complete seam circuit. Secure in the seam and bury tails; do not cinch either opening first.
++4. Pin legs with the body resting on its base. The round references locate seam centres, not fixed seam heights. Sew every open rim stitch securely over the natural footprint; mirror each pair. Confirm hoof contact before final knots.
++5. Add the optional patch only if it clears leg/neck seams. Attach the tail, secure all ends, then fit any display scarf.
+ 
+ ## Troubleshooting
+ 
+@@ -298,7 +264,7 @@
+ 
+ - **Horns flop.** Under-stuffed at the tip, or sewn only at the edge - stitch a full round into the head fabric.
+ 
+-- **Head tips forward.** Check that the 18-stitch neck is sewn around all 18 stitches of head Rnd 14, with the Rnds 15-16 nub tucked inside rather than used as the seam. Pack the neck and make the second ladder-stitch pass tight.
++- **Head tips forward.** Check the open 18-to-18 seam, neck filling and head balance; reinforce the complete seam rather than tightening only one side.
+ 
+ ## Colorways
+ 
+@@ -316,7 +282,7 @@
+ 
+ ## Designer notes
+ 
+-- Why the legs join so low: back legs (16 rnd, 67 mm, sewn to Rnds 3-6) and front legs (sewn to Rnds 8-9) splay at the checked angles so all four hooves land level. This low join is the most common failure on sitting Highland cows.
++- Leg angles and seam regions are pinning suggestions, not checked physical measurements. Confirm the stance on your own sample.
+ 
+ - Bottom-heavy by design: stuff the lower body firmly and keep the shape squat. Hamish is meant to settle onto his base and stare.
+ 
+--- reviews/ns01-ns06/NS02_reviewed.md
++++ reviews/edition-2/NS02_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ Three pocket-sized spookies - Boo the ruffled ghost, Pip the sculpted pumpkin and Bramble the picot-winged bat. Small, fast and forgiving, at about 5 cm / 2 in each.
+ 
+-**FINISHED SIZE**  Boo the Ghost: about 48 mm tall, open bell with ruffled hem.  Pip the Pumpkin: about 50 mm tall with stem, needle-sculpted ribs.  Bramble the Bat: about 51 mm tall, wingspan about 11.5 cm, picot wings.  DK cotton on a 2.5 mm hook. Boo and Bramble use 6 mm safety eyes; Pip's face is embroidered.
++**UNVERIFIED SIZE TARGET — measure a sample**  Boo the Ghost: about 48 mm tall, open bell with ruffled hem.  Pip the Pumpkin: about 50 mm tall with stem, needle-sculpted ribs.  Bramble the Bat: about 51 mm tall, wingspan about 11.5 cm, picot wings.  DK cotton on a 2.5 mm hook. Boo and Bramble use 6 mm safety eyes; Pip's face is embroidered.
+ 
+ ---
+ 
+@@ -30,9 +30,9 @@
+ 
+ - Optional nine-mini garland: 1.8 m / 6 ft jute twine, or an extra 4 g of sage yarn for the ~450-chain cord; 8 x 20 mm felt balls (one between each adjacent pair of minis); and wall fixings suitable for the finished weight and mounting surface.
+ 
+-## Review status
+-
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted. All sizes, timings, yarn and filling quantities are estimates, not measured sample results. Round height is not the same as vertical height on curved increases/decreases; circumference divided by pi is only a rough diameter model. Swatch and make a complete sample before promising dimensions, quantities or stability. Follow eye manufacturers’ fitting instructions; not every washer clicks. Never force or modify a washer.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -117,7 +117,7 @@
+ | R3 | [sc, inc] x 6 | (18) | - |
+ | R4 | [2 sc, inc] x 6 | (24) | - |
+ 
+-Base (optional): hold the flat disc under the opening with wrong sides together and match its 24 edge stitches one-for-one to the 24 exposed back loops of Body Rnd 12. Whip-stitch around from the underside, leaving the Rnd-13 hem free to flare. Keep the disc flat and unstuffed; its structure, not added filling, stabilises the bell.
++Base (optional): hold the flat disc under the opening with wrong sides together and match its 24 edge stitches one-for-one to the 24 exposed back loops of Body Rnd 12. Whip-stitch around from the underside, leaving the Rnd-13 hem free to flare. Before closing, choose an empty display bell or add a small amount of light filling if it helps the dome retain shape. Keep the base flat and the hem free; extra filling must not bulge the base. Record the extra filling for this option.
+ 
+ #### Bonus mini witch hat - black or charcoal
+ 
+@@ -158,7 +158,7 @@
+ 
+ Sculpting six ribs (fill firmly first): first thread the closing tail through the front loops of the six Rnd-13 stitches and pull the opening shut, keeping the remaining tail for sculpting. Use the six increase columns of Rnd 6, spaced 6 stitches apart, as guides. Thread the long closing tail and push the needle through the core from the top centre to the bottom centre. Bring the yarn UP THE OUTSIDE of the body along the first guide to the top centre, insert there and pass through the core to the bottom again; pull gently until that outside strand forms a channel. Rotate to the next guide and repeat until six evenly spaced outside strands run from bottom to top. Keep the two strands bordering the marked face panel beside, not across, the embroidery. Pull every rib to the SAME tension; knot securely at the bottom and bury the tail through the stuffed body.
+ 
+-Face - complete this immediately after Rnd 8, before stuffing and closing: mark one 6-stitch front panel between adjacent Rnd-6 increase columns. With black floss, embroider two small triangle eyes about 4 stitches apart and a short zigzag mouth below; knot and bury the floss ends inside. During sculpting, run the two bordering rib strands along the panel edges, never across the face.
++Face - complete this immediately after Rnd 8, before stuffing and closing: mark one 6-stitch front panel between adjacent Rnd-6 increase columns. With black floss, embroider two tiny triangle eyes with centres about 2 stitch positions apart; keep their full embroidered width inside the two marked rib boundaries and a short zigzag mouth below; knot and bury the floss ends inside. During sculpting, run the two bordering rib strands along the panel edges, never across the face.
+ 
+ #### Stem cone - sage (make 1)
+ 
+@@ -172,18 +172,17 @@
+ 
+ FO with a tail, stuff very lightly, sew to the top centre over the round-13 opening.
+ 
+-#### Leaf - sage (make 1, worked flat)
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| Found. | ch 7 | - | - |
+-| R1 | sc in 2nd ch, 4 sc, 3 sc in last ch; continue along the other side: 4 sc, 2 sc in last ch | (14) | around the chain |
+-| R2 | ch 1, turn; 6 sc, inc in each of next 3, 2 sc (last 3 sts of R1 stay unworked) | (14) | - |
+-| R3 | ch 1, turn; sl st in each st across | (14) | - |
+-
+-After turning, the six plain stitches reach the far-end three-stitch group of R1; place the three increases there. This is a partial turned row: 11 anchors used, 14 stitches made, 3 anchors deliberately unworked. Turning chains never count as stitches.
+-
+-FO with a tail. The final sl-st row gives a firm rolled edge - sew to the stem base, angled out to one side.
++#### Leaf — sage, partial turned rows
++
++Chain 7. This is an open-ended leaf, not a closed oval after Row 1. Turning chains do not count.
++
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| Row 1 | sc in 2nd ch, 4 sc, 3 sc in last ch; opposite side: 4 sc; stop, ch 1, turn | 12 |
++| Row 2 | 4 sc, inc in next 3 sts, 4 sc; leave final st unworked; ch 1, turn | 14 |
++| Row 3 | sl st in each of the 14 stitches across | 14 |
++
++Row 2 consumes 11 of the 12 anchors: four stitches on each side of the three-stitch tip. The remaining stitch and foundation end form the base. FO and use the tail to secure the base to the stem. Pin the tip and check the edge lies acceptably before attachment; this revised shape needs a sample.
+ 
+ #### Tendril - sage
+ 
+@@ -222,31 +221,26 @@
+ 
+ Eyes and face: immediately after Rnd 8, place the eye posts between Rnds 7 and 8, just 4 stitches apart and centred - close on purpose, since the head is only 24 stitches around and wide eyes wrap to the sides. Lock both washers, then embroider two small white V-stitch fangs and optional short pink blush stitches. Knot and bury every floss end inside before continuing to Rnd 9.
+ 
+-#### Ears - lavender outer x 2, pink inner x 2
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 4 sc in MR | (4) | both layers |
+-| R2 | [sc, inc] x 2 | (6) | both layers |
+-| R3 | [2 sc, inc] x 2 | (8) | inner ear stops here |
+-| R4 | [3 sc, inc] x 2 | (10) | outer ear only |
+-
+-Flatten and do not stuff. Sew a pink inner onto each lavender outer, then sew the pairs to the top of the head at about Rnd 4-5, angled slightly outward.
++#### Ears — lavender, make two; pink embroidered centres
++
++R1: 4 sc in MR (4). R2: [sc, inc] x 2 (6). R3: [2 sc, inc] x 2 (8). R4: [3 sc, inc] x 2 (10). FO with a sewing tail and do not stuff. Flatten the ten-stitch opening into five pairs. Embroider a small pink triangle on the front layer, secure the embroidery, then sew the five paired base anchors to the head around R4–R5. This replaces the separate pink tubular inserts to reduce bulk.
+ 
+ #### Wings - lavender (make 2, worked flat)
+ 
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+-| Found. | ch 13 | - | - |
+-| Row 1 | from the 2nd ch: sc in 4, hdc in 4, dc in 4; ch 1, turn | (12) | - |
++| Found. | ch 15 | - | - |
++| Row 1 | from the 4th ch: dc in 4, hdc in 4, sc in 4; ch 1, turn | (12) | - |
+ | Row 2 | sc in 3, hdc in 4, dc in 5; ch 1, turn | (12) | - |
+ | Row 3 | sl st in first 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st in next 3, (sc, hdc, picot, hdc, sc) in next st, sl st in next 2, (sc, hdc, picot, hdc, sc) in next st, sl st in last 2 | (23) | counted sts; 3 picot chain bumps are additional - FO with a 10 in tail |
+ 
++The three skipped foundation chains are height only, not a counted dc. Name Row-1 start End A (outer tip) and Row-1 finish End B (inner root); Row 2 runs B to A and Row 3 runs A to B.
++
+ The anchor maths: the slip-stitch groups use 2 + 3 + 2 + 2 = 9 stitches of Row 2; the three fans each use one more anchor, so all 12 stitches of Row 2 are consumed. The fans are deliberately different sizes: the FIRST fan in the written sequence has 6 counted stitches (sc, hdc, dc, dc, hdc, sc) plus a picot and forms the pointed outer wing tip; the other two have 4 counted stitches (sc, hdc, hdc, sc) plus a picot. Row 3 therefore makes 9 slip stitches + 6 + 4 + 4 fan stitches = 23 counted stitches, plus three uncounted ch-3 picots.
+ 
+ Mirror the wings by flipping one over; put the larger first fan toward the outer tip on each side (one wing will show its reverse face).
+ 
+-Assembly: pin the wings to the back and sides between Rnd 9 and Rnd 11, angled out and slightly up, then sew along the straight inner edge (leave the scalloped edge free). Each wing is about 42 mm long; with a 33 mm body that gives a wingspan of roughly 11.5 cm.
++Assembly: pin the wings to the back and sides between Rnd 9 and Rnd 11, angled out and slightly up, then sew the short row-end edge at End B to the body, using R9–R11 as a centre region rather than stretching the seam to fixed limits. Keep the foundation edge above and picot edge below, both free. Each wing is about 42 mm long; with a 33 mm body that gives a wingspan of roughly 11.5 cm.
+ 
+ Bramble's three-lobed picot wings, pink-lined ears and little fangs.
+ 
+@@ -258,7 +252,7 @@
+ 
+ Pip: 1 sculpted body, 1 stem cone, 1 tendril, 1 leaf.
+ 
+-Bramble: 1 body, 2 lavender outer ears, 2 pink inner ears, 2 picot wings.
++Bramble: 1 body, 2 lavender ears with pink embroidered centres, 2 picot wings.
+ 
+ Display - Halloween garland (intended as decor; hang the long cord and felt balls out of children’s reach): cut 1.8 m / 6 ft of jute twine, or chain about 450 in sage (a chained cord is shorter than it looks - 150 chains is only ~60 cm). Make 3 of each mini and arrange all 9 before fastening. Thread one 20 mm felt ball in each of the 8 gaps between adjacent minis, then tie or slip-stitch each mini securely 10-13 cm / 4-5 in apart. The nine minis use about 25 g cream, 30 g orange, 27 g lavender, 12 g sage and 6 g pale pink; allow another 4 g sage if crocheting the cord instead of using jute.
+ 
+@@ -274,7 +268,7 @@
+ 
+ - **Wing scallops look uneven.** They are meant to be different: the FIRST fan in the written Row-3 sequence forms the largest outer tip; the next two are smaller.
+ 
+-- **Ghost leans / will not stand.** The two Rnd 8 increases must sit opposite each other ([11 sc, inc] x 2). Boo takes no stuffing; if he falls, sew on the optional flat base.
++- **Ghost leans / will not stand.** The two Rnd 8 increases must sit opposite each other ([11 sc, inc] x 2). The open bell takes no stuffing. Test the optional base, with or without light filling, if more support is needed.
+ 
+ - **Hat swamps the ghost.** Stop the brim at Rnd 6, 20 stitches - a wider brim flares past Boo's 27 mm head.
+ 
+--- reviews/ns01-ns06/NS03_reviewed.md
++++ reviews/edition-2/NS03_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A soft pink axolotl with six fluffy gills, a round head and a shell-edged paddle tail. Head, neck, body and tail are one continuous spiral - no neck seam to sew.
+ 
+-**FINISHED SIZE**  About 11.5 cm (4.5 in) tall seated.  About 10 cm (4 in) wide, gill tip to gill tip.  4.3 cm (1.7 in) tail. The head is a near-true sphere at 52 mm wide by 51.6 mm tall.
++**UNVERIFIED SIZE TARGET — measure a sample**  About 11.5 cm (4.5 in) tall seated.  About 10 cm (4 in) wide, gill tip to gill tip.  4.3 cm (1.7 in) tail. Head width and height must be measured; no spherical proportion is established.
+ 
+ ---
+ 
+@@ -28,9 +28,9 @@
+ 
+ - Also: polyester filling about 8 g; tapestry needle; black and pink embroidery floss; stitch marker.
+ 
+-## Review status
+-
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted. All sizes, timings, yarn and filling quantities are estimates, not measured sample results. Round height is not the same as vertical height on curved increases/decreases; circumference divided by pi is only a rough diameter model. Swatch and make a complete sample before promising dimensions, quantities or stability. Follow eye manufacturers’ fitting instructions; not every washer clicks. Never force or modify a washer.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -58,7 +58,7 @@
+ 
+ 3. **The invisible decrease** - Insert the hook through the front loops only of the next two stitches, yarn over and pull through both, then yarn over and pull through the remaining two loops. It leaves no ridge, which matters on the head and neck where decreases are visible.
+ 
+-4. **Closing through both layers** - To close a flat opening, fold the piece flat so the front and back layers lie together, then work one sc through each matched pair of stitches. Axel's 6-stitch tail tip folds into 3 pairs and closes with 3 sc.
++4. **Closing through both layers** - To close a flat opening, flatten the tail side-to-side, bringing its left and right walls together in the finished animal’s orientation, then work one sc through each matched pair of stitches. Axel's 6-stitch tail tip folds into 3 pairs and closes with 3 sc.
+ 
+ 5. **The shell (scallop)** - Work all the stitches of the group into one stitch, then slip stitch into the next stitch to anchor it. The group fans into a cup. Working the dc loosely makes each scallop cup outward instead of lying flat.
+ 
+@@ -66,7 +66,7 @@
+ 
+ ### 1. Head, body & tail - one piece, main pink
+ 
+-Worked in a single spiral from the top of the head straight through to the tail tip. Head and body are both 36 stitches around; the neck at Rnd 13 is the only waist. Three straight rounds at the head keep it spherical rather than egg-shaped.
++Worked in a single spiral from the top of the head straight through to the tail tip. Head and body are both 36 stitches around; the narrow R12–R13 transition forms the waist. The head has three plain rounds; this does not establish a sphere.
+ 
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+@@ -94,14 +94,14 @@
+ | R22 | sc in each st around | (36) | - |
+ | R23 | [4 sc, invdec] x 6 | (30) | - |
+ | R24 | [3 sc, invdec] x 6 | (24) | FEET attach at R24 - R25 |
+-| R25 | [2 sc, invdec] x 6 | (18) | stuff body LIGHTLY |
++| R25 | [2 sc, invdec] x 6 | (18) | leave R25–R28 flexible and almost unfilled |
+ | R26 | [sc, invdec] x 6 | (12) | - |
+ | R27 | sc in each st around | (12) | tail begins; mark dorsal fin anchor |
+ | R28 | [2 sc, invdec] x 3 | (9) | - |
+ | R29 | sc in each st around | (9) | - |
+ | R30 | sc in each st around | (9) | - |
+ | R31 | sc in each st around | (9) | - |
+-| R32 | [sc, invdec] x 3 | (6) | light stuffing to here |
++| R32 | [sc, invdec] x 3 | (6) | optional light filling beyond the flexible base |
+ | R33 | sc in each st around | (6) | - |
+ | R34 | sc in each st around | (6) | - |
+ | R35 | sc in each st around | (6) | - |
+@@ -109,7 +109,7 @@
+ 
+ **Mark the fin path while you crochet:** on each of Rnds 27-36, place a scrap-yarn marker through the surface stitch nearest the dorsal (top) centre of the tail. Keep the ten markers in one straight line rather than following the spiral's round start. These marked stitches are existing stitches, not extras; they give the fin ten unambiguous surface anchors.
+ 
+-Finish: fold the last 6 stitches flat so 3 pairs line up (3 front + 3 back), then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.
++Finish: hold Axel in the intended seated pose and flatten the tail side-to-side, pairing the left and right walls into three pairs so the closure runs dorsal-to-ventral, then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.
+ 
+ The tail runs R27-R36 - ten rounds, about 43 mm - giving exactly ten marked dorsal surface anchors. Five loose double-crochet scallops form the shell-edged paddle along that marked line.
+ 
+@@ -160,9 +160,11 @@
+ 
+ If you prefer a rounded lobe, cinch the front loops of the opening first with a spare strand, then whip-stitch the gathered edge to the head. Three fluffy gills fan behind each eye - upper angled up, middle out, lower down.
+ 
+-### 4. Tail fin - smooth dark pink
+-
+-With smooth dark pink yarn, join with a sl st at the tip end-closure corner. Working from the tip toward the body along the TEN marked surface anchors from Rnds 36 back to 27:
++### 4. Decorative ruffled tail fin — smooth dark pink
++
++This is intentionally scalloped and ruffled, not a flat anatomical paddle. Leave the R25–R28 transition almost unfilled, bend it gently backward and pin the feet before sewing. Do not force a tightly packed straight tail into a right angle. Verify sitting balance on a sample.
++
++With smooth dark pink yarn, join with a sl st at the DORSAL end of the tip closure, leaving the marked R36 surface anchor accessible. Working from the tip toward the body along the TEN marked surface anchors from Rnds 36 back to 27:
+ 
+ - *Work 5 dc in the next marked anchor, then sl st in the next marked anchor. Repeat from * 4 more times - 5 scallops in total, using all 10 anchors. Remove each marker as you use it.
+ 
+@@ -192,9 +194,9 @@
+ 
+ ## Troubleshooting
+ 
+-- **Head firm, body soft.** Stuff the head hard at R11 so it holds a sphere and the eyes stay level. Keep the body light so Axel stays squishy and sits down.
+-
+-- **Neck collapsing.** The 18-stitch neck is deliberately narrow. First pack a little more stuffing into the neck through the body opening before closing R25. For a permanently sturdier neck, work R13 as [7 sc, inc] x 2, 2 sc (20), then change R14 to [4 sc, inc] x 4 (24) so it consumes all 20 stitches; R15 onward is unchanged.
++- **Head firm, body soft.** Fill the head evenly at R11 without stretching the fabric and the eyes stay level. Keep the body light so Axel stays squishy and sits down.
++
++- **Neck collapsing.** The 18-stitch neck is deliberately narrow. First pack a little more stuffing into the neck through the body opening before closing R25. For a wider-neck prototype, replace R12 with [4 sc, invdec] x 4 (20), R13 with sc around (20), and R14 with [4 sc, inc] x 4 (24). R15 onward is unchanged. This removes the 18-stitch bottleneck but does not guarantee stiffness.
+ 
+ - **Want a wider gill span?** As written the gills give about 10 cm tip to tip. Work each gill two rounds longer - add 2 plain rounds at 12 stitches before R5 - for a span of about 12 cm.
+ 
+--- reviews/ns01-ns06/NS04_reviewed.md
++++ reviews/edition-2/NS04_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A low, round, bottom-heavy capybara with a blunt sewn-on muzzle, plump stuffed legs and a calm embroidered sleeping face. No safety eyes and no small plastic parts.
+ 
+-**FINISHED SIZE**  About 10.3 cm (4 in) tall standing on all four legs.  About 5 cm (2 in) wide at the widest part of the body.  Squat and bottom-heavy, standing on her feet rather than her belly.
++**FINISHED DIMENSIONS PENDING SAMPLE:** this edition changes construction or proportions. Measure the fully assembled sample; earlier edition dimensions are not validated for this revision.
+ 
+ ---
+ 
+@@ -26,15 +26,15 @@
+ 
+ - Also needed: polyester fiber filling about 6 g; yarn needle; stitch marker; pins. Pins matter: the muzzle and ears are pinned before sewing.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted. All sizes, timings, yarn and filling quantities are estimates, not measured sample results. Round height is not the same as vertical height on curved increases/decreases; circumference divided by pi is only a rough diameter model. Swatch and make a complete sample before promising dimensions, quantities or stability. Follow eye manufacturers’ fitting instructions; not every washer clicks. Never force or modify a washer.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+-Gauge: 36 sc around measures about 52 mm in diameter when stuffed (4.5 mm per stitch, 4.3 mm per round). Check it on the body after Rnd 6 - a stuffed tube, not a flat swatch. If your 36 sts measure wider than 52 mm, crochet more tightly or go down a hook size; a loose gauge will show stuffing.
++Gauge: 36 sc at the target width suggests about 52 mm diameter in a circular model; measure after stuffing (4.5 mm per stitch, 4.3 mm per round). Check it on the body after Rnd 6 - a stuffed tube, not a flat swatch. If your 36 sts measure wider than 52 mm, crochet more tightly or go down a hook size; a loose gauge will show stuffing.
+ 
+-Finished size: about 10.3 cm (4 in) tall, 5 cm (2 in) wide.
++Unverified historical size target (not measured for Edition 2): about 10.3 cm (4 in) tall, 5 cm (2 in) wide.
+ 
+ ## Abbreviations (US terms)
+ 
+@@ -60,27 +60,13 @@
+ 
+ ## Notes
+ 
+-How the height adds up: the body (Rnd 1-20) is 20 rounds at 4.3 mm each, about 86 mm; the short 8/9-round legs lift the body about 17 mm off the table, for a total standing height of about 103 mm = 10.3 cm.
++The expanding underside is not a stack of vertical rows. Do not multiply body round numbers by round gauge to calculate leg attachment elevations or total height. Measure the assembled piece; the historical 10.3 cm target is not established.
+ 
+ ## Instructions
+ 
+-### 1. Legs - make 4
++### 1. Legs — make four identical legs
+ 
+-Stuff the lower half of each leg lightly, leaving the top loose. Back legs stop after Rnd 8; front legs work Rnd 9 too - they join one round higher and need to be one round longer so all four feet reach the table level.
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 6 sc in MR | (6) | all four |
+-| R2 | [sc, inc] x 3 | (9) | all four |
+-| R3 | sc in each st around | (9) | all four |
+-| R4 | sc in each st around | (9) | all four |
+-| R5 | sc in each st around | (9) | all four |
+-| R6 | sc in each st around | (9) | all four |
+-| R7 | sc in each st around | (9) | all four |
+-| R8 | Back legs: [sc, invdec] x 3; front legs: sc in each st around | (6 back / 9 front) | BACK legs finish here |
+-| R9 | [sc, invdec] x 3 | (6) | FRONT legs only |
+-
+-Finish: FO with a long tail; use it later to tack any tiny side gap left after the crocheted join. Before joining, flatten the 6-stitch top into exactly three matched pairs (see technique 3).
++R1: 6 sc in MR (6). R2: [sc, inc] x 3 (9). R3–R7: sc around (9 each). Stuff the hoof lightly, leaving the top soft. R8: [sc, invdec] x 3 (6). FO with a tail. Flatten each opening into three matched pairs. Equal lengths are the starting prototype, not a guarantee that all feet will meet the table; check attachment angle and filling before finishing.
+ 
+ ### 2. Ears (make 2) & muzzle (make 1)
+ 
+@@ -116,8 +102,8 @@
+ | R1 | 6 sc in MR | (6) | - |
+ | R2 | inc in each st around | (12) | - |
+ | R3 | [sc, inc] x 6 | (18) | - |
+-| R4 | join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3 | (24) | join the BACK legs |
+-| R5 | [sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc | (30) | join the FRONT legs |
++| R4 | join BL1: 3 sc, [sc, inc] x 1, join BL2: 3 sc, [sc, inc] x 5 | (24) | join the BACK legs |
++| R5 | [2 sc, inc] x 4, join FL1: 3 sc, sc, inc, sc, join FL2: 3 sc, sc, inc, sc | (30) | join the FRONT legs |
+ | R6 | [4 sc, inc] x 6 | (36) | full width - check gauge |
+ | R7 | sc in each st around | (36) | - |
+ | R8 | sc in each st around | (36) | - |
+@@ -136,17 +122,9 @@
+ 
+ Immediately after Rnd 15, embroider both closed eyes as described under Finishing, knotting and burying the floss ends inside while the 36-stitch opening is clear. Then work Rnds 16-20, stuffing the head as directed. Cinch the remaining 6 stitches closed and weave the tail inside the body. Do not decrease the Rnd 10 waist further - a narrow neck cannot hold the head upright on this shape.
+ 
+-How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds below. Wherever a round says “join”, hold a pinched-flat leg against the body and work the next 3 sc through both flattened leg-edge layers AND the body together (technique 3). Those 3 sc still count as 3 stitches of the round, so the stitch totals do not change - Rnd 4 ends at 24, Rnd 5 at 30. The joined stitches are always plain single crochet - never work an increase through a leg.
++Leg map — each joining sc catches both stitches of one flattened leg pair and one body anchor. R4 consumes 3 + 2 + 3 + 10 = 18 old stitches and makes 3 + 3 + 3 + 15 = 24. Its back-leg joins occupy NEW R4 stitches 1–3 and 7–9. R5 consumes 12 + 3 + 3 + 3 + 3 = 24 and makes 16 + 3 + 4 + 3 + 4 = 30. Its front legs use OLD R4 stitches 13–15 and 19–21. Thus the four reference centres are 2, 8, 14 and 20: the back pair are adjacent, and the front pair are adjacent, with no shared join anchors.
+ 
+-Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
+-
+-Rnd 5 - the FRONT legs (30 stitches): work [sc, inc] x 3, making nine; join a leg over the next 3 sc; work [sc, inc] x 3 and then 3 sc, making twelve; join the second leg over the next 3 sc; work 3 sc to the end, making three. In the finished round that is 9 - 3 - 12 - 3 - 3 = 30, all six increases falling inside the plain runs and none through a leg. In the Rnd-4 reference ring, back joins occupy stitches 1-3 and 13-15; the front joins use Rnd-4 stitches 7-9 and 19-21. Three Rnd-4 stitches separate each neighbouring join. These are reference anchors, not unchanged columns after Rnd-5 increases, and do not prove a geometric rectangle. Choose the face centre between the front pair and pin/check the footprint on a flat surface before stuffing.
+-
+-Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 6 + 3 + 9 + 3 + 3 = 24, using every stitch of Rnd 4; made = 9 + 3 + 12 + 3 + 3 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
+-
+-Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. At thirty stitches and roughly 4.5 mm per stitch the circular diameter estimate is about 43 mm across at the leg joins in Rnds 4 and 5; the splayed legs widen the standing footprint beyond that, so measure your own piece rather than relying on a printed number. Hold the piece upside down and check all four legs sit square before you stuff the body.
+-
+-The legs join low (Rnd 4-5) so every foot hangs about 17 mm below the body and Coco stands on her feet.
++Mark the physical front midway between the two front legs (above old R4 stitches 16–18), and the back opposite it. Preserve those markers upward rather than treating the spiral start as the face centre. The map fixes adjacency, not physical symmetry after increases and stuffing. Pin/check all feet on a flat surface before proceeding; the intended silhouette is an upright stylized animal, not a horizontal realistic capybara.
+ 
+ ## Finishing & assembly
+ 
+@@ -162,23 +140,14 @@
+ 
+ Final shaping: roll the finished piece gently between your palms to settle the stuffing into a round, bottom-heavy shape.
+ 
+-Before you sew - lay every component out and check: 4 legs (2 back of 8 rounds, 2 front of 9), 2 ears, 1 muzzle, 1 body & head, closed at the crown. The sleeping face is all embroidery - closed-eye arcs, a small triangle nose and a soft curved mouth.
++Before you sew - lay every component out and check: 4 identical 8-round legs, 2 ears, 1 muzzle, 1 body & head, closed at the crown. The sleeping face is all embroidery - closed-eye arcs, a small triangle nose and a soft curved mouth.
+ 
+ ## Troubleshooting
+ 
+-- **Coco looks too tall.** Almost always too many plain rounds. Rnd 12-15 is the straight head section the face is positioned on; adding 'just one more' round turns the shape into a tower and moves the face.
+-
+-- **Coco will not stand.** Check both join height and leg spacing. The legs belong on Rnd 4 and Rnd 5; joined any higher, they cannot clear the underside of the body and the belly rests on the table.
+-
+-- **Coco tips forward or backward.** Most often the front legs are lined up behind the back legs instead of between them - follow the complete Rnd 5 sequence: [sc, inc] x 3, join 3 sc, [sc, inc] x 3, 3 sc, join 3 sc, 3 sc. If still tipping, stuff the lower body more firmly and settle weight back over all four feet.
+-
+-- **Rocks back, front feet in the air.** All four legs are the same length and they cannot be. Front legs join at Rnd 5 (21 mm up), back at Rnd 4 (17 mm up); work the front legs 9 rounds and the back legs 8.
+-
+-- **The head flops back.** The Rnd 10 waist is deliberately shallow at 32 stitches - do not decrease it further. A narrow neck cannot hold the head upright.
+-
+-- **Small hole where a leg meets the body.** Check that the final leg round has six stitches and that each of the three joining sc catches both matching leg stitches plus one body stitch. Do not leave leg stitches unworked or bunched inside.
+-
+-- **Muzzle looks flat / stuffing shows.** Stuff the muzzle just enough to hold a dome. If stuffing shows through the body, your gauge is too loose - 36 sts should measure 52 mm; crochet tighter or go down a hook size.
++- **Feet do not meet the table:** check the four-anchor map, equal leg lengths, mirrored angles and even filling. Do not assume R4 and R5 are one row-height apart vertically.
++- **Leg seam gaps:** every six-stitch rim must be caught as three pairs; secure loose side gaps with the retained tail.
++- **Head unstable:** preserve the 32-stitch waist, check filling and do not add extra narrowing.
++- **Stuffing shows:** use denser fabric rather than overfilling.
+ 
+ ## Colorways
+ 
+@@ -186,7 +155,7 @@
+ 
+ ## Designer notes
+ 
+-- Why the legs join so low: back legs (8 rnd, ~34 mm) join at Rnd 4, only 17 mm above the base; front legs (9 rnd, ~39 mm) join at Rnd 5, 21 mm up. Different lengths, same result: every foot hangs about 17 mm below the body so all four land level. This is the most common failure on round-bodied animals.
++- Join position is counted around the expanding underside, not measured vertically. Validate the stance on a complete sample.
+ 
+ - Bottom-heavy by design: stuff the lower body firmly and keep the shape squat. Coco is meant to be one continuous curve from base to crown - she stands on her feet, not her belly.
+ 
+--- reviews/ns01-ns06/NS05_reviewed.md
++++ reviews/edition-2/NS05_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A round, squashy duckling in fluffy chenille, worked as a single piece from tail to crown - no body-to-head seam. Only the wings and the beak are sewn on.
+ 
+-**FINISHED SIZE**  About 16 cm (6.25 in) tall and 7.5 cm (3 in) wide in super-bulky chenille (#6) on a 4.5 mm hook.  One seamless body; 2 wings + 1 beak to sew.
++**FINISHED DIMENSIONS PENDING SAMPLE:** this edition changes construction or proportions. Measure the fully assembled sample; earlier edition dimensions are not validated for this revision.
+ 
+ ---
+ 
+@@ -22,13 +22,13 @@
+ 
+ - Stuffing & notions: fibre fill about 30 g packed firmly; yarn needle, stitch marker, pins.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted. All sizes, timings, yarn and filling quantities are estimates, not measured sample results. Round height is not the same as vertical height on curved increases/decreases; circumference divided by pi is only a rough diameter model. Swatch and make a complete sample before promising dimensions, quantities or stability. Follow eye manufacturers’ fitting instructions; not every washer clicks. Never force or modify a washer.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+-Gauge: about 8 mm per stitch and 7 mm per round in super-bulky chenille. Chenille varies between brands, so measure a 12-stitch swatch (about 10 cm) first. Finished size: about 16 cm tall and 7.5 cm wide - 23 rounds at 7 mm and a widest point of 30 stitches at 8 mm.
++Gauge: about 8 mm per stitch and 7 mm per round in super-bulky chenille. Chenille varies between brands, so measure a 12-stitch swatch (about 10 cm) first. Unverified historical size target (not measured for Edition 2): about 16 cm tall and 7.5 cm wide - an unverified historical target; shaped rounds do not each add 7 mm vertically.
+ 
+ ## Abbreviations (US terms)
+ 
+@@ -46,7 +46,7 @@
+ 
+ ## Techniques used, in the order you will meet them
+ 
+-1. **Magic ring & spiral** - The start of the body and each wing is a magic ring. Work in a continuous spiral - no join, no chain 1 between rounds - with a marker in the first stitch of every round.
++1. **Magic ring & spiral** - If the chenille pile strips or the core breaks when tightening a ring, try ch 2 and work all six starting sc into the second chain. Secure the centre and inspect it; do not continue with damaged yarn or an open stuffing hole.  The start of the body and each wing is a magic ring. Work in a continuous spiral - no join, no chain 1 between rounds - with a marker in the first stitch of every round.
+ 
+ 2. **Invisible decrease** - Insert the hook under the FRONT loop only of each of the next two stitches (three loops are now on the hook). Yarn over and pull through the two front loops, then yarn over and pull through the two remaining loops. This is flatter than a standard decrease, which matters at this scale.
+ 
+@@ -81,9 +81,9 @@
+ | R13 | [2 sc, inc] x 6 | (24) | - |
+ | R14 | [3 sc, inc] x 6 | (30) | head begins |
+ | R15 | sc in each st around | (30) | - |
+-| R16 | sc in each st around | (30) | eyes at R16 - R17 |
++| R16 | sc in each st around | (30) | eyes at R17 - R18 |
+ | R17 | sc in each st around | (30) | - |
+-| R18 | sc in each st around | (30) | beak across R16 - R18 |
++| R18 | sc in each st around | (30) | beak below eyes near R15 - R17 |
+ | R19 | sc in each st around | (30) | PAUSE: embroider eyes and attach beak before R20 |
+ | R20 | [3 sc, dec] x 6 | (24) | - |
+ | R21 | [2 sc, dec] x 6 | (18) | stuff head, shape cheeks |
+@@ -94,16 +94,17 @@
+ 
+ Smaller head option: skip the R14 reflare (keep R14-R19 at 24) and close with R20 [2 sc, dec] x 6 (18), R21 [sc, dec] x 6 (12), R22 dec x 6 (6). Omit R23; stuff before the opening becomes too small and cinch the six remaining front loops after R22. At the R19 pause the opening is 24 stitches, not 30; pin the face and beak to fit this smaller head (the R1-only beak is an option).
+ 
+-### 2. Wings - yellow chenille (make 2)
++### 2. Tapered wings — make two in yellow
+ 
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 6 sc in MR | (6) | - |
+-| R2 | inc in each st around | (12) | - |
+-| R3 | sc in each st around | (12) | - |
+-| R4 | sc in each st around | (12) | close once AFTER this round, as below |
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| R1 | 6 sc in MR | 6 |
++| R2 | inc around | 12 |
++| R3–R5 | sc around each round | 12 |
++| R6 | [sc, dec] x 4 | 8 |
++| Closure | flatten into four pairs; sc once through each pair | 4 |
+ 
+-Do not stuff. Flatten and sc 6 across both layers to close (12 sts to 6), leaving a flat half-disc roughly 45 mm to 50 mm across at chenille gauge (paper estimate). Sew to the sides spanning R6-R9, angled slightly back.
++Do not stuff. FO with a sewing tail. Pin the four-stitch closing edge on the body side near R6–R9, angled so the free tip points backward/down. Those rounds identify a region, not a mandatory vertical seam length. Sew the full paired edge without stretching it and repeat the seam. Verify fit on the actual chenille before making the second wing.
+ 
+ ### 3. Beak - orange (make 1, worked around a chain)
+ 
+@@ -113,7 +114,7 @@
+ | Rnd 1 | sc in 2nd ch from hook, sc in next 2 ch, 3 sc in last ch; rotate to work along the opposite side: sc in next 2 ch, 2 sc in the remaining loop of the first working ch | (10) | uses all 4 working chains |
+ | Rnd 2 | inc, 2 sc, inc x 3, 2 sc, inc x 2 | (16) | 10 anchors used; 6 increases |
+ 
+-Sl st to the first stitch and FO with a long tail. Do NOT stuff - flatten it to a flat lens. As written it is a bold ~50 mm cartoon beak; for a daintier duck work Rnd 1 only (10 sts, about 35-38 mm).
++Sl st to the first stitch and FO with a long tail. Do NOT stuff - flatten it to a flat lens. Use the R1-only ten-stitch beak as the first fit candidate. R2 is optional for a broader cartoon beak. Pin the beak before embroidering eyes; its complete upper edge must sit below the eyes with visible clearance. No width is guaranteed from the stitch count.
+ 
+ ## Finishing & assembly
+ 
+@@ -123,9 +124,9 @@
+ 
+ 2. Stuff from Rnd 10: fill the body firmly as the waist begins to close - the neck narrows fast. Crochet through Rnd 19 with the head still empty, then pause again.
+ 
+-3. Eyes: immediately after Rnd 19, embroider black eyes between Rnds 16 and 17, seven stitches apart (56 mm along the stitch line on the 76 mm-diameter head). Knot the floss ends inside while the 30-stitch opening is clear.
++3. First pin the chosen beak and mark clear eye positions above it. Eyes: immediately after Rnd 19, embroider black eyes between Rnds 17 and 18, seven stitches apart (56 mm along the stitch line on the 76 mm-diameter head). Knot the floss ends inside while the 30-stitch opening is clear.
+ 
+-4. Beak: still before Rnd 20, pin horizontally across Rnds 16-18, centred between the eyes, and sew around the outer edge; knot and bury the tail inside.
++4. Beak: still before Rnd 20, pin horizontally over approximately Rnds 15-17, centred between the eyes, and sew around the outer edge; knot and bury the tail inside.
+ 
+ 5. Close: resume at Rnd 20, top up stuffing through Rnd 22, then work Rnd 23, close via the FLO and bury the end.
+ 
+--- reviews/ns01-ns06/NS06_reviewed.md
++++ reviews/edition-2/NS06_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A cat folded into a perfect loaf. One no-sew body on an oval base: the ears are crocheted onto the head and the tail is worked off the body, so there are no separate components to sew on. Finishing still uses small ear-base tacks and embroidery.
+ 
+-**FINISHED SIZE**  About 7.9 cm (3.1 in) long, 5.2 cm (2 in) wide and 4.3 cm (1.7 in) tall.  A low, wide loaf, wider than it is tall (about 1.2 : 1).
++**FINISHED DIMENSIONS PENDING SAMPLE:** this edition changes construction or proportions. Measure the fully assembled sample; earlier edition dimensions are not validated for this revision.
+ 
+ ---
+ 
+@@ -26,9 +26,9 @@
+ 
+ - Also needed: polyfill about 10 g; tapestry needle; stitch marker; black embroidery floss.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted. All sizes, timings, yarn and filling quantities are estimates, not measured sample results. Round height is not the same as vertical height on curved increases/decreases; circumference divided by pi is only a rough diameter model. Swatch and make a complete sample before promising dimensions, quantities or stability. Follow eye manufacturers’ fitting instructions; not every washer clicks. Never force or modify a washer.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -64,77 +64,51 @@
+ 
+ ## Instructions
+ 
+-### 1. Body - one no-sew piece
++### 1. Body — oval base with a longer facial wall
+ 
+-The base is worked up to 48 stitches before the walls begin; the base size sets the whole cat. Stopping at 36 changes the footprint and proportions; do not skip the last two increase rounds for this version.
++Choose one narrow curved end as the face and the other as the tail. Lay the base with its long axis front-to-back and mark both end midpoints after R6. Carry physical guide threads upward independently of the drifting spiral start.
+ 
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| Found. | ch 9 | - | - |
+-| R1 | sc in 2nd ch, sc in next 6, 3 sc in last ch, sc in next 6, 2 sc in last loop | (18) | around both sides of chain |
+-| R2 | inc, 6 sc, inc x 3, 6 sc, inc x 2 | (24) | - |
+-| R3 | sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2 | (30) | - |
+-| R4 | 2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2 | (36) | - |
+-| R5 | 3 sc, inc, 6 sc, [3 sc, inc] x 3, 6 sc, [3 sc, inc] x 2 | (42) | - |
+-| R6 | 4 sc, inc, 6 sc, [4 sc, inc] x 3, 6 sc, [4 sc, inc] x 2 | (48) | BASE AT FULL SIZE |
+-| R7 | BLO sc around | (48) | ridge = base edge |
+-| R8 | sc in each st around | (48) | install eyes after R9 |
+-| R9 | sc in each st around | (48) | lock eyes; embroider face/chest/paws; then stuff |
+-| R10 | [6 sc, dec] x 6 | (42) | - |
+-| R11 | [5 sc, dec] x 6 | (36) | - |
+-| R12 | [4 sc, dec] x 6 | (30) | ears worked onto R12 |
+-| R13 | [3 sc, dec] x 6 | (24) | - |
+-| R14 | [2 sc, dec] x 6 | (18) | - |
+-| R15 | [sc, dec] x 6 | (12) | top up stuffing |
+-| R16 | dec x 6 | (6) | close via front loops |
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| Foundation | ch 9 | 8 working chains |
++| R1 | sc in 2nd ch, 6 sc, 3 sc in last ch; opposite side: 6 sc, 2 sc in first working ch | 18 |
++| R2 | inc, 6 sc, inc x 3, 6 sc, inc x 2 | 24 |
++| R3 | sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2 | 30 |
++| R4 | 2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2 | 36 |
++| R5 | 3 sc, inc, 6 sc, [3 sc, inc] x 3, 6 sc, [3 sc, inc] x 2 | 42 |
++| R6 | 4 sc, inc, 6 sc, [4 sc, inc] x 3, 6 sc, [4 sc, inc] x 2 | 48 |
++| R7 | BLO sc around | 48 |
++| R8–R12 | sc around each round | 48 |
++| R13 | [6 sc, dec] x 6 | 42 |
++| R14 | [5 sc, dec] x 6 | 36 |
++| R15 | [4 sc, dec] x 6 | 30 |
++| R16 | [3 sc, dec] x 6 | 24 |
++| R17 | [2 sc, dec] x 6 | 18 |
++| R18 | [sc, dec] x 6 | 12 |
++| R19 | dec x 6 | 6 |
+ 
+-Finish: thread the tail through the front loop of each of the 6 remaining stitches, pull tight, knot and bury. Shape check: the base is an oval about 79 mm long and 52 mm across; the walls add ten rounds of height, so the finished loaf is about 43 mm tall - wider than it is tall.
++Pause after R12: mark the full face, place eyes between R10 and R11 about seven stitch positions centre-to-centre, verify washer clearance, lock washers and embroider the nose/mouth below. Keep the mouth clear of the R7 fold. Add a small chest marking only if it fits; it need not sit below every other feature. Secure all ends inside before stuffing. Stuff progressively through the decreases, then cinch the six R19 front loops and bury the tail. The revised wall height needs physical testing; the inherited 4.3 cm height is not a measured result.
+ 
+-### 2. Ears - worked onto the head (make 2)
++### 2. Surface ears — make two, facing the marked front
+ 
+-After the body is closed, join the main yarn to the surface of Rnd 12, leaving about 6 body stitches between the INNER edges of the two ears. For Row 1, insert the hook under one whole body stitch for each sc; these five surface stitches act as the foundation. Work each ear as three short rows:
++Pin two short, mirrored base lines on the front upper surface, with about three body-stitch positions between their inner ends. Each line uses FOUR separate whole-stitch surface anchors, not an assumed five-stitch span around one ring. Start near R15 toward the centre front and angle the outer end toward R13, selecting accessible adjacent anchors. Mark all eight anchors before working; they must sit near the front, not halfway down the side flanks. If that placement is crowded, reposition the marked lines before proceeding.
+ 
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| Row 1 | sc in next 5, ch 1, turn | (5) | - |
+-| Row 2 | dec, sc, dec, ch 1, turn | (3) | - |
+-| Row 3 | dec, sc | (2) | the ear tip |
+-
+-The row maths: Row 1 makes 5 stitches; Row 2 works dec, sc, dec (consumes 5, makes 3); Row 3 works dec, sc (consumes 3, makes 2) - those 2 stitches form the tip.
+-
+-After Row 3, FO with a 15 cm tail; do NOT try to slip-stitch from the ear tip back to the head. Thread the tail through the 2 tip stitches to close the point, run it down the outer side edge, and tack that outer base corner to Rnd 12. Row 1 already secures the other base edge. Bury the tail inside the head, then embroider a small pink triangle on the front of each ear for lining.
++Row 1: join yarn and sc once under each of the four marked anchors (4); ch 1, turn. Row 2: dec x 2 (2); ch 1, turn. Row 3: dec (1). FO; run the tail down the edge, secure it at the base and bury. Embroider a small pink centre. Mirror the second ear and check both face forward. This diagonal attachment route is a prototype requiring a made sample.
+ 
+ ### 3. Tail - worked off the body
+ 
+-Join the main yarn to the back of the body at about Rnd 9 on the centre line. **Surface Rnd 1:** insert the hook under four adjacent whole body stitches arranged as a tiny square and work 1 sc into each (4); place a marker in the first sc. **Rnds 2-8:** sc in each of the 4 tail stitches (4). Work upward in a tight spiral; do not make a magic ring and do not count the body stitches as extra tail stitches. Do NOT stuff - a thin tail curls around the loaf far better than a filled one. FO with a tail; thread it through the front loops of the four tail-tip stitches, pull closed, then run the tail through the tube and secure it in the body. Secure the starting end at the surface anchor too.
++Join the main yarn to the back of the body near Rnd 10 at the marked rear narrow end. **Surface Rnd 1:** insert the hook under four adjacent whole body stitches arranged as a tiny square and work 1 sc into each (4); place a marker in the first sc. **Rnds 2-8:** sc in each of the 4 tail stitches (4). Work upward in a tight spiral; do not make a magic ring and do not count the body stitches as extra tail stitches. Do NOT stuff - a thin tail curls around the loaf far better than a filled one. FO with a tail; thread it through the front loops of the four tail-tip stitches, pull closed, then run the tail through the tube and secure it in the body. Secure the starting end at the surface anchor too.
+ 
+ ## Finishing & assembly
+ 
+-Face & markings:
+-
+-Eyes: immediately after Rnd 9, fix the 8 mm eyes between Rnds 8 and 9, about 7 stitches apart, LOW and wide on the front (7 sts is about 32 mm, roughly 60% of the body width). Low eyes read as a cat; high eyes read as a bear. Push the stems through and LOCK the washers from the inside. Before stuffing and continuing to Rnd 10, complete the nose, mouth, whisker dots, chest and paws below, knotting and burying every embroidery end inside.
+-
+-Nose: at the after-Rnd-9 pause, embroider a small pink triangle centred between and just below the eyes, with two short stitches angled down from the point for the mouth; knot the ends inside.
+-
+-Whisker dots: at the same pause, make three tiny black French knots on each side of the nose and secure the ends inside.
+-
+-Chest & paws: with white yarn, embroider a soft oval on the chest and two small ovals at the front of the base for tucked paws. Add enough temporary stuffing to judge placement if needed, keep the 48-stitch opening clear, then knot the ends inside and continue stuffing before Rnd 10.
+-
+-Long, low and wide - the BLO ridge and tucked paws make the loaf read as a folded cat.
++Complete the face at the after-R12 pause described in the body section. Pin eyes, nose, mouth and any chest marking as one layout before making permanent stitches. Markings are optional; do not crowd them between the eyes and base fold. Place two tucked-paw ovals near the front base edge. After closure, work the ears on the marked front surface and the tail at the opposite narrow end near R10. Secure every surface anchor and end.
+ 
+ ## Troubleshooting
+ 
+-- **It came out round.** You stopped increasing at Rnd 4 instead of Rnd 6, worked too many plain rounds at Rnds 8-9, or used a magic-ring base instead of the oval. The base must reach 48 stitches.
+-
+-- **Tall and narrow.** The base did not reach 48. Count the stitches at Rnd 6 before the BLO round - gauge, round count, decrease placement and stuffing also affect the shape.
+-
+-- **Ears lean back.** Join the yarn one round lower and angle the first row slightly forward.
+-
+-- **Tail falls off.** The first 4 sc must go through the body fabric under a whole stitch, not just one loop.
+-
+-- **Stuffing shows.** Go down to a 3.0 mm hook - loose gauge on 3.5 mm is the usual cause.
+-
+-- **Face looks like a bear.** Eyes too high and too close. Drop them a round and widen to 7 stitches.
++- **Too tall or too flat:** check actual stitch/round gauge and filling; the revised five-round facial wall is not a guaranteed silhouette.
++- **Ears wrap around the sides:** reposition the surface anchor lines closer to the marked front, rather than counting a long span around R15.
++- **Face crowded:** simplify markings or use smaller embroidery; do not force eye washers against a seam.
++- **Stuffing shows:** use denser fabric and less filling pressure.
+ 
+ ## Colorways
+ 
+--- reviews/ns07-ns12/NS07_reviewed.md
++++ reviews/edition-2/NS07_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ Three palm-sized amigurumi that slip into a coat pocket - Sunny the Sunflower, Waddle the Penguin and Spud the Potato. They share one easy construction and work up in an evening or two.
+ 
+-**FINISHED SIZE**  Sunny: about 3.0 cm across the petals.  Waddle: about 3.8 cm tall.  Spud: about 2.7 cm long.  DK cotton (#3) on a 2.5 mm hook. Sunny’s petals are worked directly onto her centre; Waddle’s wings, chest and beak are sewn on; Spud starts around a chain and closes with one short seam.
++**UNVERIFIED SIZE TARGET — measure a sample**  Sunny: about 3.0 cm across the petals.  Waddle: about 3.8 cm tall.  Spud: about 2.7 cm long.  DK cotton (#3) on a 2.5 mm hook. Sunny’s petals are worked directly onto her centre; Waddle’s wings, chest and beak are sewn on; Spud starts around a chain and closes with one short seam.
+ 
+ ---
+ 
+@@ -16,7 +16,7 @@
+ 
+ ## Materials
+ 
+-- Yarn: DK cotton (#3, ~300 m / 100 g). The three toys use roughly 8 m total (under 3 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak, optional pink blush (Waddle); warm tan (Spud).
++- Yarn: DK cotton (#3, ~300 m / 100 g). Allow generously sized scraps of every colour; no verified total metre or gram allowance is available. Make and weigh a complete revised set, including all sewing tails, before purchasing for a batch. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak, optional pink blush (Waddle); warm tan (Spud).
+ 
+ - Hook: 2.5 mm (US C-2).
+ 
+@@ -24,9 +24,9 @@
+ 
+ - Also: about 3 g fibre fill total, blunt tapestry needle, stitch marker, scissors.
+ 
+-## Review status
+-
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted or safety-certified. Sizes, timings and material quantities are estimates unless supported by your own measured sample. Stitch width, round height and circumference models do not prove the dimensions of a curved, stuffed piece. Make a complete sample before promising size, yield, fit or stability. Fit any plastic eyes according to the component manufacturer’s instructions; a hand check is not a prescribed product-safety test.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -71,6 +71,8 @@
+ |---|---|---|---|
+ | Petal | after closing the centre, join yellow with a sl st in any EXPOSED front loop of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next front loop, [sl st in next front loop, (sc, hdc, sc) in next front loop] x 8, sl st to the first sl st, FO | (36) | 9 petals; use Rnd 3 front loops only |
+ 
++Hold the embroidered face toward you when starting the petals. Work through the exposed R3 loops with the petal fronts toward that face; check the first petal before continuing. Follow the direction appropriate to your handedness rather than a universal clockwise instruction.
++
+ Count check: Rnd 4 was worked BLO, so all 18 front loops of Rnd 3 are visible after the cushion is closed. The joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 exposed front loops per petal set. The slip stitch sits in the valley between petals; work this round loosely (use a 3 mm hook for this round only if it pulls tight). FO and weave in.
+ 
+ Face: if using safety eyes, insert the posts between Rnds 2 and 3, 3 stitches apart, and LOCK the washers immediately after Rnd 4. At the same pause, embroider a smiling mouth across Rnds 2-3 and knot its ends inside before the decreases and stuffing; do not wait until the centre is closed. If embroidering the eyes, 4 stitches apart also fits - complete and secure them at this same pause.
+@@ -79,7 +81,7 @@
+ 
+ #### Body - black
+ 
+-**Preparation:** make both wings, the chest patch and the beak from the subsections below before starting the body. They are attached at the Rnd-9 pause while their tails can still be secured inside.
++**Preparation:** make both wings, the chest patch and the beak from the subsections below before starting the body. At the Rnd-9 pause, install and lock eyes FIRST, then attach the pieces while all tails remain accessible inside; stuff afterward.
+ 
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+@@ -87,7 +89,7 @@
+ | R2 | inc in each st around | (12) | - |
+ | R3 | [sc, inc] x 6 | (18) | position eyes between Rnds 3 and 4 |
+ | R4-6 | sc in each st around (3 rnd) | (18) | - |
+-| R7 | [2 sc, inc] x 6 | (24) | chest over R4-8 |
++| R7 | [2 sc, inc] x 6 | (24) | smaller chest below face near R5-8 |
+ | R8-9 | sc in each st around (2 rnd) | (24) | after R9: lock eyes, attach all pieces and embroider blush before R10 |
+ | R10 | [2 sc, dec] x 6 | (18) | - |
+ | R11 | [sc, dec] x 6 | (12) | - |
+@@ -105,15 +107,11 @@
+ 
+ FO with a 15 cm tail and do not stuff. At the Body Rnd-9 pause, sew the wings to the sides at Rnd 6 angled backward; make a second seam pass and knot the tails inside.
+ 
+-#### Chest patch - cream (flat oval)
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| Found. | ch 6 | - | - |
+-| R1 | sc in 2nd ch, 3 sc, 3 sc in last ch, then down the other side 3 sc, 2 sc in last ch | (12) | - |
+-| R2 | inc, 3 sc, inc x 3, 3 sc, inc x 2 | (18) | - |
+-
+-FO with a tail. At the Body Rnd-9 pause, add enough stuffing to round the body while keeping the opening clear, then sew the full oval perimeter onto the front over Rnds 4-8 and knot the tail inside. Do not pull the seam tight: the curved body will let the centre puff naturally. A complete perimeter is more secure than leaving the side edges open.
++#### Chest patch — cream, smaller one-round option
++
++Ch 5. R1: sc in 2nd chain, 2 sc, 3 sc in last chain; opposite side: 2 sc, 2 sc in first working chain (10). FO with a sewing tail.
++
++At the after-R9 body pause, FIRST fit and lock both eyes and mark the beak. Then pin the patch below them, near R5–R8, checking clearance. Sew its whole perimeter, add the beak and wings, secure all tails inside, and only then add the final stuffing. Temporary filling for pinning must not block washer access. Do not stretch the patch to fixed round limits.
+ 
+ #### Beak - yellow
+ 
+--- reviews/ns07-ns12/NS08_reviewed.md
++++ reviews/edition-2/NS08_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A chunky, big-headed baby dragon with a stubby snout, scalloped wings and a ridge of spikes down the back. She sits, with folding haunches and splayed front legs.
+ 
+-**FINISHED SIZE**  About 10.5 cm (a touch over 4 in) tall seated (unmeasured estimate).  12.4 cm (just under 5 in) wingspan. About 5 cm (2 in) tail.  A sitting dragon - her body rests on the table and her legs pose rather than lift her.
++**FINISHED DIMENSIONS PENDING SAMPLE:** this edition changes construction or proportions. Measure the fully assembled sample; earlier edition dimensions are not validated for this revision.
+ 
+ ---
+ 
+@@ -26,9 +26,9 @@
+ 
+ - Also needed: polyester fibre fill about 10 g; a small amount of dark embroidery floss for the nostrils; tapestry needle; stitch markers; pins.
+ 
+-## Review status
+-
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted or safety-certified. Sizes, timings and material quantities are estimates unless supported by your own measured sample. Stitch width, round height and circumference models do not prove the dimensions of a curved, stuffed piece. Make a complete sample before promising size, yield, fit or stability. Fit any plastic eyes according to the component manufacturer’s instructions; a hand check is not a prescribed product-safety test.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -64,25 +64,26 @@
+ 
+ ## Instructions
+ 
+-### 1. Head - main colour (worked top-down)
+-
+-Worked top-down and LEFT OPEN - stop at 18 stitches, then fasten off without cinching the opening. Place the eye stems after Rnd 8 while the head is still wide open. Leave a long tail if you want a spare sewing strand. A big head is what makes a dragon read as a baby dragon. Two straight rounds only, then the decreases.
+-
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 6 sc in MR | (6) | - |
+-| R2 | inc in each st around | (12) | - |
+-| R3 | [sc, inc] x 6 | (18) | - |
+-| R4 | [2 sc, inc] x 6 | (24) | - |
+-| R5 | [3 sc, inc] x 6 | (30) | - |
+-| R6 | [4 sc, inc] x 6 | (36) | head at full width |
+-| R7 | sc in each st around | (36) | eyes at R7 - R8 |
+-| R8 | sc in each st around | (36) | insert and LOCK eye washers now |
+-| R9 | [4 sc, dec] x 6 | (30) | - |
+-| R10 | [3 sc, dec] x 6 | (24) | begin stuffing |
+-| R11 | [2 sc, dec] x 6 | (18) | LEAVE OPEN - matches neck |
+-
+-After Rnd 8, place the eye stems between Rnds 7 and 8, eight stitches apart, and lock both washers while the opening is still wide. Continue Rnds 9-11, stuffing firmly from Rnd 10. After Rnd 11, FO without decreasing or cinching; leave the 18-stitch edge open for sewing to the body's neck. Sew on the snout after the head is shaped. If embroidering eyes instead, complete them before joining the head to the body.
++### 1. Head — main colour, fuller facial-panel prototype
++
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| R1 | 6 sc in MR | 6 |
++| R2 | inc in each st around | 12 |
++| R3 | [1 sc, inc] x 6 | 18 |
++| R4 | [2 sc, inc] x 6 | 24 |
++| R5 | [3 sc, inc] x 6 | 30 |
++| R6 | [4 sc, inc] x 6 | 36 |
++| R7 | sc in each st around | 36 |
++| R8 | sc in each st around | 36 |
++| R9 | sc in each st around | 36 |
++| R10 | sc in each st around | 36 |
++| R11 | sc in each st around | 36 |
++| R12 | [4 sc, dec] x 6 | 30 |
++| R13 | [3 sc, dec] x 6 | 24 |
++| R14 | [2 sc, dec] x 6 | 18 |
++
++After R11, place eyes between R8 and R9, eight stitch positions centre-to-centre; lock washers or embroider before stuffing. Pin the snout below the eyes, keeping its rim clear of the open R14 neck. Stuff progressively through R12–R14, then FO and leave 18 stitches OPEN for the matched body seam. Do not describe the shape or height as measured before making a sample.
+ 
+ ### 2. Snout (make 1) - main colour
+ 
+@@ -94,7 +95,7 @@
+ | R4 | sc in each st around | (12) | - |
+ | R5 | sc in each st around | (12) | - |
+ 
+-Finish: FO with a long tail and stuff lightly. Before attaching, embroider two small nostrils at the tip and knot their ends inside through the open 12-stitch edge. Pin the snout just below the eye line, with its attachment rim above the open Rnd-11 neck edge (approximately over Rnds 8-10), and sew all the way around. It must project past the curve of the head, not sit flush - a dragon without a projecting snout reads as a bear.
++Finish: FO with a long tail and stuff lightly. Before attaching, embroider two small nostrils at the tip and knot their ends inside through the open 12-stitch edge. Pin the snout just below the eye line, with its attachment rim above the open Rnd-14 neck edge (approximately over Rnds 10-12), and sew all the way around. It must project past the curve of the head, not sit flush - a dragon without a projecting snout reads as a bear.
+ 
+ ### 3. Body - main colour (worked bottom-up)
+ 
+@@ -131,7 +132,7 @@
+ | R7 | sc in each st around | (9) | front legs only |
+ | R8 | sc in each st around | (9) | front legs only |
+ 
+-Finish: stuff the lower half lightly and leave the top 3 rounds soft; FO with a long tail. Press the 9-stitch opening flat - 4 stitches in front, 4 behind, catch the ninth stitch in a separate securing stitch at the fold so no rim stitch remains loose - and the leg mouth sews shut when you attach it. The pairs are different lengths on purpose: back legs (6 rnd / 26 mm) attach at Rnd 6, 26 mm up; front legs (8 rnd / 34 mm) attach at Rnd 8, 34 mm up. A higher join needs a longer leg so all four feet reach the table. Sew each pair about eight stitches apart; angle the back legs under as haunches and the front legs slightly forward. The body rests on the table - the legs pose, they don't lift her.
++Finish: stuff the lower half lightly and leave the top 3 rounds soft; FO with a long tail. Press the 9-stitch opening flat - 4 stitches in front, 4 behind, catch the ninth stitch in a separate securing stitch at the fold so no rim stitch remains loose - and the leg mouth sews shut when you attach it. The six-round back and eight-round front legs are posing options. R6 and R8 are relative attachment regions, not 26 mm and 34 mm elevations. Sew each pair about eight stitches apart; angle the back legs under as haunches and the front legs slightly forward. The body rests on the table - the legs pose, they don't lift her.
+ 
+ ### 5. Tail - main colour
+ 
+@@ -168,21 +169,21 @@
+ 
+ ### 7. Wings - contrast colour (make 2, worked flat)
+ 
+-Chain 11 once as listed in the foundation row. Ch 1 and turn after Rows 1-3 only; the turning chain does not count. After Row 4, fasten off without a turning chain:
++Chain 11 once as listed in the foundation row. Ch 2 and turn after Row 1 (height for the dc starting Row 2); ch 1 and turn after Rows 2 and 3; the turning chain does not count. After Row 4, fasten off without a turning chain:
+ 
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+ | Found. | ch 11 | - | - |
+ | Row 1 | from the 2nd ch: sc in 4, hdc in 3, dc in 3 | (10) | - |
+-| Row 2 | sc in 3, hdc in 3, dc in 4 | (10) | - |
++| Row 2 | dc in 4, hdc in 3, sc in 3 | (10) | - |
+ | Row 3 | sc in 2, hdc in 4, dc in 4 | (10) | - |
+ | Row 4 | sl st in first 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in next 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in last 4 | (18) | scalloped edge - FO with a 25 cm tail |
+ 
+-The scallop maths: the slip-stitch anchors are 2 + 2 + 4 = eight stitches; the two shells each fan from a single stitch (2 more), so all 10 stitches of Row 3 are consumed and nothing is left over. Flip one wing over to mirror the pair, keeping the scalloped edges outward. Pin the straight inner edge across Rnds 10-11 and sew the WHOLE edge so the scalloped edge stays free.
++The scallop maths: the slip-stitch anchors are 2 + 2 + 4 = eight stitches; the two shells each fan from a single stitch (2 more), so all 10 stitches of Row 3 are consumed and nothing is left over. Flip one wing over to mirror the pair, keeping the scalloped edges outward. Pin the short row-end edge at Row-1 START (End A, narrow root) near Body R10–R11; allow the full seam to occupy surrounding rounds without stretching. The foundation is the upper free edge and scallops the lower free edge. Pin this short inner edge and sew the WHOLE edge so the scalloped edge stays free.
+ 
+ ### 8. Spike strip - contrast colour
+ 
+-One flat foundation strip is sewn down the centre back from crown to tail tip. It carries nine pointed fans: 3 on the head, 4 on the body and 2 on the tail.
++One flat foundation strip is sewn down the centre back from crown to tail tip. Nine spikes are only a starting candidate; measure the pinned crown-to-tail path and choose the modular length before crocheting. Do not force a fixed number onto each body section.
+ 
+ **Foundation:** ch 34. Row 1: sc in 2nd ch from hook and in each ch across (33); ch 1, turn.
+ 
+@@ -196,9 +197,9 @@
+ 
+ Assembly - work in this order:
+ 
+-1. Eyes were inserted between Rnds 7 and 8 and the washers locked immediately after Rnd 8, before the head was stuffed. If embroidering instead, stitch them now.
+-
+-2. Embroider and secure the nostrils inside the still-open snout, then sew the snout to the shaped head, below the eye line with its rim clear of the open Rnd-11 head/neck edge (approximately Rnds 8-10).
++1. Eyes were inserted between Rnds 8 and 9 and the washers locked immediately after Rnd 11, before the head was stuffed. If embroidering instead, complete and secure the eyes at the same after-R11 pause before stuffing.
++
++2. Embroider and secure the nostrils inside the still-open snout, then sew the snout to the shaped head, below the eye line with its rim clear of the open Rnd-14 head/neck edge (approximately Rnds 10-12).
+ 
+ 3. Horns to the crown, 6 stitches apart, angled back.
+ 
+@@ -208,7 +209,7 @@
+ 
+ 6. Tail to the back of the body at Rnds 4-6.
+ 
+-7. Wings across Rnds 10-11, sewn along the whole straight edge.
++7. Wings: sew the short End-A row-end root near R10–R11, leaving the foundation and scalloped edges free. Mirror the pair.
+ 
+ 8. Spike strip LAST - pin from crown to tail tip before you sew a single stitch.
+ 
+@@ -216,7 +217,7 @@
+ 
+ - **Head flops forward.** Pack the neck firmly before closing and make the second ladder-stitch pass tight. If it still moves, check seam security, stuffing and head balance as well as edge counts - both head and neck must be open at 18 stitches.
+ 
+-- **Rocks back onto haunches.** The legs are all the same length and they cannot be. Back legs attach 26 mm up, front 34 mm up - work the back legs 6 rounds and the front 8.
++- **Rocks back:** repin legs and tail with the body resting on its base; adjust filling and angles before sewing. Round numbers do not establish foot elevation.
+ 
+ - **Will not sit.** Legs sewn too high, or the base is under-stuffed. Back legs on Rnd 6, front on Rnd 8; keep the lower body firm enough to sit on.
+ 
+--- reviews/ns07-ns12/NS09_reviewed.md
++++ reviews/edition-2/NS09_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A pocket sea turtle on a keyring. It takes about half an hour and a few grams of yarn; the head and flippers are worked straight into the underside so there is almost nothing to sew.
+ 
+-**FINISHED SIZE**  About 3.7 cm (1.5 in) across the flippers, 3.2 cm long and 1.9 cm deep.  DK cotton on a 2.5 mm hook. The shell edge has 24 stitches; the underside has 24 base anchors before its 35-stitch appendage round. A bigger 5.7 cm version is included.
++**UNVERIFIED SIZE TARGET — measure a sample**  About 3.7 cm (1.5 in) across the flippers, 3.2 cm long and 1.9 cm deep.  DK cotton on a 2.5 mm hook. The shell edge has 24 stitches; the underside has 24 base anchors before its 35-stitch appendage round. A bigger 5.7 cm version is included.
+ 
+ ---
+ 
+@@ -26,13 +26,13 @@
+ 
+ - Also: a pinch of polyfill (under 1 g), tapestry needle, one 25 mm keyring or lobster clasp per turtle.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted or safety-certified. Sizes, timings and material quantities are estimates unless supported by your own measured sample. Stitch width, round height and circumference models do not prove the dimensions of a curved, stuffed piece. Make a complete sample before promising size, yield, fit or stability. Fit any plastic eyes according to the component manufacturer’s instructions; a hand check is not a prescribed product-safety test.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+-Gauge: about 3.5 mm per stitch and 3.2 mm per round. The whole charm is 203 stitches (~3 m of DK); 24 stitches at that width imply a circular perimeter diameter of about 26.7 mm, but a crocheted disc must be measured rather than assumed to match that model.
++Gauge: about 3.5 mm per stitch and 3.2 mm per round. The whole charm is 203 worked stitches, excluding finishing joins and embroidery; no measured metre allowance is available; 24 stitches at that width imply a circular perimeter diameter of about 26.7 mm, but a crocheted disc must be measured rather than assumed to match that model.
+ 
+ ## Abbreviations (US terms)
+ 
+@@ -42,7 +42,7 @@
+ 
+ inc - increase (2 sc in one st)  ·  dec - invisible decrease
+ 
+-sl st - slip stitch  ·  BLO - back loop only
++sl st - slip stitch  ·  BLO - back loop only  ·  FLO - front loop only
+ 
+ FO - fasten off  ·  st(s) - stitch(es)  ·  Rnd(s) - round(s)
+ 
+@@ -56,7 +56,7 @@
+ 
+ 2. **Back loop only (BLO)** - Work into the far loop only; the unused loops form a raised ridge. On the shell that ridge is the rim - it makes the dome read as a shell rather than a bun.
+ 
+-3. **Clusters into one stitch** - The trick of the head and flippers: work every stitch of the group into ONE back loop of the previous round so they share an anchor and fan into a bump. Work the whole appendage round in BACK LOOPS ONLY; the 24 unused front loops remain as clear seam loops. Each cluster consumes one anchor and produces as many stitches as it contains, so 24 anchors produce 35 stitches.
++3. **Clusters into one stitch** - The trick of the head and flippers: work every stitch of the group into ONE front loop of the previous round so they share an anchor and fan into a bump. Work the whole appendage round in FRONT LOOPS ONLY; the 24 unused back loops remain as clear seam loops. Each cluster consumes one anchor and produces as many stitches as it contains, so 24 anchors produce 35 stitches.
+ 
+ 4. **Whip stitch & French knots** - Join shell and underside with an even whip stitch so the seam does not pucker. For each eye, bring the needle up, wrap the floss once or twice around the needle, push back down close by and pull slowly; knot both floss ends securely on the wrong side before joining.
+ 
+@@ -88,9 +88,13 @@
+ 
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+-| R5 | BLO: 3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 2 sc | (35) | head & flippers; leave all 24 R4 front loops free for seaming |
++| R5 | FLO: 3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 5 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 1 sc | (35) | head & flippers; leave all 24 R4 back loops free for seaming |
+ 
+-This consumes 3+1+4+1+3+1+4+1+3+1+2 = 24 back-loop anchors (closing the disc) and produces 35 stitches while leaving 24 front-loop seam anchors. The first, four-stitch bump is the HEAD; the four smaller bumps are flippers. Sl st to the first R5 sc and FO with a 20 cm tail. The bumps land on stitches 4, 9, 13, 18 and 22, placing the front flippers either side of the head.
++The 24 anchors make 35 stitches. Head anchor: 4; flipper anchors: 9, 13, 19, 23. Plain gaps from the head around the disc are 4, 3, 5, 3, 4, so both sides match in the anchor map. Sl st to first R5 sc, FO and retain a sewing tail.
++
++Edition-2 assembly choice: appendages use FLO and the reserved BLO form the seam route; the shell’s own BLO rim round is unchanged. This revised orientation needs physical confirmation.
++
++Before permanent sewing, pin the shell wrong sides together with the underside. Keep all five fans outside the shell perimeter and use only the exposed R4 seam loops. Check that the seam does not cross or pull the fans upward. BLO/FLO are working-loop labels, not an automatic inside/outside guarantee; validate this assembly on the small sample first. If it traps the fans, stop and reassess the loop orientation rather than sewing through them.
+ 
+ ### 3. Face - read before you join
+ 
+@@ -100,23 +104,23 @@
+ 
+ ## Finishing & assembly
+ 
+-Joining the shell: finish and knot the embroidered eyes first. Hold the shell to the underside, wrong sides together, head pointing away from the intended rear keyring attachment. Whip-stitch with the shell's 30 cm tail, matching the shell's 24 edge stitches one-for-one to the 24 exposed front loops of underside R4 - NOT to the 35 stitches of the appendage round. At each bump, use the exposed front loop directly below its base; never sew through the fan stitches themselves.
++Joining the shell: finish and knot the embroidered eyes first. Hold the shell to the underside, wrong sides together, head pointing away from the intended rear keyring attachment. Whip-stitch with the shell's 30 cm tail, matching the shell's 24 edge stitches one-for-one to the 24 exposed back loops of underside R4 - NOT to the 35 stitches of the appendage round. At each bump, use the exposed back loop directly below its base; never sew through the fan stitches themselves.
+ 
+ Begin joining at the back and leave the last 6-8 seam pairs open at the back for access. Before closing that gap, pass a doubled 20 cm strand of body yarn through TWO adjacent shell stitches at the back (opposite the head) and through the keyring twice. Tie the yarn ends together securely INSIDE the shell. Add a small pinch of stuffing, keep the charm lightly filled and flat without stretching the stitches (its internal capacity has not been measured), finish the seam, then weave in all ends. Do not wait until the seam is closed to secure the ring.
+ 
+ ## Troubleshooting
+ 
+-- **Flippers uneven.** Count the plain runs between bumps: 3, 4, 3, 4, 3, then 2 at the end.
++- **Flippers uneven.** Count the plain runs between bumps: 3, 4, 3, 5, 3, then 1 at the end.
+ 
+ - **Keyring pulls out / too fat to hang.** Attach through two stitches and knot inside. Use less stuffing so the charm stays flat against a bag.
+ 
+-- **Shell and base won't pair.** Use the 24 exposed front loops of underside R4, one per shell stitch; do not try to match the 35 appendage-round stitches.
++- **Shell and base won't pair.** Use the 24 exposed back loops of underside R4, one per shell stitch; do not try to match the 35 appendage-round stitches.
+ 
+ ## Bigger Shelby (~5.7 cm across)
+ 
+ Work the shell to 42 stitches: Rnd 1 (6), Rnd 2 (12), Rnd 3 (18), Rnd 4 (24), Rnd 5 [3 sc, inc] x 6 (30), Rnd 6 [4 sc, inc] x 6 (36), Rnd 7 [5 sc, inc] x 6 (42), Rnd 8 BLO sc around (42), Rnd 9 sc around (42). Work underside Rnd 1-7 the same to 42 stitches, and do not fasten off.
+ 
+-Underside Rnd 8 (head & flippers), worked BLO throughout: 7 sc, (sc, hdc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st = 53 stitches, consuming all 42 back-loop anchors and leaving all 42 front loops exposed. Sl st to the first sc of this round and FO. Join the shell's 42 edge stitches to those 42 exposed front loops by the same rule as the small version. Allow 45-50 minutes and about 4 g of yarn.
++Underside Rnd 8 (head & flippers), worked FLO throughout: 7 sc, (sc, hdc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 9 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st = 53 stitches, consuming all 42 front-loop anchors and leaving all 42 back loops exposed. Sl st to the first sc of this round and FO. Join the shell's 42 edge stitches to those 42 exposed back loops by the same rule as the small version. Allow 45-50 minutes and about 4 g of yarn.
+ 
+ ## Colorways
+ 
+--- reviews/ns07-ns12/NS10_reviewed.md
++++ reviews/edition-2/NS10_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A bunny comforter: a soft, firmly stuffed head above a light, drapey granny-square blanket. Long floppy ears to hold, an embroidered face with no plastic eye components, and a blanket that grows evenly from the centre out.
+ 
+-**FINISHED SIZE**  Blanket about 26 cm (10 in) square (20 rounds), with a calculated flat diagonal of about 36.8 cm (14.5 in). Head about 4.9 cm across; laid-flat ear-tip-to-opposite-corner length is about 42 cm (16.5 in), depending on how the ears fall.  DK cotton on a 3.5 mm hook (3.0 mm for the head if your tension is loose).
++**FINISHED DIMENSIONS PENDING SAMPLE:** this edition changes construction or proportions. Measure the fully assembled sample; earlier edition dimensions are not validated for this revision.
+ 
+ ---
+ 
+@@ -24,9 +24,9 @@
+ 
+ - Also: about 8 g fibre fill, tapestry needle, stitch marker.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted or safety-certified. Sizes, timings and material quantities are estimates unless supported by your own measured sample. Stitch width, round height and circumference models do not prove the dimensions of a curved, stuffed piece. Make a complete sample before promising size, yield, fit or stability. Fit any plastic eyes according to the component manufacturer’s instructions; a hand check is not a prescribed product-safety test.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -82,21 +82,21 @@
+ | R14 | dec x 6 | (6) | close |
+ 
+ Immediately after Rnd 10, embroider the face described under Finishing while the 30-stitch opening is fully accessible; knot and bury every floss end inside. Then work Rnds 11-14, stuffing as directed, FO and close with the yarn tail.
+-The finished head measures 4.9 cm across and 5.3 cm tall. Stuff it FIRMLY - a soft head collapses when gripped and the face distorts.
++Measure the actual head: 14 shaped rounds do not prove a 5.3 cm vertical height. Fill evenly without stretching the stitches or distorting the face.
+ 
+-### 2. Ears - long and floppy (make 2, do not stuff)
++### 2. Longer ears — make two; do not stuff
+ 
+-| Rnd | Instruction | Sts | Note |
+-|---|---|---|---|
+-| R1 | 6 sc in MR | (6) | - |
+-| R2 | [sc, inc] x 3 | (9) | - |
+-| R3 | [2 sc, inc] x 3 | (12) | - |
+-| R4-8 | sc in each st around (5 rnd) | (12) | - |
+-| R9 | [2 sc, dec] x 3 | (9) | - |
+-| R10 | sc in each st around | (9) | - |
+-| R11 | [sc, dec] x 3 | (6) | flatten, FO |
++| Round / row | Instruction (US) | Count |
++|---|---|---|
++| R1 | 6 sc in MR | 6 |
++| R2 | inc around | 12 |
++| R3 | [sc, inc] x 6 | 18 |
++| R4–R14 | sc around each round | 18 |
++| R15 | [sc, dec] x 6 | 12 |
++| R16–R20 | sc around each round | 12 |
++| R21 | [sc, dec] x 4 | 8 |
+ 
+-Flatten and FO with a long tail. Sew to Rnds 4-6 of the head, about 10 stitches apart, pinching each base so it flops forward.
++Flatten the eight-stitch opening into four pairs. FO with a sewing tail; pin each paired base near Head R4–R6, mirrored about the face and clear of embroidery. Sew all four pairs and reinforce. These larger unstuffed ears are a prototype, not a guaranteed 9 cm length or age-suitability claim; check head balance and attachment after washing the sample.
+ 
+ ### 3. Blanket - granny square, joined rounds
+ 
+--- reviews/ns07-ns12/NS11_reviewed.md
++++ reviews/edition-2/NS11_edition2.md
+@@ -4,7 +4,7 @@
+ 
+ A plump little gnome worked as ONE continuous piece - body, beard, face and hat all in one tube with simple colour changes and a bobble nose. No assembly seams. A straightforward first amigurumi and a quick seasonal project.
+ 
+-**FINISHED SIZE**  About 8 cm (3.25 in) tall in worsted / aran on a 3.5 mm hook. The flat base rounds R1 to R5 add width, not height, so standing height counts the wall rounds plus the hat taper only (paper estimate - measure your sample).  About 5 cm (2 in) wide at the base.  One piece - no assembly, no sewing.
++**UNVERIFIED SIZE TARGET — measure a sample**  About 8 cm (3.25 in) tall in worsted / aran on a 3.5 mm hook. The flat base rounds R1 to R5 add width, not height, so standing height counts the wall rounds plus the hat taper only (paper estimate - measure your sample).  About 5 cm (2 in) wide at the base.  One piece - no assembly, no sewing.
+ 
+ ---
+ 
+@@ -30,9 +30,9 @@
+ 
+ - Notions: stitch marker, tapestry needle, scissors.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted or safety-certified. Sizes, timings and material quantities are estimates unless supported by your own measured sample. Stitch width, round height and circumference models do not prove the dimensions of a curved, stuffed piece. Make a complete sample before promising size, yield, fit or stability. Fit any plastic eyes according to the component manufacturer’s instructions; a hand check is not a prescribed product-safety test.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -40,7 +40,7 @@
+ 
+ ## Abbreviations (US + UK)
+ 
+-MR - magic ring  ·  sc2tog = dc2tog - work 2 stitches together as one (a decrease; swap for an invisible decrease, invdec, on the hat if preferred)
++BLO - back loop only  ·  MR - magic ring  ·  sc2tog = dc2tog - work 2 stitches together as one (a decrease; swap for an invisible decrease, invdec, on the hat if preferred)
+ 
+ ch - chain  ·  BO - 5-dc bobble (counts as 1 st) / UK: 5-tr bobble (counts as 1 st)
+ 
+@@ -53,6 +53,10 @@
+ inc - increase (2 sc in one st) / UK: increase (2 dc in one st)  ·  (n) - stitch count at round end
+ 
+ How to read this dual pattern: every round appears twice side by side - the US-terms instruction in the left column, the exact UK equivalent in the right column. Stitch counts are identical for both terminologies. Prose tips use US terms.
++
++## Design choice
++
++This version intentionally uses full-circumference white and skin-tone bands. It is a striped, stylized gnome, not a front-only beard over an uninterrupted coat. Front-panel colourwork is not included; it would require a complete colour map and safe yarn-carrying instructions. The R6 BLO fold may help define the base but cannot guarantee that the stuffed gnome stands.
+ 
+ ## Construction & techniques
+ 
+@@ -83,7 +87,8 @@
+ | R3 | [sc, inc] x 6 | [dc, inc] x 6 | (18) | - |
+ | R4 | [2 sc, inc] x 6 | [2 dc, inc] x 6 | (24) | - |
+ | R5 | [3 sc, inc] x 6 | [3 dc, inc] x 6 | (30) | - |
+-| R6-8 | sc in each st around (3 rnd) | dc in each st around (3 rnd) | (30) | - |
++| R6 | BLO sc in each st around | BLO dc in each st around | (30) | optional fold definition, not guaranteed stability |
++| R7-8 | sc in each st around (2 rnd) | dc in each st around (2 rnd) | (30) | - |
+ 
+ #### Beard - white (R9-12)
+ 
+--- reviews/ns07-ns12/NS12_reviewed.md
++++ reviews/edition-2/NS12_edition2.md
+@@ -2,9 +2,9 @@
+ 
+ > **US + UK equivalent  ·  Easy - Intermediate  ·  2 - 3 hours**  —  Design Code NS 12
+ 
+-A soft standing fir built in one piece: plain rounds, then tier after tier of bobbles that thin out toward the tip. Contrast-colour bobbles turn it into baubles-on-a-tree in a single round.
++A soft standing fir built in one piece: plain rounds, then seven tiers of six bobbles on a tapering cone; the bobbles become more closely spaced toward the tip. Contrast-colour bobbles turn it into baubles-on-a-tree in a single round.
+ 
+-**FINISHED SIZE**  About 7 cm (2.8 in) tall and 7 cm (2.8 in) wide in worsted / aran on a 4 mm hook. The flat base rounds R1 to R8 add width, not height; R9 is the fold/wall transition, so standing height counts the tapering cone rounds only (paper estimate - measure your sample).  About 9.5 cm tall in chunky yarn on a 5 mm hook.  One piece; a felt or cardboard base disc is optional.
++**UNVERIFIED SIZE TARGET — measure a sample**  About 7 cm (2.8 in) tall and 7 cm (2.8 in) wide in worsted / aran on a 4 mm hook. The flat base rounds R1 to R8 add width, not height; R9 is the fold/wall transition, so standing height counts the tapering cone rounds only (paper estimate - measure your sample).  About 9.5 cm tall in chunky yarn on a 5 mm hook.  One piece; a felt or cardboard base disc is optional.
+ 
+ ---
+ 
+@@ -28,9 +28,9 @@
+ 
+ - Notions: stitch marker, tapestry needle, scissors.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for arithmetic and construction; not physically test-crocheted or safety-certified. Sizes, timings and material quantities are estimates unless supported by your own measured sample. Stitch width, round height and circumference models do not prove the dimensions of a curved, stuffed piece. Make a complete sample before promising size, yield, fit or stability. Fit any plastic eyes according to the component manufacturer’s instructions; a hand check is not a prescribed product-safety test.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -70,7 +70,7 @@
+ 
+ ### 1. Tree - one piece, green (contrast optional)
+ 
+-The cone tapers between bobble tiers; the plain round between them keeps each tier distinct. If using a rigid base disc, insert it immediately after Rnd 9 while the opening still has 48 stitches. Begin adding small amounts of stuffing after Rnd 14 and continue every 2-3 rounds - do not wait until the six-stitch tip.
++The cone tapers between bobble tiers; the plain round between them keeps each tier distinct. If using a rigid base disc, insert it after Rnd 11, before the first decreasing tier, while the opening still has 48 stitches; pin or loosely tack it temporarily if needed. Begin adding small amounts of stuffing after Rnd 14 and continue every 2-3 rounds - do not wait until the six-stitch tip.
+ 
+ | Rnd | US terms | UK equivalent | Sts | Note |
+ |---|---|---|---|---|
+@@ -82,7 +82,7 @@
+ | R6 | [4 sc, inc] x 6 | [4 dc, inc] x 6 | (36) | - |
+ | R7 | [5 sc, inc] x 6 | [5 dc, inc] x 6 | (42) | - |
+ | R8 | [6 sc, inc] x 6 | [6 dc, inc] x 6 | (48) | base = full width |
+-| R9 | BLO: sc in each st around | BLO: dc in each st around | (48) | base fold ridge; insert optional disc now |
++| R9 | BLO: sc in each st around | BLO: dc in each st around | (48) | base fold ridge; measure optional disc; insert after R11 |
+ | R10 | [BO, 7 sc] x 6 | [BO, 7 dc] x 6 | (48) | first bobble tier |
+ | R11 | sc in each st around | dc in each st around | (48) | - |
+ | R12 | [BO, 5 sc, sc2tog] x 6 | [BO, 5 dc, dc2tog] x 6 | (42) | - |
+@@ -103,13 +103,13 @@
+ 
+ Finish: FO with a tail, thread through the last 3 stitches, pull the tip closed and weave the end down through the tree.
+ 
+-Stuffing: only the bottom half needs real fill - a lightly stuffed cone that flexes is nicer than a rigid one. After Rnd 9, measure the inside diameter at the fold ridge and cut the optional felt or cardboard disc with a diameter 3-5 mm smaller than that measurement (55-65 mm is only an estimate), and place it against the inside of the base; it will not pass through the narrowed tip later. Cardboard makes the tree non-washable. Add stuffing progressively from Rnd 14 and keep the upper cone light.
++Stuffing: only the bottom half needs real fill - a lightly stuffed cone that flexes is nicer than a rigid one. After Rnd 9, measure the inside diameter at the fold ridge and cut the optional felt or cardboard disc with a diameter 3-5 mm smaller than that measurement (55-65 mm is only an estimate), and insert it after Rnd 11 against the inside of the base; it will not pass through the narrowed tip later. Cardboard makes the tree non-washable. Add stuffing progressively from Rnd 14 and keep the upper cone light.
+ 
+ ## Finishing & assembly
+ 
+ - Contrast bobbles: change TO contrast before each bobble, work its five incomplete dc in contrast, then change BACK to green on the bobble's closing pull-through. One or two contrast tiers look best.
+ 
+-- Base: for a shelf decoration, place the optional disc after Rnd 9, keep it flat against the base while you work, and stuff around it gradually.
++- Base: for a shelf decoration, place the optional rigid disc after Rnd 11 before narrowing, keep it flat against the base while you work, and stuff around it gradually.
+ 
+ - Hanging: join any colour at the tip, ch 18, sl st into the same place.
+ 
+--- reviews/ns13-ns17/NS13_reviewed.md
++++ reviews/edition-2/NS13_edition2.md
+@@ -2,9 +2,9 @@
+ 
+ > **US + UK equivalent  ·  Beginner  ·  15 - 40 min each**  —  Design Code NS 13
+ 
+-Three quick decorations from leftover yarn: a stuffed round bauble, a flat-blocked five-point star, and a crisp six-arm snowflake. Allow about 15-40 minutes each, including finishing (blocking and drying take additional elapsed time).
++Three quick decorations from leftover yarn: a stuffed round bauble, a flat-blocked five-point star, and a rounded six-arm lace snowflake. Allow about 15-40 minutes each, including finishing (blocking and drying take additional elapsed time).
+ 
+-**FINISHED SIZE**  Bauble about 3.75 cm (1.5 in) across; star about 9 cm (3.5 in); snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
++**UNVERIFIED SIZE TARGET — measure a sample**  Bauble about 3.75 cm (1.5 in) across; star about 9 cm (3.5 in); snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
+ 
+ ---
+ 
+@@ -22,9 +22,9 @@
+ 
+ - Notions: tapestry needle, scissors, stitch marker, rust-resistant blocking pins, pin board or mat for blocking the star and snowflake.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for stitch arithmetic, terminology and construction. Not physically test-crocheted, fit-tested or safety-certified. Sizes, timings and material allowances remain unmeasured estimates; make complete samples before publishing size, yield, capacity, care or stability claims. Stitch counts alone do not establish three-dimensional shape or load capacity. Original safety cautions still apply.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -92,16 +92,18 @@
+ 
+ Hanging loop: pick the top point, join yarn in its ch-2 tip, ch 18, sl st into the same ch-2 space. FO, secure the attachment a second time with the tail and weave both ends in two directions.
+ 
++Number the original centre stitches 1–10, excluding the joining slip stitch. Starting in stitch 2 gives valleys at 2/4/6/8/10 and fans at 3/5/7/9/1. The last fan works into the ORIGINAL stitch 1, not the joining slip stitch.
++
+ The repeat uses all 10 centre stitches exactly (2 per point). Each fan contains 6 worked stitches; with its anchoring sl st, each point contributes 7 counted stitches, for 35 total. The five ch-2 tip spaces are additional structure, not counted stitches.
+ 
+ ### C. Six-Point Snowflake - open lace
+ 
+-Three short rounds. The ring is closed first so the arms hang on real chain spaces - keep the dc round snug, the ch-5 round loose.
++This is a rounded six-arm lace motif, not a picot-pointed snowflake. Its blocked diameter must be measured. Three short rounds. The ring is closed first so the arms hang on real chain spaces - keep the dc round snug, the ch-5 round loose.
+ 
+ | Rnd | US terms | UK equivalent | Sts | Note |
+ |---|---|---|---|---|
+ | R1 | ch 6, sl st in first ch to form a ring; ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3 | ch 6, sl st in first ch to form a ring; ch 3 (counts as first tr), 11 tr in ring, sl st to top of ch-3 | (12) | 12 spokes |
+-| R2 | [ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close | [ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close | - | 6 ch-5 spaces |
++| R2 | [ch 5, skip next st, sl st in next st] x 6 | [ch 5, skip next st, sl st in next st] x 6 | - | 6 ch-5 spaces |
+ | R3 | (sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | (sl st, ch 3, 3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | - | 6 arms - first sl st of each arm loose, last sl st snug |
+ 
+ Hanging loop: the two ch-3 arches flank the three tall stitches; neither is a central tip. Join under both top loops of the middle tr (UK dtr) of the chosen arm, ch 18, sl st into the same stitch. FO, reinforce the attachment with the tail and weave both ends in two directions. Pin the arm symmetrically when blocking.
+--- reviews/ns13-ns17/NS14_reviewed.md
++++ reviews/edition-2/NS14_edition2.md
+@@ -64,7 +64,7 @@
+ 
+ A closed-ring (no slit), twelve-spoke double-crochet circle with a contrast bobble round every third round from R5. Choose the mini, standard or large stopping point, add twelve optional surface-crochet spokes, then finish with an exact scalloped border.
+ 
+-Finished-size targets — not sample measurements: mini / tabletop after R14, about 18–21 in / 46–53 cm; standard after R23, about 29–33 in / 74–84 cm; large after R32, about 38–43 in / 97–109 cm. The source target for the relaxed centre opening is approximately 1.5–2 in / 4–5 cm. Yarn, hook, blocking and border depth change every dimension; measure a complete sample before publishing a size or fit claim.
++Finished-size targets — not sample measurements: mini / tabletop after R14, about 18–21 in / 46–53 cm; standard after R23, about 29–33 in / 74–84 cm; large after R32, about 38–43 in / 97–109 cm. No 4–5 cm centre-opening claim is supported by this 12-dc first round. This edition is only for a pole that passes through the COMPLETED relaxed gauge piece without interference; otherwise choose a separately designed open/slit skirt, not an improvised larger first round. Yarn, hook, blocking and border depth change every dimension; measure a complete sample before publishing a size or fit claim.
+ 
+ ---
+ 
+@@ -89,9 +89,9 @@
+ 
+ ---
+ 
+-## Review status
+-
+-Written instructions reviewed for stitch arithmetic, terminology and construction. Not physically test-crocheted, fit-tested or safety-certified. Sizes, timings and material allowances remain unmeasured estimates; make complete samples before publishing size, yield, capacity, care or stability claims. Stitch counts alone do not establish three-dimensional shape or load capacity. Original safety cautions still apply.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -228,13 +228,15 @@
+ 
+ ### Scalloped border
+ 
++Design choice: these scallops close exactly but do NOT place the same shell/valley phase at every one of the twelve spokes. Bobbles also sit beside sector boundaries rather than being centred between spokes. This is intentional for this retained ladder; a perfectly twelvefold-aligned motif is a different design. Do not change stop rounds without recalculating size, colour and border instructions.
++
+ Work the border into the final growth round only after the size and optional spokes are approved.
+ 
+ | ✓ | Rnd | US terms | UK terms | Sts | Note |
+ |---|---|---|---|---|---|
+-| [ ] | Border | Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO | Join CC in any st; ch 1, [dc in next st, skip 2 sts, 5 tr in next st, skip 2 sts] around, sl st to first dc, FO | same worked-st total as the final growth round | each repeat consumes 6 edge sts and makes 1 scallop |
+-
+-Each border repeat consumes six final-round anchors and produces six worked stitches: one sc plus a five-dc shell. R14 gives 168 ÷ 6 = 28 scallops; R23 gives 276 ÷ 6 = 46; R32 gives 384 ÷ 6 = 64. The stitch you join into is taken by the final skip of the last repeat, so the closing slip stitch lands in the first sc one stitch past the join; this is correct and it is what makes the repeat close exactly. Do not add a seventh anchor or work the first sc into the join stitch. If the repeat does not close exactly, undo the border and correct the final-round count rather than changing the last scallop.
++| [ ] | Border | Join CC in any st; ch 1, sc in SAME st, skip 2 sts, 5 dc in next st, skip 2 sts; repeat [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] to end, sl st to first sc, FO | Join CC in any st; ch 1, dc in SAME st, skip 2 sts, 5 tr in next st, skip 2 sts; repeat [dc in next st, skip 2 sts, 5 tr in next st, skip 2 sts] to end, sl st to first dc, FO | same worked-st total as the final growth round | each repeat consumes 6 edge sts and makes 1 scallop |
++
++Each border repeat consumes six final-round anchors and produces six worked stitches: one sc plus a five-dc shell. R14 gives 168 ÷ 6 = 28 scallops; R23 gives 276 ÷ 6 = 46; R32 gives 384 ÷ 6 = 64. The first sc uses the joining anchor; the starting ch 1 is not a stitch. The final two skipped anchors complete the circuit before joining to the first sc. If the repeat does not close exactly, undo the border and correct the final-round count rather than changing the last scallop.
+ 
+ ---
+ 
+--- reviews/ns13-ns17/NS15_reviewed.md
++++ reviews/edition-2/NS15_edition2.md
+@@ -2,11 +2,15 @@
+ 
+ > **US + UK equivalent  ·  Beginner  ·  tube grows by length**  —  Design Code NS 15
+ 
+-A stuffed spiral tube joined into a ring, dressed for the season with three REMOVABLE decorations: poinsettia, lace snowflake and a gift-bow. Swap them as the holidays change. Mini ornament, standard door and large door sizes.
++A flexible stuffed tube joined into a loop for supported flat display, dressed for the season with three REMOVABLE decorations: poinsettia, lace snowflake and a gift-bow. Swap them as the holidays change. Mini ornament and two supported-display sizes; unsupported vertical door-wreath use is not validated.
+ 
+-**FINISHED SIZE**  Mini ornament: 22 cm (8.5 in) tube; centreline ring diameter about 7 cm.  Standard door wreath: 92 cm (36 in) tube; centreline diameter about 29 cm.  Large door wreath: 125 cm (49 in) tube; centreline diameter about 40 cm.  The finished OUTSIDE diameter is one tube thickness larger, so measure your sample. Poinsettia approx. 3.5 in; snowflake approx. 4 in; bow approx. 3.5 in wide.
++**UNVERIFIED SIZE TARGET — measure a sample**  Mini ornament: 22 cm (8.5 in) tube; centreline ring diameter about 7 cm.  Standard supported loop: 92 cm (36 in) tube; centreline diameter about 29 cm.  Large supported loop: 125 cm (49 in) tube; centreline diameter about 40 cm.  The finished OUTSIDE diameter is one tube thickness larger, so measure your sample. Poinsettia approx. 3.5 in; snowflake approx. 4 in; bow approx. 3.5 in wide.
+ 
+ ---
++
++## Structural limitation — read before choosing a size
++
++The 12-stitch tube is NOT validated as a self-supporting circular door wreath. Standard and large versions in this edition are supported tabletop/display loops, not unsupported vertical door wreaths. Do not rely on extra stuffing, an external wrap or an improvised wire to hold a circle. A vertical form-mounted wreath requires a separate fit and attachment design around a suitable manufactured form; that construction is not supplied here. Mini hanging use also requires a sample and attachment assessment.
+ 
+ ## Safety — read this first
+ 
+@@ -21,13 +25,13 @@
+ 
+ - Decorations: small amounts of red, white, yellow and green yarn; optional metallic thread held with the snowflake yarn; 3.5-4 mm hook.
+ 
+-- For a door wreath, use a load-rated woven hanging cord or ribbon long enough to wrap twice around the full tube. Do not add loose or glued embellishments anywhere children can reach.
++- For an assessed miniature hanging version, use a suitable woven cord or ribbon. Standard/large unsupported door-hanging construction is not supplied. Do not add loose or glued embellishments anywhere children can reach.
+ 
+ - Notions: stitch marker, scissors, tapestry needle.
+ 
+-## Review status
++## Edition 2 — technical revision
+ 
+-Written instructions reviewed for stitch arithmetic, terminology and construction. Not physically test-crocheted, fit-tested or safety-certified. Sizes, timings and material allowances remain unmeasured estimates; make complete samples before publishing size, yield, capacity, care or stability claims. Stitch counts alone do not establish three-dimensional shape or load capacity. Original safety cautions still apply.
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -75,7 +79,7 @@
+ | R1 | Sc in each ch around | Dc in each ch around | (12) | - |
+ | R2+ | Sc in each st around until the tube reaches the target MEASURED length | Dc in each st around until the tube reaches the target MEASURED length | (12) | round counts vary too much by gauge to prescribe |
+ | Join | FO with a 40 cm tail; keep openings round, align the 12 final-round sts with the 12 foundation ch, and whip-stitch 12 pairs around | FO with a 40 cm tail; keep openings round, align the 12 final-round sts with the 12 foundation ch, and whip-stitch 12 pairs around | - | add final stuffing before last 3 pairs |
+-| Hanger | After joining the ring, wrap a load-rated woven cord or ribbon TWICE around the entire tube at the top; tie and secure it according to the cord/ribbon maker’s instructions, with the knot at the back | After joining the ring, wrap a load-rated woven cord or ribbon TWICE around the entire tube at the top; tie and secure it according to the cord/ribbon maker’s instructions, with the knot at the back | - | the hanger encircles the tube; it does not rely on individual crochet sts |
++| Hanger | For the standard/large version, lay the joined loop on a fully supporting display surface; no unsupported vertical hanger is specified | For the standard/large version, lay the joined loop on a fully supporting display surface; no unsupported vertical hanger is specified | - | the hanger encircles the tube; it does not rely on individual crochet sts |
+ 
+ ### 2. Poinsettia (removable)
+ 
+@@ -94,31 +98,22 @@
+ 
+ ### 3. Snowflake (removable)
+ 
+-White, joined rounds; block flat.
++White, joined rounds; block flat. This retained motif has rounded arms, not picot points. Measure its actual diameter; the historical four-inch target is unverified.
+ 
+ #### Snowflake
+ 
+ | Rnd | US terms | UK equivalent | Sts | Note |
+ |---|---|---|---|---|
+ | R1 | With white: MR, ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3 | With white: MR, ch 3 (counts as first tr), 11 tr in ring, sl st to top of ch-3 | (12) | 12 spokes |
+-| R2 | [Ch 5, skip next dc, sl st in next dc] x 6, sl st to the base of the first ch-5 | [Ch 5, skip next tr, sl st in next tr] x 6, sl st to the base of the first ch-5 | - | 6 ch-5 spaces; all 12 R1 sts used |
++| R2 | [Ch 5, skip next dc, sl st in next dc] x 6 | [Ch 5, skip next tr, sl st in next tr] x 6 | - | 6 ch-5 spaces; all 12 R1 sts used |
+ | R3 | In each ch-5 space work (sl st, ch 3, 3 tr, ch 3, sl st); sl st to the first sl st, FO | In each ch-5 space work (sl st, ch 3, 3 dtr, ch 3, sl st); sl st to the first sl st, FO | - | 6 arms; per arm 3 tall sts + 2 sl sts |
+ | Tie | Attach one folded 55 cm white/silver tie under at least 2 sturdy back sts as in technique 4 | Attach one folded 55 cm white/silver tie under at least 2 sturdy back sts as in technique 4 | - | two tails wrap around tube; tie at back |
+ 
+-### 4. Holiday bow (removable)
++### 4. Fabric-loop bow — removable
+ 
+-Two chain loops, two tails, one little centre band. Work the loops and tails as one connected piece, then FO. Make the band separately with new yarn, FO with a sewing tail after Row 4, and wrap it around the pinched centre.
++Make the loop strip separately in red: ch 50. Row 1: sc in second chain and across (49), ch 1, turn. Row 2: sc across (49), FO with a sewing tail. Fold both short ends inward to the centre to create two fabric loops; sew the ends securely to the centre and pinch the middle.
+ 
+-#### Bow
+-
+-| Rnd | US terms | UK equivalent | Sts | Note |
+-|---|---|---|---|---|
+-| Loops | With red: ch 24, sl st to first ch (loop 1 - untwisted); ch 24 again, sl st to same base point (loop 2) | With red: ch 24, sl st to first ch (loop 1 - untwisted); ch 24 again, sl st to same base point (loop 2) | - | two 24-ch loops |
+-| Tails | Ch 15, sc in 2nd ch from hook and across (14 sc), sl st to bow base; repeat for second tail | Ch 15, dc in 2nd ch from hook and across (14 dc), sl st to bow base; repeat for second tail | (14) | 15 chains make 14 sc, x2 tails |
+-| Band | Ch 6, sc in 2nd ch from hook and across (5); rows 2-4: ch 1, turn, sc across (5) | Ch 6, dc in 2nd ch from hook and across (5); rows 2-4: ch 1, turn, dc across (5) | (5) | separate rectangle: 4 rows of 5; wrap around centre and sew short ends |
+-| Tie | Attach one folded 55 cm tie under at least 2 sturdy sts on the finished band back as in technique 4 | Attach one folded 55 cm tie under at least 2 sturdy sts on the finished band back as in technique 4 | - | two tails wrap around tube; tie at back |
+-
+-Arrange the two loops side by side and the two tails below them. Wrap the band tightly around all four pieces; sew its short ends together at the back, then use the remaining tail to tack through the loop and tail bases so nothing can slide out. Add the separate 55 cm removable tie last.
++Make two tails separately: ch 15, sc in second chain and across (14), FO with sewing tails. Sew both top ends to the pinched centre. Make the band: ch 6; Row 1 sc in second chain and across (5); Rows 2–4 ch 1, turn, sc across (5 each). FO with a sewing tail. Wrap around the pinched centre and sew short ends; tack through the enclosed bases so no component can slide out. If the band does not fit without crushing the loops, remake to measured length, preserving five stitches per row. Attach the separate folded 55 cm removable tie through at least two strong band-back stitches. All finished dimensions are unverified.
+ 
+ ### 5. Mini wreath ornament (optional)
+ 
+@@ -157,8 +152,8 @@
+ | Wreath | Target tube length | Approx. centreline diameter |
+ |---|---|---|
+ | Mini ornament | 20-24 cm / 8-9.5 in | 6.5-7.5 cm |
+-| Standard door | 86-97 cm / 34-38 in | 27-31 cm |
+-| Large door | 119-132 cm / 47-52 in | 38-42 cm |
++| Standard supported | 86-97 cm / 34-38 in | 27-31 cm |
++| Large supported | 119-132 cm / 47-52 in | 38-42 cm |
+ 
+ The outside diameter is one tube thickness larger. Round counts are deliberately omitted because row height changes dramatically with yarn, hook and stuffing; measure the actual tube.
+ 
+--- reviews/ns13-ns17/NS16_reviewed.md
++++ reviews/edition-2/NS16_edition2.md
+@@ -46,9 +46,9 @@
+ 
+ Also obtain 2.2 m / 7 ft of load-appropriate ribbon, woven cord or yarn for the support; secure wall fixings; and, if used, securely attached number tags or clips. Do not assume a decorative jute string or adhesive hook can support 24 filled stockings.
+ 
+-## Review status
+-
+-Written instructions reviewed for stitch arithmetic, terminology and construction. Not physically test-crocheted, fit-tested or safety-certified. Sizes, timings and material allowances remain unmeasured estimates; make complete samples before publishing size, yield, capacity, care or stability claims. Stitch counts alone do not establish three-dimensional shape or load capacity. Original safety cautions still apply.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -106,9 +106,9 @@
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+ | R1 | sc in each of 20 foundation chains around | (20) | join to first sc |
+-| R2 | BLO sc in each st around | (20) | ribbed cuff |
+-| R3 | BLO sc in each st around | (20) | ribbed cuff |
+-| R4 | BLO sc in each st around | (20) | ribbed cuff |
++| R2 | BLO sc in each st around | (20) | horizontally ridged cuff |
++| R3 | BLO sc in each st around | (20) | horizontally ridged cuff |
++| R4 | BLO sc in each st around | (20) | horizontally ridged cuff |
+ | R5 | with MC, sc in each st around | (20) | both loops |
+ | R6 | sc in each st around | (20) | leg |
+ | R7 | sc in each st around | (20) | leg |
+@@ -133,39 +133,29 @@
+ | Row 7 | 6 sc, dec; leave final 2 sts unworked, ch 1, turn | (7) | consumes 8 of 10 |
+ | Row 8 | 4 sc, dec; leave final st unworked, ch 1, turn | (5) | consumes 6 of 7 |
+ | Row 9 | 3 sc, dec, ch 1, turn | (4) | consumes all 5 |
+-| Row 10 | 2 sc, dec; do not turn | (3) | heel centre |
++| Row 10 | 2 sc, dec; ch 1, turn | (3) | WS row; turn so RS faces for pickup |
+ 
+ The corrected Row-6 turn is essential: without it there are no stitches ahead of the hook for Row 7. Rows 7–10 alternate direction and reduce 10 active stitches to 3 while the unworked ends help form the heel cup. Do not crochet into those unworked top loops as extra heel-turn stitches.
+ 
+ ### 3. Foot pickup and evening
+ 
+-Colour transition: after Heel Row 10, change from AC back to MC for Foot R1. Finish the final heel decrease with MC on its last pull-through (or join MC at that endpoint), secure AC without tightening the edge, then ch 1 and follow the pickup route. If the heel is already MC, continue without a colour change.
+-
+-After Row 10, do not turn. The hook is at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
+-
+-1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. That is about one pickup for every two row ends; the five pickups must cover the whole edge from the outset. This relatively sparse pickup is not physically verified: if it puckers or leaves gaps despite redistribution, stop and test the heel gauge/route on a sample rather than forcing it flat or adding stitches without recalculating the foot. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
+-
+-2. Work 1 sc in each of the 10 waiting instep stitches.
+-
+-3. Work exactly 5 sc along the complete second heel edge, mirroring the first side and ending beside the far edge of Row 10.
+-
+-4. Work 1 sc in each of the 3 Row-10 heel-centre stitches, returning to the beginning of the pickup round.
+-
+-5. Join to the first picked-up sc: 5 + 10 + 5 + 3 = 23 stitches.
+-
+-The five side stitches are distributed over each whole exposed heel edge; they are not five extra stitches plus additional stitches in the heel-turn steps. If a large gap remains at either heel-centre or leg junction, undo that side and move its nearest pickup closer to the junction without changing the five-stitch side count.
++After completing WS Heel Row 10, make the single ch-1-and-turn already specified in the table (do not repeat it) so the RS/outside faces you. Change AC back to MC at this transition (secure AC), or continue MC if used for the heel. The starting chain does not count.
++
++Foot pickup, RS facing: sc across all three Row-10 stitches FIRST; then work five sc evenly along the first complete exposed heel edge toward the leg, ten sc across the waiting instep, and five sc down the second heel edge back to the starting heel-centre stitch. Mark the first heel-centre sc and join to it: 3 + 5 + 10 + 5 = 23. Do not turn subsequent foot/toe rounds. Work each next round from the outside in the same direction.
++
++The heel is a stepped narrowed flap, not a conventional gap-joining short-row cup. Catch secure strands at the stepped ledges when picking up, rather than bridging a hole with loose yarn. Five pickups per side is an untested sparse route. If it puckers or leaves holes, STOP: the 23-stitch pickup must be redesigned and recalculated after a sample, not forced flat. The two sides and odd three-stitch centre need not be exactly mirror images.
+ 
+ | Rnd | Instruction | Sts | Note |
+ |---|---|---|---|
+-| Foot R1 | 5 side sc, 10 instep sc, 5 side sc, 3 heel-centre sc | (23) | exact pickup route above |
+-| Foot R2 | 4 sc, dec, 5 sc, dec, 5 sc, dec, 3 sc | (20) | consumes all 23; three decreases |
++| Foot R1 | 3 heel-centre sc, 5 side sc, 10 instep sc, 5 side sc | (23) | exact pickup route above |
++| Foot R2 | 7 sc, dec, 5 sc, dec, 5 sc, dec | (20) | consumes all 23; three decreases |
+ | Foot R3 | sc in each st around | (20) | join |
+ | Foot R4 | sc in each st around | (20) | join |
+ | Foot R5 | sc in each st around | (20) | join |
+ | Foot R6 | sc in each st around | (20) | join |
+ | Foot R7 | sc in each st around | (20) | join |
+ 
+-Do not move the three Foot-R2 decreases arbitrarily: the written 4 / 5 / 5 / 3 spacing distributes them around the counted pickup. If the pickup does not equal 23, undo it and correct the side anchors before continuing.
++The revised Foot-R2 decreases are counted but not physically placement-tested; they are not claimed to occupy the old WS route’s same positions. Do not move them arbitrarily: the revised 7 / 5 / 5 spacing distributes them around the counted pickup. If the pickup does not equal 23, undo it and correct the side anchors before continuing.
+ 
+ ### 4. Toe
+ 
+@@ -214,7 +204,7 @@
+ 
+ - **There is a hole beside the heel:** redistribute the five pickups over the complete exposed edge, placing the end pickups close to the heel-centre and leg junctions; work under two edge strands wherever possible.
+ 
+-- **The pickup is not 23:** recount 5 side + 10 instep + 5 side + 3 heel centre. Do not compensate in the evening round.
++- **The pickup is not 23:** recount 3 heel centre + 5 side + 10 instep + 5 side. Do not compensate in the evening round.
+ 
+ - **The foot is still above 20:** Foot R2 contains exactly three decreases and consumes all 23 stitches.
+ 
+@@ -224,7 +214,7 @@
+ 
+ ## Colorways
+ 
+-Original colourway: classic red MC for leg and foot, snow-white CC for the ribbed cuff, and evergreen AC for heel, toe and hanging loop. All three colours should be similar DK yarns so the gauge remains consistent.
++Original colourway: classic red MC for leg and foot, snow-white CC for the horizontally ridged cuff, and evergreen AC for heel, toe and hanging loop. All three colours should be similar DK yarns so the gauge remains consistent.
+ 
+ Alternative palettes: winter white / silver-grey / pale blue; natural cream / heather brown / deep red; Scandinavian red / white / small black embroidery; blush pink / cream / mint; or a scrap-yarn set with one consistent cuff colour. Record the actual colour and fibre used for every stocking if care labels differ.
+ 
+@@ -262,4 +252,4 @@
+ 
+ ## Happy crocheting!
+ 
+-Check every box, preserve the 5 + 10 + 5 + 3 pickup and enjoy building the colour sequence one stocking at a time.
++Check every box, preserve the 3 + 5 + 10 + 5 pickup and enjoy building the colour sequence one stocking at a time.
+--- reviews/ns13-ns17/NS17_reviewed.md
++++ reviews/edition-2/NS17_edition2.md
+@@ -35,7 +35,7 @@
+ 
+ - Smooth worsted (#4) cotton or acrylic: warm cream / off-white, about 73 m / 80 yd for head, body, outer ears, upper limbs and tail.
+ 
+-- Worsted (#4) light tan / beige, about 18 m / 20 yd for muzzle, inner ears and hooves.
++- Worsted (#4) light tan / beige, quantity unmeasured: muzzle and hooves use 250 worked stitches plus 32 for the standard inner ears; include sewing tails.
+ 
+ - Worsted (#4) espresso brown or dark grey, about 9 m / 10 yd for two yarn-only horns.
+ 
+@@ -49,7 +49,7 @@
+ 
+ - Worsted (#4) white texture yarn or smooth washable worsted, about 73 m / 80 yd for head, body, outer ears, upper limbs and tail. “Wool white” is the original shade name used below, not a fibre requirement. Do not substitute blanket-weight chenille without making and measuring a separate sample.
+ 
+-- Worsted (#4) light tan / beige, about 27 m / 30 yd for the muzzle and hooves.
++- Worsted (#4) light tan / beige, quantity unmeasured: the shared muzzle and hooves use 250 worked stitches; the pink ears are additional in pink, not tan.
+ 
+ - Worsted (#4) scarlet red, about 6 m / 7 yd for the fixed collar.
+ 
+@@ -67,9 +67,9 @@
+ 
+ The quoted yarn is a planning allowance, not a measured guarantee. Fibre, twist, texture, gauge, tails and stuffing change use. Swatch, make one complete animal and weigh every colour before publishing supply claims or buying for production.
+ 
+-## Review status
+-
+-Written instructions reviewed for stitch arithmetic, terminology and construction. Not physically test-crocheted, fit-tested or safety-certified. Sizes, timings and material allowances remain unmeasured estimates; make complete samples before publishing size, yield, capacity, care or stability claims. Stitch counts alone do not establish three-dimensional shape or load capacity. Original safety cautions still apply.
++## Edition 2 — technical revision
++
++This is an untested construction revision, not a test-crocheted or safety-certified release. All inherited sizes, times, yarn/filling quantities and alternate-size estimates are provisional planning figures, not promises. Do not infer vertical height from total shaped rounds or infer yarn use from stitch totals alone. Make and measure a complete sample before publishing size, fit, capacity, stability or care claims. Pin every attachment before sewing; never stretch a component to reach printed round limits.
+ 
+ ## Gauge & size
+ 
+@@ -193,7 +193,7 @@
+ | Row 3 | sc in each st across, ch 1, turn | (4) | - |
+ | Row 4 | dec x 2 | (2) | FO; point |
+ 
+-Place the inner piece on the outer piece with wrong sides together and sew the complete perimeter. Fold the six-stitch foundation edge in half and secure the fold. Sew that folded base through both layers to the side of the head around Rnds 8–12, below and behind its horn. Mirror the second ear.
++Place the inner piece on the outer piece with wrong sides together and sew the complete perimeter. Fold the six-stitch foundation edge in half and secure the fold. Sew that folded base through both layers to the side of the head centred near Rnd 9, below and behind its horn; let the folded base occupy its natural footprint without stretching across five rounds. Mirror the second ear.
+ 
+ For the optional longer ear, make both layers from this complete table instead; do not mix lengths within one ear.
+ 
+@@ -292,11 +292,11 @@
+ | R5 | sc in each st around | (6) | - |
+ | R6 | sc in each st around | (6) | FO with sewing tail |
+ 
+-Do not stuff. Sew all six open-edge stitches to the centre back around Body Rnds 19–20, with the tip angled upward.
++Do not stuff. Sew all six open-edge stitches to the centre back near Body Rnds 8–10 at the lower centre back, above the sitting crease, with the tip angled upward.
+ 
+ #### 9. Fixed flame sash
+ 
+-With scarlet, ch 36.
++Measure the intended diagonal sash route on the stuffed body FIRST, including at least one stitch of overlap. Choose the modular count below to reach that measured length; the 35-stitch table is an arithmetic example, not a guaranteed baseline fit. With scarlet, ch 36 only if the measured route supports it.
+ 
+ | Row | Instruction | Sts | Note |
+ |---|---|---|---|
+@@ -348,7 +348,7 @@
+ 
+ Immediately after Rnd 15, embroider black eyes between Rnds 11 and 12, eight stitches centre to centre, and secure the ends inside. Centre a separate light-tan muzzle from the five-round muzzle table below the eyes over approximately Lamb Head Rnds 12–16. Embroider and secure its nose and mouth through the open muzzle rim before attaching; lightly stuff it and sew all 18 open-edge stitches to the head, burying the sewing tail in the seam/head fabric. Do not work a six-stitch closing round.
+ 
+-Make two layered ears with wool-white outer pieces and pale-pink inner pieces for the original colourway; light tan is an optional inner-ear substitution. Position their folded bases around Lamb Head Rnds 9–13 and angle them down. This design's companion lamb is intentionally hornless.
++Make two layered ears with wool-white outer pieces and pale-pink inner pieces for the original colourway; light tan is an optional inner-ear substitution. Position their folded bases centred near Lamb Head Rnd 10, letting the folded base occupy its natural footprint and angle them down. This design's companion lamb is intentionally hornless.
+ 
+ #### 12. Rounder lamb body — wool white
+ 
+@@ -392,7 +392,7 @@
+ | R5 | sc in each st around | (10) | lightly stuff |
+ | R6 | dec x 5 | (5) | FO with sewing tail |
+ 
+-Sew all five edge stitches to the centre back around Lamb Body Rnds 20–21, angled down.
++Sew all five edge stitches to the centre back near Lamb Body Rnds 9–11 at the lower centre back, above the sitting crease, angled down.
+ 
+ #### 14. Fixed red lamb collar
+ 

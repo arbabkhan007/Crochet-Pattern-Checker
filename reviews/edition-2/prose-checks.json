@@ -1,0 +1,778 @@
+[
+  {
+    "file": "NS01_edition2.md",
+    "name": "Head seam",
+    "instruction": "3. Match the open Head R20 (18) to open Body R19 (18), one pair at a time. Sew all 18 pairs, adding neck filling before the last pairs. Reinforce with a second complete seam circuit. Secure in the seam and bury tails; do not cinch either opening first.",
+    "arithmetic": [
+      {
+        "label": "seam",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      }
+    ]
+  },
+  {
+    "file": "NS01_edition2.md",
+    "name": "Flat layered ears",
+    "instruction": "For each ear make one ginger outer and one cream inner flat disc. Both: R1 6 sc in MR; R2 inc around (12); R3 [sc, inc] x 6 (18). FO the cream disc; retain ginger yarn for joining. Do not stuff.",
+    "arithmetic": [
+      {
+        "label": "R2",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "label": "R3",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      },
+      {
+        "label": "edge pairs",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      }
+    ]
+  },
+  {
+    "file": "NS01_edition2.md",
+    "name": "Measured scarf",
+    "instruction": "Measure the assembled neck and the intended loose knot with spare yarn first. A candidate starting length is ch 91: Row 1 hdc in 2nd chain and every remaining chain (90); Row 2 ch 2, turn, hdc across (90), starting chain not counted. FO and weave ends. The hdc gauge differs from sc; remake the foundation to the measured length if necessary. For N starting chains, each row has N \u2212 1 hdc. A ribbon alternative may start at 40 cm, but measure before cutting. Avoid tight knots and long loose ends; omit removable scarves/ribbons where the intended-use assessment requires it.",
+    "arithmetic": [
+      {
+        "label": "foundation",
+        "terms": [
+          91,
+          -1
+        ],
+        "expected": 90
+      }
+    ]
+  },
+  {
+    "file": "NS02_edition2.md",
+    "name": "Leaf start",
+    "instruction": "Chain 7. This is an open-ended leaf, not a closed oval after Row 1. Turning chains do not count.",
+    "arithmetic": [
+      {
+        "label": "working chains",
+        "terms": [
+          7,
+          -1
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "file": "NS02_edition2.md",
+    "name": "Flat ear lining",
+    "instruction": "R1: 4 sc in MR (4). R2: [sc, inc] x 2 (6). R3: [2 sc, inc] x 2 (8). R4: [3 sc, inc] x 2 (10). FO with a sewing tail and do not stuff. Flatten the ten-stitch opening into five pairs. Embroider a small pink triangle on the front layer, secure the embroidery, then sew the five paired base anchors to the head around R4\u2013R5. This replaces the separate pink tubular inserts to reduce bulk.",
+    "arithmetic": [
+      {
+        "label": "R2",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      },
+      {
+        "label": "R3",
+        "terms": [
+          8
+        ],
+        "expected": 8
+      },
+      {
+        "label": "R4",
+        "terms": [
+          10
+        ],
+        "expected": 10
+      },
+      {
+        "label": "five pairs",
+        "terms": [
+          10
+        ],
+        "expected": 10
+      }
+    ]
+  },
+  {
+    "file": "NS02_edition2.md",
+    "name": "Wing ends",
+    "instruction": "The three skipped foundation chains are height only, not a counted dc. Name Row-1 start End A (outer tip) and Row-1 finish End B (inner root); Row 2 runs B to A and Row 3 runs A to B.",
+    "arithmetic": [
+      {
+        "label": "chain15 minus3",
+        "terms": [
+          15,
+          -3
+        ],
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "file": "NS03_edition2.md",
+    "name": "Tail fold",
+    "instruction": "Finish: hold Axel in the intended seated pose and flatten the tail side-to-side, pairing the left and right walls into three pairs so the closure runs dorsal-to-ventral, then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.",
+    "arithmetic": [
+      {
+        "label": "three pairs",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "file": "NS03_edition2.md",
+    "name": "Wider neck",
+    "instruction": "- **Neck collapsing.** The 18-stitch neck is deliberately narrow. First pack a little more stuffing into the neck through the body opening before closing R25. For a wider-neck prototype, replace R12 with [4 sc, invdec] x 4 (20), R13 with sc around (20), and R14 with [4 sc, inc] x 4 (24). R15 onward is unchanged. This removes the 18-stitch bottleneck but does not guarantee stiffness.",
+    "arithmetic": [
+      {
+        "label": "R12 used",
+        "terms": [
+          24
+        ],
+        "expected": 24
+      },
+      {
+        "label": "R12 made",
+        "terms": [
+          20
+        ],
+        "expected": 20
+      },
+      {
+        "label": "R14 used",
+        "terms": [
+          20
+        ],
+        "expected": 20
+      },
+      {
+        "label": "R14 made",
+        "terms": [
+          24
+        ],
+        "expected": 24
+      }
+    ]
+  },
+  {
+    "file": "NS04_edition2.md",
+    "name": "Equal legs",
+    "instruction": "R1: 6 sc in MR (6). R2: [sc, inc] x 3 (9). R3\u2013R7: sc around (9 each). Stuff the hoof lightly, leaving the top soft. R8: [sc, invdec] x 3 (6). FO with a tail. Flatten each opening into three matched pairs. Equal lengths are the starting prototype, not a guarantee that all feet will meet the table; check attachment angle and filling before finishing.",
+    "arithmetic": [
+      {
+        "label": "R8 use",
+        "terms": [
+          9
+        ],
+        "expected": 9
+      },
+      {
+        "label": "R8 made",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "file": "NS04_edition2.md",
+    "name": "Nonoverlapping leg map",
+    "instruction": "Leg map \u2014 each joining sc catches both stitches of one flattened leg pair and one body anchor. R4 consumes 3 + 2 + 3 + 10 = 18 old stitches and makes 3 + 3 + 3 + 15 = 24. Its back-leg joins occupy NEW R4 stitches 1\u20133 and 7\u20139. R5 consumes 12 + 3 + 3 + 3 + 3 = 24 and makes 16 + 3 + 4 + 3 + 4 = 30. Its front legs use OLD R4 stitches 13\u201315 and 19\u201321. Thus the four reference centres are 2, 8, 14 and 20: the back pair are adjacent, and the front pair are adjacent, with no shared join anchors.",
+    "arithmetic": [
+      {
+        "label": "R4 input",
+        "terms": [
+          3,
+          2,
+          3,
+          10
+        ],
+        "expected": 18
+      },
+      {
+        "label": "R4 output",
+        "terms": [
+          3,
+          3,
+          3,
+          15
+        ],
+        "expected": 24
+      },
+      {
+        "label": "R5 input",
+        "terms": [
+          12,
+          3,
+          3,
+          3,
+          3
+        ],
+        "expected": 24
+      },
+      {
+        "label": "R5 output",
+        "terms": [
+          16,
+          3,
+          4,
+          3,
+          4
+        ],
+        "expected": 30
+      }
+    ]
+  },
+  {
+    "file": "NS05_edition2.md",
+    "name": "Wing seam",
+    "instruction": "Do not stuff. FO with a sewing tail. Pin the four-stitch closing edge on the body side near R6\u2013R9, angled so the free tip points backward/down. Those rounds identify a region, not a mandatory vertical seam length. Sew the full paired edge without stretching it and repeat the seam. Verify fit on the actual chenille before making the second wing.",
+    "arithmetic": [
+      {
+        "label": "four paired anchors",
+        "terms": [
+          8
+        ],
+        "expected": 8
+      }
+    ]
+  },
+  {
+    "file": "NS05_edition2.md",
+    "name": "Face pinning",
+    "instruction": "3. First pin the chosen beak and mark clear eye positions above it. Eyes: immediately after Rnd 19, embroider black eyes between Rnds 17 and 18, seven stitches apart (56 mm along the stitch line on the 76 mm-diameter head). Knot the floss ends inside while the 30-stitch opening is clear.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS06_edition2.md",
+    "name": "Face access",
+    "instruction": "Pause after R12: mark the full face, place eyes between R10 and R11 about seven stitch positions centre-to-centre, verify washer clearance, lock washers and embroider the nose/mouth below. Keep the mouth clear of the R7 fold. Add a small chest marking only if it fits; it need not sit below every other feature. Secure all ends inside before stuffing. Stuff progressively through the decreases, then cinch the six R19 front loops and bury the tail. The revised wall height needs physical testing; the inherited 4.3 cm height is not a measured result.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS06_edition2.md",
+    "name": "Ear rows",
+    "instruction": "Row 1: join yarn and sc once under each of the four marked anchors (4); ch 1, turn. Row 2: dec x 2 (2); ch 1, turn. Row 3: dec (1). FO; run the tail down the edge, secure it at the base and bury. Embroider a small pink centre. Mirror the second ear and check both face forward. This diagonal attachment route is a prototype requiring a made sample.",
+    "arithmetic": [
+      {
+        "label": "Row2 consumed",
+        "terms": [
+          4
+        ],
+        "expected": 4
+      },
+      {
+        "label": "Row2 made",
+        "terms": [
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "label": "Row3 consumed",
+        "terms": [
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "label": "Row3 made",
+        "terms": [
+          1
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "file": "NS06_edition2.md",
+    "name": "Tail tube",
+    "instruction": "Join the main yarn to the back of the body near Rnd 10 at the marked rear narrow end. **Surface Rnd 1:** insert the hook under four adjacent whole body stitches arranged as a tiny square and work 1 sc into each (4); place a marker in the first sc. **Rnds 2-8:** sc in each of the 4 tail stitches (4). Work upward in a tight spiral; do not make a magic ring and do not count the body stitches as extra tail stitches. Do NOT stuff - a thin tail curls around the loaf far better than a filled one. FO with a tail; thread it through the front loops of the four tail-tip stitches, pull closed, then run the tail through the tube and secure it in the body. Secure the starting end at the surface anchor too.",
+    "arithmetic": [
+      {
+        "label": "tail R1 output",
+        "terms": [
+          4
+        ],
+        "expected": 4
+      },
+      {
+        "label": "seven plain rounds",
+        "terms": [
+          28
+        ],
+        "expected": 28
+      }
+    ]
+  },
+  {
+    "file": "NS07_edition2.md",
+    "name": "Small chest",
+    "instruction": "Ch 5. R1: sc in 2nd chain, 2 sc, 3 sc in last chain; opposite side: 2 sc, 2 sc in first working chain (10). FO with a sewing tail.",
+    "arithmetic": [
+      {
+        "label": "output",
+        "terms": [
+          1,
+          2,
+          3,
+          2,
+          2
+        ],
+        "expected": 10
+      },
+      {
+        "label": "chains",
+        "terms": [
+          5,
+          -1
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "file": "NS07_edition2.md",
+    "name": "Eyes first",
+    "instruction": "At the after-R9 body pause, FIRST fit and lock both eyes and mark the beak. Then pin the patch below them, near R5\u2013R8, checking clearance. Sew its whole perimeter, add the beak and wings, secure all tails inside, and only then add the final stuffing. Temporary filling for pinning must not block washer access. Do not stretch the patch to fixed round limits.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS08_edition2.md",
+    "name": "Spike variable",
+    "instruction": "At the stated gauge, the foundation is about 13.5-15 cm long. PIN the whole strip from crown to tail tip before sewing. If the path is only slightly shorter, fold one plain end tab under. For a different number N of spikes, remake the strip with ch (3N + 7), then (3N + 6) sc in Row 1; Row 2 keeps the two 3-stitch tabs and repeats the spike module N times. For example, 10 spikes need ch 37 and 36 sc. You cannot add starting chains to an already finished foundation; undo/remake it. Distribute spikes by fit rather than forcing the suggested 3/4/2 split. Never stretch only one section.",
+    "arithmetic": [
+      {
+        "label": "nine spikes foundation",
+        "terms": [
+          27,
+          7
+        ],
+        "expected": 34
+      },
+      {
+        "label": "ten spikes foundation",
+        "terms": [
+          30,
+          7
+        ],
+        "expected": 37
+      }
+    ]
+  },
+  {
+    "file": "NS08_edition2.md",
+    "name": "Spike edge",
+    "instruction": "**Spikes:** Row 2: sl st in first 3 sts; [sl st in next st, (sc, hdc, dc, picot, dc, hdc, sc) all in next st, sl st in next st] x 9; sl st in last 3 sts. FO with a long tail.",
+    "arithmetic": [
+      {
+        "label": "input",
+        "terms": [
+          3,
+          27,
+          3
+        ],
+        "expected": 33
+      },
+      {
+        "label": "output excluding picots",
+        "terms": [
+          3,
+          72,
+          3
+        ],
+        "expected": 78
+      }
+    ]
+  },
+  {
+    "file": "NS08_edition2.md",
+    "name": "Wing root",
+    "instruction": "7. Wings: sew the short End-A row-end root near R10\u2013R11, leaving the foundation and scalloped edges free. Mirror the pair.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS09_edition2.md",
+    "name": "FLO assembly",
+    "instruction": "Edition-2 assembly choice: appendages use FLO and the reserved BLO form the seam route; the shell\u2019s own BLO rim round is unchanged. This revised orientation needs physical confirmation.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS09_edition2.md",
+    "name": "Large flipper symmetry",
+    "instruction": "Underside Rnd 8 (head & flippers), worked FLO throughout: 7 sc, (sc, hdc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 9 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st = 53 stitches, consuming all 42 front-loop anchors and leaving all 42 back loops exposed. Sl st to the first sc of this round and FO. Join the shell's 42 edge stitches to those 42 exposed back loops by the same rule as the small version. Allow 45-50 minutes and about 4 g of yarn.",
+    "arithmetic": [
+      {
+        "label": "input",
+        "terms": [
+          7,
+          1,
+          7,
+          1,
+          7,
+          1,
+          9,
+          1,
+          7,
+          1
+        ],
+        "expected": 42
+      },
+      {
+        "label": "output",
+        "terms": [
+          7,
+          4,
+          7,
+          3,
+          7,
+          3,
+          9,
+          3,
+          7,
+          3
+        ],
+        "expected": 53
+      }
+    ]
+  },
+  {
+    "file": "NS10_edition2.md",
+    "name": "Blanket border",
+    "instruction": "Border: after the Rnd 20 join, ch 1 (does not count), sc in the SAME dc as the join and once in every remaining dc; work 3 sc into each corner ch-2 space (into the space itself - do not work into the 2 individual chains). Sl st to the first sc and FO. At Rnd 20 that is 240 sc over the dc + 12 corner sc = 252 sc. This firms the edge; correct any missing groups or tension problems before adding the border.",
+    "arithmetic": [
+      {
+        "label": "border",
+        "terms": [
+          240,
+          12
+        ],
+        "expected": 252
+      }
+    ]
+  },
+  {
+    "file": "NS10_edition2.md",
+    "name": "Ear attachment",
+    "instruction": "Flatten the eight-stitch opening into four pairs. FO with a sewing tail; pin each paired base near Head R4\u2013R6, mirrored about the face and clear of embroidery. Sew all four pairs and reinforce. These larger unstuffed ears are a prototype, not a guaranteed 9 cm length or age-suitability claim; check head balance and attachment after washing the sample.",
+    "arithmetic": [
+      {
+        "label": "pairs",
+        "terms": [
+          8
+        ],
+        "expected": 8
+      }
+    ]
+  },
+  {
+    "file": "NS11_edition2.md",
+    "name": "Intentional stripe design",
+    "instruction": "This version intentionally uses full-circumference white and skin-tone bands. It is a striped, stylized gnome, not a front-only beard over an uninterrupted coat. Front-panel colourwork is not included; it would require a complete colour map and safe yarn-carrying instructions. The R6 BLO fold may help define the base but cannot guarantee that the stuffed gnome stands.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS11_edition2.md",
+    "name": "Mini variant",
+    "instruction": "Mini ornament: use DK yarn and a 3 mm hook. Work through Rnd 21 (12 sts), omit the plain Rnd 22, then work sc2tog around (6) and close as usual - about 6 to 6.5 cm tall.",
+    "arithmetic": [
+      {
+        "label": "close12to6",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "file": "NS11_edition2.md",
+    "name": "Large variant",
+    "instruction": "Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, work 3 MORE plain 30-stitch body rounds, then continue with the beard instructions. All later section labels shift by three physical rounds; the stitch counts and shaping sequence are unchanged. Expect about 11 to 12 cm, but measure your sample.",
+    "arithmetic": [
+      {
+        "label": "extra plain stitches",
+        "terms": [
+          90
+        ],
+        "expected": 90
+      }
+    ]
+  },
+  {
+    "file": "NS12_edition2.md",
+    "name": "Rigid insert timing",
+    "instruction": "The cone tapers between bobble tiers; the plain round between them keeps each tier distinct. If using a rigid base disc, insert it after Rnd 11, before the first decreasing tier, while the opening still has 48 stitches; pin or loosely tack it temporarily if needed. Begin adding small amounts of stuffing after Rnd 14 and continue every 2-3 rounds - do not wait until the six-stitch tip.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS13_edition2.md",
+    "name": "Star wrap",
+    "instruction": "Number the original centre stitches 1\u201310, excluding the joining slip stitch. Starting in stitch 2 gives valleys at 2/4/6/8/10 and fans at 3/5/7/9/1. The last fan works into the ORIGINAL stitch 1, not the joining slip stitch.",
+    "arithmetic": [
+      {
+        "label": "anchor pairs",
+        "terms": [
+          10
+        ],
+        "expected": 10
+      },
+      {
+        "label": "counted",
+        "terms": [
+          5,
+          30
+        ],
+        "expected": 35
+      }
+    ]
+  },
+  {
+    "file": "NS13_edition2.md",
+    "name": "Hanger",
+    "instruction": "Hanging loop: the two ch-3 arches flank the three tall stitches; neither is a central tip. Join under both top loops of the middle tr (UK dtr) of the chosen arm, ch 18, sl st into the same stitch. FO, reinforce the attachment with the tail and weave both ends in two directions. Pin the arm symmetrically when blocking.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS14_edition2.md",
+    "name": "Nonaligned border disclosure",
+    "instruction": "Design choice: these scallops close exactly but do NOT place the same shell/valley phase at every one of the twelve spokes. Bobbles also sit beside sector boundaries rather than being centred between spokes. This is intentional for this retained ladder; a perfectly twelvefold-aligned motif is a different design. Do not change stop rounds without recalculating size, colour and border instructions.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS14_edition2.md",
+    "name": "Opening fit restriction",
+    "instruction": "Finished-size targets \u2014 not sample measurements: mini / tabletop after R14, about 18\u201321 in / 46\u201353 cm; standard after R23, about 29\u201333 in / 74\u201384 cm; large after R32, about 38\u201343 in / 97\u2013109 cm. No 4\u20135 cm centre-opening claim is supported by this 12-dc first round. This edition is only for a pole that passes through the COMPLETED relaxed gauge piece without interference; otherwise choose a separately designed open/slit skirt, not an improvised larger first round. Yarn, hook, blocking and border depth change every dimension; measure a complete sample before publishing a size or fit claim.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_edition2.md",
+    "name": "Support limitation",
+    "instruction": "The 12-stitch tube is NOT validated as a self-supporting circular door wreath. Standard and large versions in this edition are supported tabletop/display loops, not unsupported vertical door wreaths. Do not rely on extra stuffing, an external wrap or an improvised wire to hold a circle. A vertical form-mounted wreath requires a separate fit and attachment design around a suitable manufactured form; that construction is not supplied here. Mini hanging use also requires a sample and attachment assessment.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS15_edition2.md",
+    "name": "Fabric bow",
+    "instruction": "Make the loop strip separately in red: ch 50. Row 1: sc in second chain and across (49), ch 1, turn. Row 2: sc across (49), FO with a sewing tail. Fold both short ends inward to the centre to create two fabric loops; sew the ends securely to the centre and pinch the middle.",
+    "arithmetic": [
+      {
+        "label": "chain minus1",
+        "terms": [
+          50,
+          -1
+        ],
+        "expected": 49
+      },
+      {
+        "label": "two rows",
+        "terms": [
+          49,
+          49
+        ],
+        "expected": 98
+      }
+    ]
+  },
+  {
+    "file": "NS15_edition2.md",
+    "name": "Bow tails and band",
+    "instruction": "Make two tails separately: ch 15, sc in second chain and across (14), FO with sewing tails. Sew both top ends to the pinched centre. Make the band: ch 6; Row 1 sc in second chain and across (5); Rows 2\u20134 ch 1, turn, sc across (5 each). FO with a sewing tail. Wrap around the pinched centre and sew short ends; tack through the enclosed bases so no component can slide out. If the band does not fit without crushing the loops, remake to measured length, preserving five stitches per row. Attach the separate folded 55 cm removable tie through at least two strong band-back stitches. All finished dimensions are unverified.",
+    "arithmetic": [
+      {
+        "label": "tail",
+        "terms": [
+          15,
+          -1
+        ],
+        "expected": 14
+      },
+      {
+        "label": "band",
+        "terms": [
+          6,
+          -1
+        ],
+        "expected": 5
+      },
+      {
+        "label": "band rows",
+        "terms": [
+          20
+        ],
+        "expected": 20
+      }
+    ]
+  },
+  {
+    "file": "NS16_edition2.md",
+    "name": "RS restart",
+    "instruction": "After completing WS Heel Row 10, make the single ch-1-and-turn already specified in the table (do not repeat it) so the RS/outside faces you. Change AC back to MC at this transition (secure AC), or continue MC if used for the heel. The starting chain does not count.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS16_edition2.md",
+    "name": "RS pickup",
+    "instruction": "Foot pickup, RS facing: sc across all three Row-10 stitches FIRST; then work five sc evenly along the first complete exposed heel edge toward the leg, ten sc across the waiting instep, and five sc down the second heel edge back to the starting heel-centre stitch. Mark the first heel-centre sc and join to it: 3 + 5 + 10 + 5 = 23. Do not turn subsequent foot/toe rounds. Work each next round from the outside in the same direction.",
+    "arithmetic": [
+      {
+        "label": "pickup",
+        "terms": [
+          3,
+          5,
+          10,
+          5
+        ],
+        "expected": 23
+      }
+    ]
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Low goat tail",
+    "instruction": "Do not stuff. Sew all six open-edge stitches to the centre back near Body Rnds 8\u201310 at the lower centre back, above the sitting crease, with the tip angled upward.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Low lamb tail",
+    "instruction": "Sew all five edge stitches to the centre back near Lamb Body Rnds 9\u201311 at the lower centre back, above the sitting crease, angled down.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Sash fit before making",
+    "instruction": "Measure the intended diagonal sash route on the stuffed body FIRST, including at least one stitch of overlap. Choose the modular count below to reach that measured length; the 35-stitch table is an arithmetic example, not a guaranteed baseline fit. With scarlet, ch 36 only if the measured route supports it.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Modular sash",
+    "instruction": "**Modular sash fit option:** choose M peaks (at least 2). Chain 3M; Row 1: sc in the second chain and every remaining chain (3M \u2212 1 sc), ch 1, turn; Row 2: sc across (3M \u2212 1). Pin and check overlap again before edging. For the edge, make the first ch-3 peak at stitch 1 as above, repeat the three-edge-stitch/peak module M \u2212 1 times, then sl st in the final stitch (3M \u2212 1). This makes M peaks at stitches 1, 4, \u2026, 3M \u2212 2. Example: 13 peaks require ch 39, two rows of 38 sc and 12 repeats after the first peak. Record the chosen count and allow extra red, orange and yellow yarn.",
+    "arithmetic": [
+      {
+        "label": "15peak chains",
+        "terms": [
+          45
+        ],
+        "expected": 45
+      },
+      {
+        "label": "15peak row",
+        "terms": [
+          45,
+          -1
+        ],
+        "expected": 44
+      },
+      {
+        "label": "edge use",
+        "terms": [
+          1,
+          42,
+          1
+        ],
+        "expected": 44
+      }
+    ]
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Sash peaks",
+    "instruction": "Lay the strip flat with Row 2 uppermost and choose one 35-stitch long edge for the flames; do not work around either short end. Number the Row-2 edge stitches 1\u201335 in the direction you will crochet. For exactly 12 burnt-orange peaks, join orange in edge stitch 1, ch 3 and sl st in that same stitch. Then work `[sl st in next 3 edge sts, ch 3, sl st in that same third edge st] x 11`; sl st in edge stitch 35 and FO. This anchors peaks in edge stitches 1, 4, 7 through 34 and uses stitch 35 only as the finishing anchor.",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          1,
+          33,
+          1
+        ],
+        "expected": 35
+      },
+      {
+        "label": "peaks",
+        "terms": [
+          1,
+          11
+        ],
+        "expected": 12
+      }
+    ]
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Flower crown",
+    "instruction": "For each of 3\u20134 flowers, ch 3 and sl st to the first chain to form a ring. Work `[ch 2, 2 dc in ring, ch 2, sl st in ring] x 5`, FO and retain the sewing tail. For each of two green leaves, ch 5; beginning in the second chain, work sc, hdc, sc, sl st; FO with a sewing tail.",
+    "arithmetic": [
+      {
+        "label": "flower dc",
+        "terms": [
+          10
+        ],
+        "expected": 10
+      },
+      {
+        "label": "leaf anchors",
+        "terms": [
+          5,
+          -1
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Long ear",
+    "instruction": "For each longer-ear layer, number the seven foundation-edge stitches 1\u20137. Fold that edge around stitch 4; match stitch 1 to 7, 2 to 6 and 3 to 5, with stitch 4 forming the fold. Secure the three matched pairs and the fold stitch to make four exact base anchors, then sew all four anchors to the head. Make and join both layers by the same longer-ear route.",
+    "arithmetic": [
+      {
+        "label": "fold7",
+        "terms": [
+          6,
+          1
+        ],
+        "expected": 7
+      }
+    ]
+  },
+  {
+    "file": "NS17_edition2.md",
+    "name": "Collar adjusted",
+    "instruction": "If the fit check required an adjusted foundation of **N** chains, work one sc in the second chain and every remaining chain for **N \u2212 1** stitches in Row 1, then work **N \u2212 1** sc in Row 2. Record that count on both rows; do not increase or decrease within the strip.",
+    "arithmetic": [
+      {
+        "label": "baseline",
+        "terms": [
+          14,
+          -1
+        ],
+        "expected": 13
+      }
+    ]
+  },
+  {
+    "file": "NS16_edition2.md",
+    "name": "Mandatory RS restoration turn",
+    "instruction": "| Row 10 | 2 sc, dec; ch 1, turn | (3) | WS row; turn so RS faces for pickup |",
+    "arithmetic": []
+  }
+]

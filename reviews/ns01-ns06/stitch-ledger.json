@@ -1,0 +1,2394 @@
+[
+  {
+    "file": "NS01_reviewed.md",
+    "line": 83,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 84,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 85,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 86,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 87,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 88,
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 89,
+    "instruction": "[5 sc, inc] x 6",
+    "consumed": 36,
+    "produced": 42,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 90,
+    "instruction": "[6 sc, inc] x 6",
+    "consumed": 42,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 91,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 92,
+    "instruction": "[6 sc, dec] x 6",
+    "consumed": 48,
+    "produced": 42,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 93,
+    "instruction": "[5 sc, dec] x 6",
+    "consumed": 42,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 94,
+    "instruction": "[4 sc, dec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 95,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 96,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 97,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 98,
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 106,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 107,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 108,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 109,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 110,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 111,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 112,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 113,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 129,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 130,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 131,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 132,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 133,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 134,
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 135,
+    "instruction": "[5 sc, inc] x 6",
+    "consumed": 36,
+    "produced": 42,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 136,
+    "instruction": "[6 sc, inc] x 6",
+    "consumed": 42,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 137,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 138,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 139,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 140,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 141,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 142,
+    "instruction": "[6 sc, dec] x 6",
+    "consumed": 48,
+    "produced": 42,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 143,
+    "instruction": "sc in each st around",
+    "consumed": 42,
+    "produced": 42,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 144,
+    "instruction": "[5 sc, dec] x 6",
+    "consumed": 42,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 145,
+    "instruction": "[4 sc, dec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 146,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 147,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 158,
+    "instruction": "sc in 2nd ch, sc in next 6, 3 sc in last ch, sc in next 6, 2 sc in last loop",
+    "consumed": 8,
+    "produced": 18,
+    "method": "explicit"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 159,
+    "instruction": "inc, 6 sc, inc x 3, 6 sc, inc x 2",
+    "consumed": 18,
+    "produced": 24,
+    "method": "explicit"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 160,
+    "instruction": "sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2",
+    "consumed": 24,
+    "produced": 30,
+    "method": "explicit"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 161,
+    "instruction": "2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2",
+    "consumed": 30,
+    "produced": 36,
+    "method": "explicit"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 177,
+    "instruction": "6 sc in MR (Yarn C)",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 178,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 179,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 180,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 181,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 182,
+    "instruction": "BLO sc around in Yarn C",
+    "consumed": 18,
+    "produced": 18,
+    "method": "explicit"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 183,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 184,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 185,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 186,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 187,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 188,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 189,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 190,
+    "instruction": "[2 sc, dec] x 3",
+    "consumed": 12,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 191,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 192,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 200,
+    "instruction": "With Yarn C, 6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 201,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 202,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 203,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 204,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 205,
+    "instruction": "BLO sc in each st around; change to Yarn A after the round",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 206,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 207,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 208,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 209,
+    "instruction": "sc in each st around; stop here",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 221,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 222,
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 223,
+    "instruction": "[2 sc, inc] x 3",
+    "consumed": 9,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 224,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 225,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 226,
+    "instruction": "[2 sc, dec] x 3",
+    "consumed": 12,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 227,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 235,
+    "instruction": "4 sc in MR",
+    "consumed": 0,
+    "produced": 4,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 236,
+    "instruction": "[sc, inc] x 2",
+    "consumed": 4,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 237,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 238,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 239,
+    "instruction": "[2 sc, inc] x 2",
+    "consumed": 6,
+    "produced": 8,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 240,
+    "instruction": "sc in each st around",
+    "consumed": 8,
+    "produced": 8,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 241,
+    "instruction": "sc in each st around",
+    "consumed": 8,
+    "produced": 8,
+    "method": "canonical"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 260,
+    "instruction": "hdc in 2nd ch from hook and in each ch across",
+    "consumed": 60,
+    "produced": 60,
+    "method": "explicit"
+  },
+  {
+    "file": "NS01_reviewed.md",
+    "line": 261,
+    "instruction": "ch 2, turn, hdc across",
+    "consumed": 60,
+    "produced": 60,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 79,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 80,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 81,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 82,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 83,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 84,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 85,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 86,
+    "instruction": "[11 sc, inc] x 2",
+    "consumed": 24,
+    "produced": 26,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 87,
+    "instruction": "sc in each st around",
+    "consumed": 26,
+    "produced": 26,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 88,
+    "instruction": "sc in each st around",
+    "consumed": 26,
+    "produced": 26,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 89,
+    "instruction": "sc in each st around",
+    "consumed": 26,
+    "produced": 26,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 90,
+    "instruction": "[11 sc, dec] x 2",
+    "consumed": 26,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 91,
+    "instruction": "FLO: [2 sl st, (sc, hdc, dc, hdc, sc) in next st, 1 sl st] x 6",
+    "consumed": 24,
+    "produced": 48,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 105,
+    "instruction": "5 sc in MR",
+    "consumed": 0,
+    "produced": 5,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 106,
+    "instruction": "sc in each st around",
+    "consumed": 5,
+    "produced": 5,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 107,
+    "instruction": "sc in each st around",
+    "consumed": 5,
+    "produced": 5,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 115,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 116,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 117,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 118,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 126,
+    "instruction": "4 sc in MR",
+    "consumed": 0,
+    "produced": 4,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 127,
+    "instruction": "[sc, inc] x 2",
+    "consumed": 4,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 128,
+    "instruction": "[2 sc, inc] x 2",
+    "consumed": 6,
+    "produced": 8,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 129,
+    "instruction": "[3 sc, inc] x 2",
+    "consumed": 8,
+    "produced": 10,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 130,
+    "instruction": "sc in each st around",
+    "consumed": 10,
+    "produced": 10,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 131,
+    "instruction": "FLO: inc in each st around",
+    "consumed": 10,
+    "produced": 20,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 145,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 146,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 147,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 148,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 149,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 150,
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 151,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 152,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 153,
+    "instruction": "[4 sc, dec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 154,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 155,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 156,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 157,
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 167,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 168,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 169,
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 170,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 171,
+    "instruction": "[2 sc, inc] x 3",
+    "consumed": 9,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 180,
+    "instruction": "sc in 2nd ch, 4 sc, 3 sc in last ch; continue along the other side: 4 sc, 2 sc in last ch",
+    "consumed": 6,
+    "produced": 14,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 181,
+    "instruction": "ch 1, turn; 6 sc, inc in each of next 3, 2 sc (last 3 sts of R1 stay unworked)",
+    "consumed": 11,
+    "produced": 14,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 182,
+    "instruction": "ch 1, turn; sl st in each st across",
+    "consumed": 14,
+    "produced": 14,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 192,
+    "instruction": "ch 20; from the 2nd ch, work 2 sc in each chain to the end",
+    "consumed": 19,
+    "produced": 38,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 206,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 207,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 208,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 209,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 210,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 211,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 212,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 213,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 214,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 215,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 216,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 217,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 218,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 219,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 220,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 221,
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 229,
+    "instruction": "4 sc in MR",
+    "consumed": 0,
+    "produced": 4,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 230,
+    "instruction": "[sc, inc] x 2",
+    "consumed": 4,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 231,
+    "instruction": "[2 sc, inc] x 2",
+    "consumed": 6,
+    "produced": 8,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 232,
+    "instruction": "[3 sc, inc] x 2",
+    "consumed": 8,
+    "produced": 10,
+    "method": "canonical"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 241,
+    "instruction": "from the 2nd ch: sc in 4, hdc in 4, dc in 4; ch 1, turn",
+    "consumed": 12,
+    "produced": 12,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 242,
+    "instruction": "sc in 3, hdc in 4, dc in 5; ch 1, turn",
+    "consumed": 12,
+    "produced": 12,
+    "method": "explicit"
+  },
+  {
+    "file": "NS02_reviewed.md",
+    "line": 243,
+    "instruction": "sl st in first 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st in next 3, (sc, hdc, picot, hdc, sc) in next st, sl st in next 2, (sc, hdc, picot, hdc, sc) in next st, sl st in last 2",
+    "consumed": 12,
+    "produced": 23,
+    "method": "explicit"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 73,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 74,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 75,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 76,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 77,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 78,
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 79,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 80,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 81,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 82,
+    "instruction": "[4 sc, invdec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 83,
+    "instruction": "[3 sc, invdec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 84,
+    "instruction": "[2 sc, invdec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 85,
+    "instruction": "sc in each st around",
+    "consumed": 18,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 86,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 87,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 88,
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 89,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 90,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 91,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 92,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 93,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 94,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 95,
+    "instruction": "[4 sc, invdec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 96,
+    "instruction": "[3 sc, invdec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 97,
+    "instruction": "[2 sc, invdec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 98,
+    "instruction": "[sc, invdec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 99,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 100,
+    "instruction": "[2 sc, invdec] x 3",
+    "consumed": 12,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 101,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 102,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 103,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 104,
+    "instruction": "[sc, invdec] x 3",
+    "consumed": 9,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 105,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 106,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 107,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 108,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 124,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 125,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 126,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 127,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 128,
+    "instruction": "sc in each st around",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 129,
+    "instruction": "sc in each st around, then FO",
+    "consumed": 6,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 137,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 138,
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 139,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 140,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 141,
+    "instruction": "[sc, invdec] x 3",
+    "consumed": 9,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 151,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 152,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 153,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 154,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS03_reviewed.md",
+    "line": 155,
+    "instruction": "[sc, invdec] x 4",
+    "consumed": 12,
+    "produced": 8,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 73,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 74,
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 75,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 76,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 77,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 78,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 79,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 80,
+    "instruction": "Back legs: [sc, invdec] x 3; front legs: sc in each st around",
+    "consumed": 9,
+    "produced": "6 back / 9 front",
+    "method": "explicit branch"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 81,
+    "instruction": "[sc, invdec] x 3",
+    "consumed": 9,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 91,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 92,
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 93,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 94,
+    "instruction": "sc in each st around",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 95,
+    "instruction": "sc in each st around, then FO",
+    "consumed": 9,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 101,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 102,
+    "instruction": "[sc, inc] x 3",
+    "consumed": 6,
+    "produced": 9,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 103,
+    "instruction": "[2 sc, inc] x 3",
+    "consumed": 9,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 104,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 105,
+    "instruction": "sc in each st around, then FO",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 116,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 117,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 118,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 119,
+    "instruction": "join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3",
+    "consumed": 18,
+    "produced": 24,
+    "method": "explicit"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 120,
+    "instruction": "[sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc",
+    "consumed": 24,
+    "produced": 30,
+    "method": "explicit"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 121,
+    "instruction": "[4 sc, inc] x 6",
+    "consumed": 30,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 122,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 123,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 124,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 125,
+    "instruction": "[7 sc, invdec] x 4",
+    "consumed": 36,
+    "produced": 32,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 126,
+    "instruction": "[7 sc, inc] x 4",
+    "consumed": 32,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 127,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 128,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 129,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 130,
+    "instruction": "sc in each st around",
+    "consumed": 36,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 131,
+    "instruction": "[4 sc, invdec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 132,
+    "instruction": "[3 sc, invdec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 133,
+    "instruction": "[2 sc, invdec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 134,
+    "instruction": "[sc, invdec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS04_reviewed.md",
+    "line": 135,
+    "instruction": "invdec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 69,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 70,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 71,
+    "instruction": "[sc, inc] x 6",
+    "consumed": 12,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 72,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 73,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 74,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 75,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 76,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 77,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 78,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 79,
+    "instruction": "sc in each st around",
+    "consumed": 24,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 80,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 81,
+    "instruction": "[2 sc, inc] x 6",
+    "consumed": 18,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 82,
+    "instruction": "[3 sc, inc] x 6",
+    "consumed": 24,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 83,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 84,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 85,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 86,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 87,
+    "instruction": "sc in each st around",
+    "consumed": 30,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 88,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 89,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 90,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 91,
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 101,
+    "instruction": "6 sc in MR",
+    "consumed": 0,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 102,
+    "instruction": "inc in each st around",
+    "consumed": 6,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 103,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 104,
+    "instruction": "sc in each st around",
+    "consumed": 12,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 113,
+    "instruction": "sc in 2nd ch from hook, sc in next 2 ch, 3 sc in last ch; rotate to work along the opposite side: sc in next 2 ch, 2 sc in the remaining loop of the first working ch",
+    "consumed": 4,
+    "produced": 10,
+    "method": "explicit"
+  },
+  {
+    "file": "NS05_reviewed.md",
+    "line": 114,
+    "instruction": "inc, 2 sc, inc x 3, 2 sc, inc x 2",
+    "consumed": 10,
+    "produced": 16,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 74,
+    "instruction": "sc in 2nd ch, sc in next 6, 3 sc in last ch, sc in next 6, 2 sc in last loop",
+    "consumed": 8,
+    "produced": 18,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 75,
+    "instruction": "inc, 6 sc, inc x 3, 6 sc, inc x 2",
+    "consumed": 18,
+    "produced": 24,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 76,
+    "instruction": "sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2",
+    "consumed": 24,
+    "produced": 30,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 77,
+    "instruction": "2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2",
+    "consumed": 30,
+    "produced": 36,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 78,
+    "instruction": "3 sc, inc, 6 sc, [3 sc, inc] x 3, 6 sc, [3 sc, inc] x 2",
+    "consumed": 36,
+    "produced": 42,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 79,
+    "instruction": "4 sc, inc, 6 sc, [4 sc, inc] x 3, 6 sc, [4 sc, inc] x 2",
+    "consumed": 42,
+    "produced": 48,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 80,
+    "instruction": "BLO sc around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 81,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 82,
+    "instruction": "sc in each st around",
+    "consumed": 48,
+    "produced": 48,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 83,
+    "instruction": "[6 sc, dec] x 6",
+    "consumed": 48,
+    "produced": 42,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 84,
+    "instruction": "[5 sc, dec] x 6",
+    "consumed": 42,
+    "produced": 36,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 85,
+    "instruction": "[4 sc, dec] x 6",
+    "consumed": 36,
+    "produced": 30,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 86,
+    "instruction": "[3 sc, dec] x 6",
+    "consumed": 30,
+    "produced": 24,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 87,
+    "instruction": "[2 sc, dec] x 6",
+    "consumed": 24,
+    "produced": 18,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 88,
+    "instruction": "[sc, dec] x 6",
+    "consumed": 18,
+    "produced": 12,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 89,
+    "instruction": "dec x 6",
+    "consumed": 12,
+    "produced": 6,
+    "method": "canonical"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 99,
+    "instruction": "sc in next 5, ch 1, turn",
+    "consumed": 5,
+    "produced": 5,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 100,
+    "instruction": "dec, sc, dec, ch 1, turn",
+    "consumed": 5,
+    "produced": 3,
+    "method": "explicit"
+  },
+  {
+    "file": "NS06_reviewed.md",
+    "line": 101,
+    "instruction": "dec, sc",
+    "consumed": 3,
+    "produced": 2,
+    "method": "explicit"
+  }
+]

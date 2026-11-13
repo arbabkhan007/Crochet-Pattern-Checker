@@ -1,0 +1,59 @@
+[
+  {
+    "file": "NS13_reviewed.md",
+    "status": "PASS",
+    "error_count": 0,
+    "stitches_counted": 0,
+    "errors": []
+  },
+  {
+    "file": "NS14_reviewed.md",
+    "status": "ERROR",
+    "error_count": 2,
+    "stitches_counted": 0,
+    "errors": [
+      "Review status is marked UK, but it uses the US term 'sc'.",
+      "Scalloped border is marked UK, but it uses the US term 'sc'."
+    ]
+  },
+  {
+    "file": "NS15_reviewed.md",
+    "status": "ERROR",
+    "error_count": 4,
+    "stitches_counted": 0,
+    "errors": [
+      "Round 1 states 5 stitches, but operations produce 1.",
+      "Round 1 states 5 stitches, but operations produce 2.",
+      "Round 1 states 8 stitches, but operations produce 1.",
+      "ch 1 is too short to turn for a dc. Use ch 3."
+    ]
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "status": "ERROR",
+    "error_count": 13,
+    "stitches_counted": 0,
+    "errors": [
+      "Undefined abbreviation 'six' is used but not defined in the glossary.",
+      "Undefined abbreviation 'main-colour' is used but not defined in the glossary.",
+      "Undefined abbreviation 'For' is used but not defined in the glossary.",
+      "Undefined abbreviation 'stripes' is used but not defined in the glossary.",
+      "Undefined abbreviation 'colour' is used but not defined in the glossary.",
+      "Undefined abbreviation 'at' is used but not defined in the glossary.",
+      "Undefined abbreviation 'carry' is used but not defined in the glossary.",
+      "Undefined abbreviation 'or' is used but not defined in the glossary.",
+      "Undefined abbreviation 'secure' is used but not defined in the glossary.",
+      "Undefined abbreviation 'inactive' is used but not defined in the glossary.",
+      "Undefined abbreviation 'yarn' is used but not defined in the glossary.",
+      "Undefined abbreviation 'without' is used but not defined in the glossary.",
+      "Undefined abbreviation 'tube' is used but not defined in the glossary."
+    ]
+  },
+  {
+    "file": "NS17_reviewed.md",
+    "status": "PASS",
+    "error_count": 0,
+    "stitches_counted": 0,
+    "errors": []
+  }
+]

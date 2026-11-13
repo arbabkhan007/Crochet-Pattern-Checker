@@ -1,0 +1,267 @@
+[
+  {
+    "file": "NS08_reviewed.md",
+    "name": "Spike foundation",
+    "instruction": "**Foundation:** ch 34. Row 1: sc in 2nd ch from hook and in each ch across (33); ch 1, turn.",
+    "arithmetic": [
+      {
+        "label": "working chains",
+        "terms": [
+          34,
+          -1
+        ],
+        "expected": 33
+      }
+    ]
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "name": "Nine spike repeats",
+    "instruction": "**Spikes:** Row 2: sl st in first 3 sts; [sl st in next st, (sc, hdc, dc, picot, dc, hdc, sc) all in next st, sl st in next st] x 9; sl st in last 3 sts. FO with a long tail.",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          3,
+          27,
+          3
+        ],
+        "expected": 33
+      },
+      {
+        "label": "counted output excluding picots",
+        "terms": [
+          3,
+          72,
+          3
+        ],
+        "expected": 78
+      }
+    ]
+  },
+  {
+    "file": "NS08_reviewed.md",
+    "name": "Variable spike length",
+    "instruction": "At the stated gauge, the foundation is about 13.5-15 cm long. PIN the whole strip from crown to tail tip before sewing. If the path is only slightly shorter, fold one plain end tab under. For a different number N of spikes, remake the strip with ch (3N + 7), then (3N + 6) sc in Row 1; Row 2 keeps the two 3-stitch tabs and repeats the spike module N times. For example, 10 spikes need ch 37 and 36 sc. You cannot add starting chains to an already finished foundation; undo/remake it. Distribute spikes by fit rather than forcing the suggested 3/4/2 split. Never stretch only one section.",
+    "arithmetic": [
+      {
+        "label": "ten-spike foundation",
+        "terms": [
+          30,
+          7,
+          -1
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "name": "Large shell and underside",
+    "instruction": "Work the shell to 42 stitches: Rnd 1 (6), Rnd 2 (12), Rnd 3 (18), Rnd 4 (24), Rnd 5 [3 sc, inc] x 6 (30), Rnd 6 [4 sc, inc] x 6 (36), Rnd 7 [5 sc, inc] x 6 (42), Rnd 8 BLO sc around (42), Rnd 9 sc around (42). Work underside Rnd 1-7 the same to 42 stitches, and do not fasten off.",
+    "arithmetic": [
+      {
+        "label": "R5 input",
+        "terms": [
+          24
+        ],
+        "expected": 24
+      },
+      {
+        "label": "R5 output",
+        "terms": [
+          30
+        ],
+        "expected": 30
+      },
+      {
+        "label": "R6 input",
+        "terms": [
+          30
+        ],
+        "expected": 30
+      },
+      {
+        "label": "R6 output",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      },
+      {
+        "label": "R7 input",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      },
+      {
+        "label": "R7 output",
+        "terms": [
+          42
+        ],
+        "expected": 42
+      }
+    ]
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "name": "Large appendage round",
+    "instruction": "Underside Rnd 8 (head & flippers), worked BLO throughout: 7 sc, (sc, hdc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st = 53 stitches, consuming all 42 back-loop anchors and leaving all 42 front loops exposed. Sl st to the first sc of this round and FO. Join the shell's 42 edge stitches to those 42 exposed front loops by the same rule as the small version. Allow 45-50 minutes and about 4 g of yarn.",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          7,
+          1,
+          8,
+          1,
+          7,
+          1,
+          8,
+          1,
+          7,
+          1
+        ],
+        "expected": 42
+      },
+      {
+        "label": "output",
+        "terms": [
+          7,
+          4,
+          8,
+          3,
+          7,
+          3,
+          8,
+          3,
+          7,
+          3
+        ],
+        "expected": 53
+      }
+    ]
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "name": "Blanket border",
+    "instruction": "Border: after the Rnd 20 join, ch 1 (does not count), sc in the SAME dc as the join and once in every remaining dc; work 3 sc into each corner ch-2 space (into the space itself - do not work into the 2 individual chains). Sl st to the first sc and FO. At Rnd 20 that is 240 sc over the dc + 12 corner sc = 252 sc. This firms the edge; correct any missing groups or tension problems before adding the border.",
+    "arithmetic": [
+      {
+        "label": "border",
+        "terms": [
+          240,
+          12
+        ],
+        "expected": 252
+      }
+    ]
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "name": "Mini gnome closure",
+    "instruction": "Mini ornament: use DK yarn and a 3 mm hook. Work through Rnd 21 (12 sts), omit the plain Rnd 22, then work sc2tog around (6) and close as usual - about 6 to 6.5 cm tall.",
+    "arithmetic": [
+      {
+        "label": "six decreases input",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      },
+      {
+        "label": "output",
+        "terms": [
+          6
+        ],
+        "expected": 6
+      }
+    ]
+  },
+  {
+    "file": "NS11_reviewed.md",
+    "name": "Large gnome extension",
+    "instruction": "Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, work 3 MORE plain 30-stitch body rounds, then continue with the beard instructions. All later section labels shift by three physical rounds; the stitch counts and shaping sequence are unchanged. Expect about 11 to 12 cm, but measure your sample.",
+    "arithmetic": [
+      {
+        "label": "extra stitches",
+        "terms": [
+          90
+        ],
+        "expected": 90
+      }
+    ]
+  },
+  {
+    "file": "NS07_reviewed.md",
+    "name": "Sunny exposed-loop petals",
+    "instruction": "Count check: Rnd 4 was worked BLO, so all 18 front loops of Rnd 3 are visible after the cushion is closed. The joining slip stitch counts as the first of 9 slip stitches. 9 sl sts plus 9 petals of (sc, hdc, sc) = 9 + 27 = 36 stitches, using exactly 2 exposed front loops per petal set. The slip stitch sits in the valley between petals; work this round loosely (use a 3 mm hook for this round only if it pulls tight). FO and weave in.",
+    "arithmetic": [
+      {
+        "label": "anchors",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      },
+      {
+        "label": "output",
+        "terms": [
+          9,
+          27
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS09_reviewed.md",
+    "name": "Small turtle seam anchors",
+    "instruction": "Joining the shell: finish and knot the embroidered eyes first. Hold the shell to the underside, wrong sides together, head pointing away from the intended rear keyring attachment. Whip-stitch with the shell's 30 cm tail, matching the shell's 24 edge stitches one-for-one to the 24 exposed front loops of underside R4 - NOT to the 35 stitches of the appendage round. At each bump, use the exposed front loop directly below its base; never sew through the fan stitches themselves.",
+    "arithmetic": [
+      {
+        "label": "seam pairs",
+        "terms": [
+          24
+        ],
+        "expected": 24
+      }
+    ]
+  },
+  {
+    "file": "NS10_reviewed.md",
+    "name": "Head attachment circle",
+    "instruction": "Joining: mark all 18 stitches of Head Rnd 12. Set the closed underside of the head INWARD from one blanket corner, tucking the small Rnds 13-14 closing nub against the fabric. Pin so the entire Rnd-12 attachment circle lies over blanket fabric, not over either outer edge. A 3 cm overlap along the diagonal alone does not guarantee room for that circle; adjust to the actual head size. Sew all 18 marked Rnd-12 stitches to securely anchored blanket stitch posts around a complete circle; bridge granny gaps to the next solid group rather than fastening into empty space; do NOT attach the load only to the 6-stitch closure. Sew the full circle a second time with a separate strand - this is the main structural seam and it will be pulled, chewed and washed. Knot securely and weave every end in at least 5 cm.",
+    "arithmetic": [
+      {
+        "label": "head R12 stitches",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      }
+    ]
+  },
+  {
+    "file": "NS12_reviewed.md",
+    "name": "Final bobble decrease",
+    "instruction": "- Why each bobble tier from R12 onward shrinks by 6 (R10 does not decrease): each [BO, k sc, sc2tog] repeat works one hidden decrease, at the END of the repeat, so six stitches are removed on each decreasing bobble tier (R12, R14, R16, R18, R20 and R22). Intervening plain rounds do not decrease; spiral stitches may still lean. R22 is the extreme case: [BO, sc2tog] uses 3 sts and makes 2 per repeat - 18 sts used, 12 left, nothing unworked.",
+    "arithmetic": [
+      {
+        "label": "input",
+        "terms": [
+          18
+        ],
+        "expected": 18
+      },
+      {
+        "label": "output",
+        "terms": [
+          12
+        ],
+        "expected": 12
+      }
+    ]
+  }
+]

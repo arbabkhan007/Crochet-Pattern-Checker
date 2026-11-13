@@ -1,0 +1,189 @@
+[
+  {
+    "file": "NS01_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns01-ns06/NS01_reviewed.md",
+    "sha256": "0e33f387c9d7d2f11ecd867ff0f2143373959631ba2359a480600255d1327383"
+  },
+  {
+    "file": "reviews/ns01-ns06/NS01_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "6c3260e13d88258cbdfe4d4cdf909ba47bf14d38b8a11ada8dd0b67fc5eff0cb"
+  },
+  {
+    "file": "NS02_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns01-ns06/NS02_reviewed.md",
+    "sha256": "2d97d5d6f129ca959b4756cde7db804037f87dbda4244a8783491ada712c400f"
+  },
+  {
+    "file": "reviews/ns01-ns06/NS02_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "5fb28a0a57e2b0ad5b079f48112e5f0d50bd25ae6f1a240dcbfa274ca39a5436"
+  },
+  {
+    "file": "NS03_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns01-ns06/NS03_reviewed.md",
+    "sha256": "a2b952f2e66bb00663ce824c9d5974c769a10560d1d0a3d31091f7302eccfad6"
+  },
+  {
+    "file": "reviews/ns01-ns06/NS03_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "26c081f52d5c979ee80e17969898058fb0d0060a635cb9a90b32d5720af7bb0d"
+  },
+  {
+    "file": "NS04_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns01-ns06/NS04_reviewed.md",
+    "sha256": "40a60584c40ae2e0ca90b1dcd861693883be6c224f2f8e1ac145624d4d683c36"
+  },
+  {
+    "file": "reviews/ns01-ns06/NS04_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "bea626bc7d43e392a99fc97051e440f35b22087706d2a15a1afc2dd1468f243c"
+  },
+  {
+    "file": "NS05_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns01-ns06/NS05_reviewed.md",
+    "sha256": "44da2377cd63c363802f6a7d8d71de34aac431c7b8c602b959d5c41909e0f827"
+  },
+  {
+    "file": "reviews/ns01-ns06/NS05_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "2e0d5f31d1a8504745fd4c276f4581df17d3c14bf8fdfb704cc6d7044b82e30d"
+  },
+  {
+    "file": "NS06_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns01-ns06/NS06_reviewed.md",
+    "sha256": "04e27ca90f17fe7892258f099a2e5f8f5dd1920cbb467fc66eee2c82dfc948cb"
+  },
+  {
+    "file": "reviews/ns01-ns06/NS06_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "df7a81a4711cb6a53127e3ae15e8c9211e2e83ed933ffe16d98a5496fa943713"
+  },
+  {
+    "file": "NS07_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns07-ns12/NS07_reviewed.md",
+    "sha256": "c6d7cf708b0adfc8c972fc2f5ed9a0888067746c7d3cda02c2665c41cf4848fb"
+  },
+  {
+    "file": "reviews/ns07-ns12/NS07_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "aa7398b9d7d281c8a859bc2a97cba5870aa7006914afc55ce51d95e312c2fc6f"
+  },
+  {
+    "file": "NS08_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns07-ns12/NS08_reviewed.md",
+    "sha256": "50ab2826d170e9be82380013ba19ec0b65ca2895f9bb593cf6785f67606341b4"
+  },
+  {
+    "file": "reviews/ns07-ns12/NS08_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "bf33e761db274dae361d75b798d7dd7024594a1ccbb5625283be90a73677ee79"
+  },
+  {
+    "file": "NS09_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns07-ns12/NS09_reviewed.md",
+    "sha256": "afb9d6df78add4132678d0dc20c1c702d212aa5f67a6f1f85156b3a666440fe6"
+  },
+  {
+    "file": "reviews/ns07-ns12/NS09_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "f5a086aaeae51d093c34ffaa7cf9c40c7833d2e26bd0ab4c5cd1ae29d7dfdf9b"
+  },
+  {
+    "file": "NS10_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns07-ns12/NS10_reviewed.md",
+    "sha256": "599b2de7180c09205401318af55ee8da3ecbd1df40d8e00f995bf61b382c2f48"
+  },
+  {
+    "file": "reviews/ns07-ns12/NS10_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "a77ffbd76a2fdf56faedebd99c6e88c1d896318deb2ac36ac4c8dafd04b5d16c"
+  },
+  {
+    "file": "NS11_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns07-ns12/NS11_reviewed.md",
+    "sha256": "f3cc2e375ddf77a82acedac057c5417d8687465004f8af48506b63338bca7068"
+  },
+  {
+    "file": "reviews/ns07-ns12/NS11_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "3999e91cf55445177f6b0255f6aa25d4a4cbe8960739d92d38c43ea74cc3ccba"
+  },
+  {
+    "file": "NS12_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns07-ns12/NS12_reviewed.md",
+    "sha256": "8ddb0e1fb678d728246b745f663961000793f811ea3f9e7d264d20cc69e99700"
+  },
+  {
+    "file": "reviews/ns07-ns12/NS12_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "a1f5861c4a3faa5535c8a5ad58a81ca26f39cb145a02d520dd457bd7d2dde7ab"
+  },
+  {
+    "file": "NS13_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns13-ns17/NS13_reviewed.md",
+    "sha256": "05000d4429104cbc06a1ad1b56344ccc3a9eecb9654fc5b1b654dae33646ea63"
+  },
+  {
+    "file": "reviews/ns13-ns17/NS13_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "dc2e55ad2e9aa908e36fb70467f45a6f8e1aac7095f946cf07f690dfc265a501"
+  },
+  {
+    "file": "NS14_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns13-ns17/NS14_reviewed.md",
+    "sha256": "3cf753a2706b0c9081abf6bd5267cb674bba741edfecc36e189d48cc76ccb1bc"
+  },
+  {
+    "file": "reviews/ns13-ns17/NS14_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "ee5725502aa080f72177c750bbb77fb4f6ab45e8fdd8b61adb0e459c422fab15"
+  },
+  {
+    "file": "NS15_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns13-ns17/NS15_reviewed.md",
+    "sha256": "2dc4ba270d99e1fe88dbe3cc45e049db98123331de4ca0080a6d694252da9de2"
+  },
+  {
+    "file": "reviews/ns13-ns17/NS15_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "a52f96dff8543958a3f72147121dabf9cba4c04360b0ad9bfc402c9bbd0683a8"
+  },
+  {
+    "file": "NS16_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns13-ns17/NS16_reviewed.md",
+    "sha256": "f963b4d60280fe3caadbf977428c98e9b90d414e60e32c590c3744c48b28466f"
+  },
+  {
+    "file": "reviews/ns13-ns17/NS16_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "49841d5d8d84dc59dd661391e5dac591a29f69e4e49fc287280cef36f3f722ec"
+  },
+  {
+    "file": "NS17_edition2.md",
+    "role": "edition2-output",
+    "derived_from": "reviews/ns13-ns17/NS17_reviewed.md",
+    "sha256": "fbf37a6fe9de65282d1a9e63054e84c29005cde43543047a62b4f54eac7e0ac9"
+  },
+  {
+    "file": "reviews/ns13-ns17/NS17_reviewed.md",
+    "role": "edition1-source",
+    "sha256": "e61ff9aa025663ecc681f75617b61d0ae9658cabba1675b2a8d4b3aa2115eef1"
+  }
+]

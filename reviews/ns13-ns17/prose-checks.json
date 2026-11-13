@@ -1,0 +1,253 @@
+[
+  {
+    "file": "NS17_reviewed.md",
+    "name": "Flame picot anchor route",
+    "instruction": "Lay the strip flat with Row 2 uppermost and choose one 35-stitch long edge for the flames; do not work around either short end. Number the Row-2 edge stitches 1\u201335 in the direction you will crochet. For exactly 12 burnt-orange peaks, join orange in edge stitch 1, ch 3 and sl st in that same stitch. Then work `[sl st in next 3 edge sts, ch 3, sl st in that same third edge st] x 11`; sl st in edge stitch 35 and FO. This anchors peaks in edge stitches 1, 4, 7 through 34 and uses stitch 35 only as the finishing anchor.",
+    "arithmetic": [
+      {
+        "label": "edge anchors",
+        "terms": [
+          1,
+          33,
+          1
+        ],
+        "expected": 35
+      },
+      {
+        "label": "peaks",
+        "terms": [
+          1,
+          11
+        ],
+        "expected": 12
+      },
+      {
+        "label": "last peak position",
+        "terms": [
+          1,
+          33
+        ],
+        "expected": 34
+      },
+      {
+        "label": "picot chain links",
+        "terms": [
+          36
+        ],
+        "expected": 36
+      }
+    ]
+  },
+  {
+    "file": "NS17_reviewed.md",
+    "name": "Modular sash",
+    "instruction": "**Modular sash fit option:** choose M peaks (at least 2). Chain 3M; Row 1: sc in the second chain and every remaining chain (3M \u2212 1 sc), ch 1, turn; Row 2: sc across (3M \u2212 1). Pin and check overlap again before edging. For the edge, make the first ch-3 peak at stitch 1 as above, repeat the three-edge-stitch/peak module M \u2212 1 times, then sl st in the final stitch (3M \u2212 1). This makes M peaks at stitches 1, 4, \u2026, 3M \u2212 2. Example: 13 peaks require ch 39, two rows of 38 sc and 12 repeats after the first peak. Record the chosen count and allow extra red, orange and yellow yarn.",
+    "arithmetic": [
+      {
+        "label": "13 peak foundation",
+        "terms": [
+          39
+        ],
+        "expected": 39
+      },
+      {
+        "label": "row count",
+        "terms": [
+          39,
+          -1
+        ],
+        "expected": 38
+      },
+      {
+        "label": "edge anchors",
+        "terms": [
+          1,
+          36,
+          1
+        ],
+        "expected": 38
+      },
+      {
+        "label": "last peak",
+        "terms": [
+          1,
+          36
+        ],
+        "expected": 37
+      }
+    ]
+  },
+  {
+    "file": "NS17_reviewed.md",
+    "name": "Flower and leaf",
+    "instruction": "For each of 3\u20134 flowers, ch 3 and sl st to the first chain to form a ring. Work `[ch 2, 2 dc in ring, ch 2, sl st in ring] x 5`, FO and retain the sewing tail. For each of two green leaves, ch 5; beginning in the second chain, work sc, hdc, sc, sl st; FO with a sewing tail.",
+    "arithmetic": [
+      {
+        "label": "flower tall stitches",
+        "terms": [
+          10
+        ],
+        "expected": 10
+      },
+      {
+        "label": "flower chains",
+        "terms": [
+          20
+        ],
+        "expected": 20
+      },
+      {
+        "label": "leaf chain anchors",
+        "terms": [
+          5,
+          -1
+        ],
+        "expected": 4
+      },
+      {
+        "label": "leaf output",
+        "terms": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "file": "NS17_reviewed.md",
+    "name": "Long ear fold",
+    "instruction": "For each longer-ear layer, number the seven foundation-edge stitches 1\u20137. Fold that edge around stitch 4; match stitch 1 to 7, 2 to 6 and 3 to 5, with stitch 4 forming the fold. Secure the three matched pairs and the fold stitch to make four exact base anchors, then sew all four anchors to the head. Make and join both layers by the same longer-ear route.",
+    "arithmetic": [
+      {
+        "label": "edge stitches",
+        "terms": [
+          6,
+          1
+        ],
+        "expected": 7
+      },
+      {
+        "label": "sewn anchors",
+        "terms": [
+          3,
+          1
+        ],
+        "expected": 4
+      }
+    ]
+  },
+  {
+    "file": "NS17_reviewed.md",
+    "name": "Collar variant",
+    "instruction": "If the fit check required an adjusted foundation of **N** chains, work one sc in the second chain and every remaining chain for **N \u2212 1** stitches in Row 1, then work **N \u2212 1** sc in Row 2. Record that count on both rows; do not increase or decrease within the strip.",
+    "arithmetic": [
+      {
+        "label": "baseline chains minus one",
+        "terms": [
+          14,
+          -1
+        ],
+        "expected": 13
+      }
+    ]
+  },
+  {
+    "file": "NS17_reviewed.md",
+    "name": "Two-pass neck seam",
+    "instruction": "1. Pair the head's 12 open stitches with the body's 12 open stitches. With the head tail, whipstitch through both loops of each pair exactly once around; adjust neck stuffing before closing the final two pairs, then secure that tail into the seam and bury it through the stuffed body. With the body tail, work one complete reinforcing pass through the same 12 pairs in the reverse direction, secure it into the seam and bury both tails. The neck therefore has 12 matched stitch pairs, two full circuits and 24 pair-wise sewing stitches, not 24 circuits.",
+    "arithmetic": [
+      {
+        "label": "pairwise sewing stitches",
+        "terms": [
+          12,
+          12
+        ],
+        "expected": 24
+      }
+    ]
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "name": "Pickup perimeter",
+    "instruction": "5. Join to the first picked-up sc: 5 + 10 + 5 + 3 = 23 stitches.",
+    "arithmetic": [
+      {
+        "label": "foot pickup",
+        "terms": [
+          5,
+          10,
+          5,
+          3
+        ],
+        "expected": 23
+      }
+    ]
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "name": "Heel colour transition",
+    "instruction": "Colour transition: after Heel Row 10, change from AC back to MC for Foot R1. Finish the final heel decrease with MC on its last pull-through (or join MC at that endpoint), secure AC without tightening the edge, then ch 1 and follow the pickup route. If the heel is already MC, continue without a colour change.",
+    "arithmetic": []
+  },
+  {
+    "file": "NS16_reviewed.md",
+    "name": "Garland spacing",
+    "instruction": "3. Cut 2\u20132.5 m / 6\u20138 ft of support. Leave enough free length at each end for the rated wall fixing. Measure the usable span between those two end allowances and divide it by 23 to mark the centre-to-centre spacing for 24 stockings. For example, a 200 cm support with 20 cm reserved at each end leaves 160 cm; 160 \u00f7 23 is approximately 7 cm between centres.",
+    "arithmetic": [
+      {
+        "label": "intervals",
+        "terms": [
+          24,
+          -1
+        ],
+        "expected": 23
+      },
+      {
+        "label": "usable centimetres",
+        "terms": [
+          200,
+          -20,
+          -20
+        ],
+        "expected": 160
+      }
+    ]
+  },
+  {
+    "file": "NS14_reviewed.md",
+    "name": "Border stop sizes",
+    "instruction": "Each border repeat consumes six final-round anchors and produces six worked stitches: one sc plus a five-dc shell. R14 gives 168 \u00f7 6 = 28 scallops; R23 gives 276 \u00f7 6 = 46; R32 gives 384 \u00f7 6 = 64. The stitch you join into is taken by the final skip of the last repeat, so the closing slip stitch lands in the first sc one stitch past the join; this is correct and it is what makes the repeat close exactly. Do not add a seventh anchor or work the first sc into the join stitch. If the repeat does not close exactly, undo the border and correct the final-round count rather than changing the last scallop.",
+    "arithmetic": [
+      {
+        "label": "mini",
+        "terms": [
+          168
+        ],
+        "expected": 168
+      },
+      {
+        "label": "standard",
+        "terms": [
+          276
+        ],
+        "expected": 276
+      },
+      {
+        "label": "large",
+        "terms": [
+          384
+        ],
+        "expected": 384
+      }
+    ]
+  },
+  {
+    "file": "NS13_reviewed.md",
+    "name": "Snowflake hanger",
+    "instruction": "Hanging loop: the two ch-3 arches flank the three tall stitches; neither is a central tip. Join under both top loops of the middle tr (UK dtr) of the chosen arm, ch 18, sl st into the same stitch. FO, reinforce the attachment with the tail and weave both ends in two directions. Pin the arm symmetrically when blocking.",
+    "arithmetic": []
+  }
+]

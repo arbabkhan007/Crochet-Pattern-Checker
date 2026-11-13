@@ -1,0 +1,5753 @@
+{
+  "counted": [
+    {
+      "file": "NS01_edition2.md",
+      "line": 83,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 84,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 85,
+      "round": "R3",
+      "instruction": "[1 sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 86,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 87,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 88,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 89,
+      "round": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 90,
+      "round": "R8",
+      "instruction": "[6 sc, inc] x 6",
+      "consumed": 42,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 91,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 92,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 93,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 94,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 95,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 96,
+      "round": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 97,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 98,
+      "round": "R16",
+      "instruction": "[6 sc, dec] x 6",
+      "consumed": 48,
+      "produced": 42
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 99,
+      "round": "R17",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 100,
+      "round": "R18",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 101,
+      "round": "R19",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 102,
+      "round": "R20",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 110,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 111,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 112,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 113,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 114,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 115,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 116,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 117,
+      "round": "R8",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 127,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 128,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 129,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 130,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 131,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 132,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 133,
+      "round": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 134,
+      "round": "R8",
+      "instruction": "[6 sc, inc] x 6",
+      "consumed": 42,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 135,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 136,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 137,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 138,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 139,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 140,
+      "round": "R14",
+      "instruction": "[6 sc, dec] x 6",
+      "consumed": 48,
+      "produced": 42
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 141,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 142,
+      "round": "R16",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 143,
+      "round": "R17",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 144,
+      "round": "R18",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 145,
+      "round": "R19",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 155,
+      "instruction": "sc in 2nd ch, 3 sc, 3 sc in last ch; opposite side: 3 sc, 2 sc in first working ch",
+      "produced": 12,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 156,
+      "round": "R2",
+      "instruction": "inc, 3 sc, inc x 3, 3 sc, inc x 2",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 157,
+      "instruction": "sc, inc, 3 sc, [sc, inc] x 3, 3 sc, [sc, inc] x 2",
+      "produced": 24,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 173,
+      "round": "R1",
+      "instruction": "6 sc in MR (Yarn C)",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 174,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 175,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 176,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 177,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 178,
+      "instruction": "sc around in Yarn C",
+      "produced": 18,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 179,
+      "instruction": "BLO sc in Yarn A around",
+      "produced": 18,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 180,
+      "round": "R8",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 181,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 182,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 183,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 184,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 185,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 186,
+      "round": "R14",
+      "instruction": "[2 sc, dec] x 3",
+      "consumed": 12,
+      "produced": 9
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 187,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 188,
+      "round": "R16",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 196,
+      "round": "R1",
+      "instruction": "With Yarn C, 6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 197,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 198,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 199,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 200,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 201,
+      "round": "R6",
+      "instruction": "sc in each st around in Yarn C; change to Yarn A on the final pull-through",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 202,
+      "instruction": "BLO sc in Yarn A around",
+      "produced": 18,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 203,
+      "round": "R8",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 204,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 205,
+      "round": "R10",
+      "instruction": "sc in each st around; stop here",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 221,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 222,
+      "round": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 223,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 224,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 225,
+      "round": "R5",
+      "instruction": "[2 sc, inc] x 2",
+      "consumed": 6,
+      "produced": 8
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 226,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 8,
+      "produced": 8
+    },
+    {
+      "file": "NS01_edition2.md",
+      "line": 227,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 8,
+      "produced": 8
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 79,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 80,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 81,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 82,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 83,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 84,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 85,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 86,
+      "round": "R8",
+      "instruction": "[11 sc, inc] x 2",
+      "consumed": 24,
+      "produced": 26
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 87,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 26,
+      "produced": 26
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 88,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 26,
+      "produced": 26
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 89,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 26,
+      "produced": 26
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 90,
+      "round": "R12",
+      "instruction": "[11 sc, dec] x 2",
+      "consumed": 26,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 91,
+      "round": "R13",
+      "instruction": "FLO: [2 sl st, (sc, hdc, dc, hdc, sc) in next st, 1 sl st] x 6",
+      "consumed": 24,
+      "produced": 48
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 105,
+      "round": "R1",
+      "instruction": "5 sc in MR",
+      "consumed": 0,
+      "produced": 5
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 106,
+      "round": "R2",
+      "instruction": "sc in each st around",
+      "consumed": 5,
+      "produced": 5
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 107,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 5,
+      "produced": 5
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 115,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 116,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 117,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 118,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 126,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 127,
+      "round": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 128,
+      "round": "R3",
+      "instruction": "[2 sc, inc] x 2",
+      "consumed": 6,
+      "produced": 8
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 129,
+      "round": "R4",
+      "instruction": "[3 sc, inc] x 2",
+      "consumed": 8,
+      "produced": 10
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 130,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 131,
+      "round": "R6",
+      "instruction": "FLO: inc in each st around",
+      "consumed": 10,
+      "produced": 20
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 145,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 146,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 147,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 148,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 149,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 150,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 151,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 152,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 153,
+      "round": "R9",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 154,
+      "round": "R10",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 155,
+      "round": "R11",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 156,
+      "round": "R12",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 157,
+      "round": "R13",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 167,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 168,
+      "round": "R2",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 169,
+      "round": "R3",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 170,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 171,
+      "round": "R5",
+      "instruction": "[2 sc, inc] x 3",
+      "consumed": 9,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 181,
+      "instruction": "sc in 2nd ch, 4 sc, 3 sc in last ch; opposite side: 4 sc; stop, ch 1, turn",
+      "produced": 12,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 182,
+      "instruction": "4 sc, inc in next 3 sts, 4 sc; leave final st unworked; ch 1, turn",
+      "produced": 14,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 183,
+      "instruction": "sl st in each of the 14 stitches across",
+      "produced": 14,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 191,
+      "round": "Found.",
+      "instruction": "ch 20; from the 2nd ch, work 2 sc in each chain to the end",
+      "consumed": 19,
+      "produced": 38
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 205,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 206,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 207,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 208,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 209,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 210,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 211,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 212,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 213,
+      "round": "R9",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 214,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 215,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 216,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 217,
+      "round": "R13",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 218,
+      "round": "R14",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 219,
+      "round": "R15",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 220,
+      "round": "R16",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 233,
+      "instruction": "from the 4th ch: dc in 4, hdc in 4, sc in 4; ch 1, turn",
+      "produced": 12,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 234,
+      "round": "Row 2",
+      "instruction": "sc in 3, hdc in 4, dc in 5; ch 1, turn",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS02_edition2.md",
+      "line": 235,
+      "round": "Row 3",
+      "instruction": "sl st in first 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st in next 3, (sc, hdc, picot, hdc, sc) in next st, sl st in next 2, (sc, hdc, picot, hdc, sc) in next st, sl st in last 2",
+      "consumed": 12,
+      "produced": 23
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 73,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 74,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 75,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 76,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 77,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 78,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 79,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 80,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 81,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 82,
+      "round": "R10",
+      "instruction": "[4 sc, invdec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 83,
+      "round": "R11",
+      "instruction": "[3 sc, invdec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 84,
+      "round": "R12",
+      "instruction": "[2 sc, invdec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 85,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 86,
+      "round": "R14",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 87,
+      "round": "R15",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 88,
+      "round": "R16",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 89,
+      "round": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 90,
+      "round": "R18",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 91,
+      "round": "R19",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 92,
+      "round": "R20",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 93,
+      "round": "R21",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 94,
+      "round": "R22",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 95,
+      "round": "R23",
+      "instruction": "[4 sc, invdec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 96,
+      "round": "R24",
+      "instruction": "[3 sc, invdec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 97,
+      "round": "R25",
+      "instruction": "[2 sc, invdec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 98,
+      "round": "R26",
+      "instruction": "[sc, invdec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 99,
+      "round": "R27",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 100,
+      "round": "R28",
+      "instruction": "[2 sc, invdec] x 3",
+      "consumed": 12,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 101,
+      "round": "R29",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 102,
+      "round": "R30",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 103,
+      "round": "R31",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 104,
+      "round": "R32",
+      "instruction": "[sc, invdec] x 3",
+      "consumed": 9,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 105,
+      "round": "R33",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 106,
+      "round": "R34",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 107,
+      "round": "R35",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 108,
+      "round": "R36",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 124,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 125,
+      "round": "R2",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 126,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 127,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 128,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 129,
+      "round": "R6",
+      "instruction": "sc in each st around, then FO",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 137,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 138,
+      "round": "R2",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 139,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 140,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 141,
+      "round": "R5",
+      "instruction": "[sc, invdec] x 3",
+      "consumed": 9,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 151,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 152,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 153,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 154,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS03_edition2.md",
+      "line": 155,
+      "round": "R5",
+      "instruction": "[sc, invdec] x 4",
+      "consumed": 12,
+      "produced": 8
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 77,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 78,
+      "round": "R2",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 79,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 80,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 81,
+      "round": "R5",
+      "instruction": "sc in each st around, then FO",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 87,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 88,
+      "round": "R2",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 89,
+      "round": "R3",
+      "instruction": "[2 sc, inc] x 3",
+      "consumed": 9,
+      "produced": 12
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 90,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 91,
+      "round": "R5",
+      "instruction": "sc in each st around, then FO",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 102,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 103,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 104,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 105,
+      "instruction": "join BL1: 3 sc, [sc, inc] x 1, join BL2: 3 sc, [sc, inc] x 5",
+      "produced": 24,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 106,
+      "instruction": "[2 sc, inc] x 4, join FL1: 3 sc, sc, inc, sc, join FL2: 3 sc, sc, inc, sc",
+      "produced": 30,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 107,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 108,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 109,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 110,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 111,
+      "round": "R10",
+      "instruction": "[7 sc, invdec] x 4",
+      "consumed": 36,
+      "produced": 32
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 112,
+      "round": "R11",
+      "instruction": "[7 sc, inc] x 4",
+      "consumed": 32,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 113,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 114,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 115,
+      "round": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 116,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 117,
+      "round": "R16",
+      "instruction": "[4 sc, invdec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 118,
+      "round": "R17",
+      "instruction": "[3 sc, invdec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 119,
+      "round": "R18",
+      "instruction": "[2 sc, invdec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 120,
+      "round": "R19",
+      "instruction": "[sc, invdec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS04_edition2.md",
+      "line": 121,
+      "round": "R20",
+      "instruction": "invdec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 69,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 70,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 71,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 72,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 73,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 74,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 75,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 76,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 77,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 78,
+      "round": "R10",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 79,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 80,
+      "round": "R12",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 81,
+      "round": "R13",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 82,
+      "round": "R14",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 83,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 84,
+      "round": "R16",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 85,
+      "round": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 86,
+      "round": "R18",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 87,
+      "round": "R19",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 88,
+      "round": "R20",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 89,
+      "round": "R21",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 90,
+      "round": "R22",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 91,
+      "round": "R23",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 101,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 102,
+      "round": "R2",
+      "instruction": "inc around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 103,
+      "round": 3,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 103,
+      "round": 4,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 103,
+      "round": 5,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 104,
+      "round": "R6",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 105,
+      "instruction": "flatten into four pairs; sc once through each pair",
+      "produced": 4,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 114,
+      "round": "Rnd 1",
+      "instruction": "sc in 2nd ch from hook, sc in next 2 ch, 3 sc in last ch; rotate to work along the opposite side: sc in next 2 ch, 2 sc in the remaining loop of the first working ch",
+      "consumed": 4,
+      "produced": 10
+    },
+    {
+      "file": "NS05_edition2.md",
+      "line": 115,
+      "round": "Rnd 2",
+      "instruction": "inc, 2 sc, inc x 3, 2 sc, inc x 2",
+      "consumed": 10,
+      "produced": 16
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 74,
+      "instruction": "sc in 2nd ch, 6 sc, 3 sc in last ch; opposite side: 6 sc, 2 sc in first working ch",
+      "produced": 18,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 75,
+      "round": "R2",
+      "instruction": "inc, 6 sc, inc x 3, 6 sc, inc x 2",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 76,
+      "round": "R3",
+      "instruction": "sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 77,
+      "round": "R4",
+      "instruction": "2 sc, inc, 6 sc, [2 sc, inc] x 3, 6 sc, [2 sc, inc] x 2",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 78,
+      "round": "R5",
+      "instruction": "3 sc, inc, 6 sc, [3 sc, inc] x 3, 6 sc, [3 sc, inc] x 2",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 79,
+      "round": "R6",
+      "instruction": "4 sc, inc, 6 sc, [4 sc, inc] x 3, 6 sc, [4 sc, inc] x 2",
+      "consumed": 42,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 80,
+      "round": "R7",
+      "instruction": "BLO sc around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 81,
+      "round": 8,
+      "instruction": "sc around each round",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 81,
+      "round": 9,
+      "instruction": "sc around each round",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 81,
+      "round": 10,
+      "instruction": "sc around each round",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 81,
+      "round": 11,
+      "instruction": "sc around each round",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 81,
+      "round": 12,
+      "instruction": "sc around each round",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 82,
+      "round": "R13",
+      "instruction": "[6 sc, dec] x 6",
+      "consumed": 48,
+      "produced": 42
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 83,
+      "round": "R14",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 84,
+      "round": "R15",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 85,
+      "round": "R16",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 86,
+      "round": "R17",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 87,
+      "round": "R18",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS06_edition2.md",
+      "line": 88,
+      "round": "R19",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 59,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 60,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 61,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 62,
+      "round": "R4",
+      "instruction": "BLO sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 63,
+      "round": "R5",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 64,
+      "round": "R6",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 72,
+      "round": "Petal",
+      "instruction": "after closing the centre, join yellow with a sl st in any EXPOSED front loop of Rnd 3 (this counts as the first sl st); (sc, hdc, sc) in next front loop, [sl st in next front loop, (sc, hdc, sc) in next front loop] x 8, sl st to the first sl st, FO",
+      "consumed": 18,
+      "produced": 36
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 88,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 89,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 90,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 91,
+      "round": 4,
+      "instruction": "sc in each st around (3 rnd)",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 91,
+      "round": 5,
+      "instruction": "sc in each st around (3 rnd)",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 91,
+      "round": 6,
+      "instruction": "sc in each st around (3 rnd)",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 92,
+      "round": "R7",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 93,
+      "round": 8,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 93,
+      "round": 9,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 94,
+      "round": "R10",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 95,
+      "round": "R11",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 96,
+      "round": "R12",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 104,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 105,
+      "round": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 106,
+      "round": 3,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 106,
+      "round": 4,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 120,
+      "round": "R1",
+      "instruction": "ch 2, 3 sc in 2nd ch from hook",
+      "consumed": 1,
+      "produced": 3
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 121,
+      "round": "R2",
+      "instruction": "inc x 3",
+      "consumed": 3,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 122,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 135,
+      "round": "R1",
+      "instruction": "sc in 2nd ch, 4 sc, 3 sc in last ch; other side: 4 sc, 2 sc in last ch",
+      "consumed": 6,
+      "produced": 14
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 136,
+      "round": "R2",
+      "instruction": "inc, 4 sc, inc x 3, 4 sc, inc x 2",
+      "consumed": 14,
+      "produced": 20
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 137,
+      "round": 3,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 137,
+      "round": 4,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 137,
+      "round": 5,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 137,
+      "round": 6,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 138,
+      "round": "R7",
+      "instruction": "[3 sc, dec] x 4",
+      "consumed": 20,
+      "produced": 16
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 139,
+      "round": "R8",
+      "instruction": "[2 sc, dec] x 4",
+      "consumed": 16,
+      "produced": 12
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 140,
+      "round": "R9",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8
+    },
+    {
+      "file": "NS07_edition2.md",
+      "line": 141,
+      "round": "R10",
+      "instruction": "dec x 4",
+      "consumed": 8,
+      "produced": 4
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 71,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 72,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 73,
+      "round": "R3",
+      "instruction": "[1 sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 74,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 75,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 76,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 77,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 78,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 79,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 80,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 81,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 82,
+      "round": "R12",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 83,
+      "round": "R13",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 84,
+      "round": "R14",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 92,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 93,
+      "round": "R2",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 94,
+      "round": "R3",
+      "instruction": "[2 sc, inc] x 3",
+      "consumed": 9,
+      "produced": 12
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 95,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 96,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 106,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 107,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 108,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 109,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 110,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 111,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 112,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 113,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 114,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 115,
+      "round": "R10",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 116,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 117,
+      "round": "R12",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 118,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 126,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 127,
+      "round": "R2",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 128,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 129,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 130,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 131,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 132,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 133,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 143,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 144,
+      "round": "R2",
+      "instruction": "sc in each st around",
+      "consumed": 4,
+      "produced": 4
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 145,
+      "round": "R3",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 146,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 147,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 148,
+      "round": "R6",
+      "instruction": "[2 sc, inc] x 2",
+      "consumed": 6,
+      "produced": 8
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 149,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 8,
+      "produced": 8
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 150,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 8,
+      "produced": 8
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 151,
+      "round": "R9",
+      "instruction": "[3 sc, inc] x 2",
+      "consumed": 8,
+      "produced": 10
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 152,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 153,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 154,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 162,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 163,
+      "round": "R2",
+      "instruction": "sc in each st around",
+      "consumed": 4,
+      "produced": 4
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 164,
+      "round": "R3",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 165,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 166,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 177,
+      "round": "Row 1",
+      "instruction": "from the 2nd ch: sc in 4, hdc in 3, dc in 3",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 178,
+      "instruction": "dc in 4, hdc in 3, sc in 3",
+      "produced": 10,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 179,
+      "round": "Row 3",
+      "instruction": "sc in 2, hdc in 4, dc in 4",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS08_edition2.md",
+      "line": 180,
+      "round": "Row 4",
+      "instruction": "sl st in first 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in next 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in last 4",
+      "consumed": 10,
+      "produced": 18
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 69,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 70,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 71,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 72,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 73,
+      "round": "R5",
+      "instruction": "BLO sc around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 74,
+      "round": "R6",
+      "instruction": "sc in each st around, then FO",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 82,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 83,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 84,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 85,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS09_edition2.md",
+      "line": 91,
+      "instruction": "FLO: 3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 5 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 1 sc",
+      "produced": 35,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 69,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 70,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 71,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 72,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 73,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 74,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 75,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 76,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 77,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 78,
+      "round": "R10",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 79,
+      "round": "R11",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 80,
+      "round": "R12",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 81,
+      "round": "R13",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 82,
+      "round": "R14",
+      "instruction": "dec x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 91,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 92,
+      "round": "R2",
+      "instruction": "inc around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 93,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 4,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 5,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 6,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 7,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 8,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 9,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 10,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 11,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 12,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 13,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 94,
+      "round": 14,
+      "instruction": "sc around each round",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 95,
+      "round": "R15",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 96,
+      "round": 16,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 96,
+      "round": 17,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 96,
+      "round": 18,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 96,
+      "round": 19,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 96,
+      "round": 20,
+      "instruction": "sc around each round",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 97,
+      "round": "R21",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 107,
+      "round": "Rnd 1",
+      "instruction": "ch 3 (counts as first dc), 2 dc in the ring, [ch 2, 3 dc in the ring] x 3, ch 2, sl st to the ch-3 top",
+      "consumed": 0,
+      "produced": 12
+    },
+    {
+      "file": "NS10_edition2.md",
+      "line": 108,
+      "round": "Rnd 2",
+      "instruction": "sl st in next 2 dc and into the next corner space; ch 3 (counts as first dc), 2 dc, ch 2, 3 dc in that same space (first corner); then (3 dc, ch 2, 3 dc) into each remaining corner space; sl st to top of ch-3",
+      "consumed": 12,
+      "produced": 24
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 85,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 86,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 87,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 88,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 89,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 90,
+      "round": "R6",
+      "instruction": "BLO sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 91,
+      "round": 7,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 91,
+      "round": 8,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 97,
+      "round": 9,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 97,
+      "round": 10,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 97,
+      "round": 11,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 97,
+      "round": 12,
+      "instruction": "sc in each st around (4 rnd)",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 103,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 104,
+      "round": "R14",
+      "instruction": "sc in next 14, BO in next st (nose), sc in remaining 15",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 105,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 111,
+      "round": "R16",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 112,
+      "round": "R17",
+      "instruction": "[3 sc, sc2tog] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 113,
+      "round": "R18",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 114,
+      "round": "R19",
+      "instruction": "[2 sc, sc2tog] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 115,
+      "round": "R20",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 116,
+      "round": "R21",
+      "instruction": "[sc, sc2tog] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 117,
+      "round": "R22",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS11_edition2.md",
+      "line": 118,
+      "round": "R23",
+      "instruction": "sc2tog x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 77,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 78,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 79,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 80,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 81,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 82,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 83,
+      "round": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 84,
+      "round": "R8",
+      "instruction": "[6 sc, inc] x 6",
+      "consumed": 42,
+      "produced": 48
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 85,
+      "round": "R9",
+      "instruction": "BLO: sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 86,
+      "round": "R10",
+      "instruction": "[BO, 7 sc] x 6",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 87,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 48,
+      "produced": 48
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 88,
+      "round": "R12",
+      "instruction": "[BO, 5 sc, sc2tog] x 6",
+      "consumed": 48,
+      "produced": 42
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 89,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 90,
+      "round": "R14",
+      "instruction": "[BO, 4 sc, sc2tog] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 91,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 92,
+      "round": "R16",
+      "instruction": "[BO, 3 sc, sc2tog] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 93,
+      "round": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 94,
+      "round": "R18",
+      "instruction": "[BO, 2 sc, sc2tog] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 95,
+      "round": "R19",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 96,
+      "round": "R20",
+      "instruction": "[BO, sc, sc2tog] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 97,
+      "round": "R21",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 98,
+      "round": "R22",
+      "instruction": "[BO, sc2tog] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 99,
+      "round": "R23",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 100,
+      "round": "R24",
+      "instruction": "sc2tog x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 101,
+      "round": "R25",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS12_edition2.md",
+      "line": 102,
+      "round": "R26",
+      "instruction": "sc2tog x 3",
+      "consumed": 6,
+      "produced": 3
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 71,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 72,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 73,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 74,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 75,
+      "round": 5,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 75,
+      "round": 6,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 76,
+      "round": "R7",
+      "instruction": "[2 sc, sc2tog] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 77,
+      "round": "R8",
+      "instruction": "[sc, sc2tog] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 78,
+      "round": "R9",
+      "instruction": "sc2tog x 6",
+      "consumed": 12,
+      "produced": 6
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 90,
+      "round": "R1",
+      "instruction": "ch 1, 10 sc in MR, sl st to first sc to close",
+      "consumed": 0,
+      "produced": 10
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 91,
+      "round": "R2",
+      "instruction": "[sl st in next st, (sc, hdc, dc, ch 2, dc, hdc, sc) in next st] x 5, sl st to first sl st, FO",
+      "consumed": 10,
+      "produced": 35
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 105,
+      "round": "R1",
+      "instruction": "ch 6, sl st in first ch to form a ring; ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3",
+      "consumed": 0,
+      "produced": 12
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 168,
+      "round": "R1",
+      "instruction": "Ch 2, 12 dc in ring, sl st to first dc",
+      "consumed": 0,
+      "produced": 12
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 169,
+      "round": "R2",
+      "instruction": "Ch 2, 2 dc in each st around, sl st to first dc",
+      "consumed": 12,
+      "produced": 24
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 170,
+      "round": "R3",
+      "instruction": "Ch 2, [dc in next st, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 24,
+      "produced": 36
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 171,
+      "round": "R4",
+      "instruction": "Ch 2, [dc in next 2 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 36,
+      "produced": 48
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 172,
+      "round": "R5",
+      "instruction": "Ch 2, [BO in next st, dc in next 2 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 48,
+      "produced": 60
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 173,
+      "round": "R6",
+      "instruction": "Ch 2, [dc in next 4 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 60,
+      "produced": 72
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 174,
+      "round": "R7",
+      "instruction": "Ch 2, [dc in next 5 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 72,
+      "produced": 84
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 175,
+      "round": "R8",
+      "instruction": "Ch 2, [BO in next st, dc in next 5 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 84,
+      "produced": 96
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 181,
+      "round": "R9",
+      "instruction": "Ch 2, [dc in next 7 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 96,
+      "produced": 108
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 182,
+      "round": "R10",
+      "instruction": "Ch 2, [dc in next 8 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 108,
+      "produced": 120
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 183,
+      "round": "R11",
+      "instruction": "Ch 2, [BO in next st, dc in next 8 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 120,
+      "produced": 132
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 184,
+      "round": "R12",
+      "instruction": "Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 132,
+      "produced": 144
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 185,
+      "round": "R13",
+      "instruction": "Ch 2, [dc in next 11 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 144,
+      "produced": 156
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 186,
+      "round": "R14",
+      "instruction": "Ch 2, [BO in next st, dc in next 11 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 156,
+      "produced": 168
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 187,
+      "round": "R15",
+      "instruction": "Ch 2, [dc in next 13 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 168,
+      "produced": 180
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 188,
+      "round": "R16",
+      "instruction": "Ch 2, [dc in next 14 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 180,
+      "produced": 192
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 196,
+      "round": "R17",
+      "instruction": "Ch 2, [BO in next st, dc in next 14 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 192,
+      "produced": 204
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 197,
+      "round": "R18",
+      "instruction": "Ch 2, [dc in next 16 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 204,
+      "produced": 216
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 198,
+      "round": "R19",
+      "instruction": "Ch 2, [dc in next 17 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 216,
+      "produced": 228
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 199,
+      "round": "R20",
+      "instruction": "Ch 2, [BO in next st, dc in next 17 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 228,
+      "produced": 240
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 200,
+      "round": "R21",
+      "instruction": "Ch 2, [dc in next 19 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 240,
+      "produced": 252
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 201,
+      "round": "R22",
+      "instruction": "Ch 2, [dc in next 20 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 252,
+      "produced": 264
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 202,
+      "round": "R23",
+      "instruction": "Ch 2, [BO in next st, dc in next 20 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 264,
+      "produced": 276
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 203,
+      "round": "R24",
+      "instruction": "Ch 2, [dc in next 22 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 276,
+      "produced": 288
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 209,
+      "round": "R25",
+      "instruction": "Ch 2, [dc in next 23 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 288,
+      "produced": 300
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 210,
+      "round": "R26",
+      "instruction": "Ch 2, [BO in next st, dc in next 23 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 300,
+      "produced": 312
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 211,
+      "round": "R27",
+      "instruction": "Ch 2, [dc in next 25 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 312,
+      "produced": 324
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 212,
+      "round": "R28",
+      "instruction": "Ch 2, [dc in next 26 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 324,
+      "produced": 336
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 213,
+      "round": "R29",
+      "instruction": "Ch 2, [BO in next st, dc in next 26 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 336,
+      "produced": 348
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 214,
+      "round": "R30",
+      "instruction": "Ch 2, [dc in next 28 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 348,
+      "produced": 360
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 215,
+      "round": "R31",
+      "instruction": "Ch 2, [dc in next 29 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 360,
+      "produced": 372
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 216,
+      "round": "R32",
+      "instruction": "Ch 2, [BO in next st, dc in next 29 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 372,
+      "produced": 384
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 79,
+      "round": "R1",
+      "instruction": "Sc in each ch around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 80,
+      "round": "R2+",
+      "instruction": "Sc in each st around until the tube reaches the target MEASURED length",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 92,
+      "round": "R1",
+      "instruction": "With yellow: 6 sc in MR, sl st to first sc, FO",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 94,
+      "round": "Leaves",
+      "instruction": "Make 3 separately in green: ch 8, sc in 2nd ch from hook, hdc in next ch, dc in next 3 ch, hdc in next ch, sc in last ch; FO with a 15 cm tail",
+      "consumed": null,
+      "produced": 7
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 107,
+      "round": "R1",
+      "instruction": "With white: MR, ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3",
+      "consumed": 0,
+      "produced": 12
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 126,
+      "instruction": "Ch 8 ring; sc in each ch (8); spiral in 8 sc until the tube measures 20-24 cm; join the 8 end pairs ROUND as for the base; wrap a separate load-rated woven cord or ribbon twice around the whole tube for hanging",
+      "produced": 8,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 108,
+      "round": "R1",
+      "instruction": "sc in each of 20 foundation chains around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 109,
+      "round": "R2",
+      "instruction": "BLO sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 110,
+      "round": "R3",
+      "instruction": "BLO sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 111,
+      "round": "R4",
+      "instruction": "BLO sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 112,
+      "round": "R5",
+      "instruction": "with MC, sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 113,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 114,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 115,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 116,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 117,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 127,
+      "instruction": "ch 1, sc in same st as join and next 9 sts, ch 1, turn",
+      "produced": 10,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 128,
+      "round": "Row 2",
+      "instruction": "BLO sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 129,
+      "round": "Row 3",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 130,
+      "round": "Row 4",
+      "instruction": "BLO sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 131,
+      "round": "Row 5",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 132,
+      "round": "Row 6",
+      "instruction": "BLO sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 133,
+      "instruction": "6 sc, dec; leave final 2 sts unworked, ch 1, turn",
+      "produced": 7,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 134,
+      "instruction": "4 sc, dec; leave final st unworked, ch 1, turn",
+      "produced": 5,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 135,
+      "round": "Row 9",
+      "instruction": "3 sc, dec, ch 1, turn",
+      "consumed": 5,
+      "produced": 4
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 136,
+      "instruction": "2 sc, dec; ch 1, turn",
+      "produced": 3,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 150,
+      "instruction": "3 heel-centre sc, 5 side sc, 10 instep sc, 5 side sc",
+      "produced": 23,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 151,
+      "instruction": "7 sc, dec, 5 sc, dec, 5 sc, dec",
+      "produced": 20,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 152,
+      "round": "Foot R3",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 153,
+      "round": "Foot R4",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 154,
+      "round": "Foot R5",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 155,
+      "round": "Foot R6",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 156,
+      "round": "Foot R7",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 166,
+      "round": "Toe R1",
+      "instruction": "[3 sc, dec] x 4",
+      "consumed": 20,
+      "produced": 16
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 167,
+      "round": "Toe R2",
+      "instruction": "[2 sc, dec] x 4",
+      "consumed": 16,
+      "produced": 12
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 168,
+      "round": "Toe R3",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8
+    },
+    {
+      "file": "NS16_edition2.md",
+      "line": 169,
+      "round": "Toe R4",
+      "instruction": "dec x 4",
+      "consumed": 8,
+      "produced": 4
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 132,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 133,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 134,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 135,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 136,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 137,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 138,
+      "round": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 139,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 140,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 141,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 142,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 143,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 144,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 145,
+      "round": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 146,
+      "round": "R15",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 147,
+      "round": "R16",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 148,
+      "round": "R17",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 149,
+      "round": "R18",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 150,
+      "round": "R19",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 158,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 159,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 160,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 161,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 162,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 170,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 171,
+      "round": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 172,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 173,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 174,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 175,
+      "round": "R6",
+      "instruction": "BLO sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 176,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 177,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 178,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 179,
+      "round": "R10",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 180,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 191,
+      "round": "Row 1",
+      "instruction": "sc in 2nd ch and next 5 ch, ch 1, turn",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 192,
+      "round": "Row 2",
+      "instruction": "dec, 2 sc, dec, ch 1, turn",
+      "consumed": 6,
+      "produced": 4
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 193,
+      "round": "Row 3",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 4,
+      "produced": 4
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 194,
+      "round": "Row 4",
+      "instruction": "dec x 2",
+      "consumed": 4,
+      "produced": 2
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 203,
+      "round": "Row 1",
+      "instruction": "sc in 2nd ch and next 6 ch, ch 1, turn",
+      "consumed": 7,
+      "produced": 7
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 204,
+      "round": "Row 2",
+      "instruction": "dec, 3 sc, dec, ch 1, turn",
+      "consumed": 7,
+      "produced": 5
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 205,
+      "round": "Row 3",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 5,
+      "produced": 5
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 206,
+      "round": "Row 4",
+      "instruction": "dec, sc, dec",
+      "consumed": 5,
+      "produced": 3
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 214,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 215,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 216,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 217,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 218,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 219,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 220,
+      "round": "R7",
+      "instruction": "BLO sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 221,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 222,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 223,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 224,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 225,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 226,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 227,
+      "round": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 228,
+      "round": "R15",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 229,
+      "round": "R16",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 230,
+      "round": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 231,
+      "round": "R18",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 232,
+      "round": "R19",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 233,
+      "round": "R20",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 234,
+      "round": "R21",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 235,
+      "round": "R22",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 236,
+      "round": "R23",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 246,
+      "round": "R1",
+      "instruction": "5 sc in MR",
+      "consumed": 0,
+      "produced": 5
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 247,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 5,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 248,
+      "round": "R3",
+      "instruction": "BLO sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 249,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 250,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 251,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 252,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 253,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 254,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 255,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 256,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 257,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 258,
+      "round": "R13",
+      "instruction": "[3 sc, dec] x 2",
+      "consumed": 10,
+      "produced": 8
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 268,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 269,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 270,
+      "round": "R3",
+      "instruction": "BLO sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 271,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 272,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 273,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 274,
+      "round": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 275,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 276,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 277,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 278,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 279,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 280,
+      "round": "R13",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 288,
+      "round": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 289,
+      "round": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 290,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 291,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 292,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 293,
+      "round": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 303,
+      "round": "Row 1",
+      "instruction": "sc in 2nd ch and next 34 ch, ch 1, turn",
+      "consumed": 35,
+      "produced": 35
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 304,
+      "round": "Row 2",
+      "instruction": "sc in each st across",
+      "consumed": 35,
+      "produced": 35
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 328,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 329,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 330,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 331,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 332,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 333,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 334,
+      "round": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 335,
+      "round": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 336,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 337,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 338,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 339,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 340,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 341,
+      "round": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 342,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 343,
+      "round": "R16",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 344,
+      "round": "R17",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 345,
+      "round": "R18",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 346,
+      "round": "R19",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 347,
+      "round": "R20",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 357,
+      "round": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 358,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 359,
+      "round": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 360,
+      "round": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 361,
+      "round": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 362,
+      "round": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 363,
+      "round": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 364,
+      "round": "R8",
+      "instruction": "BLO sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 365,
+      "round": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 366,
+      "round": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 367,
+      "round": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 368,
+      "round": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 369,
+      "round": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 370,
+      "round": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 371,
+      "round": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 372,
+      "round": "R16",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 373,
+      "round": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 374,
+      "round": "R18",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 375,
+      "round": "R19",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 376,
+      "round": "R20",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 377,
+      "round": "R21",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 378,
+      "round": "R22",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 379,
+      "round": "R23",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 380,
+      "round": "R24",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 388,
+      "round": "R1",
+      "instruction": "5 sc in MR",
+      "consumed": 0,
+      "produced": 5
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 389,
+      "round": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 5,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 390,
+      "round": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 391,
+      "round": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 392,
+      "round": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 393,
+      "round": "R6",
+      "instruction": "dec x 5",
+      "consumed": 10,
+      "produced": 5
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 403,
+      "instruction": "sc in 2nd ch and next 12 ch, ch 1, turn",
+      "produced": 13,
+      "method": "exact-text manual"
+    },
+    {
+      "file": "NS17_edition2.md",
+      "line": 404,
+      "round": "Row 2",
+      "instruction": "sc in each st across",
+      "consumed": 13,
+      "produced": 13
+    }
+  ],
+  "explicit_scope": [
+    {
+      "file": "NS10_edition2.md",
+      "line": 109,
+      "instruction": "sl st in next 2 dc and into the next corner ch-2 space; ch 3 (counts as first dc), 2 dc, ch 2, 3 dc in that same corner. Work 3 dc in every GAP between adjacent 3-dc groups along each side (these are not chain spaces), and (3 dc, ch 2, 3 dc) in each remaining corner; sl st to top of ch-3. Each round adds one 3-dc group to every side (+12 dc per round)",
+      "scope": "R3\u2013R20: four corners produce24 dc plus 4*(N-2) side gaps each producing3; exact formula checked for every round"
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 106,
+      "instruction": "[ch 5, skip next st, sl st in next st] x 6",
+      "scope": "Six chain spaces, final repeat lands on initial anchor; no duplicate joining slip stitch"
+    },
+    {
+      "file": "NS13_edition2.md",
+      "line": 107,
+      "instruction": "(sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO",
+      "scope": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional"
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 162,
+      "instruction": "Ch 20, check the relaxed ring against the stand, then sl st to first ch without twisting",
+      "scope": "20-chain foundation ring, or explicitly allowed 24-chain alternative; R1 is into ring not chains"
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 224,
+      "instruction": "Join CC through the fabric immediately outside the centre ring; work relaxed surface sl sts outward along one pinned guide to its marked increase column; FO at the outer edge",
+      "scope": "Variable number of surface slip stitches; no growth stitches added"
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 225,
+      "instruction": "Repeat the complete join-to-FO spoke route separately at each remaining marked column",
+      "scope": "12 independently anchored surface spokes"
+    },
+    {
+      "file": "NS14_edition2.md",
+      "line": 237,
+      "instruction": "Join CC in any st; ch 1, sc in SAME st, skip 2 sts, 5 dc in next st, skip 2 sts; repeat [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] to end, sl st to first sc, FO",
+      "scope": "Starting sc in same joining anchor. Border checked at all three stop sizes"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 78,
+      "instruction": "Ch 12, sl st to first ch to form a ring; place marker",
+      "scope": "12-chain closed foundation, no turning chain counted"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 81,
+      "instruction": "FO with a 40 cm tail; keep openings round, align the 12 final-round sts with the 12 foundation ch, and whip-stitch 12 pairs around",
+      "scope": "12 matched seam pairs; final 3 pairs closed after stuffing"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 82,
+      "instruction": "For the standard/large version, lay the joined loop on a fully supporting display surface; no unsupported vertical hanger is specified",
+      "scope": "Supported flat display only; no crochet count or load certification"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 93,
+      "instruction": "Join red with a sl st in any centre sc; (ch 4, 3 tr, ch 4, sl st) in that same centre stitch; [sl st in next centre sc, (ch 4, 3 tr, ch 4, sl st) in that same stitch] x 5; FO",
+      "scope": "Six separately anchored petals; tall stitches and chains checked; positioning and end sl sts are not new centre anchors"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 95,
+      "instruction": "Attach one folded 55 cm green tie under at least 2 sturdy back sts as in technique 4",
+      "scope": "Removable folded tie, anchored under at least two back stitches; no round count"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 108,
+      "instruction": "[Ch 5, skip next dc, sl st in next dc] x 6",
+      "scope": "Six chain spaces, final repeat lands on initial anchor; no duplicate joining slip stitch"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 109,
+      "instruction": "In each ch-5 space work (sl st, ch 3, 3 tr, ch 3, sl st); sl st to the first sl st, FO",
+      "scope": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional"
+    },
+    {
+      "file": "NS15_edition2.md",
+      "line": 110,
+      "instruction": "Attach one folded 55 cm white/silver tie under at least 2 sturdy back sts as in technique 4",
+      "scope": "Removable folded tie, anchored under at least two back stitches; no round count"
+    }
+  ]
+}

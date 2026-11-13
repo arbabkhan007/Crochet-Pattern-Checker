@@ -1,0 +1,2229 @@
+{
+  "counted": [
+    {
+      "file": "NS13_reviewed.md",
+      "line": 71,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 72,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 73,
+      "label": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 74,
+      "label": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 75,
+      "label": 5,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 24,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 75,
+      "label": 6,
+      "instruction": "sc in each st around (2 rnd)",
+      "consumed": 24,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 76,
+      "label": "R7",
+      "instruction": "[2 sc, sc2tog] x 6",
+      "consumed": 24,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 77,
+      "label": "R8",
+      "instruction": "[sc, sc2tog] x 6",
+      "consumed": 18,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 78,
+      "label": "R9",
+      "instruction": "sc2tog x 6",
+      "consumed": 12,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 90,
+      "label": "R1",
+      "instruction": "ch 1, 10 sc in MR, sl st to first sc to close",
+      "consumed": 0,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 91,
+      "label": "R2",
+      "instruction": "[sl st in next st, (sc, hdc, dc, ch 2, dc, hdc, sc) in next st] x 5, sl st to first sl st, FO",
+      "consumed": 10,
+      "produced": 35,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 103,
+      "label": "R1",
+      "instruction": "ch 6, sl st in first ch to form a ring; ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3",
+      "consumed": 0,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 168,
+      "label": "R1",
+      "instruction": "Ch 2, 12 dc in ring, sl st to first dc",
+      "consumed": 0,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 169,
+      "label": "R2",
+      "instruction": "Ch 2, 2 dc in each st around, sl st to first dc",
+      "consumed": 12,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 170,
+      "label": "R3",
+      "instruction": "Ch 2, [dc in next st, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 24,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 171,
+      "label": "R4",
+      "instruction": "Ch 2, [dc in next 2 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 36,
+      "produced": 48,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 172,
+      "label": "R5",
+      "instruction": "Ch 2, [BO in next st, dc in next 2 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 48,
+      "produced": 60,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 173,
+      "label": "R6",
+      "instruction": "Ch 2, [dc in next 4 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 60,
+      "produced": 72,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 174,
+      "label": "R7",
+      "instruction": "Ch 2, [dc in next 5 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 72,
+      "produced": 84,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 175,
+      "label": "R8",
+      "instruction": "Ch 2, [BO in next st, dc in next 5 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 84,
+      "produced": 96,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 181,
+      "label": "R9",
+      "instruction": "Ch 2, [dc in next 7 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 96,
+      "produced": 108,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 182,
+      "label": "R10",
+      "instruction": "Ch 2, [dc in next 8 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 108,
+      "produced": 120,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 183,
+      "label": "R11",
+      "instruction": "Ch 2, [BO in next st, dc in next 8 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 120,
+      "produced": 132,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 184,
+      "label": "R12",
+      "instruction": "Ch 2, [dc in next 10 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 132,
+      "produced": 144,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 185,
+      "label": "R13",
+      "instruction": "Ch 2, [dc in next 11 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 144,
+      "produced": 156,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 186,
+      "label": "R14",
+      "instruction": "Ch 2, [BO in next st, dc in next 11 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 156,
+      "produced": 168,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 187,
+      "label": "R15",
+      "instruction": "Ch 2, [dc in next 13 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 168,
+      "produced": 180,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 188,
+      "label": "R16",
+      "instruction": "Ch 2, [dc in next 14 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 180,
+      "produced": 192,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 196,
+      "label": "R17",
+      "instruction": "Ch 2, [BO in next st, dc in next 14 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 192,
+      "produced": 204,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 197,
+      "label": "R18",
+      "instruction": "Ch 2, [dc in next 16 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 204,
+      "produced": 216,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 198,
+      "label": "R19",
+      "instruction": "Ch 2, [dc in next 17 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 216,
+      "produced": 228,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 199,
+      "label": "R20",
+      "instruction": "Ch 2, [BO in next st, dc in next 17 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 228,
+      "produced": 240,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 200,
+      "label": "R21",
+      "instruction": "Ch 2, [dc in next 19 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 240,
+      "produced": 252,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 201,
+      "label": "R22",
+      "instruction": "Ch 2, [dc in next 20 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 252,
+      "produced": 264,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 202,
+      "label": "R23",
+      "instruction": "Ch 2, [BO in next st, dc in next 20 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 264,
+      "produced": 276,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 203,
+      "label": "R24",
+      "instruction": "Ch 2, [dc in next 22 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 276,
+      "produced": 288,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 209,
+      "label": "R25",
+      "instruction": "Ch 2, [dc in next 23 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 288,
+      "produced": 300,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 210,
+      "label": "R26",
+      "instruction": "Ch 2, [BO in next st, dc in next 23 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 300,
+      "produced": 312,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 211,
+      "label": "R27",
+      "instruction": "Ch 2, [dc in next 25 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 312,
+      "produced": 324,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 212,
+      "label": "R28",
+      "instruction": "Ch 2, [dc in next 26 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 324,
+      "produced": 336,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 213,
+      "label": "R29",
+      "instruction": "Ch 2, [BO in next st, dc in next 26 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 336,
+      "produced": 348,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 214,
+      "label": "R30",
+      "instruction": "Ch 2, [dc in next 28 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 348,
+      "produced": 360,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 215,
+      "label": "R31",
+      "instruction": "Ch 2, [dc in next 29 sts, 2 dc in next st] x 12, sl st to first dc",
+      "consumed": 360,
+      "produced": 372,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 216,
+      "label": "R32",
+      "instruction": "Ch 2, [BO in next st, dc in next 29 sts, 2 dc in next st] x 12, sl st to first BO",
+      "consumed": 372,
+      "produced": 384,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 75,
+      "label": "R1",
+      "instruction": "Sc in each ch around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 76,
+      "label": "R2+",
+      "instruction": "Sc in each st around until the tube reaches the target MEASURED length",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 88,
+      "label": "R1",
+      "instruction": "With yellow: 6 sc in MR, sl st to first sc, FO",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 90,
+      "label": "Leaves",
+      "instruction": "Make 3 separately in green: ch 8, sc in 2nd ch from hook, hdc in next ch, dc in next 3 ch, hdc in next ch, sc in last ch; FO with a 15 cm tail",
+      "consumed": null,
+      "produced": 7,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 103,
+      "label": "R1",
+      "instruction": "With white: MR, ch 3 (counts as first dc), 11 dc in ring, sl st to top of ch-3",
+      "consumed": 0,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 117,
+      "label": "Tails",
+      "instruction": "Ch 15, sc in 2nd ch from hook and across (14 sc), sl st to bow base; repeat for second tail",
+      "consumed": 14,
+      "produced": 14,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 118,
+      "label": "Band",
+      "instruction": "Ch 6, sc in 2nd ch from hook and across (5); rows 2-4: ch 1, turn, sc across (5)",
+      "consumed": null,
+      "produced": 5,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 131,
+      "label": "-",
+      "instruction": "Ch 8 ring; sc in each ch (8); spiral in 8 sc until the tube measures 20-24 cm; join the 8 end pairs ROUND as for the base; wrap a separate load-rated woven cord or ribbon twice around the whole tube for hanging",
+      "produced": 8,
+      "method": "One representative round of eight stitches; length is measured, total rounds unspecified"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 108,
+      "label": "R1",
+      "instruction": "sc in each of 20 foundation chains around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 109,
+      "label": "R2",
+      "instruction": "BLO sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 110,
+      "label": "R3",
+      "instruction": "BLO sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 111,
+      "label": "R4",
+      "instruction": "BLO sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 112,
+      "label": "R5",
+      "instruction": "with MC, sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 113,
+      "label": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 114,
+      "label": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 115,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 116,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 117,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 127,
+      "label": "Row 1",
+      "instruction": "ch 1, sc in same st as join and next 9 sts, ch 1, turn",
+      "produced": 10,
+      "method": "Partial heel start on 10 of 20 leg stitches, with ten waiting instep stitches"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 128,
+      "label": "Row 2",
+      "instruction": "BLO sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 129,
+      "label": "Row 3",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 130,
+      "label": "Row 4",
+      "instruction": "BLO sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 131,
+      "label": "Row 5",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 132,
+      "label": "Row 6",
+      "instruction": "BLO sc in each st across, ch 1, turn",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 133,
+      "label": "Row 7",
+      "instruction": "6 sc, dec; leave final 2 sts unworked, ch 1, turn",
+      "produced": 7,
+      "method": "Partial heel Row 7: eight anchors worked, two left unworked"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 134,
+      "label": "Row 8",
+      "instruction": "4 sc, dec; leave final st unworked, ch 1, turn",
+      "produced": 5,
+      "method": "Partial heel Row 8: six anchors worked, one left unworked"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 135,
+      "label": "Row 9",
+      "instruction": "3 sc, dec, ch 1, turn",
+      "consumed": 5,
+      "produced": 4,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 136,
+      "label": "Row 10",
+      "instruction": "2 sc, dec; do not turn",
+      "consumed": 4,
+      "produced": 3,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 160,
+      "label": "Foot R1",
+      "instruction": "5 side sc, 10 instep sc, 5 side sc, 3 heel-centre sc",
+      "consumed": null,
+      "produced": 23,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 161,
+      "label": "Foot R2",
+      "instruction": "4 sc, dec, 5 sc, dec, 5 sc, dec, 3 sc",
+      "consumed": 23,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 162,
+      "label": "Foot R3",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 163,
+      "label": "Foot R4",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 164,
+      "label": "Foot R5",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 165,
+      "label": "Foot R6",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 166,
+      "label": "Foot R7",
+      "instruction": "sc in each st around",
+      "consumed": 20,
+      "produced": 20,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 176,
+      "label": "Toe R1",
+      "instruction": "[3 sc, dec] x 4",
+      "consumed": 20,
+      "produced": 16,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 177,
+      "label": "Toe R2",
+      "instruction": "[2 sc, dec] x 4",
+      "consumed": 16,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 178,
+      "label": "Toe R3",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS16_reviewed.md",
+      "line": 179,
+      "label": "Toe R4",
+      "instruction": "dec x 4",
+      "consumed": 8,
+      "produced": 4,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 132,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 133,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 134,
+      "label": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 135,
+      "label": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 136,
+      "label": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 137,
+      "label": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 138,
+      "label": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 139,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 140,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 141,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 142,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 143,
+      "label": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 144,
+      "label": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 145,
+      "label": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 146,
+      "label": "R15",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 147,
+      "label": "R16",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 148,
+      "label": "R17",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 149,
+      "label": "R18",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 150,
+      "label": "R19",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 158,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 159,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 160,
+      "label": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 161,
+      "label": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 162,
+      "label": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 170,
+      "label": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 171,
+      "label": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 172,
+      "label": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 173,
+      "label": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 174,
+      "label": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 175,
+      "label": "R6",
+      "instruction": "BLO sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 176,
+      "label": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 177,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 178,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 179,
+      "label": "R10",
+      "instruction": "[sc, inc] x 3",
+      "consumed": 6,
+      "produced": 9,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 180,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 9,
+      "produced": 9,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 191,
+      "label": "Row 1",
+      "instruction": "sc in 2nd ch and next 5 ch, ch 1, turn",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 192,
+      "label": "Row 2",
+      "instruction": "dec, 2 sc, dec, ch 1, turn",
+      "consumed": 6,
+      "produced": 4,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 193,
+      "label": "Row 3",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 4,
+      "produced": 4,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 194,
+      "label": "Row 4",
+      "instruction": "dec x 2",
+      "consumed": 4,
+      "produced": 2,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 203,
+      "label": "Row 1",
+      "instruction": "sc in 2nd ch and next 6 ch, ch 1, turn",
+      "consumed": 7,
+      "produced": 7,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 204,
+      "label": "Row 2",
+      "instruction": "dec, 3 sc, dec, ch 1, turn",
+      "consumed": 7,
+      "produced": 5,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 205,
+      "label": "Row 3",
+      "instruction": "sc in each st across, ch 1, turn",
+      "consumed": 5,
+      "produced": 5,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 206,
+      "label": "Row 4",
+      "instruction": "dec, sc, dec",
+      "consumed": 5,
+      "produced": 3,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 214,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 215,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 216,
+      "label": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 217,
+      "label": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 218,
+      "label": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 219,
+      "label": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 220,
+      "label": "R7",
+      "instruction": "BLO sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 221,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 222,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 223,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 224,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 225,
+      "label": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 226,
+      "label": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 227,
+      "label": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 228,
+      "label": "R15",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 229,
+      "label": "R16",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 230,
+      "label": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 231,
+      "label": "R18",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 232,
+      "label": "R19",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 233,
+      "label": "R20",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 234,
+      "label": "R21",
+      "instruction": "sc in each st around",
+      "consumed": 18,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 235,
+      "label": "R22",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 236,
+      "label": "R23",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 246,
+      "label": "R1",
+      "instruction": "5 sc in MR",
+      "consumed": 0,
+      "produced": 5,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 247,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 5,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 248,
+      "label": "R3",
+      "instruction": "BLO sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 249,
+      "label": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 250,
+      "label": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 251,
+      "label": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 252,
+      "label": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 253,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 254,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 255,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 256,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 257,
+      "label": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 258,
+      "label": "R13",
+      "instruction": "[3 sc, dec] x 2",
+      "consumed": 10,
+      "produced": 8,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 268,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 269,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 270,
+      "label": "R3",
+      "instruction": "BLO sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 271,
+      "label": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 272,
+      "label": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 273,
+      "label": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 274,
+      "label": "R7",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 275,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 276,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 277,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 278,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 279,
+      "label": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 12,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 280,
+      "label": "R13",
+      "instruction": "[sc, dec] x 4",
+      "consumed": 12,
+      "produced": 8,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 288,
+      "label": "R1",
+      "instruction": "4 sc in MR",
+      "consumed": 0,
+      "produced": 4,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 289,
+      "label": "R2",
+      "instruction": "[sc, inc] x 2",
+      "consumed": 4,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 290,
+      "label": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 291,
+      "label": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 292,
+      "label": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 293,
+      "label": "R6",
+      "instruction": "sc in each st around",
+      "consumed": 6,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 303,
+      "label": "Row 1",
+      "instruction": "sc in 2nd ch and next 34 ch, ch 1, turn",
+      "consumed": 35,
+      "produced": 35,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 304,
+      "label": "Row 2",
+      "instruction": "sc in each st across",
+      "consumed": 35,
+      "produced": 35,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 328,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 329,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 330,
+      "label": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 331,
+      "label": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 332,
+      "label": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 333,
+      "label": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 334,
+      "label": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 335,
+      "label": "R8",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 336,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 337,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 338,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 339,
+      "label": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 340,
+      "label": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 341,
+      "label": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 342,
+      "label": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 343,
+      "label": "R16",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 344,
+      "label": "R17",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 345,
+      "label": "R18",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 346,
+      "label": "R19",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 347,
+      "label": "R20",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 357,
+      "label": "R1",
+      "instruction": "6 sc in MR",
+      "consumed": 0,
+      "produced": 6,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 358,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 6,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 359,
+      "label": "R3",
+      "instruction": "[sc, inc] x 6",
+      "consumed": 12,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 360,
+      "label": "R4",
+      "instruction": "[2 sc, inc] x 6",
+      "consumed": 18,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 361,
+      "label": "R5",
+      "instruction": "[3 sc, inc] x 6",
+      "consumed": 24,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 362,
+      "label": "R6",
+      "instruction": "[4 sc, inc] x 6",
+      "consumed": 30,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 363,
+      "label": "R7",
+      "instruction": "[5 sc, inc] x 6",
+      "consumed": 36,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 364,
+      "label": "R8",
+      "instruction": "BLO sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 365,
+      "label": "R9",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 366,
+      "label": "R10",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 367,
+      "label": "R11",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 368,
+      "label": "R12",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 369,
+      "label": "R13",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 370,
+      "label": "R14",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 371,
+      "label": "R15",
+      "instruction": "sc in each st around",
+      "consumed": 42,
+      "produced": 42,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 372,
+      "label": "R16",
+      "instruction": "[5 sc, dec] x 6",
+      "consumed": 42,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 373,
+      "label": "R17",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 374,
+      "label": "R18",
+      "instruction": "sc in each st around",
+      "consumed": 36,
+      "produced": 36,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 375,
+      "label": "R19",
+      "instruction": "[4 sc, dec] x 6",
+      "consumed": 36,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 376,
+      "label": "R20",
+      "instruction": "sc in each st around",
+      "consumed": 30,
+      "produced": 30,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 377,
+      "label": "R21",
+      "instruction": "[3 sc, dec] x 6",
+      "consumed": 30,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 378,
+      "label": "R22",
+      "instruction": "sc in each st around",
+      "consumed": 24,
+      "produced": 24,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 379,
+      "label": "R23",
+      "instruction": "[2 sc, dec] x 6",
+      "consumed": 24,
+      "produced": 18,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 380,
+      "label": "R24",
+      "instruction": "[sc, dec] x 6",
+      "consumed": 18,
+      "produced": 12,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 388,
+      "label": "R1",
+      "instruction": "5 sc in MR",
+      "consumed": 0,
+      "produced": 5,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 389,
+      "label": "R2",
+      "instruction": "inc in each st around",
+      "consumed": 5,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 390,
+      "label": "R3",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 391,
+      "label": "R4",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 392,
+      "label": "R5",
+      "instruction": "sc in each st around",
+      "consumed": 10,
+      "produced": 10,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 393,
+      "label": "R6",
+      "instruction": "dec x 5",
+      "consumed": 10,
+      "produced": 5,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 403,
+      "label": "Row 1",
+      "instruction": "sc in 2nd ch and next 12 ch, ch 1, turn",
+      "consumed": 13,
+      "produced": 13,
+      "method": "canonical/exact text"
+    },
+    {
+      "file": "NS17_reviewed.md",
+      "line": 404,
+      "label": "Row 2",
+      "instruction": "sc in each st across",
+      "consumed": 13,
+      "produced": 13,
+      "method": "canonical/exact text"
+    }
+  ],
+  "explicit_noncount_cases": [
+    {
+      "file": "NS13_reviewed.md",
+      "line": 104,
+      "label": "R2",
+      "instruction": "[ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close",
+      "reason": "Six chain spaces; 12 ring anchors, six anchoring slip stitches, closing join excluded"
+    },
+    {
+      "file": "NS13_reviewed.md",
+      "line": 105,
+      "label": "R3",
+      "instruction": "(sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO",
+      "reason": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 162,
+      "label": "Ring",
+      "instruction": "Ch 20, check the relaxed ring against the stand, then sl st to first ch without twisting",
+      "reason": "20-chain foundation ring, or explicitly allowed 24-chain alternative; R1 is into ring not chains"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 224,
+      "label": "Spoke",
+      "instruction": "Join CC through the fabric immediately outside the centre ring; work relaxed surface sl sts outward along one pinned guide to its marked increase column; FO at the outer edge",
+      "reason": "Variable number of surface slip stitches; no growth stitches added"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 225,
+      "label": "Repeat",
+      "instruction": "Repeat the complete join-to-FO spoke route separately at each remaining marked column",
+      "reason": "12 independently anchored surface spokes"
+    },
+    {
+      "file": "NS14_reviewed.md",
+      "line": 235,
+      "label": "Border",
+      "instruction": "Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO",
+      "reason": "Border independently checked at all three stop sizes; does not consume a joining extra anchor"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 74,
+      "label": "-",
+      "instruction": "Ch 12, sl st to first ch to form a ring; place marker",
+      "reason": "12-chain closed foundation, no turning chain counted"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 77,
+      "label": "Join",
+      "instruction": "FO with a 40 cm tail; keep openings round, align the 12 final-round sts with the 12 foundation ch, and whip-stitch 12 pairs around",
+      "reason": "12 matched seam pairs; final 3 pairs closed after stuffing"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 78,
+      "label": "Hanger",
+      "instruction": "After joining the ring, wrap a load-rated woven cord or ribbon TWICE around the entire tube at the top; tie and secure it according to the cord/ribbon maker\u2019s instructions, with the knot at the back",
+      "reason": "External hanger; not a crochet round, no load rating inferred"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 89,
+      "label": "Petals",
+      "instruction": "Join red with a sl st in any centre sc; (ch 4, 3 tr, ch 4, sl st) in that same centre stitch; [sl st in next centre sc, (ch 4, 3 tr, ch 4, sl st) in that same stitch] x 5; FO",
+      "reason": "Six separately anchored petals; tall stitches and chains checked; positioning and end sl sts are not new centre anchors"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 91,
+      "label": "Tie",
+      "instruction": "Attach one folded 55 cm green tie under at least 2 sturdy back sts as in technique 4",
+      "reason": "Removable folded tie, anchored under at least two back stitches; no round count"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 104,
+      "label": "R2",
+      "instruction": "[Ch 5, skip next dc, sl st in next dc] x 6, sl st to the base of the first ch-5",
+      "reason": "Six chain spaces; 12 ring anchors, six anchoring slip stitches, closing join excluded"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 105,
+      "label": "R3",
+      "instruction": "In each ch-5 space work (sl st, ch 3, 3 tr, ch 3, sl st); sl st to the first sl st, FO",
+      "reason": "Six arms, each three tall stitches and two slip stitches; 36 side-chain links are additional"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 106,
+      "label": "Tie",
+      "instruction": "Attach one folded 55 cm white/silver tie under at least 2 sturdy back sts as in technique 4",
+      "reason": "Removable folded tie, anchored under at least two back stitches; no round count"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 116,
+      "label": "Loops",
+      "instruction": "With red: ch 24, sl st to first ch (loop 1 - untwisted); ch 24 again, sl st to same base point (loop 2)",
+      "reason": "Two closed chain loops"
+    },
+    {
+      "file": "NS15_reviewed.md",
+      "line": 119,
+      "label": "Tie",
+      "instruction": "Attach one folded 55 cm tie under at least 2 sturdy sts on the finished band back as in technique 4",
+      "reason": "Removable folded tie, anchored under at least two back stitches; no round count"
+    }
+  ]
+}
