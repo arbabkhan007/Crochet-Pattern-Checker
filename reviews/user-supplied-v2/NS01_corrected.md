@@ -9,11 +9,11 @@
   * **Yarn A (Ginger / Caramel):** Worsted (#4), ~35 g (includes fringe)
   * **Yarn B (Oat Cream):** Worsted (#4), ~12 g (muzzle, horns, inner ears, belly patch)
   * **Yarn C (Dark Chocolate):** Worsted (#4), ~5 g (hooves, nostril embroidery)
-  * **Yarn D (Rust — optional):** Worsted (#4), ~6 g (scarf)
+  * **Yarn D (Rust — optional):** Worsted (#4), ~6 g (scarf or collar)
   * **Eyes:** Two 12 mm black safety eyes (or black embroidery floss)
   * **Notions:** Polyester fiberfill (~35 g), stitch marker, tapestry needle, pins, scissors
 
-> **Safety:** Safety eyes and sewn/knotted parts can detach. Lock washers firmly from inside before stuffing, sew every seam twice, weave ends at least 5 cm, and check all parts by hand. Not suitable for children under 3 unless the finished item meets the toy-safety requirements of your market; embroidered eyes remove the plastic-eye hazard only. The optional scarf or ribbon is a loose cord: for children under 3, leave it off entirely, or use a short closed collar loop sewn flat all the way round with no free ends (many markets cap free cord length at about 20 cm — check your local rules first).
+> **Safety:** Safety eyes and sewn/knotted parts can detach. Lock washers firmly from inside before stuffing, sew every seam twice, weave ends at least 5 cm, and check all parts by hand. Not suitable for children under 3 unless the finished item meets the toy-safety requirements of your market; embroidered eyes remove the plastic-eye hazard only. The optional scarf or ribbon is a loose cord: for children under 3, skip the scarf and ribbon and make the Collar loop (Section 9b) instead, or leave the neck bare (many markets cap free cord length at about 20 cm — check your local rules first).
 
 ### Abbreviations (US)
 **MR:** magic ring · **ch:** chain · **sl st:** slip stitch · **sc:** single crochet · **hdc:** half double crochet · **inc:** 2 sc in same st · **dec:** invisible decrease · **BLO:** back loop only · **FO:** fasten off · **R / rnd:** round (R1 = Round 1) · **lark's-head knot:** fold a strand in half, pull the folded loop through the stitch, then pull the loose ends through the loop and tighten
@@ -117,7 +117,14 @@ Choose **Option A** (4 splayed legs: make 4 Standard Legs) or **Option B** (upri
 * **Foundation:** Ch 92.
 * **Row 1:** Hdc in 3rd ch from hook and in each ch across; ch 2 (does not count as st), turn (90)
 * **Row 2:** Hdc in each st across; FO and weave in ends (90)
-* *Try the scarf on the finished cow; add or remove rows if you want a longer drape. Cord safety: for babies and toddlers, leave it off entirely, or work a short closed collar loop sewn flat all the way round with no dangling ends — many markets cap free cord length at about 20 cm, so check your local toy rules.*
+* *Try the scarf on the finished cow; add or remove rows if you want a longer drape. Cord safety: for babies and toddlers, skip the scarf and ribbon and make the Collar loop (9b) instead, or leave the neck bare. Never leave long free ends: many markets cap free cord length at about 20 cm — check your local toy rules.*
+
+### 9b. Collar Loop (Yarn D — the under-3 option)
+* **Foundation:** Ch 26.
+* **Row 1:** Hdc in 3rd ch from hook and in each ch across; ch 2 (does not count), turn (24)
+* **Row 2:** Hdc in each st across (24). FO, leaving a 40 cm tail.
+* *Wrap the strip snugly around the neck join, ends butted, and whipstitch the two short ends together into a closed band. Sew both long edges flat to the neck, all the way round, so the band cannot be pulled off or lifted. Weave in all ends at least 5 cm.*
+* *Fit: 24 hdc is about 11–12 cm. If it is too tight or loose, add or remove 2 stitches at a time (chain count = stitches + 2). This sizing has not been test-made — try the band on your finished cow and adjust before sewing it flat.*
 
 ### 10. Assembly
 1. **Face first (head still open):** Sew the muzzle centred on the front-centre line over Head R13–R16. Pin the ears (R8–R10, ~10 sts from centre) and horns (R6–R8, ~7 sts from centre, slightly toward the face), mirror-check the pairs, then sew. Attach and trim the fringe last.
@@ -125,4 +132,4 @@ Choose **Option A** (4 splayed legs: make 4 Standard Legs) or **Option B** (upri
 3. **Front Legs:** These sit on the lowest body rounds, not up on the chest. Standard fronts pin over **Body R9–R11**, the wider Option B Shortened Front Legs over **Body R9–R12** (just above the flat BLO base), leaving 8 body stitches between their inner edges. Angle forward so the hooves rest flat; sew around the open rim twice, catching every rim stitch — all 9 rim stitches on Standard Legs, all 12 on Option B Shortened Front Legs.
 4. **Back Legs & Tail:** Pin the back legs over **Body R9–R11** on the rear flanks, angled outward. In Option A (all four legs equal) angle them so the back hooves sit wider than the front hooves; in Option B the longer standard back legs give the upright sit. Keep the centre-back stitch column free, attach the tail at the centre back on **Body R10** (Section 8), and braid it in 3 groups of 4. Check the cow sits level before final tightening.
 5. **Belly Patch (if made):** Sew vertically to the centre front over **Body R10–R16**.
-6. **Scarf/Ribbon (if made):** Tie on and adjust. For any cow that may go to a child under 3, leave it off entirely, or swap it for a short closed collar loop sewn flat all the way round — stitching at the neck alone still leaves dangling ends.
+6. **Scarf, Ribbon or Collar (if made):** Scarf or ribbon: tie on and adjust the fit. For any cow that may go to a child under 3, use only the Collar loop (9b) sewn flat on both edges, or nothing at all. Stitching a scarf at the neck alone still leaves dangling ends.
