@@ -13,7 +13,7 @@
   * **Eyes:** Two 12 mm black safety eyes (or black embroidery floss)
   * **Notions:** Polyester fiberfill (~35 g), stitch marker, tapestry needle, pins, scissors
 
-> **Safety:** Safety eyes and sewn/knotted parts can detach. Lock washers firmly from inside before stuffing, sew every seam twice, weave ends at least 5 cm, and check all parts by hand. Not suitable for children under 3 unless the finished item meets the toy-safety requirements of your market; embroidered eyes remove the plastic-eye hazard only. The optional scarf or ribbon is a loose cord — sew it in place or leave it off for young children.
+> **Safety:** Safety eyes and sewn/knotted parts can detach. Lock washers firmly from inside before stuffing, sew every seam twice, weave ends at least 5 cm, and check all parts by hand. Not suitable for children under 3 unless the finished item meets the toy-safety requirements of your market; embroidered eyes remove the plastic-eye hazard only. The optional scarf or ribbon is a loose cord: for children under 3, leave it off entirely, or use a short closed collar loop sewn flat all the way round with no free ends (many markets cap free cord length at about 20 cm — check your local rules first).
 
 ### Abbreviations (US)
 **MR:** magic ring · **ch:** chain · **sl st:** slip stitch · **sc:** single crochet · **hdc:** half double crochet · **inc:** 2 sc in same st · **dec:** invisible decrease · **BLO:** back loop only · **FO:** fasten off · **R / rnd:** round (R1 = Round 1) · **lark's-head knot:** fold a strand in half, pull the folded loop through the stitch, then pull the loose ends through the loop and tighten
@@ -111,18 +111,18 @@ Choose **Option A** (4 splayed legs: make 4 Standard Legs) or **Option B** (upri
 
 ### 8. Tail & Fringe (Yarn A)
 * **Tail:** Cut 6 strands of Yarn A (22 cm each). Attach with lark's-head knots into 2 adjacent stitches at the centre back on **Body R10**, clear of the back legs. Divide the 12 hanging ends into 3 groups of 4, braid for 4 cm, tie an overhand knot, trim tassel to 1.5 cm.
-* **Fringe:** Cut 36–40 strands of Yarn A (14 cm each; you will trim most of the length away — 8 cm strands reduce waste). Attach with lark's-head knots in a horseshoe across the forehead on **Head R6, R7 and R8** between the horns. Comb the strands down, then trim: centre strands end just above the eye line (about 2 cm below R8) in a shallow V, side strands shorter still, so the fringe clears the eyes. Never leave it hanging over the eyes or down to the muzzle.
+* **Fringe:** Cut 36–40 strands of Yarn A (14 cm each; you will trim most of the length away — 8 cm strands reduce waste). Attach with lark's-head knots in a horseshoe across the forehead on **Head R6, R7 and R8** between the horns. The horseshoe has roughly 30 stitch positions, so some stitches take two strands. Comb the strands down, then trim: centre strands end just above the eye line (the eyes sit only about 1 cm below R8 at this gauge) in a shallow V, side strands shorter still, so the fringe clears the eyes. Never leave it hanging over the eyes or down to the muzzle.
 
 ### 9. Scarf (Yarn D — Optional)
 * **Foundation:** Ch 92.
 * **Row 1:** Hdc in 3rd ch from hook and in each ch across; ch 2 (does not count as st), turn (90)
 * **Row 2:** Hdc in each st across; FO and weave in ends (90)
-* *Try the scarf on the finished cow; add or remove rows if you want a longer drape. Cord safety: sew the scarf or ribbon in place, or leave it off entirely, for babies and toddlers.*
+* *Try the scarf on the finished cow; add or remove rows if you want a longer drape. Cord safety: for babies and toddlers, leave it off entirely, or work a short closed collar loop sewn flat all the way round with no dangling ends — many markets cap free cord length at about 20 cm, so check your local toy rules.*
 
 ### 10. Assembly
 1. **Face first (head still open):** Sew the muzzle centred on the front-centre line over Head R13–R16. Pin the ears (R8–R10, ~10 sts from centre) and horns (R6–R8, ~7 sts from centre, slightly toward the face), mirror-check the pairs, then sew. Attach and trim the fringe last.
 2. **Head to Body:** Align the 24 open stitches of **Head R19** with the 24 open stitches of **Body R21**, centring the face forward. Whipstitch through all 24 matched stitch pairs twice around (head tail for one pass, body tail for the second), topping up neck stuffing before closing the final 3 pairs.
-3. **Front Legs:** These sit on the lowest body rounds, not up on the chest. Pin over **Body R9–R11** (just above the flat BLO base) on the front, leaving 8 body stitches between their inner edges. Angle forward so the hooves rest flat; sew around the open rim twice, catching every rim stitch — all 9 rim stitches on Standard Legs, all 12 on Option B Shortened Front Legs.
+3. **Front Legs:** These sit on the lowest body rounds, not up on the chest. Standard fronts pin over **Body R9–R11**, the wider Option B Shortened Front Legs over **Body R9–R12** (just above the flat BLO base), leaving 8 body stitches between their inner edges. Angle forward so the hooves rest flat; sew around the open rim twice, catching every rim stitch — all 9 rim stitches on Standard Legs, all 12 on Option B Shortened Front Legs.
 4. **Back Legs & Tail:** Pin the back legs over **Body R9–R11** on the rear flanks, angled outward. In Option A (all four legs equal) angle them so the back hooves sit wider than the front hooves; in Option B the longer standard back legs give the upright sit. Keep the centre-back stitch column free, attach the tail at the centre back on **Body R10** (Section 8), and braid it in 3 groups of 4. Check the cow sits level before final tightening.
 5. **Belly Patch (if made):** Sew vertically to the centre front over **Body R10–R16**.
-6. **Scarf/Ribbon (if made):** Tie on and adjust; for any cow that may go to a young child, stitch it in place at the back of the neck or leave it off.
+6. **Scarf/Ribbon (if made):** Tie on and adjust. For any cow that may go to a child under 3, leave it off entirely, or swap it for a short closed collar loop sewn flat all the way round — stitching at the neck alone still leaves dangling ends.
