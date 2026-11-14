@@ -11,7 +11,7 @@
   * **Yarn C (Dark Chocolate):** Worsted (#4), ~5 g (hooves, nostril embroidery)
   * **Yarn D (Rust — optional):** Worsted (#4), ~6 g (scarf or collar)
   * **Eyes:** Two 12 mm black safety eyes (or black embroidery floss)
-  * **Notions:** Polyester fiberfill (~35 g), stitch marker, tapestry needle, pins, scissors
+  * **Notions:** Polyester fiberfill (~35 g), stitch markers, scrap contrast yarn, tapestry needle, pins, scissors
 
 > **Safety:** Safety eyes and sewn/knotted parts can detach. Lock washers firmly from inside before stuffing, sew every seam twice, weave ends at least 5 cm, and check all parts by hand. Not suitable for children under 3 unless the finished item meets the toy-safety requirements of your market; embroidered eyes remove the plastic-eye hazard only. The optional scarf or ribbon is a loose cord: for children under 3, skip the scarf and ribbon and make the Collar loop (Section 9b) instead, or leave the neck bare (many markets cap free cord length at about 20 cm — check your local rules first).
 
@@ -31,7 +31,7 @@ Worked top-down in a continuous spiral.
 * **R7:** [5 sc, inc] × 6 (42)
 * **R8:** [6 sc, inc] × 6 (48)
 * **R9–R15 (7 rnds):** sc in each st around (48)
-* *Insert 12 mm safety eyes between **R10 and R11**, 7 stitches apart centre-to-centre. Mark the stitch midway between the eyes as your front-centre line — horn, ear and fringe positions are counted from it. Lock washers firmly inside.*
+* *Insert 12 mm safety eyes between **R10 and R11**, 7 stitches apart centre-to-centre. Mark the stitch midway between the eyes as your front-centre line — thread a short length of scrap contrast yarn through it so the mark survives stuffing. Horn, ear and fringe positions are counted from it. Lock washers firmly inside.*
 * **R16:** [6 sc, dec] × 6 (42)
 * **R17:** [5 sc, dec] × 6 (36)
 * **R18:** [4 sc, dec] × 6 (30)
