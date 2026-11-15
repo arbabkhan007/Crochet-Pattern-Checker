@@ -4,6 +4,7 @@ Implements the multi-pass compiler design for comprehensive pattern validation
 """
 
 from dataclasses import dataclass, field
+from enum import Enum as _Enum
 import re
 
 from ..ast.nodes import InstructionNode, PatternNode
@@ -71,6 +72,30 @@ class PatternValidator:
 
         # Pass 3: Validate with state machine
         validation_result = self._pass3_validate(unrolled_instructions, pattern_ast)
+
+        # Run deterministic advanced rules only when the written evidence is explicit.
+        # These checks are independent of optional AI/provider integrations.
+        from .advanced_checks import find_advanced_findings
+
+        for finding in find_advanced_findings(pattern_text):
+            if finding.severity == "error":
+                collection = validation_result.errors
+            elif finding.severity == "info":
+                collection = validation_result.info
+            else:
+                collection = validation_result.warnings
+            message = f"[{finding.code}] {finding.message}"
+            if not any(
+                item.message in {message, finding.message} for item in collection
+            ):
+                collection.append(
+                    ValidationError(
+                        line_number=finding.line_number,
+                        message=message,
+                        severity=finding.severity,
+                    )
+                )
+        validation_result.is_valid = not validation_result.errors
 
         execution_time = time.time() - start_time
         validation_result.execution_time = execution_time
@@ -418,9 +443,6 @@ rep - repeat
 # ============================================================================
 # Compatibility exports
 # ============================================================================
-
-from enum import Enum as _Enum
-
 
 class Severity(_Enum):
     INFO = "info"
