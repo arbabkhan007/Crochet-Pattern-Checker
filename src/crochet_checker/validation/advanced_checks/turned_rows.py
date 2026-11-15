@@ -8,7 +8,13 @@ from dataclasses import dataclass
 from .common import AdvancedFinding, ROUND_HEADER, ROW_HEADER, split_sections
 
 _HEIGHT = {"sl st": 0, "sc": 1, "hdc": 2, "dc": 3, "tr": 4, "dtr": 5}
-_REQUIRED_TURN_CHAIN = {"sc": 1, "hdc": 2, "dc": 3, "tr": 4, "dtr": 5}
+_REQUIRED_TURN_CHAIN = {
+    "sc": (1, 1),
+    "hdc": (2, 2),
+    "dc": (3, 3),
+    "tr": (4, 4),
+    "dtr": (4, 5),
+}
 _ROW = re.compile(
     r"^\s*row\.?\s*(\d+)\b\s*(?:\((RS|WS)\)|[, ]+\b(RS|WS)\b)?\s*[:.)-]?\s*(.*)$",
     re.IGNORECASE,
@@ -213,17 +219,18 @@ def turned_row_findings(text: str) -> list[AdvancedFinding]:
                         )
 
                 if previous.turn_at_end or row.turn_at_start:
-                    under = tuple(reversed(previous.heights))
+                    previous_slope = _slope(previous.heights)
+                    current_slope = _slope(row.heights)
                     if (
-                        len(under) == len(row.heights)
-                        and _slope(under) < 0
-                        and _slope(row.heights) > 0
-                        and len(under) >= 3
+                        len(previous.heights) == len(row.heights)
+                        and len(previous.heights) >= 3
+                        and previous_slope != 0
+                        and current_slope == previous_slope
                     ):
                         findings.append(
                             AdvancedFinding(
                                 "TurnedRowTaperInversion",
-                                f"Row {row.number} reverses a rising stitch-height profile; its written profile also rises, so short stitches would stack over taller stitches. Review the taper direction.",
+                                f"Row {row.number} repeats the previous row's stitch-height slope after a turn. The written height order should generally reverse to preserve the same physical taper; review the fin edge.",
                                 "warning",
                                 row.line_number,
                             )
@@ -235,11 +242,16 @@ def turned_row_findings(text: str) -> list[AdvancedFinding]:
                     and row.stitch_types
                 ):
                     required = _REQUIRED_TURN_CHAIN.get(row.stitch_types[0])
-                    if required is not None and previous.turning_chain < required:
+                    if required is not None and previous.turning_chain < required[0]:
+                        usual_chain = (
+                            f"ch {required[0]}"
+                            if required[0] == required[1]
+                            else f"ch {required[0]} or ch {required[1]}"
+                        )
                         findings.append(
                             AdvancedFinding(
                                 "TurningChainHeightMismatch",
-                                f"Row {previous.number} turns with ch {previous.turning_chain}, but Row {row.number} begins with {row.stitch_types[0]} (commonly ch {required} is used for that height).",
+                                f"Row {previous.number} turns with ch {previous.turning_chain}, but Row {row.number} begins with {row.stitch_types[0]} (typically {usual_chain} is used for that height).",
                                 "warning",
                                 previous.line_number,
                             )

@@ -10,12 +10,14 @@ from typing import Mapping
 from .common import AdvancedFinding, ROUND_HEADER, STATED_COUNT, split_sections
 
 _FEATURE = re.compile(
-    r"\b(snout\s+bridge|safety\s+eyes?|eyes?|muzzle|ears?|horns?|tails?|"
+    r"\b(gill\s+frills?|(?:kraken\s+)?rostrum\s+spikes?|"
+    r"snout\s+bridge|safety\s+eyes?|eyes?|muzzle|ears?|horns?|tails?|"
     r"fore\s+legs?|forelegs?|hind\s*legs?|arms?|legs?|wings?|shoulders?|neck\s+ruff|pelvis|limbs?)\b",
     re.IGNORECASE,
 )
 _PARENT = re.compile(
-    r"\b(?:to|on|onto|in|into)\s+(?:the\s+)?(head|torso|body|face|chest|back)\b",
+    r"\b(?:to|on|onto|in|into)\s+(?:the\s+)?"
+    r"(cephalic\s+dome|head|torso|body|face|chest|back)\b",
     re.IGNORECASE,
 )
 _ROUND_RANGE = re.compile(
@@ -23,11 +25,12 @@ _ROUND_RANGE = re.compile(
     re.IGNORECASE,
 )
 _ROUND_SINGLE = re.compile(r"\b(?:round|rnd|r)\s*(\d+)\b", re.IGNORECASE)
-_STITCH_RANGE = re.compile(
-    r"\b(?:stitch(?:es)?|sts?|stitch\s+indices)\s*(\d+)\s*(?:[-–—]|to|through|and|&)\s*(\d+)\b",
-    re.IGNORECASE,
+_STITCH_COORDINATES = re.compile(
+    r"\b(?:stitch\s+indices|stitches|stitch|sts?)\s*", re.IGNORECASE
 )
-_STITCH_SINGLE = re.compile(r"\b(?:stitch(?:es)?|sts?)\s*(\d+)\b", re.IGNORECASE)
+_STITCH_INTERVAL = re.compile(
+    r"(?<!\d)(\d+)\s*(?:[-–—]|to|through)\s*(\d+)\b", re.IGNORECASE
+)
 _ANGLE_RANGE = re.compile(
     r"\b(\d+(?:\.\d+)?)\s*(?:°|degrees?)\s*(?:[-–—]|to|through|and)\s*"
     r"(\d+(?:\.\d+)?)\s*(?:°|degrees?)\b",
@@ -108,8 +111,54 @@ def find_spatial_collisions(features: list[FeatureBounds]) -> list[AdvancedFindi
     return findings
 
 
+def _horizontal_intervals(raw: str) -> list[tuple[float | None, float | None, str | None]]:
+    """Read explicit stitch intervals (including multiple ranges) or an angle."""
+    marker = _STITCH_COORDINATES.search(raw)
+    if marker:
+        tail = raw[marker.end() :]
+        ranges = list(_STITCH_INTERVAL.finditer(tail))
+        if ranges:
+            valid = [
+                (float(match.group(1)), float(match.group(2)), "stitch")
+                for match in ranges
+                if int(match.group(1)) <= int(match.group(2))
+            ]
+            return valid or [(None, None, None)]
+        single = re.match(r"\s*(\d+)\b", tail)
+        if single:
+            point = float(single.group(1))
+            return [(point, point, "stitch")]
+        return [(None, None, None)]
+
+    angle_range = _ANGLE_RANGE.search(raw)
+    if angle_range:
+        first, second = float(angle_range.group(1)), float(angle_range.group(2))
+        if first > second:
+            return [(None, None, None)]
+        if re.search(
+            r"\b(?:counterclockwise|counter-clockwise|anticlockwise|anti-clockwise)\b",
+            raw,
+            re.IGNORECASE,
+        ):
+            return [(360.0 - second, 360.0 - first, "degree")]
+        return [(first, second, "degree")]
+
+    angle_single = _ANGLE_SINGLE.search(raw)
+    if angle_single:
+        angle = float(angle_single.group(1))
+        if re.search(
+            r"\b(?:counterclockwise|counter-clockwise|anticlockwise|anti-clockwise)\b",
+            raw,
+            re.IGNORECASE,
+        ):
+            angle = (-angle) % 360.0
+        angle %= 360.0
+        return [(angle, angle, "degree")]
+    return [(None, None, None)]
+
+
 def attachment_bounds_from_text(text: str) -> list[FeatureBounds]:
-    """Extract only explicit round and stitch/angle intervals from placement lines."""
+    """Extract explicit round and stitch/angle intervals from placement lines."""
     found: list[FeatureBounds] = []
     for line_number, raw in enumerate(text.splitlines(), start=1):
         if not _PLACEMENT.search(raw):
@@ -132,54 +181,13 @@ def attachment_bounds_from_text(text: str) -> list[FeatureBounds]:
         else:
             round_single = _ROUND_SINGLE.search(raw)
             r0 = r1 = int(round_single.group(1)) if round_single else None
-        stitch_range = _STITCH_RANGE.search(raw)
-        if stitch_range:
-            first_stitch, last_stitch = (
-                float(stitch_range.group(1)),
-                float(stitch_range.group(2)),
-            )
-            if first_stitch <= last_stitch:
-                h0, h1 = first_stitch, last_stitch
-                unit = "stitch"
-            else:
-                h0 = h1 = None
-                unit = None
-        else:
-            angle_range = _ANGLE_RANGE.search(raw)
-            if angle_range:
-                first, second = float(angle_range.group(1)), float(angle_range.group(2))
-                if first > second:
-                    h0 = h1 = None
-                    unit = None
-                elif re.search(
-                    r"\b(?:counterclockwise|counter-clockwise|anticlockwise|anti-clockwise)\b",
-                    raw,
-                    re.IGNORECASE,
-                ):
-                    h0, h1 = 360.0 - second, 360.0 - first
-                    unit = "degree"
-                else:
-                    h0, h1 = first, second
-                    unit = "degree"
-            else:
-                stitch_single = _STITCH_SINGLE.search(raw)
-                angle_single = _ANGLE_SINGLE.search(raw)
-                if stitch_single:
-                    h0 = h1 = float(stitch_single.group(1))
-                    unit = "stitch"
-                elif angle_single:
-                    angle = float(angle_single.group(1))
-                    if re.search(
-                        r"\b(?:counterclockwise|counter-clockwise|anticlockwise|anti-clockwise)\b",
-                        raw,
-                        re.IGNORECASE,
-                    ):
-                        angle = (-angle) % 360.0
-                    h0 = h1 = angle % 360.0
-                    unit = "degree"
-                else:
-                    h0 = h1 = None
-                    unit = None
+
+        horizontal_intervals = _horizontal_intervals(raw)
+        if len(features) > 1 and len(horizontal_intervals) > 1:
+            # A clause with several features and several coordinate ranges does
+            # not say which range belongs to which feature; do not invent a
+            # Cartesian-product overlap from that ambiguous wording.
+            horizontal_intervals = [(None, None, None)]
         for feature_match in features:
             name = re.sub(r"\s+", " ", feature_match.group(1).lower())
             if name.startswith("safety eye"):
@@ -190,13 +198,14 @@ def attachment_bounds_from_text(text: str) -> list[FeatureBounds]:
                 name = "ears"
             elif name == "horn":
                 name = "horns"
-            elif name in {"tail"}:
+            elif name == "tail":
                 name = "tails"
-            found.append(
-                FeatureBounds(
-                    name, parent, r0, r1, h0, h1, unit, raw.strip(), line_number
+            for h0, h1, unit in horizontal_intervals:
+                found.append(
+                    FeatureBounds(
+                        name, parent, r0, r1, h0, h1, unit, raw.strip(), line_number
+                    )
                 )
-            )
     return found
 
 

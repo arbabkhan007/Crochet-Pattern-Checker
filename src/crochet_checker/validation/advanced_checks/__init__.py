@@ -24,6 +24,7 @@ from .assembly import (
 from .common import AdvancedFinding, meaningful_text, unique_findings
 from .curvature import check_flat_curvature, curvature_findings
 from .inserts import check_folded_tube_closure, check_insert_diameter, insert_findings
+from .inventory import inventory_findings, validate_bom_and_stuffing_sanity
 from .loop_occupancy import (
     RoundLoopState,
     build_loop_states,
@@ -62,6 +63,7 @@ def find_advanced_findings(text: str) -> list[AdvancedFinding]:
     findings.extend(anatomy_findings(source))
     findings.extend(curvature_findings(source))
     findings.extend(insert_findings(source))
+    findings.extend(inventory_findings(source))
     findings.extend(assembly_findings(source))
     return unique_findings(findings)
 
@@ -93,6 +95,7 @@ __all__ = [
     "find_advanced_findings",
     "find_spatial_collisions",
     "insert_findings",
+    "inventory_findings",
     "loop_occupancy_findings",
     "normalized_anatomical_height",
     "oval_findings",
@@ -104,5 +107,6 @@ __all__ = [
     "stitch_to_angle",
     "turned_row_findings",
     "unique_findings",
+    "validate_bom_and_stuffing_sanity",
     "validate_oval_foundation",
 ]

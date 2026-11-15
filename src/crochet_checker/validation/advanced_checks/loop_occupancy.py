@@ -90,9 +90,11 @@ def _mode(body: str) -> str:
     return "UNKNOWN"
 
 
-_TARGET_LOOP = re.compile(
-    r"\b(?:join|attach|sew|work|graft|crochet|insert|use)\b"
-    r"[^.\n]{0,100}?\b(?P<loop>FLO|BLO|front\s+loops?|back\s+loops?)\b"
+_LOOP_ACTION = re.compile(
+    r"\b(?:join|attach|sew|work|graft|crochet|insert|use)\b", re.IGNORECASE
+)
+_LOOP_REFERENCE = re.compile(
+    r"\b(?P<loop>FLO|BLO|front\s+loops?|back\s+loops?)\b"
     r"[^.\n]{0,55}?\b(?:of|from|in)\s+(?:round|rnd|r)\s*(?P<number>\d+)\b",
     re.IGNORECASE,
 )
@@ -100,20 +102,41 @@ _TARGET_LOOP = re.compile(
 
 def loop_occupancy_findings(text: str) -> list[AdvancedFinding]:
     findings: list[AdvancedFinding] = []
-    for heading, body, section_line in split_sections(text):
+    mode_candidates: dict[int, set[str]] = {}
+    sections = split_sections(text)
+
+    # Round and assembly instructions commonly live under different headings.
+    # Build one conservative round map before checking any cross-section joins.
+    for heading, body, section_line in sections:
         body_start = section_line + (1 if heading else 0)
-        records: list[tuple[int, str, int]] = []
-        for local_line, line in enumerate(body.splitlines(), start=body_start):
+        for _local_line, line in enumerate(body.splitlines(), start=body_start):
             header = ROUND_HEADER.match(line.strip())
             if header:
-                records.append((int(header.group(1)), header.group(2), local_line))
-        modes = {number: _mode(body_text) for number, body_text, _ in records}
-        states = build_loop_states(modes)
+                number = int(header.group(1))
+                mode_candidates.setdefault(number, set()).add(_mode(header.group(2)))
+
+    modes = {
+        number: next(iter(candidates)) if len(candidates) == 1 else "UNKNOWN"
+        for number, candidates in mode_candidates.items()
+    }
+    states = build_loop_states(modes)
+    seen_targets: set[tuple[int, int, str]] = set()
+
+    for heading, body, section_line in sections:
+        body_start = section_line + (1 if heading else 0)
         for local_line, line in enumerate(body.splitlines(), start=body_start):
-            for match in _TARGET_LOOP.finditer(line):
-                loop = match.group("loop").upper()
-                loop = "FLO" if loop.startswith("F") else "BLO"
+            action = _LOOP_ACTION.search(line)
+            if not action:
+                continue
+            # One assembly verb can govern multiple loop banks, e.g. "join ...
+            # BLO of Round 13 and FLO of Round 14". Check every explicit target.
+            for match in _LOOP_REFERENCE.finditer(line, action.end()):
+                loop = "FLO" if match.group("loop").upper().startswith("F") else "BLO"
                 number = int(match.group("number"))
+                target = (local_line, number, loop)
+                if target in seen_targets:
+                    continue
+                seen_targets.add(target)
                 message = check_surface_loop_join(number, loop, states)
                 if message:
                     findings.append(

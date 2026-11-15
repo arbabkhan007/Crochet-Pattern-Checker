@@ -18,7 +18,7 @@ EXAMPLES = {
     "simple_hat.txt": ("PASS", 0, 0),
     "tube_cowl.txt": ("PASS", 0, 0),
     "baby_booties.txt": ("PASS", 0, 0),
-    "intentionally_broken_pattern.txt": ("ERROR", 3, 0),
+    "intentionally_broken_pattern.txt": ("ERROR", 4, 0),
     "mini_sphere.txt": ("PASS", 0, 0),
 }
 

@@ -185,11 +185,7 @@ class CrochetParser:
 
             # After instructions start, collect notes/finishing
             if seen_instruction:
-                if (
-                    lower.startswith("finish")
-                    or lower.startswith("assembly")
-                    or lower.startswith("sew")
-                ):
+                if lower.startswith(("finish", "assembly", "sew")):
                     in_finishing = True
                     in_notes = False
                 if in_finishing:
@@ -238,7 +234,7 @@ class CrochetParser:
                 continue
 
             # Designer
-            if lower.startswith("designer:") or lower.startswith("design:"):
+            if lower.startswith(("designer:", "design:")):
                 metadata.designer = line.split(":", 1)[1].strip()
                 continue
 
@@ -872,10 +868,9 @@ class CrochetParser:
         if self._try_parse_star_repeat(text, star):
             return list(star.operations)
 
-        if REPEAT_BLOCK.search(text):
-            temp = Instruction(source_text=text, normalized_text=text)
-            if self._try_parse_repeat_block(text, temp):
-                return list(temp.operations)
+        temp = Instruction(source_text=text, normalized_text=text)
+        if self._try_parse_repeat_block(text, temp):
+            return list(temp.operations)
 
         bare = re.fullmatch(
             r"(ch|sl\s*st|sc|hdc|dc|tr|inc|dec|sc2tog|dc2tog)",
@@ -988,7 +983,10 @@ class CrochetParser:
             repeat_text, repeat_count = wrapped
             unit_ops = self._operations_for_repeat_unit(repeat_text)
         else:
-            match = REPEAT_BLOCK.search(text)
+            # Match the complete clause. A search could accept the repeated
+            # prefix of ``[2 sc, inc] x 4, 2 sc`` and silently discard the tail.
+            candidate = text.strip().rstrip(".").strip()
+            match = REPEAT_BLOCK.fullmatch(candidate)
             if not match:
                 return False
             repeat_text = match.group(1)

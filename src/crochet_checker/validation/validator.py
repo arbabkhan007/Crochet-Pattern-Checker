@@ -325,10 +325,13 @@ class PatternValidator:
         values = {getattr(op.stitch_type, "value", "") for op in ops}
         produced = self._loops_after_round(raw_text, previous)
         consumed = self._context_consumed(instructions, previous)
-        if consumed > previous and "increase" not in values:
+        if consumed > previous:
+            excess = consumed - previous
+            noun = "stitch" if excess == 1 else "stitches"
             return (
-                f"Line {line_number}: Attempted to work stitch beyond available loops. "
-                f"Position: {previous}, Available: {previous}"
+                f"Line {line_number}: this round consumes {consumed} stitches, "
+                f"but only {previous} are available from the previous round; "
+                f"{excess} extra {noun} are requested."
             )
         if produced < previous and "decrease" not in values:
             if foundation_chain and produced == foundation_chain - 1:
