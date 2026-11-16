@@ -204,7 +204,7 @@ Classic pink  ·  White leucistic  ·  Melanoid black  ·  Mint  ·  Lavender
 
 ## Care
 
-Follow the labels for every yarn and component used, especially the fuzzy gill yarn. Before publishing a care claim or supplying finished Axels, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre shedding or matting, stuffing migration, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check every eye, gill and limb again after cleaning.
+Follow the labels for every yarn and component used, especially the fuzzy gill yarn. Before you wash or pass on finished Axels, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre shedding or matting, stuffing migration, shifted eyes and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check every eye, gill and limb again after cleaning.
 
 ## Terms of Use
 

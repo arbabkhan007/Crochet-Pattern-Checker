@@ -300,7 +300,7 @@ Sage green  ·  Dusty teal  ·  Lilac  ·  Charcoal  ·  Blush pink
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Embers, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes, a loosened neck seam and opened limb, wing, horn or spine seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the wings and recheck every attachment after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Embers, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes, a loosened neck seam and opened limb, wing, horn or spine seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the wings and recheck every attachment after cleaning.
 
 ## Terms of Use
 

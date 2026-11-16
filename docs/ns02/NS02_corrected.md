@@ -364,7 +364,7 @@ Classic cream  ·  Pumpkin orange  ·  Bat lavender  ·  Ghostly white  ·  Char
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished minis, clean and dry a complete sample by the proposed method, then inspect for dye transfer, distortion, stuffing migration, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Do not wash an assembled garland unless the cord, felt balls, wall-hanging attachments and all nine minis have been assessed for that method.
+Follow the labels for every yarn and component used. Before you wash or pass on finished minis, clean and dry a complete sample by the method you intend to use, then inspect for dye transfer, distortion, stuffing migration, shifted eyes and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Do not wash an assembled garland unless the cord, felt balls, wall-hanging attachments and all nine minis have been assessed for that method.
 
 ## Terms of Use
 

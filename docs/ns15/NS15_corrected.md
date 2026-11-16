@@ -186,7 +186,7 @@ The outside diameter is one tube thickness larger. Round counts are deliberately
 
 ## Care & storage
 
-Follow the labels for every yarn, stuffing, metallic thread and hanging component used. Before publishing a cleaning claim or supplying finished wreaths, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, distortion, stuffing migration, opened tube or decoration joins, and weakened hanging materials. Until that test passes, recommend gentle surface cleaning only. Store fully dry, supported and uncompressed; inspect the hanger, hook, tube seam and every tied decoration before each season and after severe weather.
+Follow the labels for every yarn, stuffing, metallic thread and hanging component used. Before you clean or pass on finished wreaths, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, distortion, stuffing migration, opened tube or decoration joins, and weakened hanging materials. Until that test passes, keep to gentle surface cleaning only. Store fully dry, supported and uncompressed; inspect the hanger, hook, tube seam and every tied decoration before each season and after severe weather.
 
 ## Terms of Use
 

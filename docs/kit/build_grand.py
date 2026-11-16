@@ -71,7 +71,7 @@ CORRECTIONS = [
     ("NS-11", "Stuffing 10 g, not 25 g (~240 cm³ of body at the collection's own fill density)"),
     ("NS-12", "Stuffing 5 g, not 25 g — the pattern already said 'a little only'"),
     ("NS-13", "Star about 4.5 cm, not 9 cm: five six-stitch fans on a 15 mm ring cannot reach 45 mm points"),
-    ("NS-14", "Cover brand line reads NOVALITY STORE, matching the other sixteen covers"),
+    ("NS-14", "Cover brand line reads NOVALITY CROCHET STUDIO, matching the other sixteen covers"),
     ("NS-17", "Lamb's fixed collar ch 14 (13 sts, about 6.5 cm) at the pattern's worsted gauge, "
               "not ch 22, which measured about 105 mm round against a 6 cm neck"),
     ("NS-01", "Hoof colour change moved into the row text (BLO sc in 17, BLO sc in last st; change "
@@ -122,13 +122,12 @@ def pdf_pages(path: Path | None) -> str:
 
 
 def editions(code: str) -> tuple[Path | None, Path | None]:
-    pdfs = sorted(SHOP.glob("*.pdf")) if SHOP.exists() else []
-    mine = [p for p in pdfs if f"NS{code}" in p.name]
-    colour = [p for p in mine if "PRINT" not in p.name]
-    print_ed = [p for p in mine if "PRINT" in p.name]
-    preferred = [p for p in colour if p.stem.endswith("NovalityStore")]
-    colour_pick = preferred[0] if preferred else (colour[0] if len(colour) == 1 else None)
-    return colour_pick, (print_ed[0] if print_ed else None)
+    """The two editions `docs/kit/build_pdf.py` writes for one design code."""
+    pdfs = sorted(SHOP.glob(f"NS{code}_*.pdf")) if SHOP.exists() else []
+    colour = [p for p in pdfs if p.stem.endswith("_Colour_Edition")]
+    print_ed = [p for p in pdfs if p.stem.endswith("_Print_Edition")]
+    return (colour[0] if len(colour) == 1 else None,
+            print_ed[0] if len(print_ed) == 1 else None)
 
 
 def audit_counts(text: str, code: str) -> tuple[int, int, int, int]:

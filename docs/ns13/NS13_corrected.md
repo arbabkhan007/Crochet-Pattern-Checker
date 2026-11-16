@@ -158,7 +158,7 @@ All three string neatly on one length of yarn - a matching garland is just all t
 
 ## Care & storage
 
-Follow the yarn and metallic-thread labels. Before publishing a cleaning claim or supplying finished ornaments, test the proposed method on a complete blocked sample and check for dye transfer, distortion, melted or dulled fibres, released stuffing and weakened hanging loops after it is fully dry. Store the ornaments dry and flat or supported, without crushing the star or snowflake points. Reblock only with the fibre-appropriate method above; never apply an iron directly.
+Follow the yarn and metallic-thread labels. Before you clean or pass on finished ornaments, test the method you intend to use on a complete blocked sample and check for dye transfer, distortion, melted or dulled fibres, released stuffing and weakened hanging loops after it is fully dry. Store the ornaments dry and flat or supported, without crushing the star or snowflake points. Reblock only with the fibre-appropriate method above; never apply an iron directly.
 
 ## Terms of Use
 

@@ -156,7 +156,7 @@ Fir green  ·  Sage velvet  ·  Snow white  ·  Crimson berry  ·  Gold-tipped
 
 ## Care
 
-Follow the labels for every yarn and insert used. A tree containing cardboard is not washable; keep it dry and surface clean only. Before publishing any other care claim or supplying finished trees, clean and dry a complete sample made with the exact proposed insert and yarn, then inspect for dye transfer, distortion, stuffing migration, bobble damage and a warped base. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying upright away from heat.
+Follow the labels for every yarn and insert used. A tree containing cardboard is not washable; keep it dry and surface clean only. Before you try any other care method, or pass on finished trees, clean and dry a complete sample made with the exact proposed insert and yarn, then inspect for dye transfer, distortion, stuffing migration, bobble damage and a warped base. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying upright away from heat.
 
 ## Terms of Use
 

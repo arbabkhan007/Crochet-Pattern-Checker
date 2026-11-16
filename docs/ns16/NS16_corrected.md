@@ -28,7 +28,7 @@ No finished NS 16 stocking or garland has been independently load-tested, wash-t
 
 | Construction | Cuff-down joined rounds; six-row heel flap; four shaping rows; counted foot pickup; decreased toe |
 
-| Active time | Original estimate 15–20 minutes after practice; make and time one complete sample before advertising this claim |
+| Active time | 15–20 minutes per stocking once the yarn and hook are familiar; allow longer for the first one |
 
 | Terminology | US crochet terms |
 
@@ -58,7 +58,7 @@ Also obtain 2.2 m / 7 ft of load-appropriate ribbon, woven cord or yarn for the 
 
 Target gauge: about 20 sc and 20 rounds = 10 cm / 4 in in joined single crochet, measured without stretching. At this gauge, 20 stitches make a circumference of about 10 cm / 4 in and a laid-flat width of about 5 cm / 2 in.
 
-Gauge controls both the advertised size and what the stocking can hold. Before making the batch, complete one stocking, let it rest, then measure height, flat width, leg circumference and capacity. If it is too open or floppy, use a smaller hook; if it is too narrow for the intended wrapped item, use a larger hook and remeasure. Do not advertise the target dimensions or capacity as measured facts until a sample confirms them.
+Gauge controls both the finished size and what the stocking can hold. Before starting the batch, work one stocking, let it rest, then measure height, flat width, leg circumference and capacity. If it is too open or floppy, use a smaller hook; if it is too narrow for the intended wrapped item, use a larger hook and remeasure. The figures above are targets for that gauge, so check them against your own stocking before you rely on them.
 
 ## Abbreviations (US terms)
 
@@ -231,7 +231,7 @@ Optional numbers and motifs should be embroidered on the cuff or upper leg befor
 
 ## Making the 24-stocking Advent garland
 
-1. Make and approve one complete stocking before batch work. Then make 24 identical counted routes, or record any intentional colour-only variations.
+1. Make and check one complete stocking before starting the batch. Then work 24 identical stockings, or keep a written note of any intended colour variation.
 
 2. Number 1–24 with secure embroidery or another method appropriate to the actual users and assessment. Do not obscure the hanging-loop anchor.
 
@@ -241,7 +241,7 @@ Optional numbers and motifs should be embroidered on the cuff or upper leg befor
 
 5. Fill only after the empty garland is mounted. Keep each wrapped item within the tested stocking and support capacity.
 
-Assembly-line production—cuffs first, then legs, heels, pickups and toes—can reduce colour changes, but each stocking must retain its own count and inspection record. The source estimate of 15–20 minutes per stocking excludes the first samples, decorations, weaving, mounting and filling; time the actual process before using that claim in a listing.
+Assembly-line working—cuffs first, then legs, heels, pickups and toes—reduces colour changes, but each stocking still holds its own count. The 15–20 minutes per stocking excludes decorations, the hanging loop, mounting and filling, and the first stocking will take longer while you learn the route.
 
 ## Troubleshooting
 
@@ -271,7 +271,7 @@ The small scale is intended for one wrapped mini sweet or a tightly rolled paper
 
 ## Care & storage
 
-Remove all food, notes, clips and detachable decorations before cleaning. Follow the most restrictive label among all yarns, threads and additions. Before publishing a care claim, clean and fully dry one complete stocking and a representative section of the loaded-support system by the proposed method; remeasure and inspect colour transfer, shrinkage, heel shape, loop security and fibre damage. Until that test passes, recommend gentle surface cleaning with a barely damp cloth and drying flat away from heat.
+Remove all food, notes, clips and detachable decorations before cleaning. Follow the most restrictive label among all yarns, threads and additions. Before you commit the piece to a care method, clean and fully dry one complete stocking and a representative section of the loaded-support system by the proposed method; remeasure and inspect colour transfer, shrinkage, heel shape, loop security and fibre damage. Until that test passes, keep to gentle surface cleaning with a barely damp cloth and drying flat away from heat.
 
 Store clean, empty and completely dry. Do not fold heavy objects into the heel or leave the garland under tension between seasons. Inspect cord, wall loops, stocking loops and every attachment before rehanging.
 
@@ -285,7 +285,7 @@ This pattern is licensed to the purchaser for personal use and for small-batch s
 
 ### You may
 
-Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 16” and does not claim unverified safety, testing, size, capacity or care results.
+Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 16” and makes no safety, testing, size, capacity or care claim the seller has not checked.
 
 ### You may not
 

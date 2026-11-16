@@ -133,7 +133,7 @@ THEMES = {
     ),
 }
 
-EDITION_LABEL = {"colour": "STUDIO EDITION", "print": "PRINTER-SAVER EDITION"}
+EDITION_LABEL = {"colour": "NOVALITY CROCHET STUDIO", "print": "PRINTER-SAVER EDITION"}
 
 # --- yarn-name -> swatch colour (only used when the name states the colour) --
 
@@ -151,7 +151,16 @@ SWATCH = [
     ("rose", "#C97B8A"), ("peach", "#E8B396"), ("coral", "#D9736A"),
     ("natural", "#E3D5BE"), ("sand", "#DCCBA8"), ("olive", "#7A7A3A"),
     ("mint", "#A8CDBB"), ("plum", "#5C3A50"), ("lilac", "#C4B0D8"),
+    ("caramel", "#B98145"), ("apricot", "#E0A878"), ("buttercream", "#F0E4C0"),
+    ("russet", "#8A4B2A"), ("cranberry", "#8C2F3F"), ("burgundy", "#5E2233"),
+    ("pumpkin", "#D2691E"), ("fir", "#2C5B45"), ("snow", "#F8F6F0"),
+    ("chocolate-brown", "#4B2E2A"), ("oat-cream", "#E9DCBF"),
+    ("evergreen", "#2C5B45"), ("wool", "#F2EBDD"), ("duck-egg", "#BFD8D2"),
 ]
+
+# a colour word only ever merges with one of these nouns ("forest green")
+PALETTE_BASIC = {"green", "cream", "white", "red", "blue", "grey", "gray", "brown",
+                 "pink", "yellow", "black", "teal", "purple", "gold", "silver", "tan"}
 
 
 WEIGHT_NUM = {"lace": "#0", "fingering": "#1", "sport": "#2", "dk": "#3",
@@ -184,7 +193,7 @@ def clip_text(c: Canvas, text: str, max_w: float, font: str, size: float) -> str
 def swatch_for(name: str) -> str | None:
     low = name.lower()
     for word, hexcode in SWATCH:
-        if re.search(rf"\b{word}", low):
+        if re.search(rf"\b{re.escape(word)}\b", low):
             return hexcode
     return None
 
@@ -216,21 +225,86 @@ def _split_quote(text: str) -> list[str]:
     return [p for p in parts if p]
 
 
+FACT_LABELS = {
+    "skill": ("skill level", "skill"),
+    "size": ("finished size", "size", "sizes", "dimensions"),
+    "yarn": ("yarn", "yarn & hook"),
+    "hook": ("hook",),
+    "time": ("active time", "time", "making time"),
+}
+
+
+def facts_from_tables(blocks: list[Block]) -> dict:
+    """Two-column fact tables ("Quick facts", "At a glance") as a label -> value map."""
+    facts: dict[str, str] = {}
+    for b in blocks:
+        if b.kind != "table" or len(b.header) < 2:
+            continue
+        for row in b.rows:
+            if len(row) < 2:
+                continue
+            label = pdfmd.plain(row[0]).strip().lower().rstrip(":")
+            value = pdfmd.plain(row[1]).strip()
+            if label and value and len(label) < 30:
+                facts.setdefault(label, value)
+    return facts
+
+
+def _first_duration(text: str) -> str:
+    """'Original estimate 15–20 minutes after practice…' -> '15–20 minutes'.
+
+    Time stated in words ("an evening for the mini · a weekend for the standard")
+    collapses to its two ends: 'An evening – a weekend'.
+    """
+    m = re.search(r"(\d+(?:\.\d+)?(?:\s*[–—-]\s*\d+(?:\.\d+)?)?\s*"
+                  r"(?:hours?|hrs?|minutes?|mins?))", text or "")
+    if m:
+        return m.group(1).replace(" - ", "–")
+    parts = [re.sub(r"\s+for the \w+$", "", s.strip()) for s in
+             re.split(r"\s*[·;]\s*|,\s*", text or "") if s.strip()]
+    if not parts:
+        return ""
+    if len(parts) == 1:
+        return parts[0][0].upper() + parts[0][1:]
+    lo, hi = parts[0], parts[-1]
+    lo = lo[0].upper() + lo[1:]
+    return f"{lo} – {hi}"
+
+
 def derive_meta(code: str, blocks: list[Block], spec: dict | None = None) -> Meta:
     spec = spec or {}
     h1 = next((b for b in blocks if b.kind == "h1"), None)
     title = pdfmd.plain(h1.text) if h1 else spec.get("title", code)
     quote = next((b for b in blocks if b.kind == "quote"), None)
     parts = _split_quote(quote.text) if quote else []
-    skill = next((p for p in parts if re.search(r"beginner|intermediate|advanced", p, re.I)), "")
+    skill = next((p for p in parts if re.search(
+        r"beginner|intermediate|advanced|\beasy\b|confident|seasoned", p, re.I)), "")
     hours = next((p for p in parts if re.search(r"\b(?:hour|hr|min)", p, re.I)), "")
     terms = next((p for p in parts if re.search(r"\bUS\b|\bUK\b|terms", p, re.I)), "")
 
+    facts = facts_from_tables(blocks)
+
+    # the pitch is the descriptive line before the first section, never a safety
+    # paragraph and never the design-code line
     intro = ""
     for b in blocks:
-        if b.kind == "p" and not b.text.upper().startswith("**FINISHED"):
-            intro = pdfmd.plain(b.text)
+        if b.kind != "quote":
+            continue
+        text = pdfmd.plain(b.text).strip()
+        if (len(text) > 60 and text != text.upper()
+                and "design code" not in text.lower()
+                and "terms" not in text.lower()):
+            intro = text
             break
+    if not intro:
+        for b in blocks:
+            if b.kind != "p" or b.text.upper().startswith("**FINISHED"):
+                continue
+            text = pdfmd.plain(b.text).strip()
+            if (len(text) > 60 and "design code" not in text.lower()
+                    and text != text.upper() and "terms" not in text.lower()):
+                intro = text
+                break
 
     size = ""
     for b in blocks:
@@ -268,6 +342,72 @@ def derive_meta(code: str, blocks: list[Block], spec: dict | None = None) -> Met
                     break
         if hook:
             break
+
+    # a fact table is more reliable than the tagline
+    if not skill:
+        for label in FACT_LABELS["skill"]:
+            if facts.get(label):
+                raw = facts[label].split(":")[0].strip()
+                skill = raw[0].upper() + raw[1:].lower() if raw else ""
+                break
+    if skill:
+        skill = skill.split(" - ")[0].strip(" .,;")
+    if not hours:
+        for label in FACT_LABELS["time"]:
+            if facts.get(label):
+                hours = _first_duration(facts[label])
+                break
+    if not size:
+        for label in FACT_LABELS["size"]:
+            if facts.get(label):
+                value = facts[label]
+                spans = re.findall(r"\d+(?:\.\d+)?\s*[–-]\s*\d+(?:\.\d+)?\s*cm", value)
+                if len(spans) > 1:                  # three sizes: quote the whole spread
+                    lo = spans[0].split("–")[0].split("-")[0].strip()
+                    hi = spans[-1].split("–")[-1].split("-")[-1].strip()
+                    size = f"About {lo}–{hi}"
+                else:
+                    m = re.search(r"\d+(?:\.\d+)?\s*(?:cm|mm|in)\b"
+                                  r"(?:\s*/\s*\d+(?:\.\d+)?\s*in\b)?", value)
+                    if m:
+                        size = f"About {m.group(0)}"
+                break
+    if not yarn:
+        for label in FACT_LABELS["yarn"]:
+            if facts.get(label):
+                m = re.search(r"(light worsted|worsted|dk|aran|bulky|chunky|sport|fingering|"
+                              r"lace)[^,;/]{0,14}", facts["yarn"].strip(), re.I)
+                if m:
+                    yarn = normalize_weight(m.group(1))
+                break
+    if not hook:
+        for value in facts.values():
+            m = re.search(r"(\d+(?:\.\d+)?\s*(?:[–-]\s*\d+(?:\.\d+)?)?\s*mm)\s*"
+                          r"\(US\s*([A-Z0-9/-]+)\)", value)
+            if m:
+                hook = m.group(1).replace(" - ", "–") + f" (US {m.group(2)})"
+                break
+
+    if not yarn or not hook:
+        for b in blocks:
+            if b.kind != "ul":
+                continue
+            for item in b.items:
+                if not yarn:
+                    m = re.search(r"((?:light worsted|worsted|dk|aran|bulky|chunky|sport|"
+                                  r"fingering|lace)\b[^,;.]{0,16})", item, re.I)
+                    if m:
+                        yarn = normalize_weight(m.group(1))
+                if not hook:
+                    m = re.search(r"(\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s*mm)"
+                                  r"\s*(?:\(US\s*([A-Z0-9/-]+)\))?", item)
+                    if m and "hook" in item.lower():
+                        hook = m.group(1).replace(" - ", "–") + \
+                            (f" (US {m.group(2)})" if m.group(2) else "")
+                if yarn and hook:
+                    break
+            if yarn and hook:
+                break
 
     hours = hours.replace(" - ", "–")
     tags = ""
@@ -778,8 +918,13 @@ def finish_pdf(out: Path, meta: Meta, theme: dict, cover, story: list) -> int:
                              f"{getattr(fl, '_colWidths', None)} text="
                              f"{str(getattr(fl, '_cellvalues', ''))[:120]}")
         if h > CONTENT_H:
-            raise SystemExit(f"story[{i}] {type(fl).__name__} is {h:.1f} pt tall "
-                             f"(frame {CONTENT_H:.1f})")
+            # a multi-row table may split between rows (its header repeats); a
+            # single-row box cannot, and ReportLab would raise a LayoutError
+            rows = getattr(fl, "_cellvalues", None)
+            splittable = isinstance(rows, list) and len(rows) > 1
+            if not splittable:
+                raise SystemExit(f"story[{i}] {type(fl).__name__} is {h:.1f} pt tall "
+                                 f"(frame {CONTENT_H:.1f})")
 
     def clear_postponed(items) -> None:
         """ReportLab marks a flowable `_postponed` when it moves to the next page.
@@ -875,7 +1020,7 @@ def draw_palette(canv: Canvas, items: list[tuple[str, str]], theme: dict, top: f
         canv.setStrokeColor(HexColor(theme["border"]))
         canv.setLineWidth(0.5)
         canv.roundRect(x, y0, w, h, 2 * mm, stroke=1, fill=1)
-        canv.setFillColor(HexColor(hexcode or theme["border"]))
+        canv.setFillColor(HexColor(hexcode or "#C9B9A6"))
         canv.setStrokeColor(HexColor(theme["page"]))
         canv.setLineWidth(1.0)
         canv.circle(x + w / 2, y0 + h - 5.6 * mm, 3.2 * mm, stroke=1, fill=1)
@@ -912,23 +1057,92 @@ def default_cards(edition: str, n_parts: int) -> list:
     ]
 
 
+PALETTE_MODIFIER = ("soft", "pale", "dusty", "dark", "light", "deep", "warm", "cool",
+                    "bright", "muted", "butter", "ghostly", "classic", "sandy", "snow",
+                    "roan", "darker")
+# first words that name a colour only together with the noun after them
+PALETTE_COMPOUND = ("forest", "sage", "snow", "charcoal", "oat", "wool", "fir", "sea", "sky",
+                    "wine", "burnt", "duck-egg", "golden", "chocolate", "olive")
+
+
+def palette_from_text(text: str, limit: int = 6) -> list[tuple[str, str]]:
+    """Pull colour names out of prose.
+
+    The colorways paragraphs are sentences, not lists, so the chips are cut from a
+    colour vocabulary rather than from punctuation: "sage-green shell, cream
+    underside ... tangerine-orange beak" gives Sage, Cream, Tangerine-orange.
+    """
+    words = re.findall(r"[A-Za-z][A-Za-z-]*", text)
+
+    def colour(word: str) -> str | None:
+        return swatch_for(word.lower())
+
+    out: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    i = 0
+    while i < len(words) and len(out) < limit:
+        hexcode = colour(words[i])
+        if not hexcode:
+            i += 1
+            continue
+        label_words = [words[i]]
+        if (i + 1 < len(words) and words[i].lower() in PALETTE_COMPOUND
+                and words[i + 1].lower() in PALETTE_BASIC):
+            label_words.append(words[i + 1])          # forest green, snow white
+            i += 1
+        elif i and words[i - 1].lower() in PALETTE_MODIFIER:
+            label_words.insert(0, words[i - 1])       # dusty pink, roan red
+        label = " ".join(w.lower() if w.isupper() else w for w in label_words)
+        label = label[0].upper() + label[1:]
+        i += 1
+        if label.lower() in seen:
+            continue
+        seen.add(label.lower())
+        out.append((label, hexcode))
+    # "Snow" and "Snow white" are the same chip twice: keep the fuller label
+    def fuller(lab: str) -> bool:
+        low = lab.lower()
+        return not any(o.lower() != low and
+                       (o.lower().startswith(low + " ") or o.lower().endswith(" " + low))
+                       for o, _ in out)
+
+    return [(lab, hx) for lab, hx in out if fuller(lab)]
+
+
 def cover_palette(blocks: list[Block]) -> list[tuple[str, str]]:
-    """Colour names from the colorways section, with a swatch colour where known."""
+    """The palette strip for the cover, read from the colourway the pattern names."""
+    original = " ".join(pdfmd.plain(b.text) for b in blocks
+                        if b.kind == "p" and "original colourway" in b.text.lower())
+    named = palette_from_text(original) if original else []
+    if len(named) >= 3:
+        return named[:6]
+    section = _section_palette(blocks)
+    seen = {name.lower() for name, _ in named}
+    for name, hexv in section:
+        if name.lower() not in seen:
+            named.append((name, hexv))
+            seen.add(name.lower())
+        if len(named) >= 6:
+            break
+    if named:
+        return named
+    return palette_from_text
+
+
+def _section_palette(blocks: list[Block]) -> list[tuple[str, str]]:
     for i, b in enumerate(blocks):
         if b.kind == "h2" and section_key(b.text) == "colorways":
-            names: list[str] = []
-            for c in blocks[i + 1:i + 4]:
+            chunks: list[str] = []
+            for c in blocks[i + 1:i + 5]:
                 if c.kind in ("p", "ul"):
-                    raw = c.text if c.kind == "p" else " · ".join(c.items)
-                    names.extend(x.strip(" .") for x in re.split(r"[·•,]", raw) if x.strip(" ."))
+                    chunks.append(c.text if c.kind == "p" else " · ".join(c.items))
                 elif c.kind == "h2":
                     break
-            out = []
-            for name in names[:6]:
-                if len(name) < 28:
-                    out.append((name, swatch_for(name) or ""))
-            return out
-    return []
+            got = palette_from_text(" ".join(chunks))
+            if len(got) >= 3:
+                return got
+            break
+    return palette_from_text(" ".join(pdfmd.plain(b.text) for b in blocks if b.kind == "p"))
 
 
 def draw_contents(canv: Canvas, items: list[str], theme: dict, base: float,
@@ -1006,7 +1220,7 @@ def make_cover(meta: Meta, theme: dict, hero: str | None, note: str = "",
         # ribbon
         canv.setFillColor(HexColor(theme["muted"]))
         draw_spaced(canv, M_SIDE, top - 2 * mm,
-                    f"NOVALITY STORE  ·  {EDITION_LABEL[meta.edition]}  ·  {meta.design_code}",
+                    f"{EDITION_LABEL[meta.edition]}  ·  {meta.design_code}",
                     FONT_SANS_B, 7.0, 0.4)
         canv.setStrokeColor(HexColor(theme["accent"]))
         canv.setLineWidth(0.9)
@@ -1232,6 +1446,17 @@ class Renderer:
         ]))
         return box
 
+    @staticmethod
+    def _flat(items) -> list:
+        """Flatten one level, so a nested list can never reach the story."""
+        out: list = []
+        for it in items or []:
+            if isinstance(it, (list, tuple)):
+                out.extend(B.Renderer._flat(it))
+            else:
+                out.append(it)
+        return out
+
     def card(self, inner: list, keep: bool, sidebar: tuple[list, list] | None = None,
              fallback: list | None = None, prefix: list | None = None):
         """Emit a component card, falling back to an unboxed run when it cannot fit.
@@ -1244,11 +1469,12 @@ class Renderer:
         """
         box = self.card_box(inner, sidebar)
         height = measure([box], CONTENT_W)
-        pre = list(prefix or []) + [Bookmark(self._card_title or "", level=1)]
+        inner = self._flat(inner)
+        pre = self._flat(list(prefix or [])) + [Bookmark(self._card_title or "", level=1)]
         if height > CONTENT_H * 0.55:
             self.flow.extend(pre)
             self.flow.append(CondPageBreak(56))
-            for fl in (fallback if fallback is not None else inner):
+            for fl in self._flat(fallback if fallback is not None else inner):
                 self.flow.append(fl)
             self.flow.append(Spacer(1, 8))
             return
@@ -1889,7 +2115,7 @@ class Renderer:
             for b in intro[len(intro_flow):]:
                 prose.extend(render([b]))
             if table_flow is not None and prose:
-                sidebar = ([intro_flow + [table_flow]] if intro_flow else [table_flow],
+                sidebar = (intro_flow + [table_flow] if intro_flow else [table_flow],
                            prose)
         if sidebar is None:
             # document order, not grouped by kind: a `#### Option A` heading must
@@ -2096,8 +2322,8 @@ def build_pattern(code: str, edition: str, outdir: Path, quiet: bool = False) ->
                                     color=HexColor(theme["border"]),
                                     spaceBefore=2, spaceAfter=5))
     renderer.flow.append(Paragraph(
-        f"End of pattern  ·  {meta.design_code}  ·  Novality Store "
-        f"{EDITION_LABEL[meta.edition].title()}", styles.tiny))
+        f"End of pattern  ·  {meta.design_code}  ·  {EDITION_LABEL[meta.edition].title()}",
+        styles.tiny))
     story.extend(renderer.flow)
 
     suffix = {"colour": "_Colour_Edition.pdf", "print": "_Print_Edition.pdf"}[edition]

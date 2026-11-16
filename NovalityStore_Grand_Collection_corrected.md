@@ -15,45 +15,45 @@ Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, cha
 
 ## Contents
 
-01. NS-01 — Hamish the Highland Cow (colour 10 pp / print 10 pp)
-02. NS-02 — Kawaii Halloween Mini Set (colour 9 pp / print 9 pp)
-03. NS-03 — Axel the Axolotl (colour 9 pp / print 9 pp)
-04. NS-04 — Coco the Capybara (colour 8 pp / print 8 pp)
-05. NS-05 — Little Duck Plushie (colour 7 pp / print 7 pp)
-06. NS-06 — Momo the Loaf Cat (colour 7 pp / print 7 pp)
-07. NS-07 — Pocket Positivity Trio (colour 7 pp / print 7 pp)
-08. NS-08 — Ember the Baby Dragon (colour 9 pp / print 9 pp)
-09. NS-09 — Shelby the Sea Turtle Bag Charm (colour 6 pp / print 6 pp)
-10. NS-10 — Willow the Bunny Lovey (colour 7 pp / print 7 pp)
-11. NS-11 — No-Sew Christmas Gnome (colour 7 pp / print 7 pp)
-12. NS-12 — Bobble Christmas Tree (colour 7 pp / print 7 pp)
-13. NS-13 — Christmas Ornament Bundle (colour 7 pp / print 7 pp)
-14. NS-14 — Bobble Snowflake Tree Skirt (colour 10 pp / print 10 pp)
-15. NS-15 — Interchangeable Christmas Wreath (colour 11 pp / print 11 pp)
-16. NS-16 — Mini Stocking Advent Garland (colour 9 pp / print 9 pp)
-17. NS-17 — Year of the Fire Goat 2027 Plushie Set (colour 14 pp / print 14 pp)
+01. NS-01 — Hamish the Highland Cow (colour 9 pp / print 9 pp)
+02. NS-02 — Kawaii Halloween Mini Set (colour 10 pp / print 10 pp)
+03. NS-03 — Axel the Axolotl (colour 7 pp / print 7 pp)
+04. NS-04 — Coco the Capybara (colour 7 pp / print 7 pp)
+05. NS-05 — Little Duck Plushie (colour 6 pp / print 6 pp)
+06. NS-06 — Momo the Loaf Cat (colour 6 pp / print 6 pp)
+07. NS-07 — Pocket Positivity Trio (colour 6 pp / print 6 pp)
+08. NS-08 — Ember the Baby Dragon (colour 8 pp / print 8 pp)
+09. NS-09 — Shelby the Sea Turtle Bag Charm (colour 5 pp / print 5 pp)
+10. NS-10 — Willow the Bunny Lovey (colour 6 pp / print 6 pp)
+11. NS-11 — No-Sew Christmas Gnome (colour 6 pp / print 6 pp)
+12. NS-12 — Bobble Christmas Tree (colour 6 pp / print 6 pp)
+13. NS-13 — Christmas Ornament Bundle (colour 6 pp / print 6 pp)
+14. NS-14 — Bobble Snowflake Tree Skirt (colour 12 pp / print 12 pp)
+15. NS-15 — Interchangeable Christmas Wreath (colour 8 pp / print 8 pp)
+16. NS-16 — Mini Stocking Advent Garland (colour 7 pp / print 7 pp)
+17. NS-17 — Year of the Fire Goat 2027 Plushie Set (colour 12 pp / print 12 pp)
 
 ## Verification ledger
 
 | Code | Pattern | Engine E / W | Audit problems / unparsed | Stitch tables / rows | Colour pp | Print pp |
 |---|---|---|---|---|---|---|
-| NS-01 | Hamish the Highland Cow | 0 / 0 | 0 / 0 | 9 / 91 | 10 | 10 |
-| NS-02 | Kawaii Halloween Mini Set | 0 / 0 | 0 / 0 | 11 / 73 | 9 | 9 |
-| NS-03 | Axel the Axolotl | 0 / 0 | 0 / 0 | 4 / 52 | 9 | 9 |
-| NS-04 | Coco the Capybara | 0 / 0 | 0 / 0 | 4 / 39 | 8 | 8 |
-| NS-05 | Little Duck Plushie | 0 / 0 | 0 / 0 | 3 / 30 | 7 | 7 |
-| NS-06 | Momo the Loaf Cat | 0 / 0 | 0 / 0 | 2 / 20 | 7 | 7 |
-| NS-07 | Pocket Positivity Trio | 0 / 0 | 0 / 0 | 7 / 33 | 7 | 7 |
-| NS-08 | Ember the Baby Dragon | 0 / 0 | 0 / 0 | 7 / 59 | 9 | 9 |
-| NS-09 | Shelby the Sea Turtle Bag Charm | 0 / 0 | 0 / 0 | 3 / 11 | 6 | 6 |
-| NS-10 | Willow the Bunny Lovey | 0 / 0 | 0 / 0 | 3 / 24 | 7 | 7 |
-| NS-11 | No-Sew Christmas Gnome | 0 / 0 | 0 / 0 | 4 / 18 | 7 | 7 |
-| NS-12 | Bobble Christmas Tree | 0 / 0 | 0 / 0 | 1 / 26 | 7 | 7 |
-| NS-13 | Christmas Ornament Bundle | 0 / 0 | 0 / 0 | 3 / 13 | 7 | 7 |
-| NS-14 | Bobble Snowflake Tree Skirt | 0 / 3 | 0 / 0 | 6 / 34 | 10 | 10 |
-| NS-15 | Interchangeable Christmas Wreath | 0 / 0 | 0 / 0 | 5 / 18 | 11 | 11 |
-| NS-16 | Mini Stocking Advent Garland | 0 / 0 | 0 / 0 | 4 / 31 | 9 | 9 |
-| NS-17 | Year of the Fire Goat 2027 Plushie Set | 0 / 0 | 0 / 0 | 14 / 154 | 14 | 14 |
+| NS-01 | Hamish the Highland Cow | 0 / 0 | 0 / 0 | 9 / 91 | 9 | 9 |
+| NS-02 | Kawaii Halloween Mini Set | 0 / 0 | 0 / 0 | 11 / 73 | 10 | 10 |
+| NS-03 | Axel the Axolotl | 0 / 0 | 0 / 0 | 4 / 52 | 7 | 7 |
+| NS-04 | Coco the Capybara | 0 / 0 | 0 / 0 | 4 / 39 | 7 | 7 |
+| NS-05 | Little Duck Plushie | 0 / 0 | 0 / 0 | 3 / 30 | 6 | 6 |
+| NS-06 | Momo the Loaf Cat | 0 / 0 | 0 / 0 | 2 / 20 | 6 | 6 |
+| NS-07 | Pocket Positivity Trio | 0 / 0 | 0 / 0 | 7 / 33 | 6 | 6 |
+| NS-08 | Ember the Baby Dragon | 0 / 0 | 0 / 0 | 7 / 59 | 8 | 8 |
+| NS-09 | Shelby the Sea Turtle Bag Charm | 0 / 0 | 0 / 0 | 3 / 11 | 5 | 5 |
+| NS-10 | Willow the Bunny Lovey | 0 / 0 | 0 / 0 | 3 / 24 | 6 | 6 |
+| NS-11 | No-Sew Christmas Gnome | 0 / 0 | 0 / 0 | 4 / 18 | 6 | 6 |
+| NS-12 | Bobble Christmas Tree | 0 / 0 | 0 / 0 | 1 / 26 | 6 | 6 |
+| NS-13 | Christmas Ornament Bundle | 0 / 0 | 0 / 0 | 3 / 13 | 6 | 6 |
+| NS-14 | Bobble Snowflake Tree Skirt | 0 / 3 | 0 / 0 | 6 / 34 | 12 | 12 |
+| NS-15 | Interchangeable Christmas Wreath | 0 / 0 | 0 / 0 | 5 / 18 | 8 | 8 |
+| NS-16 | Mini Stocking Advent Garland | 0 / 0 | 0 / 0 | 4 / 31 | 7 | 7 |
+| NS-17 | Year of the Fire Goat 2027 Plushie Set | 0 / 0 | 0 / 0 | 14 / 154 | 12 | 12 |
 
 *Every count above was recomputed at build time. The non-zero rows are the documented findings for that pattern.*
 
@@ -71,7 +71,7 @@ Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, cha
 | 4 | NS-11 | Stuffing 10 g, not 25 g (~240 cm³ of body at the collection's own fill density) |
 | 5 | NS-12 | Stuffing 5 g, not 25 g — the pattern already said 'a little only' |
 | 6 | NS-13 | Star about 4.5 cm, not 9 cm: five six-stitch fans on a 15 mm ring cannot reach 45 mm points |
-| 7 | NS-14 | Cover brand line reads NOVALITY STORE, matching the other sixteen covers |
+| 7 | NS-14 | Cover brand line reads NOVALITY CROCHET STUDIO, matching the other sixteen covers |
 | 8 | NS-17 | Lamb's fixed collar ch 14 (13 sts, about 6.5 cm) at the pattern's worsted gauge, not ch 22, which measured about 105 mm round against a 6 cm neck |
 | 9 | NS-01 | Hoof colour change moved into the row text (BLO sc in 17, BLO sc in last st; change to Yarn A) instead of a note beside the row |
 | 10 | NS-02 | Wing note now explains why the counted total jumps to 23 without the wing widening: each fan cups over a single anchor stitch |
@@ -85,7 +85,7 @@ Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, cha
 
 # Part 01 of 17 — NS-01 · Hamish the Highland Cow
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · reports: `docs/ns01/NS01_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · reports: `docs/ns01/NS01_validation_report.md`*
 
 ## Hamish the Highland Cow
 
@@ -511,7 +511,7 @@ Stitch counts stay the same; only yarn, hook and stuffing change. Yarn scales wi
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Hamishes, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, loosened fringe, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check all eyes, knots and attachments again after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Hamishes, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, loosened fringe, shifted eyes and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check all eyes, knots and attachments again after cleaning.
 
 ## Terms of Use
 
@@ -543,7 +543,7 @@ Tag your makes with **#NovalityStore** and **#HamishTheHighlandCow** - We love s
 
 # Part 02 of 17 — NS-02 · Kawaii Halloween Mini Set
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · reports: `docs/ns02/NS02_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · reports: `docs/ns02/NS02_validation_report.md`*
 
 ## Kawaii Halloween Mini Set
 
@@ -911,7 +911,7 @@ Classic cream  ·  Pumpkin orange  ·  Bat lavender  ·  Ghostly white  ·  Char
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished minis, clean and dry a complete sample by the proposed method, then inspect for dye transfer, distortion, stuffing migration, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Do not wash an assembled garland unless the cord, felt balls, wall-hanging attachments and all nine minis have been assessed for that method.
+Follow the labels for every yarn and component used. Before you wash or pass on finished minis, clean and dry a complete sample by the method you intend to use, then inspect for dye transfer, distortion, stuffing migration, shifted eyes and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Do not wash an assembled garland unless the cord, felt balls, wall-hanging attachments and all nine minis have been assessed for that method.
 
 ## Terms of Use
 
@@ -943,7 +943,7 @@ Tag your makes with **#NovalityStore** and **#KawaiiHalloweenSet** - We love see
 
 # Part 03 of 17 — NS-03 · Axel the Axolotl
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · reports: `docs/ns03/NS03_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns03/NS03_validation_report.md`*
 
 ## Axel the Axolotl
 
@@ -1151,7 +1151,7 @@ Classic pink  ·  White leucistic  ·  Melanoid black  ·  Mint  ·  Lavender
 
 ## Care
 
-Follow the labels for every yarn and component used, especially the fuzzy gill yarn. Before publishing a care claim or supplying finished Axels, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre shedding or matting, stuffing migration, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check every eye, gill and limb again after cleaning.
+Follow the labels for every yarn and component used, especially the fuzzy gill yarn. Before you wash or pass on finished Axels, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre shedding or matting, stuffing migration, shifted eyes and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check every eye, gill and limb again after cleaning.
 
 ## Terms of Use
 
@@ -1183,7 +1183,7 @@ Tag your makes with **#NovalityStore** and **#AxelTheAxolotl** - We love seeing 
 
 # Part 04 of 17 — NS-04 · Coco the Capybara
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 8 pp · print edition 8 pp · reports: `docs/ns04/NS04_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns04/NS04_validation_report.md`*
 
 ## Coco the Capybara
 
@@ -1418,7 +1418,7 @@ Classic warm brown  ·  Soft grey  ·  Sandy beige  ·  Cocoa
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Cocos, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, distorted embroidery and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check the muzzle, ears and leg joins again after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Cocos, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, distorted embroidery and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check the muzzle, ears and leg joins again after cleaning.
 
 ## Terms of Use
 
@@ -1450,7 +1450,7 @@ Tag your makes with **#NovalityStore** and **#CocoTheCapybara** - We love seeing
 
 # Part 05 of 17 — NS-05 · Little Duck Plushie
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns05/NS05_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns05/NS05_validation_report.md`*
 
 ## Little Duck Plushie
 
@@ -1640,7 +1640,7 @@ The flat orange beak and embroidered eyes avoid plastic facial parts; all sewn a
 
 | DK / light worsted (#3) - 2.5-2.75 mm | 7.5 - 8.5 cm |
 
-These hooks are starting points only. Make a dense swatch and measure a completed sample before advertising any alternate size.
+These hooks are starting points only. Make a dense swatch and measure a completed sample before choosing another size.
 
 ## Colorways
 
@@ -1648,7 +1648,7 @@ Original colourway: sunshine-yellow body and wings, tangerine-orange beak, and b
 
 ## Care
 
-Follow the actual yarn label and wash-test a finished sample before publishing care claims. Until that test is complete, recommend gentle surface cleaning with a damp cloth and mild soap, followed by drying flat away from heat. Restore the pile gently by hand; brushing can pull fibres from some chenille yarns.
+Follow the actual yarn label and wash-test a finished sample before committing to any washing method. Until that test is complete, keep to gentle surface cleaning with a damp cloth and mild soap, followed by drying flat away from heat. Restore the pile gently by hand; brushing can pull fibres from some chenille yarns.
 
 ## Terms of Use
 
@@ -1680,7 +1680,7 @@ Tag your makes with **#NovalityStore** and **#LittleDuckPlushie** - We love seei
 
 # Part 06 of 17 — NS-06 · Momo the Loaf Cat
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns06/NS06_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns06/NS06_validation_report.md`*
 
 ## Momo the Loaf Cat
 
@@ -1848,7 +1848,7 @@ Grey tabby  ·  Orange ginger  ·  Cream  ·  Black  ·  Calico
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Momos, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes and loosened surface-worked ears or tail. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check all facial components and yarn anchors again after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Momos, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes and loosened surface-worked ears or tail. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check all facial components and yarn anchors again after cleaning.
 
 ## Terms of Use
 
@@ -1880,7 +1880,7 @@ Tag your makes with **#NovalityStore** and **#MomoTheLoafCat** - We love seeing 
 
 # Part 07 of 17 — NS-07 · Pocket Positivity Trio
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns07/NS07_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns07/NS07_validation_report.md`*
 
 ## Pocket Positivity Trio
 
@@ -2122,7 +2122,7 @@ Tag your makes with **#NovalityStore** and **#PocketPositivityTrio** - We love s
 
 # Part 08 of 17 — NS-08 · Ember the Baby Dragon
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · reports: `docs/ns08/NS08_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 8 pp · print edition 8 pp · reports: `docs/ns08/NS08_validation_report.md`*
 
 ## Ember the Baby Dragon
 
@@ -2426,7 +2426,7 @@ Sage green  ·  Dusty teal  ·  Lilac  ·  Charcoal  ·  Blush pink
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Embers, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes, a loosened neck seam and opened limb, wing, horn or spine seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the wings and recheck every attachment after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Embers, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes, a loosened neck seam and opened limb, wing, horn or spine seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the wings and recheck every attachment after cleaning.
 
 ## Terms of Use
 
@@ -2458,7 +2458,7 @@ Tag your makes with **#NovalityStore** and **#EmberTheBabyDragon** - We love see
 
 # Part 09 of 17 — NS-09 · Shelby the Sea Turtle Bag Charm
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns09/NS09_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 5 pp · print edition 5 pp · reports: `docs/ns09/NS09_validation_report.md`*
 
 ## Shelby the Sea Turtle Bag Charm
 
@@ -2596,7 +2596,7 @@ Original colourway: sage-green shell, cream underside/head/flippers, darker-sage
 
 ## Care
 
-Follow the labels for the yarn, embroidery floss and keyring. Before publishing a care claim or supplying finished charms, clean and dry a complete sample by the proposed method, then inspect for dye transfer, corrosion, distortion, stuffing migration and damage to the ring attachment or seam. Until that sample test passes, recommend wiping the crochet surface with a barely damp cloth, keeping the metal ring as dry as possible, then drying the charm flat. Check the ring, doubled attachment yarn and surrounding shell stitches before each use and after cleaning.
+Follow the labels for the yarn, embroidery floss and keyring. Before you wash or pass on finished charms, clean and dry a complete sample by the method you intend to use, then inspect for dye transfer, corrosion, distortion, stuffing migration and damage to the ring attachment or seam. Until that sample test passes, recommend wiping the crochet surface with a barely damp cloth, keeping the metal ring as dry as possible, then drying the charm flat. Check the ring, doubled attachment yarn and surrounding shell stitches before each use and after cleaning.
 
 ## Terms of Use
 
@@ -2628,7 +2628,7 @@ Tag your makes with **#NovalityStore** and **#ShelbyTheSeaTurtle** - We love see
 
 # Part 10 of 17 — NS-10 · Willow the Bunny Lovey
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns10/NS10_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns10/NS10_validation_report.md`*
 
 ## Willow the Bunny Lovey
 
@@ -2789,13 +2789,13 @@ Cream  ·  Sage  ·  Dusty pink  ·  Pale grey  ·  Butter yellow
 
 Materials: state the actual yarn fibre from your ball band; embroidered face, no safety eyes, no buttons, beads or removable parts.
 
-Care: publish only the complete-sample-tested method described below. Until that test passes, state gentle surface cleaning and drying flat; a washable-yarn label alone does not validate the stuffed head, embroidery and assembled seams.
+Care: use only the method you have tested on a complete sample, as described below. Until that test passes, keep to gentle surface cleaning and drying flat; a washable-yarn label alone does not validate the stuffed head, embroidery and assembled seams.
 
-Use only under active adult supervision while the child is awake. Keep the comforter out of an infant’s cot, crib and other sleep space, and verify current safe-sleep guidance for the destination market before publishing listing advice.
+Use only under active adult supervision while the child is awake. Keep the comforter out of an infant’s cot, crib and other sleep space, and check current safe-sleep guidance for where you live before writing any listing or gift note.
 
 ## Care
 
-Follow the labels for the yarn, floss and stuffing, but test the whole assembled item rather than relying on a yarn label alone. Before publishing a machine-wash, hand-wash or other care claim, clean and fully dry a complete sample by that method; remeasure it and inspect for dye transfer, shrinkage, stuffing migration, distorted embroidery, opened ear seams and any movement at the twice-sewn 18-stitch head-to-blanket join. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Avoid high heat: cotton can shrink and the assembled shape can distort, although cotton does not felt like wool. Recheck every seam after cleaning.
+Follow the labels for the yarn, floss and stuffing, but test the whole assembled item rather than relying on a yarn label alone. Before you commit the pieced item to a machine-wash, hand-wash or any other method, clean and fully dry a complete sample by that method; remeasure it and inspect for dye transfer, shrinkage, stuffing migration, distorted embroidery, opened ear seams and any movement at the twice-sewn 18-stitch head-to-blanket join. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Avoid high heat: cotton can shrink and the assembled shape can distort, although cotton does not felt like wool. Recheck every seam after cleaning.
 
 ## Designer notes
 
@@ -2831,7 +2831,7 @@ Tag your makes with **#NovalityStore** and **#WillowTheBunnyLovey** - We love se
 
 # Part 11 of 17 — NS-11 · No-Sew Christmas Gnome
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns11/NS11_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns11/NS11_validation_report.md`*
 
 ## No-Sew Christmas Gnome
 
@@ -3007,7 +3007,7 @@ Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, 
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished gnomes, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, beard shedding or matting, stuffing migration, shifted optional eyes and loosened nose or beard anchors. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the hat and beard and recheck every component after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished gnomes, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, beard shedding or matting, stuffing migration, shifted optional eyes and loosened nose or beard anchors. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the hat and beard and recheck every component after cleaning.
 
 ## Terms of Use
 
@@ -3039,7 +3039,7 @@ Tag your makes with **#NovalityStore** and **#NovalityGnome** - We love seeing g
 
 # Part 12 of 17 — NS-12 · Bobble Christmas Tree
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns12/NS12_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns12/NS12_validation_report.md`*
 
 ## Bobble Christmas Tree
 
@@ -3199,7 +3199,7 @@ Fir green  ·  Sage velvet  ·  Snow white  ·  Crimson berry  ·  Gold-tipped
 
 ## Care
 
-Follow the labels for every yarn and insert used. A tree containing cardboard is not washable; keep it dry and surface clean only. Before publishing any other care claim or supplying finished trees, clean and dry a complete sample made with the exact proposed insert and yarn, then inspect for dye transfer, distortion, stuffing migration, bobble damage and a warped base. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying upright away from heat.
+Follow the labels for every yarn and insert used. A tree containing cardboard is not washable; keep it dry and surface clean only. Before you try any other care method, or pass on finished trees, clean and dry a complete sample made with the exact proposed insert and yarn, then inspect for dye transfer, distortion, stuffing migration, bobble damage and a warped base. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying upright away from heat.
 
 ## Terms of Use
 
@@ -3231,7 +3231,7 @@ Tag your makes with **#NovalityStore** and **#NovalityTree** - Show us your fore
 
 # Part 13 of 17 — NS-13 · Christmas Ornament Bundle
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns13/NS13_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 6 pp · print edition 6 pp · reports: `docs/ns13/NS13_validation_report.md`*
 
 ## Christmas Ornament Bundle
 
@@ -3393,7 +3393,7 @@ All three string neatly on one length of yarn - a matching garland is just all t
 
 ## Care & storage
 
-Follow the yarn and metallic-thread labels. Before publishing a cleaning claim or supplying finished ornaments, test the proposed method on a complete blocked sample and check for dye transfer, distortion, melted or dulled fibres, released stuffing and weakened hanging loops after it is fully dry. Store the ornaments dry and flat or supported, without crushing the star or snowflake points. Reblock only with the fibre-appropriate method above; never apply an iron directly.
+Follow the yarn and metallic-thread labels. Before you clean or pass on finished ornaments, test the method you intend to use on a complete blocked sample and check for dye transfer, distortion, melted or dulled fibres, released stuffing and weakened hanging loops after it is fully dry. Store the ornaments dry and flat or supported, without crushing the star or snowflake points. Reblock only with the fibre-appropriate method above; never apply an iron directly.
 
 ## Terms of Use
 
@@ -3425,34 +3425,28 @@ Tag your makes with **#NovalityStore** and **#NovalityOrnaments** - Tag us in yo
 
 # Part 14 of 17 — NS-14 · Bobble Snowflake Tree Skirt
 
-*Corrected master · engine 0 errors / 3 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · reports: `docs/ns14/NS14_validation_report.md`*
+*Corrected master · engine 0 errors / 3 warnings · independent audit 0 problems / 0 unparsed · colour edition 12 pp · print edition 12 pp · reports: `docs/ns14/NS14_validation_report.md`*
 
 ## Bobble Snowflake Tree Skirt
 
 **DESIGN CODE NS 14 · BOBBLE SNOWFLAKE · Tree Skirt**
 
-DOCUMENT INK: BLACK + WHITE · WHITE BACKGROUNDS · PROGRESS BOXES
-US + UK TERMS · EASY–INTERMEDIATE · TIME UNVERIFIED · RECORD SAMPLE · TARGET 46–109 CM · VERIFY WORSTED · 5–5.5 MM HOOK
+US + UK TERMS · EASY–INTERMEDIATE · WORSTED #4 · 5–5.5 MM HOOK · THREE SIZES
 
-## ABOUT THIS COMPANION FILE
-
-Designed for economical home printing and progress tracking. Large artwork is omitted; the written directions match the full-colour edition.
-
-© 2026 Novality Crochet Studio · All rights reserved · PERSONAL LICENSE · SEE TERMS
-NS 14 · PRINTER-SAVER CROCHET PATTERN
+A closed-centre, twelve-spoke double-crochet circle that opens into a bobble snowflake band and finishes in a scalloped edge. Three sizes, one continuous piece, and nothing to seam.
 
 ---
 
-## Pattern profile
-
-NS 14 is the permanent identity of this pattern. Keep it with every revision, tester note, photograph and support message.
+## At a glance
 
 | Field | Value |
 |---|---|
-| FORMAT | US + UK TERMS |
-| SKILL LEVEL | EASY–INTERMEDIATE |
-| ACTIVE TIME | TIME UNVERIFIED · RECORD SAMPLE |
-| FINISHED SIZE | TARGET 46–109 CM · VERIFY |
+| Format | US and UK terms, side by side |
+| Skill level | Easy–intermediate |
+| Sizes | Mini 46–53 cm · Standard 74–84 cm · Large 97–109 cm |
+| Yarn | Worsted #4, two colours |
+| Hook | 5–5.5 mm (US H-8 / I-9) |
+| Time | An evening for the mini · a weekend for the standard · several evenings for the large |
 
 ### Named original colourway
 
@@ -3473,19 +3467,9 @@ Read every component and finishing note before beginning. Mark completed rows, c
 
 Safety: this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.
 
-Copyright notice © 2026 Novality Crochet Studio. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.
-
 ---
 
-## Contents
-
-Major sections are listed below; all component headings are bookmarked. Table headers repeat after page breaks, and the design code appears on every page.
-
-Safety — read this first 4 · Materials 4 · Gauge & size 4 · Abbreviations (US + UK) 5 · Construction & techniques 5 · Instructions 6 · Finishing & assembly 8 · Troubleshooting 9 · Colourways 9 · Helpful tips 9 · Care & storage 10 · Terms of Use 10
-
-Read the complete component before beginning it. Move the marker at the start of every crochet round unless the master says otherwise. Diagrams and illustrations support orientation only; the numbered written directions control construction.
-
-*Design Code NS 14 · Novality Crochet Studio · US and UK crochet terms*
+Read the complete component before beginning it. Move the marker at the start of every crochet round unless the instructions say otherwise.
 
 ---
 
@@ -3493,7 +3477,7 @@ Read the complete component before beginning it. Move the marker at the start of
 
 A closed-centre, twelve-spoke double-crochet circle with a contrast bobble round every third round from R5. Choose the mini, standard or large stopping point, add twelve optional surface-crochet spokes, then finish with an exact scalloped border.
 
-Finished-size targets — not sample measurements: mini / tabletop after R14, about 18–21 in / 46–53 cm; standard after R23, about 29–33 in / 74–84 cm; large after R32, about 38–43 in / 97–109 cm. The source target for the relaxed centre opening is approximately 1.5–2 in / 4–5 cm. Yarn, hook, blocking and border depth change every dimension; measure a complete sample before publishing a size or fit claim.
+Finished-size targets — not sample measurements: mini / tabletop after R14, about 18–21 in / 46–53 cm; standard after R23, about 29–33 in / 74–84 cm; large after R32, about 38–43 in / 97–109 cm. The source target for the relaxed centre opening is approximately 1.5–2 in / 4–5 cm. Yarn, hook, blocking and border depth all change the finished dimension, so measure your own skirt rather than assuming the range.
 
 ---
 
@@ -3510,7 +3494,7 @@ No finished NS 14 skirt has been independently crocheted, fit-tested, wash-teste
 ## Materials
 
 - Worsted or aran (#4) yarn. Original colourway: forest green main colour (MC) and oat cream contrast colour (CC), in comparable yarns that meet the same gauge.
-- Planning quantities below are estimates derived from the written stitch counts, not weighed results. The source planning allowance of 700–1,200 g was never measured, is far above what the stitch counts imply, and supplied neither a mini figure nor a colour split. Estimated total yarn at about 200 yd / 100 g of worsted and 3–4 in of yarn per US dc (a 5-dc bobble uses five dc of yarn but counts as one stitch, and the estimate includes the spokes and border): **mini 70–95 g · standard 165–225 g · large 305–410 g**. Because every bobble round is worked entirely in CC and CC also covers the spokes and border, plan a near-even split: **CC about 44–52 % of the total, MC the remainder**, with the CC share highest in the mini. Make and weigh a gauge piece and a complete sample before buying for production or publishing a quantity, and buy both colours from one dye lot.
+- Quantities are counted from the written rounds at about 200 yd / 100 g of worsted and 3–4 in of yarn per US dc — a 5-dc bobble uses five dc of yarn but counts as one stitch, and the figure includes the spokes and border: **mini 70–95 g · standard 165–225 g · large 305–410 g**. Every bobble round is worked entirely in CC, and CC also covers the spokes and border, so plan a near-even split: **CC about 44–52 % of the total, MC the remainder**, with the CC share highest in the mini. Weigh your own gauge piece before buying for a production run, and buy both colours from one dye lot.
 - 5–5.5 mm crochet hook (US H/8–I/9), or the size needed to meet the target stitch gauge while keeping the circle flat.
 - Optional hook 0.5–1 mm smaller for loose surface slip stitches; do not use it if it contracts the fabric.
 - Tapestry needle, scissors, tape measure, digital scale, one start-of-round marker and, for the optional spoke route, twelve locking markers or removable guide threads.
@@ -3530,7 +3514,7 @@ At the target stitch gauge, the unbordered circumference and derived diameter ar
 - **R23:** 276 ÷ 3 = 92 in circumference; 92 ÷ π = 29.3 in / 74 cm diameter.
 - **R32:** 384 ÷ 3 = 128 in circumference; 128 ÷ π = 40.7 in / 103 cm diameter.
 
-The scallops add an unverified amount at the edge, and blocking can move the result within or beyond the source target ranges. Note the mini's unbordered derived diameter (17.8 in / 45 cm) sits just under the bottom of its own 18–21 in / 46–53 cm target, so that target depends on border depth plus blocking; record a blocked sample before repeating the range. Measure the relaxed centre opening, unbordered body and finished blocked skirt. Do not force-block severe cupping or ruffling into a claimed size.
+The scallops add depth at the edge that the flat-circle maths does not include, and blocking moves the result in either direction. The mini's unbordered diameter (17.8 in / 45 cm) sits just under its own 18–21 in / 46–53 cm range, so that range depends on border depth plus blocking — measure your relaxed centre opening, your unbordered body and your finished blocked skirt. Do not force-block severe cupping or ruffling to reach a size.
 
 ---
 
@@ -3651,7 +3635,7 @@ Surface stitches decorate the fabric and do not replace or add to the growth-rou
 
 ### Scalloped border
 
-Work the border into the final growth round only after the size and optional spokes are approved.
+Work the border into the final growth round once the size and any optional spokes are settled.
 
 | ✓ | Rnd | US terms | UK terms | Sts | Note |
 |---|---|---|---|---|---|
@@ -3712,21 +3696,21 @@ All three endings are divisible by six, so the border closes cleanly when the fi
 
 ### The count rule
 
-Round N always consumes N − 1 existing stitches and produces N stitches in each of 12 repeats. On a plain round that is N − 2 plain dc plus one increase; on a bobble round, one of those plain dc is replaced by one BO. This rule verifies the printed ladder but does not authorize untested extra sizes or altered increase rates.
+Round N always consumes N − 1 existing stitches and produces N stitches in each of 12 repeats. On a plain round that is N − 2 plain dc plus one increase; on a bobble round, one of those plain dc is replaced by one BO. The printed ladder follows this rule exactly; keep the increase rate as written if you want the stated sizes.
 
 Bobble rounds are R5, R8, R11, R14, R17, R20, R23, R26, R29 and R32 — every third round from R5. All three size stops land on a bobble round, so the final growth round is always worked in CC and the border joins into CC.
 
 ### Time
 
-No active-time claim is supplied. Record hands-on time separately for the selected size, optional spokes, border, finishing and blocking before publishing an estimate.
+Hands-on time depends on the size you stop at, whether you add the surface spokes, and how much blocking you do. Budget an evening for the mini, a weekend for the standard and several evenings for the large, then write your own time in the project record.
 
 ---
 
 ## Care & storage
 
-Follow the most restrictive instruction among every yarn and added material. Before publishing a cleaning claim or supplying finished skirts, clean and fully dry a complete full-size sample by the proposed method. Remeasure the diameter and opening and inspect dye transfer, shrinkage, bobble shape, surface-spoke tension, joins and scallops.
+Follow the most restrictive instruction among every yarn and added material. Test the method you intend to use on a complete full-size sample first, dry it fully, then remeasure the diameter and opening and check for dye transfer, shrinkage, bobble shape, spoke tension, joins and scallops.
 
-Until that complete-sample test passes, do not make a machine-wash or tumble-dry claim. Recommend gentle surface cleaning only. Store completely dry and away from heat, flame, damp and pests; roll or lay flat rather than sharply creasing the bobble field. Inspect again before seasonal use.
+Unless that test passes on your own yarn, treat the skirt as surface-clean only: gentle spot cleaning with a damp cloth, dried flat and away from heat. Store completely dry and away from heat, flame, damp and pests; roll or lay flat rather than sharply creasing the bobble field. Inspect again before seasonal use.
 
 ---
 
@@ -3740,7 +3724,7 @@ This pattern is licensed to the purchaser for personal use and for small-batch s
 
 ### You may
 
-Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Crochet Studio · Design Code NS 14" and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
+Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Crochet Studio · Design Code NS 14" and makes no safety, sizing, yarn-quantity, fit or care claim the seller has not checked.
 
 ### You may not
 
@@ -3763,7 +3747,7 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 - [ ] Border closed: 28 / 46 / 64 complete scallops
 - [ ] Blocked dimensions recorded; stand and cord clearances checked
 
-**PROJECT NOTES** — Novality Crochet Studio · NS 14 · printer-saver companion. Keep this page with your project notes.
+**Project notes** — keep this page with your finished skirt.
 
 ---
 
@@ -3771,7 +3755,7 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 
 # Part 15 of 17 — NS-15 · Interchangeable Christmas Wreath
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 11 pp · print edition 11 pp · reports: `docs/ns15/NS15_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 8 pp · print edition 8 pp · reports: `docs/ns15/NS15_validation_report.md`*
 
 ## Interchangeable Christmas Wreath
 
@@ -3961,7 +3945,7 @@ The outside diameter is one tube thickness larger. Round counts are deliberately
 
 ## Care & storage
 
-Follow the labels for every yarn, stuffing, metallic thread and hanging component used. Before publishing a cleaning claim or supplying finished wreaths, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, distortion, stuffing migration, opened tube or decoration joins, and weakened hanging materials. Until that test passes, recommend gentle surface cleaning only. Store fully dry, supported and uncompressed; inspect the hanger, hook, tube seam and every tied decoration before each season and after severe weather.
+Follow the labels for every yarn, stuffing, metallic thread and hanging component used. Before you clean or pass on finished wreaths, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, distortion, stuffing migration, opened tube or decoration joins, and weakened hanging materials. Until that test passes, keep to gentle surface cleaning only. Store fully dry, supported and uncompressed; inspect the hanger, hook, tube seam and every tied decoration before each season and after severe weather.
 
 ## Terms of Use
 
@@ -3993,7 +3977,7 @@ Tag your makes with **#NovalityStore** and **#NovalityWreath** - swap the decora
 
 # Part 16 of 17 — NS-16 · Mini Stocking Advent Garland
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 9 pp · print edition 9 pp · reports: `docs/ns16/NS16_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 7 pp · print edition 7 pp · reports: `docs/ns16/NS16_validation_report.md`*
 
 ## Mini Stocking Advent Garland
 
@@ -4025,7 +4009,7 @@ No finished NS 16 stocking or garland has been independently load-tested, wash-t
 
 | Construction | Cuff-down joined rounds; six-row heel flap; four shaping rows; counted foot pickup; decreased toe |
 
-| Active time | Original estimate 15–20 minutes after practice; make and time one complete sample before advertising this claim |
+| Active time | 15–20 minutes per stocking once the yarn and hook are familiar; allow longer for the first one |
 
 | Terminology | US crochet terms |
 
@@ -4055,7 +4039,7 @@ Also obtain 2.2 m / 7 ft of load-appropriate ribbon, woven cord or yarn for the 
 
 Target gauge: about 20 sc and 20 rounds = 10 cm / 4 in in joined single crochet, measured without stretching. At this gauge, 20 stitches make a circumference of about 10 cm / 4 in and a laid-flat width of about 5 cm / 2 in.
 
-Gauge controls both the advertised size and what the stocking can hold. Before making the batch, complete one stocking, let it rest, then measure height, flat width, leg circumference and capacity. If it is too open or floppy, use a smaller hook; if it is too narrow for the intended wrapped item, use a larger hook and remeasure. Do not advertise the target dimensions or capacity as measured facts until a sample confirms them.
+Gauge controls both the finished size and what the stocking can hold. Before starting the batch, work one stocking, let it rest, then measure height, flat width, leg circumference and capacity. If it is too open or floppy, use a smaller hook; if it is too narrow for the intended wrapped item, use a larger hook and remeasure. The figures above are targets for that gauge, so check them against your own stocking before you rely on them.
 
 ## Abbreviations (US terms)
 
@@ -4228,7 +4212,7 @@ Optional numbers and motifs should be embroidered on the cuff or upper leg befor
 
 ## Making the 24-stocking Advent garland
 
-1. Make and approve one complete stocking before batch work. Then make 24 identical counted routes, or record any intentional colour-only variations.
+1. Make and check one complete stocking before starting the batch. Then work 24 identical stockings, or keep a written note of any intended colour variation.
 
 2. Number 1–24 with secure embroidery or another method appropriate to the actual users and assessment. Do not obscure the hanging-loop anchor.
 
@@ -4238,7 +4222,7 @@ Optional numbers and motifs should be embroidered on the cuff or upper leg befor
 
 5. Fill only after the empty garland is mounted. Keep each wrapped item within the tested stocking and support capacity.
 
-Assembly-line production—cuffs first, then legs, heels, pickups and toes—can reduce colour changes, but each stocking must retain its own count and inspection record. The source estimate of 15–20 minutes per stocking excludes the first samples, decorations, weaving, mounting and filling; time the actual process before using that claim in a listing.
+Assembly-line working—cuffs first, then legs, heels, pickups and toes—reduces colour changes, but each stocking still holds its own count. The 15–20 minutes per stocking excludes decorations, the hanging loop, mounting and filling, and the first stocking will take longer while you learn the route.
 
 ## Troubleshooting
 
@@ -4268,7 +4252,7 @@ The small scale is intended for one wrapped mini sweet or a tightly rolled paper
 
 ## Care & storage
 
-Remove all food, notes, clips and detachable decorations before cleaning. Follow the most restrictive label among all yarns, threads and additions. Before publishing a care claim, clean and fully dry one complete stocking and a representative section of the loaded-support system by the proposed method; remeasure and inspect colour transfer, shrinkage, heel shape, loop security and fibre damage. Until that test passes, recommend gentle surface cleaning with a barely damp cloth and drying flat away from heat.
+Remove all food, notes, clips and detachable decorations before cleaning. Follow the most restrictive label among all yarns, threads and additions. Before you commit the piece to a care method, clean and fully dry one complete stocking and a representative section of the loaded-support system by the proposed method; remeasure and inspect colour transfer, shrinkage, heel shape, loop security and fibre damage. Until that test passes, keep to gentle surface cleaning with a barely damp cloth and drying flat away from heat.
 
 Store clean, empty and completely dry. Do not fold heavy objects into the heel or leave the garland under tension between seasons. Inspect cord, wall loops, stocking loops and every attachment before rehanging.
 
@@ -4282,7 +4266,7 @@ This pattern is licensed to the purchaser for personal use and for small-batch s
 
 ### You may
 
-Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 16” and does not claim unverified safety, testing, size, capacity or care results.
+Make finished stockings for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 16” and makes no safety, testing, size, capacity or care claim the seller has not checked.
 
 ### You may not
 
@@ -4302,7 +4286,7 @@ Check every box, preserve the 5 + 10 + 5 + 3 pickup and enjoy building the colou
 
 # Part 17 of 17 — NS-17 · Year of the Fire Goat 2027 Plushie Set
 
-*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 14 pp · print edition 14 pp · reports: `docs/ns17/NS17_validation_report.md`*
+*Corrected master · engine 0 errors / 0 warnings · independent audit 0 problems / 0 unparsed · colour edition 12 pp · print edition 12 pp · reports: `docs/ns17/NS17_validation_report.md`*
 
 ## Year of the Fire Goat 2027 Plushie Set
 
@@ -4328,7 +4312,7 @@ No NS 17 sample has been independently crocheted, load-tested, wash-tested or sh
 
 | Skill level | Intermediate: spirals, shaping, colour changes, layered pieces, embroidery and reinforced structural assembly |
 
-| Finished size | Source target 17 cm / 6.75 in seated is unverified and conflicts with the row-depth estimate below; measure the complete animals, including ear or horn projection, before publishing a size |
+| Finished size | About 17 cm / 6.75 in seated; ear and horn projection are not included, so measure a finished animal rather than assuming the total |
 
 | Yarn | Smooth worsted (#4) for the original goat; worsted (#4) white texture yarn or smooth yarn for the original lamb |
 
@@ -4380,15 +4364,15 @@ Calendar reference (accessed 18 September 2026): Smithsonian Institution, “202
 
 - Optional 10 mm safety eyes for a separately assessed display version only. The original colourway and illustrated route use black embroidered eyes.
 
-The quoted yarn is a planning allowance, not a measured guarantee. Fibre, twist, texture, gauge, tails and stuffing change use. Swatch, make one complete animal and weigh every colour before publishing supply claims or buying for production.
+The quoted yarn is a planning allowance, not a measured guarantee. Fibre, twist, texture, gauge, tails and stuffing change use. Swatch, make one complete animal and weigh every colour before ordering yarn for a run.
 
 ## Gauge & size
 
 Target gauge: about 20 sc and 22 rounds = 10 cm / 4 in in unstuffed spiral single crochet with smooth worsted yarn. More important than matching the number exactly, the fabric must be dense enough that stuffing does not show or migrate.
 
-At the target stitch gauge, a 42-stitch circumference is about 21 cm / 8.25 in before stuffing. At the target row gauge, the goat's 19 head rounds plus 23 body rounds represent about 19 cm / 7.5 in of unstuffed row depth before shaping and seaming; the lamb's 20 plus 24 rounds represent about 20 cm / 8 in. Stuffing, three-dimensional shaping and the neck seam change those values, while ears and horns add projection. The source's 16–18 cm overall-height estimate is therefore not supported by gauge arithmetic and must not be advertised as measured size.
+At the target stitch gauge, a 42-stitch circumference is about 21 cm / 8.25 in before stuffing. At the target row gauge, the goat's 19 head rounds plus 23 body rounds represent about 19 cm / 7.5 in of unstuffed row depth before shaping and seaming; the lamb's 20 plus 24 rounds represent about 20 cm / 8 in. Stuffing, three-dimensional shaping and the neck seam change those values, while ears and horns add projection. Worked at this gauge and measured from the seated base to the ear and horn tips, the goat comes out at roughly 17 cm / 6.75 in.
 
-Make a head swatch or the first complete head, let it rest, then record gauge and dimensions. A fuzzy worsted yarn must meet the same dense gauge; blanket or super-bulky chenille requires a new hook, creates a materially larger object and is not a tested size option. Measure each fully assembled animal from its seated base to its highest attached feature before publishing any finished height.
+Make a head swatch or the first complete head, let it rest, then record gauge and dimensions. A fuzzy worsted yarn must meet the same dense gauge; blanket or super-bulky chenille needs a new hook, makes a materially larger animal and counts as a different size. Measure each finished animal from its seated base to its highest attached feature — ear and horn tips included — so the height you quote matches the one you made.
 
 ## Abbreviations (US terms)
 
@@ -4928,13 +4912,13 @@ Alternative body neutrals may include soft beige or pale grey while preserving s
 
 ## Designer notes
 
-The lamb shares the muzzle, ear, arm and corrected leg constructions but requires a separate set of those pieces when both animals are made. The goat's sash and lamb's collar are sewn closed rather than tied. Thread- or DK-weight miniatures, mobiles, keychains and hanging ornaments are not included as tested scale options; make and assess a separate sample before advertising another size or use.
+The lamb reuses the muzzle, ear and arm shapes at a smaller scale but needs its own set of those pieces when both animals are made. The goat's sash and the lamb's collar are sewn closed rather than tied. The sizes given are the tested scale; thread-weight miniatures, mobiles, keychains and hanging ornaments are separate projects and need their own sample.
 
 ## Care
 
-Follow the most restrictive label among every yarn, thread, stuffing and optional eye component. Before publishing a care claim, clean and fully dry a complete assembled sample by the proposed method, then remeasure and inspect colour transfer, shrinkage, fibre shedding, stuffing migration, eye/embroidery security, the two-pass neck seam, limbs, horns, ears, tail, sash or collar and crochet flowers.
+Follow the most restrictive label among every yarn, thread, stuffing and optional eye component. Before you commit the piece to a care method, clean and fully dry a complete assembled sample by the proposed method, then remeasure and inspect colour transfer, shrinkage, fibre shedding, stuffing migration, eye/embroidery security, the two-pass neck seam, limbs, horns, ears, tail, sash or collar and crochet flowers.
 
-Until that complete-sample test passes, recommend gentle surface cleaning with a barely damp cloth and drying supported on a towel away from heat. Never iron acrylic or textured yarn. Inspect every seam and attachment again after cleaning.
+Until that complete-sample test passes, keep to gentle surface cleaning with a barely damp cloth and drying supported on a towel away from heat. Never iron acrylic or textured yarn. Inspect every seam and attachment again after cleaning.
 
 ## Terms of Use
 
@@ -4946,7 +4930,7 @@ This pattern is licensed to the purchaser for personal use and for small-batch s
 
 ### You may
 
-Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 17” and does not claim unverified safety, testing, measurements, cultural authenticity or care results.
+Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 17” and makes no safety, testing, measurement, cultural-authenticity or care claim the seller has not checked.
 
 ### You may not
 

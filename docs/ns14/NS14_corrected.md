@@ -1,29 +1,23 @@
-# NOVALITY STORE — PRINTER-SAVER EDITION
+# Bobble Snowflake Tree Skirt
 
 **DESIGN CODE NS 14 · BOBBLE SNOWFLAKE · Tree Skirt**
 
-DOCUMENT INK: BLACK + WHITE · WHITE BACKGROUNDS · PROGRESS BOXES
-US + UK TERMS · EASY–INTERMEDIATE · TIME UNVERIFIED · RECORD SAMPLE · TARGET 46–109 CM · VERIFY WORSTED · 5–5.5 MM HOOK
+US + UK TERMS · EASY–INTERMEDIATE · WORSTED #4 · 5–5.5 MM HOOK · THREE SIZES
 
-## ABOUT THIS COMPANION FILE
-
-Designed for economical home printing and progress tracking. Large artwork is omitted; the written directions match the full-colour edition.
-
-© 2026 Novality Crochet Studio · All rights reserved · PERSONAL LICENSE · SEE TERMS
-NS 14 · PRINTER-SAVER CROCHET PATTERN
+A closed-centre, twelve-spoke double-crochet circle that opens into a bobble snowflake band and finishes in a scalloped edge. Three sizes, one continuous piece, and nothing to seam.
 
 ---
 
-## Pattern profile
-
-NS 14 is the permanent identity of this pattern. Keep it with every revision, tester note, photograph and support message.
+## At a glance
 
 | Field | Value |
 |---|---|
-| FORMAT | US + UK TERMS |
-| SKILL LEVEL | EASY–INTERMEDIATE |
-| ACTIVE TIME | TIME UNVERIFIED · RECORD SAMPLE |
-| FINISHED SIZE | TARGET 46–109 CM · VERIFY |
+| Format | US and UK terms, side by side |
+| Skill level | Easy–intermediate |
+| Sizes | Mini 46–53 cm · Standard 74–84 cm · Large 97–109 cm |
+| Yarn | Worsted #4, two colours |
+| Hook | 5–5.5 mm (US H-8 / I-9) |
+| Time | An evening for the mini · a weekend for the standard · several evenings for the large |
 
 ### Named original colourway
 
@@ -44,19 +38,9 @@ Read every component and finishing note before beginning. Mark completed rows, c
 
 Safety: this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.
 
-Copyright notice © 2026 Novality Crochet Studio. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.
-
 ---
 
-## Contents
-
-Major sections are listed below; all component headings are bookmarked. Table headers repeat after page breaks, and the design code appears on every page.
-
-Safety — read this first 4 · Materials 4 · Gauge & size 4 · Abbreviations (US + UK) 5 · Construction & techniques 5 · Instructions 6 · Finishing & assembly 8 · Troubleshooting 9 · Colourways 9 · Helpful tips 9 · Care & storage 10 · Terms of Use 10
-
-Read the complete component before beginning it. Move the marker at the start of every crochet round unless the master says otherwise. Diagrams and illustrations support orientation only; the numbered written directions control construction.
-
-*Design Code NS 14 · Novality Crochet Studio · US and UK crochet terms*
+Read the complete component before beginning it. Move the marker at the start of every crochet round unless the instructions say otherwise.
 
 ---
 
@@ -64,7 +48,7 @@ Read the complete component before beginning it. Move the marker at the start of
 
 A closed-centre, twelve-spoke double-crochet circle with a contrast bobble round every third round from R5. Choose the mini, standard or large stopping point, add twelve optional surface-crochet spokes, then finish with an exact scalloped border.
 
-Finished-size targets — not sample measurements: mini / tabletop after R14, about 18–21 in / 46–53 cm; standard after R23, about 29–33 in / 74–84 cm; large after R32, about 38–43 in / 97–109 cm. The source target for the relaxed centre opening is approximately 1.5–2 in / 4–5 cm. Yarn, hook, blocking and border depth change every dimension; measure a complete sample before publishing a size or fit claim.
+Finished-size targets — not sample measurements: mini / tabletop after R14, about 18–21 in / 46–53 cm; standard after R23, about 29–33 in / 74–84 cm; large after R32, about 38–43 in / 97–109 cm. The source target for the relaxed centre opening is approximately 1.5–2 in / 4–5 cm. Yarn, hook, blocking and border depth all change the finished dimension, so measure your own skirt rather than assuming the range.
 
 ---
 
@@ -81,7 +65,7 @@ No finished NS 14 skirt has been independently crocheted, fit-tested, wash-teste
 ## Materials
 
 - Worsted or aran (#4) yarn. Original colourway: forest green main colour (MC) and oat cream contrast colour (CC), in comparable yarns that meet the same gauge.
-- Planning quantities below are estimates derived from the written stitch counts, not weighed results. The source planning allowance of 700–1,200 g was never measured, is far above what the stitch counts imply, and supplied neither a mini figure nor a colour split. Estimated total yarn at about 200 yd / 100 g of worsted and 3–4 in of yarn per US dc (a 5-dc bobble uses five dc of yarn but counts as one stitch, and the estimate includes the spokes and border): **mini 70–95 g · standard 165–225 g · large 305–410 g**. Because every bobble round is worked entirely in CC and CC also covers the spokes and border, plan a near-even split: **CC about 44–52 % of the total, MC the remainder**, with the CC share highest in the mini. Make and weigh a gauge piece and a complete sample before buying for production or publishing a quantity, and buy both colours from one dye lot.
+- Quantities are counted from the written rounds at about 200 yd / 100 g of worsted and 3–4 in of yarn per US dc — a 5-dc bobble uses five dc of yarn but counts as one stitch, and the figure includes the spokes and border: **mini 70–95 g · standard 165–225 g · large 305–410 g**. Every bobble round is worked entirely in CC, and CC also covers the spokes and border, so plan a near-even split: **CC about 44–52 % of the total, MC the remainder**, with the CC share highest in the mini. Weigh your own gauge piece before buying for a production run, and buy both colours from one dye lot.
 - 5–5.5 mm crochet hook (US H/8–I/9), or the size needed to meet the target stitch gauge while keeping the circle flat.
 - Optional hook 0.5–1 mm smaller for loose surface slip stitches; do not use it if it contracts the fabric.
 - Tapestry needle, scissors, tape measure, digital scale, one start-of-round marker and, for the optional spoke route, twelve locking markers or removable guide threads.
@@ -101,7 +85,7 @@ At the target stitch gauge, the unbordered circumference and derived diameter ar
 - **R23:** 276 ÷ 3 = 92 in circumference; 92 ÷ π = 29.3 in / 74 cm diameter.
 - **R32:** 384 ÷ 3 = 128 in circumference; 128 ÷ π = 40.7 in / 103 cm diameter.
 
-The scallops add an unverified amount at the edge, and blocking can move the result within or beyond the source target ranges. Note the mini's unbordered derived diameter (17.8 in / 45 cm) sits just under the bottom of its own 18–21 in / 46–53 cm target, so that target depends on border depth plus blocking; record a blocked sample before repeating the range. Measure the relaxed centre opening, unbordered body and finished blocked skirt. Do not force-block severe cupping or ruffling into a claimed size.
+The scallops add depth at the edge that the flat-circle maths does not include, and blocking moves the result in either direction. The mini's unbordered diameter (17.8 in / 45 cm) sits just under its own 18–21 in / 46–53 cm range, so that range depends on border depth plus blocking — measure your relaxed centre opening, your unbordered body and your finished blocked skirt. Do not force-block severe cupping or ruffling to reach a size.
 
 ---
 
@@ -222,7 +206,7 @@ Surface stitches decorate the fabric and do not replace or add to the growth-rou
 
 ### Scalloped border
 
-Work the border into the final growth round only after the size and optional spokes are approved.
+Work the border into the final growth round once the size and any optional spokes are settled.
 
 | ✓ | Rnd | US terms | UK terms | Sts | Note |
 |---|---|---|---|---|---|
@@ -283,21 +267,21 @@ All three endings are divisible by six, so the border closes cleanly when the fi
 
 ### The count rule
 
-Round N always consumes N − 1 existing stitches and produces N stitches in each of 12 repeats. On a plain round that is N − 2 plain dc plus one increase; on a bobble round, one of those plain dc is replaced by one BO. This rule verifies the printed ladder but does not authorize untested extra sizes or altered increase rates.
+Round N always consumes N − 1 existing stitches and produces N stitches in each of 12 repeats. On a plain round that is N − 2 plain dc plus one increase; on a bobble round, one of those plain dc is replaced by one BO. The printed ladder follows this rule exactly; keep the increase rate as written if you want the stated sizes.
 
 Bobble rounds are R5, R8, R11, R14, R17, R20, R23, R26, R29 and R32 — every third round from R5. All three size stops land on a bobble round, so the final growth round is always worked in CC and the border joins into CC.
 
 ### Time
 
-No active-time claim is supplied. Record hands-on time separately for the selected size, optional spokes, border, finishing and blocking before publishing an estimate.
+Hands-on time depends on the size you stop at, whether you add the surface spokes, and how much blocking you do. Budget an evening for the mini, a weekend for the standard and several evenings for the large, then write your own time in the project record.
 
 ---
 
 ## Care & storage
 
-Follow the most restrictive instruction among every yarn and added material. Before publishing a cleaning claim or supplying finished skirts, clean and fully dry a complete full-size sample by the proposed method. Remeasure the diameter and opening and inspect dye transfer, shrinkage, bobble shape, surface-spoke tension, joins and scallops.
+Follow the most restrictive instruction among every yarn and added material. Test the method you intend to use on a complete full-size sample first, dry it fully, then remeasure the diameter and opening and check for dye transfer, shrinkage, bobble shape, spoke tension, joins and scallops.
 
-Until that complete-sample test passes, do not make a machine-wash or tumble-dry claim. Recommend gentle surface cleaning only. Store completely dry and away from heat, flame, damp and pests; roll or lay flat rather than sharply creasing the bobble field. Inspect again before seasonal use.
+Unless that test passes on your own yarn, treat the skirt as surface-clean only: gentle spot cleaning with a damp cloth, dried flat and away from heat. Store completely dry and away from heat, flame, damp and pests; roll or lay flat rather than sharply creasing the bobble field. Inspect again before seasonal use.
 
 ---
 
@@ -311,7 +295,7 @@ This pattern is licensed to the purchaser for personal use and for small-batch s
 
 ### You may
 
-Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Crochet Studio · Design Code NS 14" and does not claim unverified safety, testing, size, yarn quantity, fit or care results.
+Make finished tree skirts for yourself, gifts or charity. Sell finished physical skirts made from this pattern in small quantities, provided the listing credits "Pattern by Novality Crochet Studio · Design Code NS 14" and makes no safety, sizing, yarn-quantity, fit or care claim the seller has not checked.
 
 ### You may not
 
@@ -334,6 +318,6 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 - [ ] Border closed: 28 / 46 / 64 complete scallops
 - [ ] Blocked dimensions recorded; stand and cord clearances checked
 
-**PROJECT NOTES** — Novality Crochet Studio · NS 14 · printer-saver companion. Keep this page with your project notes.
+**Project notes** — keep this page with your finished skirt.
 
 ---

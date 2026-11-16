@@ -189,10 +189,30 @@ def test_ns13_star_size():
 
 
 def test_ns14_cover_brand_matches_the_others():
+    """Every master opens with its own title, not with a printer-edition label.
+
+    NS-14 used to start "# NOVALITY STORE — PRINTER-SAVER EDITION": a companion-file
+    brand line where the other sixteen carry the pattern name, plus placeholder front
+    matter ("TIME UNVERIFIED", "RECORD SAMPLE") and a "before publishing" editor's
+    note. It now opens like the rest and carries none of that.
+    """
     first = master("14").splitlines()[0]
-    assert first == "# NOVALITY STORE — PRINTER-SAVER EDITION"
+    assert first == "# Bobble Snowflake Tree Skirt"
     # the studio stays credited as the designer
     assert "Novality Crochet Studio" in master("14")
+    for gone in ("TIME UNVERIFIED", "RECORD SAMPLE", "PRINTER-SAVER",
+                 "ABOUT THIS COMPANION FILE", "before publishing"):
+        assert gone not in master("14"), gone
+
+
+def test_no_master_ships_internal_editor_notes():
+    """Nothing addressed to the designer may reach a reader's file."""
+    for i in range(1, 18):
+        n = f"{i:02d}"
+        text = master(n)
+        for gone in ("TIME UNVERIFIED", "RECORD SAMPLE", "before publishing",
+                     "delete before publishing"):
+            assert gone not in text, f"NS-{n}: {gone}"
 
 
 # --- the compiled volume stays in sync -------------------------------------
@@ -239,8 +259,8 @@ def test_every_master_body_is_embedded_verbatim():
 
 def test_volume_ledger_is_truthful():
     vol = VOLUME.read_text(encoding="utf-8")
-    # NS-14 keeps three warnings (a target size, an unproven gauge, an unchecked
-    # opening); its two old dialect errors are gone and its tables are audited.
+    # NS-14 keeps three warnings (an untested gauge, a yarn range, an unmeasured
+    # opening); its engine errors and its audit problems are both zero.
     assert "| NS-14 | Bobble Snowflake Tree Skirt | 0 / 3 | 0 / 0 | 6 / 34 |" in vol
     # ... and zero everywhere else, so the ledger must not claim otherwise
     for i in (1, 4, 6, 12, 13, 17):

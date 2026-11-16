@@ -172,7 +172,7 @@ Large decoration: use chunky yarn and a 5 mm hook. After the original Rnds 6-8, 
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished gnomes, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, beard shedding or matting, stuffing migration, shifted optional eyes and loosened nose or beard anchors. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the hat and beard and recheck every component after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished gnomes, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, beard shedding or matting, stuffing migration, shifted optional eyes and loosened nose or beard anchors. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Reshape the hat and beard and recheck every component after cleaning.
 
 ## Terms of Use
 

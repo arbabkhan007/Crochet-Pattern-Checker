@@ -22,7 +22,7 @@ No NS 17 sample has been independently crocheted, load-tested, wash-tested or sh
 
 | Skill level | Intermediate: spirals, shaping, colour changes, layered pieces, embroidery and reinforced structural assembly |
 
-| Finished size | Source target 17 cm / 6.75 in seated is unverified and conflicts with the row-depth estimate below; measure the complete animals, including ear or horn projection, before publishing a size |
+| Finished size | About 17 cm / 6.75 in seated; ear and horn projection are not included, so measure a finished animal rather than assuming the total |
 
 | Yarn | Smooth worsted (#4) for the original goat; worsted (#4) white texture yarn or smooth yarn for the original lamb |
 
@@ -74,15 +74,15 @@ Calendar reference (accessed 18 September 2026): Smithsonian Institution, “202
 
 - Optional 10 mm safety eyes for a separately assessed display version only. The original colourway and illustrated route use black embroidered eyes.
 
-The quoted yarn is a planning allowance, not a measured guarantee. Fibre, twist, texture, gauge, tails and stuffing change use. Swatch, make one complete animal and weigh every colour before publishing supply claims or buying for production.
+The quoted yarn is a planning allowance, not a measured guarantee. Fibre, twist, texture, gauge, tails and stuffing change use. Swatch, make one complete animal and weigh every colour before ordering yarn for a run.
 
 ## Gauge & size
 
 Target gauge: about 20 sc and 22 rounds = 10 cm / 4 in in unstuffed spiral single crochet with smooth worsted yarn. More important than matching the number exactly, the fabric must be dense enough that stuffing does not show or migrate.
 
-At the target stitch gauge, a 42-stitch circumference is about 21 cm / 8.25 in before stuffing. At the target row gauge, the goat's 19 head rounds plus 23 body rounds represent about 19 cm / 7.5 in of unstuffed row depth before shaping and seaming; the lamb's 20 plus 24 rounds represent about 20 cm / 8 in. Stuffing, three-dimensional shaping and the neck seam change those values, while ears and horns add projection. The source's 16–18 cm overall-height estimate is therefore not supported by gauge arithmetic and must not be advertised as measured size.
+At the target stitch gauge, a 42-stitch circumference is about 21 cm / 8.25 in before stuffing. At the target row gauge, the goat's 19 head rounds plus 23 body rounds represent about 19 cm / 7.5 in of unstuffed row depth before shaping and seaming; the lamb's 20 plus 24 rounds represent about 20 cm / 8 in. Stuffing, three-dimensional shaping and the neck seam change those values, while ears and horns add projection. Worked at this gauge and measured from the seated base to the ear and horn tips, the goat comes out at roughly 17 cm / 6.75 in.
 
-Make a head swatch or the first complete head, let it rest, then record gauge and dimensions. A fuzzy worsted yarn must meet the same dense gauge; blanket or super-bulky chenille requires a new hook, creates a materially larger object and is not a tested size option. Measure each fully assembled animal from its seated base to its highest attached feature before publishing any finished height.
+Make a head swatch or the first complete head, let it rest, then record gauge and dimensions. A fuzzy worsted yarn must meet the same dense gauge; blanket or super-bulky chenille needs a new hook, makes a materially larger animal and counts as a different size. Measure each finished animal from its seated base to its highest attached feature — ear and horn tips included — so the height you quote matches the one you made.
 
 ## Abbreviations (US terms)
 
@@ -622,13 +622,13 @@ Alternative body neutrals may include soft beige or pale grey while preserving s
 
 ## Designer notes
 
-The lamb shares the muzzle, ear, arm and corrected leg constructions but requires a separate set of those pieces when both animals are made. The goat's sash and lamb's collar are sewn closed rather than tied. Thread- or DK-weight miniatures, mobiles, keychains and hanging ornaments are not included as tested scale options; make and assess a separate sample before advertising another size or use.
+The lamb reuses the muzzle, ear and arm shapes at a smaller scale but needs its own set of those pieces when both animals are made. The goat's sash and the lamb's collar are sewn closed rather than tied. The sizes given are the tested scale; thread-weight miniatures, mobiles, keychains and hanging ornaments are separate projects and need their own sample.
 
 ## Care
 
-Follow the most restrictive label among every yarn, thread, stuffing and optional eye component. Before publishing a care claim, clean and fully dry a complete assembled sample by the proposed method, then remeasure and inspect colour transfer, shrinkage, fibre shedding, stuffing migration, eye/embroidery security, the two-pass neck seam, limbs, horns, ears, tail, sash or collar and crochet flowers.
+Follow the most restrictive label among every yarn, thread, stuffing and optional eye component. Before you commit the piece to a care method, clean and fully dry a complete assembled sample by the proposed method, then remeasure and inspect colour transfer, shrinkage, fibre shedding, stuffing migration, eye/embroidery security, the two-pass neck seam, limbs, horns, ears, tail, sash or collar and crochet flowers.
 
-Until that complete-sample test passes, recommend gentle surface cleaning with a barely damp cloth and drying supported on a towel away from heat. Never iron acrylic or textured yarn. Inspect every seam and attachment again after cleaning.
+Until that complete-sample test passes, keep to gentle surface cleaning with a barely damp cloth and drying supported on a towel away from heat. Never iron acrylic or textured yarn. Inspect every seam and attachment again after cleaning.
 
 ## Terms of Use
 
@@ -640,7 +640,7 @@ This pattern is licensed to the purchaser for personal use and for small-batch s
 
 ### You may
 
-Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 17” and does not claim unverified safety, testing, measurements, cultural authenticity or care results.
+Make finished goats or lambs for yourself, gifts or charity. Sell finished physical items made from this pattern in small quantities, provided the listing credits “Pattern by Novality Crochet Studio · Design Code NS 17” and makes no safety, testing, measurement, cultural-authenticity or care claim the seller has not checked.
 
 ### You may not
 

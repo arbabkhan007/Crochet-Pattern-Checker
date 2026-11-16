@@ -422,7 +422,7 @@ Stitch counts stay the same; only yarn, hook and stuffing change. Yarn scales wi
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Hamishes, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, loosened fringe, shifted eyes and opened seams. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check all eyes, knots and attachments again after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Hamishes, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, loosened fringe, shifted eyes and opened seams. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check all eyes, knots and attachments again after cleaning.
 
 ## Terms of Use
 

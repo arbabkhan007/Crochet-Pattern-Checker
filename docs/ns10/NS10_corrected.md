@@ -157,13 +157,13 @@ Cream  ·  Sage  ·  Dusty pink  ·  Pale grey  ·  Butter yellow
 
 Materials: state the actual yarn fibre from your ball band; embroidered face, no safety eyes, no buttons, beads or removable parts.
 
-Care: publish only the complete-sample-tested method described below. Until that test passes, state gentle surface cleaning and drying flat; a washable-yarn label alone does not validate the stuffed head, embroidery and assembled seams.
+Care: use only the method you have tested on a complete sample, as described below. Until that test passes, keep to gentle surface cleaning and drying flat; a washable-yarn label alone does not validate the stuffed head, embroidery and assembled seams.
 
-Use only under active adult supervision while the child is awake. Keep the comforter out of an infant’s cot, crib and other sleep space, and verify current safe-sleep guidance for the destination market before publishing listing advice.
+Use only under active adult supervision while the child is awake. Keep the comforter out of an infant’s cot, crib and other sleep space, and check current safe-sleep guidance for where you live before writing any listing or gift note.
 
 ## Care
 
-Follow the labels for the yarn, floss and stuffing, but test the whole assembled item rather than relying on a yarn label alone. Before publishing a machine-wash, hand-wash or other care claim, clean and fully dry a complete sample by that method; remeasure it and inspect for dye transfer, shrinkage, stuffing migration, distorted embroidery, opened ear seams and any movement at the twice-sewn 18-stitch head-to-blanket join. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Avoid high heat: cotton can shrink and the assembled shape can distort, although cotton does not felt like wool. Recheck every seam after cleaning.
+Follow the labels for the yarn, floss and stuffing, but test the whole assembled item rather than relying on a yarn label alone. Before you commit the pieced item to a machine-wash, hand-wash or any other method, clean and fully dry a complete sample by that method; remeasure it and inspect for dye transfer, shrinkage, stuffing migration, distorted embroidery, opened ear seams and any movement at the twice-sewn 18-stitch head-to-blanket join. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Avoid high heat: cotton can shrink and the assembled shape can distort, although cotton does not felt like wool. Recheck every seam after cleaning.
 
 ## Designer notes
 

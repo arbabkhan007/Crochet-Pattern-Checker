@@ -164,7 +164,7 @@ Grey tabby  ·  Orange ginger  ·  Cream  ·  Black  ·  Calico
 
 ## Care
 
-Follow the labels for every yarn and component used. Before publishing a care claim or supplying finished Momos, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes and loosened surface-worked ears or tail. Until that sample test passes, recommend gentle surface cleaning with a damp cloth and drying flat away from heat. Check all facial components and yarn anchors again after cleaning.
+Follow the labels for every yarn and component used. Before you wash or pass on finished Momos, clean and dry a complete sample by the method you intend to use, then remeasure it and inspect for dye transfer, fibre change, stuffing migration, shifted eyes and loosened surface-worked ears or tail. Until that sample test passes, keep to gentle surface cleaning with a damp cloth and drying flat away from heat. Check all facial components and yarn anchors again after cleaning.
 
 ## Terms of Use
 

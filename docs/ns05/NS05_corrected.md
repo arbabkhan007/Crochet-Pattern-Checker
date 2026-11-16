@@ -186,7 +186,7 @@ The flat orange beak and embroidered eyes avoid plastic facial parts; all sewn a
 
 | DK / light worsted (#3) - 2.5-2.75 mm | 7.5 - 8.5 cm |
 
-These hooks are starting points only. Make a dense swatch and measure a completed sample before advertising any alternate size.
+These hooks are starting points only. Make a dense swatch and measure a completed sample before choosing another size.
 
 ## Colorways
 
@@ -194,7 +194,7 @@ Original colourway: sunshine-yellow body and wings, tangerine-orange beak, and b
 
 ## Care
 
-Follow the actual yarn label and wash-test a finished sample before publishing care claims. Until that test is complete, recommend gentle surface cleaning with a damp cloth and mild soap, followed by drying flat away from heat. Restore the pile gently by hand; brushing can pull fibres from some chenille yarns.
+Follow the actual yarn label and wash-test a finished sample before committing to any washing method. Until that test is complete, keep to gentle surface cleaning with a damp cloth and mild soap, followed by drying flat away from heat. Restore the pile gently by hand; brushing can pull fibres from some chenille yarns.
 
 ## Terms of Use
 
