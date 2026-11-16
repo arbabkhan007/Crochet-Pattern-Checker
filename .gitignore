@@ -86,3 +86,6 @@ web/studio/dist/
 # source lives in src/client/lib/, so re-include it explicitly.
 !web/studio/src/client/lib/
 !web/studio/src/client/lib/**
+
+# distributable archive, built by docs/kit/make_zip.py
+NovalityStore_All_17_Patterns.zip
