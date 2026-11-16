@@ -175,7 +175,16 @@ on page 1 changed.
 ## 3. Corrections the pasted volume still needs (not present in this repo's older revision)
 
 The repo's `NovalityStore_Grand_Collection.md` is a pre-round-2 snapshot, so four of the volume's
-current sentences do not exist here to patch. Apply these in the volume itself.
+current sentences do not exist here to patch. Apply these in the volume itself — either by hand from
+the items below, or with the script that ships alongside this report:
+
+```bash
+python3 docs/reviews/round3_volume_errata.py --dry-run path/to/NovalityStore_Grand_Collection.md
+python3 docs/reviews/round3_volume_errata.py           path/to/NovalityStore_Grand_Collection.md
+```
+
+It applies all ten round-3 edits idempotently, lists which fixes are already in place, and exits 1 if
+any expected sentence is missing (so a stale volume is detectable rather than silently half-patched).
 
 ### 3.1 NS-04, "Coco tips forward or backward" bullet
 
@@ -224,27 +233,55 @@ given. "DK gauge" contradicts the materials list and would make the collar ~15 %
 ## 4. Per-pattern record
 
 `tables/rows` are the stitch tables and instruction rows the auditor re-derived. "Prose" lists the
-figures that were hand-derived beyond the tables.
+figures that were hand-derived beyond the tables — every one of the 17 patterns now has at least one
+non-trivial derivation, not just a gauge-to-size sanity check (about 60 numbers in all).
 
 | Pattern | tables/rows | Prose figures re-derived | Outcome |
 |---|---|---|---|
-| NS-01 Hamish | 9 / 91 | yarn 25 + 12 + 5 g (+6 g scarf) against ~31 g implied by its stitch total at the collection's own ~1.6 g per 100 stitches (so the allowance is generous, not short); 15 cm height; 70 mm body, 70 × 67 mm head | clean |
+| NS-01 Hamish | 9 / 91 | head 70 × 67 mm = 48 st × 4.55 mm and 16 rounds × 4.17 mm ✓; eye spacing 7 st = 31.9 mm ≈ "32 mm, just under half the head" ✓; muzzle face 24 st = 34.8 mm ≈ 35 ✓ and rim 18 st = 26.1 mm ≈ 26 ✓; yarn 42 g allowed vs ~31 g implied | clean |
 | NS-02 Boo, Pip, Bramble | 11 / 73 | 36 st at 3.5 mm = 40.1 mm across — exactly as stated ✓; brim 20 st = 22.3 mm vs "about 24 mm" on a 27 mm head (9 %, inside "about"; 24 mm is also the right ~11 % negative ease) | clean |
-| NS-03 | 4 / 52 | gauge ↔ finished size ↔ yarn allowance | clean |
+| NS-03 | 4 / 52 | tail 10 rounds × 4.3 = 43 mm ✓; 6 sts = 27 mm ≈ "about half" the 52 mm head ✓; +2 gill rounds → +17 mm ≈ 10 → 12 cm span ✓; neck-rework arithmetic 18 → 20 → 24 works ✓ | clean |
 | NS-04 Coco | 4 / 39 | 36 st = 52 mm → 4.5 mm/st; Rnd 5 width 43 mm; leg lengths 34.4 / 38.7 mm from joins 17.2 / 21.5 mm up → both feet 17.2 mm below the body ✓ | **2 corrections** (§2.1, §2.2) + 3 in the volume only (§3.1–3.3) |
-| NS-05 | 3 / 30 | gauge ↔ size ↔ yarn | clean |
-| NS-06 the cat | 2 / 20 | 48 st = 79 × 52 mm → 36 st = 59 × 39 mm; ears 5 → 3 → 2 (row maths closes exactly); tail a flat 4-stitch spiral that explicitly uses no magic ring | **1 correction** (§2.3) |
-| NS-07 | 7 / 33 | petal round 36 st, asserted by the pattern's own count (a petal fan is outside the generic grammar, so this is the documented override) | clean |
-| NS-08 | 7 / 59 | gauge ↔ size ↔ yarn | clean |
-| NS-09 | 3 / 11 | gauge ↔ size ↔ yarn | clean |
-| NS-10 | 3 / 24 | 26 cm square blanket → diagonal 26 × √2 = 36.8 cm, exactly as stated ✓ | clean |
-| NS-11 the turkey | 4 / 18 | 30-st base = 5 cm wide (~5.2 mm per stitch) ✓; 12 cm tall; stuffing 10 g against ~240 cm³ of body | clean |
-| NS-12 the fir | 1 / 26 | 48-st base 72 mm round (7 cm wide ✓); enclosed volume < 150 cm³ | **1 correction** (§2.4) |
+| NS-05 | 3 / 30 | 23 rounds × 7 mm = 161 mm ≈ 16 cm ✓; widest 30 st × 8 mm = 76.4 mm = the "76 mm-diameter head" ✓; 7-st eye spacing = 56 mm ✓; 12-st swatch = 96 mm ≈ "about 10 cm" ✓ | clean |
+| NS-06 the cat | 2 / 20 | 48 st = 79 × 52 mm → 36 st = 59 × 39 mm (fixed, §2.3); ears 5 → 3 → 2 close exactly; tail is a flat 4-stitch spiral that explicitly uses no magic ring ✓ | **1 correction** (§2.3) |
+| NS-07 | 7 / 33 | nine petals = 18 anchors × 2 = the 36-st petal round ✓; the bulky version ("about 1.3× the gauge" = 4.5/3.5 = 1.286) predicts 3.9 / 4.9 / 3.5 cm from 3.0 / 3.8 / 2.7 ✓ | clean |
+| NS-08 | 7 / 59 | 30 st = 43 mm ✓; 24 rounds × 4.3 = 103 mm = the stated "103 mm by the gauge" ✓; legs 6 rnd = 25.8 mm on a 26 mm join and 8 rnd = 34.4 mm on a 34 mm join — both feet exactly on the table ✓; spike strip 3 + 9 × 3 + 3 = 33 ✓ | clean |
+| NS-09 | 3 / 11 | 24 st = 26.7 mm disc ✓ exact; bump positions 4 / 9 / 13 / 18 / 22 follow from the runs 3,4,3,4,3,2 ✓; 19 plain + 5 fans = 35 ✓; 42-st version = 46.8 mm + flippers ≈ 5.7 cm ✓ | clean |
+| NS-10 | 3 / 24 | head 36 st at 4.3 mm = 49.3 mm ≈ 4.9 cm ✓; blanket check 9 dc = 38.7 ≈ 39 mm ✓; 26 cm square → diagonal 26 × √2 = 36.8 cm ✓ | clean |
+| NS-11 the turkey | 4 / 18 | 30 st = 45-48 mm ≈ "about 5 cm wide at the base" ✓; gauge 11 rounds = 5 cm ⇒ 12 cm ≈ 27 rounds ✓; stuffing 10 g against ~240 cm³ of body ✓ | clean |
+| NS-12 the fir | 1 / 26 | 48 st at ~4.7 mm = 72 mm round = the stated 7 cm wide ✓; enclosed volume under 150 cm³ (fixed stuffing, §2.4) | **1 correction** (§2.4) |
 | NS-13 the ornaments | 3 / 13 | bauble 6 → 24 then closed to a 6-st crown ✓ (24 st ≈ 36 mm vs stated 3.75 cm, inside "about"); star = 15 mm ring + 2 × ~14 mm blocked fan reach | **1 correction** (§2.5) |
 | NS-14 the tree skirt | 6 / 0 (skipped by the tool — see §6) + 32 rows by hand | every growth round reads 12 × N with N − 2 plain dc per repeat (N − 3 on bobble rounds); total 6,336 st ✓; its own gauge derivation gives 4 in per 6¼ rounds vs the 6 written (reported as F3 in its validation report) | **1 correction** (§2.6) |
-| NS-15 the wreath | 5 / 18 | tube 22/92/125 cm targets; poinsettia geometry (see §5.1) | clean (1 item deferred) |
-| NS-16 the lion | 4 / 31 | Row 6 turn, leg 8 rounds, no-sew body ✓ | clean |
-| NS-17 the goat & lamb | 14 / 154 (largest) | 43 strands × 14 cm horseshoe maths 24 + 10 + 9 = 43 ✓; collar ch 14 (see §3.4) | volume-only: 1 (§3.4) |
+| NS-15 the wreath | 5 / 18 | all three sizes are circumference = π × centreline diameter: 7 → 22.0, 29 → 91.1, 40 → 125.7 cm against 22 / 92 / 125 ✓; poinsettia geometry deferred (§5.1) | clean (1 item deferred) |
+| NS-16 the lion | 4 / 31 | 20 sc & 20 rounds = 10 cm ⇒ 20 st = 10 cm round, 5 cm flat ✓ (both stated); garland maths 200 − 40 = 160, 160 ÷ 23 = 6.96 ≈ "about 7 cm" ✓; toe 23 → 20 → 8 → 4 ✓ | clean |
+| NS-17 the goat & lamb | 14 / 154 (largest) | hair 24 + 10 + 9 = 43 strands ✓; collar 13 st × 5 mm = 65 mm and 12 × 5 = 60 mm = the stated "about 6.5 cm / 6 cm" ✓ (only the yarn name is wrong, §3.4); its size row already flags the 17 cm target as unverified ✓ | volume-only: 1 (§3.4) |
+
+### 4.1 The checks that came out exact
+
+Worth recording, because these are the sentences that *look* unchecked but are in fact right, and a
+future edit should not "fix" them:
+
+- **NS-09** — 24 shell stitches at 3.5 mm/ch = 84 mm round = **26.7 mm** disc, exactly as written; the
+  five appendage bumps land on stitches **4 / 9 / 13 / 18 / 22**, exactly as written, because the runs
+  are 3,4,3,4,3,2 (sum 24) and the round produces 19 plain + 5 fans = **35**; the 42-stitch version is
+  46.8 mm + flippers ≈ **5.7 cm**, exactly as written.
+- **NS-15** — all three wreath sizes satisfy circumference = π × centreline diameter: 7 → 22.0 cm,
+  29 → 91.1 cm, 40 → 125.7 cm against 22 / 92 / 125.
+- **NS-07** — "about 1.3× the original gauge" is 4.5/3.5 = 1.286, and applying it to 3.0 / 3.8 / 2.7 cm
+  gives 3.9 / 4.9 / 3.5 cm, exactly the stated scaled sizes, with stitch counts unchanged.
+- **NS-16** — "20 sc and 20 rounds = 10 cm" then "20 stitches = 10 cm circumference, 5 cm flat" is
+  self-consistent, and 160 ÷ 23 = 6.96 cm is "about 7 cm".
+- **NS-08** — both legs are exactly as long as their joins are high (6 rounds = 25.8 mm on a 26 mm
+  join, 8 rounds = 34.4 mm on a 34 mm join), so all four feet reach the table; the spike strip
+  3 + 9 × 3 + 3 = 33.
+- **NS-10** — 36-stitch head at 4.3 mm = 49.3 mm ≈ "head about 4.9 cm across"; 9 dc = 38.7 ≈ 39 mm;
+  26 cm square → 36.8 cm diagonal.
+- **NS-01** — head 70 × 67 mm is 48 st × 4.55 mm and 16 rounds × 4.17 mm; 7-stitch eye spacing =
+  31.9 mm ≈ "about 32 mm, just under half the head"; muzzle face 24 st = 34.8 ≈ 35 mm and rim
+  18 st = 26.1 ≈ 26 mm.
+- **NS-03** — 10-round tail × 4.3 mm = 43 mm; the gill option (+2 rounds at 12 sts) adds ~17 mm,
+  i.e. 10 → 12 cm; the neck fix (R13 20 st, R14 [4 sc, inc] × 4 = 24) consumes all 20 and makes 24.
+- **NS-05** — 30 st × 8 mm = 76.4 mm = the stated 76 mm-diameter head; 7-stitch eye spacing = 56 mm.
 
 ## 5. Examined and deliberately not changed
 
@@ -303,6 +340,9 @@ petal (a design change). Recommend clarifying the anchor in the petal row either
 ## 7. Re-verify
 
 ```bash
+# the round-3 figures, re-derived by test (stdlib only, 9 tests)
+python3 -m pytest tests/test_ns_prose_figures.py -q
+
 # arithmetic over all 17 masters (expect problems=0 unparsed=0)
 python3 - <<'EOF'
 import sys; sys.path.insert(0,'docs/kit')
