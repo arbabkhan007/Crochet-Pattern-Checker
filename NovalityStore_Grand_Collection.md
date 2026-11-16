@@ -1314,7 +1314,7 @@ Both are 36 stitches around with only a shallow waist between them - that is wha
 
 | R4 | join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3 | (24) | join the BACK legs |
 
-| R5 | 1 sc, inc, 1 sc, inc, 1 sc, join FL1: 3 sc, [sc, inc] x 3, 1 sc, join FL2: 3 sc, 3 sc, inc, 2 sc | (30) | join the FRONT legs |
+| R5 | [sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc | (30) | join the FRONT legs |
 
 | R6 | [4 sc, inc] x 6 | (36) | full width - check gauge |
 
@@ -1352,11 +1352,11 @@ How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds b
 
 Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
 
-Rnd 5 - the FRONT legs (30 stitches): work 1 sc, inc, 1 sc, inc, 1 sc, making seven; join a leg over the next 3 sc; work [sc, inc] x 3 and 1 sc, making ten; join the second leg over the next 3 sc; work 3 sc, inc, 2 sc to the end, making seven. In the finished round that is 7 - 3 - 10 - 3 - 7 = 30, all six increases falling inside the plain runs. The 7-10-7 spacing centres each front leg between the two back legs.
+Rnd 5 - the FRONT legs (30 stitches): work [sc, inc] x 3, making nine; join a leg over the next 3 sc; work [sc, inc] x 3 and then 3 sc, making twelve; join the second leg over the next 3 sc; work 3 sc to the end, making three. In the finished round that is 9 - 3 - 12 - 3 - 3 = 30, all six increases falling inside the two plain runs. That puts the front legs over stitches 7-9 and 19-21 of Rnd 4 while the back legs sit over 1-3 and 13-15, so every neighbouring pair of legs is three plain stitches apart all the way round and the four feet form a rectangle.
 
-Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 5 + 3 + 7 + 3 + 6 = 24, using every stitch of Rnd 4; made = 7 + 3 + 10 + 3 + 7 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
+Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 6 + 3 + 9 + 3 + 3 = 24, using every stitch of Rnd 4; made = 9 + 3 + 12 + 3 + 3 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
 
-Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. The correct spacing covers the deepest footprint this shape allows - about 65 mm across and 29 mm front to back. Hold the piece upside down and check all four legs sit square before you stuff the body.
+Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. At thirty stitches and 4.5 mm per stitch the body itself measures about 43 mm across at the Rnd-5 leg join (about 34 mm at Rnd 4); the splayed legs widen the standing footprint beyond that, so measure your own piece rather than relying on a printed number. Hold the piece upside down and check all four legs sit square before you stuff the body.
 
 The legs join low (Rnd 4-5) so every foot hangs about 17 mm below the body and Coco stands on her feet.
 
@@ -1382,7 +1382,7 @@ Before you sew - lay every component out and check: 4 legs (2 back of 8 rounds, 
 
 - **Coco will not stand.** Check the join height, not the leg spacing. The legs belong on Rnd 4 and Rnd 5; joined any higher, they cannot clear the underside of the body and the belly rests on the table.
 
-- **Coco tips forward or backward.** Most often the front legs are lined up behind the back legs instead of between them - the Rnd 5 spacing must be 7 sc, 10 sc, 7 sc. If still tipping, stuff the lower body more firmly and settle weight back over all four feet.
+- **Coco tips forward or backward.** Most often the front legs are lined up behind the back legs instead of between them - keep all four leg joins three plain stitches apart all the way round (back legs over stitches 1-3 and 13-15 of the Rnd-4 round, front legs over 7-9 and 19-21). If still tipping, stuff the lower body more firmly and settle weight back over all four feet.
 
 - **Rocks back, front feet in the air.** All four legs are the same length and they cannot be. Front legs join at Rnd 5 (21 mm up), back at Rnd 4 (17 mm up); work the front legs 9 rounds and the back legs 8.
 
@@ -1734,7 +1734,7 @@ Work in a continuous spiral unless a piece says otherwise - no joins, no chain 1
 
 #### 1. Body - one no-sew piece
 
-The base is worked up to 48 stitches before the walls begin; the base size sets the whole cat. Stopping at 36 gives a body about 34 mm across that comes out tall and round no matter how firmly it is filled.
+The base is worked up to 48 stitches before the walls begin; the base size sets the whole cat. Stopping at 36 gives a body about 39 mm across that comes out tall and round no matter how firmly it is filled.
 
 | Rnd | Instruction | Sts | Note |
 
@@ -3059,7 +3059,7 @@ No finished tree has been shown by Novality Store to comply with ASTM F963, EN 7
 
 - Hook: 4 mm (US G-6); use 3 mm for DK mini, 5 mm for chunky.
 
-- Stuffing: fibre fill about 25 g (a little only - the tree stands on tension).
+- Stuffing: fibre fill about 5 g (a little only - the tree stands on tension).
 
 - Optional: 1 circle of cardboard or firm felt for the base. Trace inside the R9 fold ridge and cut the circle 3-5 mm smaller; at the stated gauge it will usually be 55-65 mm across.
 
@@ -3234,7 +3234,7 @@ Tag your makes with **#NovalityStore** and **#NovalityTree** - Show us your fore
 
 Three quick decorations from leftover yarn: a stuffed round bauble, a flat-blocked five-point star, and a crisp six-arm snowflake. Allow about 15-40 minutes each, including finishing (blocking and drying take additional elapsed time).
 
-**FINISHED SIZE**  Bauble about 3.75 cm (1.5 in) across; star about 9 cm (3.5 in); snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
+**FINISHED SIZE**  Bauble about 3.75 cm (1.5 in) across; star about 4.5 cm (1.75 in); snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
 
 ---
 
@@ -3423,7 +3423,7 @@ Tag your makes with **#NovalityStore** and **#NovalityOrnaments** - Tag us in yo
 
 *Verified master · engine 0 errors / 0 warnings · independent audit 0 problems · colour edition 10 pp · print edition 10 pp · reports: `docs/ns14/NS14_validation_report.md`*
 
-## NOVALITY CROCHET STUDIO — PRINTER-SAVER EDITION
+## NOVALITY STORE — PRINTER-SAVER EDITION
 
 **DESIGN CODE NS 14 · BOBBLE SNOWFLAKE · Tree Skirt**
 
