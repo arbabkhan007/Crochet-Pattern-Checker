@@ -12,11 +12,12 @@ figure that no tool can read (sizes, widths, weights, leg spacing, derived dimen
 |---|---|
 | Patterns reviewed | 17 of 17 |
 | Stitch tables re-derived | 90 |
-| Instruction rows re-derived | 692 (0 unreadable, 0 mismatched) + NS-14's 32 skirt rounds, which the tool skips (see §6) |
+| Instruction rows re-derived | 726 (0 unreadable, 0 mismatched), NS-14's 30 skirt rounds included — the round-4 tooling fix made them visible (§8.2) |
 | Arithmetic errors found | 0 |
 | Prose/geometry errors found and corrected | 8 in this repo's masters (7 patterns) · 4 more that exist only in the pasted volume |
 | Left for a sample | 1 (NS-15 poinsettia size — text is ambiguous, not wrong) |
 | Ledger/reproducibility notes | 4 (see §6) |
+| Round-4 follow-up (third-party review of 9 claims + 5 tooling proposals) | 4 claims real and fixed (NS-14 notes, NS-14 checkbox audit, NS-16 heel parity, NS-01 colour change), 5 stale or incorrect; 2 more tooling defects found and fixed; see §8-§9 |
 
 The stitch-level arithmetic in the collection is genuinely clean: every round and row in all 17
 patterns re-derives from its own instruction text, including the joined-leg rounds (NS-04), the
@@ -349,12 +350,14 @@ petal (a design change). Recommend clarifying the anchor in the petal row either
    (`NovalityStore_Grand_Collection_corrected.md`) carries a ledger whose engine, audit, table/row and
    page counts are all recomputed on every build, so the row reads 2 / 4 because that is what the
    engine reports.
-2. **The shared auditor silently skips NS-14.** Its tables carry a leading `[ ]` checklist column, and
-   `audit_tables()` skips any row whose first cell starts with `[ ]`/`[x]`, so all 32 NS-14 rows are
-   invisible to it (`rows=0`). The skirt's counts were checked by hand instead: `Sts` = 12 × N for
-   every round 2-32 and the plain runs are N − 2 (N − 3 on bobble rounds) — all correct. If NS-14 is
-   ever re-audited with the kit, its tables need the checkbox column removed or the auditor needs to
-   skip the checkbox cell instead of the row.
+2. **The shared auditor silently skipped NS-14 — fixed in round 4.** Its tables carry a leading
+   `[ ]`/`✓` checklist column, and `audit_tables()` never matched a round label, so every NS-14 table
+   was invisible (`rows=0`, a *false pass*). `strip_checkbox()` now removes that column when the header
+   cell really is a box marker and most rows carry one, and `build_grand.py` counts rows through the
+   same helper. With the tables visible, thirty rows still failed to parse until the grammar learned
+   `N sts in next st`; they now re-derive from the instruction text. Hand-check of the same rows agreed
+   with the tool: `Sts` = 12 × N for rounds 2-32, plain runs N − 2 (N − 3 on bobble rounds) — all
+   correct. See §8.2.
 3. **Override dicts are per pattern.** `OVERRIDES` in `docs/kit/audit_overrides.py` is keyed by
    `"NS-xx"`, so the call must be `audit_tables(text, OVERRIDES["NS-07"], SKIP_TABLES)`. Passing the
    whole dict looks fine but disables every override, and the 14 override-covered rows (NS-07 petal,
@@ -391,6 +394,122 @@ for i in range(1,18):
     print(f'NS-{n}', len(probs), len(unp))
 EOF
 
-# engine over all 17 masters (expect 0/0 except NS-14 2/4)
+# engine over all 17 masters (expect 0/0 except NS-14 0/3)
+for n in $(seq -w 1 17); do printf "NS-%s " $n; python3 docs/kit/engine_run.py docs/ns$n/NS${n}_corrected.md | tail -6; done
+```
+
+---
+
+# Round 4 — checking the pasted third-party review, claim by claim
+
+A reviewer's list of nine pattern mistakes and five validator fixes was checked against
+**this** repo. Several of its quotations come from an older copy of the volume: the
+seven-column materials ledger it describes (with `DK #3` and a `3.5 mm` column) has never
+existed here, and the NS-04 row it quotes is the pre-round-3 row. Every claim was
+re-derived from the current masters rather than from the review's text.
+
+## 8. Section A — the nine claimed pattern mistakes
+
+| # | Claim | Verdict | What the masters actually say / what changed |
+|---|---|---|---|
+| 1 | The materials ledger's 7 columns carry wrong yarn weight and hook (`DK #3`, `3.5 mm`) | **Stale — no action** | The volume's only seven-column table is the *verification ledger* (Code, Pattern, Engine E/W, Audit, Tables/rows, Colour pp, Print pp). No pattern carries a `DK #3` or `3.5 mm` ledger column; the hook appears only as the working hook, which is correct for those yarns. |
+| 2 | NS-14 ends with `Revision notes — delete before publishing` | **True — fixed** | Removed from the pattern body. The thirteen findings it carried are recorded here (§2.6, §6) and in the volume's audit, not inside the pattern a customer would print. |
+| 3 | NS-04's leg labels (BL/FL 1–2) are mislabelled or swapped | **False** | Each label names the leg it joins: `join BL1/BL2` on Rnd 4 (back legs), `join FL1/FL2` on Rnd 5 (front legs). The rows were, however, wrong in a different way — see §8.1. |
+| 4 | NS-01's hoof colour change is buried in a note column instead of the row | **Fair — clarified** | R6 now reads `BLO sc in 17, BLO sc in last st; change to Yarn A` with the hoof start in the note, so the change is part of the instruction, not a remark beside it. The colour order itself (Yarn C legs, Yarn A hooves) was already right. |
+| 5 | NS-02's wing "cancels its own taper": Row 1 is 12, Row 2 is 12, "a taper that never tapers" | **False** | Row 1 `sc 4, hdc 4, dc 4` = 12 from a 13-chain; Row 2 `sc 3, hdc 4, dc 5` = 12. The *count* is deliberately held while one stitch migrates from sc to dc — that is how a flat wing tip is curved, and the row still measures twelve stitches along its length. A note now says so (§8.2). |
+| 6 | NS-03's tail closure cannot work: "3 front + 3 back" with 3 sc | **False as arithmetic — wording fixed** | Six stitches fold into three pairs and take three sc; the count was never 3 + 3 = 6 requiring 3 sc. The instruction now reads "3 pairs (each pair is one front and one back stitch)". |
+| 7 | NS-08's wings cannot reach 23 counted stitches from 12 | **False** | Row 1 `sc 4, hdc 3, dc 3` = 10 from an 11-chain; Rows 2–3 hold at 10; Row 4's scallop anchors take 2 + 2 + 4 = 8 plus two shells' anchors = all 10. The 18 counted stitches cup over single anchors. Note added. |
+| 8 | NS-14: (a) publishing notes in the body, (b) the tick-box column makes the auditor skip every table, (c) the border's stitch totals are unverifiable | **(a) true, (b) true, (c) fair — all fixed** | (a) removed. (b) `audit_lib.strip_checkbox` now drops the leading box column, so the tables are audited; the build's table/row counter uses the same helper. (c) the border now names its own totals: 168 / 276 / 384 worked stitches. |
+| 9 | NS-16's stocking heel finishes wrong side out (RS/WS parity) | **True — fixed** | Ten heel rows with a turn at the end of every row leave the **wrong** side facing after Row 10, so the pickup round was being worked inside out and the BLO ridges of Rows 2, 4 and 6 would have shown on the outside. Row 10 now ends `ch 1, turn`, and the prose explains why. `test_ns16_heel_finishes_right_side_out` replays the facing row by row. |
+
+### 8.1 The one substantive design defect this round found: NS-04's leg pairs
+
+Round 3 spaced the four leg joins evenly (3 plain stitches between every neighbouring
+pair) but placed the *matching* legs opposite each other: back-left at stitches 1–3 and
+back-right at 13–15, front-left at 7–9 and front-right at 19–21. Even spacing is only
+half the requirement — a quadruped's legs come in pairs, and a pair split across the body
+leaves each flank showing two legs of the same pair, which is what tips the toy.
+
+Both legs of a pair now join on the same round, a quarter of the body apart:
+
+| Round | New instruction | Consumed → made | Legs land on |
+|---|---|---|---|
+| Rnd 4 (back) | `join BL1: 3 sc, sc, inc, join BL2: 3 sc, [sc, inc] x 5` | 18 → 24 | 1–3 and 7–9 |
+| Rnd 5 (front) | `[2 sc, inc] x 4, join FL1: 3 sc, sc, inc, sc, join FL2: 3 sc, sc, inc, sc` | 24 → 30 | 13–15 and 19–21 |
+
+Both rounds still consume every stitch of the round below and still end at 24 and 30; the
+four gaps are 3 / 3 / 3 / 3 and each pair is six stitches (90°) apart, with the front pair
+opposite the back pair. The prose, the arithmetic line and the "Coco tips" troubleshooting
+bullet were rewritten to match, and `test_ns04_legs_are_paired_and_evenly_spaced` now
+asserts the pairing rather than merely the spacing.
+
+### 8.2 The audit was hollow for NS-14, and the numbers hid it
+
+Two tooling defects were found while checking claim 8, both now fixed in `docs/kit/audit_lib.py`:
+
+1. **The checkbox column.** `is_round_header` never saw a round label, so `audit_tables`
+   skipped all six of NS-14's tables and reported `0 / 0`. That is a false pass, not a
+   pass. `strip_checkbox` now removes the leading box column (only when the header cell
+   really is a box marker and most rows carry one), and `build_grand.py` counts rows
+   through the same helper — NS-14's ledger row now reads **6 tables / 34 rows**, where it
+   read `6 / 0`.
+2. **The grammar.** With the tables visible, thirty rows still failed to parse
+   (`[dc in next st, 2 dc in next st] x 12`), because the sequence parser had no rule for
+   "N sts in next st". Added, along with `N st in each st around` and the leading
+   `Ch 2, ...` / trailing `sl st to first …` forms. NS-14's twenty growth rounds and twelve
+   counted rows are now **re-derived, not quoted**: all thirty agree with the stated
+   totals. The previous "re-derived by hand" footnote was replaced accordingly.
+
+Result: **90 tables, 726 instruction rows, 0 audit problems, 0 unparsed** across all
+seventeen masters, and 0 engine errors. NS-14 carries three warnings, all of them honest
+"I cannot verify this data" flags: a target finished size, an untested gauge sample, and an
+approximate opening.
+
+### 8.3 One engine change was needed to make claim 8's numbers honest
+
+NS-14's two long-standing engine *errors* were false positives: the piece prints a
+`| US terms | UK terms |` conversion table, which `_declared_dialect` read as a UK
+declaration and then flagged for containing `sc`. A piece that declares **both** dialects
+is now labelled `US+UK` and is not flagged for using either. Without this, the ledger
+could never show a clean NS-14, and the honest way to clear it was in the engine, not by
+suppressing the check.
+
+## 9. Section B — the five proposed validator features
+
+| # | Proposal | State |
+|---|---|---|
+| 1 | Strip a leading checkbox column before parsing | **Implemented** — `strip_checkbox`, used by both the auditor and the build's row counter. |
+| 2 | Turned-row height profile / dot-product check for flat pieces that curl | **Not implemented — deliberately.** The masters state gauge as "about N mm per stitch/round" and give finished sizes as "about"; a height model formalised to the tolerance this checker would need to avoid false positives cannot distinguish a deliberate curve (NS-02's wing rows, NS-08's scallops) from an error. The specific failure it was aimed at — a flat panel closing on the wrong side — is caught instead (items 3 and §8, claim 9). |
+| 3 | RS/WS parity tracking across flat → round transitions | **Implemented in the narrow, testable form.** `test_ns16_heel_finishes_right_side_out` replays the heel's ten rows, checks every RS/WS note against the simulated facing, and asserts the pickup round starts right side out. A general engine-level tracker was not added: the masters that transition flat → round are NS-16's heel and NS-04's legs, and both are now covered by direct tests. |
+| 4 | Circular quadrant grouping for multi-limb joins | **Implemented as a check.** `test_ns04_legs_are_paired_and_evenly_spaced` requires that legs of a pair are six stitches apart (one quadrant at 24 stitches), that all four gaps are 3, and that each pair lies opposite the other. This is what caught §8.1. |
+| 5 | Bracket-multiplier termination regex `\[([^\[\]]+)\]\s*[x×*]\s*(\d+)` | **Already supported, now widened.** `[..] x 4, 2 sc` parsed correctly before this round; the multiplier now also accepts `×` and `*`, and bracket bodies may contain `dc in next st`-style terms. |
+
+## 10. Re-verify (round 4)
+
+```bash
+# rebuild and prove the committed volume is current
+/tmp/venv/bin/python docs/kit/build_grand.py
+/tmp/venv/bin/python docs/kit/build_grand.py --check
+
+# prose figures, leg pairing, heel parity, checkbox-aware audit (17 tests)
+/tmp/venv/bin/python -m pytest tests/test_ns_prose_figures.py -q
+
+# engine: dual-dialect tables are not errors (26 tests)
+PYTHONPATH=src /tmp/venv/bin/python -m pytest tests/test_stages.py -q
+
+# arithmetic over all 17 masters: expect 0 problems, 0 unparsed everywhere
+python3 - <<'EOF'
+import sys; sys.path.insert(0, 'docs/kit')
+from pathlib import Path
+from audit_lib import audit_tables
+from audit_overrides import OVERRIDES, SKIP_TABLES
+for i in range(1, 18):
+    n = '%02d' % i
+    probs, unp = audit_tables(Path(f'docs/ns{n}/NS{n}_corrected.md').read_text(),
+                              OVERRIDES.get(f'NS-{n}', {}), SKIP_TABLES)
+    print(f'NS-{n}', len(probs), len(unp))
+EOF
+
+# engine over all 17 masters: expect 0/0 except NS-14 0/3
 for n in $(seq -w 1 17); do printf "NS-%s " $n; python3 docs/kit/engine_run.py docs/ns$n/NS${n}_corrected.md | tail -6; done
 ```

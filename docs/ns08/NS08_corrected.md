@@ -240,7 +240,7 @@ Ch 11. Work in turned rows (ch 1 and turn at each row end):
 
 | Row 4 | sl st in first 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in next 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in last 4 | (18) | scalloped edge - FO with a 25 cm tail |
 
-The scallop maths: the slip-stitch anchors are 2 + 2 + 4 = eight stitches; the two shells each fan from a single stitch (2 more), so all 10 stitches of Row 3 are consumed and nothing is left over. Pin the straight inner edge across Rnds 10-11 and sew the WHOLE edge so the scalloped edge stays free.
+The scallop maths: the slip-stitch anchors are 2 + 2 + 4 = eight stitches; the two shells each fan from a single stitch (2 more), so all 10 stitches of Row 3 are consumed and nothing is left over. Each shell fans from its single anchor, so its counted stitches cup over the row below: Row 4 still measures the 10 stitches of Row 3 along its straight edge even though it counts 18. Pin the straight inner edge across Rnds 10-11 and sew the WHOLE edge so the scalloped edge stays free.
 
 ### 8. Spike strip - contrast colour
 

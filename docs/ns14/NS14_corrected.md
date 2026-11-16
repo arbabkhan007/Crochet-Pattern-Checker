@@ -226,7 +226,7 @@ Work the border into the final growth round only after the size and optional spo
 
 | ✓ | Rnd | US terms | UK terms | Sts | Note |
 |---|---|---|---|---|---|
-| [ ] | Border | Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO | Join CC in any st; ch 1, [dc in next st, skip 2 sts, 5 tr in next st, skip 2 sts] around, sl st to first dc, FO | same worked-st total as the final growth round | each repeat consumes 6 edge sts and makes 1 scallop |
+| [ ] | Border | Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO | Join CC in any st; ch 1, [dc in next st, skip 2 sts, 5 tr in next st, skip 2 sts] around, sl st to first dc, FO | same worked-st total as the final growth round (168 / 276 / 384) | each repeat consumes 6 edge sts and makes 1 scallop |
 
 Each border repeat consumes six final-round anchors and produces six worked stitches: one sc plus a five-dc shell. R14 gives 168 ÷ 6 = 28 scallops; R23 gives 276 ÷ 6 = 46; R32 gives 384 ÷ 6 = 64. The stitch you join into is taken by the final skip of the last repeat, so the closing slip stitch lands in the first sc one stitch past the join; this is correct and it is what makes the repeat close exactly. Do not add a seventh anchor or work the first sc into the join stitch. If the repeat does not close exactly, undo the border and correct the final-round count rather than changing the last scallop.
 
@@ -337,23 +337,3 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 **PROJECT NOTES** — Novality Crochet Studio · NS 14 · printer-saver companion. Keep this page with your project notes.
 
 ---
-
-## Revision notes — delete before publishing
-
-Corrections applied to the source text, in order of severity. Full evidence: `NS14_validation_report.md`.
-
-1. **Read before making:** removed the amigurumi template sentence "Complete internal eyes, embroidery, knots and joins…". A tree skirt has no eyes and no embroidery. Replaced with the design's real closing work (ring join, spokes, border, tails).
-2. **Materials:** the unmeasured 700–1,200 g allowance is roughly 3–5× what the written stitch counts imply. Replaced with labelled per-size estimates (mini 70–95 g, standard 165–225 g, large 305–410 g) and the missing colour split (CC ≈ 44–52 %), still flagged as unweighed.
-3. **Gauge & size:** the two stated gauges could not both be exact on a flat twelve-increase circle. The radial figure is now derived (0.64 in / 1.6 cm per round ≈ 6¼ rounds = 4 in), with the resulting mild cupping tendency named. Troubleshooting "body cups" now points at it.
-4. **Care & storage:** "make no machine-wash or tumble-dry claim" → "do not make a machine-wash or tumble-dry claim" (same meaning; the old wording is read by count checkers as "make 0 of that piece").
-5. **R11-to-R12 count check:** the note's arithmetic is correct and is unchanged. Only its opening words changed — a line beginning `R11-to-R12` is read by round-header parsers as a second Round 11 appearing after Round 16, which reports "Round 11 repeats or goes backwards". It now begins `Count check for the R11-to-R12 step:` and sits directly under the R12 row. **R12 stays `dc in next 10 sts`; do not change it to 9.** With 132 stitches available, 10 plain dc + 1 increase anchor consumes 11 per repeat (132 total, none left over) and produces 12 per repeat = 144. Nine plain dc would consume 120, leave 12 stitches unworked and give 132.
-6. **Design description:** "a contrast bobble round every third round" → "every third round from R5", matching technique 4 and the ladder (R3, R6, R9 … are plain).
-7. **Border note:** added the fact that the join stitch is consumed by the final skip, so the closing slip stitch lands one stitch past the join. This is required for exact closure and must not be "fixed".
-8. **Technique 5:** stated that R2 contains exactly 12 increases, so "the second dc of each R2 increase" yields exactly 12 markers.
-9. **Centre ring row:** the `Rnd` cell was empty; labelled `Ring`.
-10. **Cover:** "BLACK + WHITE · WHITE BACKGROUNDS" prefixed with `DOCUMENT INK:` so it cannot be misread as the yarn colourway two lines below it.
-11. **Helpful tips:** the heading had no content of its own; the sizes table, count rule and time note are now placed under it, and the bobble-round list is spelled out.
-12. **Word joins:** repaired throughout the instruction cells (`against thestand`, `slst`, `2 dcin next st`, `x12`, `stopgrowth`, `thenborder`, `growthround`, `6edge sts`, `1scallop`, `writtenlarger-opening option;recheck`, `relaxedsurface`, `pinnedguide`, `FO atthe`, `noreverse-side`, `immediatelyoutside`, `routeseparately`, `markedcolumn`). Confirm these against the source PDF — if they are printed there, they are typos inside the instruction tables.
-13. **Safety heading:** restored as a visible section heading; the Contents advertises it as the first section but the supplied text carried the paragraphs without it.
-
-**Not changed — verified correct:** all 32 growth rounds (consumption, production, repeat count and stated totals), the bobble cadence and all three size stops, the border closure at 28 / 46 / 64 scallops, the 5-dc bobble loop count, the increase-column marker route, the ch-2-not-counted join method, the US/UK term pairs, the hook conversion (5 mm = H/8, 5.5 mm = I/9), and the gauge→diameter arithmetic for all three sizes.

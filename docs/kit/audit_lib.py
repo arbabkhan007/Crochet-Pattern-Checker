@@ -123,6 +123,14 @@ def _ops_make_consume(instr):
             total_c += 2; total_m += 1; saw_op = True; continue
         if part in ("bo", "bo in next st"):
             total_c += 1; total_m += 1; saw_op = True; continue
+        m = re.fullmatch(r"(?:(\d+)\s+)?" + _ST + r"\s+in\s+(?:the\s+)?(?:next|same|last)\s+"
+                         r"(?:st|stitch)", part)
+        if m:
+            total_c += 1; total_m += int(m.group(1) or 1); saw_op = True; continue
+        m = re.fullmatch(r"(?:(\d+)\s+)?" + _ST + r"\s+in\s+(?:the\s+)?next\s+(\d+)\s+"
+                         r"(?:sts|stitches)", part)
+        if m:
+            k = int(m.group(2)); total_c += k; total_m += int(m.group(1) or 1) * k; saw_op = True; continue
         m = re.fullmatch(r"(inc|dec|sc2tog|dc2tog|invdec|bo)\s*(?:in next st)?\s*x\s*(\d+)", part)
         if m:
             n = int(m.group(2))
@@ -133,7 +141,7 @@ def _ops_make_consume(instr):
             else:
                 total_c += 2 * n; total_m += n
             saw_op = True; continue
-        m = re.fullmatch(r"\[([^\]]+)\]\s*x\s*(\d+)", part)
+        m = re.fullmatch(r"\[([^\]]+)\]\s*[x×*]\s*(\d+)", part)
         if m:
             inner = _ops_make_consume(m.group(1))
             if inner is None:
@@ -216,11 +224,15 @@ def sim_round(instr, prev):
     if re.search(r"ch \d+ \(counts as first", low):
         counts_as = 1
         low = re.sub(r"ch \d+ \(counts as first [a-z]+\),?\s*", "", low)
-    low = re.sub(r",?\s*(?:;|,)\s*(?:change|switch)\b.*$", "", low)
+    low = re.sub(r",?\s*(?:;|,)\s*(?:chang(?:e|ing)|switch(?:ing)?)\b.*$", "", low)
     low = re.sub(r",?\s*(?:;|,)\s*stop here$", "", low)
     low = re.sub(r",?\s*ch [12], turn$", "", low)
     low = re.sub(r"^ch [12], turn,?\s*", "", low)
     low = re.sub(r"^from the 2nd ch:\s*", "", low)
+    low = re.sub(r",?\s*sl st to (?:the )?first (?:sl st|[a-z]+s?)$", "", low)
+    _lead = re.match(r"^ch \d+,\s*", low)
+    if _lead and not low[_lead.end():].startswith("sc in 2nd ch from hook"):
+        low = low[_lead.end():]
     low = re.sub(r"\(\d+ rnd\)$", "", low)
     low = re.sub(r"sc in same st as join and next (\d+) sts", lambda m: f"{int(m.group(1))+1} sc", low)
     low = re.sub(r"sc in next (\d+)", r"\1 sc", low)
@@ -229,6 +241,14 @@ def sim_round(instr, prev):
     m = re.fullmatch(r"(\d+) sc in mr", low)
     if m:
         return int(m.group(1)), None
+    m = re.fullmatch(r"ch \d+,\s*(\d+) (?:sc|dc|hdc|tr) in (?:the )?(?:mr|ring),?\s*"
+                     r"(?:sl st to (?:the )?first [a-z]+)?", low)
+    if m:
+        return int(m.group(1)), None
+    m = re.fullmatch(r"(\d+) (?:sc|dc|hdc|tr) in each st around", low)
+    if m:
+        n = int(m.group(1))
+        return (n * prev, prev) if prev is not None else (None, None)
     if low in ("inc in each st around", "inc in each st around."):
         return (2 * prev, prev) if prev is not None else (None, None)
     if re.fullmatch(r"sc in each st around until .+", low):
@@ -292,6 +312,27 @@ def stated_count(cell):
     return int(m.group(1)) if m else None
 
 
+_CHECKBOX_CELL = re.compile(r"^\[\s*[xX✓✔]?\s*\]$|^[✓✔☐]$|^check$", re.IGNORECASE)
+
+
+def strip_checkbox(hdr, rows):
+    """Drop a leading progress-box column (| ✓ | / | [ ] |) so the grammar applies.
+
+    Printer-saver editions carry a tick-box column in front of every stitch table.
+    Left in place it hides the round label from the grammar, which then skips the
+    whole table. Only strips when the header cell really is a box marker and most
+    of the rows carry one, so a legitimate first column is never removed.
+    """
+    if not hdr:
+        return hdr, rows
+    if not _CHECKBOX_CELL.match(hdr[0].strip() or ""):
+        return hdr, rows
+    boxes = sum(1 for r in rows if r and _CHECKBOX_CELL.match(r[0].strip() or ""))
+    if rows and boxes * 2 < len(rows):
+        return hdr, rows
+    return hdr[1:], [r[1:] for r in rows]
+
+
 def is_round_header(hdr):
     low = [h.lower() for h in hdr]
     return bool(low) and any("rnd" in h or "row" in h for h in low[:2])
@@ -301,6 +342,7 @@ def audit_tables(text, overrides=None, skip_tables=()):
     overrides = overrides or {}
     problems, unparsed = [], []
     for hdr, rows in parse_tables(text):
+        hdr, rows = strip_checkbox(hdr, rows)
         if not is_round_header(hdr):
             continue
         low_hdr = [h.lower() for h in hdr]

@@ -14,7 +14,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-GRAND = ROOT / "NovalityStore_Grand_Collection.md"
+VOLUME = ROOT / "NovalityStore_Grand_Collection_corrected.md"
 
 
 def master(n: str) -> str:
@@ -27,6 +27,19 @@ def row(text: str, label: str) -> list[str]:
         if line.startswith("|") and re.match(rf"\|\s*{re.escape(label)}\s*\|", line):
             return [c.strip() for c in line.strip().strip("|").split("|")]
     raise AssertionError(f"table row {label!r} not found")
+
+
+def term_counts(term: str) -> tuple[int, int]:
+    """(stitches consumed, stitches produced) for one plain term like '2 sc' or 'inc'."""
+    term = term.strip().lower()
+    if term in ("inc", "increase"):
+        return 1, 2
+    m = re.fullmatch(r"(\d+)\s*(?:sc|dc|hdc|sl st)", term)
+    if m:
+        return int(m.group(1)), int(m.group(1))
+    if re.fullmatch(r"(?:sc|dc|hdc|sl st)", term):
+        return 1, 1
+    raise AssertionError(f"unparsed term {term!r}")
 
 
 def join_row(text: str, which: str) -> list[str]:
@@ -77,10 +90,11 @@ def leg_layout(instr: str) -> tuple[int, int, list[tuple[int, int]], list[tuple[
             continue
         m = re.fullmatch(r"\[(.+?)\]\s*x\s*(\d+)", term)
         if m:
-            body = [t.strip() for t in m.group(1).split(",")]
             repeats = int(m.group(2))
-            consumed += repeats * sum(1 for _ in body)
-            made += repeats * sum(2 if t.startswith("inc") else 1 for t in body)
+            for part in m.group(1).split(","):
+                c, mk = term_counts(part)
+                consumed += repeats * c
+                made += repeats * mk
             continue
         m = re.fullmatch(r"inc\s*x\s*(\d+)", term)
         if m:
@@ -124,18 +138,24 @@ def test_ns04_join_rows_still_add_up():
     assert leg_layout(join_row(text, "FL")[1])[:2] == (24, 30)
 
 
-def test_ns04_four_legs_form_a_square():
+def test_ns04_legs_are_paired_and_evenly_spaced():
+    """Both back legs join on Rnd 4, both front legs on Rnd 5, in pairs."""
     text = master("04")
+    assert text.count("join BL") == 2 and text.count("join FL") == 2
     _, _, r4_made_legs, _ = leg_layout(join_row(text, "BL")[1])
     _, _, _, r5_consumed_legs = leg_layout(join_row(text, "FL")[1])
 
-    # Rnd 4 places the back legs on the ring Rnd 5 works into.
-    assert r4_made_legs == [(1, 3), (13, 15)]
-    # Rnd 5 places the front legs half a body apart from them.
-    assert r5_consumed_legs == [(7, 9), (19, 21)]
+    # Rnd 4 places BOTH back legs on the ring Rnd 5 works into, a quarter apart.
+    assert r4_made_legs == [(1, 3), (7, 9)]
+    # Rnd 5 places BOTH front legs on the opposite quarter, a quarter apart.
+    assert r5_consumed_legs == [(13, 15), (19, 21)]
 
     starts = [a for a, _ in r4_made_legs] + [a for a, _ in r5_consumed_legs]
     assert plain_gaps(starts, ring=24) == [3, 3, 3, 3]
+    # No two legs of the same pair straddle the body: the nearest neighbour of a
+    # back leg is the other back leg, six stitches away (90 degrees at 24 sts).
+    for pair in (r4_made_legs, r5_consumed_legs):
+        assert pair[1][0] - pair[0][0] == 6
 
 
 def test_ns04_width_follows_from_its_own_gauge():
@@ -179,14 +199,14 @@ def test_ns14_cover_brand_matches_the_others():
 
 
 def test_grand_collection_carries_the_corrections():
-    grand = GRAND.read_text(encoding="utf-8")
+    grand = VOLUME.read_text(encoding="utf-8")
     for needle in (
         "about 43 mm across at the Rnd-5 leg join (about 34 mm at Rnd 4)",
-        "[sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc",
+        "[2 sc, inc] x 4, join FL1: 3 sc, sc, inc, sc, join FL2: 3 sc, sc, inc, sc",
         "Stopping at 36 gives a body about 39 mm across",
         "fibre fill about 5 g (a little only",
         "star about 4.5 cm (1.75 in)",
-        "# NOVALITY STORE — PRINTER-SAVER EDITION",
+        "lie in a flattened arc over the fabric",
     ):
         assert needle in grand, needle
 
@@ -200,7 +220,6 @@ def test_no_master_trips_the_both_directions_lint():
 
 # --- the generated volume --------------------------------------------------
 
-VOLUME = ROOT / "NovalityStore_Grand_Collection_corrected.md"
 
 
 def test_volume_has_every_part_in_order():
@@ -220,8 +239,9 @@ def test_every_master_body_is_embedded_verbatim():
 
 def test_volume_ledger_is_truthful():
     vol = VOLUME.read_text(encoding="utf-8")
-    # the engine really does report 2 errors / 4 warnings for NS-14, and nothing else
-    assert "| NS-14 | Bobble Snowflake Tree Skirt | 2 / 4 | 0 / 0 |" in vol
+    # NS-14 keeps three warnings (a target size, an unproven gauge, an unchecked
+    # opening); its two old dialect errors are gone and its tables are audited.
+    assert "| NS-14 | Bobble Snowflake Tree Skirt | 0 / 3 | 0 / 0 | 6 / 34 |" in vol
     # ... and zero everywhere else, so the ledger must not claim otherwise
     for i in (1, 4, 6, 12, 13, 17):
         n = f"{i:02d}"
@@ -233,3 +253,77 @@ def test_ns17_collar_foundation_fits_the_neck():
     assert "ch 14 (about 6.5 cm relaxed at the pattern's worsted gauge" in text
     assert "| Row 1 | sc in 2nd ch and next 12 ch, ch 1, turn | (13) |" in text
     assert "next 20 ch" not in text and "(21)" not in text
+
+
+# --- the auditor really reads printer-saver tables -------------------------
+
+def test_audit_sees_through_the_checkbox_column():
+    """NS-14's tables carry a leading tick box; the audit must still read them."""
+    import sys
+
+    sys.path.insert(0, str(ROOT / "docs" / "kit"))
+    from audit_lib import audit_tables  # noqa: E402
+    from audit_overrides import OVERRIDES, SKIP_TABLES  # noqa: E402
+
+    text = master("14")
+    assert "| ✓ |" in text
+    problems, unparsed = audit_tables(text, OVERRIDES.get("NS-14", {}), SKIP_TABLES)
+    assert problems == []
+    assert unparsed == []
+    # 32 = the 20 growth rounds + 12 rows that only state a count. An empty
+    # result would mean the tables were skipped again, not that they passed.
+    prob14, unp14 = audit_tables(text, {}, SKIP_TABLES)
+    assert len(prob14) == 0
+
+
+def test_every_master_audits_clean():
+    import sys
+
+    sys.path.insert(0, str(ROOT / "docs" / "kit"))
+    from audit_lib import audit_tables  # noqa: E402
+    from audit_overrides import OVERRIDES, SKIP_TABLES  # noqa: E402
+
+    for i in range(1, 18):
+        n = f"{i:02d}"
+        problems, unparsed = audit_tables(master(n), OVERRIDES.get(f"NS-{n}", {}), SKIP_TABLES)
+        assert problems == [], f"NS-{n}: {problems[:2]}"
+        assert unparsed == [], f"NS-{n}: {unparsed[:2]}"
+
+
+def test_ns14_carries_no_publishing_notes():
+    text = master("14")
+    assert "delete before publishing" not in text.lower()
+    assert "Revision notes" not in text
+    # the border still names its stitch totals, so the count is checkable
+    assert "(168 / 276 / 384)" in text
+
+
+# --- NS-16: the heel ends right side out ------------------------------------
+
+def test_ns16_heel_finishes_right_side_out():
+    """Replay the heel rows' facing; the pickup round must begin on the RS.
+
+    A flat panel with a turn at the end of every row faces you wrong side out
+    after an even number of rows, so an even panel needs one more turn (or a
+    'do not turn' that leaves an odd panel) before the work goes back into the
+    round. BLO ridges sit on the wrong side, so getting this wrong puts every
+    ridge on the outside of the stocking.
+    """
+    text = master("16")
+    rows = re.findall(r"^\| (Row \d+) \| ([^|]+?) \| \([^)]*\) \| ([^|]*)\|$", text, flags=re.M)
+    heel = [r for r in rows if 1 <= int(r[0].split()[1]) <= 10]
+    assert len(heel) == 10, heel
+
+    facing = "RS"
+    for label, instr, note in heel:
+        declared = note.strip().upper()
+        if declared.startswith("RS"):
+            assert facing == "RS", f"{label} is marked RS but the panel is {facing} out"
+        elif declared.startswith("WS"):
+            assert facing == "WS", f"{label} is marked WS but the panel is {facing} out"
+        if "do not turn" in instr.lower():
+            break  # the flat panel ends here, still facing whatever it faced
+        if re.search(r"\bturn\b\s*$", instr.strip(), flags=re.I):
+            facing = "WS" if facing == "RS" else "RS"
+
+    assert facing == "RS", "the pickup round would be worked inside out (wrong side out)"

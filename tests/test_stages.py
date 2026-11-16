@@ -784,3 +784,19 @@ def test_the_remaining_sentences_use_the_same_rule():
         "> Inc that shrinks from 12 to 6.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+
+def test_a_bilingual_terms_table_declares_both_dialects():
+    """A US/UK conversion table declares both, so neither dialect is 'wrong'."""
+    text = (
+        "Head\n"
+        "| US terms | UK terms |\n"
+        "|---|---|\n"
+        "| sc | dc |\n"
+        "| hdc | htr |\n"
+        "\n"
+        "Round 1: 6 sc into magic ring (6)\n"
+        "Round 2: [sc, inc] x 3 (9)\n"
+    )
+    report = validate_pattern(text)
+    assert not report.errors, _messages(report)

@@ -243,6 +243,8 @@ def dialect_scope(text: str) -> list[str]:
         uk = _terms(body, _UK_ONLY)
         if not us and not uk:
             continue
+        if declared in ("US+UK", "BOTH"):
+            continue
         label = name or "This pattern"
         if declared == "US" and uk:
             errors.append(
@@ -2268,9 +2270,19 @@ def _is_piece_line(line: str) -> bool:
 
 
 def _declared_dialect(body: str) -> str | None:
-    if re.search(r"\b(?:terms?\s*:\s*UK|UK\s+terms?|UK\s+terminology)\b", body, re.IGNORECASE):
+    """The dialect a piece declares. A piece that declares both is labelled US+UK.
+
+    Dual-dialect tables (a US column beside a UK column) legitimately contain both
+    sets of terms; flagging them as a mix would punish the format the checker asks
+    for elsewhere.
+    """
+    uk = re.search(r"\b(?:terms?\s*:\s*UK|UK\s+terms?|UK\s+terminology)\b", body, re.IGNORECASE)
+    us = re.search(r"\b(?:terms?\s*:\s*US|US\s+terms?|US\s+terminology)\b", body, re.IGNORECASE)
+    if uk and us:
+        return "US+UK"
+    if uk:
         return "UK"
-    if re.search(r"\b(?:terms?\s*:\s*US|US\s+terms?|US\s+terminology)\b", body, re.IGNORECASE):
+    if us:
         return "US"
     return None
 

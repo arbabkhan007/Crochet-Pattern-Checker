@@ -159,13 +159,13 @@ The heel uses the next 10 consecutive stitches, beginning in the same stitch as 
 
 | Row 9 | 3 sc, dec, ch 1, turn | (4) | consumes all 5 |
 
-| Row 10 | 2 sc, dec; do not turn | (3) | heel centre |
+| Row 10 | 2 sc, dec, ch 1, turn | (3) | heel centre; the turn brings the RIGHT side out for the pickup round |
 
-The corrected Row-6 turn is essential: without it there are no stitches ahead of the hook for Row 7. Rows 7–10 alternate direction and reduce 10 active stitches to 3 while the unworked ends help form the heel cup. Do not crochet into those unworked top loops as extra heel-turn stitches.
+The corrected Row-6 turn is essential: without it there are no stitches ahead of the hook for Row 7. Rows 7–10 alternate direction and reduce 10 active stitches to 3 while the unworked ends help form the heel cup. The Row-10 turn matters just as much for a different reason: the BLO ridges of Rows 2, 4 and 6 sit on the wrong side, so a foot picked up inside out would wear every ridge on the outside. Do not crochet into those unworked top loops as extra heel-turn stitches.
 
 ### 3. Foot pickup and evening
 
-After Row 10, do not turn. The hook is at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
+After Row 10, turn - do NOT start the pickup with the row you have just finished facing you. Ten heel rows is an even number, so a panel worked with a turn at the end of every row leaves the wrong side out; this last ch 1 and turn put the right side out for the whole foot. The hook is now at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
 
 1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
 

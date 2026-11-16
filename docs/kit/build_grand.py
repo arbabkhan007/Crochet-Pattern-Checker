@@ -34,7 +34,7 @@ DEFAULT_OUT = ROOT / "NovalityStore_Grand_Collection_corrected.md"
 sys.path.insert(0, str(KIT))
 sys.path.insert(0, str(ROOT / "src"))
 
-from audit_lib import audit_tables, is_round_header, parse_tables  # noqa: E402
+from audit_lib import audit_tables, is_round_header, parse_tables, strip_checkbox  # noqa: E402
 from audit_overrides import OVERRIDES, SKIP_TABLES  # noqa: E402
 
 # Part titles as the shop editions name them (two masters title themselves differently).
@@ -61,8 +61,10 @@ TITLES = {
 CODES = [f"{i:02d}" for i in range(1, 18)]
 
 CORRECTIONS = [
-    ("NS-04", "Rnd 5 re-spaced so all four leg joins are 3 plain stitches apart "
-              "(was 2 / 4 / 0 / 6, with two legs side by side, which made Coco tip over)"),
+    ("NS-04", "Rnds 4-5 re-worked so each PAIR of legs joins on one round - both back legs on "
+              "Rnd 4, both front legs on Rnd 5, a quarter of the body apart, three plain "
+              "stitches between every neighbouring pair (was back-left and back-right on Rnd 4 "
+              "but a half-turn apart, which left each flank showing two legs of the same pair)"),
     ("NS-04", "Body-width figure replaced: 30 stitches at the pattern's own 4.5 mm/stitch "
               "gauge measure about 43 mm across at Rnd 5 (34 mm at Rnd 4), not 65 mm / 29 mm"),
     ("NS-06", "36-stitch base now reads 39 mm across, not 34 mm (gauge 4.5 mm/stitch)"),
@@ -72,6 +74,14 @@ CORRECTIONS = [
     ("NS-14", "Cover brand line reads NOVALITY STORE, matching the other sixteen covers"),
     ("NS-17", "Lamb's fixed collar ch 14 (13 sts, about 6.5 cm) at the pattern's worsted gauge, "
               "not ch 22, which measured about 105 mm round against a 6 cm neck"),
+    ("NS-01", "Hoof colour change moved into the row text (BLO sc in 17, BLO sc in last st; change "
+              "to Yarn A) instead of a note beside the row"),
+    ("NS-02", "Wing note now explains why the counted total jumps to 23 without the wing widening: "
+              "each fan cups over a single anchor stitch"),
+    ("NS-03", "Tail closure reads '3 pairs (one front and one back stitch each)', not '3 front + 3 back'"),
+    ("NS-08", "Scallop note now explains why 18 counted stitches still measure the 10 of Row 3"),
+    ("NS-14", "Internal 'delete before publishing' revision-notes section removed from the pattern "
+              "body; the findings it carried are recorded in the volume's audit, not the pattern"),
 ]
 
 
@@ -126,11 +136,11 @@ def audit_counts(text: str, code: str) -> tuple[int, int, int, int]:
     problems, unparsed = audit_tables(text, OVERRIDES.get(f"NS-{code}", {}), SKIP_TABLES)
     tables = rows = 0
     for hdr, table_rows in parse_tables(text):
+        hdr, table_rows = strip_checkbox(hdr, table_rows)
         if not is_round_header(hdr):
             continue
         tables += 1
-        rows += sum(1 for r in table_rows
-                    if len(r) > 2 and not r[0].strip().lower().startswith(("[ ]", "[x]")))
+        rows += sum(1 for r in table_rows if len(r) > 2 and r[0].strip())
     return len(problems), len(unparsed), tables, rows
 
 
@@ -188,11 +198,16 @@ def build() -> str:
         "4. **Round-3 numeric sweep** (`docs/reviews/GRAND_COLLECTION_ROUND_3_REVIEW.md`) — every prose "
         "figure that no tool can read (widths, heights, stuffing weights, leg spacing, ornament sizes) "
         "re-derived from each pattern's own gauge. The corrections that came out of it are listed below.",
+        "5. **Round-4 claim audit** — a third-party list of nine suspected mistakes was re-derived "
+        "against the masters. Four were real and are fixed in this edition (NS-14's internal "
+        "publishing notes and its unchecked tables, NS-16's stocking heel finishing wrong side out, "
+        "NS-01's hoof colour change living only in a note); five were checked and rejected. See "
+        "§8-§9 of the round-3 review for the claim-by-claim record.",
         "",
         "Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, chain length or "
         "decrease schedule was altered by the corrections in this edition — only prose figures and, in "
-        "NS-04, which stitches of an existing round receive the leg joins (still 30 stitches made from "
-        "24, and still a 36-stitch body).",
+        "NS-04, which stitches of an existing round carry the increases and the four leg joins (still "
+        "30 stitches made from 24, four legs, and still a 36-stitch body).",
         "",
         "## Contents",
         "",
@@ -217,10 +232,9 @@ def build() -> str:
         f"*Every count above was recomputed at build time. "
         f"{'All seventeen masters run clean.' if clean else 'The non-zero rows are the documented findings for that pattern.'}*",
         "",
-        "*NS-14's tables carry a leading `[ ]` checklist column, which the auditor skips by design, so "
-        "its row count reads 0. Those 32 rounds were re-derived by hand in the round-3 sweep: every "
-        "growth round states 12 × N stitches with N − 2 plain dc per repeat (N − 3 on bobble rounds), "
-        "6,336 stitches in total.*",
+        "*NS-14's printer-saver tables carry a leading tick-box column. The auditor strips it and "
+        "reads those tables like any other, so its 30 growth rounds are re-derived at build time "
+        "rather than quoted by hand.*",
         "",
         "*Cover artwork in the PDF editions is an illustrative render of the written design, not a "
         "photograph of a sample; each cover says so. Listings must carry the matching AI-disclosure "

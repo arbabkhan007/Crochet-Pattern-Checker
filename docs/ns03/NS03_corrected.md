@@ -105,7 +105,7 @@ Worked in a single spiral from the top of the head straight through to the tail 
 
 **Mark the fin path while you crochet:** on each of Rnds 27-36, place a scrap-yarn marker through the surface stitch nearest the dorsal (top) centre of the tail. Keep the ten markers in one straight line rather than following the spiral's round start. These marked stitches are existing stitches, not extras; they give the fin ten unambiguous surface anchors.
 
-Finish: fold the last 6 stitches flat so 3 pairs line up (3 front + 3 back), then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.
+Finish: fold the last 6 stitches flat so they line up as 3 pairs (each pair is one front and one back stitch), then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.
 
 The tail runs R27-R36 - ten rounds, about 43 mm - giving exactly ten marked dorsal surface anchors. Five loose double-crochet scallops form the shell-edged paddle along that marked line.
 

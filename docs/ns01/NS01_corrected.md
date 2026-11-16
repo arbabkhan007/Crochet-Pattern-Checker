@@ -234,7 +234,7 @@ Choose one pose before making the legs:
 
 | R5 | sc in each st around | (18) | - |
 
-| R6 | BLO sc around | (18) | change to Yarn A - ridge |
+| R6 | BLO sc in 17, BLO sc in last st; change to Yarn A | (18) | hooves start here - ridge |
 
 | R7 | sc in each st around | (18) | - |
 
@@ -274,7 +274,7 @@ A standard leg is about 67 mm. For the low Highland sit, pin the front pair abou
 
 | R5 | sc in each st around | (18) |
 
-| R6 | BLO sc in each st around; change to Yarn A after the round | (18) |
+| R6 | BLO sc in each st around; change to Yarn A in the last st of the round | (18) |
 
 | R7 | sc in each st around | (18) |
 

@@ -6,11 +6,12 @@
 ## How this volume was checked
 
 1. **Deterministic static-analysis engine** (`src/crochet_checker`, run per pattern by `docs/kit/engine_run.py`).
-2. **Independent stitch arithmetic auditor** (`docs/kit/audit_lib.py`): every round and row table is re-derived from its own instruction text — **90 stitch tables and 692 instruction rows** across the seventeen patterns, **0 problems** and 0 rows the grammar could not read. The few continuation rows the grammar cannot simulate are carried as explicit expected counts in `docs/kit/audit_overrides.py`.
+2. **Independent stitch arithmetic auditor** (`docs/kit/audit_lib.py`): every round and row table is re-derived from its own instruction text — **90 stitch tables and 726 instruction rows** across the seventeen patterns, **0 problems** and 0 rows the grammar could not read. The few continuation rows the grammar cannot simulate are carried as explicit expected counts in `docs/kit/audit_overrides.py`.
 3. **Two store editions per pattern** — a colour Novality Store edition and a monochrome ink-friendly print edition (greyscale spread 0 on every page).
 4. **Round-3 numeric sweep** (`docs/reviews/GRAND_COLLECTION_ROUND_3_REVIEW.md`) — every prose figure that no tool can read (widths, heights, stuffing weights, leg spacing, ornament sizes) re-derived from each pattern's own gauge. The corrections that came out of it are listed below.
+5. **Round-4 claim audit** — a third-party list of nine suspected mistakes was re-derived against the masters. Four were real and are fixed in this edition (NS-14's internal publishing notes and its unchecked tables, NS-16's stocking heel finishing wrong side out, NS-01's hoof colour change living only in a note); five were checked and rejected. See §8-§9 of the round-3 review for the claim-by-claim record.
 
-Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, chain length or decrease schedule was altered by the corrections in this edition — only prose figures and, in NS-04, which stitches of an existing round receive the leg joins (still 30 stitches made from 24, and still a 36-stitch body).
+Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, chain length or decrease schedule was altered by the corrections in this edition — only prose figures and, in NS-04, which stitches of an existing round carry the increases and the four leg joins (still 30 stitches made from 24, four legs, and still a 36-stitch body).
 
 ## Contents
 
@@ -49,14 +50,14 @@ Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, cha
 | NS-11 | No-Sew Christmas Gnome | 0 / 0 | 0 / 0 | 4 / 18 | 7 | 7 |
 | NS-12 | Bobble Christmas Tree | 0 / 0 | 0 / 0 | 1 / 26 | 7 | 7 |
 | NS-13 | Christmas Ornament Bundle | 0 / 0 | 0 / 0 | 3 / 13 | 7 | 7 |
-| NS-14 | Bobble Snowflake Tree Skirt | 2 / 4 | 0 / 0 | 6 / 0 | 10 | 10 |
+| NS-14 | Bobble Snowflake Tree Skirt | 0 / 3 | 0 / 0 | 6 / 34 | 10 | 10 |
 | NS-15 | Interchangeable Christmas Wreath | 0 / 0 | 0 / 0 | 5 / 18 | 11 | 11 |
 | NS-16 | Mini Stocking Advent Garland | 0 / 0 | 0 / 0 | 4 / 31 | 9 | 9 |
 | NS-17 | Year of the Fire Goat 2027 Plushie Set | 0 / 0 | 0 / 0 | 14 / 154 | 14 | 14 |
 
 *Every count above was recomputed at build time. The non-zero rows are the documented findings for that pattern.*
 
-*NS-14's tables carry a leading `[ ]` checklist column, which the auditor skips by design, so its row count reads 0. Those 32 rounds were re-derived by hand in the round-3 sweep: every growth round states 12 × N stitches with N − 2 plain dc per repeat (N − 3 on bobble rounds), 6,336 stitches in total.*
+*NS-14's printer-saver tables carry a leading tick-box column. The auditor strips it and reads those tables like any other, so its 30 growth rounds are re-derived at build time rather than quoted by hand.*
 
 *Cover artwork in the PDF editions is an illustrative render of the written design, not a photograph of a sample; each cover says so. Listings must carry the matching AI-disclosure sentence.*
 
@@ -64,7 +65,7 @@ Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, cha
 
 | # | Pattern | Correction |
 |---|---|---|
-| 1 | NS-04 | Rnd 5 re-spaced so all four leg joins are 3 plain stitches apart (was 2 / 4 / 0 / 6, with two legs side by side, which made Coco tip over) |
+| 1 | NS-04 | Rnds 4-5 re-worked so each PAIR of legs joins on one round - both back legs on Rnd 4, both front legs on Rnd 5, a quarter of the body apart, three plain stitches between every neighbouring pair (was back-left and back-right on Rnd 4 but a half-turn apart, which left each flank showing two legs of the same pair) |
 | 2 | NS-04 | Body-width figure replaced: 30 stitches at the pattern's own 4.5 mm/stitch gauge measure about 43 mm across at Rnd 5 (34 mm at Rnd 4), not 65 mm / 29 mm |
 | 3 | NS-06 | 36-stitch base now reads 39 mm across, not 34 mm (gauge 4.5 mm/stitch) |
 | 4 | NS-11 | Stuffing 10 g, not 25 g (~240 cm³ of body at the collection's own fill density) |
@@ -72,6 +73,11 @@ Stitch arithmetic is unchanged everywhere: no round, row, repeat multiplier, cha
 | 6 | NS-13 | Star about 4.5 cm, not 9 cm: five six-stitch fans on a 15 mm ring cannot reach 45 mm points |
 | 7 | NS-14 | Cover brand line reads NOVALITY STORE, matching the other sixteen covers |
 | 8 | NS-17 | Lamb's fixed collar ch 14 (13 sts, about 6.5 cm) at the pattern's worsted gauge, not ch 22, which measured about 105 mm round against a 6 cm neck |
+| 9 | NS-01 | Hoof colour change moved into the row text (BLO sc in 17, BLO sc in last st; change to Yarn A) instead of a note beside the row |
+| 10 | NS-02 | Wing note now explains why the counted total jumps to 23 without the wing widening: each fan cups over a single anchor stitch |
+| 11 | NS-03 | Tail closure reads '3 pairs (one front and one back stitch each)', not '3 front + 3 back' |
+| 12 | NS-08 | Scallop note now explains why 18 counted stitches still measure the 10 of Row 3 |
+| 13 | NS-14 | Internal 'delete before publishing' revision-notes section removed from the pattern body; the findings it carried are recorded in the volume's audit, not the pattern |
 
 *Per-pattern correction tables live in each pattern's validation report; the round-3 derivations are written out in `docs/reviews/GRAND_COLLECTION_ROUND_3_REVIEW.md`.*
 
@@ -317,7 +323,7 @@ Choose one pose before making the legs:
 
 | R5 | sc in each st around | (18) | - |
 
-| R6 | BLO sc around | (18) | change to Yarn A - ridge |
+| R6 | BLO sc in 17, BLO sc in last st; change to Yarn A | (18) | hooves start here - ridge |
 
 | R7 | sc in each st around | (18) | - |
 
@@ -357,7 +363,7 @@ A standard leg is about 67 mm. For the low Highland sit, pin the front pair abou
 
 | R5 | sc in each st around | (18) |
 
-| R6 | BLO sc in each st around; change to Yarn A after the round | (18) |
+| R6 | BLO sc in each st around; change to Yarn A in the last st of the round | (18) |
 
 | R7 | sc in each st around | (18) |
 
@@ -859,7 +865,7 @@ Flatten and do not stuff. Sew a pink inner onto each lavender outer, then sew th
 
 | Row 3 | sl st in first 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st in next 3, (sc, hdc, picot, hdc, sc) in next st, sl st in next 2, (sc, hdc, picot, hdc, sc) in next st, sl st in last 2 | (23) | counted sts; 3 picot chain bumps are additional - FO with a 10 in tail |
 
-The anchor maths: the slip-stitch groups use 2 + 3 + 2 + 2 = 9 stitches of Row 2; the three fans each use one more anchor, so all 12 stitches of Row 2 are consumed. The fans are deliberately different sizes: the FIRST fan in the written sequence has 6 counted stitches (sc, hdc, dc, dc, hdc, sc) plus a picot and forms the pointed outer wing tip; the other two have 4 counted stitches (sc, hdc, hdc, sc) plus a picot. Row 3 therefore makes 9 slip stitches + 6 + 4 + 4 fan stitches = 23 counted stitches, plus three uncounted ch-3 picots.
+The anchor maths: the slip-stitch groups use 2 + 3 + 2 + 2 = 9 stitches of Row 2; the three fans each use one more anchor, so all 12 stitches of Row 2 are consumed. The fans are deliberately different sizes: the FIRST fan in the written sequence has 6 counted stitches (sc, hdc, dc, dc, hdc, sc) plus a picot and forms the pointed outer wing tip; the other two have 4 counted stitches (sc, hdc, hdc, sc) plus a picot. Row 3 therefore makes 9 slip stitches + 6 + 4 + 4 fan stitches = 23 counted stitches, plus three uncounted ch-3 picots. A fan is worked into a single anchor stitch, so its counted stitches lie in a flattened arc over the fabric rather than spreading the wing: Row 3 still measures the 12 stitches of Row 2 along its straight edge, and only the free scalloped edge opens out. If your Row 3 stands noticeably wider than Row 2, the fans are being worked loosely - they should cup over the row below.
 
 Assembly: pin the wings to the back and sides between Rnd 9 and Rnd 11, angled out and slightly up, then sew along the straight inner edge (leave the scalloped edge free). Each wing is about 42 mm long; with a 33 mm body that gives a wingspan of roughly 11.5 cm.
 
@@ -1046,7 +1052,7 @@ Worked in a single spiral from the top of the head straight through to the tail 
 
 **Mark the fin path while you crochet:** on each of Rnds 27-36, place a scrap-yarn marker through the surface stitch nearest the dorsal (top) centre of the tail. Keep the ten markers in one straight line rather than following the spiral's round start. These marked stitches are existing stitches, not extras; they give the fin ten unambiguous surface anchors.
 
-Finish: fold the last 6 stitches flat so 3 pairs line up (3 front + 3 back), then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.
+Finish: fold the last 6 stitches flat so they line up as 3 pairs (each pair is one front and one back stitch), then work 1 sc through each pair - 3 sc in total - to close the tip cleanly. FO and weave the end away from the marked dorsal line so it cannot be mistaken for a fin anchor.
 
 The tail runs R27-R36 - ten rounds, about 43 mm - giving exactly ten marked dorsal surface anchors. Five loose double-crochet scallops form the shell-edged paddle along that marked line.
 
@@ -1320,9 +1326,9 @@ Both are 36 stitches around with only a shallow waist between them - that is wha
 
 | R3 | [sc, inc] x 6 | (18) | - |
 
-| R4 | join BL1: 3 sc, [sc, inc] x 3, join BL2: 3 sc, [sc, inc] x 3 | (24) | join the BACK legs |
+| R4 | join BL1: 3 sc, sc, inc, join BL2: 3 sc, [sc, inc] x 5 | (24) | join BOTH back legs |
 
-| R5 | [sc, inc] x 3, join FL1: 3 sc, [sc, inc] x 3, 3 sc, join FL2: 3 sc, 3 sc | (30) | join the FRONT legs |
+| R5 | [2 sc, inc] x 4, join FL1: 3 sc, sc, inc, sc, join FL2: 3 sc, sc, inc, sc | (30) | join BOTH front legs |
 
 | R6 | [4 sc, inc] x 6 | (36) | full width - check gauge |
 
@@ -1358,13 +1364,13 @@ Immediately after Rnd 15, embroider both closed eyes as described under Finishin
 
 How the leg joins work: work Rnd 4 and Rnd 5 following the full written rounds below. Wherever a round says “join”, hold a pinched-flat leg against the body and work the next 3 sc through both flattened leg-edge layers AND the body together (technique 3). Those 3 sc still count as 3 stitches of the round, so the stitch totals do not change - Rnd 4 ends at 24, Rnd 5 at 30. The joined stitches are always plain single crochet - never work an increase through a leg.
 
-Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, then [sc, inc] x 3; work the next 3 sc through the second leg and the body together, then [sc, inc] x 3 to the end of the round.
+Rnd 4 - the BACK legs (24 stitches): work the first 3 sc through a leg and the body together, work sc, inc, then work the next 3 sc through the SECOND leg and the body together - that is both back legs, three plain stitches apart at the rear - then [sc, inc] x 5 to the end of the round. In the finished round the back legs sit on stitches 1-3 and 7-9 of Rnd 4, three plain stitches apart.
 
-Rnd 5 - the FRONT legs (30 stitches): work [sc, inc] x 3, making nine; join a leg over the next 3 sc; work [sc, inc] x 3 and then 3 sc, making twelve; join the second leg over the next 3 sc; work 3 sc to the end, making three. In the finished round that is 9 - 3 - 12 - 3 - 3 = 30, all six increases falling inside the two plain runs. That puts the front legs over stitches 7-9 and 19-21 of Rnd 4 while the back legs sit over 1-3 and 13-15, so every neighbouring pair of legs is three plain stitches apart all the way round and the four feet form a rectangle.
+Rnd 5 - the FRONT legs (30 stitches): work [2 sc, inc] x 4, making sixteen; join a leg over the next 3 sc; work sc, inc, sc, making four; join the second leg over the next 3 sc; work sc, inc, sc to the end, making four. In the finished round that is 16 - 3 - 4 - 3 - 4 = 30, all six increases falling inside the plain runs. Both front legs now sit on the chest, over stitches 13-15 and 19-21 of the Rnd-4 round - three plain stitches apart, and opposite the two back legs. Each side of the body therefore shows one front and one back leg, never two of the same pair, and the four feet form a rectangle.
 
-Stitch arithmetic for both join rounds: each [sc, inc] x 3 block works into 6 stitches and makes 9 (sc in one stitch, then 2 sc - the increase - in the next, three times over). Rnd 4: worked = 3 + 6 + 3 + 6 = 18, using EVERY stitch of Rnd 3; made = 3 + 9 + 3 + 9 = 24. Rnd 5: worked = 6 + 3 + 9 + 3 + 3 = 24, using every stitch of Rnd 4; made = 9 + 3 + 12 + 3 + 3 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
+Stitch arithmetic for both join rounds: an increase block works into fewer stitches than it makes (sc in one stitch, 2 sc - the increase - in the next). Rnd 4: worked = 3 + 2 + 3 + 10 = 18, using EVERY stitch of Rnd 3; made = 3 + 3 + 3 + 15 = 24. Rnd 5: worked = 12 + 3 + 3 + 3 + 3 = 24, using every stitch of Rnd 4; made = 16 + 3 + 4 + 3 + 4 = 30. The 3-sc join runs count once - each goes through the leg and the body in the same stitch.
 
-Work the numbers exactly. If the front legs line up directly behind the back legs instead of between them, the footprint narrows and Coco tips. At thirty stitches and 4.5 mm per stitch the body itself measures about 43 mm across at the Rnd-5 leg join (about 34 mm at Rnd 4); the splayed legs widen the standing footprint beyond that, so measure your own piece rather than relying on a printed number. Hold the piece upside down and check all four legs sit square before you stuff the body.
+Work the numbers exactly. Both legs of a pair belong on the same side of the body, with the other pair on the opposite side. If the pairs alternate around the body, each flank shows two legs of the same pair, the footprint narrows across the body and Coco tips. At thirty stitches and 4.5 mm per stitch the body itself measures about 43 mm across at the Rnd-5 leg join (about 34 mm at Rnd 4); the splayed legs widen the standing footprint beyond that, so measure your own piece rather than relying on a printed number. Hold the piece upside down and check all four legs sit square before you stuff the body.
 
 The legs join low (Rnd 4-5) so every foot hangs about 17 mm below the body and Coco stands on her feet.
 
@@ -1390,7 +1396,7 @@ Before you sew - lay every component out and check: 4 legs (2 back of 8 rounds, 
 
 - **Coco will not stand.** Check the join height, not the leg spacing. The legs belong on Rnd 4 and Rnd 5; joined any higher, they cannot clear the underside of the body and the belly rests on the table.
 
-- **Coco tips forward or backward.** Most often the front legs are lined up behind the back legs instead of between them - keep all four leg joins three plain stitches apart all the way round (back legs over stitches 1-3 and 13-15 of the Rnd-4 round, front legs over 7-9 and 19-21). If still tipping, stuff the lower body more firmly and settle weight back over all four feet.
+- **Coco tips sideways or front to back.** Most often the two legs of a pair are on opposite sides of the body instead of together - keep all four leg joins three plain stitches apart AND paired: both back legs at the rear (stitches 1-3 and 7-9 of the Rnd-4 round, 90 degrees apart), both front legs at the chest (13-15 and 19-21, opposite them). If still tipping, stuff the lower body more firmly and settle weight back over all four feet.
 
 - **Rocks back, front feet in the air.** All four legs are the same length and they cannot be. Front legs join at Rnd 5 (21 mm up), back at Rnd 4 (17 mm up); work the front legs 9 rounds and the back legs 8.
 
@@ -2360,7 +2366,7 @@ Ch 11. Work in turned rows (ch 1 and turn at each row end):
 
 | Row 4 | sl st in first 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in next 2, (sc, hdc, dc, hdc, sc) all in next st, sl st in last 4 | (18) | scalloped edge - FO with a 25 cm tail |
 
-The scallop maths: the slip-stitch anchors are 2 + 2 + 4 = eight stitches; the two shells each fan from a single stitch (2 more), so all 10 stitches of Row 3 are consumed and nothing is left over. Pin the straight inner edge across Rnds 10-11 and sew the WHOLE edge so the scalloped edge stays free.
+The scallop maths: the slip-stitch anchors are 2 + 2 + 4 = eight stitches; the two shells each fan from a single stitch (2 more), so all 10 stitches of Row 3 are consumed and nothing is left over. Each shell fans from its single anchor, so its counted stitches cup over the row below: Row 4 still measures the 10 stitches of Row 3 along its straight edge even though it counts 18. Pin the straight inner edge across Rnds 10-11 and sew the WHOLE edge so the scalloped edge stays free.
 
 ### 8. Spike strip - contrast colour
 
@@ -3419,7 +3425,7 @@ Tag your makes with **#NovalityStore** and **#NovalityOrnaments** - Tag us in yo
 
 # Part 14 of 17 — NS-14 · Bobble Snowflake Tree Skirt
 
-*Corrected master · engine 2 errors / 4 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · reports: `docs/ns14/NS14_validation_report.md`*
+*Corrected master · engine 0 errors / 3 warnings · independent audit 0 problems / 0 unparsed · colour edition 10 pp · print edition 10 pp · reports: `docs/ns14/NS14_validation_report.md`*
 
 ## Bobble Snowflake Tree Skirt
 
@@ -3649,7 +3655,7 @@ Work the border into the final growth round only after the size and optional spo
 
 | ✓ | Rnd | US terms | UK terms | Sts | Note |
 |---|---|---|---|---|---|
-| [ ] | Border | Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO | Join CC in any st; ch 1, [dc in next st, skip 2 sts, 5 tr in next st, skip 2 sts] around, sl st to first dc, FO | same worked-st total as the final growth round | each repeat consumes 6 edge sts and makes 1 scallop |
+| [ ] | Border | Join CC in any st; ch 1, [sc in next st, skip 2 sts, 5 dc in next st, skip 2 sts] around, sl st to first sc, FO | Join CC in any st; ch 1, [dc in next st, skip 2 sts, 5 tr in next st, skip 2 sts] around, sl st to first dc, FO | same worked-st total as the final growth round (168 / 276 / 384) | each repeat consumes 6 edge sts and makes 1 scallop |
 
 Each border repeat consumes six final-round anchors and produces six worked stitches: one sc plus a five-dc shell. R14 gives 168 ÷ 6 = 28 scallops; R23 gives 276 ÷ 6 = 46; R32 gives 384 ÷ 6 = 64. The stitch you join into is taken by the final skip of the last repeat, so the closing slip stitch lands in the first sc one stitch past the join; this is correct and it is what makes the repeat close exactly. Do not add a seventh anchor or work the first sc into the join stitch. If the repeat does not close exactly, undo the border and correct the final-round count rather than changing the last scallop.
 
@@ -3760,26 +3766,6 @@ Tag finished projects with #NovalityCrochetStudio and #NovalityTreeSkirt.
 **PROJECT NOTES** — Novality Crochet Studio · NS 14 · printer-saver companion. Keep this page with your project notes.
 
 ---
-
-## Revision notes — delete before publishing
-
-Corrections applied to the source text, in order of severity. Full evidence: `NS14_validation_report.md`.
-
-1. **Read before making:** removed the amigurumi template sentence "Complete internal eyes, embroidery, knots and joins…". A tree skirt has no eyes and no embroidery. Replaced with the design's real closing work (ring join, spokes, border, tails).
-2. **Materials:** the unmeasured 700–1,200 g allowance is roughly 3–5× what the written stitch counts imply. Replaced with labelled per-size estimates (mini 70–95 g, standard 165–225 g, large 305–410 g) and the missing colour split (CC ≈ 44–52 %), still flagged as unweighed.
-3. **Gauge & size:** the two stated gauges could not both be exact on a flat twelve-increase circle. The radial figure is now derived (0.64 in / 1.6 cm per round ≈ 6¼ rounds = 4 in), with the resulting mild cupping tendency named. Troubleshooting "body cups" now points at it.
-4. **Care & storage:** "make no machine-wash or tumble-dry claim" → "do not make a machine-wash or tumble-dry claim" (same meaning; the old wording is read by count checkers as "make 0 of that piece").
-5. **R11-to-R12 count check:** the note's arithmetic is correct and is unchanged. Only its opening words changed — a line beginning `R11-to-R12` is read by round-header parsers as a second Round 11 appearing after Round 16, which reports "Round 11 repeats or goes backwards". It now begins `Count check for the R11-to-R12 step:` and sits directly under the R12 row. **R12 stays `dc in next 10 sts`; do not change it to 9.** With 132 stitches available, 10 plain dc + 1 increase anchor consumes 11 per repeat (132 total, none left over) and produces 12 per repeat = 144. Nine plain dc would consume 120, leave 12 stitches unworked and give 132.
-6. **Design description:** "a contrast bobble round every third round" → "every third round from R5", matching technique 4 and the ladder (R3, R6, R9 … are plain).
-7. **Border note:** added the fact that the join stitch is consumed by the final skip, so the closing slip stitch lands one stitch past the join. This is required for exact closure and must not be "fixed".
-8. **Technique 5:** stated that R2 contains exactly 12 increases, so "the second dc of each R2 increase" yields exactly 12 markers.
-9. **Centre ring row:** the `Rnd` cell was empty; labelled `Ring`.
-10. **Cover:** "BLACK + WHITE · WHITE BACKGROUNDS" prefixed with `DOCUMENT INK:` so it cannot be misread as the yarn colourway two lines below it.
-11. **Helpful tips:** the heading had no content of its own; the sizes table, count rule and time note are now placed under it, and the bobble-round list is spelled out.
-12. **Word joins:** repaired throughout the instruction cells (`against thestand`, `slst`, `2 dcin next st`, `x12`, `stopgrowth`, `thenborder`, `growthround`, `6edge sts`, `1scallop`, `writtenlarger-opening option;recheck`, `relaxedsurface`, `pinnedguide`, `FO atthe`, `noreverse-side`, `immediatelyoutside`, `routeseparately`, `markedcolumn`). Confirm these against the source PDF — if they are printed there, they are typos inside the instruction tables.
-13. **Safety heading:** restored as a visible section heading; the Contents advertises it as the first section but the supplied text carried the paragraphs without it.
-
-**Not changed — verified correct:** all 32 growth rounds (consumption, production, repeat count and stated totals), the bobble cadence and all three size stops, the border closure at 28 / 46 / 64 scallops, the 5-dc bobble loop count, the increase-column marker route, the ch-2-not-counted join method, the US/UK term pairs, the hook conversion (5 mm = H/8, 5.5 mm = I/9), and the gauge→diameter arithmetic for all three sizes.
 
 ---
 
@@ -4170,13 +4156,13 @@ The heel uses the next 10 consecutive stitches, beginning in the same stitch as 
 
 | Row 9 | 3 sc, dec, ch 1, turn | (4) | consumes all 5 |
 
-| Row 10 | 2 sc, dec; do not turn | (3) | heel centre |
+| Row 10 | 2 sc, dec, ch 1, turn | (3) | heel centre; the turn brings the RIGHT side out for the pickup round |
 
-The corrected Row-6 turn is essential: without it there are no stitches ahead of the hook for Row 7. Rows 7–10 alternate direction and reduce 10 active stitches to 3 while the unworked ends help form the heel cup. Do not crochet into those unworked top loops as extra heel-turn stitches.
+The corrected Row-6 turn is essential: without it there are no stitches ahead of the hook for Row 7. Rows 7–10 alternate direction and reduce 10 active stitches to 3 while the unworked ends help form the heel cup. The Row-10 turn matters just as much for a different reason: the BLO ridges of Rows 2, 4 and 6 sit on the wrong side, so a foot picked up inside out would wear every ridge on the outside. Do not crochet into those unworked top loops as extra heel-turn stitches.
 
 ### 3. Foot pickup and evening
 
-After Row 10, do not turn. The hook is at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
+After Row 10, turn - do NOT start the pickup with the row you have just finished facing you. Ten heel rows is an even number, so a panel worked with a turn at the end of every row leaves the wrong side out; this last ch 1 and turn put the right side out for the whole foot. The hook is now at one edge of the three-stitch heel centre. Ch 1; this chain does not count. Follow the exposed perimeter from the hook toward the leg opening—do not work across the three Row-10 stitches yet. Work the pickup in this exact order and place the marker in the first picked-up sc:
 
 1. Work exactly 5 sc evenly along the complete first heel edge from Row 10 to the leg opening. Include the compact stepped edge made by Rows 7–10 and the row-end edge of the six full flap rows; place the first and fifth pickups close to the two junctions. Work under two edge strands wherever possible.
 

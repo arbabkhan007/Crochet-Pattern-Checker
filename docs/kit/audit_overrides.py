@@ -6,5 +6,7 @@ OVERRIDES = {
     "NS-11": {"r9-12": 30, "r13": 30, "r16": 30},
     "NS-15": {"join": None, "hanger": None, "petals": None, "leaves": None,
               "tie": None, "r3": None, "loops": None, "-": None},
+    # NS-14: the marker ring and the border are not rounds - no count to derive.
+    "NS-14": {"ring": None, "border": None},
 }
 SKIP_TABLES = {}
