@@ -383,7 +383,9 @@ class GaugeRuler(Flowable):
         for cm in range(0, 6):
             c.setFont(FONT_SANS_B, 5.6)
             c.setFillColor(muted)
-            c.drawCentredString(x0 + cm * mm, y0 + 5.4 * mm, str(cm))
+            c.drawCentredString(x0 + cm * 10 * mm, y0 + 5.4 * mm, str(cm))
+        c.setFont(FONT_SANS, 5.4)
+        c.drawString(x0 + self.length + 2.4 * mm, y0 + 5.4 * mm, "cm")
         c.setFont(FONT_SANS_B, 6.2)
         c.setFillColor(ink)
         c.drawString(x0, y0 - 3.4 * mm, self.label)
@@ -396,7 +398,7 @@ class GaugeRuler(Flowable):
             c.line(x0 + two_in, y0, x0 + two_in, y0 + 8 * mm)
             c.setDash()
             c.setFont(FONT_SANS, 5.4)
-            c.drawCentredString(x0 + two_in, y0 + 8.4 * mm, "2 in")
+            c.drawCentredString(x0 + two_in + 3.2 * mm, y0 + 8.8 * mm, "2 in")
 
 
 class PillBar(Flowable):
@@ -536,6 +538,37 @@ def _auto_widths(header: list[str], rows: list[list[str]], total: float) -> list
     return [w * scale for w in widths]
 
 
+class StitchTable(Table):
+    """A stitch table that never strands a single round at the foot of a page.
+
+    ReportLab splits between rows and will happily leave one row (plus the
+    repeated header) alone on the next page. When that is about to happen the
+    split is retried a few points lower, which moves one row across so the
+    continuation carries at least two.
+    """
+
+    min_remainder = 2
+
+    def split(self, aW, aH):
+        parts = Table.split(self, aW, aH)
+        if len(parts) != 2:
+            return parts
+        repeat = getattr(self, "repeatRows", 0) or 0
+        if len(parts[1]._cellvalues) - repeat >= self.min_remainder:
+            return parts
+        heights = getattr(self, "_rowHeights", None) or []
+        row_h = max(heights[-1] if len(heights) > 1 else 0, 14)
+        delta = 3.0
+        while delta <= row_h + 6:
+            alt = Table.split(self, aW, aH - delta)
+            if (len(alt) == 2
+                    and len(alt[1]._cellvalues) - repeat >= self.min_remainder
+                    and len(alt[0]._cellvalues) - repeat >= 1):
+                return alt
+            delta += 3.0
+        return parts
+
+
 def build_table(block: Block, st: Styles, theme: dict, total_w: float,
                 tick: bool) -> Table | None:
     total_w = min(total_w, CONTENT_W - 1)
@@ -601,7 +634,7 @@ def build_table(block: Block, st: Styles, theme: dict, total_w: float,
         if pdfmd.critical_row(row):
             critical_rows.append(idx)
 
-    table = Table(data, colWidths=widths, repeatRows=1, hAlign="LEFT")
+    table = StitchTable(data, colWidths=widths, repeatRows=1, hAlign="LEFT")
     cmds = [
         ("BACKGROUND", (0, 0), (-1, 0), HexColor(theme["head"])),
         ("TEXTCOLOR", (0, 0), (-1, 0), HexColor(theme["head_text"])),
@@ -1500,7 +1533,15 @@ class Renderer:
             self.flow.append(Spacer(1, 9))
             self.flow.append(Paragraph("Before you sew - tick as you go", self.st.h4))
             for item in checks[:12]:
-                short = re.split(r"[-—]", pdfmd.plain(item), maxsplit=1)[0].strip()
+                # only a spaced dash separates the step from its explanation: a bare
+                # hyphen is part of the text ("Rnds 8-9") and a colon is not a break
+                short = re.split(r"\s+[–—-]\s+", pdfmd.plain(item), maxsplit=1)[0].strip()
+                if len(short) > 104:
+                    head = re.split(r"(?<=\.)\s", short, maxsplit=1)[0]
+                    if len(head) <= 112:        # a whole first sentence reads best
+                        short = head
+                    else:
+                        short = short[:104].rsplit(" ", 1)[0] + " …"
                 self.flow.append(Paragraph(f"{CHECK_GLYPH}&nbsp;&nbsp;{pdfmd.inline(short)}",
                                            self.st.tiny))
 
@@ -1509,7 +1550,7 @@ class Renderer:
             box = Table([[Paragraph(
                 f"<b>Share your make</b> — tag {pdfmd.inline(tags)} so other makers can find "
                 f"the pattern. Please credit “Pattern by Novality Store · "
-                f"{self.meta.design_code.title()}”.", self.st.tiny)]], colWidths=[CONTENT_W - 1])
+                f"{self.meta.design_code.replace('DESIGN CODE ', '')}”.", self.st.tiny)]], colWidths=[CONTENT_W - 1])
             box.setStyle(TableStyle([
                 ("BACKGROUND", (0, 0), (-1, -1), HexColor(self.theme["soft"])),
                 ("BOX", (0, 0), (-1, -1), 0.4, HexColor(self.theme["border"])),
@@ -1851,16 +1892,21 @@ class Renderer:
                 sidebar = ([intro_flow + [table_flow]] if intro_flow else [table_flow],
                            prose)
         if sidebar is None:
-            inner = head + intro_flow
-            for table in tables:
-                t = build_table(table, self.st, self.theme, CONTENT_W - 16, tick=True)
-                if t:
-                    inner.append(t)
-                    inner.append(Spacer(1, 3))
-            for sub_title, sub_body in subs:
-                inner.append(Bookmark(pdfmd.plain(sub_title), level=2))
-                inner.append(Paragraph(pdfmd.inline(sub_title), self.st.h4))
-                inner.extend(render(sub_body))
+            # document order, not grouped by kind: a `#### Option A` heading must
+            # sit above its own table, never after the last one
+            inner: list = list(head)
+            for b in body:
+                if b.kind == "table":
+                    table = build_table(b, self.st, self.theme, CONTENT_W - 16, tick=True)
+                    if table:
+                        inner.append(table)
+                        inner.append(Spacer(1, 3))
+                elif b.kind == "h4":
+                    inner.append(Spacer(1, 4))
+                    inner.append(Bookmark(pdfmd.plain(b.text), level=2))
+                    inner.append(Paragraph(pdfmd.inline(b.text), self.st.h4))
+                else:
+                    inner.extend(render([b]))
             self.card(inner, keep=rows_total <= 16, prefix=prefix)
         else:
             left, right = sidebar
@@ -2050,9 +2096,8 @@ def build_pattern(code: str, edition: str, outdir: Path, quiet: bool = False) ->
                                     color=HexColor(theme["border"]),
                                     spaceBefore=2, spaceAfter=5))
     renderer.flow.append(Paragraph(
-        "End of pattern. Every stitch count, size and quantity in this edition was recomputed "
-        "from the instruction text, not sampled. The copyright notice appears once, in the "
-        "page footer of every page.", styles.tiny))
+        f"End of pattern  ·  {meta.design_code}  ·  Novality Store "
+        f"{EDITION_LABEL[meta.edition].title()}", styles.tiny))
     story.extend(renderer.flow)
 
     suffix = {"colour": "_Colour_Edition.pdf", "print": "_Print_Edition.pdf"}[edition]
