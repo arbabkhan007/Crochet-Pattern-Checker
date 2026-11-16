@@ -1,6 +1,12 @@
 # Novality Store — The Grand Crochet Pattern Collection
 ### Design codes NS-01 … NS-17 · seventeen verified amigurumi & decor masters in one volume
 
+> **Superseded edition.** This hand-compiled volume predates the round-3 numeric sweep and
+> still carries superseded figures. The maintained edition is
+> [`NovalityStore_Grand_Collection_corrected.md`](NovalityStore_Grand_Collection_corrected.md),
+> generated from the seventeen corrected masters by `docs/kit/build_grand.py`.
+
+
 Every pattern in this volume has been through the Novality verification pipeline:
 
 1. **Deterministic static-analysis engine** (`src/crochet_checker`) — each corrected master runs

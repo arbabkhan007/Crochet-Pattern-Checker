@@ -196,3 +196,40 @@ def test_no_master_trips_the_both_directions_lint():
     for i in range(1, 18):
         n = f"{i:02d}"
         assert "both directions" not in master(n).lower(), f"NS-{n}"
+
+
+# --- the generated volume --------------------------------------------------
+
+VOLUME = ROOT / "NovalityStore_Grand_Collection_corrected.md"
+
+
+def test_volume_has_every_part_in_order():
+    vol = VOLUME.read_text(encoding="utf-8")
+    heads = re.findall(r"^# Part (\d\d) of 17 — NS-(\d\d) · ", vol, flags=re.M)
+    assert [c for _, c in heads] == [f"{i:02d}" for i in range(1, 18)]
+    assert [n for n, _ in heads] == [f"{i:02d}" for i in range(1, 18)]
+
+
+def test_every_master_body_is_embedded_verbatim():
+    vol = VOLUME.read_text(encoding="utf-8")
+    for i in range(1, 18):
+        n = f"{i:02d}"
+        body = "\n".join(master(n).splitlines()[1:]).strip("\n")
+        assert body in vol, f"NS-{n} body missing or edited inside the volume"
+
+
+def test_volume_ledger_is_truthful():
+    vol = VOLUME.read_text(encoding="utf-8")
+    # the engine really does report 2 errors / 4 warnings for NS-14, and nothing else
+    assert "| NS-14 | Bobble Snowflake Tree Skirt | 2 / 4 | 0 / 0 |" in vol
+    # ... and zero everywhere else, so the ledger must not claim otherwise
+    for i in (1, 4, 6, 12, 13, 17):
+        n = f"{i:02d}"
+        assert re.search(rf"\| NS-{n} \| [^|]+ \| 0 / 0 \| 0 / 0 \|", vol), n
+
+
+def test_ns17_collar_foundation_fits_the_neck():
+    text = master("17")
+    assert "ch 14 (about 6.5 cm relaxed at the pattern's worsted gauge" in text
+    assert "| Row 1 | sc in 2nd ch and next 12 ch, ch 1, turn | (13) |" in text
+    assert "next 20 ch" not in text and "(21)" not in text

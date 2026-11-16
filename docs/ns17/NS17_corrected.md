@@ -564,15 +564,15 @@ Sew all five edge stitches to the centre back around Lamb Body Rnds 20–21, ang
 
 #### 14. Fixed red lamb collar
 
-Do not make the collar until the lamb's 12-to-12 neck seam is complete. With scarlet, ch 22. Before Row 1, check that the relaxed chain reaches around the assembled neck with one-stitch overlap and without tightening the neck; if your gauge differs, remake and record the adjusted foundation.
+Do not make the collar until the lamb's 12-to-12 neck seam is complete. With scarlet, ch 14 (about 6.5 cm relaxed at the pattern's worsted gauge, against an assembled neck of about 6 cm around). Before Row 1, check that the relaxed chain reaches around the assembled neck with one-stitch overlap and without tightening the neck; if your gauge differs, remake and record the adjusted foundation.
 
 | Row | Instruction | Sts | Note |
 
 |---|---|---|---|
 
-| Row 1 | sc in 2nd ch and next 20 ch, ch 1, turn | (21) | - |
+| Row 1 | sc in 2nd ch and next 12 ch, ch 1, turn | (13) | - |
 
-| Row 2 | sc in each st across | (21) | FO with sewing tail |
+| Row 2 | sc in each st across | (13) | FO with sewing tail |
 
 If the fit check required an adjusted foundation of **N** chains, work one sc in the second chain and every remaining chain for **N − 1** stitches in Row 1, then work **N − 1** sc in Row 2. Record that count on both rows; do not increase or decrease within the strip.
 

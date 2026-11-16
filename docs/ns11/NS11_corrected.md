@@ -26,7 +26,7 @@ No finished gnome has been shown by Novality Store to comply with ASTM F963, EN 
 
 - Hook: 3.5 mm (US E-4) - or whatever size makes a dense, no-see-through fabric.
 
-- Stuffing: fibre fill about 25 g.
+- Stuffing: fibre fill about 10 g.
 
 - Notions: stitch marker, tapestry needle, scissors.
 

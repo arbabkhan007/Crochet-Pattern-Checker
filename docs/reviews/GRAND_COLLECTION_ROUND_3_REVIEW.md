@@ -14,7 +14,7 @@ figure that no tool can read (sizes, widths, weights, leg spacing, derived dimen
 | Stitch tables re-derived | 90 |
 | Instruction rows re-derived | 692 (0 unreadable, 0 mismatched) + NS-14's 32 skirt rounds, which the tool skips (see §6) |
 | Arithmetic errors found | 0 |
-| Prose/geometry errors found and corrected | 6 in this repo's masters (5 patterns) · 4 more that exist only in the pasted volume |
+| Prose/geometry errors found and corrected | 8 in this repo's masters (7 patterns) · 4 more that exist only in the pasted volume |
 | Left for a sample | 1 (NS-15 poinsettia size — text is ambiguous, not wrong) |
 | Ledger/reproducibility notes | 4 (see §6) |
 
@@ -172,6 +172,33 @@ credit is still on the cover block, in the copyright notice, at the Terms of Use
 (`© 2026 Novality Crochet Studio`, `Design Code NS 14 · Novality Crochet Studio`); only the brand line
 on page 1 changed.
 
+### 2.7 NS-11 the gnome — stuffing weight
+
+| | |
+|---|---|
+| was | "Stuffing: fibre fill about 25 g." |
+| now | "Stuffing: fibre fill about 10 g." |
+
+The gnome is 12 cm tall and 5 cm wide on a 3.5 mm hook, so the body encloses roughly π × 2.5² × 12 ≈
+240 cm³; at the ~0.05 g/cm³ the rest of the collection uses that is 10-12 g. 25 g is twice the volume's
+worth and would fight the "pack the base flat and wide … keep the pointed hat lightly stuffed"
+instruction two pages later. Cross-checks: NS-02 allots 5 g for three 5 cm bodies and NS-12's
+corrected figure is 5 g.
+
+### 2.8 NS-17 the lamb's collar — foundation twice as long as the neck
+
+| | |
+|---|---|
+| was | "With scarlet, ch 22." … Row 1 `sc in 2nd ch and next 20 ch` (21) … Row 2 (21) |
+| now | "With scarlet, ch 14 (about 6.5 cm relaxed at the pattern's worsted gauge, against an assembled neck of about 6 cm around)." … Row 1 `sc in 2nd ch and next 12 ch` (13) … Row 2 (13) |
+
+ch 22 is 21 stitches; at the pattern's 20 sc per 10 cm that is 105 mm of collar against a neck the same
+page calls "about 6 cm around" — 75 % too long, with only the "check that the relaxed chain reaches
+around the assembly" sentence standing between the maker and a collar that cannot overlap by one
+stitch. ch 14 = 13 stitches = 65 mm, which leaves exactly the one-stitch overlap the finishing step
+asks for. The three affected lines (foundation, Row 1, Row 2) were changed together so the count
+column still re-derives.
+
 ## 3. Corrections the pasted volume still needs (not present in this repo's older revision)
 
 The repo's `NovalityStore_Grand_Collection.md` is a pre-round-2 snapshot, so four of the volume's
@@ -222,13 +249,13 @@ already right. Reason in §2.2 — the pattern's gauge line says 4.5 mm per stit
   are plain-stitch gaps. Rewrite on one measure: "plain gaps 2/4/0/6 (centres 5/7/3/9 apart) before;
   3/3/3/3 (centres 6 apart) after; body 43 mm across at Rnd 5".
 
-### 3.4 NS-17, the lamb's fixed collar
+### 3.4 NS-17, the lamb's fixed collar — wording
 
 "With scarlet, ch 14 (about 6.5 cm relaxed at DK gauge, against an assembled neck of about 6 cm
 around)." — the pattern's own yarn is worsted (#4) throughout and its gauge is 20 sc = 10 cm, i.e.
 5 mm per stitch: 13 stitches × 5 mm = 65 mm and 12 × 5 = 60 mm, which is exactly the two figures
-given. "DK gauge" contradicts the materials list and would make the collar ~15 % small. Replace
-"at DK gauge" with "at the pattern's worsted gauge".
+given. "DK gauge" contradicts the materials list. Replace "at DK gauge" with "at the pattern's worsted
+gauge" (the master in this repo already reads that way after §2.8; the errata script fixes your copy).
 
 ## 4. Per-pattern record
 
@@ -248,13 +275,13 @@ non-trivial derivation, not just a gauge-to-size sanity check (about 60 numbers 
 | NS-08 | 7 / 59 | 30 st = 43 mm ✓; 24 rounds × 4.3 = 103 mm = the stated "103 mm by the gauge" ✓; legs 6 rnd = 25.8 mm on a 26 mm join and 8 rnd = 34.4 mm on a 34 mm join — both feet exactly on the table ✓; spike strip 3 + 9 × 3 + 3 = 33 ✓ | clean |
 | NS-09 | 3 / 11 | 24 st = 26.7 mm disc ✓ exact; bump positions 4 / 9 / 13 / 18 / 22 follow from the runs 3,4,3,4,3,2 ✓; 19 plain + 5 fans = 35 ✓; 42-st version = 46.8 mm + flippers ≈ 5.7 cm ✓ | clean |
 | NS-10 | 3 / 24 | head 36 st at 4.3 mm = 49.3 mm ≈ 4.9 cm ✓; blanket check 9 dc = 38.7 ≈ 39 mm ✓; 26 cm square → diagonal 26 × √2 = 36.8 cm ✓ | clean |
-| NS-11 the turkey | 4 / 18 | 30 st = 45-48 mm ≈ "about 5 cm wide at the base" ✓; gauge 11 rounds = 5 cm ⇒ 12 cm ≈ 27 rounds ✓; stuffing 10 g against ~240 cm³ of body ✓ | clean |
+| NS-11 the turkey | 4 / 18 | 30 st = 45-48 mm ≈ "about 5 cm wide at the base" ✓; gauge 11 rounds = 5 cm ⇒ 12 cm ≈ 27 rounds ✓ | **1 correction** (§2.7) |
 | NS-12 the fir | 1 / 26 | 48 st at ~4.7 mm = 72 mm round = the stated 7 cm wide ✓; enclosed volume under 150 cm³ (fixed stuffing, §2.4) | **1 correction** (§2.4) |
 | NS-13 the ornaments | 3 / 13 | bauble 6 → 24 then closed to a 6-st crown ✓ (24 st ≈ 36 mm vs stated 3.75 cm, inside "about"); star = 15 mm ring + 2 × ~14 mm blocked fan reach | **1 correction** (§2.5) |
 | NS-14 the tree skirt | 6 / 0 (skipped by the tool — see §6) + 32 rows by hand | every growth round reads 12 × N with N − 2 plain dc per repeat (N − 3 on bobble rounds); total 6,336 st ✓; its own gauge derivation gives 4 in per 6¼ rounds vs the 6 written (reported as F3 in its validation report) | **1 correction** (§2.6) |
 | NS-15 the wreath | 5 / 18 | all three sizes are circumference = π × centreline diameter: 7 → 22.0, 29 → 91.1, 40 → 125.7 cm against 22 / 92 / 125 ✓; poinsettia geometry deferred (§5.1) | clean (1 item deferred) |
 | NS-16 the lion | 4 / 31 | 20 sc & 20 rounds = 10 cm ⇒ 20 st = 10 cm round, 5 cm flat ✓ (both stated); garland maths 200 − 40 = 160, 160 ÷ 23 = 6.96 ≈ "about 7 cm" ✓; toe 23 → 20 → 8 → 4 ✓ | clean |
-| NS-17 the goat & lamb | 14 / 154 (largest) | hair 24 + 10 + 9 = 43 strands ✓; collar 13 st × 5 mm = 65 mm and 12 × 5 = 60 mm = the stated "about 6.5 cm / 6 cm" ✓ (only the yarn name is wrong, §3.4); its size row already flags the 17 cm target as unverified ✓ | volume-only: 1 (§3.4) |
+| NS-17 the goat & lamb | 14 / 154 (largest) | hair 24 + 10 + 9 = 43 strands ✓; collar 13 st × 5 mm = 65 mm against the 60 mm neck ✓ (foundation was ch 22, fixed §2.8); its size row already flags the 17 cm target as unverified ✓ | **1 correction** (§2.8) + 1 in the volume only (§3.4) |
 
 ### 4.1 The checks that came out exact
 
@@ -314,14 +341,14 @@ petal (a design change). Recommend clarifying the anchor in the petal row either
 
 ## 6. Notebook: four tooling and ledger notes
 
-1. **The volume's ledger says NS-14 is "2 errors / 3 warnings"; this checkout reproduces 2 / 4.**
+1. **The old volume's ledger said NS-14 was "2 errors / 3 warnings"; this checkout reproduces 2 / 4.**
    The fourth warning is "The opening is an approximate target. It was not checked against a finished
-   stand." The other 16 patterns reproduce 0 / 0 exactly. Either the volume was built with a slightly
-   different stage set, or the ledger row is stale by one warning; the honest fix is to regenerate the
-   row from the build rather than hand-edit it.
-   The volume says the counts are "recomputed at build time by `docs/kit/build_grand.py`", but no such
-   script is in this repository, so the ledger cannot be reproduced here — the counts above come from
-   `docs/kit/engine_run.py`.
+   stand." The other 16 patterns reproduce 0 / 0 exactly. The old volume also credited a build script,
+   `docs/kit/build_grand.py`, that did not exist in the repository — so its ledger could not be
+   reproduced at all. **Now fixed:** that script exists, and the regenerated volume
+   (`NovalityStore_Grand_Collection_corrected.md`) carries a ledger whose engine, audit, table/row and
+   page counts are all recomputed on every build, so the row reads 2 / 4 because that is what the
+   engine reports.
 2. **The shared auditor silently skips NS-14.** Its tables carry a leading `[ ]` checklist column, and
    `audit_tables()` skips any row whose first cell starts with `[ ]`/`[x]`, so all 32 NS-14 rows are
    invisible to it (`rows=0`). The skirt's counts were checked by hand instead: `Sts` = 12 × N for
@@ -333,14 +360,22 @@ petal (a design change). Recommend clarifying the anchor in the petal row either
    whole dict looks fine but disables every override, and the 14 override-covered rows (NS-07 petal,
    NS-10 rnd 2 / rnds 3-20, NS-11 r9-12 / r13 / r16, NS-15 continuation rows) then show up as
    "unparsed" instead of being checked.
-4. **This repo's volume is a pre-round-2 snapshot.** It still carries superseded figures that the
-   pasted volume has already fixed (NS-11 stuffing 25 g, NS-02 brim "about 24 mm" for a 22 mm
-   derivation, NS-04's old Rnd 5). Regenerate it from the masters rather than hand-patching further.
+4. **`NovalityStore_Grand_Collection.md` is a pre-round-2 hand-compiled snapshot** and is now marked
+   superseded in its own header. The maintained edition is
+   `NovalityStore_Grand_Collection_corrected.md`, built from the seventeen masters by
+   `docs/kit/build_grand.py` (17 parts, front matter, recomputed ledger and a corrections table). The
+   two figures the snapshot still gets wrong beyond the round-3 list are NS-02's brim (24 mm for a
+   22 mm derivation, inside tolerance) and nothing else of consequence — NS-04's Rnd 5, NS-11's
+   stuffing, NS-12's stuffing, NS-13's star and NS-17's collar are all corrected in the masters.
 
 ## 7. Re-verify
 
 ```bash
-# the round-3 figures, re-derived by test (stdlib only, 9 tests)
+# rebuild the volume, and prove the committed copy is current
+python3 docs/kit/build_grand.py
+python3 docs/kit/build_grand.py --check
+
+# the round-3 figures, re-derived by test (stdlib only, 13 tests)
 python3 -m pytest tests/test_ns_prose_figures.py -q
 
 # arithmetic over all 17 masters (expect problems=0 unparsed=0)
