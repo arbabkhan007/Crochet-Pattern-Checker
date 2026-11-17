@@ -24,7 +24,7 @@ These designs are intended as decorations, not toys. Keep them and their hanging
 
 ## Gauge & size
 
-Gauge is unimportant to the look, but it is the basis of the sizes: at 3.4 mm per stitch and 3.0 mm per round the bauble is 2.6 cm across, the star 6 cm point to point and the snowflake 6 cm across. Work tightly enough that the bauble holds fill and the star blocks flat. Every size in this pattern is calculated from the stitch counts at that gauge - none is a measurement of a finished sample - so measure your first piece and change hook if you want the set larger or smaller.
+Gauge: about 29 sc and about 33 rounds to 10 cm (4 in), over single crochet worked in the round. That spacing - 3.4 mm per stitch and 3.0 mm per round - is the basis of the finished sizes: 2.6 cm across the bauble, 6 cm point to point for the star, 6 cm across the snowflake. Work tightly enough that the bauble holds its fill and the star blocks flat. The figures are calculated from the stitch counts rather than measured from a sample, so measure your first piece and change hook if you want the set larger or smaller.
 
 ## Abbreviations (US + UK)
 
@@ -76,7 +76,7 @@ The sphere closes at the same 6-stitch crown it started from. Two-color option: 
 
 | R5 | sc in each st around | dc in each st around | (24) | contrast color: change on the last pull-through of R4 |
 
-| R6 | sc in each st around | dc in each st around | (24) | last contrast round: change back on the last pull-through |
+| R6 | sc in each st around | dc in each st around | (24) | last contrast round: change back on the last pull-through of the last stitch of R6 |
 
 | R7 | [2 sc, sc2tog] x 6 | [2 dc, dc2tog] x 6 | (18) | - |
 
@@ -85,8 +85,6 @@ The sphere closes at the same 6-stitch crown it started from. Two-color option: 
 | R9 | sc2tog x 6 | dc2tog x 6 | (6) | stuff firm, then close |
 
 Finish: stuff through the R9 opening, a little at a time, until the sphere springs back when pressed instead of feeling rigid. A 2.6 cm ball holds only about 1 g, so add it in pinches; too much is what makes the shape lumpy. Then FO with a long tail, thread it through the front loops of the last 6 stitches, cinch the opening closed and weave in. (Never close first and stuff afterwards: a closed sphere cannot be filled.)
-
-Optional metallic stripe: once the bauble is closed and stuffed, work surface slip stitches in metallic yarn along the R6/R7 join. Insert the hook through the fabric just above an R6 stitch, pull up a loop of metallic yarn, then work one sl st into each R6 stitch around - 24 in all - so the stripe sits on the join. For the zigzag shown in the cover render, work a second line into R7, offset by 3 stitches. (Do not try to work into the front loops of R6 after R7 is done: those loops are already used.)
 
 Hanging loop: join yarn at the crown, ch 18, sl st into the same joining place, FO and weave in. Do not hang the finished bauble where a child can reach the loop.
 
@@ -128,15 +126,17 @@ Block flat using the blocking method above; let it cool if steamed and dry compl
 
 1. Work the three pieces in order: A bauble, B star, C snowflake.
 
-2. Bauble only: stuff through the R9 opening until firm but springy, then thread the tail through the front loops of the last 6 stitches and cinch closed. Work the optional metallic stripe after closing, before the loop is added.
+2. Bauble only: stuff through the R9 opening until firm but springy, then thread the tail through the front loops of the last 6 stitches and cinch closed.
 
-3. Block the star and snowflake flat and let them dry completely - overnight for cotton.
+3. Optional metallic stripe (bauble): once the piece is closed and stuffed, work surface slip stitches in metallic yarn along the R6/R7 join. Insert the hook through the fabric just above an R6 stitch, pull up a loop of metallic yarn, then work one sl st into each R6 stitch around - 24 in all - so the stripe sits on the join. For the zigzag shown in the cover render, work a second line into R7, offset by 3 stitches. Do not try to work into the front loops of R6 once R7 is done: those loops are already used.
 
-4. Add a hanging loop to each piece: ch 18, sl st into the same place, FO, weave in. Keep each loop no longer than its support needs, and never hang the ornaments where a child can reach a loop.
+4. Block the star and snowflake flat and let them dry completely - overnight for cotton.
 
-5. Weave in every remaining end in two directions - lace shows knots more than amigurumi does.
+5. Add a hanging loop to each piece: ch 18, sl st into the same place, FO, weave in. Keep each loop no longer than its support needs, and never hang the ornaments where a child can reach a loop.
 
-6. For gifting, thread each loop through a cardboard or felt backing card with the knot hidden underneath.
+6. Weave in every remaining end in two directions - lace shows knots more than amigurumi does.
+
+7. For gifting, thread each loop through a cardboard or felt backing card with the knot hidden underneath.
 
 ## Troubleshooting
 

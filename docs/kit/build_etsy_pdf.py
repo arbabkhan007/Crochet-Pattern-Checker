@@ -169,7 +169,7 @@ def styles():
                              textColor=c("accent"), spaceBefore=2, spaceAfter=3),
         "body": ParagraphStyle("body", fontName="Sans", fontSize=9.2, leading=12.6,
                                textColor=c("text")),
-        "small": ParagraphStyle("small", fontName="Sans", fontSize=7.8, leading=10.4,
+        "small": ParagraphStyle("small", fontName="Sans", fontSize=8.2, leading=11.0,
                                 textColor=c("muted")),
         "bullet": ParagraphStyle("bullet", fontName="Sans", fontSize=9.0, leading=12.2,
                                  textColor=c("text"), leftIndent=10, bulletIndent=0),
@@ -181,6 +181,8 @@ def styles():
                                 textColor=c("text"), alignment=TA_CENTER),
         "head": ParagraphStyle("head", fontName="Sans-B", fontSize=7.8, leading=10,
                                textColor=c("head_text")),
+        "right": ParagraphStyle("right", fontName="Sans", fontSize=8.0, leading=10.6,
+                                textColor=c("muted")),
         "headc": ParagraphStyle("headc", fontName="Sans-B", fontSize=7.8, leading=10,
                                 textColor=c("head_text"), alignment=TA_CENTER),
     }
@@ -271,6 +273,137 @@ class GaugeRuler(Flowable):
         cv.setFont("Sans", 6.5)
         cv.setFillColor(c("muted"))
         cv.drawRightString(self.width, 0, "cm")
+
+
+class _Schematic(Flowable):
+    """Shared helpers for the two construction schematics."""
+
+    def __init__(self, width, height):
+        super().__init__()
+        self.width, self.height = width, height
+
+    # -- drawing primitives ------------------------------------------------
+    def dot(self, x, y, r=2.6, fill=None):
+        cv = self.canv
+        cv.setFillColor(HexColor(fill) if fill else c("text"))
+        cv.circle(x, y, r, stroke=0, fill=1)
+
+    def ring_dot(self, x, y, r=3.0):
+        cv = self.canv
+        cv.setFillColor(white)
+        cv.setStrokeColor(c("text"))
+        cv.setLineWidth(0.8)
+        cv.circle(x, y, r, stroke=1, fill=1)
+
+    def label(self, x, y, text, size=6.4, anchor="left", colour=None):
+        cv = self.canv
+        cv.setFillColor(colour if isinstance(colour, Color) else
+                        (HexColor(colour) if colour else c("muted")))
+        cv.setFont("Sans", size)
+        if anchor == "center":
+            cv.drawCentredString(x, y, text)
+        elif anchor == "right":
+            cv.drawRightString(x, y, text)
+        else:
+            cv.drawString(x, y, text)
+
+    def arrow(self, x1, y1, x2, y2):
+        cv = self.canv
+        cv.setStrokeColor(c("muted"))
+        cv.setLineWidth(0.6)
+        cv.line(x1, y1, x2, y2)
+        import math
+        a = math.atan2(y2 - y1, x2 - x1)
+        cv.setFillColor(c("muted"))
+        p = cv.beginPath()
+        p.moveTo(x2, y2)
+        p.lineTo(x2 - 4 * math.cos(a - 0.42), y2 - 4 * math.sin(a - 0.42))
+        p.lineTo(x2 - 4 * math.cos(a + 0.42), y2 - 4 * math.sin(a + 0.42))
+        p.close()
+        cv.drawPath(p, stroke=0, fill=1)
+
+
+class CloseUps(_Schematic):
+    """Two compact schematics: one star point, and the snowflake spacing rule."""
+
+    def __init__(self, width=CW - 34):
+        super().__init__(width, 118)
+
+    def draw(self):
+        import math
+        cv = self.canv
+        W = self.width
+        title = self.height - 8
+
+        cv.setStrokeColor(c("border"))
+        cv.setLineWidth(0.5)
+        cv.setDash(1.6, 2.2)
+        cv.line(W / 2, 6, W / 2, title - 10)
+        cv.setDash()
+
+        # ---------------- panel A: one star point
+        ax = W * 0.26
+        self.label(ax, title, "STAR \u2014 ONE POINT", 6.0, "center", c("accent"))
+        base_y = 24
+        anchor_x, fan_x = ax - 12, ax + 10
+
+        # the anchoring slip stitch
+        self.dot(anchor_x, base_y, 3.0, P["accent"])
+        self.label(anchor_x - 5, base_y - 1, "sl st", 5.6, "right", c("accent"))
+
+        # six stitches working out of the neighbouring stitch
+        R = 52
+        for t in (-36, -21, -7, 7, 21, 36):
+            a = math.radians(t)
+            x2, y2 = fan_x + R * math.sin(a), base_y + R * math.cos(a)
+            cv.setStrokeColor(c("text"))
+            cv.setLineWidth(1.0)
+            cv.line(fan_x, base_y, x2, y2)
+            cv.line(x2 - 2.6, y2, x2 + 2.6, y2)
+        self.ring_dot(fan_x, base_y, 2.8)
+
+        tipy = base_y + R + 9
+        cv.setFillColor(white)
+        cv.setStrokeColor(c("accent"))
+        cv.setLineWidth(0.8)
+        cv.ellipse(fan_x - 4.8, tipy - 2.8, fan_x + 4.8, tipy + 2.8, stroke=1, fill=1)
+        self.label(fan_x + 8, tipy - 2, "ch 2 tip", 5.8, "left", c("accent"))
+        self.label(fan_x + 30, base_y + 30, "6 fan sts", 5.8, "left")
+        self.label(ax + 44, 4, "one point = 2 center sts, \u00d7 5", 5.6, "center")
+
+        # ---------------- panel B: the snowflake spacing
+        bx = W * 0.66
+        self.label(bx, title, "SNOWFLAKE \u2014 R2", 6.0, "center", c("accent"))
+        cy, Rr = 50, 25
+        cv.setStrokeColor(c("text"))
+        cv.setLineWidth(0.6)
+        cv.circle(bx, cy, Rr, stroke=1, fill=0)
+        pts = [(bx + Rr * math.cos(math.radians(-90 + 30 * i)),
+                cy + Rr * math.sin(math.radians(-90 + 30 * i))) for i in range(12)]
+        # the five stitches this space bridges
+        for i in range(1, 6):
+            x, y = pts[i]
+            self.dot(x, y, 2.4, "#DDD5C9" if P is COLOUR else "#CCCCCC")
+        for i in list(range(0, 1)) + list(range(6, 12)):
+            x, y = pts[i]
+            self.ring_dot(x, y, 2.1)
+
+        cv.setStrokeColor(c("accent"))
+        cv.setLineWidth(0.9)
+        r = Rr + 7
+        cv.arc(bx - r, cy - r, bx + r, cy + r, startAng=-90, extent=150)
+        self.label(bx + 12, cy + r + 2, "ch 5", 5.8, "left", c("accent"))
+        self.label(bx - 4, cy + 2, "12 dc", 5.6, "center")
+        self.label(bx - 4, cy - 5, "in the round", 4.8, "center")
+
+        lx = bx + Rr + 24
+        self.label(lx, cy + 30, "each space:", 5.4, "left")
+        self.label(lx, cy + 21, "ch 5, skip the 5 shaded", 5.4, "left", c("accent"))
+        self.label(lx, cy + 14, "sts, sl st in the next", 5.4, "left", c("accent"))
+        self.label(lx, cy + 2, "6 spaces,", 5.2, "left")
+        self.label(lx, cy - 5, "arms 60\u00b0 apart", 5.2, "left")
+
+        self.label(W - 1, 6, "both are schematics, not to scale", 5.2, "right")
 
 
 class Badge(Flowable):
@@ -429,14 +562,48 @@ def glance_block(sec, S):
                            ("BOX", (0, 0), (-1, -1), 0.7, c("border")),
                            ("INNERGRID", (0, 0), (-1, -1), 0.4, c("border")),
                            ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                           ("TOPPADDING", (0, 0), (-1, -1), 4),
-                           ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                           ("TOPPADDING", (0, 0), (-1, -1), 3),
+                           ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
                            ("LEFTPADDING", (0, 0), (-1, -1), 6),
                            ("RIGHTPADDING", (0, 0), (-1, -1), 6)]))
-    return [Paragraph("Bundle at a glance", S["h2"]), t,
-            Paragraph("Times are working time per piece and exclude blocking, which dries "
-                      "overnight. All three string neatly on one length of yarn \u2014 a matching "
-                      "garland is just all three patterns on repeat.", S["small"]), Spacer(1, 10)]
+    return [Paragraph("Bundle at a glance", S["h3"]), t,
+            Paragraph("Times are approximate working time per piece; they do not change much "
+                      "with experience, and they exclude blocking, which dries overnight. All three "
+                      "string neatly on one length of yarn \u2014 a matching garland is just all "
+                      "three patterns on repeat.", S["small"]), Spacer(1, 10)]
+
+CHIP = {"red": "#B33A3A", "white": "#FFFFFF", "green": "#2F6B4F", "gold": "#D9A441",
+        "cream": "#EFE2CB", "blue": "#7FA8C9", "silver": "#C0C0C8"}
+
+
+def chip_colour(text):
+    t = text.lower()
+    for key in ("pale blue", "blue", "red", "green", "gold", "cream", "silver", "white"):
+        if key in t:
+            return CHIP["blue" if key == "pale blue" else key]
+    return "#999999"
+
+
+def chips_table(cells, size=8):
+    """Row of bordered swatches; unlike glyphs, these survive white-on-white."""
+    row, style = [], []
+    for i, cell in enumerate(cells):
+        hexv = chip_colour(cell)
+        if P is not COLOUR:                        # ink-saving greys
+            rgb = [int(hexv[j:j + 2], 16) for j in (1, 3, 5)]
+            y = min(205, int(0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]))
+            hexv = "#%02X%02X%02X" % (y, y, y)
+        row.append("")
+        style.append(("BACKGROUND", (i, 0), (i, 0), HexColor(hexv)))
+    t = Table([row], colWidths=[size] * len(row), rowHeights=[size])
+    t.setStyle(TableStyle(style + [("BOX", (0, 0), (-1, -1), 0.5, c("border")),
+                                   ("INNERGRID", (0, 0), (-1, -1), 0.5, c("border")),
+                                   ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                                   ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+                                   ("TOPPADDING", (0, 0), (-1, -1), 0),
+                                   ("BOTTOMPADDING", (0, 0), (-1, -1), 0)]))
+    return t
+
 
 FRAME_H = 745.5
 
@@ -494,14 +661,7 @@ class Doc(BaseDocTemplate):
         cv.restoreState()
 
     def afterFlowable(self, flowable):
-        if isinstance(flowable, Paragraph):
-            style = flowable.style.name
-            if style in ("h2", "h3"):
-                key = f"bm{self.page}_{id(flowable)}"
-                self.canv.bookmarkPage(key)
-                level = 0 if style == "h2" else 1
-                text = re.sub(r"<[^>]+>", "", flowable.getPlainText())
-                self.canv.addOutlineEntry(text, key, level=level, closed=False)
+        return          # bookmarks are set once, in retoc()
 
 
 def retoc(path):
@@ -579,7 +739,7 @@ def build(edition: str, out: Path) -> int:
              "shows the optional metallic stripe on the bauble.") if edition == "colour" else
             "Illustrative render of the finished design \u2014 not a photograph of a sample. "
             "Reproduced in greyscale for ink-saving prints.",
-            ParagraphStyle("cap", parent=S["small"], fontSize=7)))
+            ParagraphStyle("cap", parent=S["small"], fontSize=7.5)))
     body.append(Spacer(1, 8))
     body.append(pills(S))
 
@@ -662,24 +822,24 @@ def build(edition: str, out: Path) -> int:
                colWidths=[LW * 0.30, LW * 0.70])
     ab.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.4, c("border")),
                             ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                            ("TOPPADDING", (0, 0), (-1, -1), 2.5),
-                            ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5)]))
+                            ("TOPPADDING", (0, 0), (-1, -1), 2.0),
+                            ("BOTTOMPADDING", (0, 0), (-1, -1), 2.0)]))
     left.append(ab)
     left.append(Spacer(1, 6))
     left.append(Paragraph(
-        "How to read the tables: every round appears twice, side by side \u2014 US terms on the "
-        "left, UK terms on the right. Stitch counts are identical for both terminologies; the "
-        "counts in this booklet follow US terms.", S["small"]))
+        "How to read the tables: every round appears twice, US terms on the left and UK terms on "
+        "the right. The counts are identical for both; this booklet counts in US terms.",
+        S["small"]))
+    left.append(Spacer(1, 4))
+    left.append(Paragraph(
+        "<b>Before you start:</b> you should already be comfortable with the magic ring, sc, hdc, "
+        "dc, sc2tog and surface slip stitch.", S["small"]))
 
-    right = [Paragraph("Gauge &amp; size", S["h2"]),
-             Paragraph(
-                 "Gauge sets the finished size: at 3.4 mm per stitch and 3.0 mm per round the "
-                 "bauble comes out 2.6 cm across, the star 6 cm point to point and the snowflake "
-                 "6 cm across. Work tightly enough that the bauble holds its fill and the star "
-                 "blocks flat. Sizes are calculated from the stitch counts at that gauge; measure "
-                 "your first piece and change hook if you want the set larger or smaller.",
-                 S["small"]),
-             Spacer(1, 4)]
+    right = [Paragraph("Gauge &amp; size", S["h2"])]
+    for kind, payload in gauge:
+        if kind == "p":
+            right.append(Paragraph(md(payload), S["right"]))
+            right.append(Spacer(1, 2))
     right.append(Spacer(1, 2))
     right.append(Paragraph("Print check — 50 mm at 100%", S["h3"]))
     rw = Table([[GaugeRuler()], [Paragraph("This bar must measure 50 mm (2 in). If it does not, "
@@ -692,13 +852,13 @@ def build(edition: str, out: Path) -> int:
                             ("TOPPADDING", (0, 0), (-1, -1), 6),
                             ("BOTTOMPADDING", (0, 0), (-1, -1), 6)]))
     right.append(rw)
-    right.append(Spacer(1, 8))
+    right.append(Spacer(1, 6))
     right.append(Paragraph("Techniques, in the order you meet them", S["h3"]))
     for kind, payload in tech:
         if kind == "num":
             n, t = payload
-            right.append(Paragraph(f"<b>{n}.</b>&nbsp; {md(t)}", S["small"]))
-            right.append(Spacer(1, 3))
+            right.append(Paragraph(f"<b>{n}.</b>&nbsp; {md(t)}", S["right"]))
+            right.append(Spacer(1, 2))
 
     grid = Table([[left, right]], colWidths=[CW * 0.52, CW * 0.48])
     grid.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -710,10 +870,10 @@ def build(edition: str, out: Path) -> int:
         print('left', sum(f.wrap(LW, 999)[1] for f in left), 'right', sum(f.wrap(RW, 999)[1] for f in right))
         print('grid', grid.wrap(CW, 999)[1])
     story.append(grid)
-    story.append(Spacer(1, 12))
+    story.append(Spacer(1, 8))
     story.extend(glance_block(sec, S))
     safety_text = " ".join(payload for kind, payload in safety if kind == "p")
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 7))
     story.append(callout("Safety — read this first", safety_text, S, c("pause_border")))
     story.append(PageBreak())
 
@@ -740,14 +900,20 @@ def build(edition: str, out: Path) -> int:
             if kind == "table":
                 inner.append(stitch_table(payload, S, tick))
                 inner.append(Spacer(1, 5))
+
             elif kind == "p":
                 inner.append(Paragraph(md(payload), S["body"]))
                 inner.append(Spacer(1, 4))
         box = card(inner)
+        if os.environ.get("NOV_DEBUG"):
+            print("card", carddef["h3"][:24], round(box.wrap(CW, 2000)[1], 1))
         if rows and rows <= 16:
             story.append(KeepTogether([box, Spacer(1, 7)]))
         else:
             story.append(box)
+            story.append(Spacer(1, 7))
+        if carddef["h3"].startswith("B."):
+            story.append(CloseUps())
             story.append(Spacer(1, 7))
     story.append(Spacer(1, 4))
 
@@ -757,8 +923,9 @@ def build(edition: str, out: Path) -> int:
     fin = sec.get("Finishing & assembly", [])
     steps = [(p[0], p[1]) for k, p in fin if k == "num"]
     rows = []
+    fin_body = ParagraphStyle("finbody", parent=S["body"], fontSize=8.8, leading=12.0)
     for n, t in steps:
-        rows.append([Badge(int(n)), Paragraph(md(t), S["body"])])
+        rows.append([Badge(int(n)), Paragraph(md(t), fin_body)])
     ft = Table(rows, colWidths=[20, CW - 20])
     ft.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"),
                             ("LEFTPADDING", (0, 0), (-1, -1), 0),
@@ -794,16 +961,19 @@ def build(edition: str, out: Path) -> int:
     col = sec.get("Colorways", [])
     terms = sec.get("Terms of Use", [])
     care_txt = " ".join(p for k, p in care if k == "p")
-    cw_items = []
+    cw_flow, cw_rows = [], []
     for k, p in col:
         if k == "table":
             for r in p[1:]:
-                if len(r) >= 5:
-                    cw_items.append("<b>%s</b><br/>%s / %s / %s / %s" % (r[0], r[1], r[2], r[3], r[4]))
-                else:
-                    cw_items.append("<b>%s</b><br/>%s" % (r[0], " / ".join(r[1:])))
+                cells = r[1:]
+                cw_rows.append((
+                    "<b>%s</b>" % md(r[0]),
+                    chips_table(cells),
+                    " / ".join(cells),
+                ))
         elif k == "p":
-            cw_items.append(md(p))
+            cw_flow.append(Paragraph(md(p), ParagraphStyle(
+                "cwp", parent=S["small"], fontSize=8.2, leading=11.2)))
     cw_legend = ('<font size="6.6">columns: bauble R1-R4 / R5-R6 / R7-R9 / star + '
                  'snowflake</font><br/><br/>')
     term_parts, skip = [], False
@@ -817,12 +987,27 @@ def build(edition: str, out: Path) -> int:
                 continue                           # copyright appears once, in the footer
             term_parts.append(("p", p))
 
-    two = []
-    for title, body, raw in (("Care &amp; washing", care_txt, False),
-                             ("Colorways", cw_legend + "<br/><br/>".join(cw_items), True)):
-        two.append([Paragraph(title, S["h3"]),
-                    Paragraph(body if raw else md(body), ParagraphStyle(
-                        "colbody", parent=S["body"], fontSize=8.8, leading=12.4))])
+    colbody = ParagraphStyle("colbody", parent=S["body"], fontSize=8.4, leading=11.8)
+    care_cell = [Spacer(1, 2), Paragraph("Care &amp; washing", S["h3"]), Paragraph(md(care_txt), colbody)]
+
+    col_cell = [Spacer(1, 2), Paragraph("Colorways", S["h3"]),
+                Paragraph('<font size="6.8">columns: bauble R1-R4 / R5-R6 / R7-R9 / '
+                          'star + snowflake</font>', ParagraphStyle(
+                              "legend", parent=S["small"], fontSize=6.8, leading=9))]
+    for label, swatches, values in cw_rows:
+        col_cell.append(Paragraph(label, ParagraphStyle("cwlab", parent=S["body"],
+                                                        fontSize=8.8, leading=11.8)))
+        row = Table([[swatches, Paragraph(values, ParagraphStyle(
+            "cwval", parent=S["small"], fontSize=7.8, leading=10.4))]],
+            colWidths=[4 * 9 + 8, CW * 0.58 - 70])
+        row.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"),
+                                 ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                                 ("RIGHTPADDING", (0, 0), (0, 0), 5),
+                                 ("TOPPADDING", (0, 0), (-1, -1), 2),
+                                 ("BOTTOMPADDING", (0, 0), (-1, -1), 2)]))
+        col_cell.append(row)
+    col_cell.extend(cw_flow)
+    two = [care_cell, col_cell]
     gt = Table([two], colWidths=[CW * 0.42, CW * 0.58])
     gt.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"),
                             ("BOX", (0, 0), (-1, -1), 0.7, c("border")),
@@ -833,7 +1018,7 @@ def build(edition: str, out: Path) -> int:
                             ("TOPPADDING", (0, 0), (-1, -1), 10),
                             ("BOTTOMPADDING", (0, 0), (-1, -1), 12)]))
     cells_terms = [Paragraph("Terms of use", S["h3"])]
-    body_style = ParagraphStyle("tbody", parent=S["body"], fontSize=8.8, leading=12.4)
+    body_style = ParagraphStyle("tbody", parent=S["body"], fontSize=8.4, leading=11.8)
     for kind, payload in term_parts:
         if kind == "h":
             cells_terms.append(Paragraph("<b>%s</b>" % md(payload), body_style))
