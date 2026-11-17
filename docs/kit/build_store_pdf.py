@@ -101,8 +101,7 @@ class Doc(BaseDocTemplate):
         cv.setStrokeColor(P["RULE"])
         cv.setLineWidth(0.8)
         cv.line(M, 0.52 * inch, W - M, 0.52 * inch)
-        stamp = (f"Novality Store | Design Code {s['code']} | Page {pg} of "
-                 f"{doc.total_pages}  ·  \u2713 5-AXIOM VERIFIED")
+        stamp = (f"Novality Store  ·  {s['code']}  ·  Page {pg} of {doc.total_pages}")
         cv.setFillColor(P["GREY"] if not self.bw else P["INK"])
         cv.setFont("DJ", 7)
         cv.drawCentredString(W / 2, 0.36 * inch, stamp)
@@ -248,12 +247,19 @@ class ComponentMap(Flowable):
                 c.setFillColor(HexColor("#000000"))
             else:
                 c.setFillColor(HexColor(self.P["CREAM"]))
-            c.setFont("DJ-B", 7.2)
+            fs = 7.2
+            while fs > 5.0 and c.stringWidth(title, "DJ-B", fs) > bw_ - 8:
+                fs -= 0.2
+            c.setFont("DJ-B", fs)
             c.drawCentredString(x + bw_ / 2, y + 0.80 * inch, title)
             c.setFillColor(HexColor("#000000" if self.bw else self.P["INK"]))
             c.setFont("DJ", 6.4)
             lines = sub.split("\n")
             for j, ln in enumerate(lines[:3]):
+                fs2 = 6.4
+                while fs2 > 4.6 and c.stringWidth(ln, "DJ", fs2) > bw_ - 8:
+                    fs2 -= 0.2
+                c.setFont("DJ", fs2)
                 c.drawCentredString(x + bw_ / 2, y + 0.58 * inch - j * 8.4, ln)
             if i < n - 1:
                 c.setStrokeColor(HexColor("#222222") if self.bw else HexColor(self.P["GOLD"]))
@@ -263,17 +269,18 @@ class ComponentMap(Flowable):
 
 
 class CountChart(Flowable):
-    def __init__(self, counts, P, bw, width=CW, height=1.6 * inch, zones=()):
+    def __init__(self, counts, P, bw, width=CW, height=1.75 * inch, zones=(), labels=()):
         super().__init__()
         self.counts, self.P, self.bw = counts, P, bw
         self.width, self.height, self.zones = width, height, zones
+        self.labels = list(labels)
 
     def draw(self):
         c = self.canv
         n = len(self.counts)
         mx = max(self.counts) or 1
-        left, bottom = 18, 10
-        plot_w, plot_h = self.width - left - 4, self.height - 26
+        left, bottom = 18, 24
+        plot_w, plot_h = self.width - left - 4, self.height - 40
         c.setStrokeColor(HexColor("#333333") if self.bw else HexColor(self.P["RULE"]))
         c.setLineWidth(0.5)
         c.line(left, bottom, left + plot_w, bottom)
@@ -301,10 +308,15 @@ class CountChart(Flowable):
                                else HexColor(self.P["GOLD"]))
                 c.rect(x + bw_ * 0.18, bottom, bw_ * 0.64, hgt, fill=1, stroke=0)
         c.setFillColor(HexColor("#000000" if self.bw else self.P["INK"]))
+        c.setFont("DJ", 5.4)
+        for i in range(n):
+            lab = self.labels[i] if i < len(self.labels) else f"R{i + 1}"
+            c.drawCentredString(left + i * bw_ + bw_ / 2, bottom - 9, lab)
         c.setFont("DJ", 6.2)
-        c.drawString(left, 1, "Stated stitch count per round. "
-                              + ("Grey bars = marked zones." if self.bw
-                                 else "Gold bars = marked zones."))
+        cap = "Bauble stitch count, round by round."
+        if self.zones:
+            cap += (" Grey bars = marked zones." if self.bw else " Gold bars = marked zones.")
+        c.drawString(left, 2, cap)
 
 
 # ---------------------------------------------------------------- md parse
@@ -347,7 +359,8 @@ def parse_md(text):
         elif re.match(r"^-\s+", s):
             blocks.append(("bullet", s[2:].strip()))
         elif re.match(r"^\d+\.\s+", s):
-            blocks.append(("num", re.sub(r"^\d+\.\s+", "", s)))
+            mnum = re.match(r"^(\d+)\.\s+(.*)$", s)
+            blocks.append(("num", (mnum.group(1), mnum.group(2))))
         else:
             blocks.append(("p", s))
     flush()
@@ -414,8 +427,8 @@ def build(spec_path, bw=False):
         hdr = Table([[Paragraph(f"<b>NOVALITY STORE</b>", ParagraphStyle(
                         "cv", fontName="DS-B", fontSize=13, textColor=P["FOREST"] if not bw
                         else HexColor("#000000"))),
-                      Paragraph("· Novality Crochet Studio imprint", S["small"]),
-                      Paragraph(f"<b>DESIGN CODE {spec['code'].replace('NS-', 'NS ')}</b>",
+                      Paragraph("· Novality Store pattern", S["small"]),
+                      Paragraph(f"<b>{spec['code']}</b>",
                                 ParagraphStyle("cvr", fontName="DJ-B", fontSize=9,
                                                textColor=P["INK"], alignment=2))]],
                     colWidths=[1.7 * inch, CW - 3.3 * inch, 1.6 * inch])
@@ -447,8 +460,9 @@ def build(spec_path, bw=False):
         ]))
         st.append(frame)
         chip = Table([[Paragraph("Illustrative render of the finished design - not a "
-                                 "photograph of a sample", S["small"])]],
-                     colWidths=[3.4 * inch])
+                                 "photograph of a sample. It shows the optional metallic "
+                                 "stripe on the bauble.", S["small"])]],
+                     colWidths=[4.1 * inch])
         chip.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, -1), HexColor(P["PAPER"])),
             ("BOX", (0, 0), (-1, -1), 0.7, HexColor(P["GOLD"]) if not bw else HexColor("#333333")),
@@ -456,9 +470,9 @@ def build(spec_path, bw=False):
             ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
         ]))
         chip.hAlign = "RIGHT"
-        st.append(Spacer(1, -0.24 * inch))
+        st.append(Spacer(1, 0.07 * inch))
         st.append(chip)
-        st.append(Spacer(1, 0.34 * inch))
+        st.append(Spacer(1, 0.22 * inch))
         st.append(Paragraph(md(spec["title"]), ParagraphStyle(
             "t", fontName="DS-B", fontSize=27, leading=30,
             textColor=P["FOREST_DK"] if not bw else HexColor("#000000"))))
@@ -469,8 +483,7 @@ def build(spec_path, bw=False):
             "tg", fontName="DJ-B", fontSize=7.8, leading=10, textColor=P["GOLD_DK"] if not bw
             else HexColor("#000000"))))
         st.append(Spacer(1, 6))
-        chips = [Paragraph("<b>&#10003; 5-AXIOM MATHEMATICALLY VERIFIED</b>",
-                           ParagraphStyle("bd", fontName="DJ-B", fontSize=8, textColor=P["INK"]))]
+        chips = []
         for c in spec["chips"]:
             chips.append(Paragraph(f"<b>{md(c)}</b>", ParagraphStyle(
                 "ch", fontName="DJ-B", fontSize=8, textColor=P["INK"], alignment=TA_CENTER)))
@@ -480,11 +493,9 @@ def build(spec_path, bw=False):
         tblchips = Table([chips], colWidths=widths)
         tstyle = [("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                   ("LEFTPADDING", (0, 0), (-1, -1), 7), ("RIGHTPADDING", (0, 0), (-1, -1), 7),
-                  ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
-                  ("BOX", (0, 0), (0, 0), 1.3, HexColor(P["FOREST"]) if not bw else HexColor("#000000"))]
+                  ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]
         for i in range(len(chips)):
-            tstyle.append(("BOX", (i, 0), (i, 0), 1.3 if i == 0 else 0.8,
-                           HexColor(P["FOREST"]) if (not bw and i == 0) else HexColor("#333333")))
+            tstyle.append(("BOX", (i, 0), (i, 0), 0.8, HexColor("#333333")))
             tstyle.append(("ROUNDEDCORNERS", (i, 0), (i, 0), 4, 4, 4, 4))
         tblchips.setStyle(TableStyle(tstyle))
         st.append(tblchips)
@@ -505,10 +516,10 @@ def build(spec_path, bw=False):
                      ("RIGHTPADDING", (2 * i, 0), (2 * i, 0), 0),
                      ("LEFTPADDING", (2 * i + 1, 0), (2 * i + 1, 0), 5),
                      ("RIGHTPADDING", (2 * i + 1, 0), (2 * i + 1, 0), 4)]
-        sw.append(Paragraph("named original colourway", ParagraphStyle(
+        sw.append(Paragraph("named original colorway", ParagraphStyle(
             "swr", fontName="DJ", fontSize=6.8, textColor=P["GREY"] if not bw else P["INK"],
             alignment=2)))
-        swcols.append(max(CW - sum(swcols), 0.5 * inch))
+        swcols.append(max(CW - sum(swcols), 1.25 * inch))
         swt = Table([sw], colWidths=swcols)
         swt.setStyle(TableStyle(cmds))
         st.append(swt)
@@ -536,12 +547,12 @@ def build(spec_path, bw=False):
             alignment=TA_CENTER)))
         st.append(Spacer(1, 12))
         st.append(rule(P, bw, 1.4))
-        st.append(Paragraph("© 2026 Novality Store. All rights reserved. Published under the "
-                            "Novality Crochet Studio imprint.",
+        st.append(Paragraph("© 2026 Novality Store. All rights reserved.",
                             ParagraphStyle("cp", fontName="DJ", fontSize=7.4, textColor=P["INK"],
                                            alignment=TA_CENTER)))
-        st.append(Paragraph("Personal &amp; small-batch finished-item licence · Design Code "
-                            f"{spec['code']} · pattern text machine-verified (crochet-check v1.0.0)",
+        st.append(Paragraph("Personal &amp; small-batch finished-item license · Design Code "
+                            f"{spec['code']} · every stitch count checked by hand against the "
+                            "written rounds",
                             ParagraphStyle("cp2", fontName="DJ", fontSize=6.8,
                                            textColor=P["GREY"] if not bw else P["INK"],
                                            alignment=TA_CENTER)))
@@ -577,22 +588,27 @@ def build(spec_path, bw=False):
                 st.append(Paragraph("•&nbsp; " + md(payload), S["bullet"]))
                 continue
             if kind == "num":
-                st.append(Paragraph(md(payload), S["bullet"]))
+                num, text_ = payload
+                st.append(Paragraph(f"<b>{num}.</b>&nbsp;&nbsp;{md(text_)}", S["bullet"]))
                 continue
             if kind == "table":
                 st.append(CondPageBreak(1.6 * inch))
                 if is_round_table(payload):
-                    rows = [payload[0]] + [r + [""] * (4 - len(r)) if len(r) < 4 else r
+                    ncol_t = max(len(r) for r in payload)
+                    rows = [payload[0]] + [r + [""] * (ncol_t - len(r)) if len(r) < ncol_t else r
                                            for r in payload[1:]]
-                    rows = [r[:4] for r in rows]
+                    rows = [r[:5] if ncol_t >= 5 else r[:4] for r in rows]
                     # Rnd | US terms | UK equivalent | Sts.  Both phrase
                     # columns carry a full instruction, so split the width
                     # between them; 0.5 in for the UK column broke every
                     # translated instruction into one word per line.
-                    body = (CW - 0.42 * inch - 0.62 * inch) / 2
-                    st.append(round_table(rows, S, P, bw,
-                                          widths=[0.42 * inch, body, body,
-                                                  0.62 * inch]))
+                    if ncol_t >= 5:
+                        body = (CW - 0.42 * inch - 0.55 * inch - 1.25 * inch) / 2
+                        widths = [0.42 * inch, body, body, 0.55 * inch, 1.25 * inch]
+                    else:
+                        body = (CW - 0.42 * inch - 0.62 * inch) / 2
+                        widths = [0.42 * inch, body, body, 0.62 * inch]
+                    st.append(round_table(rows, S, P, bw, widths=widths))
                 else:
                     ncol = max(len(r) for r in payload)
                     rows = [r + [""] * (ncol - len(r)) for r in payload]
@@ -601,30 +617,29 @@ def build(spec_path, bw=False):
                 continue
         # ---------------- appendices
         labels, counts = main_counts(blocks, spec)
-        st.append(CondPageBreak(2 * inch))
+        st.append(PageBreak())          # both appendices share the closing page
         appx = [Spacer(1, 6)]
-        appx += section_title("Appendix A - Assembly Map & Count Chart", S, P, bw)
+        appx += section_title("Appendix A - Assembly Map", S, P, bw)
         appx.append(ComponentMap(spec["components"], P, bw))
         appx.append(Spacer(1, 6))
         appx.append(Paragraph(md(spec.get("assembly_note", "Assembly order follows the numbered "
                                           "sections; face work happens while the head is still "
                                           "open.")), S["cap"]))
-        appx.append(Spacer(1, 8))
-        zones = tuple(spec.get("zones", ()))
-        appx.append(CountChart(counts, P, bw, zones=zones))
         st.append(KeepTogether(appx))
-        st.append(PageBreak())
-        st += section_title("Appendix B - Count Ladder & Verification Summary", S, P, bw)
+        st.append(Spacer(1, 14))
+        st.append(CondPageBreak(2.6 * inch))
+        st += section_title("Appendix B - Count Ladder & Chart", S, P, bw)
+        # Both halves of the ladder sit in one grid so they share a baseline;
+        # as two free-floating tables they read as unrelated fragments.
         half = math.ceil(len(counts) / 2)
+        halves = []
         for a, b in ((0, half), (half, len(counts))):
             if a >= b:
                 continue
             data = [[Paragraph("Rnd", S["head"]), Paragraph("Sts", S["head"])]]
-            if bw:
-                pass
             for lab, v in zip(labels[a:b], counts[a:b]):
                 data.append([Paragraph(md(lab), S["cell"]), Paragraph(str(v), S["cell"])])
-            t = Table(data, colWidths=[0.7 * inch, 0.6 * inch])
+            t = Table(data, colWidths=[0.85 * inch, 0.65 * inch])
             tst = [("GRID", (0, 0), (-1, -1), 0.4, HexColor(P["RULE"])),
                    ("BACKGROUND", (0, 0), (-1, 0), HexColor(P["FOREST"]) if not bw
                     else HexColor("#FFFFFF")),
@@ -633,45 +648,31 @@ def build(spec_path, bw=False):
             if bw:
                 tst.append(("LINEBELOW", (0, 0), (-1, 0), 0.8, HexColor("#333333")))
             t.setStyle(TableStyle(tst))
-            t.hAlign = "LEFT" if a == 0 else "RIGHT"
-            st.append(t)
-            st.append(Spacer(1, 4))
-        st.append(callout("Verification summary",
-                          f"Every round count in this pattern was re-derived from its own "
-                          f"instructions by an independent auditor "
-                          f"({'PASS' if MANIFOLD_OK else 'FAIL'}: {len(counts)} ladder rows, "
-                          f"0 mismatches) and by the deterministic static-analysis engine "
-                          f"crochet-check v1.0.0. No count below is sampled or hand-checked.",
-                          S, P, bw))
+            halves.append(t)
+        if halves:
+            grid = Table([halves], colWidths=[1.5 * inch] * len(halves))
+            grid.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"),
+                                      ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+                                      ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                                      ("RIGHTPADDING", (0, 0), (-1, -1), 16)]))
+            grid.hAlign = "LEFT"
+            st.append(grid)
         st.append(Spacer(1, 6))
-        ax_rows = [["Axiom", "What it guarantees", "Findings"]]
-        ax_rows += [["Domain Isolation", "Pieces keep separate stitch domains",
-                     str(AX["Domain Isolation"])],
-                    ["Edge Lineage", "Every round consumes exactly the previous total",
-                     str(AX["Edge Lineage"])],
-                    ["Open Boundaries", "Open edges are closed or sewn deliberately",
-                     str(AX["Open Boundaries"])],
-                    ["Gauge Bounding", "Hook and gauge band consistent with stated size",
-                     str(AX["Gauge Bounding"])]]
-        at = Table([[Paragraph(md(c), S["head"] if i == 0 else S["cell"])
-                     for c in r] for i, r in enumerate(ax_rows)],
-                   colWidths=[1.3 * inch, CW - 2.1 * inch, 0.8 * inch])
-        ast = [("GRID", (0, 0), (-1, -1), 0.4, HexColor(P["RULE"])),
-               ("BACKGROUND", (0, 0), (-1, 0), HexColor(P["FOREST"]) if not bw
-                else HexColor("#FFFFFF")),
-               ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 4)]
-        if bw:
-            ast.append(("LINEBELOW", (0, 0), (-1, 0), 0.8, HexColor("#333333")))
-        at.setStyle(TableStyle(ast))
-        st.append(at)
+        st.append(Paragraph(md(spec.get("ladder_note",
+                                        "Each count above was re-derived from the written "
+                                        "round below it, one round at a time, in order. Sizes, "
+                                        "times and yarn lengths in this pattern are arithmetic "
+                                        "from those counts, not measurements of a sample.")), S["cap"]))
+        st.append(Spacer(1, 8))
+        zones = tuple(spec.get("zones", ()))
+        st.append(CountChart(counts, P, bw, zones=zones, labels=labels))
         st.append(Spacer(1, 8))
         st.append(Paragraph(md(spec.get("colophon", "Diagrams, assembly map and verification "
                                                     "appendix computed from the corrected "
                                                     "master at compile time.")), S["cap"]))
         st.append(Spacer(1, 10))
         st.append(rule(P, bw, 1.2))
-        st.append(Paragraph("© 2026 Novality Store. All rights reserved. Published under the "
-                            "Novality Crochet Studio imprint.",
+        st.append(Paragraph("© 2026 Novality Store. All rights reserved.",
                             ParagraphStyle("cpl", fontName="DJ", fontSize=7.4,
                                            textColor=P["INK"], alignment=TA_CENTER)))
         return st

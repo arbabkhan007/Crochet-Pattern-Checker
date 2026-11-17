@@ -26,7 +26,7 @@ Item 8 differs from the round-1 masters, which say 9 m; use whichever wording yo
 
 **Find:** `Bauble about 3.75 cm (1.5 in) across; star about 9 cm (3.5 in); snowflake about 10 cm (4 in).`
 
-**Replace:** `Bauble about 4.5 cm (1.75 in) across; star about 6 cm (2.4 in) point to point; snowflake about 10 cm (4 in).`
+**Replace:** `Bauble about 2.6 cm (1 in) across and 2.5 cm tall - 24 stitches round at the widest point. Star about 6 cm (2.4 in) point to point - 35 stitches round plus the five treble points. Snowflake about 6 cm (2.4 in) across - a 12-stitch ring plus six chain-and-treble arms.`
 
 Why: the pattern's own gauge is 3.4 mm per stitch. 43 stitches around → 146 mm → 46.5 mm flat (not 37.5). 34 stitches → 116 mm → 37 mm flat, and five treble points add about 24 mm across (not 90 mm in total). 55 stitches + six arms = the quoted 10 cm, so the snowflake figure is right.
 

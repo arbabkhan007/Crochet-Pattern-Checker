@@ -39,6 +39,8 @@ Rows that legitimately carry no count (a foundation ring, a border written "arou
 
 ### F-01 · NS-13 — bauble and star finished sizes do not follow from the pattern's own gauge (P1)
 
+**Superseded in the NS-13 rebuild (round 4).** The 43- and 55-stitch figures below came from an earlier draft of the bauble and snowflake. The master actually in `docs/ns13` tops out at **24 stitches** for the bauble and a **12-spoke ring** for the snowflake, so at the same 3.4 mm per stitch the true sizes are **2.6 cm bauble, 6 cm star, 6 cm snowflake**. The reasoning below still shows why the printed 3.75 cm and 9 cm could not both be right; the numbers have been replaced in the master and in the PDF.
+
 The pattern states **"about 3.4 mm per stitch, 3.0 mm per round"**. Circumference ÷ π gives the flat fabric diameter:
 
 | Piece | Stitches around | Circumference | Fabric diameter | Printed | Verdict |

@@ -1,10 +1,10 @@
 # Christmas Ornament Bundle
 
-> **US + UK equivalent  ·  Beginner  ·  15 - 40 min each**  —  Design Code NS 13
+> **US + UK equivalent  ·  Beginner  ·  15-40 min per piece, excluding blocking**  —  Design Code NS-13
 
-Three quick decorations from leftover yarn: a stuffed round bauble, a flat-blocked five-point star, and a crisp six-arm snowflake. Allow about 15-40 minutes each, including finishing (blocking and drying take additional elapsed time).
+Three quick decorations from leftover yarn: a stuffed round bauble, a flat-blocked five-point star, and a crisp six-arm snowflake. Allow 15-40 minutes per piece, plus overnight blocking and drying.
 
-**FINISHED SIZE**  Bauble about 4.5 cm (1.75 in) across; star about 6 cm (2.4 in) point to point; snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
+**FINISHED SIZE**  Bauble about 2.6 cm (1 in) across and 2.5 cm tall - 24 stitches round at the widest point. Star about 6 cm (2.4 in) point to point - 35 stitches round plus the five treble points. Snowflake about 6 cm (2.4 in) across - a 12-stitch ring plus six chain-and-treble arms. All three are arithmetic at 3.4 mm per stitch and 3.0 mm per round (3.5 mm hook, DK), not measurements of a finished sample: work one piece first and measure it.
 
 ---
 
@@ -14,17 +14,17 @@ These designs are intended as decorations, not toys. Keep them and their hanging
 
 ## Materials
 
-- Yarn: small amounts of worsted / aran or DK - white, red, gold, green, silver. About 3 g for the bauble, 2 g for the star and 2 g for the snowflake; 177 worked stitches is only about 4.4 m, so one 25 g ball of each shade is far more than the set needs. Cotton gives the crispest snowflake; acrylic is fine too.
+- Yarn: DK / light worsted (#3) cotton or acrylic - white, red, gold, green, silver, blue. The set is 177 worked stitches plus the chain loops, about 6 m of yarn in total, so scraps are enough: roughly 3 m for the bauble and 1.5 m each for the star and snowflake. Cotton gives the crispest snowflake; acrylic is fine too.
 
-- Hook: 3-4 mm (use 3 mm for DK, 4 mm for worsted).
+- Hook: 3.5 mm (US E/4). The finished sizes above assume this hook; a larger hook makes the same stitch counts larger, not wrong.
 
-- Optional: a pinch of fibre fill for the bauble; metallic yarn for surface stripes.
+- Optional: about 9 g of fiber fill for the bauble; metallic yarn for the stripe in step 2 of Finishing.
 
 - Notions: tapestry needle, scissors, pin board or mat for blocking the star and snowflake.
 
 ## Gauge & size
 
-Gauge is unimportant - work tightly enough that the bauble holds fill and the star blocks flat. One round of the bauble base shows you the size at once.
+Gauge is unimportant to the look, but it is the basis of the sizes: at 3.4 mm per stitch and 3.0 mm per round the bauble is 2.6 cm across, the star 6 cm point to point and the snowflake 6 cm across. Work tightly enough that the bauble holds fill and the star blocks flat. Every size in this pattern is calculated from the stitch counts at that gauge - none is a measurement of a finished sample - so measure your first piece and change hook if you want the set larger or smaller.
 
 ## Abbreviations (US + UK)
 
@@ -38,7 +38,7 @@ sc = dc - single crochet / double crochet  ·  st(s) - stitch(es)
 
 hdc = half treble - half double crochet / half treble crochet  ·  R - round
 
-dc = tr - double crochet / treble crochet  ·  (n) - stitch count at round end
+dc = tr - double crochet / treble crochet  ·  Sts column - stitch count at the end of the round, in brackets
 
 tr = dtr - treble crochet / double treble crochet
 
@@ -50,9 +50,9 @@ The bauble is worked in continuous rounds (no joins) with the marker in the firs
 
 1. **The magic ring** - Pull the tail tight after round one; if the centre gaps, work the tail through the first round once more before weaving.
 
-2. **Picot-free points (star)** - Each point is a fan of 6 worked stitches into ONE centre stitch, with a ch-2 tip: (sc, hdc, dc, ch 2, dc, hdc, sc). The ch-2 tip is a space and is not counted as a worked stitch. Per point you make 6 fan stitches plus 1 anchoring sl st, so the five-point round has 35 counted stitches (plus five ch-2 spaces). The symmetry comes from blocking, not tugging.
+2. **Fan points (star)** - Each point is a fan of 6 worked stitches into ONE centre stitch, with a ch-2 tip: (sc, hdc, dc, ch 2, dc, hdc, sc). The ch-2 tip is a space and is not counted as a worked stitch - it resembles a picot but is not one, because the tip is never closed with a slip stitch. Per point you make 6 fan stitches plus 1 anchoring sl st, so the five-point round has 35 counted stitches (plus five ch-2 spaces). The symmetry comes from blocking, not tugging.
 
-3. **Chain spaces (snowflake)** - The snowflake skeleton is 6 ch-5 loops pinned around the 12-dc ring. The arms are worked into the spaces, never into individual chains.
+3. **Chain spaces (snowflake)** - The snowflake skeleton is 6 ch-5 loops worked into the 12-dc round, one loop per pair of spokes. The arms are worked into those chain spaces, never into individual chains.
 
 4. **Blocking** - For cotton, wet or mist the piece, pin every point to shape and let it dry fully. Acrylic often does not hold a shape from pins alone; if the yarn label permits, steam-block cautiously with the steamer or iron held above the fabric, never touching it, and test a scrap first. Do not press or iron either piece.
 
@@ -60,7 +60,7 @@ The bauble is worked in continuous rounds (no joins) with the marker in the firs
 
 ### A. Round Christmas Bauble - stuffed ball
 
-The sphere closes at the same 6-stitch crown it started from. Two-colour option: change at R5.
+The sphere closes at the same 6-stitch crown it started from. Two-color option: change at R5.
 
 | Rnd | US terms | UK equivalent | Sts | Note |
 
@@ -74,17 +74,19 @@ The sphere closes at the same 6-stitch crown it started from. Two-colour option:
 
 | R4 | [2 sc, inc] x 6 | [2 dc, inc] x 6 | (24) | - |
 
-| R5-6 | sc in each st around (2 rnd) | dc in each st around (2 rnd) | (24) | - |
+| R5-6 | sc in each st around (2 rnd) | dc in each st around (2 rnd) | (24) | change color at R5 for the banded look |
 
 | R7 | [2 sc, sc2tog] x 6 | [2 dc, dc2tog] x 6 | (18) | - |
 
-| R8 | [sc, sc2tog] x 6 | [dc, dc2tog] x 6 | (12) | stuff now |
+| R8 | [sc, sc2tog] x 6 | [dc, dc2tog] x 6 | (12) | start stuffing here |
 
-| R9 | sc2tog x 6 | dc2tog x 6 | (6) | close |
+| R9 | sc2tog x 6 | dc2tog x 6 | (6) | stuff firm, then close |
 
-Finish: FO with a tail, thread through the front loops of the last 6 stitches, cinch and weave in. Stuff firmly but not hard - the sphere should spring back when pressed rather than feel rigid.
+Finish: stuff through the R9 opening, a little at a time, until the sphere springs back when pressed instead of feeling rigid - about 9 g. Then FO with a long tail, thread it through the front loops of the last 6 stitches, cinch the opening closed and weave in. (Never close first and stuff afterwards: a closed sphere cannot be filled.)
 
-Hanging loop: join yarn at the crown, ch 18, sl st into the same joining place, FO and weave in. Surface sl sts in metallic yarn make instant stripes after Rnd 6.
+Optional metallic stripe: after R6, work surface sl sts in metallic yarn through the front loops of R6 - one sl st in every 6th stitch, four stitches in all - then a second line offset by 3 stitches to make the zigzag shown in the cover render.
+
+Hanging loop: join yarn at the crown, ch 18, sl st into the same joining place, FO and weave in. Do not hang the finished bauble where a child can reach the loop.
 
 ### B. Five-Point Star - flat, blocked
 
@@ -94,7 +96,7 @@ Each point uses exactly 2 of the 10 centre stitches - one for the slip stitch th
 
 |---|---|---|---|---|
 
-| R1 | ch 1, 10 sc in MR, sl st to first sc to close | ch 1, 10 dc in MR, sl st to first dc to close | (10) | centre ring |
+| R1 | 10 sc in MR, sl st to first sc to close | 10 dc in MR, sl st to first dc to close | (10) | centre ring |
 
 | R2 | [sl st in next st, (sc, hdc, dc, ch 2, dc, hdc, sc) in next st] x 5, sl st to first sl st, FO | [sl st in next st, (dc, half treble, tr, ch 2, tr, half treble, dc) in next st] x 5, sl st to first sl st, FO | (35) | 5 sl sts + 30 fan sts; ch-2 tips not counted |
 
@@ -114,57 +116,78 @@ Three short rounds. The ring is closed first so the arms hang on real chain spac
 
 | R2 | [ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close | [ch 5, skip next st, sl st in next st] x 6, sl st to base of first ch-5 to close | - | 6 ch-5 spaces |
 
-| R3 | (sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | (sl st, ch 3, 3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | - | 6 arms - first sl st of each arm loose, last sl st snug |
+| R3 | (sl st, ch 3, 3 tr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | (sl st, ch 3, 3 dtr, ch 3, sl st) in each of the 6 ch-5 spaces, sl st to first sl st, FO | (6 arms) | first sl st of each arm loose, last sl st snug |
 
 Hanging loop: join yarn in the ch-3 tip of one arm, ch 18, sl st into the same tip.
 
-Block flat using the fibre-appropriate method in technique 4; let it cool if steamed and dry completely before hanging.
+Block flat using the blocking method above; let it cool if steamed and dry completely before hanging.
 
 ## Finishing & assembly
 
-- Bauble two-colour: change yarn on the final pull-through of R4 for a sharp banded ball.
+1. Work the three pieces in order: A bauble, B star, C snowflake.
 
-- Weave every end on the star and snowflake in two directions - lace shows knots more than amigurumi does.
+2. Bauble only: stuff through the R9 opening until firm but springy, then thread the tail through the front loops of the last 6 stitches and cinch closed. Work the optional metallic stripe before the loop is added.
 
-- Thread each finished loop through a cardboard or felt backing card with the string knot hidden underneath for gifting.
+3. Block the star and snowflake flat and let them dry completely - overnight for cotton.
+
+4. Add a hanging loop to each piece: ch 18, sl st into the same place, FO, weave in. Keep each loop no longer than its support needs, and never hang the ornaments where a child can reach a loop.
+
+5. Weave in every remaining end in two directions - lace shows knots more than amigurumi does.
+
+6. For gifting, thread each loop through a cardboard or felt backing card with the knot hidden underneath.
 
 ## Troubleshooting
 
-- **Bauble looks like a lemon.** Too much stuffing late in the game. Stuff a pinch at R8, shape by rolling, and keep the crown pinch tight at R9.
+- **Bauble looks like a lemon.** Too much stuffing added late. Stuff gradually from R8 and top up through the R9 opening before closing, then roll the sphere between your palms to shape it and keep the closing pinch tight.
 
-- **Star will not lie flat.** It needs blocking, not more tugging. Wet-block cotton. For acrylic, pins alone may not set the shape; follow the yarn label and cautiously steam from above without touching or melting the fibres.
+- **Star will not lie flat.** It needs blocking, not more tugging. Wet-block cotton. For acrylic, pins alone may not set the shape; follow the yarn label and cautiously steam from above without touching or melting the fibers.
 
-- **Snowflake arms lean one way, or the base bunches.** Both arm-end sl sts share the same ch-5 space, and tension is the whole trick: work the FIRST sl st of each arm loose enough that the base of the arm lies flat (too tight twists the arm into the opening sl st), then work the LAST sl st snug so the arm stands upright.
+- **Snowflake arms lean one way, or the base bunches.** Both arm-end sl sts share the same ch-5 space, and tension is the whole trick. Work the first sl st of each arm loose enough that the base lies flat - if it is too tight, the arm twists out of the space - then work the last sl st snug so the arm stands upright.
 
 ## Colorways
 
-Snow white  ·  Classic red & white  ·  Gold  ·  Evergreen trio  ·  Frost blue
+| Colorway | Bauble R1-R4 | Bauble R5-R6 | Bauble R7-R9 | Star and snowflake |
+|---|---|---|---|---|
+
+|---|---|---|---|---|
+
+| Snow white | white | white | white | white |
+
+| Classic red & white | red | white | white | white with red tips |
+
+| Gold | gold | gold | gold | gold |
+
+| Evergreen trio | green | cream | green | cream with green tips |
+
+| Frost blue | pale blue | white | white | white with pale-blue tips |
+
+Use the same two shades across all three pieces so the set reads as one. The metallic stripe is a third accent: silver on red, gold on green, silver on frost blue.
 
 ## Helpful tips
 
 ### Bundle at a glance
 
-| Piece | Time | Yarn (worsted) | Ideal use |
+| Piece | Time | Yarn (DK) | Ideal use |
 
 |---|---|---|---|
 
-| Bauble | ~25 min | 3 g | Tree ornament, garland |
+| Bauble | ~25 min | ~3 m | Tree ornament, garland |
 
-| Star | ~20 min | 2 g | Gift topper, garland |
+| Star | ~20 min | ~1.5 m | Gift topper, garland |
 
-| Snowflake | ~15 min | 2 g | Window, gift tag, garland |
+| Snowflake | ~15 min | ~1.5 m | Window, gift tag, garland |
 
 All three string neatly on one length of yarn - a matching garland is just all three patterns on repeat.
 
 ## Care & storage
 
-Follow the yarn and metallic-thread labels. Before publishing a cleaning claim or supplying finished ornaments, test the proposed method on a complete blocked sample and check for dye transfer, distortion, melted or dulled fibres, released stuffing and weakened hanging loops after it is fully dry. Store the ornaments dry and flat or supported, without crushing the star or snowflake points. Reblock only with the fibre-appropriate method above; never apply an iron directly.
+Wash only as the yarn label allows: cool water, a drop of mild soap, squeeze gently - never wring - then reshape and dry flat. Metallic thread can dull with washing, so spot-clean a striped bauble instead. Store the ornaments dry and flat or supported, without crushing the star or snowflake points. Reblock as described above, and never apply an iron directly to the fabric.
 
 ## Terms of Use
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 13.
+This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store. Design Code NS-13.
 
 © 2026 Novality Store. All rights reserved.
 
