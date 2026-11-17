@@ -14,7 +14,7 @@ These designs are intended as decorations, not toys. Keep them and their hanging
 
 ## Materials
 
-- Yarn: DK / light worsted (#3) cotton or acrylic - white, red, gold, green, silver, blue. The set is 177 worked stitches plus the chain loops, about 6 m of yarn in total, so scraps are enough: roughly 3 m for the bauble and 1.5 m each for the star and snowflake. Cotton gives the crispest snowflake; acrylic is fine too.
+- Yarn: DK / light worsted (#3) cotton or acrylic - white, red, gold, green, silver, blue. The set is 201 worked stitches (144 bauble + 45 star + 12 snowflake) plus the chain loops and slip stitches, about 6 m of yarn in total, so scraps are enough: roughly 3 m for the bauble and 1.5 m each for the star and snowflake. Cotton gives the crispest snowflake; acrylic is fine too.
 
 - Hook: 3.5 mm (US E/4). The finished sizes above assume this hook; a larger hook makes the same stitch counts larger, not wrong.
 
@@ -74,7 +74,9 @@ The sphere closes at the same 6-stitch crown it started from. Two-color option: 
 
 | R4 | [2 sc, inc] x 6 | [2 dc, inc] x 6 | (24) | - |
 
-| R5-6 | sc in each st around (2 rnd) | dc in each st around (2 rnd) | (24) | change color at R5 for the banded look |
+| R5 | sc in each st around | dc in each st around | (24) | contrast color: change on the last pull-through of R4 |
+
+| R6 | sc in each st around | dc in each st around | (24) | last contrast round: change back on the last pull-through |
 
 | R7 | [2 sc, sc2tog] x 6 | [2 dc, dc2tog] x 6 | (18) | - |
 
@@ -84,7 +86,7 @@ The sphere closes at the same 6-stitch crown it started from. Two-color option: 
 
 Finish: stuff through the R9 opening, a little at a time, until the sphere springs back when pressed instead of feeling rigid. A 2.6 cm ball holds only about 1 g, so add it in pinches; too much is what makes the shape lumpy. Then FO with a long tail, thread it through the front loops of the last 6 stitches, cinch the opening closed and weave in. (Never close first and stuff afterwards: a closed sphere cannot be filled.)
 
-Optional metallic stripe: after R6, work surface sl sts in metallic yarn through the front loops of R6 - one sl st in every 6th stitch, four stitches in all - then a second line offset by 3 stitches to make the zigzag shown in the cover render.
+Optional metallic stripe: once the bauble is closed and stuffed, work surface slip stitches in metallic yarn along the R6/R7 join. Insert the hook through the fabric just above an R6 stitch, pull up a loop of metallic yarn, then work one sl st into each R6 stitch around - 24 in all - so the stripe sits on the join. For the zigzag shown in the cover render, work a second line into R7, offset by 3 stitches. (Do not try to work into the front loops of R6 after R7 is done: those loops are already used.)
 
 Hanging loop: join yarn at the crown, ch 18, sl st into the same joining place, FO and weave in. Do not hang the finished bauble where a child can reach the loop.
 
@@ -126,7 +128,7 @@ Block flat using the blocking method above; let it cool if steamed and dry compl
 
 1. Work the three pieces in order: A bauble, B star, C snowflake.
 
-2. Bauble only: stuff through the R9 opening until firm but springy, then thread the tail through the front loops of the last 6 stitches and cinch closed. Work the optional metallic stripe before the loop is added.
+2. Bauble only: stuff through the R9 opening until firm but springy, then thread the tail through the front loops of the last 6 stitches and cinch closed. Work the optional metallic stripe after closing, before the loop is added.
 
 3. Block the star and snowflake flat and let them dry completely - overnight for cotton.
 
