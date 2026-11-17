@@ -164,8 +164,12 @@ def callout(title, body, S, P, bw, accent=None, bg=None):
 def round_table(rows, S, P, bw, widths=None):
     """rows: list of cell-lists including header."""
     ncol = len(rows[0])
-    widths = widths or ([0.30 * inch] + [CW - 0.30 * inch - 0.52 * inch - 0.9 * inch]
-                        + [0.52 * inch] + [0.9 * inch] if ncol == 4 else None)
+    # Rnd | US terms | UK equivalent | Sts.  The UK column carries a full
+    # translated instruction, so it needs as much room as the US column; the
+    # old 0.52 in width crushed it to one word per line.
+    _body = (CW - 0.42 * inch - 0.62 * inch) / 2
+    widths = widths or ([0.42 * inch, _body, _body, 0.62 * inch]
+                        if ncol == 4 else None)
     if widths is None:
         widths = [CW / ncol] * ncol
     data, style = [], [("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
@@ -581,9 +585,14 @@ def build(spec_path, bw=False):
                     rows = [payload[0]] + [r + [""] * (4 - len(r)) if len(r) < 4 else r
                                            for r in payload[1:]]
                     rows = [r[:4] for r in rows]
+                    # Rnd | US terms | UK equivalent | Sts.  Both phrase
+                    # columns carry a full instruction, so split the width
+                    # between them; 0.5 in for the UK column broke every
+                    # translated instruction into one word per line.
+                    body = (CW - 0.42 * inch - 0.62 * inch) / 2
                     st.append(round_table(rows, S, P, bw,
-                                          widths=[0.42 * inch, CW - 1.82 * inch,
-                                                  0.5 * inch, 0.9 * inch]))
+                                          widths=[0.42 * inch, body, body,
+                                                  0.62 * inch]))
                 else:
                     ncol = max(len(r) for r in payload)
                     rows = [r + [""] * (ncol - len(r)) for r in payload]

@@ -14,7 +14,7 @@ These designs are intended as decorations, not toys. Keep them and their hanging
 
 ## Materials
 
-- Yarn: small amounts (about 10 g each) of worsted / aran or DK - white, red, gold, green, silver. Cotton gives the crispest snowflake; acrylic is fine too.
+- Yarn: small amounts of worsted / aran or DK - white, red, gold, green, silver. About 3 g for the bauble, 2 g for the star and 2 g for the snowflake; 177 worked stitches is only about 4.4 m, so one 25 g ball of each shade is far more than the set needs. Cotton gives the crispest snowflake; acrylic is fine too.
 
 - Hook: 3-4 mm (use 3 mm for DK, 4 mm for worsted).
 
@@ -148,11 +148,11 @@ Snow white  ·  Classic red & white  ·  Gold  ·  Evergreen trio  ·  Frost blu
 
 |---|---|---|---|
 
-| Bauble | ~25 min | 9 g | Tree ornament, garland |
+| Bauble | ~25 min | 3 g | Tree ornament, garland |
 
-| Star | ~20 min | 7 g | Gift topper, garland |
+| Star | ~20 min | 2 g | Gift topper, garland |
 
-| Snowflake | ~15 min | 5 g | Window, gift tag, garland |
+| Snowflake | ~15 min | 2 g | Window, gift tag, garland |
 
 All three string neatly on one length of yarn - a matching garland is just all three patterns on repeat.
 
