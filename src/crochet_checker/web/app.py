@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import BackgroundTasks, FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ..parser.parser import CrochetParser
 from ..pdf import TEMPLATES, PDFConfig, PDFGenerator
@@ -36,6 +36,20 @@ class CheckRequest(BaseModel):
     pattern_text: str
 
 
+class ConsensusRunRequest(BaseModel):
+    pattern_text: str = Field(min_length=1, max_length=100_000)
+
+
+class DraftChangeRequest(BaseModel):
+    from_text: str = Field(min_length=1, max_length=5_000)
+    to_text: str = Field(max_length=5_000)
+    reason: str = Field(min_length=1, max_length=2_000)
+
+
+class ConsensusDraftRequest(BaseModel):
+    changes: list[DraftChangeRequest] = Field(min_length=1, max_length=20)
+
+
 @app.get("/", response_class=HTMLResponse)
 async def index():
     return get_frontend_html()
@@ -62,7 +76,7 @@ async def check_pattern(request: CheckRequest):
             "total_height_inches": round(m.total_height_inches, 2),
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 class ImportUrlRequest(BaseModel):
@@ -94,7 +108,7 @@ async def upload_pattern(file: UploadFile = File(...)):
     try:
         text = (await file.read()).decode("utf-8")
     except Exception:
-        raise HTTPException(status_code=400, detail="Could not read file")
+        raise HTTPException(status_code=400, detail="Could not read file") from None
     try:
         pattern = CrochetParser().parse(text)
         report = validate_pattern(pattern)
@@ -114,7 +128,7 @@ async def upload_pattern(file: UploadFile = File(...)):
             "total_height_inches": round(m.total_height_inches, 2),
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 
@@ -148,7 +162,7 @@ async def render_pattern(request: CheckRequest):
             **views,
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 @app.post("/api/simulate")
@@ -168,7 +182,7 @@ async def simulate_pattern(request: CheckRequest):
             **views,
         }
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 class PdfRequest(BaseModel):
@@ -248,12 +262,100 @@ async def generate_pdf(request: PdfRequest, designer: str | None = None):
         html = PDFGenerator(config).generate(pattern, report)
         return {"html": html, "status": "success", "template": template, "page_size": page_size, "large_print": bool(request.large_print), "landscape": bool(request.landscape), "duplex": bool(request.duplex), "cards": bool(request.cards)}
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail=str(e)) from e
 
 
 @app.get("/api/health")
 async def health():
     return {"status": "ok", "version": "0.5.0"}
+
+
+def _consensus_service():
+    """Lazily create the local history/provider service; credentials stay server-side."""
+    service = getattr(app.state, "consensus_service", None)
+    if service is None:
+        from ..ai_providers.service import ConsensusService
+
+        service = ConsensusService()
+        app.state.consensus_service = service
+    return service
+
+
+@app.get("/consensus", response_class=HTMLResponse)
+async def consensus_dashboard():
+    """Small, dependency-free dashboard for provider runs and revision history."""
+    return _consensus_dashboard_html()
+
+
+@app.get("/api/consensus/providers")
+async def consensus_provider_status():
+    service = _consensus_service()
+    settings = service.settings
+    return {
+        "status": service.catalog.public_status(),
+        "settings": {
+            "min_participating_models": settings.min_participating_models,
+            "min_participation_ratio": settings.min_participation_ratio,
+            "consensus_threshold": settings.consensus_threshold,
+            "cross_examination_enabled": settings.enable_cross_examination,
+            "adversarial_review_enabled": settings.enable_adversarial_review,
+            "strict_required_participation": settings.strict_required_participation,
+            "max_revisions": settings.max_revisions,
+            "required_roles": list(settings.required_roles),
+        },
+        "security_note": "Local configuration status only; no live model availability is probed. Credentials are never returned.",
+    }
+
+
+@app.post("/api/consensus/runs", status_code=202)
+async def create_consensus_run(request: ConsensusRunRequest, background_tasks: BackgroundTasks):
+    if not request.pattern_text.strip():
+        raise HTTPException(status_code=422, detail="pattern_text must contain non-whitespace text")
+    service = _consensus_service()
+    run_id = service.create_run(request.pattern_text)
+    background_tasks.add_task(service.execute, run_id)
+    record = service.store.get_run(run_id) or {}
+    return {"run_id": run_id, "status": "queued", "pattern_hash": record.get("pattern_hash"), "progress": record.get("progress"), "status_url": f"/api/consensus/runs/{run_id}"}
+
+
+@app.post("/api/consensus/check")
+async def run_consensus_now(request: ConsensusRunRequest):
+    if not request.pattern_text.strip():
+        raise HTTPException(status_code=422, detail="pattern_text must contain non-whitespace text")
+    return await _consensus_service().run_now(request.pattern_text)
+
+
+@app.get("/api/consensus/runs")
+async def list_consensus_runs(limit: int = Query(default=50, ge=1, le=200)):
+    service = _consensus_service()
+    return {"runs": service.store.list_runs(limit), "limit": limit}
+
+
+@app.get("/api/consensus/runs/{run_id}")
+async def get_consensus_run(run_id: str):
+    run = _consensus_service().store.get_run(run_id)
+    if run is None:
+        raise HTTPException(status_code=404, detail="Consensus run not found")
+    return run
+
+
+@app.post("/api/consensus/runs/{run_id}/drafts", status_code=202)
+async def create_consensus_draft(run_id: str, request: ConsensusDraftRequest, background_tasks: BackgroundTasks):
+    service = _consensus_service()
+    try:
+        child_id, metadata = service.create_revision(run_id, [item.model_dump() for item in request.changes])
+    except KeyError as error:
+        raise HTTPException(status_code=404, detail="Parent consensus run not found") from error
+    except ValueError as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+    background_tasks.add_task(service.execute, child_id)
+    return {"draft": metadata, "status_url": f"/api/consensus/runs/{child_id}"}
+
+
+def _consensus_dashboard_html() -> str:
+    from .consensus_dashboard import dashboard_html
+
+    return dashboard_html()
 
 
 def get_frontend_html() -> str:
@@ -299,7 +401,7 @@ footer{text-align:center;color:white;padding:40px 0 20px;opacity:.8}
 </head>
 <body>
 <div class="container">
-<header><h1>\xf0\x9f\xa7\xb6 Crochet Pattern Checker</h1><p>Validate, visualize, and publish your crochet patterns</p></header>
+<header><h1>\xf0\x9f\xa7\xb6 Crochet Pattern Checker</h1><p>Validate, visualize, and publish your crochet patterns | <a href="/consensus" style="color:white;text-decoration:underline">Multi-AI written review dashboard</a></p></header>
 <div class="main-grid">
 <div class="panel"><h2>\xf0\x9f\x93\x9d Enter Your Pattern</h2>
 <div class="upload-zone" id="dropZone"><p>\xf0\x9f\x93\x81 Drop a .txt file here or click to upload</p><input type="file" id="fileInput" accept=".txt" style="display:none"></div>
