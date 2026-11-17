@@ -10,7 +10,7 @@ Three quick decorations from leftover yarn: a stuffed round bauble, a flat-block
 
 ## Safety — read this first
 
-These designs are intended as decorations, not toys. Keep them and their hanging loops out of children’s reach; avoid beads, loose bells and glued additions, secure every loop twice, and make each loop only as long as needed for its intended support. No finished ornament has been shown by Novality Store to comply with ASTM F963, EN 71 or another product-safety regime. A “decoration” label does not override reasonably foreseeable use, so a finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties before supply.
+These designs are intended as decorations, not toys. Keep them and their hanging loops out of children’s reach; avoid beads, loose bells and glued additions, secure every loop twice, and make each loop only as long as needed for its intended support. No finished ornament has been shown by Novality Store to comply with ASTM F963, EN 71 or another product-safety regime. A “decoration” label does not override reasonably foreseeable use, so a finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labeling and traceability duties before supply.
 
 ## Materials
 
@@ -18,7 +18,7 @@ These designs are intended as decorations, not toys. Keep them and their hanging
 
 - Hook: 3.5 mm (US E/4). The finished sizes above assume this hook; a larger hook makes the same stitch counts larger, not wrong.
 
-- Optional: about 9 g of fiber fill for the bauble; metallic yarn for the stripe in step 2 of Finishing.
+- Optional: about 1 g of fiber fill for the bauble - a small pinch is all a 2.6 cm ball will take; metallic yarn for the stripe in step 2 of Finishing.
 
 - Notions: tapestry needle, scissors, pin board or mat for blocking the star and snowflake.
 
@@ -48,9 +48,9 @@ How to read this dual pattern: every round appears twice side by side - the US-t
 
 The bauble is worked in continuous rounds (no joins) with the marker in the first stitch. The star and snowflake are worked in JOINED rounds / off-the-ring motifs: each round closes with a slip stitch. Read each section from its own heading down - they are three small standalone patterns.
 
-1. **The magic ring** - Pull the tail tight after round one; if the centre gaps, work the tail through the first round once more before weaving.
+1. **The magic ring** - Pull the tail tight after round one; if the center gaps, work the tail through the first round once more before weaving.
 
-2. **Fan points (star)** - Each point is a fan of 6 worked stitches into ONE centre stitch, with a ch-2 tip: (sc, hdc, dc, ch 2, dc, hdc, sc). The ch-2 tip is a space and is not counted as a worked stitch - it resembles a picot but is not one, because the tip is never closed with a slip stitch. Per point you make 6 fan stitches plus 1 anchoring sl st, so the five-point round has 35 counted stitches (plus five ch-2 spaces). The symmetry comes from blocking, not tugging.
+2. **Fan points (star)** - Each point is a fan of 6 worked stitches into ONE center stitch, with a ch-2 tip: (sc, hdc, dc, ch 2, dc, hdc, sc). The ch-2 tip is a space and is not counted as a worked stitch - it resembles a picot but is not one, because the tip is never closed with a slip stitch. Per point you make 6 fan stitches plus 1 anchoring sl st, so the five-point round has 35 counted stitches (plus five ch-2 spaces). The symmetry comes from blocking, not tugging.
 
 3. **Chain spaces (snowflake)** - The snowflake skeleton is 6 ch-5 loops worked into the 12-dc round, one loop per pair of spokes. The arms are worked into those chain spaces, never into individual chains.
 
@@ -82,7 +82,7 @@ The sphere closes at the same 6-stitch crown it started from. Two-color option: 
 
 | R9 | sc2tog x 6 | dc2tog x 6 | (6) | stuff firm, then close |
 
-Finish: stuff through the R9 opening, a little at a time, until the sphere springs back when pressed instead of feeling rigid - about 9 g. Then FO with a long tail, thread it through the front loops of the last 6 stitches, cinch the opening closed and weave in. (Never close first and stuff afterwards: a closed sphere cannot be filled.)
+Finish: stuff through the R9 opening, a little at a time, until the sphere springs back when pressed instead of feeling rigid. A 2.6 cm ball holds only about 1 g, so add it in pinches; too much is what makes the shape lumpy. Then FO with a long tail, thread it through the front loops of the last 6 stitches, cinch the opening closed and weave in. (Never close first and stuff afterwards: a closed sphere cannot be filled.)
 
 Optional metallic stripe: after R6, work surface sl sts in metallic yarn through the front loops of R6 - one sl st in every 6th stitch, four stitches in all - then a second line offset by 3 stitches to make the zigzag shown in the cover render.
 
@@ -90,19 +90,19 @@ Hanging loop: join yarn at the crown, ch 18, sl st into the same joining place, 
 
 ### B. Five-Point Star - flat, blocked
 
-Each point uses exactly 2 of the 10 centre stitches - one for the slip stitch that anchors it, one for the fan that fills it. Block before hanging.
+Each point uses exactly 2 of the 10 center stitches - one for the slip stitch that anchors it, one for the fan that fills it. Block before hanging.
 
 | Rnd | US terms | UK equivalent | Sts | Note |
 
 |---|---|---|---|---|
 
-| R1 | 10 sc in MR, sl st to first sc to close | 10 dc in MR, sl st to first dc to close | (10) | centre ring |
+| R1 | 10 sc in MR, sl st to first sc to close | 10 dc in MR, sl st to first dc to close | (10) | center ring |
 
 | R2 | [sl st in next st, (sc, hdc, dc, ch 2, dc, hdc, sc) in next st] x 5, sl st to first sl st, FO | [sl st in next st, (dc, half treble, tr, ch 2, tr, half treble, dc) in next st] x 5, sl st to first sl st, FO | (35) | 5 sl sts + 30 fan sts; ch-2 tips not counted |
 
 Hanging loop: pick the top point, join yarn in its ch-2 tip, ch 18, sl st into the same ch-2 space.
 
-The repeat uses all 10 centre stitches exactly (2 per point). Each fan contains 6 worked stitches; with its anchoring sl st, each point contributes 7 counted stitches, for 35 total. The five ch-2 tip spaces are additional structure, not counted stitches.
+The repeat uses all 10 center stitches exactly (2 per point). Each fan contains 6 worked stitches; with its anchoring sl st, each point contributes 7 counted stitches, for 35 total. The five ch-2 tip spaces are additional structure, not counted stitches.
 
 ### C. Six-Point Snowflake - open lace
 
