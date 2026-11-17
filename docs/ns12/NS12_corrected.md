@@ -22,7 +22,7 @@ No finished tree has been shown by Novality Store to comply with ASTM F963, EN 7
 
 - Hook: 4 mm (US G-6); use 3 mm for DK mini, 5 mm for chunky.
 
-- Stuffing: fibre fill about 25 g (a little only - the tree stands on tension).
+- Stuffing: fibre fill about 9 g (a little only - the tree stands on tension).
 
 - Optional: 1 circle of cardboard or firm felt for the base. Trace inside the R9 fold ridge and cut the circle 3-5 mm smaller; at the stated gauge it will usually be 55-65 mm across.
 

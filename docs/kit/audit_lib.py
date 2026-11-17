@@ -195,11 +195,119 @@ def _ops_make_consume(instr):
     return total_m, total_c
 
 
+
+_SEQ_ITEM = re.compile(
+    r"(?P<skip>skip\s+\d+\s+sts?)"
+    r"|(?P<bo>\bbo\b(?:\s+in\s+next\s+st)?)"
+    r"|(?P<inc>inc(?:\s+in\s+next\s+st)?|\d+\s+(?:sc|dc|hdc|tr)\s+in\s+next\s+st)"
+    r"|(?P<plain1>(?:sc|dc|hdc|tr)\s+in\s+next\s+st)"
+    r"|(?P<plain>(?:\d+\s+)?(?:sc|dc|hdc|tr)\s+in\s+next\s+\d+\s+sts?)"
+    r"|(?P<one>(?:sc|dc|hdc|tr|inc|dec|sc2tog|dc2tog|invdec|sl st))"
+)
+
+
+def _seq_consumed_made(seq):
+    """(consumed, made) for a repeat-ladder sequence, or None."""
+    seq = seq.lower()
+    consumed = made = 0
+    pos = 0
+    for m in _SEQ_ITEM.finditer(seq):
+        if seq[pos:m.start()].strip(" ,"):
+            return None
+        tok = m.group(0)
+        if m.group("skip"):
+            consumed += int(re.search(r"\d+", tok).group(0))
+        elif m.group("bo"):
+            consumed += 1
+            made += 1
+        elif m.group("inc"):
+            anchored = int(re.match(r"\d+", tok).group(0)) if re.match(r"\d+", tok) else 2
+            consumed += 1
+            made += anchored          # "2 dc in next st" = one anchor, two stitches
+        elif m.group("plain1"):
+            consumed += 1
+            made += 1
+        elif m.group("plain"):
+            lead = re.match(r"\d+", tok)
+            span = re.search(r"in next (\d+) sts?", tok)
+            n = int(lead.group(0)) if lead else (int(span.group(1)) if span else 1)
+            consumed += n
+            made += n
+        else:
+            tok = tok.strip()
+            if tok in ("inc",):
+                consumed += 1
+                made += 2
+            elif tok in ("dec", "sc2tog", "dc2tog", "invdec"):
+                consumed += 2
+                made += 1
+            elif tok == "sl st":
+                consumed += 1
+                made += 1
+            else:
+                consumed += 1
+                made += 1
+        pos = m.end()
+    if seq[pos:].strip(" ,"):
+        return None
+    if not consumed:
+        return None
+    return consumed, made
+
+
+def _sim_repeat_ladder(instr, prev):
+    """Joined-circle ladders written as `Ch 2, [ ... ] x N` or
+    `Ch 2, K dc in each st around`, plus the `[ ... ] around` border row.
+
+    Returns (made, required_prev) or None.  Written as its own routine because
+    the general grammar could not read the NS-14 ladder, so every NS-14 row was
+    silently skipped rather than checked.
+    """
+    low = " ".join(instr.split()).lower()
+    low = re.sub(r"^(?:with|in|using)\b[^:]*:\s*", "", low)
+    low = re.sub(r"^round \d+ \(= \d+.*?\)\s*", "", low)
+    body = re.sub(r"^join [a-z ]+ in any st;\s*", "", low)
+    body = re.sub(r"^ch \d+\s*(?:counts as [a-z]+\s*)?,\s*", "", body)
+    body = re.sub(r",?\s*fo\b.*$", "", body)
+    body = re.sub(r",?\s*sl st (?:to|in) (?:the )?(?:first|top of|beginning|base)[^,]*$", "", body)
+    body = body.strip(" ,.")
+    if not body:
+        return None
+
+    m = re.fullmatch(r"(\d+) (?:sc|dc|hdc|tr) in each st around", body)
+    if m:
+        k = int(m.group(1))
+        return (k * prev, prev) if prev is not None else (None, None)
+
+    m = re.fullmatch(r"\[(.+?)\]\s*(?:x|×)\s*(\d+)", body)
+    if m:
+        seq = _seq_consumed_made(m.group(1))
+        if seq is None:
+            return None
+        n = int(m.group(2))
+        return n * seq[1], n * seq[0]
+
+    m = re.fullmatch(r"\[(.+?)\] around", body)
+    if m:
+        seq = _seq_consumed_made(m.group(1))
+        if seq is None:
+            return None
+        c, mm = seq
+        if prev is not None and c and prev % c:
+            return None
+        n = prev // c if (prev is not None and c) else None
+        return (n * mm if n is not None else None), (n * c if n is not None else None)
+    return None
+
+
 def sim_round(instr, prev):
     """(made, required_prev); either may be None.  prev=None means the row
     starts a table fragment, so prev-dependent rules report unknown."""
     s = " ".join(instr.split())
     low = s.lower()
+    ladder = _sim_repeat_ladder(s, prev)
+    if ladder is not None:
+        return ladder
     low = re.sub(r"^(with|in|using)\b[^:\n]*:\s*", "", low)
     low = re.sub(r"^(with|in|using)\s+[a-z0-9&#/ -]+,\s*", "", low)
     low = _strip_parens(low)
@@ -317,8 +425,11 @@ def audit_tables(text, overrides=None, skip_tables=()):
             if len(r) <= max(i_sts, i_ins):
                 continue
             label, instr, sts_cell = r[0], r[i_ins], r[i_sts]
-            if label.strip().lower().startswith("[ ]") or label.strip().lower().startswith("[x]"):
-                continue
+            # A printable "tick the row" checkbox column shifts every other cell
+            # one place to the right.  Read past it instead of skipping the row:
+            # skipping made the whole NS-14 ladder look audited when it was not.
+            if label.strip().lower().startswith(("[ ]", "[x]")):
+                label = r[1] if len(r) > 1 else ""
             stated = stated_count(sts_cell)
             key = label.strip().lower()
             il0 = instr.strip().lower()

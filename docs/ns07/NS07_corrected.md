@@ -16,7 +16,7 @@ No finished trio has been shown by Novality Store to comply with ASTM F963, EN 7
 
 ## Materials
 
-- Yarn: #4 worsted (~250 m / 100 g). The three toys use roughly 8 m total (under 4 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
+- Yarn: #4 worsted (~250 m / 100 g). The three toys use roughly 13 m total (about 5 g), so scraps are fine. Golden yellow + chocolate (Sunny); black + cream chest + yellow beak (Waddle); warm tan (Spud).
 
 - Hook: 3.5 mm (US E/4).
 

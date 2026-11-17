@@ -16,11 +16,11 @@ No finished Hamish has been shown by Novality Store to comply with ASTM F963, EN
 
 ## Materials
 
-- Yarn A - Ginger: worsted / aran (#4), about 25 g used. Caramel, toffee or ginger gold. One 80 g / 150 m ball covers about three cows at the stated gauge, including normal seaming tails.
+- Yarn A - Ginger: worsted / aran (#4), about 40 g used, fringe included. Caramel, toffee or ginger gold. One 80 g / 150 m ball makes one cow comfortably; two only if you skimp on tails. 2,046 worked stitches at the stated gauge is 65 m, plus about 12 m for the fringe.
 
 - Yarn B - Oat cream: worsted / aran (#4), about 12 g. Muzzle, horns, inner ears, optional belly patch.
 
-- Yarn C - Dark chocolate: worsted / aran (#4), about 5 g. Hooves and nostrils.
+- Yarn C - Dark chocolate: worsted / aran (#4), about 1 g (a scrap). Hooves and nostrils - 24 worked stitches.
 
 - Yarn D - Rust (optional): about 6 g for the scarf, or 28 cm of 12 mm tartan ribbon.
 

@@ -14,7 +14,7 @@ This duck uses embroidered eyes and no plastic eye components, removing that par
 
 ## Materials
 
-- Body yarn: super-bulky chenille (#6), yellow, about 30 g. A 100 g ball makes two ducks comfortably. Fluffy chenille is the whole look.
+- Body yarn: super-bulky chenille (#6), yellow, about 45 g. A 100 g ball makes two ducks. Fluffy chenille is the whole look. 650 worked stitches at this gauge is about 37 m.
 
 - Details: a small amount of matching super-bulky (#6) orange yarn for the beak; black embroidery floss for the eyes. The stated beak size assumes the orange yarn matches the body gauge.
 

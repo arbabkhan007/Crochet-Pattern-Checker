@@ -44,11 +44,11 @@ Calendar reference (accessed 18 September 2026): Smithsonian Institution, “202
 
 - Smooth worsted (#4) cotton or acrylic: warm cream / off-white, about 73 m / 80 yd for head, body, outer ears, upper limbs and tail.
 
-- Worsted (#4) light tan / beige, about 18 m / 20 yd for muzzle, inner ears and hooves.
+- Worsted (#4) light tan / beige, about 8 m / 9 yd for muzzle, inner ears and hooves (132 stitches).
 
-- Worsted (#4) espresso brown or dark grey, about 9 m / 10 yd for two yarn-only horns.
+- Worsted (#4) espresso brown or dark grey, about 3 m / 3.3 yd for two yarn-only horns.
 
-- Worsted (#4) scarlet red, about 14 m / 15 yd for the fixed flame sash.
+- Worsted (#4) scarlet red, about 4 m / 4.5 yd for the fixed flame sash (70 stitches plus the picot edging).
 
 - Small amounts of burnt orange and golden yellow for flame edging and optional crochet flowers; green for optional leaves; pink and black embroidery thread for face details.
 
@@ -58,9 +58,9 @@ Calendar reference (accessed 18 September 2026): Smithsonian Institution, “202
 
 - Worsted (#4) white texture yarn or smooth washable worsted, about 73 m / 80 yd for head, body, outer ears, upper limbs and tail. “Wool white” is the original shade name used below, not a fibre requirement. Do not substitute blanket-weight chenille without making and measuring a separate sample.
 
-- Worsted (#4) light tan / beige, about 27 m / 30 yd for the muzzle and hooves.
+- Worsted (#4) light tan / beige, about 5 m / 5.5 yd for the muzzle and hooves (72 stitches).
 
-- Worsted (#4) scarlet red, about 9 m / 10 yd for the fixed collar.
+- Worsted (#4) scarlet red, about 2 m / 2.2 yd for the fixed collar (26 stitches).
 
 - Small amounts of pale-pink worsted yarn for the original inner ears, plus black embroidery thread and optional pink embroidery thread for blush.
 

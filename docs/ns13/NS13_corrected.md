@@ -4,7 +4,7 @@
 
 Three quick decorations from leftover yarn: a stuffed round bauble, a flat-blocked five-point star, and a crisp six-arm snowflake. Allow about 15-40 minutes each, including finishing (blocking and drying take additional elapsed time).
 
-**FINISHED SIZE**  Bauble about 3.75 cm (1.5 in) across; star about 9 cm (3.5 in); snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
+**FINISHED SIZE**  Bauble about 4.5 cm (1.75 in) across; star about 6 cm (2.4 in) point to point; snowflake about 10 cm (4 in).  Sizes scale with yarn - use DK for dainty tree ornaments, chunky for bold window pieces.
 
 ---
 

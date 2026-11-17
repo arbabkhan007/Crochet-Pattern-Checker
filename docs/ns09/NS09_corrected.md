@@ -28,7 +28,7 @@ No finished Shelby has been shown by Novality Store to comply with ASTM F963, EN
 
 ## Gauge & size
 
-Gauge: about 3.5 mm per stitch and 3.2 mm per round. The whole charm is 203 stitches (~3 m of DK); 24 stitches = a 26.7 mm disc that sets the size.
+Gauge: about 3.5 mm per stitch and 3.2 mm per round. The whole charm is 203 stitches (~5 m of DK); 24 stitches = a 26.7 mm disc that sets the size.
 
 ## Abbreviations (US terms)
 
