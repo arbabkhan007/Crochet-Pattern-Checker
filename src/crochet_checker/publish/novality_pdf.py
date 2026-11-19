@@ -11,6 +11,7 @@ Usage:
 """
 from __future__ import annotations
 
+import os
 import textwrap
 from dataclasses import dataclass
 from pathlib import Path
@@ -36,7 +37,11 @@ from reportlab.platypus import (
 from . import novality_patterns as np
 
 HERE = Path(__file__).parent
-FONTS = HERE / "fonts"
+CACHE_ROOT = Path(os.environ.get(
+    "CROCHET_BUILD_CACHE",
+    Path.home() / ".cache" / "crochet-pattern-checker" / "49d69daeb8d7a2462d5e5bef5394a4ff5d170a3b",
+)).expanduser().resolve()
+FONTS = CACHE_ROOT / "src" / "crochet_checker" / "publish" / "fonts"
 
 # ---------------------------------------------------------------------------
 # Design tokens

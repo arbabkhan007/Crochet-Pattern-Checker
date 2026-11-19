@@ -1,0 +1,881 @@
+{
+  "schema_version": 1,
+  "purpose": "Checksums and immutable download locations for generated binaries intentionally omitted from multi-ai-consensus.",
+  "canonical_remote": {
+    "repository": "https://github.com/arbabkhan007/Crochet-Pattern-Checker",
+    "branch": "arena/01a079c8-crochet-pattern-checker",
+    "commit": "144397801c155fa7e11288bd14e27de134924c26",
+    "raw_base": "https://github.com/arbabkhan007/Crochet-Pattern-Checker/raw/144397801c155fa7e11288bd14e27de134924c26/novality_kits/out",
+    "tree_base": "https://github.com/arbabkhan007/Crochet-Pattern-Checker/tree/144397801c155fa7e11288bd14e27de134924c26/novality_kits/out"
+  },
+  "files": [
+    {
+      "id": "M-001",
+      "path": "out/axel/Axel_the_Axolotl_Full_Walkthrough.mp3",
+      "bytes": 10488140,
+      "sha256": "374a128f3953e297e4eadd6026ae8de735261742c3d01a65f21452aa731e9583",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-002",
+      "path": "out/axel/Axel_the_Axolotl_Pattern.pdf",
+      "bytes": 1182550,
+      "sha256": "dc013abeea23cdd90132aa737ae8eaf11294edd53c13ecd60481e93084b885b7",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-003",
+      "path": "out/axel/Axel_the_Axolotl_Tutorial.mp4",
+      "bytes": 16048596,
+      "sha256": "93ced95e33ad6374ad01f14b3984f8958dc0421ea79a3cff3a64aa35f63519a5",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-004",
+      "path": "out/axel/etsy/01_cover.jpg",
+      "bytes": 554829,
+      "sha256": "e4313947bc57665a0a6ff16173e00b3bd6ee381619515aa328b3f79e10ba8a31",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-005",
+      "path": "out/axel/etsy/02_whats_included.jpg",
+      "bytes": 271719,
+      "sha256": "ced356c3241974f18cb0bae08c43005dc673f353f0f86b5beffd714c4da4efaf",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-006",
+      "path": "out/axel/etsy/03_size.jpg",
+      "bytes": 323397,
+      "sha256": "e7679b0c4d15baa69d01cd12d074c7dca5c9d87d64492b26993a1c9c6691cbad",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-007",
+      "path": "out/axel/etsy/04_materials.jpg",
+      "bytes": 357711,
+      "sha256": "8db86f2e192c8c5bc327a5b00f67a0e2302f103d54bd3566d852cd6fc093dc87",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-008",
+      "path": "out/axel/etsy/05_pdf_preview.jpg",
+      "bytes": 401981,
+      "sha256": "ba44651c1e6271234623962d73db27413596755d2a5fa763d094f2e786ff66f4",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-009",
+      "path": "out/axel/etsy/06_video_audio.jpg",
+      "bytes": 277545,
+      "sha256": "632bbd0bbc59cb89acb4944993e95b6a7b1a790d6ecb4c928d5725972b673b4b",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-010",
+      "path": "out/axel/etsy/07_details.jpg",
+      "bytes": 438357,
+      "sha256": "673308dd0b3746e9a0c9278baaca8e109d29a114a6f4e99a3ea7fc3ab43e2f9b",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-011",
+      "path": "out/axel/etsy/08_colorways.jpg",
+      "bytes": 393317,
+      "sha256": "e3b3243b290772790c357fff71b0e658c5c108c272207c0a5380c9b69c8e61b7",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-012",
+      "path": "out/axel/etsy/09_skill_level.jpg",
+      "bytes": 283253,
+      "sha256": "30a3ceb16979c61ac54642b6bff57b8c1a6c78af1fcd69dd615c90ba2b991d6a",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-013",
+      "path": "out/axel/etsy/10_good_to_know.jpg",
+      "bytes": 305607,
+      "sha256": "ecdc585faa7ca6b5f7b6b159a79b1c9b734a8b389e8e737f58dbf947b83b95b3",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-014",
+      "path": "out/coco/Coco_the_Capybara_Full_Walkthrough.mp3",
+      "bytes": 9271628,
+      "sha256": "9700045b3f4f14fc63b39ceb73377926dd231f336fcd336a48c6506e7a7ce1d7",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-015",
+      "path": "out/coco/Coco_the_Capybara_Pattern.pdf",
+      "bytes": 1085441,
+      "sha256": "260f8c15f4c53ca03133d7e441cb87f73ae0124c794831c00a0878b6cdca1cc6",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-016",
+      "path": "out/coco/Coco_the_Capybara_Tutorial.mp4",
+      "bytes": 14406963,
+      "sha256": "c32b5d2f580974f259fbef87cbd1b87874fb014e738f5e9d0b7c64a3e61a1912",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-017",
+      "path": "out/coco/etsy/01_cover.jpg",
+      "bytes": 460066,
+      "sha256": "53cad54b4d418564b63316551d9992c7261a5b2b1ff9636c8116034ccce96cb9",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-018",
+      "path": "out/coco/etsy/02_whats_included.jpg",
+      "bytes": 266956,
+      "sha256": "dd14bae4422afc6becfbf6715d9256de947ecc81f055f8cd7e2c2268e916265c",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-019",
+      "path": "out/coco/etsy/03_size.jpg",
+      "bytes": 283291,
+      "sha256": "a0bd77d473dc23e4dabe191a38943344e39acef13e5ade6891e78fc87968212a",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-020",
+      "path": "out/coco/etsy/04_materials.jpg",
+      "bytes": 340360,
+      "sha256": "6bff58ac567eff5b10f09003082809b41752afb0a26ad38bea6f09838407fc75",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-021",
+      "path": "out/coco/etsy/05_pdf_preview.jpg",
+      "bytes": 325365,
+      "sha256": "723409a3022f95ad752d321225ce2a6160d392161cd6834f1ff45c363ae414be",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-022",
+      "path": "out/coco/etsy/06_video_audio.jpg",
+      "bytes": 269219,
+      "sha256": "7dacb4f9c12e042cb4354b383dcaff765e1ab74111635ae3220fd37d1af4ea27",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-023",
+      "path": "out/coco/etsy/07_details.jpg",
+      "bytes": 429631,
+      "sha256": "1ffc1a29a05cc381efc16a0e8ce3dcd08769db97a8f8d058304f8b834cae4f9c",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-024",
+      "path": "out/coco/etsy/08_colorways.jpg",
+      "bytes": 397808,
+      "sha256": "e650d11a57b3578208f30304b267467c42567da860bc3e4abc3ad718d8c350ac",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-025",
+      "path": "out/coco/etsy/09_skill_level.jpg",
+      "bytes": 251251,
+      "sha256": "a34420718319dda9be45c994f62fae8e86d84788c8b0f0a08c497643807ae8b3",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-026",
+      "path": "out/coco/etsy/10_good_to_know.jpg",
+      "bytes": 282316,
+      "sha256": "5bede36d1bf9fad216a24bcc2d890954eabda888e027ed5124ddf3c687c693bd",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-027",
+      "path": "out/duck/Little_Duck_Plushie_Full_Walkthrough.mp3",
+      "bytes": 7710380,
+      "sha256": "a651993ff6632d3e5487c3a113a89b47d18a14e155316b1357d291eb1a850a2a",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-028",
+      "path": "out/duck/Little_Duck_Plushie_Pattern.pdf",
+      "bytes": 978454,
+      "sha256": "f9b416706ea820e9ba91c0fce0cd63de830b1ace89ea075b53cbdc7b4d6a35d5",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-029",
+      "path": "out/duck/Little_Duck_Plushie_Tutorial.mp4",
+      "bytes": 11738449,
+      "sha256": "586120ad8bcf4d26a8074041bd3727bdfb9fb7e97b64bcf3335b99a19cc3fd01",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-030",
+      "path": "out/duck/etsy/01_cover.jpg",
+      "bytes": 432758,
+      "sha256": "bc36aeb7890cb3b17fb6331954ef1497ca6d44e4f3f0dc73ebb7bca586dbe6e9",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-031",
+      "path": "out/duck/etsy/02_whats_included.jpg",
+      "bytes": 267814,
+      "sha256": "db75a404356e9018ec3ef62004701fcbe01905dc39280e60e89b92db03b1af3b",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-032",
+      "path": "out/duck/etsy/03_size.jpg",
+      "bytes": 259270,
+      "sha256": "2d6b60341b57ed3afd97a49c3f1c6421d5668eda6dab9a2385d3d8d40558c70a",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-033",
+      "path": "out/duck/etsy/04_materials.jpg",
+      "bytes": 304162,
+      "sha256": "3ed6e8d262abf075c37f6ed155a2da5481e8e984abf105c889a2c05215200b7c",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-034",
+      "path": "out/duck/etsy/05_pdf_preview.jpg",
+      "bytes": 368072,
+      "sha256": "4d17ad68f095976b127ef0f47db9d621228d2a269e8f5b3e67363303a18eaaf7",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-035",
+      "path": "out/duck/etsy/06_video_audio.jpg",
+      "bytes": 256248,
+      "sha256": "9f0e122a40f8b5a308334a2f90aa119e6f7b1f8fc42a4d020659239878e72e4f",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-036",
+      "path": "out/duck/etsy/07_details.jpg",
+      "bytes": 409932,
+      "sha256": "b91af9729e1f923944afee7ab80fee0ea293408ee9f9e725ae6c790449fdcada",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-037",
+      "path": "out/duck/etsy/08_colorways.jpg",
+      "bytes": 355406,
+      "sha256": "76f3c67b999e707f70d01125e4205b0a38b8b25d2edc55fea332b9b4ce95ffa3",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-038",
+      "path": "out/duck/etsy/09_skill_level.jpg",
+      "bytes": 276930,
+      "sha256": "5ee6f2230948f5ea06dc4dd81ef8db727a5457f385ba637a87c4e13995fcf62d",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-039",
+      "path": "out/duck/etsy/10_good_to_know.jpg",
+      "bytes": 274205,
+      "sha256": "f30d0ba4296c61710855f16e30a7c71d5d2f83da3646f4573086148355ecee45",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-040",
+      "path": "out/ember/Ember_the_Baby_Dragon_Full_Walkthrough.mp3",
+      "bytes": 12228524,
+      "sha256": "8946f6812b4204c928a9e62b7dea959d17aa11fa995e6d8b6d4c8b973ff86155",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-041",
+      "path": "out/ember/Ember_the_Baby_Dragon_Pattern.pdf",
+      "bytes": 1202403,
+      "sha256": "cd4d6e7de3210f6313ac31bf7901d5794af414d71ab46f255bdf0ed2ba8c03ae",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-042",
+      "path": "out/ember/Ember_the_Baby_Dragon_Tutorial.mp4",
+      "bytes": 18174446,
+      "sha256": "36bf907c50a9feb1a4af4ef153c47985218d7aab01b8949d0b5e72827b223b80",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-043",
+      "path": "out/ember/etsy/01_cover.jpg",
+      "bytes": 539357,
+      "sha256": "2c0d8a03e4efe1ccfecf5144feb5f59b5e966e7d85e6f9682d9facd44713e283",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-044",
+      "path": "out/ember/etsy/02_whats_included.jpg",
+      "bytes": 276456,
+      "sha256": "b289c48fffa03a1d284098300175367540351952cfc9580124a4839818ba3608",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-045",
+      "path": "out/ember/etsy/03_size.jpg",
+      "bytes": 303914,
+      "sha256": "5906defb7e8501e968540af09cef4af67f7000fbca2416e4c7bd914d95429b0f",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-046",
+      "path": "out/ember/etsy/04_materials.jpg",
+      "bytes": 287768,
+      "sha256": "fe083cfa993f6e84f5f6a13516078f23912a438a318ac9f65b7263adda6e3e05",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-047",
+      "path": "out/ember/etsy/05_pdf_preview.jpg",
+      "bytes": 341186,
+      "sha256": "305b6dccffec30699da3fc72bcbbe88da946b3fb82651b0f3b433a036fd957e4",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-048",
+      "path": "out/ember/etsy/06_video_audio.jpg",
+      "bytes": 256221,
+      "sha256": "70c1551300a389ca837b13859fc5c11e682a10294bee60142fb7fce5dba01080",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-049",
+      "path": "out/ember/etsy/07_details.jpg",
+      "bytes": 421879,
+      "sha256": "b3cac6ab64043b75348f30863e7c1aa5dd665d3075e7e9ca4532fdf796fa740f",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-050",
+      "path": "out/ember/etsy/08_colorways.jpg",
+      "bytes": 431795,
+      "sha256": "4445ab4481656806cc8001a65011a6e8dcf927463094218b77cae580437011f5",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-051",
+      "path": "out/ember/etsy/09_skill_level.jpg",
+      "bytes": 268976,
+      "sha256": "59ba036c6dc7177aa18259e580d7740a30d7ebfed1e9d6893d9fcf9e22756f25",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-052",
+      "path": "out/ember/etsy/10_good_to_know.jpg",
+      "bytes": 288553,
+      "sha256": "98e5c8a509b58ef93fa80811322c5aa8bbfa611f27dbd962b4b552b5265416b9",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-053",
+      "path": "out/halloween/Kawaii_Halloween_Mini_Set_Full_Walkthrough.mp3",
+      "bytes": 12147884,
+      "sha256": "acdf95942aa5a7c45a0e6893c39349cffb9dfa7d053b089cebe2664e43e32bff",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-054",
+      "path": "out/halloween/Kawaii_Halloween_Mini_Set_Pattern.pdf",
+      "bytes": 1045162,
+      "sha256": "2e615e47f85f6d6bc1768b49553e31acb2827f27d1850bb7d8b159a1000a9d20",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-055",
+      "path": "out/halloween/Kawaii_Halloween_Mini_Set_Tutorial.mp4",
+      "bytes": 17988258,
+      "sha256": "bd09684f8caf7e96a83a633a4c76a952835186832d8a0db7259dad4e78b4a24e",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-056",
+      "path": "out/halloween/etsy/01_cover.jpg",
+      "bytes": 491325,
+      "sha256": "a9d9696ccd548c289eae3e3262c1d5219b1577fc9aedca169695d692dd7a32ac",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-057",
+      "path": "out/halloween/etsy/02_whats_included.jpg",
+      "bytes": 287455,
+      "sha256": "5d10857f182c8ae3b0875b25e0506e9ad68485e92add7bb8b3f0feac2402180f",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-058",
+      "path": "out/halloween/etsy/03_size.jpg",
+      "bytes": 278829,
+      "sha256": "9954d74f0a8d13ef85c0509d12e3fff8759ad21a835c2e5540906e59ef805f0c",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-059",
+      "path": "out/halloween/etsy/04_materials.jpg",
+      "bytes": 334348,
+      "sha256": "d6fef9f69883418faeb483647902fd72a369828676a889039dfa72cb095bf3b1",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-060",
+      "path": "out/halloween/etsy/05_pdf_preview.jpg",
+      "bytes": 356660,
+      "sha256": "42cb69a610065db9b39b69c5d92ae4dc076904eb36838afd2ab7b1d16ea54268",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-061",
+      "path": "out/halloween/etsy/06_video_audio.jpg",
+      "bytes": 277011,
+      "sha256": "8c2eb2fac05ad9298b0835d4f9a5927aab17549045823c5b486169d5fabd807b",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-062",
+      "path": "out/halloween/etsy/07_details.jpg",
+      "bytes": 422049,
+      "sha256": "5ed5cca81c8bc752a14e189741f694de31a3480ff9503642666ef1d1440231bf",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-063",
+      "path": "out/halloween/etsy/08_colorways.jpg",
+      "bytes": 363483,
+      "sha256": "ebb6f2596a54d997ec4d735573dcee6139b707b5c1d5b9ad0f85e07bc3ae7960",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-064",
+      "path": "out/halloween/etsy/09_skill_level.jpg",
+      "bytes": 266255,
+      "sha256": "1dee0ad2bd61b9dca89a4a232899d0a667307969857ef86c8a7fb560bb614ed5",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-065",
+      "path": "out/halloween/etsy/10_good_to_know.jpg",
+      "bytes": 280893,
+      "sha256": "06a1f0322797e2edc097d38e27daac31d7293051a3593773aba74e6573e0f568",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-066",
+      "path": "out/hamish/Hamish_the_Highland_Cow_Full_Walkthrough.mp3",
+      "bytes": 12505580,
+      "sha256": "77df123a470c71d41eb97ce710d67b3c8128b8d352117a9af65be212d094205c",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-067",
+      "path": "out/hamish/Hamish_the_Highland_Cow_Pattern.pdf",
+      "bytes": 1236225,
+      "sha256": "b12fd202c7a9d75af9efd00ff72dd806d083b9f0bc0dcba6d688d287ad776b2b",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-068",
+      "path": "out/hamish/Hamish_the_Highland_Cow_Tutorial.mp4",
+      "bytes": 18947112,
+      "sha256": "7a8a5f98697ad2400551fe035c60daa44ef3c4ab021a8ec8552d001a0ea4ded4",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-069",
+      "path": "out/hamish/etsy/01_cover.jpg",
+      "bytes": 544043,
+      "sha256": "12960614eb29733a89ae46b843cd31ef8875039ebe474821e0fbf26ef051fdd0",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-070",
+      "path": "out/hamish/etsy/02_whats_included.jpg",
+      "bytes": 272449,
+      "sha256": "247dec5145ffd5ba6cee8010b583da860ecf483d6bc65a244e47697c22381240",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-071",
+      "path": "out/hamish/etsy/03_size.jpg",
+      "bytes": 318355,
+      "sha256": "5764fa23dadff8828159e56cf9907177c4fc3441539f573360a48e9d063a3d2e",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-072",
+      "path": "out/hamish/etsy/04_materials.jpg",
+      "bytes": 390599,
+      "sha256": "22ecc03dc0dddf3490517907aa38dfb5226cd2b8af53cfb7115ea6e9b12e3e76",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-073",
+      "path": "out/hamish/etsy/05_pdf_preview.jpg",
+      "bytes": 374641,
+      "sha256": "5862eb9d78bcefb4c52f86de165ce17efd1d3d0a157d44136f164ae76231b94a",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-074",
+      "path": "out/hamish/etsy/06_video_audio.jpg",
+      "bytes": 291270,
+      "sha256": "eec4b4617f145a538053b9d739906e557d7dcd0910f88b4b7ee7662cbc82e560",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-075",
+      "path": "out/hamish/etsy/07_details.jpg",
+      "bytes": 466272,
+      "sha256": "51f5fb726e48dcc01e97ebcb29849ec7162d2cf65df908769406ab53b6ef0597",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-076",
+      "path": "out/hamish/etsy/08_colorways.jpg",
+      "bytes": 422377,
+      "sha256": "a68c4eb8e3592bb1a420835391458b549208e020fe429d4fcf7973e4a1ee14f6",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-077",
+      "path": "out/hamish/etsy/09_skill_level.jpg",
+      "bytes": 276299,
+      "sha256": "31c88af0a9d8d1a30af29ee8e176dfd009c76b1bccb2127a0831f1ddbca6488e",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-078",
+      "path": "out/hamish/etsy/10_good_to_know.jpg",
+      "bytes": 303591,
+      "sha256": "96fdb41b74e22808b24b05f0fb79f6ac4e778be6009677dfa405108c0de917bb",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-079",
+      "path": "out/momo/Momo_the_Loaf_Cat_Full_Walkthrough.mp3",
+      "bytes": 8214380,
+      "sha256": "26771ecc50ba2034bda7eb0f387a758c9ce13c032122a32123a1206366360da5",
+      "kind": "joined walkthrough audio"
+    },
+    {
+      "id": "M-080",
+      "path": "out/momo/Momo_the_Loaf_Cat_Pattern.pdf",
+      "bytes": 1131957,
+      "sha256": "19a5108eda3e3c7ee32d991224c4a997be1e372d9849260bd050196b33996af7",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-081",
+      "path": "out/momo/Momo_the_Loaf_Cat_Tutorial.mp4",
+      "bytes": 12581474,
+      "sha256": "97640a36d20d80f6585840d83140c30ebf1c29d52476f1302c12aad73981575b",
+      "kind": "tutorial video"
+    },
+    {
+      "id": "M-082",
+      "path": "out/momo/etsy/01_cover.jpg",
+      "bytes": 508654,
+      "sha256": "df6b28a1dc62715b7a2905d8f1149734c0324c209f1927fc7f3272b0a8689e40",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-083",
+      "path": "out/momo/etsy/02_whats_included.jpg",
+      "bytes": 264149,
+      "sha256": "c9a2a07fc34d19784d28b23ec42478ac5179ea727132788e554d6c2452f430ce",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-084",
+      "path": "out/momo/etsy/03_size.jpg",
+      "bytes": 291616,
+      "sha256": "1e75686558e8d739403401af725f556a0d788c6ba3ab0a2a75cbd74d607b0690",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-085",
+      "path": "out/momo/etsy/04_materials.jpg",
+      "bytes": 300826,
+      "sha256": "c7f93ea4b638a59f4345bb138f1b43ad4b007cbb10ec8689a0596a29435c79f9",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-086",
+      "path": "out/momo/etsy/05_pdf_preview.jpg",
+      "bytes": 384528,
+      "sha256": "45892bda36591b94822bf26fc703584d2a600d3b41c0c08ba582490fa2f171bf",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-087",
+      "path": "out/momo/etsy/06_video_audio.jpg",
+      "bytes": 248349,
+      "sha256": "eaca5b8b2101619a96b8e27708313611d27dd08c65a3164c1b7d61a1816c4f71",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-088",
+      "path": "out/momo/etsy/07_details.jpg",
+      "bytes": 419311,
+      "sha256": "3fa319ae0d795f328224cf003a6d449939d57ba8aeb6ac1f2e1b575e8d238f66",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-089",
+      "path": "out/momo/etsy/08_colorways.jpg",
+      "bytes": 405612,
+      "sha256": "7b7743d1b4d213321c89f41fafc4701e86f70694ac14b5c18308dc4dc9f08809",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-090",
+      "path": "out/momo/etsy/09_skill_level.jpg",
+      "bytes": 290303,
+      "sha256": "c1dbcf8ae2e2c5c746030eab496b92fb79dd3117a92719aef9689f2dc21ce46e",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-091",
+      "path": "out/momo/etsy/10_good_to_know.jpg",
+      "bytes": 284270,
+      "sha256": "9d79b159b40c2fa09e4957c984ae6d6b58128ef2d9972ba4be777aa75033cf4c",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-092",
+      "path": "out/shelby/Shelby_the_Sea_Turtle_Bag_Charm_Pattern.pdf",
+      "bytes": 1127143,
+      "sha256": "409c272fc87a8a7a57afebcb480f955b0868156d4cd3170a3e75c2099de6f82d",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-093",
+      "path": "out/shelby/etsy/01_cover.jpg",
+      "bytes": 443958,
+      "sha256": "b8cbb24590d7661cd2454409b294e490794209bcac32810d1341ac3e471dbc96",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-094",
+      "path": "out/shelby/etsy/02_whats_included.jpg",
+      "bytes": 270865,
+      "sha256": "a25d1a2dd9e6483902a986e0ae3f0146c9523f5dab1b8d1622861bd6be624ed6",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-095",
+      "path": "out/shelby/etsy/03_size.jpg",
+      "bytes": 266579,
+      "sha256": "1b1a9e11483c45b27fe127cdb7d5e3ffaad094eb7142b420bd16275f7ac5482f",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-096",
+      "path": "out/shelby/etsy/04_materials.jpg",
+      "bytes": 338910,
+      "sha256": "de5b55badbb3c1d6d4e0d966886bf047482df845276de5146dd92422c7e2db9b",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-097",
+      "path": "out/shelby/etsy/05_pdf_preview.jpg",
+      "bytes": 354605,
+      "sha256": "0e303d16618b23e94ff984b69f1072a5f0f5e9bd887a02a67eb9157a55a75e7c",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-098",
+      "path": "out/shelby/etsy/06_video_audio.jpg",
+      "bytes": 259977,
+      "sha256": "f7cc8e3e5483a6fd5fccea62d9f1c0de5085367afb7a71ba3efb02e34356d5c2",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-099",
+      "path": "out/shelby/etsy/07_details.jpg",
+      "bytes": 467494,
+      "sha256": "ff5eb992b6e4104e820bb8f27e358c50b8ff2ce4ccb1d9efc2598adc470cc552",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-100",
+      "path": "out/shelby/etsy/08_colorways.jpg",
+      "bytes": 399533,
+      "sha256": "f8b6870a0e82482787750789db11f591dfe80d9081bc62b6ff4e4e02dae9a57d",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-101",
+      "path": "out/shelby/etsy/09_skill_level.jpg",
+      "bytes": 258050,
+      "sha256": "96678ef10c232b58baf38e13ec5e453822b17efa9c7d82ce8705b14b71b64744",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-102",
+      "path": "out/shelby/etsy/10_good_to_know.jpg",
+      "bytes": 275214,
+      "sha256": "35328c026c1d1fa0c5178502acf6f0370f016a8718c7d80a97ac706fe3fb671a",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-103",
+      "path": "out/trio/Pocket_Positivity_Trio_Pattern.pdf",
+      "bytes": 1187442,
+      "sha256": "d3b5e8c178a82c5aa1c8a5639e1506cc097f921f6ba56a8f9c5c6afe678808fa",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-104",
+      "path": "out/trio/etsy/01_cover.jpg",
+      "bytes": 518292,
+      "sha256": "b46ee97991cf3401b50fa54dd84a4c76eb85839af884c4aa97d44c0579059a26",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-105",
+      "path": "out/trio/etsy/02_whats_included.jpg",
+      "bytes": 293171,
+      "sha256": "ed16ae885047203c74148962eda6fb173b9ea91c62b2c9e068f682ce0dab22a2",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-106",
+      "path": "out/trio/etsy/03_size.jpg",
+      "bytes": 306257,
+      "sha256": "46001f9705fd24183d210dc779619504f118700fd50e65dbea3de238fc2574fb",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-107",
+      "path": "out/trio/etsy/04_materials.jpg",
+      "bytes": 326077,
+      "sha256": "3c544219f94f1dd12d592ab01082765b3e4311187f7d21ed541b7ac8bf3d3ebe",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-108",
+      "path": "out/trio/etsy/05_pdf_preview.jpg",
+      "bytes": 347620,
+      "sha256": "6eaf19bf9e2eb499e56318fe3f50eb9e96edd0592eaab5acf5c6246e80a98d08",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-109",
+      "path": "out/trio/etsy/06_video_audio.jpg",
+      "bytes": 276938,
+      "sha256": "38309c33d35678690dbb83d2eb2d6d320c37e7fd2056626eedeec103011ecdba",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-110",
+      "path": "out/trio/etsy/07_details.jpg",
+      "bytes": 446828,
+      "sha256": "e94840a02794ac992c16bd0904aaa49118445a0464fd4d897d012f05e677945a",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-111",
+      "path": "out/trio/etsy/08_colorways.jpg",
+      "bytes": 431111,
+      "sha256": "2936734a96a79ad915f9dccd4047b3491b94530be5baf3b1aec286e34c1c83f8",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-112",
+      "path": "out/trio/etsy/09_skill_level.jpg",
+      "bytes": 283758,
+      "sha256": "09ba85d8ba6e3cdf51e3aefe98ac7d9ceef5404a16c1aa2e452116c02bd7ba16",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-113",
+      "path": "out/trio/etsy/10_good_to_know.jpg",
+      "bytes": 300216,
+      "sha256": "c4d0caf4fcbd848bc4d04b5920874c904c4acd46057f1f1f3b84885da98bcdf7",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-114",
+      "path": "out/willow/Willow_the_Bunny_Lovey_Pattern.pdf",
+      "bytes": 1488524,
+      "sha256": "4a3e0def67af0658bb693a5816aef32172e1b1c1a919b99301ad6a6a5b44c0de",
+      "kind": "generated pattern PDF"
+    },
+    {
+      "id": "M-115",
+      "path": "out/willow/etsy/01_cover.jpg",
+      "bytes": 654169,
+      "sha256": "ef2ef758ce62f71db31b9aa544bb515fb7f82ac8e72953b7a60328b218635844",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-116",
+      "path": "out/willow/etsy/02_whats_included.jpg",
+      "bytes": 296461,
+      "sha256": "33a3d431adccd0e953e0a2f9deb6d66ab9d110ca05e31978e24d5dc03bd8663f",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-117",
+      "path": "out/willow/etsy/03_size.jpg",
+      "bytes": 382621,
+      "sha256": "3fc7e74db1111d6a40ef4e046f404070fe9baac0ec465f153e5a2af46b77ea2d",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-118",
+      "path": "out/willow/etsy/04_materials.jpg",
+      "bytes": 352956,
+      "sha256": "95e4d783ea7b586ab3ec9ef40498b1c7741f41960fc33a648dc6cc610a672a4e",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-119",
+      "path": "out/willow/etsy/05_pdf_preview.jpg",
+      "bytes": 406408,
+      "sha256": "6b313dfac1f85d4a4facfd3a295c8f239ea4793eca3a796225dd264f2560c8cd",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-120",
+      "path": "out/willow/etsy/06_video_audio.jpg",
+      "bytes": 263788,
+      "sha256": "fdd462a5d840f1a6680f311e44fb1064f787bfd50bdb0aa8ca3aba074a1bebf2",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-121",
+      "path": "out/willow/etsy/07_details.jpg",
+      "bytes": 504554,
+      "sha256": "15b19540da7e36a8cb94c561bd24ec5dea4772d0507d3106d021484e8ac6aeab",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-122",
+      "path": "out/willow/etsy/08_colorways.jpg",
+      "bytes": 451560,
+      "sha256": "6d38fc924ab04171ebb245e9cba9956f2c48d91582047ac53f9a0627693cf4ce",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-123",
+      "path": "out/willow/etsy/09_skill_level.jpg",
+      "bytes": 293031,
+      "sha256": "4d3398d51540d6ddac3d15d62c2136c5874020affcc772d1bb0180075c957f9b",
+      "kind": "Etsy listing image"
+    },
+    {
+      "id": "M-124",
+      "path": "out/willow/etsy/10_good_to_know.jpg",
+      "bytes": 335847,
+      "sha256": "f8c4848c5ec9ef8c56e28489741cef89f29d7ca21ba3a4a3ff2c6b19dde6ed67",
+      "kind": "Etsy listing image"
+    }
+  ]
+}

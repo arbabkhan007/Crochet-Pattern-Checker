@@ -2,15 +2,21 @@
 from __future__ import annotations
 
 import importlib
+import os
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent          # novality_kits/
-FONTS = ROOT / "assets" / "fonts"
-IMG_ROOT = ROOT / "assets" / "img"
-IMG_PDF_ROOT = ROOT / "assets" / "img_pdf"
-OUT_ROOT = ROOT / "out"
+# Large source assets and generated outputs live outside the checkout.
+CACHE_ROOT = Path(os.environ.get(
+    "CROCHET_BUILD_CACHE",
+    Path.home() / ".cache" / "crochet-pattern-checker" / "49d69daeb8d7a2462d5e5bef5394a4ff5d170a3b",
+)).expanduser().resolve()
+FONTS = CACHE_ROOT / "novality_kits" / "assets" / "fonts"
+IMG_ROOT = CACHE_ROOT / "novality_kits" / "assets" / "img"
+IMG_PDF_ROOT = CACHE_ROOT / "novality_kits" / "assets" / "img_pdf"
+OUT_ROOT = CACHE_ROOT / "novality_kits" / "out"
 
 BRAND = "Novality Crochet Studio"
 BRAND_TAG = "#NovalityCrochetStudio"

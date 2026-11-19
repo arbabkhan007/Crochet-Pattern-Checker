@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "purpose": "Checksummed source inputs required by the PDF and Etsy builders. Files are fetched only into an external cache; they remain omitted from this branch.",
+  "source": {
+    "repository": "arbabkhan007/Crochet-Pattern-Checker",
+    "commit": "49d69daeb8d7a2462d5e5bef5394a4ff5d170a3b",
+    "raw_base": "https://raw.githubusercontent.com/arbabkhan007/Crochet-Pattern-Checker/49d69daeb8d7a2462d5e5bef5394a4ff5d170a3b/"
+  },
+  "groups": {
+    "novality": {
+      "description": "Novality kit source fonts and image assets.",
+      "count": 49
+    },
+    "publish": {
+      "description": "Crochet checker PDF-publishing fonts.",
+      "count": 8
+    }
+  },
+  "files": [
+    {
+      "path": "novality_kits/assets/fonts/Caladea-Bold.ttf",
+      "size_bytes": 58892,
+      "sha256": "74eda4fc5ffba0d8dc4aa76d41499f5ab76168d9ed6141c6417064c6244db9b6",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/Caladea-Italic.ttf",
+      "size_bytes": 61860,
+      "sha256": "9c968bf60ba1e851cdfea77c71e3540c57792f77482dd241acc29d1425569c4e",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/Caladea-Regular.ttf",
+      "size_bytes": 58964,
+      "sha256": "d2f6cad33f191e65b68bd74e6d4f7708080a41b32db635866109df3090265d91",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/FredokaOne-Regular.ttf",
+      "size_bytes": 43500,
+      "sha256": "a2fbb1416510efe20330272bc182d667efe1507db5faecde893084fb15953973",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/SourceSansPro-Bold.ttf",
+      "size_bytes": 291424,
+      "sha256": "2efc3a95d076f2d04c5928c0ad698b7c61cc302d6f6e79e9643cd3722f7becc2",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/SourceSansPro-It.ttf",
+      "size_bytes": 104236,
+      "sha256": "36133e9f508b0b4c639e84b2a09855350be0b13700ad729ab519aa78e5c48d20",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/SourceSansPro-Light.ttf",
+      "size_bytes": 293220,
+      "sha256": "8d9cd89e3cdbcc08f95fea442b3ce366958ba30104d678e9604126e5fd2565d8",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/SourceSansPro-Regular.ttf",
+      "size_bytes": 293956,
+      "sha256": "b77f3a700edd0fc0dec73258f882d5c3926c77f5caf6800a201d2166568d2309",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/fonts/SourceSansPro-Semibold.ttf",
+      "size_bytes": 292404,
+      "sha256": "b440fd42fd5a54e1b252731deca9cc86604bee6ffa99281f5874c3476eb17eae",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/axel/colorways.png",
+      "size_bytes": 2254188,
+      "sha256": "de39275b390c77a3ce591846264f32481a286a5a54ca35eaf4ca11ce2f968b5c",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/axel/detail.png",
+      "size_bytes": 2619965,
+      "sha256": "1a0b060345e73310becc4f0d086b0388bffa9705f3ead94479f436a4cb974b9d",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/axel/hero.png",
+      "size_bytes": 2485680,
+      "sha256": "e10147f5f99d607d97d2bb8300c0156b8a026f42de8c8ef248f26745415e6784",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/axel/inhand.png",
+      "size_bytes": 2581190,
+      "sha256": "0c070d9c115ffa6bb1ee60c2765a4cc251cd7a43c6ec6bf9997c43d328087575",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/coco/colorways.png",
+      "size_bytes": 2565356,
+      "sha256": "496a5a278dd417c52b5492eaf2ae2ed6e6ff2c226fc07dcb60aea741939e0c79",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/coco/detail.png",
+      "size_bytes": 2606862,
+      "sha256": "9155fe8842dc8b395ae12184c9f2e075f1448241b1b98be7abe826f22d6b84b4",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/coco/hero.png",
+      "size_bytes": 2124527,
+      "sha256": "82137cd6f5b550cb0e5c958ed6cb4d3f881e0cb99ce930837bda26d7eb5d0073",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/coco/inhand.png",
+      "size_bytes": 2537267,
+      "sha256": "b24e6de8d23a1316a8730b6a5ef95ea8d3a0c05290365d465ca782467f2c1351",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/duck/colorways.png",
+      "size_bytes": 2346388,
+      "sha256": "4cf24eca2b5d5983399b6b1165bcd982cd226a0c485b13f14b24bc0756323a54",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/duck/detail.png",
+      "size_bytes": 2691597,
+      "sha256": "969483f8e5a5678495a038f926af214a3cdba2e208c7c37d063e3bc41721649d",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/duck/hero.png",
+      "size_bytes": 2123205,
+      "sha256": "dd87bc5b3df5cb51085c481594db794e6f8421cb6fc87683024a526424274455",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/duck/inhand.png",
+      "size_bytes": 2500775,
+      "sha256": "1d0035bd5230920bb8f31728cd4b5bf497aaf1c9e83fb20e4fa1e29426be7d09",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/ember/colorways.png",
+      "size_bytes": 2491820,
+      "sha256": "90c2029d2b1c7d5728ad0c61c8e719b3b564a71d74f4793775d93d93c522973f",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/ember/detail.png",
+      "size_bytes": 2490774,
+      "sha256": "39a2a27cb46a843d690058082e767f3ced9f400fb1b0e73e83460450ed07091b",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/ember/hero.png",
+      "size_bytes": 2345638,
+      "sha256": "a43c357fd4050e84dbaeb6ff6c2a2ae543bcad678c9e5a46884a98179eb80f4b",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/ember/inhand.png",
+      "size_bytes": 2661891,
+      "sha256": "b9a70e8e23cedc3a8c7c22ce09d19f82cc10396837563f1ee7ec4f3137281906",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/halloween/colorways.png",
+      "size_bytes": 2449139,
+      "sha256": "fa25d86b1d66355e3b57b530fd423849ff0f1c14b32b45de4652566fa45a9cce",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/halloween/detail.png",
+      "size_bytes": 2346284,
+      "sha256": "13dec37b402249cfee47ee3ac6101007f90a8dba56ba8ef6f5fc325bc4b54610",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/halloween/hero.png",
+      "size_bytes": 2206569,
+      "sha256": "9b3dd444405e92f38fa189a5aaa68325301838ef6bb0f704a07c7ef356fbd7d1",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/halloween/inhand.png",
+      "size_bytes": 2641473,
+      "sha256": "5041bf0d8c25a4e1b4ccb84a53e76d85aa965ab0b9bfd889d2401cc9903bd71d",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/hamish/colorways.png",
+      "size_bytes": 2567514,
+      "sha256": "fa4e05e427dc089040b18f69f798ed627256850cc830e07bf455d23b15fa0b11",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/hamish/detail.png",
+      "size_bytes": 2783220,
+      "sha256": "3fd8335ac4d39a8d50f2a0818310b44544d0962dad1693e3725801064de244e4",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/hamish/hero.png",
+      "size_bytes": 2415401,
+      "sha256": "550625f55061d128d04258ddc758cd0f6abc126675ec96449dcabcd516fce79c",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/hamish/inhand.png",
+      "size_bytes": 2520301,
+      "sha256": "60b2f8aefb8301ea8ef8c96d08e6613c43511ff72934353d7c8feb2c6ae37b92",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/momo/colorways.png",
+      "size_bytes": 2511119,
+      "sha256": "07efaa0d963bc036a1f4b2d282174bbbcdacd33e2a8aceb4252ae8864454cc20",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/momo/detail.png",
+      "size_bytes": 2443646,
+      "sha256": "69b2fed091c3a2a34922ee5ce187c9cfbb74f5e765b91dac7c4d669b5673e169",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/momo/hero.png",
+      "size_bytes": 2306549,
+      "sha256": "6e4a6d3f67a030896e07782188e23582bd740f483ba67fb28a44244b217e88f7",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/momo/inhand.png",
+      "size_bytes": 2356816,
+      "sha256": "9e9dd6c46df4a41d7d0f749ced244a448aba3a2b6efaca9abcbe6ae23ece32d8",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/shelby/colorways.png",
+      "size_bytes": 2344183,
+      "sha256": "3eff2ea220e1f41255e8c0ec7fa94f7fa110fa9ef00ce3f79ba0b73a93fb2837",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/shelby/detail.png",
+      "size_bytes": 2527559,
+      "sha256": "906caa743e914dc92e2cfff181bd8724d4ba9c219646d49ef2b86fe11e18a794",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/shelby/hero.png",
+      "size_bytes": 1864417,
+      "sha256": "8a2de12c5ba29306b7e825e742600e26386cc9547a7e82438f7278eaf4bc34a1",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/shelby/inhand.png",
+      "size_bytes": 2215518,
+      "sha256": "d4221ac28dd0576fd5cf5c86ca4d8669b174ae57a3e07da8c83e6cb36bfb26ad",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/trio/colorways.png",
+      "size_bytes": 2502310,
+      "sha256": "13c1dd2bd2402d63cd98a13d61aa21685daf1db9017f6fa9c8fe55bd87d7809c",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/trio/detail.png",
+      "size_bytes": 2639086,
+      "sha256": "c5b707f9f417d47493c6e600b75a535e7b8c282f4351c27c100dcd5b14390194",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/trio/hero.png",
+      "size_bytes": 2154592,
+      "sha256": "31820ed0089a450f6c5f3f37208822671138085397dc072a0b9c6d5bfaf65a79",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/trio/inhand.png",
+      "size_bytes": 2725210,
+      "sha256": "4bddcb85f31828f3118a1783b15e7841d7e616d88e2521f36e11d7c4bfd76095",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/willow/colorways.png",
+      "size_bytes": 2598474,
+      "sha256": "bba1677c07c46904f36cac859bf493ab04b37a4a8cdf08b2c343c47e6e0de455",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/willow/detail.png",
+      "size_bytes": 2772020,
+      "sha256": "328ab89d9e2fb95f7e14544382ec0144ec14b36d4b27d6a97e37892e1bee1500",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/willow/hero.png",
+      "size_bytes": 2456719,
+      "sha256": "c30bc31d53d3e0715ec223a9a7e0149ca29e2ea7c457db3d9e1ef3610a684e71",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "novality_kits/assets/img/willow/inhand.png",
+      "size_bytes": 2649418,
+      "sha256": "b58e213a85b2aa8fd801bd08a6216fd524f38b681846f45bdf35ead74488f3f3",
+      "groups": [
+        "novality"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSans-Bold.ttf",
+      "size_bytes": 704128,
+      "sha256": "b184b89e3c1075f22f6b71575b6fc20d4972b3cfd3b23322ca6fd596dcaef167",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSans-BoldOblique.ttf",
+      "size_bytes": 641720,
+      "sha256": "6edf0283160186af451cbee71e7b845f2e4cabf264bb992ce668c83c25465e6f",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSans-Oblique.ttf",
+      "size_bytes": 633840,
+      "sha256": "ccdf74b350f11fd3dd5774de50e5e6346a1a5da1f5b7d5fb83590665e97a5213",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSans.ttf",
+      "size_bytes": 756072,
+      "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSerif-Bold.ttf",
+      "size_bytes": 355692,
+      "sha256": "c3753f2ed6bc673f15846dc45addbeb3b9c872f32fb18fd53a21f1bef1ed7676",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSerif-BoldItalic.ttf",
+      "size_bytes": 347064,
+      "sha256": "d93efec7a9d2e826768d1a2ee95b95870e15e29599a84f3484af1de1cec2e181",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSerif-Italic.ttf",
+      "size_bytes": 345612,
+      "sha256": "3e7994fbc54fa10ce3352a42d548fadd7d9cadb69cb1109bc9d960f6dac57f04",
+      "groups": [
+        "publish"
+      ]
+    },
+    {
+      "path": "src/crochet_checker/publish/fonts/DejaVuSerif.ttf",
+      "size_bytes": 379740,
+      "sha256": "107244956e9962b9e96faccdc551825e0ae0898ae13737133e1b921a2fd35ffa",
+      "groups": [
+        "publish"
+      ]
+    }
+  ]
+}
