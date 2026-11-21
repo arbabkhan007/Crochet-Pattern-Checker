@@ -5,12 +5,23 @@ from __future__ import annotations
 from pathlib import Path
 
 from fastapi import BackgroundTasks, FastAPI, File, HTTPException, Query, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from .. import __version__
+from ..calculators import (
+    convert_terminology,
+    estimate_yarn,
+    gauge_to_size,
+    recommend_hook,
+    shape_from_counts,
+    stitch_count_chart,
+)
 from ..parser.parser import CrochetParser
 from ..pdf import TEMPLATES, PDFConfig, PDFGenerator
+from ..report import build_report
 from ..simulation import analyze_pattern_shape, simulate_surface
 from ..simulation.assembly_map import assembly_map_svg, written_assembly
 from ..simulation.geometry_map import geometry_map_svg, written_geometry
@@ -20,7 +31,22 @@ from .import_url import ImportError_, import_pattern_page
 from ..validation import validate_pattern
 from ..visualization import measure_pattern, render_2d_preview
 
-app = FastAPI(title="Crochet Pattern Checker", version="0.5.0")
+app = FastAPI(
+    title="Crochet Pattern Checker",
+    version=__version__,
+    description=(
+        "Deterministic crochet pattern checker: stitch counts, gauge, "
+        "yarn, hooks, US/UK conversion, diagrams, and printable sheets. "
+        "Written counts only â€” never a measurement."
+    ),
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 # Optional web companion ("studio"). Built from web/studio with `npm run build`.
 # Mounted only when the bundle exists, so the API works with or without it.
@@ -33,7 +59,28 @@ if _STUDIO_DIR.is_dir():
 
 
 class CheckRequest(BaseModel):
-    pattern_text: str
+    pattern_text: str = Field(min_length=1, max_length=200_000)
+
+
+class GaugeRequest(BaseModel):
+    stitches: int = Field(gt=0, le=100_000)
+    rows: int = Field(gt=0, le=100_000)
+    sts_per_4in: float = Field(gt=0, le=200)
+    rows_per_4in: float = Field(gt=0, le=200)
+
+
+class ConvertRequest(BaseModel):
+    pattern_text: str = Field(min_length=1, max_length=200_000)
+    direction: str = "us-to-uk"
+
+
+class YarnRequest(BaseModel):
+    total_stitches: int = Field(ge=0, le=10_000_000)
+    stitch: str = "sc"
+
+
+class ChartRequest(BaseModel):
+    counts: list[int] = Field(min_length=1, max_length=1_000)
 
 
 class ConsensusRunRequest(BaseModel):
@@ -267,7 +314,115 @@ async def generate_pdf(request: PdfRequest, designer: str | None = None):
 
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "version": "0.5.0"}
+    return {"status": "ok", "version": __version__}
+
+
+@app.get("/api/version")
+async def version():
+    return {"name": "crochet-pattern-checker", "version": __version__}
+
+
+@app.post("/api/gauge")
+async def gauge(request: GaugeRequest):
+    """Finished size from a gauge swatch. Estimate, not a measurement."""
+    try:
+        result = gauge_to_size(
+            request.stitches, request.rows, request.sts_per_4in, request.rows_per_4in
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return {
+        "width_in": result.width_in,
+        "height_in": result.height_in,
+        "width_cm": result.width_cm,
+        "height_cm": result.height_cm,
+        "note": result.note,
+    }
+
+
+@app.post("/api/convert")
+async def convert(request: ConvertRequest):
+    """Convert US <-> UK stitch terminology."""
+    try:
+        converted = convert_terminology(request.pattern_text, request.direction)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return {"direction": request.direction, "converted": converted}
+
+
+@app.post("/api/yarn")
+async def yarn(request: YarnRequest):
+    """Rough yardage estimate. Not weighed."""
+    try:
+        estimate = estimate_yarn(request.total_stitches, request.stitch)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return {
+        "yards": estimate.yards,
+        "metres": estimate.metres,
+        "balls_100g": estimate.balls_100g,
+        "note": estimate.note,
+    }
+
+
+@app.post("/api/chart")
+async def chart(request: ChartRequest):
+    """Bar chart and silhouette from written per-round stitch counts."""
+    if any(count < 0 for count in request.counts):
+        raise HTTPException(status_code=422, detail="counts cannot be negative")
+    return {
+        "chart": stitch_count_chart(request.counts),
+        "shape": shape_from_counts(request.counts),
+        "note": "Written counts only; this is not a stitch diagram or measurement.",
+    }
+
+
+@app.get("/api/hooks")
+async def hooks(weight: str = "worsted"):
+    """Hook recommendation for a yarn weight (0-7 or name)."""
+    try:
+        rec = recommend_hook(weight)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    return {
+        "weight_number": rec.weight_number,
+        "weight_name": rec.weight_name,
+        "hook_mm_low": rec.hook_mm_low,
+        "hook_mm_high": rec.hook_mm_high,
+        "hook_us": rec.hook_us,
+        "gauge_sts_per_4in": rec.gauge_sts_per_4in,
+        "source": rec.source,
+    }
+
+
+@app.post("/api/report")
+async def report(request: CheckRequest):
+    """Self-contained HTML report: verdict, chart, findings."""
+    try:
+        pattern = CrochetParser().parse(request.pattern_text)
+        validation = validate_pattern(pattern)
+        items = pattern.rounds or pattern.rows
+        counts: list[int] = []
+        prev = 0
+        for i, item in enumerate(items):
+            try:
+                value = (
+                    item.computed_stitch_count
+                    if i == 0
+                    else item.compute_stitch_count_with_context(prev)
+                )
+            except Exception:
+                value = prev
+            counts.append(int(value or 0))
+            prev = int(value or 0)
+        return {
+            "html": build_report(pattern, validation),
+            "status": validation.overall_status,
+            "score": validation.score,
+            "chart": stitch_count_chart(counts),
+        }
+    except Exception as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
 
 
 def _consensus_service():
@@ -358,76 +513,8 @@ def _consensus_dashboard_html() -> str:
     return dashboard_html()
 
 
-def get_frontend_html() -> str:
-    return """<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crochet Pattern Checker</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
-.container{max-width:1200px;margin:0 auto}
-header{text-align:center;color:white;padding:40px 0}
-header h1{font-size:2.5em;margin-bottom:10px}
-header p{font-size:1.2em;opacity:.9}
-.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
-.panel{background:white;border-radius:12px;padding:25px;box-shadow:0 10px 40px rgba(0,0,0,.2)}
-.panel h2{color:#333;margin-bottom:15px;font-size:1.3em}
-textarea{width:100%;height:300px;border:2px solid #e0e0e0;border-radius:8px;padding:15px;font-family:monospace;font-size:14px;resize:vertical}
-textarea:focus{outline:none;border-color:#667eea}
-.btn{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;border:none;padding:12px 30px;border-radius:8px;font-size:16px;cursor:pointer;margin:10px 5px 10px 0}
-.btn:hover{opacity:.9}
-.result-box{margin-top:20px;padding:20px;border-radius:8px;background:#f8f9fa}
-.status-pass{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
-.status-warn{background:#fff3cd;color:#856404;border:1px solid #ffeaa7}
-.status-error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
-.status-badge{display:inline-block;padding:5px 15px;border-radius:20px;font-weight:bold;font-size:14px}
-.score{font-size:48px;font-weight:bold;text-align:center;margin:20px 0}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
-.stat-card{background:white;padding:15px;border-radius:8px;text-align:center}
-.stat-value{font-size:24px;font-weight:bold;color:#667eea}
-.stat-label{font-size:12px;color:#666;margin-top:5px}
-.errors-list{margin-top:15px;padding:15px;border-radius:8px;background:#f8d7da}
-.warnings-list{margin-top:15px;padding:15px;border-radius:8px;background:#fff3cd}
-.errors-list li{color:#721c24;margin:5px 0}
-.warnings-list li{color:#856404;margin:5px 0}
-.svg-container{margin-top:20px;background:white;padding:20px;border-radius:8px;text-align:center}
-.svg-container svg{max-width:100%;height:auto}
-.upload-zone{border:2px dashed #ccc;border-radius:8px;padding:30px;text-align:center;cursor:pointer;margin-bottom:15px}
-.upload-zone:hover,.upload-zone.dragover{border-color:#667eea;background:#f0f4ff}
-footer{text-align:center;color:white;padding:40px 0 20px;opacity:.8}
-</style>
-</head>
-<body>
-<div class="container">
-<header><h1>\xf0\x9f\xa7\xb6 Crochet Pattern Checker</h1><p>Validate, visualize, and publish your crochet patterns | <a href="/consensus" style="color:white;text-decoration:underline">Multi-AI written review dashboard</a></p></header>
-<div class="main-grid">
-<div class="panel"><h2>\xf0\x9f\x93\x9d Enter Your Pattern</h2>
-<div class="upload-zone" id="dropZone"><p>\xf0\x9f\x93\x81 Drop a .txt file here or click to upload</p><input type="file" id="fileInput" accept=".txt" style="display:none"></div>
-<textarea id="patternInput" placeholder="Round 1: 6 sc into magic ring (6)\nRound 2: inc x 6 (12)\nRound 3: (sc, inc) x 6 (18)\nRound 4: (2 sc, inc) x 6 (24)..."></textarea>
-<button class="btn" onclick="checkPattern()">Check Pattern</button>
-<button class="btn" onclick="renderPattern()">Render</button>
-<button class="btn" onclick="simulatePattern()">3D Simulate</button> <label><input id="pdfLarge" type="checkbox"> Large print</label> <label><input id="pdfInk" type="checkbox"> Ink saver</label> <label><input id="pdfLand" type="checkbox"> Landscape</label> <label><input id="pdfBind" type="checkbox"> Binding</label> <label><input id="pdfDuplex" type="checkbox"> Duplex</label> <label><input id="pdfCards" type="checkbox"> Round cards</label> <label><input id="pdfCrop" type="checkbox"> Crop marks</label> <label>Page <select id="pdfPage"><option>A4</option><option>Letter</option><option>A5</option><option>Legal</option></select></label> <button class="btn" onclick="makePdf()">Make PDF sheet</button>
-</div>
-<div class="panel"><h2>\xf0\x9f\x93\x8a Results</h2><div id="results"><p style="color:#999;text-align:center;padding:50px 0">Enter a pattern and click "Check Pattern" to see results</p></div></div>
-</div>
-<div class="panel" style="margin-top:20px" id="diagramPanel" hidden><h2>Pattern Diagram</h2><div class="svg-container" id="svgContainer"></div></div>
-<footer><p>Crochet Pattern Checker v0.5.0 | Built with FastAPI</p></footer>
-</div>
-<script>
-const dropZone=document.getElementById('dropZone'),fileInput=document.getElementById('fileInput'),patternInput=document.getElementById('patternInput');
-dropZone.addEventListener('click',()=>fileInput.click());
-dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover')});
-dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
-dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('dragover');if(e.dataTransfer.files[0])readFile(e.dataTransfer.files[0])});
-fileInput.addEventListener('change',e=>{if(e.target.files[0])readFile(e.target.files[0])});
-function readFile(f){const r=new FileReader();r.onload=e=>patternInput.value=e.target.result;r.readAsText(f)}
-async function checkPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Checking...</p>';try{const r=await fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const c=d.status.includes('PASS')&&!d.status.includes('WARNING')?'status-pass':d.status.includes('WARNING')?'status-warn':'status-error';let h='<div class="result-box '+c+'"><div style="text-align:center"><span class="status-badge">'+d.status+'</span><div class="score">'+d.score+'/100</div></div><div class="stats"><div class="stat-card"><div class="stat-value">'+d.rounds+'</div><div class="stat-label">Rounds</div></div><div class="stat-card"><div class="stat-value">'+d.max_stitches+'</div><div class="stat-label">Max Stitches</div></div><div class="stat-card"><div class="stat-value">'+d.max_diameter_inches+'"\'</div><div class="stat-label">Estimate, not measured</div></div><div class="stat-card"><div class="stat-value">'+d.total_height_inches+'"\'</div><div class="stat-label">Estimate, not measured</div></div></div></div>';if(d.errors&&d.errors.length>0){h+='<div class="errors-list"><b>Errors:</b><ul>';d.errors.forEach(e=>h+='<li>['+e.location+'] '+e.message+'</li>');h+='</ul></div>'}if(d.warnings&&d.warnings.length>0){h+='<div class="warnings-list"><b>Warnings:</b><ul>';d.warnings.forEach(w=>h+='<li>['+w.location+'] '+w.message+'</li>');h+='</ul></div>'}res.innerHTML=h}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
-async function renderPattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const p=document.getElementById('diagramPanel'),c=document.getElementById('svgContainer');p.hidden=false;c.innerHTML='<p style="text-align:center;padding:20px">Generating...</p>';try{const r=await fetch('/api/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();c.innerHTML=d.svg+(d.stitch_svg?'<p style="font-size:12px;color:#5c6b7a">Stitch map: '+d.stitches+' written stitches. Not a measured size.</p>\'+d.stitch_svg:'')+(d.assembly_svg?'<p style="font-size:12px;color:#5c6b7a">Assembly map: '+(d.piece_joins||0)+' written piece joins. Not a stitch map.</p>'+d.assembly_svg:'')+(d.geometry_svg?'<p style="font-size:12px;color:#5c6b7a">Geometry map. '+(d.geometry_note||'Not a millimetre measurement.')+'</p>'+d.geometry_svg:'')}catch(e){c.innerHTML='<p style="color:red">Error: '+e.message+'</p>'}}
-async function simulatePattern(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Simulating...</p>';try{const r=await fetch('/api/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}res.innerHTML='<div class="result-box status-pass"><h3 style="text-align:center;margin-bottom:15px">3D Simulation</h3><div class="stats"><div class="stat-card"><div class="stat-value">'+d.shape+'</div><div class="stat-label">Detected Shape</div></div><div class="stat-card"><div class="stat-value">'+(d.confidence*100).toFixed(0)+'%</div><div class="stat-label">Confidence</div></div><div class="stat-card"><div class="stat-value">'+d.vertices+'</div><div class="stat-label">Vertices</div></div><div class="stat-card"><div class="stat-value">'+d.faces+'</div><div class="stat-label">Faces</div></div></div><div class="stat-card"><div class="stat-value">'+(d.piece_joins||0)+'</div><div class="stat-label">Written piece joins</div></div><div class="stat-card"><div class="stat-value">'+(d.stitches||0)+'</div><div class="stat-label">Written stitches</div></div></div><p style="font-size:12px;color:#5c6b7a">'+(d.note||'Not a measured size. Not a photo.')+'</p><p style="font-size:12px;color:#5c6b7a">'+(d.assembly_note||'Not a stitch map.')+'</p></div>';if(d.assembly_svg){const p=document.getElementById('diagramPanel'),c=document.getElementById('svgContainer');p.hidden=false;c.innerHTML='<p style="font-size:12px;color:#5c6b7a">Assembly map: '+(d.piece_joins||0)+' written piece joins. Not a stitch map.</p>'+d.assembly_svg+(d.geometry_svg?'<p style="font-size:12px;color:#5c6b7a">Geometry map. '+(d.geometry_note||'Not a millimetre measurement.')+'</p>'+d.geometry_svg:'')}}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
 
-async function makePdf(){const t=patternInput.value;if(!t.trim())return alert('Enter a pattern');const res=document.getElementById('results');res.innerHTML='<p style="text-align:center;padding:20px">Making sheet...</p>';try{const r=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pattern_text:t,template:'craft',page_size:(document.getElementById('pdfPage')||{}).value||'A4',large_print:!!(document.getElementById('pdfLarge')&&document.getElementById('pdfLarge').checked),ink_saver:!!(document.getElementById('pdfInk')&&document.getElementById('pdfInk').checked),landscape:!!(document.getElementById('pdfLand')&&document.getElementById('pdfLand').checked),binding:(document.getElementById('pdfBind')&&document.getElementById('pdfBind').checked)?'left':'none',duplex:!!(document.getElementById('pdfDuplex')&&document.getElementById('pdfDuplex').checked),cards:!!(document.getElementById('pdfCards')&&document.getElementById('pdfCards').checked),crop_marks:!!(document.getElementById('pdfCrop')&&document.getElementById('pdfCrop').checked)})});const d=await r.json();if(!r.ok){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+d.detail+'</div>';return}const blob=new Blob([d.html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='pattern-sheet.html';a.click();res.innerHTML='<div class="result-box status-pass"><b>Sheet ready.</b> The download is HTML. Open it and print. Template: '+d.template+'.</div>'}catch(e){res.innerHTML='<div class="result-box status-error"><b>Error:</b> '+e.message+'</div>'}}
-</script>
-</body>
-</html>"""
+def get_frontend_html() -> str:
+    from .frontend import frontend_html
+
+    return frontend_html()
