@@ -1,0 +1,72 @@
+cross-check of original.md: 32 growth rounds
+
+Column continuity - is each round's increase worked into the stitch
+the previous round's increase made?
+
+   rounds tested            : 30
+   rounds with a slipped col: 30  -> R3-R32
+   increases off-column     : 360 of 360
+
+Increase-column ancestry (which round-1 stitches each round's 12
+increases descend from). A necessary but NOT sufficient check.
+
+   R2   (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+   R3   (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+   R4   (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+   R5   (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+   R31  (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+   R32  (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+   distinct ancestor sets across R2-R32: 1
+   all rounds share one set of 12 distinct ancestors -> radial
+
+   distinct bobble ancestor sets across the 10 bobble rounds: 1
+
+Border (independent expansion):
+   Mini      edge 168 -> consumed 168, 28 scallops, 168 sts made
+   Standard  edge 276 -> consumed 276, 46 scallops, 276 sts made
+   Large     edge 384 -> consumed 384, 64 scallops, 384 sts made
+
+Total body stitches R1-R32: 6336 (closed form 6*32*33 = 6336)
+
+CROSS-CHECK FAILED - 40 issue(s):
+  1. R3: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  2. R4: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  3. R5: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  4. R5: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  5. R6: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  6. R7: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  7. R8: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  8. R8: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  9. R9: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  10. R10: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  11. R11: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  12. R11: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  13. R12: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  14. R13: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  15. R14: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  16. R14: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  17. R15: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  18. R16: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  19. R17: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  20. R17: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  21. R18: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  22. R19: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  23. R20: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  24. R20: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  25. R21: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  26. R22: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  27. R23: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  28. R23: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  29. R24: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  30. R25: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  31. R26: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  32. R26: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  33. R27: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  34. R28: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  35. R29: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  36. R29: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped
+  37. R30: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  38. R31: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  39. R32: 12 of 12 increases are NOT worked into the previous round's increase - the column has slipped
+  40. R32: 12 of 12 bobbles are NOT on the stitch following an increase - the bobble column has slipped

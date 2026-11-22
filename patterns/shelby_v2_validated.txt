@@ -1,0 +1,48 @@
+# Shelby the Sea Turtle Bag Charm — v2 VALIDATED & CORRECTED (publication source)
+# Design Code NS 09. US terms, 2.5 mm hook, DK #3. Gauge 3.5 mm/st, 3.2 mm/rnd.
+# Claims: whole charm = 203 stitches (~3 m); 24 sts = 26.7 mm disc;
+# cluster round consumes 24 and produces 35; bumps land on sts 4, 9, 13, 18, 22;
+# big version: shell to 42 sts; big cluster round consumes 42, produces 53.
+# NOTE: all tables arrived complete and consistent.
+
+=== SHELL (make 1) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: sc in each st around (24)
+Rnd 6: sc in each st around (24)
+
+=== UNDERSIDE (head & flippers worked into Rnd 5) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: 3 sc, (sc, hdc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 4 sc, (sc, hdc, sc) in next st, 3 sc, (sc, hdc, sc) in next st, 2 sc (35)
+
+=== BIG SHELL (5.7 cm version) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: [3 sc, inc] x 6 (30)
+Rnd 6: [4 sc, inc] x 6 (36)
+Rnd 7: [5 sc, inc] x 6 (42)
+Rnd 8: sc in each st around (42)
+Rnd 9: sc in each st around (42)
+
+=== BIG UNDERSIDE ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: [3 sc, inc] x 6 (30)
+Rnd 6: [4 sc, inc] x 6 (36)
+Rnd 7: [5 sc, inc] x 6 (42)
+Rnd 8: 7 sc, (sc, hdc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st, 8 sc, (sc, hdc, sc) in next st, 7 sc, (sc, hdc, sc) in next st (53)
+
+# ===== V2 VALIDATION NOTE =====
+# Status: PASS (deterministic round-chain + size checks, tools/validate_pattern.py)
+# No stitch-count or size errors found. Cluster round consumes 24 / produces 35 with
+#   bumps on sts 4, 9, 13, 18, 22 exactly; big version consumes 42 / produces 53;
+#   whole charm = 203 sts. Publication-ready as received.

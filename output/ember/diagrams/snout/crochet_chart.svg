@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500">
+<rect width="600" height="500" fill="#FEFEFE"/>
+<text x="300.0" y="25" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#2C3E50">Crochet Chart</text>
+<text x="300.0" y="42" text-anchor="middle" font-family="Arial" font-size="10" fill="#7F8C8D">Symbol Chart</text>
+<circle cx="300.0" cy="270.0" r="6" fill="#F39C12" stroke="#333"/>
+<circle cx="300.0" cy="270.0" r="61.0" fill="none" stroke="#E0E0E0" stroke-dasharray="3,3"/>
+<text x="300.0" y="209.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<text x="352.8" y="239.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<text x="352.8" y="300.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<text x="300.0" y="331.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<text x="247.2" y="300.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<text x="247.2" y="239.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<circle cx="300.0" cy="270.0" r="97.0" fill="none" stroke="#E0E0E0" stroke-dasharray="3,3"/>
+<text x="300.0" y="173.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="362.4" y="195.7" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="395.5" y="253.2" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="384.0" y="318.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="333.2" y="361.2" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="266.8" y="361.2" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="216.0" y="318.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="204.5" y="253.2" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="237.6" y="195.7" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<circle cx="300.0" cy="270.0" r="133.0" fill="none" stroke="#E0E0E0" stroke-dasharray="3,3"/>
+<text x="300.0" y="137.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="366.5" y="154.8" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="415.2" y="203.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="433.0" y="270.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="415.2" y="336.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="366.5" y="385.2" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="300.0" y="403.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="233.5" y="385.2" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="184.8" y="336.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="167.0" y="270.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="184.8" y="203.5" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<text x="233.5" y="154.8" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2ECC71" font-family="Arial">V</text>
+<circle cx="300.0" cy="270.0" r="169.0" fill="none" stroke="#E0E0E0" stroke-dasharray="3,3"/>
+<text x="300.0" y="101.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<circle cx="300.0" cy="270.0" r="205.0" fill="none" stroke="#E0E0E0" stroke-dasharray="3,3"/>
+<text x="300.0" y="65.0" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#4A90D9" font-family="Arial">✖</text>
+<text x="20" y="470" font-size="14" fill="#4A90D9" font-family="Arial">X</text>
+<text x="38" y="470" font-size="9" fill="#666" font-family="Arial" dominant-baseline="central">sc</text>
+<text x="90" y="470" font-size="14" fill="#2ECC71" font-family="Arial">V</text>
+<text x="108" y="470" font-size="9" fill="#666" font-family="Arial" dominant-baseline="central">inc</text>
+<text x="160" y="470" font-size="14" fill="#E74C3C" font-family="Arial">Λ</text>
+<text x="178" y="470" font-size="9" fill="#666" font-family="Arial" dominant-baseline="central">dec</text>
+</svg>

@@ -4,6 +4,7 @@ Implements the multi-pass compiler design for comprehensive pattern validation
 """
 
 from dataclasses import dataclass, field
+import re
 
 from ..ast.nodes import InstructionNode, PatternNode
 from ..ast.unroller import ASTUnroller
@@ -78,10 +79,9 @@ class PatternValidator:
 
     def _pass1_extract_and_parse(self, pattern_text: str) -> PatternNode:
         """Pass 1: Extract glossary and parse markdown structure"""
-        # Extract glossary
+        # The compiler reads Markdown structure as-authored; the compatibility
+        # parser separately handles bold/plain row headers for legacy inputs.
         extracted_glossary = self.glossary_extractor.extract_from_text(pattern_text)
-
-        # Parse markdown into AST
         pattern_ast = self.parser.parse(pattern_text)
 
         # Merge glossaries
@@ -553,6 +553,8 @@ def validate_pattern(pattern_input, strict=False):
 
     errors = [item.message for item in result.errors]
     warnings = [item.message for item in result.warnings]
+    error_locations: dict[str, str] = {}
+    warning_locations: dict[str, str] = {}
 
     # Compatibility check for stated stitch counts.
     # The compiler pipeline validates spatial consumption, while the legacy
@@ -583,6 +585,10 @@ def validate_pattern(pattern_input, strict=False):
             for item in rows_or_rounds:
                 produced_this_round = 0
                 available = previous
+                available_at_start = previous
+                is_row = hasattr(item, "row_number")
+                label = "Row" if is_row else "Round"
+                number = getattr(item, "row_number", getattr(item, "round_number", "?"))
                 for instruction in item.instructions:
                     computed = _produced_with_context(instruction, available)
                     produced_this_round += computed
@@ -592,31 +598,47 @@ def validate_pattern(pattern_input, strict=False):
                         available -= instruction.total_stitches_consumed
 
                     stated = getattr(instruction, "stated_stitch_count", None)
-                    if stated is None:
+                    if stated is None or computed == stated:
                         continue
-                    if computed != stated:
-                        number = getattr(item, "round_number", getattr(item, "row_number", "?"))
-                        plain = (
-                            _needs_previous_round(instruction)
-                            and previous is not None
-                            and not any(
-                                getattr(getattr(op, "stitch_type", None), "value", "")
-                                in ("increase", "decrease")
-                                for op in instruction.operations
-                            )
+                    plain = (
+                        _needs_previous_round(instruction)
+                        and previous is not None
+                        and not any(
+                            getattr(getattr(op, "stitch_type", None), "value", "")
+                            in ("increase", "decrease")
+                            for op in instruction.operations
                         )
-                        if plain:
-                            message = (
-                                f"Round/row {number}: plain round received {previous} stitches "
-                                f"and has no increase or decrease, but states {stated}."
-                            )
-                        else:
-                            message = (
-                                f"Round/row {number}: "
-                                f"stated {stated} stitches but operations produce {computed}"
-                            )
-                        if message not in errors:
-                            errors.append(message)
+                    )
+                    if plain:
+                        message = (
+                            f"{label} {number}: plain {label.lower()} received {previous} "
+                            f"stitches without an increase or decrease; the row states {stated}."
+                        )
+                    else:
+                        message = (
+                            f"{label} {number} states {stated} stitches, but operations "
+                            f"produce {computed}."
+                        )
+                    if message not in errors:
+                        errors.append(message)
+                        error_locations[message] = f"{label} {number}"
+
+                # A deliberate turn can leave unused base stitches in a short
+                # row. Report that as a warning, not as a stitch-count error.
+                if (
+                    is_row
+                    and available_at_start is not None
+                    and available is not None
+                    and available > 0
+                    and re.search(r"\bturn\b", getattr(item, "source_text", ""), re.IGNORECASE)
+                ):
+                    message = (
+                        f"Row {number} turns with {available} stitches unworked; "
+                        "check the short-row shaping."
+                    )
+                    if message not in warnings:
+                        warnings.append(message)
+                        warning_locations[message] = f"Row {number}"
                 previous = produced_this_round
     except Exception:
         # The compiler result remains authoritative if legacy parsing is
@@ -645,29 +667,49 @@ def validate_pattern(pattern_input, strict=False):
     except Exception:
         pass
 
-    # Keep the score useful for legacy callers.
+    # Keep the score useful for legacy callers. An empty parse is not a pass;
+    # there is no stitch data on which to base a validation result.
+    explicitly_empty = not pattern_text.strip() or bool(
+        re.search(r"\bno\s+(?:stitch\s+)?(?:lines|instructions)\b", pattern_text, re.IGNORECASE)
+    )
+    needs_review = (
+        not result.stitch_counts
+        and result.total_stitches == 0
+        and explicitly_empty
+    )
     if errors:
         score = max(0, 100 - min(100, len(errors) * 25))
         status = "ERROR"
     elif warnings:
         score = 90
         status = "PASS_WITH_WARNINGS"
+    elif needs_review:
+        score = 0
+        status = "NEEDS_REVIEW"
     else:
         score = 100
         status = "PASS"
 
-    # AI and suggestion consumers expect error.message, not plain strings.
+    # AI and suggestion consumers expect finding objects with useful locations.
     error_objects = [
-        item if hasattr(item, "message") else _CompatFinding(str(item))
+        item
+        if hasattr(item, "message")
+        else _CompatFinding(
+            str(item), location=error_locations.get(str(item), "")
+        )
         for item in errors
     ]
     warning_objects = [
-        item if hasattr(item, "message") else _CompatFinding(str(item), "warning")
+        item
+        if hasattr(item, "message")
+        else _CompatFinding(
+            str(item), "warning", warning_locations.get(str(item), "")
+        )
         for item in warnings
     ]
 
     report = ValidationReport(
-        valid=bool(result.is_valid) and not errors,
+        valid=bool(result.is_valid) and not errors and not needs_review,
         errors=error_objects,
         warnings=warning_objects,
         stitch_count=result.total_stitches,

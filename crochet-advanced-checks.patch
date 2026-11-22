@@ -1,0 +1,2579 @@
+diff --git a/src/crochet_checker/validation/advanced_checks/__init__.py b/src/crochet_checker/validation/advanced_checks/__init__.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ae12c0760b2dadda528a1f820f9b13e5e9281909
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/__init__.py
+@@ -0,0 +1,108 @@
++"""Conservative deterministic checks for advanced crochet constructions.
++
++All text adapters require explicit evidence. Missing measurements, directions,
++or stitch locations remain unknown rather than being estimated. These rules
++are separate from the optional provider/LLM integrations.
++"""
++
++from __future__ import annotations
++
++from .anatomy import (
++    TorsoAxis,
++    anatomy_findings,
++    check_anatomical_attachment,
++    detect_torso_axes,
++    normalized_anatomical_height,
++)
++from .assembly import (
++    AssemblyStep,
++    ConstructionMode,
++    assembly_findings,
++    classify_construction_mode,
++    parse_numbered_assembly_steps,
++)
++from .common import AdvancedFinding, meaningful_text, unique_findings
++from .curvature import check_flat_curvature, curvature_findings
++from .inserts import check_folded_tube_closure, check_insert_diameter, insert_findings
++from .loop_occupancy import (
++    RoundLoopState,
++    build_loop_states,
++    check_surface_loop_join,
++    color_crease_findings,
++    loop_occupancy_findings,
++)
++from .oval_chain import ChainWork, oval_findings, validate_oval_foundation
++from .spatial import (
++    FeatureBounds,
++    attachment_bounds_from_text,
++    find_spatial_collisions,
++    quadruped_compass_findings,
++    quadruped_findings_from_text,
++    seam_stretch_mismatch,
++    spatial_findings,
++    stitch_to_angle,
++)
++from .turned_rows import (
++    RowOrientation,
++    RowProfile,
++    annotate_row_turns,
++    turned_row_findings,
++)
++
++
++def find_advanced_findings(text: str) -> list[AdvancedFinding]:
++    """Run the requested rule families against written text and explicit quantities."""
++    source = meaningful_text(text)
++    findings: list[AdvancedFinding] = []
++    findings.extend(oval_findings(source))
++    findings.extend(loop_occupancy_findings(source))
++    findings.extend(turned_row_findings(source))
++    findings.extend(spatial_findings(source))
++    findings.extend(quadruped_findings_from_text(source))
++    findings.extend(anatomy_findings(source))
++    findings.extend(curvature_findings(source))
++    findings.extend(insert_findings(source))
++    findings.extend(assembly_findings(source))
++    return unique_findings(findings)
++
++
++__all__ = [
++    "AdvancedFinding",
++    "AssemblyStep",
++    "ChainWork",
++    "ConstructionMode",
++    "FeatureBounds",
++    "RowOrientation",
++    "RowProfile",
++    "RoundLoopState",
++    "TorsoAxis",
++    "anatomy_findings",
++    "annotate_row_turns",
++    "assembly_findings",
++    "attachment_bounds_from_text",
++    "build_loop_states",
++    "check_anatomical_attachment",
++    "check_flat_curvature",
++    "check_folded_tube_closure",
++    "check_insert_diameter",
++    "check_surface_loop_join",
++    "classify_construction_mode",
++    "color_crease_findings",
++    "curvature_findings",
++    "detect_torso_axes",
++    "find_advanced_findings",
++    "find_spatial_collisions",
++    "insert_findings",
++    "loop_occupancy_findings",
++    "normalized_anatomical_height",
++    "oval_findings",
++    "parse_numbered_assembly_steps",
++    "quadruped_compass_findings",
++    "quadruped_findings_from_text",
++    "seam_stretch_mismatch",
++    "spatial_findings",
++    "stitch_to_angle",
++    "turned_row_findings",
++    "unique_findings",
++    "validate_oval_foundation",
++]
+diff --git a/src/crochet_checker/validation/advanced_checks/anatomy.py b/src/crochet_checker/validation/advanced_checks/anatomy.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..ce1347a4c6668f204e60ef40927f16c031bdbd02
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/anatomy.py
+@@ -0,0 +1,176 @@
++"""Conservative bottom-up/top-down anatomical round normalization."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++from typing import Literal
++
++from .common import AdvancedFinding, ROUND_HEADER, split_sections
++from .spatial import attachment_bounds_from_text
++
++TorsoDirection = Literal["BOTTOM_UP", "TOP_DOWN"]
++
++
++@dataclass(frozen=True)
++class TorsoAxis:
++    direction: TorsoDirection
++    max_round: int
++    section_name: str
++
++
++def normalized_anatomical_height(
++    round_number: int, max_round: int, direction: TorsoDirection
++) -> float | None:
++    """Map an explicit round into [0, 1] only when the axis is known."""
++    if (
++        direction not in {"BOTTOM_UP", "TOP_DOWN"}
++        or max_round <= 1
++        or round_number < 1
++        or round_number > max_round
++    ):
++        return None
++    fraction = (round_number - 1) / (max_round - 1)
++    return fraction if direction == "BOTTOM_UP" else 1.0 - fraction
++
++
++def detect_torso_axes(text: str) -> list[TorsoAxis]:
++    axes: list[TorsoAxis] = []
++    for heading, body, _line in split_sections(text):
++        section = f"{heading}\n{body}"
++        if not re.search(r"\b(?:torso|body)\b", heading, re.IGNORECASE):
++            continue
++        bottom = bool(
++            re.search(
++                r"\b(?:worked|crocheted)\s+bottom[- ]up\b|\bfrom\s+(?:the\s+)?(?:base|belly|pelvis)\s+to\s+(?:the\s+)?(?:neck|head)\b",
++                section,
++                re.IGNORECASE,
++            )
++        )
++        top = bool(
++            re.search(
++                r"\b(?:worked|crocheted)\s+top[- ]down\b|\bfrom\s+(?:the\s+)?(?:neck|head)\s+to\s+(?:the\s+)?(?:base|belly|pelvis)\b",
++                section,
++                re.IGNORECASE,
++            )
++        )
++        if bottom == top:
++            continue
++        numbers = [
++            int(match.group(1))
++            for line in body.splitlines()
++            if (match := ROUND_HEADER.match(line.strip()))
++        ]
++        if not numbers:
++            continue
++        axes.append(
++            TorsoAxis("BOTTOM_UP" if bottom else "TOP_DOWN", max(numbers), heading)
++        )
++    return axes
++
++
++_UPPER = {
++    "wings",
++    "wing",
++    "arms",
++    "arm",
++    "shoulders",
++    "shoulder",
++    "neck ruff",
++    "forelegs",
++    "foreleg",
++    "fore legs",
++    "fore leg",
++}
++_LOWER = {
++    "tail",
++    "tails",
++    "hind legs",
++    "hind leg",
++    "hindlegs",
++    "hindleg",
++    "pelvis",
++}
++
++
++def check_anatomical_attachment(
++    feature: str,
++    round_min: int,
++    round_max: int,
++    max_round: int,
++    direction: TorsoDirection,
++) -> list[AdvancedFinding]:
++    """Flag only placements beyond the explicit high-confidence inversion thresholds."""
++    name = feature.casefold().strip()
++    lower = name in _LOWER
++    upper = name in _UPPER
++    if not (lower or upper) or round_min < 1 or round_max < round_min:
++        return []
++    heights = [
++        normalized_anatomical_height(round_min, max_round, direction),
++        normalized_anatomical_height(round_max, max_round, direction),
++    ]
++    if any(value is None for value in heights):
++        return []
++    low_z, high_z = min(heights), max(heights)
++    if upper and high_z < 0.40:
++        return [
++            AdvancedFinding(
++                "AnatomicalZAxisInversion",
++                f"{feature.title()} is assigned to rounds {round_min}–{round_max}, below the stated upper-body zone on a {direction.lower().replace('_', '-')} torso (z={high_z:.0%} at the highest round).",
++                "warning",
++            )
++        ]
++    if lower and low_z > 0.60:
++        return [
++            AdvancedFinding(
++                "AnatomicalZAxisInversion",
++                f"{feature.title()} is assigned to rounds {round_min}–{round_max}, above the stated lower-body zone on a {direction.lower().replace('_', '-')} torso (z={low_z:.0%} at the lowest round).",
++                "warning",
++            )
++        ]
++    return []
++
++
++def anatomy_findings(text: str) -> list[AdvancedFinding]:
++    axes = detect_torso_axes(text)
++    if not axes:
++        return []
++    placements = attachment_bounds_from_text(text)
++    findings: list[AdvancedFinding] = []
++    for placement in placements:
++        if placement.parent is None or placement.parent.casefold() not in {
++            "body",
++            "torso",
++        }:
++            continue
++        if placement.round_min is None or placement.round_max is None:
++            continue
++        matching_axes = [
++            axis
++            for axis in axes
++            if re.search(
++                rf"\b{re.escape(placement.parent)}\b", axis.section_name, re.IGNORECASE
++            )
++        ]
++        if not matching_axes and len(axes) == 1:
++            matching_axes = axes
++        if len(matching_axes) != 1:
++            continue
++        axis = matching_axes[0]
++        for finding in check_anatomical_attachment(
++            placement.feature,
++            placement.round_min,
++            placement.round_max,
++            axis.max_round,
++            axis.direction,
++        ):
++            findings.append(
++                AdvancedFinding(
++                    finding.code,
++                    finding.message,
++                    finding.severity,
++                    placement.line_number,
++                )
++            )
++    return findings
+diff --git a/src/crochet_checker/validation/advanced_checks/assembly.py b/src/crochet_checker/validation/advanced_checks/assembly.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..2151a2c36023106c1f3ee3e7a6adcd02dbb811a3
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/assembly.py
+@@ -0,0 +1,258 @@
++"""Construction-mode classification and complete numbered assembly ingestion."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++from enum import Enum
++
++from .common import AdvancedFinding, split_sections
++
++
++class ConstructionMode(str, Enum):
++    UNKNOWN = "UNKNOWN"
++    INLINE_COLORWORK = "INLINE_COLORWORK"
++    DIRECT_SURFACE_JOIN = "DIRECT_SURFACE_JOIN"
++    JAYG_ATTACHED = "JAYG_ATTACHED"
++    SEPARATE_SEW_ON = "SEPARATE_SEW_ON"
++
++
++@dataclass(frozen=True)
++class AssemblyStep:
++    number: int
++    piece_name: str | None
++    target_parent: str | None
++    target_round_min: int | None
++    target_round_max: int | None
++    source: str
++    line_number: int
++
++
++@dataclass(frozen=True)
++class PieceConstruction:
++    name: str
++    mode: ConstructionMode
++    body: str
++    line_number: int
++
++
++def _clean_name(name: str) -> str:
++    value = re.sub(r"\(\s*make\s+\d+\s*\)", "", name, flags=re.IGNORECASE)
++    value = re.sub(r"\s*\(.*?\)\s*$", "", value)
++    return value.strip(" :#\t")
++
++
++def classify_construction_mode(name: str, body: str) -> ConstructionMode:
++    """Classify only construction modes supported by explicit written wording."""
++    scope = f"{name}\n{body}"
++    if re.search(
++        r"\b(?:inline\s+colorwork|tapestry\s+(?:panel|colorwork)|worked\s+inline|worked\s+as\s+part\s+of)\b",
++        scope,
++        re.IGNORECASE,
++    ) or (
++        re.search(r"\btapestry\b", scope, re.IGNORECASE)
++        and re.search(
++            r"\b(?:inside|within|part\s+of)\s+(?:the\s+)?(?:torso|body|main\s+piece)\b",
++            body,
++            re.IGNORECASE,
++        )
++    ):
++        return ConstructionMode.INLINE_COLORWORK
++    if re.search(r"\b(?:JAYG|join\s+as\s+you\s+go)\b", scope, re.IGNORECASE):
++        return ConstructionMode.JAYG_ATTACHED
++    if re.search(
++        r"\b(?:sl\s*st|slip\s+stitch)\b[^.\n]{0,55}\b(?:directly\s+)?(?:to|into|onto)\s+(?:the\s+)?(?:torso|body|head|piece)\b|\bjoined\s+directly\s+(?:to|into)\b",
++        scope,
++        re.IGNORECASE,
++    ):
++        return ConstructionMode.DIRECT_SURFACE_JOIN
++    if re.search(
++        r"\b(?:make|made|crochet(?:ed)?|work(?:ed)?)\s+separately\b|"
++        r"\bseparate(?:ly)?\s+piece\b|\bmade\s+as\s+a\s+separate\s+piece\b",
++        scope,
++        re.IGNORECASE,
++    ):
++        return ConstructionMode.SEPARATE_SEW_ON
++    return ConstructionMode.UNKNOWN
++
++
++def _piece_sections(text: str) -> list[PieceConstruction]:
++    result: list[PieceConstruction] = []
++    for heading, body, line in split_sections(text):
++        if not heading or re.search(
++            r"\b(?:materials|gauge|glossary|notes?|final\s+assembly|assembly|finishing|instructions)\b",
++            heading,
++            re.IGNORECASE,
++        ):
++            continue
++        name = _clean_name(heading)
++        if not name:
++            continue
++        # Keep heading annotations such as "(make separately)" for classification.
++        mode = classify_construction_mode(heading, body)
++        result.append(PieceConstruction(name, mode, body, line))
++    return result
++
++
++def _is_assembly_heading(line: str) -> bool:
++    value = re.sub(r"^\s*#{1,6}\s*", "", line)
++    value = re.sub(r"\s*#*\s*$", "", value).strip(" :\t")
++    return bool(
++        re.fullmatch(
++            r"(?:final\s+)?assembly(?:\s+(?:steps|instructions))?",
++            value,
++            re.IGNORECASE,
++        )
++    )
++
++
++def _has_assembly_section(text: str) -> bool:
++    return any(_is_assembly_heading(line) for line in text.splitlines())
++
++
++def _name_pattern(name: str) -> re.Pattern[str]:
++    words = [re.escape(word) for word in name.split() if word]
++    return re.compile(r"(?<!\w)" + r"\s+".join(words) + r"(?!\w)", re.IGNORECASE)
++
++
++def _subject_piece_names(source: str, names: list[str]) -> list[str]:
++    """Return named pieces before the first explicit attachment target phrase."""
++    action = re.search(
++        r"\b(?:sew|attach|join|graft|stitch|fasten|connect|secure|place|add)\w*\b",
++        source,
++        re.IGNORECASE,
++    )
++    if not action:
++        return []
++    target = re.search(
++        r"\b(?:to|onto|into|on|around|with|together)\b",
++        source[action.end() :],
++        re.IGNORECASE,
++    )
++    end = action.end() + target.start() if target else len(source)
++    mentions: list[tuple[int, str]] = []
++    for name in names:
++        for match in _name_pattern(name).finditer(source, action.end(), end):
++            mentions.append((match.start(), name))
++    result: list[str] = []
++    seen_positions: set[int] = set()
++    for position, name in sorted(mentions, key=lambda item: (item[0], -len(item[1]))):
++        if position in seen_positions:
++            continue
++        seen_positions.add(position)
++        if name.casefold() not in {item.casefold() for item in result}:
++            result.append(name)
++    return result
++
++
++def parse_numbered_assembly_steps(text: str) -> list[AssemblyStep]:
++    """Read every numbered item in Markdown or plain-text assembly sections."""
++    pieces = _piece_sections(text)
++    names = sorted((piece.name for piece in pieces), key=len, reverse=True)
++    round_range = re.compile(
++        r"\b(?:rounds?|rnds?|r)\s*(\d+)\s*(?:[-–—]|to|through|and)\s*(?:r\s*)?(\d+)\b",
++        re.IGNORECASE,
++    )
++    round_single = re.compile(r"\b(?:round|rnd|r)\s*(\d+)\b", re.IGNORECASE)
++    target_pattern = re.compile(
++        r"\b(?:to|onto|into|on|around)\s+(?:the\s+)?([A-Za-z][A-Za-z -]{0,30}?)"
++        r"(?=\s+(?:at|between|round|rnd|and|with)\b|[,.;]|$)",
++        re.IGNORECASE,
++    )
++
++    steps: list[AssemblyStep] = []
++    active = False
++    assembly_level: int | None = None
++    for line_number, line in enumerate(text.splitlines(), start=1):
++        markdown_heading = re.match(r"^\s*(#{1,6})\s*", line)
++        if markdown_heading:
++            level = len(markdown_heading.group(1))
++            if _is_assembly_heading(line):
++                active = True
++                assembly_level = level
++            elif (
++                active
++                and assembly_level is not None
++                and assembly_level > 0
++                and level > assembly_level
++            ):
++                # Keep nested headings inside the current assembly section.
++                pass
++            else:
++                active = False
++                assembly_level = None
++            continue
++        if _is_assembly_heading(line):
++            active = True
++            assembly_level = 0
++            continue
++        if not active:
++            continue
++        numbered = re.match(r"^\s*(\d+)\s*[.)]\s+(.+)$", line)
++        if not numbered:
++            continue
++        number = int(numbered.group(1))
++        source = numbered.group(2).strip()
++        subject_names = _subject_piece_names(source, names)
++        target_match = target_pattern.search(source)
++        target_parent = target_match.group(1).strip() if target_match else None
++        range_match = round_range.search(source)
++        if range_match:
++            r0, r1 = sorted((int(range_match.group(1)), int(range_match.group(2))))
++        else:
++            single = round_single.search(source)
++            r0 = r1 = int(single.group(1)) if single else None
++        steps.append(
++            AssemblyStep(
++                number,
++                subject_names[0] if subject_names else None,
++                target_parent,
++                r0,
++                r1,
++                source,
++                line_number,
++            )
++        )
++    return steps
++
++
++_LOCAL_ATTACHMENT = re.compile(
++    r"\b(?:sew|attach|graft|stitch|join)\w*\b[^.\n]{0,80}?"
++    r"\b(?:to|onto|into|on)\s+(?:the\s+)?"
++    r"(?:body|torso|head|face|chest|back|main\s+piece|"
++    r"(?:side|top|bottom|front|back)\s+of\s+(?:the\s+)?(?:body|torso))\b",
++    re.IGNORECASE,
++)
++
++
++def assembly_findings(text: str) -> list[AdvancedFinding]:
++    """Warn when an explicitly separate piece lacks a placement instruction."""
++    if not _has_assembly_section(text):
++        return []
++    pieces = _piece_sections(text)
++    steps = parse_numbered_assembly_steps(text)
++    names = [piece.name for piece in pieces]
++    attached_by_steps = {
++        name.casefold()
++        for step in steps
++        for name in _subject_piece_names(step.source, names)
++    }
++
++    findings: list[AdvancedFinding] = []
++    for piece in pieces:
++        if piece.mode != ConstructionMode.SEPARATE_SEW_ON:
++            continue
++        if (
++            _LOCAL_ATTACHMENT.search(piece.body)
++            or piece.name.casefold() in attached_by_steps
++        ):
++            continue
++        findings.append(
++            AdvancedFinding(
++                "MissingSeparatePieceAssemblyStep",
++                f"'{piece.name}' is explicitly made separately but no sewing/placement instruction for it was found in its section or numbered Final Assembly steps.",
++                "warning",
++                piece.line_number,
++            )
++        )
++    return findings
+diff --git a/src/crochet_checker/validation/advanced_checks/common.py b/src/crochet_checker/validation/advanced_checks/common.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..7df0e336ca3aca8f647ad38ebe772ab118bc777b
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/common.py
+@@ -0,0 +1,97 @@
++"""Shared types/helpers for conservative advanced validation checks."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++from typing import Literal
++
++SeverityName = Literal["error", "warning", "info"]
++
++
++@dataclass(frozen=True)
++class AdvancedFinding:
++    """A deterministic finding supported by explicit written evidence."""
++
++    code: str
++    message: str
++    severity: SeverityName = "warning"
++    line_number: int = 0
++
++
++ROUND_HEADER = re.compile(
++    r"^\s*(?:round|rnd|r)\.?\s*(\d+)\b(?:\s*[-–—]\s*\d+)?\s*[:.)-]?\s*(.*)$",
++    re.IGNORECASE,
++)
++ROW_HEADER = re.compile(
++    r"^\s*row\.?\s*(\d+)\b(?:\s*[-–—]\s*\d+)?\s*(?:\((?:RS|WS)\)\s*)?[:.)-]?\s*(.*)$",
++    re.IGNORECASE,
++)
++STATED_COUNT = re.compile(r"\((\d+)\)\s*$")
++
++
++def split_sections(text: str) -> list[tuple[str, str, int]]:
++    """Split at Markdown headings while retaining each section's first line."""
++    sections: list[tuple[str, str, int]] = []
++    heading = ""
++    start_line = 1
++    body: list[str] = []
++    for line_number, line in enumerate(text.splitlines(), start=1):
++        match = re.match(r"^\s*#{1,6}\s+(.+?)\s*#*\s*$", line)
++        if match:
++            if heading or body:
++                sections.append((heading, "\n".join(body), start_line))
++            heading = match.group(1).strip()
++            start_line = line_number
++            body = []
++        else:
++            body.append(line)
++    if heading or body:
++        sections.append((heading, "\n".join(body), start_line))
++    return sections
++
++
++def meaningful_lines(text: str):
++    """Yield (1-based line number, line) while ignoring quotations and fences."""
++    fence_marker: str | None = None
++    for line_number, raw in enumerate(text.splitlines(), start=1):
++        stripped = raw.strip()
++        if stripped.startswith(("```", "~~~")):
++            marker = stripped[:3]
++            if fence_marker is None:
++                fence_marker = marker
++            elif marker == fence_marker:
++                fence_marker = None
++            continue
++        if fence_marker is not None or not stripped or stripped.startswith(">"):
++            continue
++        yield line_number, raw
++
++
++def meaningful_text(text: str) -> str:
++    """Blank quoted and fenced example lines without shifting source locations."""
++    keep = {line_number for line_number, _line in meaningful_lines(text)}
++    return "\n".join(
++        line if line_number in keep else ""
++        for line_number, line in enumerate(text.splitlines(), start=1)
++    )
++
++
++def unique_findings(items: list[AdvancedFinding]) -> list[AdvancedFinding]:
++    result: list[AdvancedFinding] = []
++    seen: set[tuple[str, str, int]] = set()
++    for item in items:
++        key = (item.code, item.message, item.line_number)
++        if key not in seen:
++            result.append(item)
++            seen.add(key)
++    return result
++
++
++def number_or_none(value: str | None) -> int | None:
++    if value is None:
++        return None
++    try:
++        return int(value)
++    except (TypeError, ValueError):
++        return None
+diff --git a/src/crochet_checker/validation/advanced_checks/curvature.py b/src/crochet_checker/validation/advanced_checks/curvature.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..66102b45619d32ef78edf24f75413ee9cad718b8
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/curvature.py
+@@ -0,0 +1,117 @@
++"""Count-based curvature checks for explicitly flat, centered sc pieces."""
++
++from __future__ import annotations
++
++import re
++from collections.abc import Iterable
++
++from .common import AdvancedFinding, ROUND_HEADER, STATED_COUNT, split_sections
++
++_FLAT_INTENT = re.compile(
++    r"\b(?:flat|disc|disk|medallion|base|coaster)\b", re.IGNORECASE
++)
++_CENTER_START = re.compile(
++    r"\b(?:magic\s+ring|center(?:ed)?\s+ring|centre(?:d)?\s+ring|central\s+ring)\b",
++    re.IGNORECASE,
++)
++_NON_SC = re.compile(
++    r"\b(?:hdc|dc|tr|dtr|treble|double\s+crochet|half\s+double)\b",
++    re.IGNORECASE,
++)
++
++
++def check_flat_curvature(
++    round_counts: Iterable[tuple[int, int]],
++    *,
++    flat_intent: bool,
++    center_start: bool,
++    single_crochet: bool,
++) -> list[AdvancedFinding]:
++    """Flag large accelerations in explicit counts, not ordinary circle growth.
++
++    At least three consecutive, positive round counts are needed before a
++    change in growth rate is compared. The initial increase is not judged:
++    common foundation counts vary, and a 6- or 8-stitch increase can be
++    intentional. Results are warnings because gauge, tension, and shaping can
++    affect whether a piece actually lies flat.
++    """
++    if not (flat_intent and center_start and single_crochet):
++        return []
++
++    counts = sorted(
++        (int(round_number), int(count)) for round_number, count in round_counts
++    )
++    if not counts or any(number < 1 or count <= 0 for number, count in counts):
++        return []
++    by_round: dict[int, int] = {}
++    for number, count in counts:
++        if number in by_round:
++            return []
++        by_round[number] = count
++
++    findings: list[AdvancedFinding] = []
++    for number in sorted(by_round):
++        if number < 3 or number - 1 not in by_round or number - 2 not in by_round:
++            continue
++        current_delta = by_round[number] - by_round[number - 1]
++        previous_delta = by_round[number - 1] - by_round[number - 2]
++        if current_delta <= 0 or previous_delta <= 0:
++            continue
++        if current_delta >= 2 * previous_delta and current_delta - previous_delta >= 6:
++            findings.append(
++                AdvancedFinding(
++                    "HyperbolicCurvatureOverflow",
++                    f"Explicit flat single-crochet counts accelerate from an increase of {previous_delta} to {current_delta} stitches at Round {number}. Review the count sequence and intended shaping; flatness cannot be determined from counts alone.",
++                    "warning",
++                )
++            )
++        elif current_delta - previous_delta >= 6:
++            findings.append(
++                AdvancedFinding(
++                    "FlatCircleIncreaseOutsideCommonRange",
++                    f"The increase grows from {previous_delta} to {current_delta} stitches at Round {number} in an explicitly flat single-crochet circle. Verify the intended shaping and stitch count.",
++                    "warning",
++                )
++            )
++    return findings
++
++
++def curvature_findings(text: str) -> list[AdvancedFinding]:
++    findings: list[AdvancedFinding] = []
++    for heading, body, _line in split_sections(text):
++        section = f"{heading}\n{body}"
++        if not _FLAT_INTENT.search(section) or not _CENTER_START.search(section):
++            continue
++        if _NON_SC.search(section):
++            continue
++        if not re.search(r"\bsc\b", section, re.IGNORECASE):
++            continue
++
++        round_counts: list[tuple[int, int]] = []
++        line_by_round: dict[int, int] = {}
++        body_start = _line + (1 if heading else 0)
++        for line_number, line in enumerate(body.splitlines(), start=body_start):
++            header = ROUND_HEADER.match(line.strip())
++            stated = STATED_COUNT.search(line.strip())
++            if header and stated:
++                round_number = int(header.group(1))
++                round_counts.append((round_number, int(stated.group(1))))
++                line_by_round[round_number] = line_number
++
++        for finding in check_flat_curvature(
++            round_counts,
++            flat_intent=True,
++            center_start=True,
++            single_crochet=True,
++        ):
++            match = re.search(r"\bRound\s+(\d+)\b", finding.message)
++            line_number = line_by_round.get(int(match.group(1)), 0) if match else 0
++            findings.append(
++                AdvancedFinding(
++                    finding.code,
++                    finding.message,
++                    finding.severity,
++                    line_number,
++                )
++            )
++    return findings
+diff --git a/src/crochet_checker/validation/advanced_checks/inserts.py b/src/crochet_checker/validation/advanced_checks/inserts.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..4887a9adcb18c1f867f349e418cf3ac39898436b
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/inserts.py
+@@ -0,0 +1,128 @@
++"""Explicit insert-diameter and flattened-tube closure checks."""
++
++from __future__ import annotations
++
++import math
++import re
++
++from .common import AdvancedFinding, ROUND_HEADER, STATED_COUNT, split_sections
++from .spatial import _gauge_cm
++
++
++def check_insert_diameter(
++    insert_diameter_cm: float,
++    opening_stitches: int,
++    gauge_stitches_per_cm: float,
++) -> AdvancedFinding | None:
++    """Compare an explicit rigid insert and opening using an explicit gauge.
++
++    This is an idealized circumference-to-diameter estimate, not a stretch or
++    fit guarantee. The result is therefore a warning to verify the materials.
++    """
++    if insert_diameter_cm <= 0 or opening_stitches <= 0 or gauge_stitches_per_cm <= 0:
++        return None
++    opening_diameter_cm = opening_stitches / (gauge_stitches_per_cm * math.pi)
++    if insert_diameter_cm <= opening_diameter_cm:
++        return None
++    required = math.ceil(insert_diameter_cm * math.pi * gauge_stitches_per_cm)
++    return AdvancedFinding(
++        "InsertDiameterOverflow",
++        f"A {insert_diameter_cm:g} cm insert exceeds the estimated {opening_diameter_cm:.2f} cm opening at the stated gauge; about {required} stitches would be needed around its circumference. Verify the fit and gauge.",
++        "warning",
++    )
++
++
++def check_folded_tube_closure(
++    tube_stitches: int, closure_stitches: int
++) -> list[AdvancedFinding]:
++    """Compare explicit closing stitches with a two-layer flattened tube."""
++    if tube_stitches <= 0 or closure_stitches < 0:
++        return []
++    expected = (tube_stitches + 1) // 2
++    if closure_stitches < expected:
++        joins_left = expected - closure_stitches
++        return [
++            AdvancedFinding(
++                "PartialTubeClosure",
++                f"A {tube_stitches}-stitch tube typically needs about {expected} joining stitches when flattened, but only {closure_stitches} are written; approximately {joins_left} joins may remain unclosed. Verify the intended closure method.",
++                "warning",
++            )
++        ]
++    if closure_stitches > expected:
++        return [
++            AdvancedFinding(
++                "FoldedTubeClosureMismatch",
++                f"The written closure uses {closure_stitches} stitches for a {tube_stitches}-stitch tube; the simple two-layer estimate is {expected}. Verify the closure construction.",
++                "warning",
++            )
++        ]
++    return []
++
++
++_INSERT = re.compile(
++    r"\b(\d+(?:\.\d+)?)\s*cm\s+(dowel|rod|core|ring|disc|disk|tube)\b"
++    r"[^.\n]{0,80}?\b(?:inside|in)\b[^.\n]{0,50}?"
++    r"(?:opening\s+of\s+|opening\s*[:=]\s*|)(\d+)\s*[- ]?stitch(?:es)?\b",
++    re.IGNORECASE,
++)
++_CLOSURE = re.compile(
++    r"\bflatten(?:ed|ing)?\b[^.\n]{0,70}?\b(?:close|sew|cinch|graft|seam)\w*\b"
++    r"[^.\n]{0,50}?\b(\d+)\s+(?:sc|single\s+crochet)\b",
++    re.IGNORECASE,
++)
++
++
++def insert_findings(text: str) -> list[AdvancedFinding]:
++    findings: list[AdvancedFinding] = []
++    gauge = _gauge_cm(text)
++    for line_number, line in enumerate(text.splitlines(), start=1):
++        match = _INSERT.search(line)
++        if match and gauge:
++            item = check_insert_diameter(
++                float(match.group(1)),
++                int(match.group(3)),
++                gauge[0],
++            )
++            if item:
++                findings.append(
++                    AdvancedFinding(item.code, item.message, item.severity, line_number)
++                )
++
++    for _heading, body, start_line in split_sections(text):
++        counts: list[tuple[int, int, int]] = []
++        body_start = start_line + (1 if _heading else 0)
++        for local_index, line in enumerate(body.splitlines()):
++            header = ROUND_HEADER.match(line.strip())
++            stated = STATED_COUNT.search(line.strip())
++            if header and stated:
++                counts.append(
++                    (
++                        int(header.group(1)),
++                        int(stated.group(1)),
++                        body_start + local_index,
++                    )
++                )
++        if not counts:
++            continue
++        for local_index, line in enumerate(body.splitlines()):
++            if not re.search(r"\bflatten(?:ed|ing)?\b", line, re.IGNORECASE):
++                continue
++            closure = _CLOSURE.search(line)
++            if not closure:
++                continue
++            closing_count = int(closure.group(1))
++            line_number = body_start + local_index
++            preceding = [record for record in counts if record[2] <= line_number]
++            if not preceding:
++                continue
++            tube_count = preceding[-1][1]
++            for finding in check_folded_tube_closure(tube_count, closing_count):
++                findings.append(
++                    AdvancedFinding(
++                        finding.code,
++                        finding.message,
++                        finding.severity,
++                        line_number,
++                    )
++                )
++    return findings
+diff --git a/src/crochet_checker/validation/advanced_checks/loop_occupancy.py b/src/crochet_checker/validation/advanced_checks/loop_occupancy.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..58a39325e4926b226d44e04dd73502e452743f75
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/loop_occupancy.py
+@@ -0,0 +1,170 @@
++"""Stateful FLO/BLO occupancy and explicit hoof/sole crease alignment."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++from typing import Mapping
++
++from .common import AdvancedFinding, ROUND_HEADER, split_sections
++
++
++@dataclass(frozen=True)
++class RoundLoopState:
++    round_number: int
++    flo_free: bool | None
++    blo_free: bool | None
++    established_by_round: int | None = None
++
++
++def build_loop_states(round_modes: Mapping[int, str]) -> dict[int, RoundLoopState]:
++    """Build previous-round loop banks from each round's written loop mode.
++
++    ``BLO`` consumes the prior round's BLO and leaves its FLO free; ``FLO``
++    does the converse. ``BOTH`` consumes both. A missing/ambiguous next-round
++    mode stays unknown.
++    """
++    states: dict[int, RoundLoopState] = {}
++    for number in sorted(round_modes):
++        next_number = number + 1
++        mode = round_modes.get(next_number, "UNKNOWN").upper()
++        if mode == "BLO":
++            flo_free, blo_free = True, False
++        elif mode == "FLO":
++            flo_free, blo_free = False, True
++        elif mode == "BOTH":
++            flo_free, blo_free = False, False
++        else:
++            flo_free, blo_free = None, None
++        states[number] = RoundLoopState(
++            number,
++            flo_free,
++            blo_free,
++            next_number if mode in {"BLO", "FLO", "BOTH"} else None,
++        )
++    return states
++
++
++def check_surface_loop_join(
++    target_round: int,
++    requested_loop: str,
++    states: Mapping[int, RoundLoopState],
++) -> str | None:
++    """Return a collision message only when the requested bank is known occupied."""
++    requested = requested_loop.upper()
++    if requested not in {"FLO", "BLO"}:
++        raise ValueError("requested_loop must be 'FLO' or 'BLO'.")
++    state = states.get(target_round)
++    if state is None:
++        return None
++    free = state.flo_free if requested == "FLO" else state.blo_free
++    if free is not False:
++        return None
++    occupied_by = state.established_by_round
++    source = f"Round {occupied_by}" if occupied_by is not None else "a later round"
++    remaining = "BLO" if requested == "FLO" else "FLO"
++    return (
++        f"LoopCollisionError: Round {target_round} {requested} was already "
++        f"consumed by {source}; only {remaining} remains available."
++    )
++
++
++def _mode(body: str) -> str:
++    front = bool(re.search(r"\bFLO\b|front\s+loops?\s+only", body, re.IGNORECASE))
++    back = bool(re.search(r"\bBLO\b|back\s+loops?\s+only", body, re.IGNORECASE))
++    both = bool(re.search(r"\b(?:through\s+)?both\s+loops\b", body, re.IGNORECASE))
++    if both and not (front or back):
++        return "BOTH"
++    if front and back:
++        return "UNKNOWN"
++    if front:
++        return "FLO"
++    if back:
++        return "BLO"
++    # Ordinary crochet stitches are conventionally worked through both top
++    # loops. Restrict this default to lines with an explicit stitch token.
++    if re.search(
++        r"\b(?:sc|hdc|dc|tr|dtr|inc|dec|sc2tog|dc2tog)\b", body, re.IGNORECASE
++    ):
++        return "BOTH"
++    return "UNKNOWN"
++
++
++_TARGET_LOOP = re.compile(
++    r"\b(?:join|attach|sew|work|graft|crochet|insert|use)\b"
++    r"[^.\n]{0,100}?\b(?P<loop>FLO|BLO|front\s+loops?|back\s+loops?)\b"
++    r"[^.\n]{0,55}?\b(?:of|from|in)\s+(?:round|rnd|r)\s*(?P<number>\d+)\b",
++    re.IGNORECASE,
++)
++
++
++def loop_occupancy_findings(text: str) -> list[AdvancedFinding]:
++    findings: list[AdvancedFinding] = []
++    for heading, body, section_line in split_sections(text):
++        body_start = section_line + (1 if heading else 0)
++        records: list[tuple[int, str, int]] = []
++        for local_line, line in enumerate(body.splitlines(), start=body_start):
++            header = ROUND_HEADER.match(line.strip())
++            if header:
++                records.append((int(header.group(1)), header.group(2), local_line))
++        modes = {number: _mode(body_text) for number, body_text, _ in records}
++        states = build_loop_states(modes)
++        for local_line, line in enumerate(body.splitlines(), start=body_start):
++            for match in _TARGET_LOOP.finditer(line):
++                loop = match.group("loop").upper()
++                loop = "FLO" if loop.startswith("F") else "BLO"
++                number = int(match.group("number"))
++                message = check_surface_loop_join(number, loop, states)
++                if message:
++                    findings.append(
++                        AdvancedFinding(
++                            "LoopOccupancyCollision", message, "error", local_line
++                        )
++                    )
++    findings.extend(color_crease_findings(text))
++    return findings
++
++
++_COLOR_CHANGE = re.compile(
++    r"(?:\b(?:color|colour)\s+change\b[^.\n]{0,50}?\b(?:round|rnd)\s*(\d+)\b|"
++    r"\b(?:round|rnd)\s*(\d+)\b[^.\n]{0,50}?\b(?:change|switch)\s+(?:the\s+)?(?:color|colour)\b)",
++    re.IGNORECASE,
++)
++_BLO_ROUND = re.compile(
++    r"\bBLO\b[^.\n]{0,35}?\b(?:round|rnd)\s*(\d+)\b|"
++    r"\b(?:round|rnd)\s*(\d+)\b[^.\n]{0,35}?\bBLO\b",
++    re.IGNORECASE,
++)
++
++
++def color_crease_findings(text: str) -> list[AdvancedFinding]:
++    """Flag explicit hoof/sole color changes whose BLO crease is one round off."""
++    lines = list(enumerate(text.splitlines(), start=1))
++    changes: list[tuple[int, int]] = []
++    crease_rounds: list[tuple[int, int]] = []
++    relevant = re.compile(r"\b(?:hoof|sole|shoe|boot)\b", re.IGNORECASE)
++    for number, line in lines:
++        if not relevant.search(line):
++            continue
++        change = _COLOR_CHANGE.search(line)
++        if change:
++            raw = change.group(1) or change.group(2)
++            changes.append((int(raw), number))
++        for match in _BLO_ROUND.finditer(line):
++            raw = match.group(1) or match.group(2)
++            crease_rounds.append((int(raw), number))
++    findings: list[AdvancedFinding] = []
++    for change_round, line_number in changes:
++        for crease_round, _crease_line in crease_rounds:
++            if abs(change_round - crease_round) == 1:
++                findings.append(
++                    AdvancedFinding(
++                        "ColorChangeCreaseMisalignment",
++                        f"The stated BLO sole/hoof crease is Round {crease_round}, "
++                        f"one round away from the explicit color change at Round {change_round}. "
++                        "Check whether the crease should be on the color-change round.",
++                        "warning",
++                        line_number,
++                    )
++                )
++    return findings
+diff --git a/src/crochet_checker/validation/advanced_checks/oval_chain.py b/src/crochet_checker/validation/advanced_checks/oval_chain.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..b87b38849c1869195b3d6b1b85e99d38323ee35f
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/oval_chain.py
+@@ -0,0 +1,168 @@
++"""Foundation-chain accounting for explicit oval top/return passes."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++
++from .common import AdvancedFinding, meaningful_lines
++
++
++@dataclass(frozen=True)
++class ChainWork:
++    """Chains consumed and stitches produced by one pass operation."""
++
++    chains_consumed: int
++    stitches_produced: int
++
++
++def validate_oval_foundation(
++    ch_count: int,
++    start_ch_from_hook: int,
++    top_ops: list[ChainWork | tuple[int, int]],
++    bottom_ops: list[ChainWork | tuple[int, int]],
++) -> tuple[list[str], int]:
++    """Validate one oval's two sides without confusing stitch production with chain use.
++
++    A multi-stitch corner operation such as ``2 sc in 2nd ch`` consumes one
++    foundation chain, not two. The top pass must cover every usable chain;
++    the return pass may use no more than ``n_available - 1`` chains.
++    """
++    if ch_count < 1 or start_ch_from_hook < 1:
++        raise ValueError("Chain count and starting-chain index must be positive.")
++    if start_ch_from_hook > ch_count:
++        raise ValueError(
++            "Starting-chain index cannot exceed the foundation-chain length."
++        )
++
++    def totals(ops: list[ChainWork | tuple[int, int]]) -> tuple[int, int]:
++        consumed = produced = 0
++        for op in ops:
++            c, s = (
++                (op.chains_consumed, op.stitches_produced)
++                if isinstance(op, ChainWork)
++                else op
++            )
++            if c < 0 or s < 0:
++                raise ValueError("Chain and stitch counts cannot be negative.")
++            consumed += int(c)
++            produced += int(s)
++        return consumed, produced
++
++    n_available = ch_count - (start_ch_from_hook - 1)
++    top_chains, top_stitches = totals(top_ops)
++    return_chains, return_stitches = totals(bottom_ops)
++    errors: list[str] = []
++
++    if top_chains != n_available:
++        errors.append(
++            f"Oval top pass consumes {top_chains} chains, but {n_available} "
++            f"are available from a chain of {ch_count} starting in chain "
++            f"{start_ch_from_hook}."
++        )
++    max_return = max(n_available - 1, 0)
++    if return_chains > max_return:
++        middle = max(n_available - 2, 0)
++        errors.append(
++            f"Oval return pass consumes {return_chains} chains, but only "
++            f"{middle} middle chains plus at most one starting-end chain "
++            f"({max_return} total) are available."
++        )
++    return errors, top_stitches + return_stitches
++
++
++_ORDINAL_CHAIN = re.compile(
++    r"(?:(\d+)(?:st|nd|rd|th)|first|last)\s+(?:foundation\s+)?(?:ch|chain)\b",
++    re.IGNORECASE,
++)
++_START_FROM_HOOK = re.compile(
++    r"(\d+)(?:st|nd|rd|th)\s+(?:foundation\s+)?(?:ch|chain)\s+from\s+(?:the\s+)?hook",
++    re.IGNORECASE,
++)
++_CHAIN_COUNT = re.compile(r"\b(?:ch|chain|chains)\s*(?:of\s*)?(\d+)\b", re.IGNORECASE)
++_RETURN_MARKER = re.compile(
++    r"\b(?:on|along|working(?:\s+on)?|continue(?:d)?)\s+(?:the\s+)?(?:opposite|other)\s+side\b|\breturn\s+pass\b",
++    re.IGNORECASE,
++)
++_STITCH_NAME = r"(?:sc|hdc|dc|tr|dtr)"
++_CHAIN_OPS = re.compile(
++    rf"(?:(?P<produced>\d+)\s+)?{_STITCH_NAME}\s+(?:in|into)\s+(?:the\s+)?"
++    rf"(?P<endpoint>(?:\d+)(?:st|nd|rd|th)|first|last)\s+(?:foundation\s+)?(?:ch|chain)\b"
++    rf"|(?:(?P<each>\d+)\s+)?{_STITCH_NAME}\s+(?:in|into)\s+(?:the\s+)?next\s+(?P<chains>\d+)\s+(?:foundation\s+)?(?:ch|chain)s?\b",
++    re.IGNORECASE,
++)
++
++
++def _pass_ops(text: str) -> list[ChainWork]:
++    result: list[ChainWork] = []
++    for match in _CHAIN_OPS.finditer(text):
++        if match.group("endpoint"):
++            result.append(ChainWork(1, int(match.group("produced") or 1)))
++        else:
++            chains = int(match.group("chains"))
++            multiplier = int(match.group("each") or 1)
++            result.append(ChainWork(chains, chains * multiplier))
++    return result
++
++
++def oval_findings(text: str) -> list[AdvancedFinding]:
++    """Read only self-contained oval instructions with explicit pass boundaries.
++
++    If the foundation count, start index, or return-side marker is absent, this
++    scanner stays silent rather than guessing how the chain is traversed.
++    """
++    findings: list[AdvancedFinding] = []
++    for line_number, raw in meaningful_lines(text):
++        if not re.search(r"\boval\b", raw, re.IGNORECASE):
++            continue
++        count_match = _CHAIN_COUNT.search(raw)
++        start_match = _START_FROM_HOOK.search(raw)
++        return_match = _RETURN_MARKER.search(raw)
++        if not count_match or not start_match or not return_match:
++            continue
++        top_ops = _pass_ops(raw[: return_match.start()])
++        return_ops = _pass_ops(raw[return_match.end() :])
++        if not top_ops or not return_ops:
++            continue
++        try:
++            errors, _total = validate_oval_foundation(
++                int(count_match.group(1)),
++                int(start_match.group(1)),
++                top_ops,
++                return_ops,
++            )
++        except ValueError as error:
++            findings.append(
++                AdvancedFinding(
++                    "OvalFoundationAccounting",
++                    f"The explicit oval foundation instruction is inconsistent: {error}",
++                    "error",
++                    line_number,
++                )
++            )
++            continue
++        findings.extend(
++            AdvancedFinding("OvalFoundationAccounting", message, "error", line_number)
++            for message in errors
++        )
++        if not errors:
++            return_chains = sum(
++                operation.chains_consumed
++                if isinstance(operation, ChainWork)
++                else operation[0]
++                for operation in return_ops
++            )
++            available_return = max(
++                int(count_match.group(1)) - int(start_match.group(1)),
++                0,
++            )
++            if return_chains < available_return:
++                findings.append(
++                    AdvancedFinding(
++                        "OvalReturnUnaccountedChains",
++                        f"The explicit oval return-side operations consume {return_chains} of {available_return} remaining chains. Confirm that any skipped foundation chains are intentional.",
++                        "warning",
++                        line_number,
++                    )
++                )
++    return findings
+diff --git a/src/crochet_checker/validation/advanced_checks/spatial.py b/src/crochet_checker/validation/advanced_checks/spatial.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..bf4504e9656817093096d51fbfa4725984d25c79
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/spatial.py
+@@ -0,0 +1,500 @@
++"""Explicit 2D attachment boxes, stitch-to-angle mapping, and spiral warnings."""
++
++from __future__ import annotations
++
++import math
++import re
++from dataclasses import dataclass
++from typing import Mapping
++
++from .common import AdvancedFinding, ROUND_HEADER, STATED_COUNT, split_sections
++
++_FEATURE = re.compile(
++    r"\b(snout\s+bridge|safety\s+eyes?|eyes?|muzzle|ears?|horns?|tails?|"
++    r"fore\s+legs?|forelegs?|hind\s*legs?|arms?|legs?|wings?|shoulders?|neck\s+ruff|pelvis|limbs?)\b",
++    re.IGNORECASE,
++)
++_PARENT = re.compile(
++    r"\b(?:to|on|onto|in|into)\s+(?:the\s+)?(head|torso|body|face|chest|back)\b",
++    re.IGNORECASE,
++)
++_ROUND_RANGE = re.compile(
++    r"\b(?:rounds?|rnds?|r)\s*(\d+)\s*(?:[-–—]|to|through|and)\s*(?:r\s*)?(\d+)\b",
++    re.IGNORECASE,
++)
++_ROUND_SINGLE = re.compile(r"\b(?:round|rnd|r)\s*(\d+)\b", re.IGNORECASE)
++_STITCH_RANGE = re.compile(
++    r"\b(?:stitch(?:es)?|sts?|stitch\s+indices)\s*(\d+)\s*(?:[-–—]|to|through|and|&)\s*(\d+)\b",
++    re.IGNORECASE,
++)
++_STITCH_SINGLE = re.compile(r"\b(?:stitch(?:es)?|sts?)\s*(\d+)\b", re.IGNORECASE)
++_ANGLE_RANGE = re.compile(
++    r"\b(\d+(?:\.\d+)?)\s*(?:°|degrees?)\s*(?:[-–—]|to|through|and)\s*"
++    r"(\d+(?:\.\d+)?)\s*(?:°|degrees?)\b",
++    re.IGNORECASE,
++)
++_ANGLE_SINGLE = re.compile(r"\b(\d+(?:\.\d+)?)\s*(?:°|degrees?)\b", re.IGNORECASE)
++_PLACEMENT = re.compile(
++    r"\b(?:attach|sew|place|position|insert|mount|join|graft|embroider)\w*\b",
++    re.IGNORECASE,
++)
++
++
++@dataclass(frozen=True)
++class FeatureBounds:
++    feature: str
++    parent: str | None
++    round_min: int | None
++    round_max: int | None
++    horizontal_min: float | None
++    horizontal_max: float | None
++    horizontal_unit: str | None
++    source: str
++    line_number: int = 0
++
++
++def stitch_to_angle(stitch_index: int, stitch_count: int) -> float:
++    """Map a one-based stitch index to a clockwise-positive polar angle."""
++    if stitch_count <= 0 or stitch_index < 1 or stitch_index > stitch_count:
++        raise ValueError("Stitch index must be within a positive round stitch count.")
++    return ((stitch_index - 0.5) / stitch_count) * 360.0
++
++
++def boxes_overlap(a: FeatureBounds, b: FeatureBounds) -> bool:
++    """Return True only for complete, comparable boxes on the same parent."""
++    values = (
++        a.round_min,
++        a.round_max,
++        b.round_min,
++        b.round_max,
++        a.horizontal_min,
++        a.horizontal_max,
++        b.horizontal_min,
++        b.horizontal_max,
++    )
++    if any(value is None for value in values):
++        return False
++    if not a.parent or not b.parent or a.parent.casefold() != b.parent.casefold():
++        return False
++    if (
++        not a.horizontal_unit
++        or not b.horizontal_unit
++        or a.horizontal_unit.casefold() != b.horizontal_unit.casefold()
++    ):
++        return False
++    round_overlap = max(a.round_min, b.round_min) <= min(a.round_max, b.round_max)
++    horizontal_overlap = max(a.horizontal_min, b.horizontal_min) <= min(
++        a.horizontal_max, b.horizontal_max
++    )
++    return round_overlap and horizontal_overlap
++
++
++def find_spatial_collisions(features: list[FeatureBounds]) -> list[AdvancedFinding]:
++    findings: list[AdvancedFinding] = []
++    for index, first in enumerate(features):
++        for second in features[index + 1 :]:
++            if first.feature.casefold() == second.feature.casefold():
++                continue
++            if boxes_overlap(first, second):
++                unit = first.horizontal_unit or "coordinate"
++                findings.append(
++                    AdvancedFinding(
++                        "SpatialBoundingBoxCollision",
++                        f"{first.feature} and {second.feature} have overlapping explicit placement boxes on {first.parent} (rounds {first.round_min}–{first.round_max}, {unit} {first.horizontal_min:g}–{first.horizontal_max:g}). Verify the intended layout.",
++                        "warning",
++                        second.line_number,
++                    )
++                )
++    return findings
++
++
++def attachment_bounds_from_text(text: str) -> list[FeatureBounds]:
++    """Extract only explicit round and stitch/angle intervals from placement lines."""
++    found: list[FeatureBounds] = []
++    for line_number, raw in enumerate(text.splitlines(), start=1):
++        if not _PLACEMENT.search(raw):
++            continue
++        features = list(_FEATURE.finditer(raw))
++        if not features:
++            continue
++        parent_match = _PARENT.search(raw)
++        parent = parent_match.group(1) if parent_match else None
++        round_range = _ROUND_RANGE.search(raw)
++        if round_range:
++            first_round, last_round = (
++                int(round_range.group(1)),
++                int(round_range.group(2)),
++            )
++            if first_round <= last_round:
++                r0, r1 = first_round, last_round
++            else:
++                r0 = r1 = None
++        else:
++            round_single = _ROUND_SINGLE.search(raw)
++            r0 = r1 = int(round_single.group(1)) if round_single else None
++        stitch_range = _STITCH_RANGE.search(raw)
++        if stitch_range:
++            first_stitch, last_stitch = (
++                float(stitch_range.group(1)),
++                float(stitch_range.group(2)),
++            )
++            if first_stitch <= last_stitch:
++                h0, h1 = first_stitch, last_stitch
++                unit = "stitch"
++            else:
++                h0 = h1 = None
++                unit = None
++        else:
++            angle_range = _ANGLE_RANGE.search(raw)
++            if angle_range:
++                first, second = float(angle_range.group(1)), float(angle_range.group(2))
++                if first > second:
++                    h0 = h1 = None
++                    unit = None
++                elif re.search(
++                    r"\b(?:counterclockwise|counter-clockwise|anticlockwise|anti-clockwise)\b",
++                    raw,
++                    re.IGNORECASE,
++                ):
++                    h0, h1 = 360.0 - second, 360.0 - first
++                    unit = "degree"
++                else:
++                    h0, h1 = first, second
++                    unit = "degree"
++            else:
++                stitch_single = _STITCH_SINGLE.search(raw)
++                angle_single = _ANGLE_SINGLE.search(raw)
++                if stitch_single:
++                    h0 = h1 = float(stitch_single.group(1))
++                    unit = "stitch"
++                elif angle_single:
++                    angle = float(angle_single.group(1))
++                    if re.search(
++                        r"\b(?:counterclockwise|counter-clockwise|anticlockwise|anti-clockwise)\b",
++                        raw,
++                        re.IGNORECASE,
++                    ):
++                        angle = (-angle) % 360.0
++                    h0 = h1 = angle % 360.0
++                    unit = "degree"
++                else:
++                    h0 = h1 = None
++                    unit = None
++        for feature_match in features:
++            name = re.sub(r"\s+", " ", feature_match.group(1).lower())
++            if name.startswith("safety eye"):
++                name = "safety eyes"
++            elif name == "eye":
++                name = "eyes"
++            elif name == "ear":
++                name = "ears"
++            elif name == "horn":
++                name = "horns"
++            elif name in {"tail"}:
++                name = "tails"
++            found.append(
++                FeatureBounds(
++                    name, parent, r0, r1, h0, h1, unit, raw.strip(), line_number
++                )
++            )
++    return found
++
++
++def _gauge_cm(text: str) -> tuple[float, float] | None:
++    pattern = re.compile(
++        r"\b(?:gauge\s*:?\s*)?(\d+(?:\.\d+)?)\s*(?:sc\s*)?(?:sts?|stitches)\s*(?:and|[,/]?)\s*"
++        r"(\d+(?:\.\d+)?)\s*(?:rows?|rnds?)\s*(?:=|in)\s*"
++        r"(\d+(?:\.\d+)?)\s*(inches?|in|cm)\b",
++        re.IGNORECASE,
++    )
++    gauges: set[tuple[float, float]] = set()
++    for match in pattern.finditer(text):
++        unit_size = float(match.group(3))
++        unit = match.group(4).lower()
++        centimeters = unit_size * 2.54 if unit.startswith("in") else unit_size
++        if centimeters <= 0:
++            continue
++        gauges.add(
++            (
++                float(match.group(1)) / centimeters,
++                float(match.group(2)) / centimeters,
++            )
++        )
++    if len(gauges) != 1:
++        return None
++    return next(iter(gauges))
++
++
++def seam_stretch_mismatch(
++    seam_stitches: int,
++    body_rounds: int,
++    gauge_stitches_per_cm: float,
++    gauge_rounds_per_cm: float,
++    threshold: float = 1.5,
++) -> str | None:
++    """Compare explicit seam width and round span using an explicit gauge."""
++    if (
++        min(seam_stitches, body_rounds) < 0
++        or min(gauge_stitches_per_cm, gauge_rounds_per_cm) <= 0
++        or threshold <= 1
++    ):
++        return None
++    width_cm = seam_stitches / gauge_stitches_per_cm
++    height_cm = body_rounds / gauge_rounds_per_cm
++    small = min(width_cm, height_cm)
++    if small == 0 or max(width_cm, height_cm) <= threshold * small:
++        return None
++    return (
++        f"SeamStretchMismatch: explicit seam width {width_cm:.2f} cm and round span "
++        f"{height_cm:.2f} cm differ by more than {threshold:g}x. Verify the fit or gauge."
++    )
++
++
++def _circular_delta(a: float, b: float) -> float:
++    return abs((a - b + 180.0) % 360.0 - 180.0)
++
++
++def _pair_midpoint(a: float, b: float) -> float | None:
++    x = math.cos(math.radians(a)) + math.cos(math.radians(b))
++    y = math.sin(math.radians(a)) + math.sin(math.radians(b))
++    if math.hypot(x, y) < 1e-9:
++        return None
++    return math.degrees(math.atan2(y, x)) % 360.0
++
++
++def _minimal_arc(angles: list[float]) -> float:
++    ordered = sorted(angle % 360.0 for angle in angles)
++    if len(ordered) < 2:
++        return 0.0
++    gaps = [ordered[i + 1] - ordered[i] for i in range(len(ordered) - 1)]
++    gaps.append(ordered[0] + 360.0 - ordered[-1])
++    return 360.0 - max(gaps)
++
++
++def quadruped_compass_findings(
++    attachments: Mapping[str, tuple[int, int, int]],
++) -> list[AdvancedFinding]:
++    """Check explicit four-leg positions under a defined polar reference.
++
++    Mapping values are ``(round_number, one_based_stitch_index, round_stitch_count)``.
++    The calling contract is that stitch 1 is centered on the explicitly defined
++    front axis. Text input is checked only when it states that reference and
++    explicitly identifies the attachment as JAYG.
++    """
++    normalized = {key.casefold(): value for key, value in attachments.items()}
++    names = ("foreleg 1", "foreleg 2", "hind leg 1", "hind leg 2")
++    if not all(name in normalized for name in names):
++        return []
++    positions = [normalized[name] for name in names]
++    if any(not isinstance(item, (tuple, list)) or len(item) != 3 for item in positions):
++        return []
++    if any(
++        not all(
++            isinstance(value, int) and not isinstance(value, bool) for value in item
++        )
++        for item in positions
++    ):
++        return []
++    if any(item[0] < 1 for item in positions):
++        return []
++    if (
++        len({item[0] for item in positions}) != 1
++        or len({item[2] for item in positions}) != 1
++    ):
++        return []
++    try:
++        front_axis = stitch_to_angle(1, positions[0][2])
++        angles = {
++            name: (
++                stitch_to_angle(normalized[name][1], normalized[name][2]) - front_axis
++            )
++            % 360.0
++            for name in names
++        }
++    except (TypeError, ValueError):
++        return []
++    all_angles = list(angles.values())
++    findings: list[AdvancedFinding] = []
++    if _minimal_arc(all_angles) <= 210.0:
++        findings.append(
++            AdvancedFinding(
++                "QuadrupedHemisphereClustering",
++                "The four explicitly mapped limb positions fit within a 210° arc; review their spacing around the body.",
++                "warning",
++            )
++        )
++    fore_mid = _pair_midpoint(angles["foreleg 1"], angles["foreleg 2"])
++    hind_mid = _pair_midpoint(angles["hind leg 1"], angles["hind leg 2"])
++    if fore_mid is not None and _circular_delta(fore_mid, 0.0) > 75.0:
++        findings.append(
++            AdvancedFinding(
++                "QuadrupedForelimbHemisphere",
++                "The explicit foreleg-pair midpoint falls outside ±75° of the defined front axis.",
++                "warning",
++            )
++        )
++    if hind_mid is not None and _circular_delta(hind_mid, 180.0) > 75.0:
++        findings.append(
++            AdvancedFinding(
++                "QuadrupedHindlimbHemisphere",
++                "The explicit hind-leg-pair midpoint falls outside ±75° of the defined back axis.",
++                "warning",
++            )
++        )
++    if fore_mid is not None and hind_mid is not None:
++        separation = _circular_delta(fore_mid, hind_mid)
++        if abs(separation - 90.0) <= 15.0:
++            findings.append(
++                AdvancedFinding(
++                    "QuadrupedCompassCrossError",
++                    "The explicit fore- and hind-pair midpoints are approximately orthogonal; review the stated limb quadrants.",
++                    "warning",
++                )
++            )
++    return findings
++
++
++_JAYG_WORDING = re.compile(r"\b(?:JAYG|join\s+as\s+you\s+go)\b", re.IGNORECASE)
++_FRONT_STITCH_REFERENCE = re.compile(
++    r"\bstitch\s*1\b[^.\n]{0,35}\b(?:is\s+)?(?:at|centered\s+at|aligned\s+with|marks?)\s+"
++    r"(?:(?:the\s+)?(?:center|centre)\s+)?front(?:\s+axis)?\b|"
++    r"\b(?:front\s+axis|center\s+front|centre\s+front)\s+(?:is|aligns\s+with)\s+stitch\s*1\b",
++    re.IGNORECASE,
++)
++_QUADRUPED_POSITION = re.compile(
++    r"\b(?P<name>fore\s*leg\s*[12]|hind\s*leg\s*[12])\b"
++    r"[^.\n]{0,50}?\b(?:round|rnd)\s*(?P<round>\d+)\b"
++    r"[^.\n]{0,50}?\b(?:stitch|st)\s*(?P<stitch>\d+)\s+of\s+(?P<count>\d+)\b",
++    re.IGNORECASE,
++)
++
++
++def quadruped_findings_from_text(text: str) -> list[AdvancedFinding]:
++    """Check JAYG limb positions only with an explicit stitch-1/front reference."""
++    findings: list[AdvancedFinding] = []
++    for heading, body, _start_line in split_sections(text):
++        body_start = _start_line + (1 if heading else 0)
++        scope = f"{heading}\n{body}"
++        if not _JAYG_WORDING.search(scope) or not _FRONT_STITCH_REFERENCE.search(scope):
++            continue
++        positions: dict[str, tuple[int, int, int]] = {}
++        line_by_name: dict[str, int] = {}
++        for line_number, line in enumerate(body.splitlines(), start=body_start):
++            for match in _QUADRUPED_POSITION.finditer(line):
++                raw_name = re.sub(r"\s+", " ", match.group("name").lower())
++                digit = re.search(r"[12]", raw_name)
++                if not digit:
++                    continue
++                limb = "foreleg" if raw_name.startswith("fore") else "hind leg"
++                name = f"{limb} {digit.group(0)}"
++                positions[name] = (
++                    int(match.group("round")),
++                    int(match.group("stitch")),
++                    int(match.group("count")),
++                )
++                line_by_name[name] = line_number
++        section_findings = quadruped_compass_findings(positions)
++        line_number = min(line_by_name.values(), default=0)
++        findings.extend(
++            AdvancedFinding(item.code, item.message, item.severity, line_number)
++            for item in section_findings
++        )
++    return findings
++
++
++def _color_runs(body: str) -> tuple[tuple[int, str], ...]:
++    matches = list(re.finditer(r"\b(\d+)\s+([A-Z])\b", body))
++    if len(matches) < 3:
++        return ()
++    return tuple((int(m.group(1)), m.group(2)) for m in matches)
++
++
++def spiral_colorwork_findings(text: str) -> list[AdvancedFinding]:
++    """Warn only for four or more consecutive, identical explicit spiral color runs."""
++    findings: list[AdvancedFinding] = []
++    shift_every_round = re.compile(
++        r"\bjogless\b|\b(?:shift|offset|move\s+the\s+start)\b[^.\n]{0,80}"
++        r"\b(?:each|every|per)\s+round\b",
++        re.IGNORECASE,
++    )
++    for heading, body, start_line in split_sections(text):
++        body_start = start_line + (1 if heading else 0)
++        if not re.search(
++            r"\b(?:continuous\s+spiral|unjoined\s+spiral|worked\s+in\s+an?\s+unjoined\s+spiral)\b",
++            body,
++            re.IGNORECASE,
++        ):
++            continue
++        if shift_every_round.search(body):
++            continue
++        records = []
++        for local_index, line in enumerate(body.splitlines(), start=body_start):
++            header = ROUND_HEADER.match(line.strip())
++            if not header:
++                continue
++            signature = _color_runs(header.group(2))
++            stated_count = STATED_COUNT.search(header.group(2))
++            if (
++                signature
++                and stated_count
++                and sum(count for count, _color in signature)
++                == int(stated_count.group(1))
++                and signature[0][1] == signature[-1][1]
++            ):
++                records.append((int(header.group(1)), signature, local_index))
++        streak: list[tuple[int, tuple[tuple[int, str], ...], int]] = []
++        for record in records:
++            if streak and (
++                record[0] != streak[-1][0] + 1 or record[1] != streak[-1][1]
++            ):
++                if len(streak) >= 4:
++                    findings.append(_spiral_finding(streak))
++                streak = []
++            streak.append(record)
++        if len(streak) >= 4:
++            findings.append(_spiral_finding(streak))
++    return findings
++
++
++def _spiral_finding(streak):
++    start, end = streak[0][0], streak[-1][0]
++    return AdvancedFinding(
++        "SpiralColorworkDrift",
++        f"Rounds {start}–{end} repeat identical stitch-count color panels in a continuous unjoined spiral without an explicit shift. The panel may drift; consider a written offset or jog correction.",
++        "warning",
++        streak[0][2],
++    )
++
++
++_EXPLICIT_SEAM_SPAN = re.compile(
++    r"\b(?:seam|attachment\s+span)\s*[:=]\s*(\d+)\s*(?:sc\s*)?(?:sts?|stitches)\b"
++    r"[^.\n]{0,60}?\b(\d+)\s*(?:rounds?|rnds?|rows?)\b",
++    re.IGNORECASE,
++)
++
++
++def seam_stretch_findings(text: str) -> list[AdvancedFinding]:
++    gauge = _gauge_cm(text)
++    if gauge is None:
++        return []
++    findings = []
++    for line_number, line in enumerate(text.splitlines(), start=1):
++        match = _EXPLICIT_SEAM_SPAN.search(line)
++        if not match:
++            continue
++        message = seam_stretch_mismatch(
++            int(match.group(1)), int(match.group(2)), gauge[0], gauge[1]
++        )
++        if message:
++            findings.append(
++                AdvancedFinding("SeamStretchMismatch", message, "warning", line_number)
++            )
++    return findings
++
++
++def spatial_findings(text: str) -> list[AdvancedFinding]:
++    return (
++        find_spatial_collisions(attachment_bounds_from_text(text))
++        + seam_stretch_findings(text)
++        + spiral_colorwork_findings(text)
++    )
+diff --git a/src/crochet_checker/validation/advanced_checks/turned_rows.py b/src/crochet_checker/validation/advanced_checks/turned_rows.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..68408bb8e675dcaa1f073e68658f293b0b9cb048
+--- /dev/null
++++ b/src/crochet_checker/validation/advanced_checks/turned_rows.py
+@@ -0,0 +1,320 @@
++"""Turn, face parity, height-profile reversal, and WS-only stitch checks."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++
++from .common import AdvancedFinding, ROUND_HEADER, ROW_HEADER, split_sections
++
++_HEIGHT = {"sl st": 0, "sc": 1, "hdc": 2, "dc": 3, "tr": 4, "dtr": 5}
++_REQUIRED_TURN_CHAIN = {"sc": 1, "hdc": 2, "dc": 3, "tr": 4, "dtr": 5}
++_ROW = re.compile(
++    r"^\s*row\.?\s*(\d+)\b\s*(?:\((RS|WS)\)|[, ]+\b(RS|WS)\b)?\s*[:.)-]?\s*(.*)$",
++    re.IGNORECASE,
++)
++_STITCH = re.compile(
++    r"(?:(?P<before>\d+)\s*(?:[x×]\s*)?)?"
++    r"(?P<stitch>dtr|tr|dc|hdc|sc|sl\s*st)\b"
++    r"(?:\s*[x×]?\s*(?P<after>\d+))?",
++    re.IGNORECASE,
++)
++_FACE = re.compile(r"\b(RS|WS|right\s+side|wrong\s+side)\b", re.IGNORECASE)
++
++
++@dataclass(frozen=True)
++class RowProfile:
++    number: int
++    source: str
++    body: str
++    explicit_face: str | None
++    heights: tuple[int, ...]
++    stitch_types: tuple[str, ...]
++    turn_at_start: bool
++    turn_at_end: bool
++    turning_chain: int | None
++    line_number: int
++
++
++@dataclass(frozen=True)
++class RowOrientation:
++    number: int
++    face: str | None
++    reverse_stitch_array: bool
++    traversal_reversed: bool
++
++
++def _is_positive_turn(body: str, match: re.Match[str]) -> bool:
++    before = body[max(0, match.start() - 20) : match.start()]
++    return not re.search(r"(?:do\s+not|don't|should\s+not)\s*$", before, re.IGNORECASE)
++
++
++def _profile(line: str, line_number: int) -> RowProfile | None:
++    match = _ROW.match(line.strip())
++    if not match:
++        return None
++    number = int(match.group(1))
++    explicit = (match.group(2) or match.group(3) or "").upper() or None
++    body = match.group(4)
++    if explicit is None:
++        side = _FACE.search(body)
++        if side:
++            token = side.group(1).upper()
++            explicit = "RS" if token == "RS" or token.startswith("RIGHT") else "WS"
++
++    tokens = list(_STITCH.finditer(body))
++    heights: list[int] = []
++    stitch_types: list[str] = []
++    token_counts = [
++        int(token.group("before") or token.group("after") or 1) for token in tokens
++    ]
++    if sum(token_counts) <= 10_000:
++        for token, count in zip(tokens, token_counts, strict=True):
++            name = re.sub(r"\s+", " ", token.group("stitch").lower())
++            heights.extend([_HEIGHT[name]] * count)
++            stitch_types.extend([name] * count)
++
++    turns = [
++        m
++        for m in re.finditer(r"\bturn\b", body, re.IGNORECASE)
++        if _is_positive_turn(body, m)
++    ]
++    first_start = tokens[0].start() if tokens else len(body)
++    last_end = tokens[-1].end() if tokens else 0
++    turn_at_start = any(item.start() < first_start for item in turns)
++    turn_at_end = any(item.start() > last_end for item in turns)
++
++    chain = None
++    for chain_match in re.finditer(r"\b(?:ch|chain)\s+(\d+)\b", body, re.IGNORECASE):
++        following_turn = re.search(
++            r"\bturn\b", body[chain_match.end() : chain_match.end() + 20], re.IGNORECASE
++        )
++        preceding_turn = re.search(
++            r"\bturn\b",
++            body[max(0, chain_match.start() - 20) : chain_match.start()],
++            re.IGNORECASE,
++        )
++        if following_turn or preceding_turn:
++            chain = int(chain_match.group(1))
++            break
++
++    return RowProfile(
++        number,
++        line.strip(),
++        body,
++        explicit,
++        tuple(heights),
++        tuple(stitch_types),
++        turn_at_start,
++        turn_at_end,
++        chain,
++        line_number,
++    )
++
++
++def annotate_row_turns(rows: list[RowProfile]) -> list[RowOrientation]:
++    """Infer only turn parity; an unknown starting face stays unknown."""
++    result: list[RowOrientation] = []
++    face: str | None = None
++    traversal_reversed = False
++    previous_number: int | None = None
++    pending_turn = False
++    for row in rows:
++        if previous_number is not None and row.number != previous_number + 1:
++            face = None
++            traversal_reversed = False
++            pending_turn = False
++        turn_before = pending_turn or row.turn_at_start
++        if turn_before:
++            traversal_reversed = not traversal_reversed
++            # A trailing turn was already applied to the face after the prior
++            # row. A leading turn is applied here only when no pending turn did it.
++            if row.turn_at_start and not pending_turn and face is not None:
++                face = "WS" if face == "RS" else "RS"
++        if row.explicit_face is not None:
++            face = row.explicit_face
++        result.append(
++            RowOrientation(
++                row.number,
++                face,
++                reverse_stitch_array=turn_before,
++                traversal_reversed=traversal_reversed,
++            )
++        )
++        if face is not None and row.turn_at_end:
++            face = "WS" if face == "RS" else "RS"
++        pending_turn = row.turn_at_end
++        previous_number = row.number
++    return result
++
++
++def _slope(values: tuple[int, ...]) -> int:
++    if len(values) < 2:
++        return 0
++    return (values[-1] > values[0]) - (values[-1] < values[0])
++
++
++def _row_groups(text: str) -> list[tuple[list[RowProfile], str, int, str]]:
++    result = []
++    for heading, body, start_line in split_sections(text):
++        rows = []
++        body_start = start_line + (1 if heading else 0)
++        for number, line in enumerate(body.splitlines(), start=body_start):
++            parsed = _profile(line, number)
++            if parsed:
++                rows.append(parsed)
++        if rows:
++            result.append((rows, body, start_line, heading))
++    return result
++
++
++def turned_row_findings(text: str) -> list[AdvancedFinding]:
++    findings: list[AdvancedFinding] = []
++    glossary_dec_flo = bool(
++        re.search(
++            r"\bdec\s*[-:]\s*[^\n]*(?:front[- ]loops?|\bFLO\b)[^\n]*(?:invisible\s+)?decrease",
++            text,
++            re.IGNORECASE,
++        )
++    )
++    glossary_bobble_push = bool(
++        re.search(
++            r"\b(?:bo|bobble)\s*[-:]\s*[^\n]*(?:push|pushed)\s+(?:the\s+)?bobble\s+toward\s+you",
++            text,
++            re.IGNORECASE,
++        )
++    )
++
++    for rows, body, _start_line, heading in _row_groups(text):
++        orientation = annotate_row_turns(rows)
++        for index, row in enumerate(rows):
++            if index and row.number == rows[index - 1].number + 1:
++                previous = rows[index - 1]
++                prev_state = orientation[index - 1]
++                state = orientation[index]
++                if (
++                    row.explicit_face
++                    and prev_state.face
++                    and (previous.turn_at_end or row.turn_at_start)
++                ):
++                    expected = (
++                        ("WS" if prev_state.face == "RS" else "RS")
++                        if state.reverse_stitch_array
++                        else prev_state.face
++                    )
++                    if row.explicit_face != expected:
++                        findings.append(
++                            AdvancedFinding(
++                                "RowFaceParityConflict",
++                                f"Row {row.number} is marked {row.explicit_face}, but the written turn sequence predicts {expected}.",
++                                "error",
++                                row.line_number,
++                            )
++                        )
++
++                if previous.turn_at_end or row.turn_at_start:
++                    under = tuple(reversed(previous.heights))
++                    if (
++                        len(under) == len(row.heights)
++                        and _slope(under) < 0
++                        and _slope(row.heights) > 0
++                        and len(under) >= 3
++                    ):
++                        findings.append(
++                            AdvancedFinding(
++                                "TurnedRowTaperInversion",
++                                f"Row {row.number} reverses a rising stitch-height profile; its written profile also rises, so short stitches would stack over taller stitches. Review the taper direction.",
++                                "warning",
++                                row.line_number,
++                            )
++                        )
++
++                if (
++                    previous.turn_at_end
++                    and previous.turning_chain is not None
++                    and row.stitch_types
++                ):
++                    required = _REQUIRED_TURN_CHAIN.get(row.stitch_types[0])
++                    if required is not None and previous.turning_chain < required:
++                        findings.append(
++                            AdvancedFinding(
++                                "TurningChainHeightMismatch",
++                                f"Row {previous.number} turns with ch {previous.turning_chain}, but Row {row.number} begins with {row.stitch_types[0]} (commonly ch {required} is used for that height).",
++                                "warning",
++                                previous.line_number,
++                            )
++                        )
++
++            state = orientation[index]
++            if (
++                state.face == "WS"
++                and glossary_dec_flo
++                and re.search(r"\bdec\b", row.body, re.IGNORECASE)
++            ):
++                findings.append(
++                    AdvancedFinding(
++                        "WrongSideInvisibleDecrease",
++                        f"Row {row.number} is WS and uses a glossary-defined front-loop invisible decrease; consider a both-loop decrease or verify the intended visible side.",
++                        "warning",
++                        row.line_number,
++                    )
++                )
++            if (
++                state.face == "WS"
++                and glossary_bobble_push
++                and re.search(r"\b(?:bo|bobble)\b", row.body, re.IGNORECASE)
++            ):
++                findings.append(
++                    AdvancedFinding(
++                        "WrongSideBobbleExtrusion",
++                        f"Row {row.number} is WS and uses a bobble definition that pushes the bobble toward the worker; verify which fabric face should show it.",
++                        "warning",
++                        row.line_number,
++                    )
++                )
++
++        if re.search(r"\bshort[- ]rows?\b", f"{heading}\n{body}", re.IGNORECASE):
++            last = rows[-1]
++            last_face = orientation[-1].face
++            face_after = (
++                ("WS" if last_face == "RS" else "RS") if last.turn_at_end else last_face
++            )
++            body_lines = body.splitlines()
++            row_positions = [
++                index
++                for index, line in enumerate(body_lines)
++                if _ROW.match(line.strip())
++            ]
++            last_row_position = (
++                row_positions[-1] if row_positions else len(body_lines) - 1
++            )
++            resume_index = next(
++                (
++                    index
++                    for index, line in enumerate(
++                        body_lines[last_row_position + 1 :], start=last_row_position + 1
++                    )
++                    if ROUND_HEADER.match(line.strip())
++                ),
++                None,
++            )
++            reorientation = False
++            if resume_index is not None:
++                between = "\n".join(body_lines[last_row_position + 1 : resume_index])
++                reorientation = bool(
++                    re.search(
++                        r"\b(?:reorient\w*|flip(?:ped|ping)?|turn\s+(?:the\s+)?work|turn\s+to\s+(?:RS|right\s+side)|right[- ]side[- ]out)\b",
++                        between,
++                        re.IGNORECASE,
++                    )
++                )
++            if face_after == "WS" and resume_index is not None and not reorientation:
++                findings.append(
++                    AdvancedFinding(
++                        "InsideOutTopologyInversion",
++                        "Short rows leave the WS facing before continuous rounds resume. State an explicit reorientation or turn before continuing in the round.",
++                        "warning",
++                        last.line_number,
++                    )
++                )
++    return findings
+diff --git a/src/crochet_checker/validation/validator.py b/src/crochet_checker/validation/validator.py
+index 982790f2e870772c23a90e3fd453a604dacfda03..5d526baf4ae3de84f88daa1a0325fedf9abb9175 100644
+--- a/src/crochet_checker/validation/validator.py
++++ b/src/crochet_checker/validation/validator.py
+@@ -4,6 +4,7 @@ Implements the multi-pass compiler design for comprehensive pattern validation
+ """
+ 
+ from dataclasses import dataclass, field
++from enum import Enum as _Enum
+ 
+ from ..ast.nodes import InstructionNode, PatternNode
+ from ..ast.unroller import ASTUnroller
+@@ -71,6 +72,30 @@ class PatternValidator:
+         # Pass 3: Validate with state machine
+         validation_result = self._pass3_validate(unrolled_instructions, pattern_ast)
+ 
++        # The advanced rules below run only when their written input is explicit.
++        # They are deterministic and remain independent of the AI providers.
++        from .advanced_checks import find_advanced_findings
++
++        for finding in find_advanced_findings(pattern_text):
++            if finding.severity == "error":
++                collection = validation_result.errors
++            elif finding.severity == "info":
++                collection = validation_result.info
++            else:
++                collection = validation_result.warnings
++            message = f"[{finding.code}] {finding.message}"
++            if not any(
++                item.message in {message, finding.message} for item in collection
++            ):
++                collection.append(
++                    ValidationError(
++                        line_number=finding.line_number,
++                        message=message,
++                        severity=finding.severity,
++                    )
++                )
++        validation_result.is_valid = not validation_result.errors
++
+         execution_time = time.time() - start_time
+         validation_result.execution_time = execution_time
+ 
+@@ -282,8 +307,6 @@ rep - repeat
+ # Compatibility exports
+ # ============================================================================
+ 
+-from enum import Enum as _Enum
+-
+ 
+ class Severity(_Enum):
+     INFO = "info"
+diff --git a/tests/validation/test_advanced_checks.py b/tests/validation/test_advanced_checks.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..0c2cc4a75d8e5366aa2b48ae361471cc27b0beb5
+--- /dev/null
++++ b/tests/validation/test_advanced_checks.py
+@@ -0,0 +1,419 @@
++from crochet_checker.validation.advanced_checks import (
++    ConstructionMode,
++    FeatureBounds,
++    RoundLoopState,
++    assembly_findings,
++    build_loop_states,
++    check_anatomical_attachment,
++    check_flat_curvature,
++    check_folded_tube_closure,
++    check_insert_diameter,
++    check_surface_loop_join,
++    classify_construction_mode,
++    color_crease_findings,
++    curvature_findings,
++    find_spatial_collisions,
++    find_advanced_findings,
++    normalized_anatomical_height,
++    oval_findings,
++    parse_numbered_assembly_steps,
++    quadruped_compass_findings,
++    quadruped_findings_from_text,
++    seam_stretch_mismatch,
++    stitch_to_angle,
++    validate_oval_foundation,
++)
++from crochet_checker.validation.advanced_checks.loop_occupancy import (
++    loop_occupancy_findings,
++)
++from crochet_checker.validation.advanced_checks.turned_rows import turned_row_findings
++
++
++def test_oval_foundation_counts_chain_consumption_not_stitches_produced():
++    errors, produced = validate_oval_foundation(
++        6,
++        2,
++        [(1, 2), (3, 3), (1, 3)],
++        [(3, 3), (1, 2)],
++    )
++    assert errors == []
++    assert produced == 13
++
++    errors, produced = validate_oval_foundation(
++        6,
++        2,
++        [(1, 2), (3, 3), (1, 3)],
++        [(4, 4), (1, 2)],
++    )
++    assert produced == 14
++    assert any("return pass consumes 5 chains" in error.lower() for error in errors)
++
++
++def test_oval_text_adapter_requires_explicit_top_and_return_pass_evidence():
++    good = (
++        "Oval: ch 6; 2 sc in 2nd ch from hook, sc in next 3 ch, "
++        "3 sc in last ch, working on opposite side, sc in next 3 ch, 2 sc in first ch."
++    )
++    bad = good.replace(
++        "sc in next 3 ch, 2 sc in first ch", "sc in next 4 ch, 2 sc in first ch"
++    )
++    assert oval_findings(good) == []
++    assert any(item.code == "OvalFoundationAccounting" for item in oval_findings(bad))
++    invalid_start = good.replace("2nd ch from hook", "7th ch from hook")
++    assert any(
++        item.code == "OvalFoundationAccounting" for item in oval_findings(invalid_start)
++    )
++    undercount = good.replace(
++        "sc in next 3 ch, 2 sc in first ch", "sc in next 2 ch, 2 sc in first ch"
++    )
++    assert any(
++        item.code == "OvalReturnUnaccountedChains" for item in oval_findings(undercount)
++    )
++    assert oval_findings("Oval: work around the chain as written.") == []
++
++
++def test_loop_banks_reflect_the_next_round_and_unknown_stays_unknown():
++    states = build_loop_states({1: "UNKNOWN", 2: "BLO", 3: "FLO"})
++    assert states[1].flo_free is True
++    assert states[1].blo_free is False
++    assert states[2].flo_free is False
++    assert states[2].blo_free is True
++    assert states[3].flo_free is None
++    assert check_surface_loop_join(1, "FLO", states) is None
++    assert "already consumed" in check_surface_loop_join(1, "BLO", states)
++
++    text = (
++        "## Body\n"
++        "Round 1: 6 sc in magic ring (6)\n"
++        "Round 2: sc in BLO of each st around (6)\n"
++        "Round 3: sc in FLO of each st around (6)\n"
++        "Attach a tab to the FLO of Round 2.\n"
++    )
++    findings = loop_occupancy_findings(text)
++    assert any(item.code == "LoopOccupancyCollision" for item in findings)
++
++
++def test_hoof_crease_requires_explicit_color_change_and_blo_round():
++    text = (
++        "At Round 4, change color from shoe to leg.\n"
++        "Work BLO in Round 3 to form the hoof crease.\n"
++    )
++    findings = color_crease_findings(text)
++    assert len(findings) == 1
++    assert findings[0].code == "ColorChangeCreaseMisalignment"
++
++
++def test_turns_reverse_profiles_check_face_parity_and_ws_glossary_rules():
++    taper = (
++        "## Short Rows\nRow 1 (RS): 4 sc, 4 hdc, turn\nRow 2 (WS): 4 sc, 4 hdc, turn\n"
++    )
++    findings = turned_row_findings(taper)
++    assert any(item.code == "TurnedRowTaperInversion" for item in findings)
++    assert not any(item.code == "RowFaceParityConflict" for item in findings)
++
++    wrong_face = "## Short Rows\nRow 1 (RS): 4 sc\nRow 2 (RS): turn, 4 sc\n"
++    assert any(
++        item.code == "RowFaceParityConflict" for item in turned_row_findings(wrong_face)
++    )
++
++    glossary = (
++        "## Glossary\ndec - front-loop-only invisible decrease\n"
++        "## Short Rows\nRow 1 (WS): 3 dec, do not turn\n"
++    )
++    assert any(
++        item.code == "WrongSideInvisibleDecrease"
++        for item in turned_row_findings(glossary)
++    )
++
++
++def test_ws_short_row_before_rounds_is_reported_only_when_explicit():
++    text = (
++        "## Heel\n"
++        "Short rows shape the heel.\n"
++        "Row 1 (WS): 4 sc, do not turn\n"
++        "Round 1: 12 sc around the heel (12)\n"
++    )
++    assert any(
++        item.code == "InsideOutTopologyInversion" for item in turned_row_findings(text)
++    )
++    assert not any(
++        item.code == "InsideOutTopologyInversion"
++        for item in turned_row_findings("Row 1 (WS): 4 sc, do not turn")
++    )
++    oriented = (
++        "## Heel\n"
++        "Short rows shape the heel.\n"
++        "Row 1 (WS): 4 sc, do not turn\n"
++        "Reorient the work to RS.\n"
++        "Round 1: 12 sc around the heel (12)\n"
++    )
++    assert not any(
++        item.code == "InsideOutTopologyInversion"
++        for item in turned_row_findings(oriented)
++    )
++    skipped = "## Rows\nRow 1 (RS): 4 sc, turn\nRow 3 (WS): 4 sc\n"
++    assert not any(
++        item.code == "RowFaceParityConflict" for item in turned_row_findings(skipped)
++    )
++
++
++def test_explicit_spatial_boxes_collide_but_partial_coordinates_do_not():
++    text = (
++        "Attach safety eyes to the head, rounds 11-12, stitch 17-25.\n"
++        "Sew the muzzle onto the head, rounds 11-12, stitch 20-23.\n"
++        "Attach ears to the top of the head around rounds 8-10.\n"
++    )
++    from crochet_checker.validation.advanced_checks.spatial import (
++        attachment_bounds_from_text,
++    )
++
++    boxes = attachment_bounds_from_text(text)
++    findings = find_spatial_collisions(boxes)
++    assert len(findings) == 1
++    assert findings[0].code == "SpatialBoundingBoxCollision"
++
++    unknown = [
++        FeatureBounds("eyes", "head", 4, 5, None, None, None, "eyes around rounds 4-5"),
++        FeatureBounds("muzzle", "head", 4, 5, 3, 6, "stitch", "muzzle at stitches 3-6"),
++    ]
++    assert find_spatial_collisions(unknown) == []
++
++    reversed_interval = (
++        "Attach eyes to the head, round 4, stitches 30-4.\n"
++        "Attach muzzle to the head, round 4, stitches 1-6.\n"
++    )
++    assert find_spatial_collisions(attachment_bounds_from_text(reversed_interval)) == []
++
++
++def test_polar_positions_and_seam_stretch_require_explicit_inputs():
++    assert stitch_to_angle(1, 4) == 45
++    assert seam_stretch_mismatch(8, 8, 2, 4) is not None
++    assert seam_stretch_mismatch(8, 8, 2, 4, threshold=2.0) is None
++    explicit_seam = "Gauge: 28 sts and 28 rows = 10 cm.\nSeam: 14 sts over 2 rounds.\n"
++    assert any(
++        item.code == "SeamStretchMismatch"
++        for item in find_advanced_findings(explicit_seam)
++    )
++
++    crowded = {
++        "foreleg 1": (7, 1, 36),
++        "foreleg 2": (7, 3, 36),
++        "hind leg 1": (7, 5, 36),
++        "hind leg 2": (7, 7, 36),
++    }
++    findings = quadruped_compass_findings(crowded)
++    assert any(item.code == "QuadrupedHemisphereClustering" for item in findings)
++    spaced = {
++        "foreleg 1": (7, 34, 36),
++        "foreleg 2": (7, 4, 36),
++        "hind leg 1": (7, 16, 36),
++        "hind leg 2": (7, 22, 36),
++    }
++    assert quadruped_compass_findings(spaced) == []
++
++    positions = (
++        "## JAYG limbs\nStitch 1 is at the center front of the torso.\n"
++        "Foreleg 1 joins as you go at Round 7, Stitch 1 of 36.\n"
++        "Foreleg 2 joins as you go at Round 7, Stitch 3 of 36.\n"
++        "Hind leg 1 joins as you go at Round 7, Stitch 5 of 36.\n"
++        "Hind leg 2 joins as you go at Round 7, Stitch 7 of 36.\n"
++    )
++    assert any(
++        item.code == "QuadrupedHemisphereClustering"
++        for item in quadruped_findings_from_text(positions)
++    )
++    assert (
++        quadruped_findings_from_text(positions.replace("JAYG limbs", "Limb positions"))
++        == []
++    )
++    assert (
++        quadruped_findings_from_text(
++            positions.replace(
++                "Stitch 1 is at the center front of the torso.",
++                "Stitch 1 begins the round.",
++            )
++        )
++        == []
++    )
++
++
++def test_spiral_colorwork_warns_only_for_four_identical_unshifted_rounds():
++    text = (
++        "## Body\nWork in a continuous unjoined spiral.\n"
++        "Round 1: 14 A, 8 B, 14 A (36)\n"
++        "Round 2: 14 A, 8 B, 14 A (36)\n"
++        "Round 3: 14 A, 8 B, 14 A (36)\n"
++        "Round 4: 14 A, 8 B, 14 A (36)\n"
++    )
++    findings = find_advanced_findings(text)
++    assert any(item.code == "SpiralColorworkDrift" for item in findings)
++    shifted = text + "Shift the start by one stitch each round.\n"
++    assert not any(
++        item.code == "SpiralColorworkDrift" for item in find_advanced_findings(shifted)
++    )
++    local_shift = text + "Shift the start one stitch in Round 2.\n"
++    assert any(
++        item.code == "SpiralColorworkDrift"
++        for item in find_advanced_findings(local_shift)
++    )
++    quoted_example = "## Body\n```text\n" + text.split("## Body\n", 1)[1] + "```\n"
++    assert not any(
++        item.code == "SpiralColorworkDrift"
++        for item in find_advanced_findings(quoted_example)
++    )
++
++
++def test_anatomical_axis_uses_explicit_direction_and_rounds():
++    assert normalized_anatomical_height(3, 33, "BOTTOM_UP") == 2 / 32
++    assert normalized_anatomical_height(3, 33, "TOP_DOWN") == 30 / 32
++    findings = check_anatomical_attachment("wings", 2, 3, 33, "BOTTOM_UP")
++    assert findings and findings[0].code == "AnatomicalZAxisInversion"
++    assert not check_anatomical_attachment("wings", 2, 3, 33, "TOP_DOWN")
++
++    text = (
++        "## Torso\nWorked bottom-up from base to neck.\n"
++        "Round 1: 8 sc in magic ring (8)\n"
++        "Round 2: 16 sc (16)\n"
++        "Round 3: 24 sc (24)\n"
++        "Round 4: 32 sc (32)\n"
++        "Round 33: 32 sc (32)\n"
++        "Attach wings to the torso, rounds 2-3.\n"
++    )
++    findings = find_advanced_findings(text)
++    assert any(item.code == "AnatomicalZAxisInversion" for item in findings)
++
++
++def test_flat_disc_curvature_detects_only_explicit_centered_flat_sc_counts():
++    findings = check_flat_curvature(
++        [(1, 8), (2, 16), (3, 32), (4, 64)],
++        flat_intent=True,
++        center_start=True,
++        single_crochet=True,
++    )
++    assert [item.code for item in findings] == [
++        "HyperbolicCurvatureOverflow",
++        "HyperbolicCurvatureOverflow",
++    ]
++    assert all(item.severity == "warning" for item in findings)
++    assert (
++        check_flat_curvature(
++            [(1, 8), (2, 16), (3, 24), (4, 32)],
++            flat_intent=True,
++            center_start=True,
++            single_crochet=True,
++        )
++        == []
++    )
++    assert (
++        check_flat_curvature(
++            [(1, 8), (2, 16), (3, 24)],
++            flat_intent=False,
++            center_start=True,
++            single_crochet=True,
++        )
++        == []
++    )
++
++    text = (
++        "## Flat coaster\nStart with a magic ring.\n"
++        "Round 1: 8 sc in ring (8)\n"
++        "Round 2: 16 sc around (16)\n"
++        "Round 3: 32 sc around (32)\n"
++        "Round 4: 64 sc around (64)\n"
++    )
++    assert any(
++        item.code == "HyperbolicCurvatureOverflow" for item in curvature_findings(text)
++    )
++
++
++def test_insert_diameter_and_folded_tube_closure_need_written_counts():
++    overflow = check_insert_diameter(3.5, 14, 2.8)
++    assert overflow and overflow.code == "InsertDiameterOverflow"
++    assert check_insert_diameter(1.7, 14, 2.8) is not None
++    closure = check_folded_tube_closure(14, 5)
++    assert closure and closure[0].code == "PartialTubeClosure"
++    assert check_folded_tube_closure(14, 7) == []
++    assert check_folded_tube_closure(5, 3) == []
++
++    text = (
++        "Gauge: 28 sts and 28 rows = 10 cm.\n"
++        "A 3.5 cm dowel fits inside an opening of 14 stitches.\n"
++        "## Leg\nRound 3: 14 sc (14)\nFlatten and close with 5 sc.\n"
++    )
++    findings = find_advanced_findings(text)
++    assert any(item.code == "InsertDiameterOverflow" for item in findings)
++    assert any(item.code == "PartialTubeClosure" for item in findings)
++
++    ambiguous_gauge = (
++        "Gauge: 28 sts and 28 rows = 10 cm.\n"
++        "Alternate gauge: 20 sts and 24 rows = 10 cm.\n"
++        "A 3.5 cm dowel fits inside an opening of 14 stitches.\n"
++    )
++    assert not any(
++        item.code == "InsertDiameterOverflow"
++        for item in find_advanced_findings(ambiguous_gauge)
++    )
++
++
++def test_assembly_ingests_all_numbered_steps_and_skips_in_crochet_attachments():
++    text = (
++        "## Head (make separately)\nRounds 1-3: work in rounds.\n"
++        "## Tail (make 1)\nRounds 1-2: work in rounds.\n"
++        "## Tapestry Chest Crest\nWorked inline as part of the torso colorwork.\n"
++        "## Forelegs\nJoin as you go (JAYG) to the torso.\n"
++        "## Waist Peplum\nSlip stitch directly to the torso.\n"
++        "## Final Assembly\n"
++        "### Steps\n"
++        "1. Sew the head to the body at rounds 9-10.\n"
++        "2. Attach the tail to the body at round 12.\n"
++        "3. Add the eyes to the head at round 4.\n"
++    )
++    steps = parse_numbered_assembly_steps(text)
++    assert [step.number for step in steps] == [1, 2, 3]
++    assert steps[0].piece_name == "Head"
++    assert steps[0].target_round_min == 9
++    assert steps[0].target_round_max == 10
++    assert (
++        classify_construction_mode(
++            "Tapestry Chest Crest", "Worked inline as part of the torso colorwork"
++        )
++        == ConstructionMode.INLINE_COLORWORK
++    )
++    assert (
++        classify_construction_mode("Forelegs", "Join as you go (JAYG)")
++        == ConstructionMode.JAYG_ATTACHED
++    )
++    assert (
++        classify_construction_mode("Waist", "Slip stitch directly to the torso")
++        == ConstructionMode.DIRECT_SURFACE_JOIN
++    )
++    assert (
++        classify_construction_mode("Tail (make 1)", "Work in rounds")
++        == ConstructionMode.UNKNOWN
++    )
++    assert assembly_findings(text) == []
++
++    missing = (
++        "## Head (make separately)\nRound 1: 6 sc in magic ring (6)\n"
++        "Final Assembly:\n"
++        "1. Add the eyes to the head.\n"
++    )
++    missing_findings = assembly_findings(missing)
++    assert len(missing_findings) == 1
++    assert missing_findings[0].code == "MissingSeparatePieceAssemblyStep"
++    assert missing_findings[0].line_number == 1
++
++
++def test_advanced_findings_are_attached_to_the_primary_validator_report():
++    from crochet_checker.validation.validator import PatternValidator
++
++    text = (
++        "# Flat coaster\nStart with a magic ring.\n"
++        "Round 1: 8 sc in ring (8)\n"
++        "Round 2: 16 sc around (16)\n"
++        "Round 3: 32 sc around (32)\n"
++    )
++    report = PatternValidator().validate(text)
++    assert any(
++        "HyperbolicCurvatureOverflow" in item.message for item in report.warnings
++    )

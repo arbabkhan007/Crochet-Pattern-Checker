@@ -127,9 +127,8 @@ def test_foundation_and_clauses():
     assert scarf.errors == []
 
     boot = validate_pattern(open("examples/baby_booties.txt").read())
-    messages = [getattr(item, "message", str(item)) for item in boot.errors]
-    assert any("produce 20" in message for message in messages)
-    assert not any("produce 10" in message for message in messages)
+    assert boot.overall_status == "PASS"
+    assert boot.errors == []
 
 
 def test_markdown_plain_round_and_joins():

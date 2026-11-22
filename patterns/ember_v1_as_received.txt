@@ -1,0 +1,79 @@
+# Ember the Baby Dragon — v1 AS RECEIVED (machine-checkable transcription)
+# Design Code NS 08. US terms, 3.5 mm hook, worsted #4.
+# Claims: seated 103 mm = 11 cm; wingspan 45+34+45 = 124 mm = 12.5 cm;
+# tail 12 rnds = 52 mm; head open at 18 sts matches 18-st neck.
+# Gauge: 30 sts ~ 43 mm dia stuffed (4.5 mm/st, 4.3 mm/rnd).
+# Spike strip: ch-4 units x 10 (1 + 9 groups) = 10 spikes (3 head, 4 body, 2 tail).
+# NOTE: all round tables arrived complete and consistent.
+
+=== HEAD (leave open at 18) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: [3 sc, inc] x 6 (30)
+Rnd 6: [4 sc, inc] x 6 (36)
+Rnd 7: sc in each st around (36)
+Rnd 8: sc in each st around (36)
+Rnd 9: [4 sc, dec] x 6 (30)
+Rnd 10: [3 sc, dec] x 6 (24)
+Rnd 11: [2 sc, dec] x 6 (18)
+
+=== SNOUT (make 1) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: [sc, inc] x 3 (9)
+Rnd 3: [2 sc, inc] x 3 (12)
+Rnd 4: sc in each st around (12)
+Rnd 5: sc in each st around (12)
+
+=== BODY (leave neck open at 18) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: [sc, inc] x 6 (18)
+Rnd 4: [2 sc, inc] x 6 (24)
+Rnd 5: [3 sc, inc] x 6 (30)
+Rnd 6: sc in each st around (30)
+Rnd 7: sc in each st around (30)
+Rnd 8: sc in each st around (30)
+Rnd 9: sc in each st around (30)
+Rnd 10: [3 sc, dec] x 6 (24)
+Rnd 11: sc in each st around (24)
+Rnd 12: [2 sc, dec] x 6 (18)
+Rnd 13: sc in each st around (18)
+
+=== LEGS (back stop R6, front work R7-8) ===
+Rnd 1: 6 sc in MR (6)
+Rnd 2: [sc, inc] x 3 (9)
+Rnd 3: sc in each st around (9)
+Rnd 4: sc in each st around (9)
+Rnd 5: sc in each st around (9)
+Rnd 6: sc in each st around (9)
+Rnd 7: sc in each st around (9)
+Rnd 8: sc in each st around (9)
+
+=== HORNS (make 2) ===
+Rnd 1: 4 sc in MR (4)
+Rnd 2: sc in each st around (4)
+Rnd 3: [sc, inc] x 2 (6)
+Rnd 4: sc in each st around (6)
+Rnd 5: sc in each st around (6)
+
+=== TAIL (make 1) ===
+Rnd 1: 4 sc in MR (4)
+Rnd 2: sc in each st around (4)
+Rnd 3: [sc, inc] x 2 (6)
+Rnd 4: sc in each st around (6)
+Rnd 5: sc in each st around (6)
+Rnd 6: [2 sc, inc] x 2 (8)
+Rnd 7: sc in each st around (8)
+Rnd 8: sc in each st around (8)
+Rnd 9: [3 sc, inc] x 2 (10)
+Rnd 10: sc in each st around (10)
+Rnd 11: sc in each st around (10)
+Rnd 12: sc in each st around (10)
+
+=== WINGS (worked flat, make 2) ===
+Row 1: sc 4, hdc 3, dc 3 (10)
+Row 2: sc 3, hdc 3, dc 4 (10)
+Row 3: sc 2, hdc 4, dc 4 (10)
+Row 4: sl st 2, (sc, hdc, dc, hdc, sc) in next st, sl st 2, (sc, hdc, dc, hdc, sc) in next st, sl st 4
