@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nightmare-eval/adjudication.schema.json",
+  "title": "Grader's private adjudication proposal",
+  "description": "The LLM must emit human_approved=false. A human reviews and approves before scoring.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fixture", "human_approved", "reviewer", "claims"],
+  "properties": {
+    "fixture": {"type": "string", "minLength": 1},
+    "human_approved": {"type": "boolean"},
+    "reviewer": {"type": "string", "minLength": 1},
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim_id", "rubric_item_id", "judgment", "partial_credit_key", "evidence", "rationale"],
+        "properties": {
+          "claim_id": {"type": "string", "pattern": "^D[1-9][0-9]*$"},
+          "rubric_item_id": {"type": ["string", "null"]},
+          "judgment": {"enum": ["full", "partial", "refuted", "unverifiable"]},
+          "partial_credit_key": {"type": ["string", "null"]},
+          "evidence": {"type": "string"},
+          "rationale": {"type": "string"}
+        }
+      }
+    }
+  }
+}

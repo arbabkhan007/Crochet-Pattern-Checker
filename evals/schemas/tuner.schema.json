@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nightmare-eval/tuner.schema.json",
+  "title": "Single-lever development-set tuning proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lever", "change", "rationale", "expected_effect", "confidence"],
+  "properties": {
+    "lever": {
+      "enum": ["system_prompt_addition", "two_pass_toggle", "temperature", "model_profile", "max_output_tokens"]
+    },
+    "change": {"type": "string", "minLength": 1},
+    "rationale": {"type": "string", "minLength": 1},
+    "expected_effect": {"type": "string", "minLength": 1},
+    "confidence": {"enum": ["low", "medium", "high"]}
+  }
+}

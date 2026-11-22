@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nightmare-eval/aggregate-input.schema.json",
+  "title": "Private complete-batch aggregate input",
+  "description": "Store privately; fixture IDs and scores are not for public reports.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["split", "fixtures", "replicates_per_fixture", "batches"],
+  "properties": {
+    "split": {"enum": ["development", "holdout"]},
+    "fixtures": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "replicates_per_fixture": {"type": "integer", "minimum": 1},
+    "batches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "runs"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "runs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["fixture", "replicate", "score", "refuted_count", "failure_taxonomy"],
+              "properties": {
+                "fixture": {"type": "string", "minLength": 1},
+                "replicate": {"type": "string", "minLength": 1},
+                "score": {"type": "number", "minimum": 0, "maximum": 100},
+                "refuted_count": {"type": "integer", "minimum": 0},
+                "failure_taxonomy": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["math", "coherence", "finishing", "absurdity", "format"],
+                  "properties": {
+                    "math": {"type": "integer", "minimum": 0},
+                    "coherence": {"type": "integer", "minimum": 0},
+                    "finishing": {"type": "integer", "minimum": 0},
+                    "absurdity": {"type": "integer", "minimum": 0},
+                    "format": {"type": "integer", "minimum": 0, "maximum": 1}
+                  }
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "failure_taxonomy": {
+                        "properties": {"format": {"const": 1}},
+                        "required": ["format"]
+                      }
+                    },
+                    "required": ["failure_taxonomy"]
+                  },
+                  "then": {
+                    "properties": {
+                      "score": {"const": 0},
+                      "refuted_count": {"const": 0}
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
