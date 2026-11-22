@@ -17,7 +17,8 @@ jobs:
           sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
           pip install -e ".[dev]" weasyprint python-multipart
           pip install -r requirements-release-pdf.txt
-      - run: python -m pytest tests/ -q --tb=short
+      - name: Run tests with checksum-pinned external release inputs
+        run: python tools/run_tests_with_release_inputs.py tests/ -q --tb=short
       - run: python scripts/check_consensus.py
       - run: |
           crochet-check check examples/amigurumi.txt

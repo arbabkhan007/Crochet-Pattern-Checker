@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "arbabkhan007/Crochet-Pattern-Checker",
+    "commit": "9dbdfab5cf05e68a2136897f9739a0d81cc54114",
+    "raw_base": "https://raw.githubusercontent.com/arbabkhan007/Crochet-Pattern-Checker/9dbdfab5cf05e68a2136897f9739a0d81cc54114/"
+  },
+  "groups": {
+    "ns01-images": {
+      "count": 2
+    },
+    "release-pdfs": {
+      "count": 34
+    }
+  },
+  "files": [
+    {
+      "path": "assets/patterns/ns01/hamish_cover_concept.png",
+      "size_bytes": 2159037,
+      "sha256": "7881bb5d85d86a2986bd94b023363c9894e737a62a4eeebc733bd3bb96c26d15",
+      "groups": [
+        "ns01-images"
+      ]
+    },
+    {
+      "path": "assets/patterns/ns01/hamish_materials_concept.png",
+      "size_bytes": 2596559,
+      "sha256": "f1e3393523fc2a97b0836b41a515a72ddc88b1df85b41fb34e94f2f5b05dc8ba",
+      "groups": [
+        "ns01-images"
+      ]
+    },
+    {
+      "path": "release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf",
+      "size_bytes": 6084499,
+      "sha256": "f87d818f02692fc040ff462a43f20354e974810c407ae0ce09a92ab823c256f5",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS01_Hamish_the_Highland_Cow_PRINTER_SAVER.pdf",
+      "size_bytes": 130129,
+      "sha256": "9722167d25dabc0a5820cd17370d748ae618e556e38010de6c3a486c6e575112",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS02_Kawaii_Halloween_Mini_Set_Crochet_Pattern.pdf",
+      "size_bytes": 354212,
+      "sha256": "16af222dae42dd5e5b50cbcc79336d1bc5a5cb8f9e0a4b5bda8efaffaa5f4b24",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS02_Kawaii_Halloween_Mini_Set_PRINTER_SAVER.pdf",
+      "size_bytes": 127194,
+      "sha256": "c7933fa12c98430bde0a60c777f597292f513ac0fab1feecd35efeebd350bb84",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS03_Axel_the_Axolotl_Crochet_Pattern.pdf",
+      "size_bytes": 393938,
+      "sha256": "d4bdc9c3c94dd9288662666d2eb87c3b767d1e2129e92b4b517c61f1b17d75ab",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS03_Axel_the_Axolotl_PRINTER_SAVER.pdf",
+      "size_bytes": 118858,
+      "sha256": "814a36e1a307c1580087ecbebf4ed52313f7290afb65c983917e0b18b1bf3340",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS04_Coco_the_Capybara_Crochet_Pattern.pdf",
+      "size_bytes": 396276,
+      "sha256": "aa41194cbb26cc75c9c23538d16c953736b5f5a8dde37af22ce50a673f96dbb8",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS04_Coco_the_Capybara_PRINTER_SAVER.pdf",
+      "size_bytes": 119552,
+      "sha256": "6fa2d029d47d8e43bff4f5c3a7cdd21cdfb5d61b7e39dfbda4a6457fa8d58357",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS05_Little_Duck_Plushie_Crochet_Pattern.pdf",
+      "size_bytes": 388033,
+      "sha256": "9e763e881b5ea8583ce181d0dd33a09eb1f3d2a2820a23a6b0a77909e3cfc302",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS05_Little_Duck_Plushie_PRINTER_SAVER.pdf",
+      "size_bytes": 115264,
+      "sha256": "c947a0dddd2e610ab4be5aa4a09efac518474ee82ce2d63a8fcd8438f7e00e76",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS06_Momo_the_Loaf_Cat_Crochet_Pattern.pdf",
+      "size_bytes": 417794,
+      "sha256": "4bef88bb583d05e5e82b88c67b85c844b2d280a65d7d1cad601bd4a757ba7f4b",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS06_Momo_the_Loaf_Cat_PRINTER_SAVER.pdf",
+      "size_bytes": 114365,
+      "sha256": "16b53f19e8d171edf0893cfe15e616fcf94432d2f790eab5da57c327b6908966",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS07_Pocket_Positivity_Trio_Crochet_Pattern.pdf",
+      "size_bytes": 397257,
+      "sha256": "385f1cabd936e3073a5e7b788ee83237f37e8a80c3638842d658cab3cdc1b128",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS07_Pocket_Positivity_Trio_PRINTER_SAVER.pdf",
+      "size_bytes": 116391,
+      "sha256": "df83790556cb5fbf78a4e9aa9f2b1c9bc7714ff9a9d8d63e5969f67ba9c23b25",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS08_Ember_the_Baby_Dragon_Crochet_Pattern.pdf",
+      "size_bytes": 456670,
+      "sha256": "c0aa047b58b9c59ac2f331e8b2c4686e2388453b81f4fe1ebf8140c1509be037",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS08_Ember_the_Baby_Dragon_PRINTER_SAVER.pdf",
+      "size_bytes": 121892,
+      "sha256": "8309e1f4f24ac88ec6097f00347ca3549558bec3b9b3821beb937a787a5101e3",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS09_Shelby_the_Sea_Turtle_Bag_Charm_Crochet_Pattern.pdf",
+      "size_bytes": 302765,
+      "sha256": "96cb68a38519488e8c9d4df401cb2cc298958c237826a2406a109096cbcf57a3",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS09_Shelby_the_Sea_Turtle_Bag_Charm_PRINTER_SAVER.pdf",
+      "size_bytes": 112529,
+      "sha256": "16b513f2e8e751e6b1678d659c58f2a59be034dfe63082931b3a1f605d9031ca",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS10_Willow_the_Bunny_Lovey_Crochet_Pattern.pdf",
+      "size_bytes": 364483,
+      "sha256": "c40ed6a4eeefbbf692a085e1bdb2e9190ee8f38c5a7cfb06556e125c861ad22c",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS10_Willow_the_Bunny_Lovey_PRINTER_SAVER.pdf",
+      "size_bytes": 115828,
+      "sha256": "dc5a7048f9fe62c4960bf72168a399fde7fad46a9ef03dfa26e79cd5fcc3f0af",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS11_No-Sew_Christmas_Gnome_Crochet_Pattern.pdf",
+      "size_bytes": 337677,
+      "sha256": "8613a3c8d33627efeec0dd0c2d1bff9ef150bd1e65b66d9429e8760afeb3a5cc",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS11_No-Sew_Christmas_Gnome_PRINTER_SAVER.pdf",
+      "size_bytes": 115138,
+      "sha256": "afc13e587fbcaa93d43b43b9146a7c35aff471edb534b1bb151f6149163e33a2",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS12_Bobble_Christmas_Tree_Crochet_Pattern.pdf",
+      "size_bytes": 340880,
+      "sha256": "2350d99b6fa49761be760029f1ff65bbcd146a0dd7b7ff06258d9bef5aca70b1",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS12_Bobble_Christmas_Tree_PRINTER_SAVER.pdf",
+      "size_bytes": 115193,
+      "sha256": "7a99d647b4facc6f48dd3d8ac74a8ee8c43dab312f9ac5f166e0c21b62565769",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS13_Christmas_Ornament_Bundle_Crochet_Pattern.pdf",
+      "size_bytes": 315461,
+      "sha256": "b4c5c9f88e81c709d3e463277f015f06f6adba8b87c9470ebdfe37c61ae505c7",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS13_Christmas_Ornament_Bundle_PRINTER_SAVER.pdf",
+      "size_bytes": 115830,
+      "sha256": "97ad7c9a10c3aba6d2d28d990bebef6c7976fa3d2f338f464bd1ff41a050722d",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS14_Bobble_Snowflake_Tree_Skirt_Crochet_Pattern.pdf",
+      "size_bytes": 483572,
+      "sha256": "1bd2fabd48c0a2cd30f39a05c925f4f4fe22b3f74e2a964aafcda8066777466c",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS14_Bobble_Snowflake_Tree_Skirt_PRINTER_SAVER.pdf",
+      "size_bytes": 123933,
+      "sha256": "42fff2894f69b9fdc5aeda8fbfaf00a9219f0566166ec685e54908b5b58b78ab",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS15_Interchangeable_Christmas_Wreath_Crochet_Pattern.pdf",
+      "size_bytes": 349421,
+      "sha256": "5bc17e6bba96898559a74ba674953d94ece86c2d970c8df718cdaa2ca5f50702",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS15_Interchangeable_Christmas_Wreath_PRINTER_SAVER.pdf",
+      "size_bytes": 117430,
+      "sha256": "3e049cf813c95b489eb90bff79a457ba71e7acc0de2ff73190ead61bcab9a015",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS16_Crochet_Mini_Stocking_Advent_Garland_Crochet_Pattern.pdf",
+      "size_bytes": 356106,
+      "sha256": "f25cf0707e20e69834d2b8b51dcf1f244a1d1bbf0a3038db2a58860bc274bdf8",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS16_Crochet_Mini_Stocking_Advent_Garland_PRINTER_SAVER.pdf",
+      "size_bytes": 123219,
+      "sha256": "b38a0e2ddca4489c55d72bf8fddf3add3ead2134b201e6a0b3fdef866697cf93",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS17_Year_of_the_Fire_Goat_2027_Plushie_Set_Crochet_Pattern.pdf",
+      "size_bytes": 535031,
+      "sha256": "f1dfdb97e518fc17302abe90eaf76ad7f447267ef7dffd9d379ffa90d2895ea5",
+      "groups": [
+        "release-pdfs"
+      ]
+    },
+    {
+      "path": "release/NS17_Year_of_the_Fire_Goat_2027_Plushie_Set_PRINTER_SAVER.pdf",
+      "size_bytes": 142049,
+      "sha256": "b40cd36c99ea4ca214c6be21669f50c6a77f7992d019c9dcd90b378adf05bafb",
+      "groups": [
+        "release-pdfs"
+      ]
+    }
+  ]
+}

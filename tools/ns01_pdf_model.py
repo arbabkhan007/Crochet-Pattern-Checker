@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -20,8 +21,15 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "patterns/01_Hamish_the_Highland_Cow.md"
 SCHEMA = ROOT / "schemas/ns01_pdf_render_model.schema.json"
 SOURCE_LABEL = "patterns/01_Hamish_the_Highland_Cow.md"
-HERO_ASSET = ROOT / "assets/patterns/ns01/hamish_cover_concept.png"
-MATERIALS_ASSET = ROOT / "assets/patterns/ns01/hamish_materials_concept.png"
+# Optional external cache keeps reviewed image inputs out of the checkout.
+RELEASE_INPUT_CACHE = os.environ.get("CROCHET_RELEASE_INPUT_CACHE")
+ASSET_ROOT = (
+    Path(RELEASE_INPUT_CACHE).expanduser().resolve()
+    if RELEASE_INPUT_CACHE
+    else ROOT
+)
+HERO_ASSET = ASSET_ROOT / "assets/patterns/ns01/hamish_cover_concept.png"
+MATERIALS_ASSET = ASSET_ROOT / "assets/patterns/ns01/hamish_materials_concept.png"
 COVER_IMAGE_BOX_MM = (107.0, 195.0)
 MATERIALS_IMAGE_BOX_MM = (160.0, 68.0)
 MIN_PRINT_DPI = 300.0

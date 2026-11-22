@@ -1,10 +1,14 @@
 from __future__ import annotations
 
+import os
 import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-RELEASE = ROOT / "release"
+RELEASE_INPUT_CACHE = Path(
+    os.environ.get("CROCHET_RELEASE_INPUT_CACHE", ROOT)
+).expanduser().resolve()
+RELEASE = RELEASE_INPUT_CACHE / "release"
 PATTERNS = ROOT / "patterns"
 ARCHIVE = RELEASE / "Novality_Crochet_Studio_NS16-NS17_PDF_AND_MARKDOWN_COLLECTION.zip"
 
