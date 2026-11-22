@@ -13,7 +13,9 @@ class MarkdownParser:
 
     def __init__(self):
         self.header_pattern = re.compile(r"^(#{1,6})\s+(.+)$", re.MULTILINE)
-        self.round_pattern = re.compile(r"(?:round|row)\s+(\d+)[\s:]*", re.IGNORECASE)
+        self.round_pattern = re.compile(
+            r"(?:rounds?|rnds?|rows?|r)\b\.?\s*(\d+)[\s:]*", re.IGNORECASE
+        )
         self.construction_pattern = re.compile(
             r"(?:worked\s+in\s+)?(rounds?|rows?)", re.IGNORECASE
         )

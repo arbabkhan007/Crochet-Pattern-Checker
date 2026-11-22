@@ -4,6 +4,7 @@ Implements the multi-pass compiler design for comprehensive pattern validation
 """
 
 from dataclasses import dataclass, field
+from enum import Enum as _Enum
 import re
 
 from ..ast.nodes import InstructionNode, PatternNode
@@ -71,6 +72,30 @@ class PatternValidator:
 
         # Pass 3: Validate with state machine
         validation_result = self._pass3_validate(unrolled_instructions, pattern_ast)
+
+        # Run deterministic advanced rules only when the written evidence is explicit.
+        # These checks are independent of optional AI/provider integrations.
+        from .advanced_checks import find_advanced_findings
+
+        for finding in find_advanced_findings(pattern_text):
+            if finding.severity == "error":
+                collection = validation_result.errors
+            elif finding.severity == "info":
+                collection = validation_result.info
+            else:
+                collection = validation_result.warnings
+            message = f"[{finding.code}] {finding.message}"
+            if not any(
+                item.message in {message, finding.message} for item in collection
+            ):
+                collection.append(
+                    ValidationError(
+                        line_number=finding.line_number,
+                        message=message,
+                        severity=finding.severity,
+                    )
+                )
+        validation_result.is_valid = not validation_result.errors
 
         execution_time = time.time() - start_time
         validation_result.execution_time = execution_time
@@ -300,10 +325,13 @@ class PatternValidator:
         values = {getattr(op.stitch_type, "value", "") for op in ops}
         produced = self._loops_after_round(raw_text, previous)
         consumed = self._context_consumed(instructions, previous)
-        if consumed > previous and "increase" not in values:
+        if consumed > previous:
+            excess = consumed - previous
+            noun = "stitch" if excess == 1 else "stitches"
             return (
-                f"Line {line_number}: Attempted to work stitch beyond available loops. "
-                f"Position: {previous}, Available: {previous}"
+                f"Line {line_number}: this round consumes {consumed} stitches, "
+                f"but only {previous} are available from the previous round; "
+                f"{excess} extra {noun} are requested."
             )
         if produced < previous and "decrease" not in values:
             if foundation_chain and produced == foundation_chain - 1:
@@ -418,9 +446,6 @@ rep - repeat
 # ============================================================================
 # Compatibility exports
 # ============================================================================
-
-from enum import Enum as _Enum
-
 
 class Severity(_Enum):
     INFO = "info"

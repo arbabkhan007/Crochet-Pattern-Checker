@@ -8,7 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).parent
+HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / "engine"))
 from common import OUT_ROOT, SLUGS, load_pattern  # noqa: E402
 from narration import chapters  # noqa: E402
@@ -22,6 +22,7 @@ def run(*args):
 
 if __name__ == "__main__":
     slugs = [a for a in sys.argv[1:] if not a.startswith("--")] or SLUGS
+    run(str(HERE.parent / "tools" / "fetch_build_inputs.py"), "--group", "novality")
     run("engine/verify.py", *slugs)
     run("engine/prep_images.py", *slugs)
     run("engine/build_pdf.py", *slugs)

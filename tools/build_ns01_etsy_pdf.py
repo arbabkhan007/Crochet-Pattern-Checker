@@ -18,8 +18,11 @@ from pathlib import Path
 
 from PIL import Image as PILImage
 from PIL import ImageDraw, ImageFont
+import pymupdf as fitz
 from pypdf import PdfReader
 from pypdf.generic import ContentStream, IndirectObject
+from reportlab.graphics import renderPDF, renderSVG
+from reportlab.graphics.shapes import Circle, Drawing, Ellipse, Line, Rect, String
 from reportlab.lib import colors
 from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
@@ -45,10 +48,27 @@ from reportlab.platypus import (
 )
 from reportlab.platypus.tableofcontents import TableOfContents
 
+try:  # Support direct script execution and package-style imports in tests.
+    from .ns01_pdf_model import (
+        COVER_IMAGE_BOX_MM,
+        HERO_ASSET,
+        MATERIALS_ASSET,
+        MATERIALS_IMAGE_BOX_MM,
+        compile_ns01_pdf_model,
+    )
+except ImportError:  # pragma: no cover - exercised by direct CLI invocation.
+    from ns01_pdf_model import (
+        COVER_IMAGE_BOX_MM,
+        HERO_ASSET,
+        MATERIALS_ASSET,
+        MATERIALS_IMAGE_BOX_MM,
+        compile_ns01_pdf_model,
+    )
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "patterns/01_Hamish_the_Highland_Cow.md"
-HERO = ROOT / "assets/patterns/ns01/hamish_cover_concept.png"
-MATERIALS_IMAGE = ROOT / "assets/patterns/ns01/hamish_materials_concept.png"
+HERO = HERO_ASSET
+MATERIALS_IMAGE = MATERIALS_ASSET
 DEFAULT_OUTPUT = ROOT / "release/NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf"
 DEFAULT_PRINTER_OUTPUT = ROOT / "release/NS01_Hamish_the_Highland_Cow_PRINTER_SAVER.pdf"
 ASSET_DIR = Path(tempfile.gettempdir()) / "novality-pdf-assets/ns01"
@@ -115,7 +135,9 @@ def register_fonts() -> Fonts:
     return Fonts("Helvetica", "Helvetica-Bold", "Times-Roman", "Times-Bold")
 
 
-def pil_font(size: int, bold: bool = False, serif: bool = False) -> ImageFont.FreeTypeFont:
+def pil_font(
+    size: int, bold: bool = False, serif: bool = False
+) -> ImageFont.FreeTypeFont:
     font_dir = Path("/usr/share/fonts/truetype/dejavu")
     if serif:
         name = "DejaVuSerif-Bold.ttf" if bold else "DejaVuSerif.ttf"
@@ -127,14 +149,91 @@ def pil_font(size: int, bold: bool = False, serif: bool = False) -> ImageFont.Fr
         return ImageFont.load_default()
 
 
-def create_assembly_asset(path: Path) -> None:
-    """Create a visual assembly-order figure without replacing written directions."""
+def assembly_steps(model: dict) -> list[tuple[str, str, str]]:
+    """Return source-derived assembly callouts for the raster overview figure."""
+
+    head = model["components"]["head"]
+    body = model["components"]["body"]
+    head_features = head["features"]
+    body_features = body["features"]
+    join = head["neck_join"]
+    ending = body["ending"]
+    horns = head_features["horns"]
+    ears = head_features["ears"]
+    fringe_rounds = head_features["fringe"]["rounds"]
+    back_legs = body_features["back_legs"]
+    front_legs = body_features["front_legs"]
+    belly_patch = body_features["belly_patch"]
+    tail = body_features["tail"]
+
+    return [
+        (
+            "01",
+            "MUZZLE + FACE",
+            f"Lock both eye washers before Head Rnd {head['closure']['round']}.",
+        ),
+        (
+            "02",
+            "HORNS",
+            f"Rnds {horns['round_start']}–{horns['round_end']} · "
+            f"{horns['spacing_stitches']} sts apart · angle out/back.",
+        ),
+        (
+            "03",
+            "EARS",
+            f"Outside horns · centre R{ears['round_start']}–R{ears['round_end']} · cup forward.",
+        ),
+        (
+            "04",
+            "FRINGE",
+            f"Rnds {min(fringe_rounds)}–{max(fringe_rounds)} · attach after horns/ears.",
+        ),
+        (
+            "05",
+            "HEAD → BODY",
+            f"Match {ending['stitches']} body R{ending['round']} sts to "
+            f"{join['stitches']} head R{join['round']} sts.",
+        ),
+        (
+            "06",
+            "BACK LEGS",
+            f"Rnds {back_legs['round_start']}–{back_legs['round_end']} · "
+            "low on base, near horizontal.",
+        ),
+        (
+            "07",
+            "FRONT LEGS",
+            f"Rnds {front_legs['round_start']}–{front_legs['round_end']} · "
+            f"about {front_legs['gap_stitches']} sts apart.",
+        ),
+        (
+            "08",
+            "BELLY PATCH",
+            f"Optional · lower edge ~{belly_patch['lower_edge_offset_from_base_rounds']} rounds above base.",
+        ),
+        (
+            "09",
+            "TAIL + SCARF",
+            f"Tail at {tail['anchor_note']}; tie scarf, weave ends and fluff fringe.",
+        ),
+    ]
+
+
+def create_assembly_asset(path: Path, model: dict) -> None:
+    """Create a source-derived assembly overview without replacing written directions."""
 
     path.parent.mkdir(parents=True, exist_ok=True)
     canvas = PILImage.new("RGB", (1800, 1180), "#F7F1E7")
     draw = ImageDraw.Draw(canvas)
-    draw.rounded_rectangle((40, 40, 1760, 1140), radius=38, fill="#FFFDF8", outline="#D8CDBE", width=3)
-    draw.text((105, 85), "ASSEMBLY MAP", font=pil_font(54, bold=True, serif=True), fill="#28231F")
+    draw.rounded_rectangle(
+        (40, 40, 1760, 1140), radius=38, fill="#FFFDF8", outline="#D8CDBE", width=3
+    )
+    draw.text(
+        (105, 85),
+        "ASSEMBLY MAP",
+        font=pil_font(54, bold=True, serif=True),
+        fill="#28231F",
+    )
     draw.text(
         (107, 158),
         "Pin first. Check symmetry. Then sew in this exact order.",
@@ -142,17 +241,7 @@ def create_assembly_asset(path: Path) -> None:
         fill="#6F665E",
     )
 
-    steps = [
-        ("01", "MUZZLE + FACE", "Lock eye washers before the head closes."),
-        ("02", "HORNS", "Rnds 5–7 · angle out and slightly back."),
-        ("03", "EARS", "Outside horns · cup the nested layers forward."),
-        ("04", "FRINGE", "Attach after horns and ears; trim unevenly."),
-        ("05", "HEAD → BODY", "Match 18 neck sts to 18 Head Rnd-14 sts."),
-        ("06", "BACK LEGS", "Rnds 3–6 · low and almost horizontal."),
-        ("07", "FRONT LEGS", "Rnds 8–9 · about 8 sts apart."),
-        ("08", "BELLY PATCH", "Optional · centre after the legs are checked."),
-        ("09", "TAIL + SCARF", "Add last; weave and inspect every end."),
-    ]
+    steps = assembly_steps(model)
     columns = 3
     card_w = 500
     card_h = 215
@@ -164,12 +253,25 @@ def create_assembly_asset(path: Path) -> None:
         y = y0 + row * (card_h + y_gap)
         fill = "#F3E1D2" if i == 4 else "#F6F4EE"
         outline = "#B9652B" if i == 4 else "#D8CDBE"
-        draw.rounded_rectangle((x, y, x + card_w, y + card_h), radius=24, fill=fill, outline=outline, width=4)
+        draw.rounded_rectangle(
+            (x, y, x + card_w, y + card_h),
+            radius=24,
+            fill=fill,
+            outline=outline,
+            width=4,
+        )
         draw.ellipse((x + 24, y + 25, x + 106, y + 107), fill="#31473B")
         number_box = draw.textbbox((0, 0), number, font=pil_font(27, bold=True))
         number_w = number_box[2] - number_box[0]
-        draw.text((x + 65 - number_w / 2, y + 47), number, font=pil_font(27, bold=True), fill="#FFFDF8")
-        draw.text((x + 128, y + 27), label, font=pil_font(25, bold=True), fill="#28231F")
+        draw.text(
+            (x + 65 - number_w / 2, y + 47),
+            number,
+            font=pil_font(27, bold=True),
+            fill="#FFFDF8",
+        )
+        draw.text(
+            (x + 128, y + 27), label, font=pil_font(25, bold=True), fill="#28231F"
+        )
         draw.multiline_text(
             (x + 128, y + 80),
             wrap_words(note, 36),
@@ -179,10 +281,21 @@ def create_assembly_asset(path: Path) -> None:
         )
 
     draw.rounded_rectangle((105, 1010, 1695, 1090), radius=20, fill="#31473B")
-    critical = "CRITICAL NECK JOIN   18 BODY STS ↔ 18 HEAD STS   ·   LADDER-STITCH TWICE"
+    head_join = model["components"]["head"]["neck_join"]
+    body_ending = model["components"]["body"]["ending"]
+    critical = (
+        "CRITICAL NECK JOIN   "
+        f"{body_ending['stitches']} BODY STS ↔ "
+        f"{head_join['stitches']} HEAD R{head_join['round']} STS   ·   LADDER-STITCH TWICE"
+    )
     box = draw.textbbox((0, 0), critical, font=pil_font(25, bold=True))
     text_w = box[2] - box[0]
-    draw.text(((1800 - text_w) / 2, 1031), critical, font=pil_font(25, bold=True), fill="#FFFDF8")
+    draw.text(
+        ((1800 - text_w) / 2, 1031),
+        critical,
+        font=pil_font(25, bold=True),
+        fill="#FFFDF8",
+    )
     canvas.save(path, quality=95)
 
 
@@ -262,7 +375,11 @@ def parse_markdown(text: str) -> list[Block]:
                 i += 1
             blocks.append(Block("quote", " ".join(quote_lines)))
             continue
-        if line.startswith("|") and i + 1 < len(lines) and is_table_separator(lines[i + 1].strip()):
+        if (
+            line.startswith("|")
+            and i + 1 < len(lines)
+            and is_table_separator(lines[i + 1].strip())
+        ):
             table_lines = [line]
             i += 2  # Skip the Markdown alignment row.
             while i < len(lines) and lines[i].strip().startswith("|"):
@@ -278,7 +395,9 @@ def parse_markdown(text: str) -> list[Block]:
         if list_match:
             marker, body = list_match.groups()
             kind = "ordered" if marker[0].isdigit() else "bullet"
-            blocks.append(Block(kind, body, int(marker[:-1]) if kind == "ordered" else 0))
+            blocks.append(
+                Block(kind, body, int(marker[:-1]) if kind == "ordered" else 0)
+            )
             i += 1
             continue
 
@@ -293,6 +412,23 @@ def parse_markdown(text: str) -> list[Block]:
             i += 1
         blocks.append(Block("paragraph", "\n".join(paragraph)))
     return blocks
+
+
+def expected_progress_box_count(markdown_text: str) -> int:
+    """Count source rows for which the PDF renderer adds a progress checkbox."""
+
+    count = 0
+    for block in parse_markdown(markdown_text):
+        if (
+            block.kind != "table"
+            or not isinstance(block.value, list)
+            or not block.value
+        ):
+            continue
+        rows = block.value
+        if rows[0][0].strip().lower() == "rnd":
+            count += max(0, len(rows) - 1)
+    return count
 
 
 def inline_markup(text: str) -> str:
@@ -511,13 +647,327 @@ class HeadingParagraph(Paragraph):
         self.plain_heading = unescape(re.sub(r"<[^>]+>", "", text))
 
 
+def _round_position(
+    component: dict, round_number: float, bottom: float, top: float
+) -> float:
+    total = max(row["end"] for row in component["rounds"])
+    fraction = (round_number - 1) / max(1, total - 1)
+    if component["direction"] == "TOP_DOWN":
+        return top - fraction * (top - bottom)
+    return bottom + fraction * (top - bottom)
+
+
+def make_placement_drawing(model: dict, *, printer_saver: bool = False) -> Drawing:
+    """Create a vector-only placement schematic from the compiled NS01 model."""
+
+    if printer_saver:
+        ink = colors.black
+        ginger = HexColor("#D8D8D8")
+        oat = HexColor("#F1F1F1")
+        accent = HexColor("#777777")
+        panel = colors.white
+    else:
+        ink = FOREST_DARK
+        ginger = PALE_GINGER
+        oat = OAT
+        accent = GINGER
+        panel = PAPER
+
+    drawing = Drawing(492, 166)
+    drawing.add(
+        String(
+            246,
+            156,
+            "NS 01 · COMPONENT PLACEMENT (SCHEMATIC, NOT TO SCALE)",
+            textAnchor="middle",
+            fontName="Helvetica-Bold",
+            fontSize=8.1,
+            fillColor=ink,
+        )
+    )
+    drawing.add(
+        Rect(7, 19, 235, 130, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
+    )
+    drawing.add(
+        Rect(250, 19, 235, 130, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
+    )
+
+    head = model["components"]["head"]
+    head_features = head["features"]
+    head_bottom, head_top = 45, 124
+    head_x, head_y, head_w, head_h = 22, 47, 64, 72
+    drawing.add(
+        Ellipse(
+            head_x + head_w / 2,
+            head_y + head_h / 2,
+            head_w / 2,
+            head_h / 2,
+            fillColor=ginger,
+            strokeColor=ink,
+            strokeWidth=1.1,
+        )
+    )
+
+    # Horns and ears are visual markers for the source-derived round bands.
+    horn_y = _round_position(
+        head, head_features["horns"]["round_start"], head_bottom, head_top
+    )
+    drawing.add(Line(38, horn_y, 31, horn_y + 12, strokeColor=oat, strokeWidth=4.2))
+    drawing.add(Line(69, horn_y, 76, horn_y + 12, strokeColor=oat, strokeWidth=4.2))
+    ear_y = _round_position(
+        head, head_features["ears"]["round_start"], head_bottom, head_top
+    )
+    drawing.add(
+        Ellipse(21, ear_y + 2, 7, 4, fillColor=ginger, strokeColor=ink, strokeWidth=0.7)
+    )
+    drawing.add(
+        Ellipse(87, ear_y + 2, 7, 4, fillColor=ginger, strokeColor=ink, strokeWidth=0.7)
+    )
+
+    fringe_y = [
+        _round_position(head, round_number, head_bottom, head_top)
+        for round_number in head_features["fringe"]["rounds"]
+    ]
+    for y_value in fringe_y:
+        drawing.add(Line(37, y_value, 71, y_value, strokeColor=accent, strokeWidth=1.0))
+
+    eye_diameter = head_features["eyes"]["diameter_mm"]
+    eye_start = head_features["eyes"]["round_start"]
+    eye_end = head_features["eyes"]["round_end"]
+    eye_y = (
+        _round_position(head, eye_start, head_bottom, head_top)
+        + _round_position(head, eye_end, head_bottom, head_top)
+    ) / 2
+    drawing.add(Circle(42, eye_y, 2.2, fillColor=ink, strokeColor=ink))
+    drawing.add(Circle(66, eye_y, 2.2, fillColor=ink, strokeColor=ink))
+    drawing.add(Line(45, eye_y, 63, eye_y, strokeColor=ink, strokeWidth=0.4))
+
+    muzzle = head_features["muzzle"]
+    muzzle_top = _round_position(head, muzzle["round_start"], head_bottom, head_top)
+    muzzle_bottom = (
+        _round_position(head, muzzle["lower_edge_round_start"], head_bottom, head_top)
+        + _round_position(head, muzzle["lower_edge_round_end"], head_bottom, head_top)
+    ) / 2
+    muzzle_height = max(12, muzzle_top - muzzle_bottom + 4)
+    drawing.add(
+        Ellipse(
+            54,
+            muzzle_bottom - 2 + muzzle_height / 2,
+            25,
+            muzzle_height / 2,
+            fillColor=oat,
+            strokeColor=ink,
+            strokeWidth=0.8,
+        )
+    )
+
+    def head_label(y: float, text: str, bold: bool = False) -> None:
+        drawing.add(
+            String(
+                101,
+                y,
+                text,
+                fontName="Helvetica-Bold" if bold else "Helvetica",
+                fontSize=6.7 if not bold else 7.2,
+                fillColor=ink,
+            )
+        )
+
+    head_total = max(row["end"] for row in head["rounds"])
+    head_label(134, f"Head · TOP DOWN · R1–R{head_total}", True)
+    head_label(
+        119,
+        f"Horns R{head_features['horns']['round_start']}–R{head_features['horns']['round_end']} · {head_features['horns']['spacing_stitches']} sts apart",
+    )
+    fringe_rounds = head_features["fringe"]["rounds"]
+    head_label(
+        106,
+        f"Ears R{head_features['ears']['round_start']}–R{head_features['ears']['round_end']} · fringe R{min(fringe_rounds)}–R{max(fringe_rounds)}",
+    )
+    head_label(
+        93,
+        f"Eyes {eye_diameter:g} mm · R{eye_start}–R{eye_end} · "
+        f"{head_features['eyes']['spacing_stitches']} sts apart",
+    )
+    head_label(80, f"Muzzle top: R{muzzle['round_start']}")
+    head_label(
+        67,
+        f"Lower edge: R{muzzle['lower_edge_round_start']}–R{muzzle['lower_edge_round_end']}",
+    )
+    head_label(
+        54,
+        f"Join ring: R{head['neck_join']['round']} · {head['neck_join']['stitches']} sts",
+    )
+    head_label(
+        41, f"Closes at R{head['closure']['round']} · {head['closure']['stitches']} sts"
+    )
+
+    body = model["components"]["body"]
+    body_features = body["features"]
+    body_bottom, body_top = 47, 120
+    drawing.add(
+        Ellipse(297.5, 84, 28.5, 35, fillColor=ginger, strokeColor=ink, strokeWidth=1.1)
+    )
+    back_mid = (
+        body_features["back_legs"]["round_start"]
+        + body_features["back_legs"]["round_end"]
+    ) / 2
+    back_y = _round_position(body, back_mid, body_bottom, body_top)
+    front_mid = (
+        body_features["front_legs"]["round_start"]
+        + body_features["front_legs"]["round_end"]
+    ) / 2
+    front_y = _round_position(body, front_mid, body_bottom, body_top)
+    drawing.add(
+        Ellipse(
+            266.5,
+            back_y + 4,
+            7.5,
+            9,
+            fillColor=ginger,
+            strokeColor=ink,
+            strokeWidth=0.7,
+        )
+    )
+    drawing.add(
+        Ellipse(
+            328.5,
+            front_y + 4,
+            7.5,
+            9,
+            fillColor=ginger,
+            strokeColor=ink,
+            strokeWidth=0.7,
+        )
+    )
+
+    def body_label(y: float, text: str, bold: bool = False) -> None:
+        drawing.add(
+            String(
+                342,
+                y,
+                text,
+                fontName="Helvetica-Bold" if bold else "Helvetica",
+                fontSize=6.6 if not bold else 7.2,
+                fillColor=ink,
+            )
+        )
+
+    body_total = max(row["end"] for row in body["rounds"])
+    belly_offset = body_features["belly_patch"]["lower_edge_offset_from_base_rounds"]
+    body_label(134, f"Body · BOTTOM UP · R1–R{body_total}", True)
+    body_label(
+        119, f"Open neck: R{body['ending']['round']} · {body['ending']['stitches']} sts"
+    )
+    body_label(
+        106,
+        f"Front legs: R{body_features['front_legs']['round_start']}–R{body_features['front_legs']['round_end']} · ~{body_features['front_legs']['gap_stitches']} sts gap",
+    )
+    body_label(
+        93,
+        f"Back legs: R{body_features['back_legs']['round_start']}–R{body_features['back_legs']['round_end']}",
+    )
+    body_label(80, "Belly patch: optional; lower edge")
+    body_label(68, f"~{belly_offset} rounds above base")
+    body_label(54, "Tail anchor: centre-back")
+    body_label(41, "above last increase round")
+
+    return drawing
+
+
+def export_placement_svg(
+    model: dict, output: Path, *, printer_saver: bool = False
+) -> None:
+    """Export the same vector drawing used in the PDF as standalone SVG."""
+
+    output = Path(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    renderSVG.drawToFile(
+        make_placement_drawing(model, printer_saver=printer_saver), str(output)
+    )
+
+
+class PlacementDiagramFlowable(Flowable):
+    """Place the round-referenced drawing as vector paths/text in the PDF."""
+
+    def __init__(self, drawing: Drawing):
+        super().__init__()
+        self.drawing = drawing
+        self.scale_factor = 1.0
+
+    def wrap(
+        self, available_width: float, available_height: float
+    ) -> tuple[float, float]:
+        self.scale_factor = min(1.0, available_width / self.drawing.width)
+        self.width = self.drawing.width * self.scale_factor
+        self.height = self.drawing.height * self.scale_factor
+        return self.width, self.height
+
+    def draw(self) -> None:
+        self.canv.saveState()
+        self.canv.scale(self.scale_factor, self.scale_factor)
+        renderPDF.draw(self.drawing, self.canv, 0, 0)
+        self.canv.restoreState()
+
+
+class GaugeRulerFlowable(Flowable):
+    """A true 50 mm square with explicit print-scaling instructions."""
+
+    side = 50 * mm
+
+    def __init__(self, fonts: Fonts, model: dict, *, printer_saver: bool = False):
+        super().__init__()
+        self.fonts = fonts
+        self.gauge = model["pattern"]["gauge"]
+        self.printer_saver = printer_saver
+        self.width = 0
+        self.height = 55 * mm
+
+    def wrap(
+        self, available_width: float, available_height: float
+    ) -> tuple[float, float]:
+        self.width = available_width
+        return self.width, self.height
+
+    def draw(self) -> None:
+        canvas = self.canv
+        canvas.saveState()
+        ink = colors.black if self.printer_saver else FOREST_DARK
+        fill = colors.white if self.printer_saver else PARCHMENT
+        box_x = self.width - self.side
+        canvas.setFillColor(fill)
+        canvas.setStrokeColor(ink)
+        canvas.setLineWidth(0.6)
+        canvas.rect(box_x, 0, self.side, self.side, stroke=1, fill=1)
+        canvas.setFillColor(ink)
+        canvas.setFont(self.fonts.sans_bold, 8.1)
+        canvas.drawString(0, 48 * mm, "PRINT-SCALE CHECK")
+        canvas.setFont(self.fonts.sans, 7.1)
+        canvas.drawString(
+            0,
+            38 * mm,
+            f"Master gauge: {self.gauge['stitches']} sc × {self.gauge['rounds']} "
+            f"rounds = {self.gauge['measure_cm']:g} cm.",
+        )
+        canvas.drawString(
+            0, 28 * mm, "Print at Actual Size / 100%; disable Fit to Page."
+        )
+        canvas.drawString(0, 18 * mm, "Measure the square with a ruler after printing.")
+        canvas.setFont(self.fonts.sans_bold, 7.4)
+        canvas.drawCentredString(box_x + self.side / 2, 29 * mm, "50 mm × 50 mm")
+        canvas.setFont(self.fonts.sans, 6.4)
+        canvas.drawCentredString(box_x + self.side / 2, 23 * mm, "(5 cm × 5 cm)")
+        canvas.restoreState()
+
+
 class CoverFlowable(Flowable):
     """Full-page editorial cover for the customer PDF."""
 
-    def __init__(self, hero: Path, fonts: Fonts):
+    def __init__(self, hero: Path, fonts: Fonts, model: dict):
         super().__init__()
         self.hero = hero
         self.fonts = fonts
+        self.model = model
         self.width = PAGE_WIDTH
         self.height = PAGE_HEIGHT - 0.2 * mm
 
@@ -526,6 +976,7 @@ class CoverFlowable(Flowable):
 
     def draw(self) -> None:
         canvas = self.canv
+        pattern = self.model["pattern"]
         canvas.saveState()
         canvas.setFillColor(PARCHMENT)
         canvas.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, stroke=0, fill=1)
@@ -536,12 +987,23 @@ class CoverFlowable(Flowable):
         canvas.setFont(self.fonts.sans_bold, 9)
         canvas.drawString(15 * mm, PAGE_HEIGHT - 11.2 * mm, BRAND.upper())
         canvas.setFont(self.fonts.sans, 7.5)
-        canvas.drawRightString(PAGE_WIDTH - 15 * mm, PAGE_HEIGHT - 11.2 * mm, "ORIGINAL CROCHET PATTERN")
+        canvas.drawRightString(
+            PAGE_WIDTH - 15 * mm, PAGE_HEIGHT - 11.2 * mm, "ORIGINAL CROCHET PATTERN"
+        )
 
         image_x, image_y = 88 * mm, 55 * mm
-        image_w, image_h = 107 * mm, 195 * mm
+        image_w = COVER_IMAGE_BOX_MM[0] * mm
+        image_h = COVER_IMAGE_BOX_MM[1] * mm
         canvas.setFillColor(PAPER)
-        canvas.roundRect(image_x - 3 * mm, image_y - 3 * mm, image_w + 6 * mm, image_h + 6 * mm, 5 * mm, stroke=0, fill=1)
+        canvas.roundRect(
+            image_x - 3 * mm,
+            image_y - 3 * mm,
+            image_w + 6 * mm,
+            image_h + 6 * mm,
+            5 * mm,
+            stroke=0,
+            fill=1,
+        )
         canvas.drawImage(
             str(self.hero),
             image_x,
@@ -554,16 +1016,20 @@ class CoverFlowable(Flowable):
         )
 
         canvas.setFillColor(GINGER)
-        canvas.roundRect(14 * mm, 224 * mm, 54 * mm, 11 * mm, 5.5 * mm, stroke=0, fill=1)
+        canvas.roundRect(
+            14 * mm, 224 * mm, 54 * mm, 11 * mm, 5.5 * mm, stroke=0, fill=1
+        )
         canvas.setFillColor(colors.white)
         canvas.setFont(self.fonts.sans_bold, 9.5)
-        canvas.drawCentredString(41 * mm, 227.7 * mm, f"DESIGN CODE  {DESIGN_CODE}")
+        canvas.drawCentredString(
+            41 * mm, 227.7 * mm, f"DESIGN CODE  {pattern['design_code']}"
+        )
 
         canvas.setFillColor(FOREST_DARK)
         canvas.setFont(self.fonts.serif_bold, 33)
-        canvas.drawString(14 * mm, 202 * mm, TITLE.upper())
+        canvas.drawString(14 * mm, 202 * mm, pattern["title"].upper())
         canvas.setFont(self.fonts.serif, 18)
-        canvas.drawString(14 * mm, 191 * mm, SUBTITLE)
+        canvas.drawString(14 * mm, 191 * mm, pattern["subtitle"])
 
         canvas.setStrokeColor(GINGER)
         canvas.setLineWidth(2)
@@ -574,7 +1040,14 @@ class CoverFlowable(Flowable):
         canvas.drawString(14 * mm, 164 * mm, "with a broad oat-cream muzzle and")
         canvas.drawString(14 * mm, 158 * mm, "a weather-beaten ginger fringe.")
 
-        stats = [("US TERMS", 137), ("INTERMEDIATE", 126), ("6–8 HOURS", 115), ("ABOUT 15 CM", 104)]
+        time_hours = pattern["time_hours"]
+        size_cm = pattern["finished_size_cm"]
+        stats = [
+            (f"{pattern['terminology']} TERMS", 137),
+            (pattern["skill_level"].upper(), 126),
+            (f"{time_hours['minimum']}–{time_hours['maximum']} HOURS", 115),
+            (f"ABOUT {size_cm:g} CM", 104),
+        ]
         for label, y in stats:
             canvas.setFillColor(FOREST)
             canvas.circle(17 * mm, y * mm + 1.4 * mm, 1.6 * mm, stroke=0, fill=1)
@@ -582,14 +1055,20 @@ class CoverFlowable(Flowable):
             canvas.setFont(self.fonts.sans_bold, 8.2)
             canvas.drawString(23 * mm, y * mm, label)
 
+        yarns = {yarn["id"]: yarn["name"] for yarn in pattern["yarns"]}
         canvas.setFillColor(PALE_GINGER)
-        canvas.roundRect(14 * mm, 64 * mm, 62 * mm, 25 * mm, 3 * mm, stroke=0, fill=1)
+        canvas.roundRect(14 * mm, 57 * mm, 62 * mm, 32 * mm, 3 * mm, stroke=0, fill=1)
         canvas.setFillColor(CHOCOLATE)
         canvas.setFont(self.fonts.sans_bold, 7.5)
         canvas.drawString(19 * mm, 81 * mm, "ORIGINAL COLOURWAY")
-        canvas.setFont(self.fonts.sans, 7.2)
-        canvas.drawString(19 * mm, 74 * mm, "Ginger · oat · chocolate · rust")
-        canvas.drawString(19 * mm, 68.5 * mm, "Worsted / aran · 3.5 mm hook")
+        canvas.setFont(self.fonts.sans, 7.0)
+        canvas.drawString(19 * mm, 74 * mm, f"A {yarns['A']} · B {yarns['B']}")
+        canvas.drawString(19 * mm, 68.5 * mm, f"C {yarns['C']} · D {yarns['D']}")
+        canvas.drawString(
+            19 * mm,
+            62.5 * mm,
+            f"{pattern['yarn_weight']} · {pattern['hook_mm']:g} mm / {pattern['hook_us']}",
+        )
 
         canvas.setStrokeColor(LINE)
         canvas.setLineWidth(0.7)
@@ -597,7 +1076,9 @@ class CoverFlowable(Flowable):
         canvas.setFillColor(MUTED)
         canvas.setFont(self.fonts.sans, 6.8)
         canvas.drawString(14 * mm, 34.5 * mm, REVISION.upper())
-        canvas.drawRightString(PAGE_WIDTH - 14 * mm, 34.5 * mm, "DIGITAL CROCHET PATTERN")
+        canvas.drawRightString(
+            PAGE_WIDTH - 14 * mm, 34.5 * mm, "DIGITAL CROCHET PATTERN"
+        )
         canvas.setFont(self.fonts.sans, 6.3)
         canvas.drawString(
             14 * mm,
@@ -608,16 +1089,19 @@ class CoverFlowable(Flowable):
         canvas.rect(0, 0, PAGE_WIDTH, 14 * mm, stroke=0, fill=1)
         canvas.setFillColor(colors.white)
         canvas.setFont(self.fonts.sans_bold, 7.2)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 5.1 * mm, "NOVALITY CROCHET STUDIO  ·  ORIGINAL PATTERN")
+        canvas.drawCentredString(
+            PAGE_WIDTH / 2, 5.1 * mm, "NOVALITY CROCHET STUDIO  ·  ORIGINAL PATTERN"
+        )
         canvas.restoreState()
 
 
 class PrinterCoverFlowable(Flowable):
     """Black-on-white cover for the companion printer-saver edition."""
 
-    def __init__(self, fonts: Fonts):
+    def __init__(self, fonts: Fonts, model: dict):
         super().__init__()
         self.fonts = fonts
+        self.model = model
         self.width = PAGE_WIDTH
         self.height = PAGE_HEIGHT - 0.2 * mm
 
@@ -626,59 +1110,107 @@ class PrinterCoverFlowable(Flowable):
 
     def draw(self) -> None:
         canvas = self.canv
+        pattern = self.model["pattern"]
         canvas.saveState()
         canvas.setFillColor(colors.white)
         canvas.rect(0, 0, PAGE_WIDTH, PAGE_HEIGHT, stroke=0, fill=1)
         canvas.setStrokeColor(colors.black)
         canvas.setLineWidth(0.8)
-        canvas.rect(14 * mm, 14 * mm, PAGE_WIDTH - 28 * mm, PAGE_HEIGHT - 28 * mm, stroke=1, fill=0)
+        canvas.rect(
+            14 * mm,
+            14 * mm,
+            PAGE_WIDTH - 28 * mm,
+            PAGE_HEIGHT - 28 * mm,
+            stroke=1,
+            fill=0,
+        )
 
         canvas.setFillColor(colors.black)
         canvas.setFont(self.fonts.sans_bold, 9)
         canvas.drawString(20 * mm, PAGE_HEIGHT - 25 * mm, BRAND.upper())
         canvas.setFont(self.fonts.sans, 8)
-        canvas.drawRightString(PAGE_WIDTH - 20 * mm, PAGE_HEIGHT - 25 * mm, "PRINTER-SAVER EDITION")
-        canvas.line(20 * mm, PAGE_HEIGHT - 31 * mm, PAGE_WIDTH - 20 * mm, PAGE_HEIGHT - 31 * mm)
+        canvas.drawRightString(
+            PAGE_WIDTH - 20 * mm, PAGE_HEIGHT - 25 * mm, "PRINTER-SAVER EDITION"
+        )
+        canvas.line(
+            20 * mm, PAGE_HEIGHT - 31 * mm, PAGE_WIDTH - 20 * mm, PAGE_HEIGHT - 31 * mm
+        )
 
         canvas.setFont(self.fonts.sans_bold, 12)
-        canvas.drawString(20 * mm, 235 * mm, f"DESIGN CODE {DESIGN_CODE}")
+        canvas.drawString(20 * mm, 235 * mm, f"DESIGN CODE {pattern['design_code']}")
         canvas.setFont(self.fonts.serif_bold, 34)
-        canvas.drawString(20 * mm, 211 * mm, TITLE.upper())
+        canvas.drawString(20 * mm, 211 * mm, pattern["title"].upper())
         canvas.setFont(self.fonts.serif, 20)
-        canvas.drawString(20 * mm, 198 * mm, SUBTITLE)
+        canvas.drawString(20 * mm, 198 * mm, pattern["subtitle"])
         canvas.setLineWidth(1.2)
         canvas.line(20 * mm, 188 * mm, 92 * mm, 188 * mm)
 
         canvas.setFont(self.fonts.sans_bold, 10)
-        canvas.drawString(20 * mm, 172 * mm, "BLACK + WHITE · WHITE BACKGROUNDS · PROGRESS BOXES")
+        canvas.drawString(
+            20 * mm, 172 * mm, "BLACK + WHITE · WHITE BACKGROUNDS · PROGRESS BOXES"
+        )
+        time_hours = pattern["time_hours"]
         canvas.setFont(self.fonts.sans, 9)
-        canvas.drawString(20 * mm, 160 * mm, "US terms · Intermediate · 6–8 hours · About 15 cm / 6 in")
-        canvas.drawString(20 * mm, 151 * mm, "Worsted / aran yarn · 3.5 mm hook")
+        canvas.drawString(
+            20 * mm,
+            160 * mm,
+            f"{pattern['terminology']} terms · {pattern['skill_level']} · "
+            f"{time_hours['minimum']}–{time_hours['maximum']} hours · "
+            f"About {pattern['finished_size_cm']:g} cm",
+        )
+        canvas.drawString(
+            20 * mm,
+            151 * mm,
+            f"{pattern['yarn_weight']} yarn · {pattern['hook_mm']:g} mm hook / {pattern['hook_us']}",
+        )
 
+        yarns = {yarn["id"]: yarn["name"] for yarn in pattern["yarns"]}
         canvas.setLineWidth(0.5)
-        canvas.rect(20 * mm, 112 * mm, PAGE_WIDTH - 40 * mm, 26 * mm, stroke=1, fill=0)
+        canvas.rect(20 * mm, 106 * mm, PAGE_WIDTH - 40 * mm, 32 * mm, stroke=1, fill=0)
         canvas.setFont(self.fonts.sans_bold, 8.5)
         canvas.drawString(25 * mm, 130 * mm, "NAMED ORIGINAL COLOURWAY")
-        canvas.setFont(self.fonts.sans, 8.5)
+        canvas.setFont(self.fonts.sans, 8.0)
+        canvas.drawString(
+            25 * mm, 121 * mm, f"Yarn A {yarns['A']} · Yarn B {yarns['B']}"
+        )
+        canvas.drawString(
+            25 * mm, 114 * mm, f"Yarn C {yarns['C']} · Yarn D {yarns['D']}"
+        )
         canvas.drawString(
             25 * mm,
-            120 * mm,
-            "Yarn A Ginger · Yarn B Oat Cream · Yarn C Dark Chocolate · Yarn D Rust / Tartan",
+            108 * mm,
+            "Swatch hues are presentation aids; follow the written yarn names.",
         )
 
         canvas.setFont(self.fonts.sans_bold, 8.5)
         canvas.drawString(20 * mm, 91 * mm, "ABOUT THIS COMPANION FILE")
         canvas.setFont(self.fonts.sans, 8.2)
-        canvas.drawString(20 * mm, 81 * mm, "Designed for economical home printing and handwritten progress tracking.")
-        canvas.drawString(20 * mm, 73 * mm, "Large raster artwork is omitted. Use the full-colour edition for the materials")
-        canvas.drawString(20 * mm, 66 * mm, "visual and assembly illustration; the written instructions in both files are the same.")
+        canvas.drawString(
+            20 * mm,
+            81 * mm,
+            "Designed for economical home printing and handwritten progress tracking.",
+        )
+        canvas.drawString(
+            20 * mm,
+            73 * mm,
+            "Large raster artwork is omitted. Use the full-colour edition for the materials",
+        )
+        canvas.drawString(
+            20 * mm,
+            66 * mm,
+            "visual and assembly illustration; the written instructions in both files are the same.",
+        )
 
         canvas.line(20 * mm, 47 * mm, PAGE_WIDTH - 20 * mm, 47 * mm)
         canvas.setFont(self.fonts.sans, 7)
         canvas.drawString(20 * mm, 37 * mm, f"© 2026 {BRAND} · All rights reserved")
-        canvas.drawRightString(PAGE_WIDTH - 20 * mm, 37 * mm, "PERSONAL LICENSE · SEE TERMS")
+        canvas.drawRightString(
+            PAGE_WIDTH - 20 * mm, 37 * mm, "PERSONAL LICENSE · SEE TERMS"
+        )
         canvas.setFont(self.fonts.sans_bold, 7)
-        canvas.drawCentredString(PAGE_WIDTH / 2, 24 * mm, f"{DESIGN_CODE} · PRINTER-SAVER CROCHET PATTERN")
+        canvas.drawCentredString(
+            PAGE_WIDTH / 2, 24 * mm, f"{DESIGN_CODE} · PRINTER-SAVER CROCHET PATTERN"
+        )
         canvas.restoreState()
 
 
@@ -713,7 +1245,9 @@ class ClosingPanel(Flowable):
         canvas.setFont(self.fonts.serif_bold, 25)
         canvas.drawCentredString(center, 111 * mm, "HAPPY CROCHETING")
         canvas.setFont(self.fonts.serif, 12)
-        canvas.drawCentredString(center, 99 * mm, "Make it slowly. Check every seam. Make it yours.")
+        canvas.drawCentredString(
+            center, 99 * mm, "Make it slowly. Check every seam. Make it yours."
+        )
 
         canvas.setStrokeColor(GINGER_LIGHT)
         canvas.setLineWidth(1.2)
@@ -722,16 +1256,24 @@ class ClosingPanel(Flowable):
         canvas.setFont(self.fonts.sans_bold, 8.2)
         canvas.drawCentredString(center, 76 * mm, "SHARE YOUR FINISHED HAMISH")
         canvas.setFont(self.fonts.sans, 8)
-        canvas.drawCentredString(center, 67 * mm, "#NovalityCrochetStudio   ·   #HamishTheHighlandCow")
+        canvas.drawCentredString(
+            center, 67 * mm, "#NovalityCrochetStudio   ·   #HamishTheHighlandCow"
+        )
 
         canvas.setFont(self.fonts.sans, 7.4)
         canvas.setFillColor(MUTED)
-        canvas.drawCentredString(center, 50 * mm, "Keep this design code with support questions and pattern revisions.")
+        canvas.drawCentredString(
+            center,
+            50 * mm,
+            "Keep this design code with support questions and pattern revisions.",
+        )
         canvas.setFont(self.fonts.sans_bold, 8)
         canvas.setFillColor(FOREST_DARK)
         canvas.drawCentredString(center, 39 * mm, BRAND.upper())
         canvas.setFont(self.fonts.sans, 7)
-        canvas.drawCentredString(center, 29 * mm, f"© 2026 {BRAND} · ALL RIGHTS RESERVED · {DESIGN_CODE}")
+        canvas.drawCentredString(
+            center, 29 * mm, f"© 2026 {BRAND} · ALL RIGHTS RESERVED · {DESIGN_CODE}"
+        )
         canvas.restoreState()
 
 
@@ -777,8 +1319,12 @@ class PrinterNotesPanel(Flowable):
 
         canvas.setFont(self.fonts.sans, 7)
         canvas.setFillColor(colors.black)
-        canvas.drawString(0, 7 * mm, f"{BRAND} · {DESIGN_CODE} · printer-saver companion")
-        canvas.drawRightString(self.width, 7 * mm, "Keep this page with your project notes")
+        canvas.drawString(
+            0, 7 * mm, f"{BRAND} · {DESIGN_CODE} · printer-saver companion"
+        )
+        canvas.drawRightString(
+            self.width, 7 * mm, "Keep this page with your project notes"
+        )
         canvas.restoreState()
 
 
@@ -792,7 +1338,9 @@ class PatternDocument(BaseDocTemplate):
         *,
         printer_saver: bool = False,
     ):
-        edition = "printer-saver crochet pattern" if printer_saver else "crochet pattern"
+        edition = (
+            "printer-saver crochet pattern" if printer_saver else "crochet pattern"
+        )
         super().__init__(
             str(filename),
             pagesize=A4,
@@ -807,7 +1355,17 @@ class PatternDocument(BaseDocTemplate):
         )
         self.fonts = fonts
         self.printer_saver = printer_saver
-        cover_frame = Frame(0, 0, PAGE_WIDTH, PAGE_HEIGHT, id="cover", leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
+        cover_frame = Frame(
+            0,
+            0,
+            PAGE_WIDTH,
+            PAGE_HEIGHT,
+            id="cover",
+            leftPadding=0,
+            rightPadding=0,
+            topPadding=0,
+            bottomPadding=0,
+        )
         content_frame = Frame(
             self.leftMargin,
             self.bottomMargin,
@@ -821,8 +1379,12 @@ class PatternDocument(BaseDocTemplate):
         )
         self.addPageTemplates(
             [
-                PageTemplate(id="Cover", frames=[cover_frame], onPage=self.draw_cover_meta),
-                PageTemplate(id="Content", frames=[content_frame], onPage=self.draw_content_page),
+                PageTemplate(
+                    id="Cover", frames=[cover_frame], onPage=self.draw_cover_meta
+                ),
+                PageTemplate(
+                    id="Content", frames=[content_frame], onPage=self.draw_content_page
+                ),
             ]
         )
 
@@ -855,15 +1417,23 @@ class PatternDocument(BaseDocTemplate):
         canvas.setFillColor(HexColor("#444444") if self.printer_saver else MUTED)
         canvas.setFont(self.fonts.sans, 6.6)
         canvas.drawString(18 * mm, 7.2 * mm, f"© 2026 {BRAND} · All rights reserved")
-        canvas.drawCentredString(PAGE_WIDTH / 2, 7.2 * mm, "PERSONAL LICENSE · SEE TERMS")
+        canvas.drawCentredString(
+            PAGE_WIDTH / 2, 7.2 * mm, "PERSONAL LICENSE · SEE TERMS"
+        )
         canvas.setFont(self.fonts.sans_bold, 7)
-        canvas.drawRightString(PAGE_WIDTH - 18 * mm, 7.2 * mm, f"{DESIGN_CODE}   ·   {doc.page}")
+        canvas.drawRightString(
+            PAGE_WIDTH - 18 * mm, 7.2 * mm, f"{DESIGN_CODE}   ·   {doc.page}"
+        )
         canvas.restoreState()
 
     def set_pdf_metadata(self, canvas) -> None:
         canvas.setTitle(f"{DESIGN_CODE} — {TITLE} {SUBTITLE}")
         canvas.setAuthor(BRAND)
-        subject = "Printer-saver crochet pattern" if self.printer_saver else "Branded crochet pattern"
+        subject = (
+            "Printer-saver crochet pattern"
+            if self.printer_saver
+            else "Branded crochet pattern"
+        )
         canvas.setSubject(f"{subject} · {DESIGN_CODE}")
         canvas.setCreator(BRAND)
         canvas.setKeywords(f"crochet, amigurumi, Highland cow, {DESIGN_CODE}, {BRAND}")
@@ -873,7 +1443,9 @@ class PatternDocument(BaseDocTemplate):
             key = flowable.bookmark_key
             level = flowable.outline_level
             self.canv.bookmarkPage(key)
-            self.canv.addOutlineEntry(flowable.plain_heading, key, level=level, closed=False)
+            self.canv.addOutlineEntry(
+                flowable.plain_heading, key, level=level, closed=False
+            )
             if level == 0:
                 self.notify("TOCEntry", (level, flowable.plain_heading, self.page, key))
 
@@ -942,7 +1514,13 @@ def make_table(
         ("TOPPADDING", (0, 0), (-1, -1), 4.2),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 4.2),
         ("ROWBACKGROUNDS", (0, 1), (-1, -1), row_fills),
-        ("LINEBELOW", (0, 0), (-1, 0), 1.0, colors.black if printer_saver else FOREST_DARK),
+        (
+            "LINEBELOW",
+            (0, 0),
+            (-1, 0),
+            1.0,
+            colors.black if printer_saver else FOREST_DARK,
+        ),
     ]
     table.setStyle(TableStyle(commands))
     return table
@@ -951,16 +1529,21 @@ def make_table(
 def colour_swatch_table(
     styles: dict[str, ParagraphStyle],
     available_width: float,
+    model: dict,
     *,
     printer_saver: bool = False,
 ) -> Table:
-    """Render named original colours as native PDF vectors and selectable text."""
+    """Render source-derived yarn names/amounts and presentation-only swatches."""
 
+    display_colours = {"A": GINGER, "B": OAT, "C": CHOCOLATE, "D": RUST}
     labels = [
-        ("YARN A", "GINGER", "body + fringe · about 25 g", GINGER),
-        ("YARN B", "OAT CREAM", "muzzle + horns + inner ears · 12 g", OAT),
-        ("YARN C", "DARK CHOCOLATE", "hooves + nostrils · about 5 g", CHOCOLATE),
-        ("YARN D", "RUST / TARTAN", "optional scarf · about 6 g", RUST),
+        (
+            f"YARN {yarn['id']}",
+            yarn["name"],
+            f"{yarn['grams']:g} g in master",
+            display_colours[yarn["id"]],
+        )
+        for yarn in model["pattern"]["yarns"]
     ]
     width = available_width / len(labels)
     text_cells = [
@@ -1007,14 +1590,31 @@ def colour_swatch_table(
 
 
 def profile_story(
-    styles: dict[str, ParagraphStyle], materials_image: Path, available_width: float
+    styles: dict[str, ParagraphStyle],
+    materials_image: Path,
+    available_width: float,
+    model: dict,
 ) -> list[Flowable]:
+    pattern = model["pattern"]
+    time_hours = pattern["time_hours"]
     badge_data = [
         [
-            Paragraph("<b>TERMINOLOGY</b><br/>US crochet terms", styles["body_compact"]),
-            Paragraph("<b>SKILL LEVEL</b><br/>Intermediate", styles["body_compact"]),
-            Paragraph("<b>ACTIVE TIME</b><br/>6–8 hours", styles["body_compact"]),
-            Paragraph("<b>FINISHED SIZE</b><br/>About 15 cm / 6 in", styles["body_compact"]),
+            Paragraph(
+                f"<b>TERMINOLOGY</b><br/>{pattern['terminology']} crochet terms",
+                styles["body_compact"],
+            ),
+            Paragraph(
+                f"<b>SKILL LEVEL</b><br/>{pattern['skill_level']}",
+                styles["body_compact"],
+            ),
+            Paragraph(
+                f"<b>ACTIVE TIME</b><br/>{time_hours['minimum']}–{time_hours['maximum']} hours",
+                styles["body_compact"],
+            ),
+            Paragraph(
+                f"<b>FINISHED SIZE</b><br/>About {pattern['finished_size_cm']:g} cm",
+                styles["body_compact"],
+            ),
         ]
     ]
     badges = Table(badge_data, colWidths=[42.5 * mm] * 4)
@@ -1032,7 +1632,11 @@ def profile_story(
             ]
         )
     )
-    materials = image_for_width(materials_image, 160 * mm, 68 * mm)
+    materials = image_for_width(
+        materials_image,
+        MATERIALS_IMAGE_BOX_MM[0] * mm,
+        MATERIALS_IMAGE_BOX_MM[1] * mm,
+    )
     materials.hAlign = "CENTER"
     return [
         Paragraph("Pattern profile", styles["front_title"]),
@@ -1044,14 +1648,14 @@ def profile_story(
         badges,
         Spacer(1, 5 * mm),
         Paragraph("Original colourway", styles["h3"]),
-        colour_swatch_table(styles, available_width),
+        colour_swatch_table(styles, available_width, model),
         Paragraph(
-            "COLOUR GUIDE · Ginger, oat cream, dark chocolate and optional rust/tartan are the named original colours. Screen appearance and dye lots vary.",
+            "COLOUR GUIDE · Swatch hues are presentation aids; select yarn by the names in the written Materials section. Screen appearance and dye lots vary.",
             styles["caption"],
         ),
         materials,
         Paragraph(
-            "FIGURE 1 · Materials visual: ginger, oat-cream and dark-chocolate yarn; rust tartan; 3.5 mm hook; two eyes with washers; fibre fill; needle, pins, scissors and marker. Follow the written quantities below.",
+            "FIGURE 1 · Illustrative materials visual only. Refer to the written Materials section for the canonical yarn colours, amounts, tools and notions.",
             styles["caption"],
         ),
         Paragraph("Read before making", styles["h2"]),
@@ -1071,17 +1675,31 @@ def profile_story(
 
 
 def printer_profile_story(
-    styles: dict[str, ParagraphStyle], available_width: float
+    styles: dict[str, ParagraphStyle], available_width: float, model: dict
 ) -> list[Flowable]:
     """Create a low-ink profile page without raster artwork or colour fills."""
 
+    pattern = model["pattern"]
+    time_hours = pattern["time_hours"]
     facts = Table(
         [
             [
-                Paragraph("<b>TERMINOLOGY</b><br/>US crochet terms", styles["body_compact"]),
-                Paragraph("<b>SKILL LEVEL</b><br/>Intermediate", styles["body_compact"]),
-                Paragraph("<b>ACTIVE TIME</b><br/>6–8 hours", styles["body_compact"]),
-                Paragraph("<b>FINISHED SIZE</b><br/>About 15 cm / 6 in", styles["body_compact"]),
+                Paragraph(
+                    f"<b>TERMINOLOGY</b><br/>{pattern['terminology']} crochet terms",
+                    styles["body_compact"],
+                ),
+                Paragraph(
+                    f"<b>SKILL LEVEL</b><br/>{pattern['skill_level']}",
+                    styles["body_compact"],
+                ),
+                Paragraph(
+                    f"<b>ACTIVE TIME</b><br/>{time_hours['minimum']}–{time_hours['maximum']} hours",
+                    styles["body_compact"],
+                ),
+                Paragraph(
+                    f"<b>FINISHED SIZE</b><br/>About {pattern['finished_size_cm']:g} cm",
+                    styles["body_compact"],
+                ),
             ]
         ],
         colWidths=[42.5 * mm] * 4,
@@ -1110,7 +1728,7 @@ def printer_profile_story(
         facts,
         Spacer(1, 5 * mm),
         Paragraph("Named original colourway", styles["h3"]),
-        colour_swatch_table(styles, available_width, printer_saver=True),
+        colour_swatch_table(styles, available_width, model, printer_saver=True),
         Paragraph(
             "The names above—not a screen or print colour—control yarn selection. See the full-colour companion for visual swatches and illustrative materials.",
             styles["caption"],
@@ -1139,6 +1757,7 @@ def printer_profile_story(
 def toc_story(
     styles: dict[str, ParagraphStyle],
     fonts: Fonts,
+    model: dict,
     *,
     printer_saver: bool = False,
 ) -> list[Flowable]:
@@ -1176,6 +1795,13 @@ def toc_story(
             firstLineIndent=0,
         ),
     ]
+    join = model["components"]["head"]["neck_join"]
+    body_ending = model["components"]["body"]["ending"]
+    checkpoint_text = (
+        "Three checkpoints: lock both eye washers while the head is open; "
+        f"match all {join['stitches']} body R{body_ending['round']} stitches to "
+        f"head R{join['round']}; and make two complete passes on structural seams."
+    )
     return [
         Paragraph("Contents", styles["front_title"]),
         Paragraph(
@@ -1197,7 +1823,7 @@ def toc_story(
             styles["callout"],
         ),
         Paragraph(
-            "Three checkpoints: lock both eye washers while the head is open; match all 18 neck stitches one-for-one; and make two complete passes on structural seams.",
+            checkpoint_text,
             styles["front_body"],
         ),
     ]
@@ -1209,6 +1835,9 @@ def blocks_to_story(
     available_width: float,
     assembly: Path | None,
     *,
+    fonts: Fonts,
+    model: dict,
+    placement_drawing: Drawing | None,
     printer_saver: bool = False,
 ) -> list[Flowable]:
     story: list[Flowable] = []
@@ -1229,28 +1858,52 @@ def blocks_to_story(
             level = max(0, block.level - 2)
             key = f"section-{heading_count}"
             heading_count += 1
-            story.append(HeadingParagraph(inline_markup(text), styles[style_key], level, key))
-            if text == "Finishing & assembly" and assembly is not None and not inserted_assembly:
+            story.append(
+                HeadingParagraph(inline_markup(text), styles[style_key], level, key)
+            )
+            if text == "Gauge & size":
                 story.extend(
                     [
-                        image_for_width(assembly, available_width, 104 * mm),
-                        Paragraph(
-                            "FIGURE 2 · Visual sequence only. The numbered written assembly directions below control placement and seam construction.",
-                            styles["caption"],
-                        ),
+                        GaugeRulerFlowable(fonts, model, printer_saver=printer_saver),
+                        Spacer(1, 3 * mm),
                     ]
                 )
-                inserted_assembly = True
+            if text == "Finishing & assembly":
+                if assembly is not None and not inserted_assembly:
+                    story.extend(
+                        [
+                            image_for_width(assembly, available_width, 104 * mm),
+                            Paragraph(
+                                "FIGURE 2 · Visual sequence only. The numbered written assembly directions below control placement and seam construction.",
+                                styles["caption"],
+                            ),
+                        ]
+                    )
+                    inserted_assembly = True
+                if placement_drawing is not None:
+                    story.extend(
+                        [
+                            Paragraph(
+                                "Round-referenced placement schematic", styles["h3"]
+                            ),
+                            PlacementDiagramFlowable(placement_drawing),
+                            Paragraph(
+                                "SCHEMATIC · Not to scale. Use the written pattern for actual placement and construction; no stitch-by-stitch join map is implied.",
+                                styles["caption"],
+                            ),
+                        ]
+                    )
             if text == "Colourways":
                 story.extend(
                     [
                         colour_swatch_table(
                             styles,
                             available_width,
+                            model,
                             printer_saver=printer_saver,
                         ),
                         Paragraph(
-                            "ORIGINAL COLOURWAY · Yarn A Ginger · Yarn B Oat Cream · Yarn C Dark Chocolate · Yarn D Rust / Tartan (optional).",
+                            "ORIGINAL COLOURWAY · Swatches are visual aids; the written source names control yarn selection.",
                             styles["caption"],
                         ),
                     ]
@@ -1284,7 +1937,11 @@ def blocks_to_story(
             )
             continue
         if block.kind == "bullet":
-            story.append(Paragraph(inline_markup(str(block.value)), styles["bullet"], bulletText="•"))
+            story.append(
+                Paragraph(
+                    inline_markup(str(block.value)), styles["bullet"], bulletText="•"
+                )
+            )
             continue
         if block.kind == "ordered":
             story.append(
@@ -1296,7 +1953,9 @@ def blocks_to_story(
             )
             continue
         if block.kind == "paragraph":
-            style = styles["callout"] if current_h2.startswith("Safety") else styles["body"]
+            style = (
+                styles["callout"] if current_h2.startswith("Safety") else styles["body"]
+            )
             value = str(block.value)
             if current_h2 == "Colourways":
                 value = f"<b>Optional body-tone variations:</b> {escape(value)}"
@@ -1306,42 +1965,57 @@ def blocks_to_story(
     return story
 
 
-def build_pdf(output: Path) -> None:
+def build_pdf(output: Path, model: dict | None = None) -> None:
+    if model is None:
+        model = compile_ns01_pdf_model(SOURCE)
     if not SOURCE.exists():
         raise FileNotFoundError(f"Missing audited master: {SOURCE}")
     if not HERO.exists():
         raise FileNotFoundError(f"Missing illustrative cover asset: {HERO}")
     if not MATERIALS_IMAGE.exists():
-        raise FileNotFoundError(f"Missing illustrative materials asset: {MATERIALS_IMAGE}")
+        raise FileNotFoundError(
+            f"Missing illustrative materials asset: {MATERIALS_IMAGE}"
+        )
 
     output.parent.mkdir(parents=True, exist_ok=True)
     assembly = ASSET_DIR / "ns01_assembly_map.png"
-    create_assembly_asset(assembly)
+    create_assembly_asset(assembly, model)
 
     fonts = register_fonts()
     styles = make_styles(fonts)
     text = normalize_branding(SOURCE.read_text(encoding="utf-8"))
     blocks = parse_markdown(text)
+    placement_drawing = make_placement_drawing(model)
 
     document = PatternDocument(output, fonts)
     story: list[Flowable] = [
-        CoverFlowable(HERO, fonts),
+        CoverFlowable(HERO, fonts, model),
         NextPageTemplate("Content"),
         PageBreak(),
-        *profile_story(styles, MATERIALS_IMAGE, document.width),
+        *profile_story(styles, MATERIALS_IMAGE, document.width, model),
         PageBreak(),
-        *toc_story(styles, fonts),
+        *toc_story(styles, fonts, model),
         PageBreak(),
-        *blocks_to_story(blocks, styles, document.width, assembly),
+        *blocks_to_story(
+            blocks,
+            styles,
+            document.width,
+            assembly,
+            fonts=fonts,
+            model=model,
+            placement_drawing=placement_drawing,
+        ),
         PageBreak(),
         ClosingPanel(document.width, fonts),
     ]
     document.multiBuild(story)
 
 
-def build_printer_pdf(output: Path) -> None:
+def build_printer_pdf(output: Path, model: dict | None = None) -> None:
     """Build the black-on-white companion without any raster image objects."""
 
+    if model is None:
+        model = compile_ns01_pdf_model(SOURCE)
     if not SOURCE.exists():
         raise FileNotFoundError(f"Missing audited master: {SOURCE}")
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -1350,21 +2024,25 @@ def build_printer_pdf(output: Path) -> None:
     styles = make_printer_styles(fonts)
     text = normalize_branding(SOURCE.read_text(encoding="utf-8"))
     blocks = parse_markdown(text)
+    placement_drawing = make_placement_drawing(model, printer_saver=True)
 
     document = PatternDocument(output, fonts, printer_saver=True)
     story: list[Flowable] = [
-        PrinterCoverFlowable(fonts),
+        PrinterCoverFlowable(fonts, model),
         NextPageTemplate("Content"),
         PageBreak(),
-        *printer_profile_story(styles, document.width),
+        *printer_profile_story(styles, document.width, model),
         PageBreak(),
-        *toc_story(styles, fonts, printer_saver=True),
+        *toc_story(styles, fonts, model, printer_saver=True),
         PageBreak(),
         *blocks_to_story(
             blocks,
             styles,
             document.width,
             None,
+            fonts=fonts,
+            model=model,
+            placement_drawing=placement_drawing,
             printer_saver=True,
         ),
         PageBreak(),
@@ -1393,6 +2071,38 @@ def image_inventory(reader: PdfReader) -> tuple[set[str], int]:
     return image_hashes, image_placements
 
 
+def check_pdf_text_bounds(output: Path, *, tolerance_points: float = 1.0) -> int:
+    """Reject text glyph boxes outside the physical page rectangle.
+
+    This is a page-level bounds check for the ReportLab output. It is not an
+    HTML DOM or parent-table-cell overflow test.
+    """
+
+    checked_spans = 0
+    with fitz.open(output) as document:
+        for page_number, page in enumerate(document, start=1):
+            bounds = page.rect
+            for block in page.get_text("dict")["blocks"]:
+                if block.get("type") != 0:
+                    continue
+                for line in block.get("lines", []):
+                    for span in line.get("spans", []):
+                        if not span.get("text", "").strip():
+                            continue
+                        checked_spans += 1
+                        x0, y0, x1, y1 = span["bbox"]
+                        if (
+                            x0 < bounds.x0 - tolerance_points
+                            or y0 < bounds.y0 - tolerance_points
+                            or x1 > bounds.x1 + tolerance_points
+                            or y1 > bounds.y1 + tolerance_points
+                        ):
+                            raise ValueError(
+                                f"Text extends beyond page {page_number} bounds: {span['text']!r}"
+                            )
+    return checked_spans
+
+
 def postflight_pdf(output: Path) -> None:
     """Reject an Etsy PDF with missing pages, identity, imagery, or critical text."""
 
@@ -1411,7 +2121,10 @@ def postflight_pdf(output: Path) -> None:
         raise ValueError("PDF bookmarks were not generated")
 
     page_texts = [page.extract_text() or "" for page in reader.pages]
-    for number, (page, text) in enumerate(zip(reader.pages, page_texts, strict=True), 1):
+    text_spans = check_pdf_text_bounds(output)
+    for number, (page, text) in enumerate(
+        zip(reader.pages, page_texts, strict=True), 1
+    ):
         if len(text) <= 250:
             raise ValueError(f"Page {number} is unexpectedly empty")
         if DESIGN_CODE.lower() not in text.lower():
@@ -1436,6 +2149,8 @@ def postflight_pdf(output: Path) -> None:
         "Safety — read this first",
         "Materials",
         "Gauge & size",
+        "50 mm × 50 mm",
+        "Round-referenced placement schematic",
         "Abbreviations (US terms)",
         "Techniques used, in the order you will meet them",
         "1. Head - Yarn A",
@@ -1443,7 +2158,7 @@ def postflight_pdf(output: Path) -> None:
         "3. Body - Yarn A",
         "4. Belly patch - Yarn B (optional)",
         "5. Legs - start with Yarn C, change to Yarn A (make 4)",
-        "Standard 16-round legs",
+        "All four identical",
         "Shortened front legs - upright option only (make 2)",
         "Start each leg 25 degrees forward from vertical",
         "6. Ears - make 2 of each layer",
@@ -1457,7 +2172,7 @@ def postflight_pdf(output: Path) -> None:
         "YARN A · GINGER",
         "YARN B · OAT CREAM",
         "YARN C · DARK CHOCOLATE",
-        "YARN D · RUST / TARTAN",
+        "YARN D · RUST (OPTIONAL)",
         "Care",
         "Terms of Use",
         "Copyright & ownership",
@@ -1466,7 +2181,7 @@ def postflight_pdf(output: Path) -> None:
         "43 knots",
         f"© 2026 {BRAND}",
     ]
-    normalized_text = all_text.lower()
+    normalized_text = " ".join(all_text.lower().split())
     for phrase in required_text:
         if phrase.lower() not in normalized_text:
             raise ValueError(f"Required customer text is missing: {phrase!r}")
@@ -1477,8 +2192,11 @@ def postflight_pdf(output: Path) -> None:
     body_rnd_11 = r"\[\s*\]\s*R11\s+sc in each st around\s+\(48\)"
     if not re.search(body_rnd_11, all_text):
         raise ValueError("Body Rnd 11 is missing its straight-round instruction")
-    if all_text.count("[ ]") < 90:
-        raise ValueError("Too few construction-table progress checkboxes were rendered")
+    expected_boxes = expected_progress_box_count(SOURCE.read_text(encoding="utf-8"))
+    if all_text.count("[ ]") < expected_boxes:
+        raise ValueError(
+            "One or more construction-table progress checkboxes were not rendered"
+        )
 
     image_hashes, image_placements = image_inventory(reader)
     if len(image_hashes) != 3:
@@ -1491,7 +2209,8 @@ def postflight_pdf(output: Path) -> None:
         f"{len(reader.pages)} A4 pages, "
         f"{output.stat().st_size / 1024 / 1024:.2f} MiB, "
         f"3 distinct images ({image_placements} placements), "
-        f"{all_text.count('[ ]')} progress boxes, selectable text, metadata, "
+        f"{all_text.count('[ ]')} progress boxes, {text_spans} text spans within page bounds, "
+        "selectable text, metadata, "
         "bookmarks, brand, code, copyright, and critical instructions"
     )
 
@@ -1516,7 +2235,10 @@ def postflight_printer_pdf(output: Path) -> None:
         raise ValueError("Printer-saver bookmarks were not generated")
 
     page_texts = [page.extract_text() or "" for page in reader.pages]
-    for number, (page, text) in enumerate(zip(reader.pages, page_texts, strict=True), 1):
+    text_spans = check_pdf_text_bounds(output)
+    for number, (page, text) in enumerate(
+        zip(reader.pages, page_texts, strict=True), 1
+    ):
         if len(text) <= 250:
             raise ValueError(f"Printer-saver page {number} is unexpectedly empty")
         if DESIGN_CODE.lower() not in text.lower():
@@ -1543,10 +2265,12 @@ def postflight_printer_pdf(output: Path) -> None:
                     )
 
     all_text = "\n".join(page_texts)
-    normalized_text = all_text.lower()
+    normalized_text = " ".join(all_text.lower().split())
     required_text = [
         "PRINTER-SAVER EDITION",
         "Every construction-table row begins with a printable [ ] box",
+        "50 mm × 50 mm",
+        "Round-referenced placement schematic",
         "Safety — read this first",
         "Materials",
         "1. Head - Yarn A",
@@ -1561,15 +2285,16 @@ def postflight_printer_pdf(output: Path) -> None:
         "YARN A · GINGER",
         "YARN B · OAT CREAM",
         "YARN C · DARK CHOCOLATE",
-        "YARN D · RUST / TARTAN",
+        "YARN D · RUST (OPTIONAL)",
         "Terms of Use",
         f"© 2026 {BRAND}",
     ]
     for phrase in required_text:
         if phrase.lower() not in normalized_text:
             raise ValueError(f"Required printer-saver text is missing: {phrase!r}")
-    if all_text.count("[ ]") < 75:
-        raise ValueError("Too few progress checkboxes were rendered")
+    expected_boxes = expected_progress_box_count(SOURCE.read_text(encoding="utf-8"))
+    if all_text.count("[ ]") < expected_boxes:
+        raise ValueError("One or more progress checkboxes were not rendered")
     head_rnd_11 = r"\[\s*\]\s*R11\s+\[5 sc, dec\] x 6\s+\(36\)"
     if not re.search(head_rnd_11, all_text):
         raise ValueError("Printer-saver Head Rnd 11 instruction is missing")
@@ -1585,7 +2310,8 @@ def postflight_printer_pdf(output: Path) -> None:
         "Printer-saver postflight: PASS — "
         f"{len(reader.pages)} A4 pages, "
         f"{output.stat().st_size / 1024 / 1024:.2f} MiB, "
-        f"{all_text.count('[ ]')} progress boxes, no raster images, grayscale vectors, "
+        f"{all_text.count('[ ]')} progress boxes, {text_spans} text spans within page bounds, "
+        "no raster images, grayscale vectors, "
         "selectable text, metadata, bookmarks, brand, code, copyright, and critical instructions"
     )
 
@@ -1604,18 +2330,28 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Build only the full-colour customer edition",
     )
+    parser.add_argument(
+        "--placement-svg",
+        type=Path,
+        help="Also export the source-derived vector placement figure as SVG",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    model = compile_ns01_pdf_model(SOURCE)
+    if args.placement_svg:
+        svg_output = args.placement_svg.resolve()
+        export_placement_svg(model, svg_output)
+        print(svg_output)
     output = args.output.resolve()
-    build_pdf(output)
+    build_pdf(output, model)
     postflight_pdf(output)
     print(output)
     if not args.skip_printer_saver:
         printer_output = args.printer_output.resolve()
-        build_printer_pdf(printer_output)
+        build_printer_pdf(printer_output, model)
         postflight_printer_pdf(printer_output)
         print(printer_output)
     return 0
