@@ -86,3 +86,8 @@ web/studio/dist/
 # source lives in src/client/lib/, so re-include it explicitly.
 !web/studio/src/client/lib/
 !web/studio/src/client/lib/**
+
+# Large transfer artifacts â€” keep the repo cloneable. Use GitHub Releases
+# or object storage for bundles instead of committing them.
+*.zip
+*.patch

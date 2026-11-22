@@ -1,6 +1,82 @@
-# Crochet Pattern Checker
+<div align="center">
 
-A deterministic checker for written crochet patterns. It parses US rounds and rows, counts the stitches, and reports contradictions. It does not decide those counts with a language model.
+# ðŸ§¶ Crochet Pattern Checker
+
+**Deterministic crochet pattern verification, visualization & PDF publishing â€” no AI guesswork.**
+
+Parse US rounds/rows, count every stitch, and catch contradictions before you hook a single loop.
+Gauge, yarn, hooks, USâ†”UK conversion, diagrams, 3D simulation, and printable sheets included.
+
+[![CI](https://github.com/arbabkhan007/Crochet-Pattern-Checker/actions/workflows/tests.yml/badge.svg)](https://github.com/arbabkhan007/Crochet-Pattern-Checker/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](./pyproject.toml)
+[![Version](https://img.shields.io/badge/version-1.0.0-orange.svg)](./pyproject.toml)
+
+**[Try the web app](#web-app)** Â· **[Quick start](#quick-start)** Â· **[API](#api)** Â· **[Commands](#commands)**
+
+</div>
+
+## âœ¨ Features
+
+- âœ… **Stitch-count validation** â€” repeats, increases/decreases math, round order, chain length, seams, eye counts
+- ðŸ“Š **Visualize** â€” 2D diagrams, stitch maps, assembly & geometry maps, 3D simulation (OBJ/glTF/SVG export)
+- ðŸ“ **Gauge calculator** â€” swatch â†’ finished size (in/cm), stitches-for-size
+- ðŸ§µ **Yarn & hooks** â€” yardage estimates, hook recommendations from Craft Yarn Council standards, WPI â†’ weight
+- ðŸ”€ **US â†” UK converter** â€” word-boundary-safe terminology translation
+- ðŸ“„ **Shareable HTML reports** â€” verdict, stitch-count ladder, findings; printable pattern sheets (WeasyPrint PDF)
+- ðŸŒ **Web app + REST API** â€” FastAPI with CORS, OpenAPI docs at `/docs`, Docker one-command deploy
+- ðŸ”’ **Deterministic & honest** â€” written counts only; estimates always name their assumptions. No photo counting, no invented sizes.
+
+## ðŸš€ Quick start
+
+```bash
+git clone https://github.com/arbabkhan007/Crochet-Pattern-Checker.git
+cd Crochet-Pattern-Checker
+python -m pip install -e ".[dev]"
+
+# Check a pattern (exit 1 on errors)
+crochet-check check examples/amigurumi.txt
+
+# Web app (UI + API)
+crochet-check serve --port 8000
+# â†’ http://localhost:8000  Â·  API docs at /docs
+
+# Or with Docker
+docker compose up --build
+```
+
+## ðŸŒ Web app
+
+Tabs: **Check** Â· **Visualize** Â· **Gauge & Yarn** Â· **US â†” UK** Â· **Report** â€” dark-mode aware, responsive, no external assets.
+
+## ðŸ”Œ API
+
+| Endpoint | What it does |
+|---|---|
+| `POST /api/check` | Validate a pattern â†’ verdict, score, errors, warnings |
+| `POST /api/render` Â· `/api/simulate` | Diagrams, stitch maps, 3D simulation |
+| `POST /api/gauge` | Gauge swatch â†’ finished size (estimate) |
+| `POST /api/chart` | Stitch-count ladder and silhouette from written counts |
+| `POST /api/yarn` Â· `GET /api/hooks` | Yardage estimate Â· hook recommendation |
+| `POST /api/convert` | US â†” UK terminology conversion |
+| `POST /api/report` Â· `/api/pdf` | Shareable HTML report Â· printable sheet |
+| `GET /api/health` Â· `/api/version` | Liveness & version |
+
+## âŒ¨ï¸ Commands
+
+| Command | What it does |
+|---|---|
+| `crochet-check check <file>` | Validate stitch counts (exit 1 on errors) |
+| `crochet-check gauge -s 40 -r 40 --sts-per-4in 20 --rows-per-4in 20` | Finished size from a swatch |
+| `crochet-check convert <file> --to us-to-uk` | Convert terminology |
+| `crochet-check report <file> -o report.html` | Shareable HTML report |
+| `crochet-check render` / `simulate` / `render-3d` | Diagrams, stitch maps, 3D meshes |
+| `crochet-check measure` / `yarn-calc` / `progress` | Estimates & round checklist |
+| `crochet-check pdf` / `diff` / `export` / `explain` / `standards` | Printable sheets, diffs, exports, reference |
+| `crochet-check serve` | Web app + API |
+
+---
+
 
 Version 1.0.0. Repository: [arbabkhan007/Crochet-Pattern-Checker](https://github.com/arbabkhan007/Crochet-Pattern-Checker).
 
@@ -78,8 +154,9 @@ cd ../..
 uvicorn crochet_checker.web.app:app --port 8000
 ```
 
-Open `http://localhost:8000/studio/`. The existing checker UI at `/` is unchanged. Without a built
-`web/studio/dist`, the mount is skipped and the API behaves exactly as before.
+Open `http://localhost:8000/studio/`. The root UI at `/` also includes the checker, visualization,
+gauge/yarn, conversion, and report tools. Without a built `web/studio/dist`, only the `/studio` mount
+is skipped; the root UI and API remain available.
 
 The photo aid measures image texture and ranks stitches by fit. It is not a chart image detector and
 it does not count a photo, so it does not change the non-goals listed above.

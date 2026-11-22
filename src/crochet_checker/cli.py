@@ -564,6 +564,68 @@ def export_cmd(pattern_file, fmt, output):
     console.print(f"Wrote {output}. Coordinates are not millimetres. This is not a print-shop file.")
 
 
+@cli.command("gauge")
+@click.option("--stitches", "-s", type=int, required=True, help="Stitches in the piece")
+@click.option("--rows", "-r", type=int, required=True, help="Rows/rounds in the piece")
+@click.option("--sts-per-4in", type=float, required=True, help="Stitches per 4 inches from your swatch")
+@click.option("--rows-per-4in", type=float, required=True, help="Rows per 4 inches from your swatch")
+def gauge_cmd(stitches, rows, sts_per_4in, rows_per_4in):
+    """Finished size from a gauge swatch. Estimate, not a measurement."""
+    from .calculators import gauge_to_size
+
+    result = gauge_to_size(stitches, rows, sts_per_4in, rows_per_4in)
+    console.print("\n[bold]Finished size estimate[/bold]")
+    console.print(f"  Width:  [cyan]{result.width_in} in[/cyan] ({result.width_cm} cm)")
+    console.print(f"  Height: [cyan]{result.height_in} in[/cyan] ({result.height_cm} cm)")
+    console.print(f"  [dim]{result.note}[/dim]")
+
+
+@cli.command("convert")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--to", "direction", type=click.Choice(["us-to-uk", "uk-to-us"]), default="us-to-uk")
+@click.option("--output", "-o", type=click.Path(), default=None)
+def convert_cmd(pattern_file, direction, output):
+    """Convert US <-> UK stitch terminology in a pattern file."""
+    from crochet_checker.utils import read_pattern_file
+
+    from .calculators import convert_terminology
+
+    converted = convert_terminology(read_pattern_file(pattern_file), direction)
+    if output:
+        Path(output).write_text(converted, encoding="utf-8")
+        console.print(f"Wrote converted pattern to {output}")
+    else:
+        click.echo(converted)
+
+
+@cli.command("report")
+@click.argument("pattern_file", type=click.Path(exists=True))
+@click.option("--output", "-o", type=click.Path(), default="report.html")
+def report_cmd(pattern_file, output):
+    """Write a shareable HTML report: verdict, counts, chart, findings."""
+    from crochet_checker.utils import read_pattern_file
+
+    from .report import write_report
+
+    text = read_pattern_file(pattern_file)
+    pattern = CrochetParser().parse(text)
+    report = validate_pattern(pattern)
+    write_report(pattern, report, output)
+    console.print(f"[green]Report written to: {output}[/green]")
+    console.print(f"  Status: {report.overall_status} | Score: {report.score}/100")
+
+
+@cli.command("serve")
+@click.option("--host", default="127.0.0.1")
+@click.option("--port", default=8000, type=int)
+def serve_cmd(host, port):
+    """Start the web app (checker UI + API)."""
+    import uvicorn
+
+    console.print(f"[bold]Crochet Pattern Checker[/bold] serving on http://{host}:{port}")
+    uvicorn.run("crochet_checker.web.app:app", host=host, port=port)
+
+
 def main():
     cli()
 

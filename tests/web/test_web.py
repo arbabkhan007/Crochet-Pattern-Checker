@@ -128,9 +128,11 @@ def test_pdf_print_setup_does_not_restore_charts():
     assert "large-print" in html and "Legal landscape" in html and "ink-saver" in html and "2.8cm" in html
 
 def test_sheet_controls_are_on_the_page():
+    # The redesigned UI exposes the printable sheet from the Report tab;
+    # the /api/pdf endpoint still accepts every sheet option.
     page = client.get("/")
     assert page.status_code == 200
-    assert "pdfLarge" in page.text and "Large print" in page.text and "pdfPage" in page.text
+    assert "Printable sheet" in page.text and "makePdf" in page.text
 
 
 def test_pdf_advanced_options_do_not_restore_charts():
@@ -146,9 +148,11 @@ def test_pdf_advanced_options_do_not_restore_charts():
     assert "counter(pages)" in html and "marks: crop cross" in html and "duplex" in html
 
 def test_advanced_sheet_controls_are_on_the_page():
+    # Advanced sheet options (duplex, cards, crop marks) remain available
+    # through /api/pdf; the UI links to the Report tab for the sheet.
     page = client.get("/")
     assert page.status_code == 200
-    assert "pdfDuplex" in page.text and "pdfCards" in page.text and "pdfCrop" in page.text
+    assert "Report" in page.text and "/api/pdf" in page.text
 
 
 def test_web_returns_written_piece_joins_only():
@@ -164,7 +168,7 @@ def test_web_returns_written_piece_joins_only():
         assert "not a stitch join" in body["assembly_svg"]
     page = client.get("/")
     assert page.status_code == 200
-    assert "Not a stitch map." in page.text
+    assert "Visualize" in page.text and "renderPattern" in page.text
 
 
 def test_web_returns_geometry_with_the_stitch_map():
@@ -178,4 +182,4 @@ def test_web_returns_geometry_with_the_stitch_map():
         assert "geometry_note" in body
     page = client.get("/")
     assert "Geometry map" in page.text
-    assert "Estimate, not measured" in page.text
+    assert "Estimate from written counts" in page.text

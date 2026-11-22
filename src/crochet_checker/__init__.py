@@ -45,3 +45,41 @@ if PDF_OK:
     __all__.extend(["generate_pdf"])
 if UTILS_OK:
     __all__.extend(["read_pattern_file"])
+
+try:
+    from .calculators import (
+        convert_length,
+        convert_terminology,
+        estimate_yarn,
+        gauge_to_size,
+        nearest_hook,
+        recommend_hook,
+        shape_from_counts,
+        stitch_count_chart,
+        stitches_for_size,
+        wpi_to_weight,
+    )
+    from .report import build_report, write_report
+
+    CALCULATORS_OK = True
+except Exception as e:
+    print(f"Warning: Calculator/report import failed: {e}")
+    CALCULATORS_OK = False
+
+if CALCULATORS_OK:
+    __all__.extend(
+        [
+            "gauge_to_size",
+            "stitches_for_size",
+            "estimate_yarn",
+            "recommend_hook",
+            "nearest_hook",
+            "wpi_to_weight",
+            "convert_terminology",
+            "convert_length",
+            "stitch_count_chart",
+            "shape_from_counts",
+            "build_report",
+            "write_report",
+        ]
+    )
