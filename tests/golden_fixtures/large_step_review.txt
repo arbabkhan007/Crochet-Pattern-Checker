@@ -1,0 +1,2 @@
+Round 1: (sc, dec) x 6 (12)
+Round 2: inc x 12 (24)

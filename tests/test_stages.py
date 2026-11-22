@@ -784,3 +784,14 @@ def test_the_remaining_sentences_use_the_same_rule():
         "> Inc that shrinks from 12 to 6.",
     ):
         assert validate_pattern(line + "\n").errors == [], line
+
+
+def test_large_increases_are_warnings_not_proof_of_bad_shaping():
+    text = (
+        "Round 1: 12 sc into magic ring (12)\n"
+        "Round 2: inc x 12 (24)\n"
+    )
+    report = validate_pattern(text)
+    assert report.overall_status == "PASS_WITH_WARNINGS"
+    assert report.errors == []
+    assert any("Review the intended shaping" in str(item) for item in report.warnings)

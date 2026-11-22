@@ -9,6 +9,78 @@ from __future__ import annotations
 
 import re
 
+def has_unparsed_repeat_suffix(body: str) -> bool:
+    """Detect a parsed-looking flat repeat followed by ignored alternative text."""
+    candidate = body.strip().rstrip(".").strip()
+    stated = re.search(r"\s*\(\d+\)\s*$", candidate)
+    if stated:
+        candidate = candidate[: stated.start()].rstrip()
+
+    flat = re.match(
+        r"[\(\[][^()\[\]]+[\)\]]\s*[x×]\s*\d+",
+        candidate,
+        flags=re.IGNORECASE,
+    )
+    if flat and candidate[flat.end() :].strip():
+        return True
+
+    star = re.match(
+        r"\*[^*]+\*\s*(?:rep(?:eat)?\s+)?"
+        r"(?:\d+\s+times|[x×]\s*\d+)",
+        candidate,
+        flags=re.IGNORECASE,
+    )
+    return bool(star and candidate[star.end() :].strip())
+
+
+def parser_coverage_notes(text: str) -> list[str]:
+    """Audit only recognized Row/Round headers for empty or partly parsed bodies."""
+    from ..parser.grammar import is_row_header
+    from ..parser.normalizer import sanitize_pattern_text
+    from ..parser.parser import CrochetParser
+
+    parser = CrochetParser()
+    notes: list[str] = []
+    for line_number, raw in enumerate(sanitize_pattern_text(text).splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith(">") or line.startswith("```"):
+            continue
+        candidate = line
+        for marker in ("- ", "* ", "+ "):
+            if candidate.startswith(marker):
+                candidate = candidate[len(marker) :].strip()
+                break
+        is_header, _, _, body, _ = is_row_header(candidate)
+        if not is_header:
+            continue
+        if not body.strip():
+            notes.append(
+                f"Line {line_number}: row/round header has no instruction body to verify."
+            )
+            continue
+        try:
+            instructions = parser._parse_instruction_text(body.strip(), line)
+        except Exception:
+            instructions = []
+        not_fully_parsed = not instructions or any(
+            instruction.is_ambiguous or bool(instruction.parse_warnings)
+            for instruction in instructions
+        )
+        # A tail after a repeat is review-worthy only when the parser also
+        # signals incomplete coverage; valid repeat-plus-clause lines are read.
+        if has_unparsed_repeat_suffix(body) and not_fully_parsed:
+            notes.append(
+                f"Line {line_number}: text after the repeat may be unparsed; "
+                f"review manually: {line}"
+            )
+        elif not_fully_parsed:
+            notes.append(
+                f"Line {line_number}: parser could not fully interpret this "
+                f"instruction; review manually: {line}"
+            )
+    return notes
+
+
 SKIPPED = (
     "chart image detector",
     "photo stitch classifier",
@@ -26,8 +98,9 @@ def skipped_line() -> str:
 
 
 def unread_notes(text: str) -> list[str]:
-    """Name stitch lines the parser did not count. Assembly lines are read."""
-    return unread_instruction_lines(text) + assembly_gaps(text)
+    """Return parser-coverage and existing prose/assembly notes without duplication."""
+    items = parser_coverage_notes(text) + unread_instruction_lines(text) + assembly_gaps(text)
+    return list(dict.fromkeys(items))
 
 
 def purchase_blockers() -> list[str]:

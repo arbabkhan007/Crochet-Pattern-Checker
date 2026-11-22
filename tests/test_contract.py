@@ -36,8 +36,9 @@ def test_example_statuses_stay_locked():
 def test_benchmark_findings_are_in_the_source():
     gemini = validate_pattern((ROOT / "docs" / "gemini_corrected.md").read_text(encoding="utf-8"))
     chatgpt = validate_pattern((ROOT / "docs" / "chatgpt_corrected.md").read_text(encoding="utf-8"))
-    assert gemini.overall_status == "PASS_WITH_WARNINGS"
+    assert gemini.overall_status == "NEEDS_REVIEW"
     assert len(gemini.errors) == 0 and len(gemini.warnings) == 1
+    assert len(gemini.not_checked) > 0
     assert "row-end" in _messages(gemini)[0]
     assert chatgpt.overall_status == "ERROR"
     assert len(chatgpt.errors) == 1 and len(chatgpt.warnings) == 0

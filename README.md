@@ -82,6 +82,10 @@ Version 1.0.0. Repository: [arbabkhan007/Crochet-Pattern-Checker](https://github
 
 ## What a result means
 
+`CPC-RULESET-1` identifies the current deterministic rule set. JSON reports include structured findings with stable rule IDs, severities, locations, and source lines where available; legacy prose errors and warnings remain available. `NEEDS_REVIEW` means an explicit Row/Round body was not fully parsed. It is not a stitch-count error.
+
+A large shaping step is a review warning, not a requirement to add a particular round or proof of fit. The small golden fixture set is provisional; independent craft review and broader real-pattern review remain pending.
+
 `PASS` means the written checks that ran found no error and no warning. It does not mean a photo was counted, a chart image was read, or every English sentence was understood.
 
 These engines are not run:

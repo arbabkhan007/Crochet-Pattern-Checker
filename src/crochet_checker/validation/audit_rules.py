@@ -19,7 +19,7 @@ _STOP = {
     "in", "each", "around", "across", "next", "the", "and", "to", "of",
     "from", "hook", "magic", "ring", "into", "first", "join", "with",
     "make", "row", "round", "rnd", "rows", "rounds", "turn", "then",
-    "remaining", "rem", "stitch", "stitches", "space", "skip", "same",
+    "remaining", "rem", "stitch", "stitches", "space", "skip", "same", "or",
     "all", "end", "ends", "fasten", "off", "stuff", "sew", "attach",
     "chain", "chains", "foundation", "only", "along", "working", "worked",
     "work", "into", "on", "one", "two", "three", "evenly", "spaced",
@@ -316,20 +316,20 @@ class InchSpanChecker:
 
 
 class NeckJumpChecker:
-    """Flag a 12-stitch round that doubles to 24 in one step."""
+    """Warn on one large shaping step without prescribing a target shape."""
 
     def check(self, text: str) -> list[str]:
-        errors = []
+        warnings = []
         for label, previous, produced, source in _round_counts(text):
             if previous != 12 or produced != 24:
                 continue
             if not re.search(r"\binc(?:rease)?\b", source, re.IGNORECASE):
                 continue
-            errors.append(
-                f"{label}: 12 stitches jump to 24. "
-                "Insert an 18-stitch round before returning to 24."
+            warnings.append(
+                f"{label}: 12 to 24 stitches doubles the count in one round. "
+                "Review the intended shaping; this check cannot establish the target shape."
             )
-        return _messages(errors)
+        return _messages(warnings)
 
 
 def audit_findings(text: str) -> tuple[list[str], list[str]]:
@@ -345,7 +345,7 @@ def audit_findings(text: str) -> tuple[list[str], list[str]]:
     warnings.extend(FabricDensityCalculator.scan(text))
     warnings.extend(ModuloDriftChecker().check(text))
     warnings.extend(ShortRowPerimeterChecker().check(text))
-    errors.extend(NeckJumpChecker().check(text))
+    warnings.extend(NeckJumpChecker().check(text))
     errors.extend(SeamCountChecker().check(text))
     warnings.extend(InchSpanChecker().check(text))
     from ..verification.stages import stage_findings

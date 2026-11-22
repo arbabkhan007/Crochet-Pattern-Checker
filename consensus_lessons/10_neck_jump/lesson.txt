@@ -1,5 +1,5 @@
-Neck jump
+Large shaping step review
 
-How: 12 increases use the 12 stitches and make 24. The count is internally true, so the old checker passed it. The fabric still skips the 18-stitch step and puckers.
+How: the stated 12-to-24 increase is arithmetically consistent. It is a large shaping step, but the text checker has no swatch or target-shape evidence to prove that it is wrong.
 
-What: both corrected files insert an 18-stitch round, then return to 24. The checker now rejects a 12-to-24 jump and accepts the 12, 18, 24 step.
+What: report this as a warning for review, not an objective error and not a requirement to insert an 18-stitch round. The checker cannot establish the intended shape or fit. The corrected example shows one possible progression; it is not the only valid design.

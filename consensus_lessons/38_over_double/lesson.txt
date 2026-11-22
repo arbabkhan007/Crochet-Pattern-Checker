@@ -1,5 +1,5 @@
-Over-double increase
+Repeat overconsumption and large-increase review
 
-How: a round that goes from 6 to 18 more than doubles. It skips the 12-stitch size.
+How: `(sc, inc) x 6` consumes 12 input stitches, while the preceding round produces 6. That repeat cannot be worked as written. The separate 6-to-18 ratio message is a warning, not proof that an intermediate size is required.
 
-What: the corrected file inserts the 12-stitch round. Doubling exactly, 6 to 12, still passes this rule.
+What: this pair demonstrates only the objectively checkable repeat-consumption conflict. A greater-than-2x stated-count jump by itself remains a review warning; the checker does not prescribe shaping or fit.

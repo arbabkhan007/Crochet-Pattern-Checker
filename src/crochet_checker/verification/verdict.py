@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from ..validation.validator import validate_pattern
+from ..validation.validator import RULESET_ID, validate_pattern
 
 from .batch import batch_names
 from .limits import purchase_blockers, unread_notes
@@ -35,6 +35,8 @@ class Verdict:
     engines_skipped: list[str] = field(default_factory=list)
     not_checked: list[str] = field(default_factory=list)
     not_a_purchase: list[str] = field(default_factory=list)
+    findings: list[dict] = field(default_factory=list)
+    ruleset_id: str = RULESET_ID
 
     def to_dict(self) -> dict:
         return {
@@ -46,6 +48,8 @@ class Verdict:
             "engines_skipped": self.engines_skipped,
             "not_checked": self.not_checked,
             "not_a_purchase": self.not_a_purchase,
+            "findings": self.findings,
+            "ruleset_id": self.ruleset_id,
         }
 
 
@@ -59,6 +63,7 @@ def verify_pattern(text: str) -> Verdict:
         warnings=[str(getattr(item, "message", item)) for item in report.warnings],
         engines_ran=[
             "text checker",
+            "row/round parser coverage",
             "dialect scope",
             "termination",
             "stitch reachability",
@@ -95,6 +100,8 @@ def verify_pattern(text: str) -> Verdict:
             *span_names(),
         ],
         engines_skipped=list(SKIPPED),
-        not_checked=unread_notes(text),
+        not_checked=list(report.not_checked),
         not_a_purchase=purchase_blockers(),
+        findings=[finding.to_dict() for finding in report.findings],
+        ruleset_id=report.ruleset_id,
     )
