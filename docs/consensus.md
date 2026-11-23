@@ -405,6 +405,7 @@ What: the corrected file says on 10 stitches, which is what the decrease uses.
 ### 38_over_double: Over-double increase
 
 Wrong result: ERROR.
+- Line 2: this round consumes 12 stitches, but only 6 are available from the previous round; 6 extra stitches are requested.
 - Round 2 jumps from 6 to 18. More than doubling in one round skips a size.
 Corrected result: PASS.
 
@@ -1668,15 +1669,15 @@ These rows are what the checker returned. They are not a vote.
 
 | File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |
 |---|---|---|---:|---:|---|
-| `wrong_benchmarks.md` | whole file | ERROR | 84 | 9 | Line 121: worked 5 stitches into 15 without a decrease.; Line 220: worked 1 stitch into 48 without a decrease.; Line 221: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
+| `wrong_benchmarks.md` | whole file | ERROR | 86 | 9 | Line 121: worked 5 stitches into 15 without a decrease.; Line 185: this round consumes 17 stitches, but only 0 are available from the previous round; 17 extra stitches are requested.; Line 220: worked 1 stitch into 48 without a decrease. |
 | `wrong_benchmarks.md` | 1: Classic Amigurumi Bear | ERROR | 3 | 0 | Round 9: plain round received 4 stitches without an increase or decrease; the row states 8.; Round 11: 12 stitches jump to 24. Insert an 18-stitch round before returning to 24.; Piece 'arms' is named in assembly but never started. |
 | `wrong_benchmarks.md` | 2: Celestial Wyvern | ERROR | 10 | 2 | Line 43: worked 5 stitches into 15 without a decrease.; Round 13 states 30 stitches, but operations produce 0.; Row 1 states 14 stitches, but operations produce 0. |
-| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 12 | 0 | Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated.; Round 11 repeats or goes backwards. Number the rounds in order. |
-| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 39 | 3 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: Attempted to work stitch beyond available loops. Position: 1, Available: 1; Line 68: Attempted to work stitch beyond available loops. Position: 1, Available: 1 |
-| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 23 | 4 | Line 38: Attempted to work stitch beyond available loops. Position: 36, Available: 36; Round 15 states 38 stitches, but operations produce 36.; Round 17 states 32 stitches, but operations produce 30. |
+| `wrong_benchmarks.md` | 3: Clockwork Dragon | ERROR | 13 | 0 | Line 67: this round consumes 17 stitches, but only 0 are available from the previous round; 17 extra stitches are requested.; Seam mismatch: 3 stitches cannot close 4 stitches.; Short-row gap: 28 of 34 leaves 6 row-ends unstated. |
+| `wrong_benchmarks.md` | 4: Abyssal Leviathan | ERROR | 39 | 3 | Line 50: worked 1 stitch into 48 without a decrease.; Line 51: this round consumes 54 stitches, but only 1 are available from the previous round; 53 extra stitches are requested.; Line 68: this round consumes 8 stitches, but only 1 are available from the previous round; 7 extra stitches are requested. |
+| `wrong_benchmarks.md` | 5: Void-Warped Chimera | ERROR | 23 | 4 | Line 38: this round consumes 38 stitches, but only 36 are available from the previous round; 2 extra stitches are requested.; Round 15 states 38 stitches, but operations produce 36.; Round 17 states 32 stitches, but operations produce 30. |
 | `gemini_corrected.md` | whole file | PASS_WITH_WARNINGS | 0 | 1 | Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 1: Classic Amigurumi Bear (Corrected) | PASS | 0 | 0 | none |
-| `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 0 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions. |
+| `gemini_corrected.md` | 2: Celestial Wyvern (Corrected) | ERROR | 1 | 1 | Ghost material: '.25 mm hook, polyfill, 12 mm safety eyes (x2), tapestry needle' is listed under Materials but never mentioned in the instructions.; [OrphanedYarn] ORPHANED YARN IN BOM: 'Yarn TAIL' is listed in Materials but never used in the pattern. |
 | `gemini_corrected.md` | 3: Clockwork Dragon (Corrected) | PASS_WITH_WARNINGS | 0 | 2 | Row 11 turns with 9 stitches unworked; check the short-row shaping.; Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 4: Abyssal Leviathan (Corrected) | ERROR | 1 | 1 | Round 15 states 20 stitches, but operations produce 0.; Short-row turns create vertical row-end sites, but no row-end stitch count is stated. |
 | `gemini_corrected.md` | 5: Void-Warped Chimera (Corrected) | PASS | 0 | 0 | none |
