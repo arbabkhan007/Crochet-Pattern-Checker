@@ -452,6 +452,7 @@ async def consensus_provider_status():
             "min_participating_models": settings.min_participating_models,
             "min_participation_ratio": settings.min_participation_ratio,
             "consensus_threshold": settings.consensus_threshold,
+            "max_concurrency": settings.max_concurrency,
             "cross_examination_enabled": settings.enable_cross_examination,
             "adversarial_review_enabled": settings.enable_adversarial_review,
             "strict_required_participation": settings.strict_required_participation,

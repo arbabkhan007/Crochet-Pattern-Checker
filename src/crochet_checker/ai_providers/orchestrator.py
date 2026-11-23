@@ -107,15 +107,31 @@ class ConsensusRunner:
         self.roles = self._assign_roles()
 
     def _assign_roles(self) -> dict[str, str]:
-        roles = {
-            config.provider_id: config.role
-            or DEFAULT_REVIEW_ROLES[i % len(DEFAULT_REVIEW_ROLES)]
-            for i, config in enumerate(self.providers)
+        configs = {config.provider_id: config for config in self.providers}
+        availability = {
+            item.get("provider_id"): item for item in self.availability
         }
+        roles: dict[str, str] = {}
+        for index, provider_id in enumerate(self.selected_ids):
+            config = configs.get(provider_id)
+            available = availability.get(provider_id, {})
+            configured_role = (
+                config.role if config is not None else available.get("role")
+            )
+            roles[provider_id] = configured_role or DEFAULT_REVIEW_ROLES[
+                index % len(DEFAULT_REVIEW_ROLES)
+            ]
         for primary, fallback in self.fallbacks.items():
             roles[fallback.provider_id] = roles.get(
                 primary, fallback.role or "stitch_arithmetic"
             )
+        for item in self.availability:
+            for primary in item.get("fallback_for", []):
+                provider_id = item.get("provider_id")
+                if provider_id:
+                    roles[provider_id] = roles.get(primary) or item.get(
+                        "role"
+                    ) or "stitch_arithmetic"
         return roles
 
     def _semaphore(self) -> asyncio.Semaphore:
@@ -394,7 +410,11 @@ class ConsensusRunner:
             for question in review["open_questions"]
         ]
         clusters = _build_issue_clusters(
-            findings, pattern_text, set(active), self.settings.consensus_threshold
+            findings,
+            pattern_text,
+            set(active),
+            self.settings.consensus_threshold,
+            expected_participant_count=len(self.selected_ids),
         )
         disagreements = _build_disagreements(assessments, clusters)
         corrections = _correction_proposals(findings)
@@ -406,8 +426,30 @@ class ConsensusRunner:
             active,
             phase_status,
             self.configuration_issues,
+            selected_ids=self.selected_ids,
+            availability=self.availability,
+            roles=self.roles,
         )
         completed_count = sum(bool(item["fully_completed"]) for item in states)
+        consensus_policy = _build_consensus_policy(
+            states=states,
+            selected_ids=self.selected_ids,
+            required_ids=self.required_provider_ids,
+            phase_status=phase_status,
+            clusters=clusters,
+            disagreements=disagreements,
+            open_questions=open_questions,
+            findings=findings,
+            configuration_issues=self.configuration_issues,
+            settings=self.settings,
+        )
+        for cluster in clusters:
+            cluster["consensus_reached"] = bool(
+                consensus_policy["met"] and cluster["support_threshold_met"]
+            )
+            cluster["consensus_blockers"] = (
+                [] if cluster["consensus_reached"] else list(consensus_policy["reasons"])
+            )
         gate = _build_gate(
             deterministic,
             notes,
@@ -418,6 +460,7 @@ class ConsensusRunner:
             self.required_provider_ids,
             states,
             self.configuration_issues,
+            consensus_policy,
             self.settings,
         )
         scoring = _build_score(
@@ -440,7 +483,43 @@ class ConsensusRunner:
                 if state["fully_completed"] and self.roles.get(pid, "")
             }
         )
+        consensus_status = _consensus_status(
+            len(active), clusters, disagreements, consensus_policy
+        )
+        if consensus_status == "GROUNDED_FINDINGS_AGREED":
+            consensus_reason = None
+        elif consensus_policy["reasons"]:
+            consensus_reason = (
+                "Consensus was not reached because "
+                + "; ".join(consensus_policy["reasons"])
+            )
+        elif consensus_status == "NO_GROUNDED_FINDINGS_REPORTED":
+            consensus_reason = (
+                "No grounded findings were reported; no issue-level consensus claim is made."
+            )
+        else:
+            consensus_reason = "No independent model review was confirmed."
+        dissent_status = (
+            "unresolved"
+            if disagreements
+            else "none_reported_in_completed_protocol"
+            if consensus_policy["participation_protocol_met"]
+            else "not_fully_evaluated"
+        )
+        selected_states = [
+            item for item in states if item["provider_id"] in self.selected_ids
+        ]
+        selected_independent = sum(
+            bool(item.get("independent_participated")) for item in selected_states
+        )
+        selected_participation_ratio = (
+            round(selected_independent / len(self.selected_ids), 4)
+            if self.selected_ids
+            else 0.0
+        )
         report = {
+            "report_schema_version": 1,
+            "execution_status": "completed",
             "run_id": run_id,
             "created_at": created_at,
             "pattern_hash": pattern_hash,
@@ -449,7 +528,13 @@ class ConsensusRunner:
             "authority_note": "Deterministic written-text checks remain authoritative for checked rules. AI findings are advisory and never override arithmetic.",
             "deterministic": deterministic,
             "models": {
-                "configured": [item.public_dict() for item in self.providers],
+                "configured": [
+                    {
+                        **item.public_dict(),
+                        "required": item.provider_id in self.required_provider_ids,
+                    }
+                    for item in self.providers
+                ],
                 "fallbacks": {
                     primary: item.public_dict()
                     for primary, item in self.fallbacks.items()
@@ -462,7 +547,7 @@ class ConsensusRunner:
                         "provider_id": config.provider_id,
                         "model": config.model,
                         "role": role,
-                        "required": config.required,
+                        "required": config.provider_id in self.required_provider_ids,
                         "is_fallback": config.provider_id not in self.selected_ids,
                         "phases_succeeded": [
                             phase
@@ -480,19 +565,21 @@ class ConsensusRunner:
                 "states": states,
                 "availability": self.availability,
                 "participation": {
+                    "selected_provider_count": len(self.selected_ids),
+                    "selected_independent_success_count": selected_independent,
+                    "selected_independent_participation_ratio": selected_participation_ratio,
                     "independent_success_count": len(active),
                     "fully_completed_count": completed_count,
+                    "minimum_independent_models": self.settings.min_participating_models,
+                    "required_provider_count": len(self.required_provider_ids),
                     "required_target": self.settings.required_participant_target(
                         len(self.required_provider_ids)
                     ),
+                    "minimum_participation_ratio": self.settings.min_participation_ratio,
                     "strict_required_participation": self.settings.strict_required_participation,
-                    "required_slots_satisfied": not any(
-                        item.get("required")
-                        and not item.get(
-                            "required_slot_satisfied", item.get("fully_completed")
-                        )
-                        for item in states
-                    ),
+                    "required_slots_satisfied": consensus_policy["checks"][
+                        "required_provider_slots_met"
+                    ],
                     "required_slots": [
                         {
                             "required_provider_id": item["provider_id"],
@@ -524,8 +611,12 @@ class ConsensusRunner:
                 ],
                 "phases": phase_status,
                 "provider_calls": call_records,
+                "provider_call_records_complete": True,
+                "provider_calls_may_have_occurred": bool(call_records),
             },
             "findings": findings,
+            "findings_status": "complete_for_recorded_successful_reviews",
+            "findings_records_complete": True,
             "review_coverage": [
                 {
                     "provider_id": review["provider_id"],
@@ -538,12 +629,18 @@ class ConsensusRunner:
                 for coverage in review["coverage"]
             ],
             "ai_consensus": {
-                "status": _consensus_status(len(active), clusters, disagreements),
+                "status": consensus_status,
+                "reason_consensus_not_reached": consensus_reason,
                 "threshold": self.settings.consensus_threshold,
-                "agreement_method": "Grounded issue clusters; one independent contribution per provider; confidence is not a vote weight.",
+                "policy": consensus_policy,
+                "agreement_method": "Grounded issue clusters; one independent contribution per explicitly selected provider slot (a configured fallback may substitute); support ratios use all selected slots and confidence is not a vote weight. Consensus is reported only when the configured participation, role, phase, evidence, dissent, question, and issue-support policy is satisfied.",
                 "issues": clusters,
+                "issues_status": "evaluated_for_recorded_successful_reviews",
                 "disagreements": disagreements,
+                "disagreement_records_complete": True,
+                "dissent_status": dissent_status,
                 "open_questions": open_questions,
+                "open_questions_status": "reported_for_recorded_successful_reviews",
                 "grounded_findings": sum(
                     item["evidence_status"] == "grounded_text" for item in findings
                 ),
@@ -823,6 +920,8 @@ def _build_issue_clusters(
     pattern_text: str,
     independent_ids: set[str],
     threshold: float,
+    *,
+    expected_participant_count: int,
 ) -> list[dict[str, Any]]:
     groups: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
     for item in findings:
@@ -842,7 +941,11 @@ def _build_issue_clusters(
             }
         )
         observed = sorted({str(item["provider_id"]) for item in observations})
-        ratio = len(models) / len(independent_ids) if independent_ids else 0.0
+        ratio = (
+            len(models) / expected_participant_count
+            if expected_participant_count
+            else 0.0
+        )
         first = observations[0]
         line = first.get("matched_line_number")
         severity = max(
@@ -870,11 +973,14 @@ def _build_issue_clusters(
                 ),
                 "independent_support_count": len(models),
                 "independent_participant_count": len(independent_ids),
+                "expected_independent_provider_count": expected_participant_count,
+                "support_basis": "Explicitly selected provider slots; configured fallbacks may substitute for a selected primary.",
                 "support_ratio": round(ratio, 4),
-                "consensus_reached": len(independent_ids) >= 2
+                "support_threshold_met": expected_participant_count >= 2
                 and len(models) >= 2
-                and len(models) > len(independent_ids) / 2
+                and len(models) > expected_participant_count / 2
                 and ratio >= threshold,
+                "consensus_reached": False,
                 "supporting_models": models,
                 "observed_models": observed,
                 "reported_in_phases": sorted(
@@ -1013,14 +1119,21 @@ def _model_states(
     active: Mapping[str, Any],
     phase_status: Mapping[str, Any],
     config_issues: Sequence[str],
+    *,
+    selected_ids: Sequence[str],
+    availability: Sequence[Mapping[str, Any]],
+    roles: Mapping[str, str],
 ) -> list[dict[str, Any]]:
     configs = {item.provider_id: item for item in providers}
     configs.update({item.provider_id: item for item in fallbacks.values()})
+    availability_by_id = {item.get("provider_id"): item for item in availability}
     logs: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for call in calls:
         logs[call["provider_id"]].append(call)
     states = []
     required = set(required_ids)
+    selected = set(selected_ids)
+    phases = ("independent", "cross_examination", "adversarial_review")
     for pid, config in configs.items():
         records = logs.get(pid, [])
         phase_map = {
@@ -1028,19 +1141,22 @@ def _model_states(
                 item.get("phase") == phase and item.get("status") == "succeeded"
                 for item in records
             )
-            for phase in ("independent", "cross_examination", "adversarial_review")
+            for phase in phases
         }
         enabled = ["independent"]
-        if phase_status.get("cross_examination", {}).get("status") not in {"disabled"}:
+        if phase_status.get("cross_examination", {}).get("status") != "disabled":
             enabled.append("cross_examination")
-        if phase_status.get("adversarial_review", {}).get("status") not in {"disabled"}:
+        if phase_status.get("adversarial_review", {}).get("status") != "disabled":
             enabled.append("adversarial_review")
         complete = pid in active and all(
             phase_map.get(phase, False) for phase in enabled
         )
         failed = any(item.get("status") == "failed" for item in records)
+        is_fallback = pid not in selected
         status = (
-            "completed"
+            "not_attempted"
+            if is_fallback and not records
+            else "completed"
             if complete
             else "incomplete"
             if pid in active or failed
@@ -1048,10 +1164,11 @@ def _model_states(
         )
         if failed and pid not in active:
             status = "failed"
-        role = next(
+        active_role = next(
             (value[2] for value in active.values() if value[0].provider_id == pid),
-            config.role,
+            None,
         )
+        role = active_role or roles.get(pid) or config.role
         errors = defaultdict(list)
         for item in records:
             if item.get("status") == "failed":
@@ -1069,30 +1186,80 @@ def _model_states(
                 "attempt_count": sum(
                     int(item.get("attempts") or 0) for item in records
                 ),
-                "is_fallback": pid not in {item.provider_id for item in providers},
+                "is_fallback": is_fallback,
             }
         )
-    for issue in config_issues:
-        for pid in required - set(configs):
-            if issue.startswith(f"{pid} is selected but not configured"):
-                states.append(
-                    {
-                        "provider_id": pid,
-                        "model": None,
-                        "required": True,
-                        "status": "not_configured",
-                        "fully_completed": False,
-                        "independent_participated": False,
-                        "phase_status": {},
-                        "phase_errors": {},
-                        "configuration_error": issue,
-                        "attempt_count": 0,
-                        "is_fallback": False,
-                    }
-                )
+
+    for pid in selected_ids:
+        if pid in configs:
+            continue
+        detail = availability_by_id.get(pid, {})
+        issue = next(
+            (
+                item
+                for item in config_issues
+                if f"{pid} is selected but not configured" in item
+            ),
+            "Selected provider is not configured for this run.",
+        )
+        states.append(
+            {
+                "provider_id": pid,
+                "model": detail.get("model"),
+                "family": detail.get("family"),
+                "required": pid in required,
+                "role": roles.get(pid) or detail.get("role"),
+                "status": "not_configured",
+                "independent_participated": False,
+                "fully_completed": False,
+                "phase_status": {phase: False for phase in phases},
+                "phase_errors": {},
+                "configuration_error": issue,
+                "missing_configuration": list(detail.get("missing_configuration", [])),
+                "attempt_count": 0,
+                "is_fallback": False,
+            }
+        )
+
+    for detail in availability:
+        pid = detail.get("provider_id")
+        fallback_for = list(detail.get("fallback_for", []))
+        if not fallback_for or pid in configs or pid in selected:
+            continue
+        issue = next(
+            (
+                item
+                for item in config_issues
+                if f"Fallback {pid} " in item
+            ),
+            "Configured fallback is not available for this run.",
+        )
+        states.append(
+            {
+                "provider_id": pid,
+                "model": detail.get("model"),
+                "family": detail.get("family"),
+                "required": False,
+                "role": roles.get(str(pid)) or detail.get("role"),
+                "status": "not_configured",
+                "independent_participated": False,
+                "fully_completed": False,
+                "phase_status": {phase: False for phase in phases},
+                "phase_errors": {},
+                "configuration_error": issue,
+                "missing_configuration": list(detail.get("missing_configuration", [])),
+                "attempt_count": 0,
+                "is_fallback": True,
+                "fallback_for": fallback_for,
+            }
+        )
+
     fallback_by_primary = {
         primary: config.provider_id for primary, config in fallbacks.items()
     }
+    for detail in availability:
+        for primary in detail.get("fallback_for", []):
+            fallback_by_primary.setdefault(primary, detail.get("provider_id"))
     states_by_id = {item["provider_id"]: item for item in states}
     for state in states:
         if not state.get("required"):
@@ -1111,6 +1278,164 @@ def _model_states(
     return states
 
 
+def _build_consensus_policy(
+    *,
+    states: list[dict[str, Any]],
+    selected_ids: Sequence[str],
+    required_ids: Sequence[str],
+    phase_status: Mapping[str, Mapping[str, Any]],
+    clusters: list[dict[str, Any]],
+    disagreements: list[dict[str, Any]],
+    open_questions: list[dict[str, Any]],
+    findings: list[dict[str, Any]],
+    configuration_issues: Sequence[str],
+    settings: ConsensusSettings,
+) -> dict[str, Any]:
+    state_by_id = {item["provider_id"]: item for item in states}
+    required = set(required_ids)
+    missing_required = [
+        provider_id
+        for provider_id in sorted(required)
+        if provider_id not in state_by_id
+        or not state_by_id[provider_id].get(
+            "required_slot_satisfied",
+            state_by_id[provider_id].get("fully_completed", False),
+        )
+    ]
+    independent_count = sum(
+        bool(item.get("independent_participated")) for item in states
+    )
+    completed_count = sum(bool(item.get("fully_completed")) for item in states)
+    target = settings.required_participant_target(len(required))
+    completed_roles = {
+        str(item.get("role"))
+        for item in states
+        if item.get("fully_completed") and item.get("role")
+    }
+    missing_roles = [
+        role for role in settings.required_roles if role not in completed_roles
+    ]
+    checks = {
+        "minimum_independent_participation_met": independent_count
+        >= settings.min_participating_models,
+        "complete_round_participation_met": completed_count >= target,
+        "required_provider_slots_met": not missing_required,
+        "required_roles_met": not missing_roles,
+        "cross_examination_completed": settings.enable_cross_examination
+        and phase_status.get("cross_examination", {}).get("status") == "completed",
+        "adversarial_review_completed": settings.enable_adversarial_review
+        and phase_status.get("adversarial_review", {}).get("status") == "completed",
+        "provider_configuration_clean": not configuration_issues,
+        "issue_support_thresholds_met": all(
+            item.get("support_threshold_met", False) for item in clusters
+        ),
+        "all_findings_source_grounded": all(
+            item.get("evidence_status") == "grounded_text" for item in findings
+        ),
+        "no_unresolved_disagreements": not disagreements,
+        "no_open_questions": not open_questions,
+    }
+    participation_keys = (
+        "minimum_independent_participation_met",
+        "complete_round_participation_met",
+        "required_provider_slots_met",
+        "required_roles_met",
+        "cross_examination_completed",
+        "adversarial_review_completed",
+        "provider_configuration_clean",
+    )
+    agreement_keys = (
+        "issue_support_thresholds_met",
+        "all_findings_source_grounded",
+        "no_unresolved_disagreements",
+        "no_open_questions",
+    )
+    reasons = []
+    if not checks["minimum_independent_participation_met"]:
+        reasons.append(
+            f"Only {independent_count} independent reviewers participated; at least {settings.min_participating_models} are required."
+        )
+    if not checks["complete_round_participation_met"]:
+        reasons.append(
+            f"Only {completed_count} reviewers completed the enabled rounds; the configured target is {target}."
+        )
+    if missing_required:
+        reasons.append(
+            "Required provider slot(s) are incomplete: "
+            + ", ".join(missing_required)
+            + "."
+        )
+    if missing_roles:
+        reasons.append(
+            "Required review role(s) are incomplete: "
+            + ", ".join(missing_roles)
+            + "."
+        )
+    if not checks["cross_examination_completed"]:
+        reasons.append("The required cross-examination phase did not complete.")
+    if not checks["adversarial_review_completed"]:
+        reasons.append("The required adversarial-review phase did not complete.")
+    if configuration_issues:
+        reasons.append(
+            "Provider configuration issues remain: "
+            + "; ".join(configuration_issues)
+            + "."
+        )
+    if not checks["issue_support_thresholds_met"]:
+        reasons.append(
+            "One or more grounded issue clusters did not meet the configured independent-support threshold."
+        )
+    if not checks["all_findings_source_grounded"]:
+        reasons.append("One or more model findings are not grounded in the source text.")
+    if disagreements:
+        reasons.append(f"{len(disagreements)} reviewer disagreement(s) remain unresolved.")
+    if open_questions:
+        reasons.append(f"{len(open_questions)} open review question(s) remain.")
+    met = all(checks.values())
+    selected = set(selected_ids)
+    selected_states = [item for item in states if item["provider_id"] in selected]
+    selected_independent = sum(
+        bool(item.get("independent_participated")) for item in selected_states
+    )
+    return {
+        "status": "satisfied" if met else "not_satisfied",
+        "met": met,
+        "participation_protocol_met": all(checks[key] for key in participation_keys),
+        "issue_agreement_policy_met": all(checks[key] for key in agreement_keys),
+        "requirements": {
+            "minimum_independent_participants": settings.min_participating_models,
+            "minimum_participation_ratio": settings.min_participation_ratio,
+            "required_completed_participants": target,
+            "strict_required_provider_ids": sorted(required),
+            "required_roles": list(settings.required_roles),
+            "cross_examination_required": True,
+            "adversarial_review_required": True,
+            "independent_issue_support_threshold": settings.consensus_threshold,
+        },
+        "checks": checks,
+        "observed": {
+            "selected_provider_count": len(selected),
+            "selected_independent_participant_count": selected_independent,
+            "independent_participant_count": independent_count,
+            "fully_completed_participant_count": completed_count,
+            "required_provider_slots_satisfied": not missing_required,
+            "missing_required_provider_ids": missing_required,
+            "completed_roles": sorted(completed_roles),
+            "missing_roles": missing_roles,
+            "cross_examination_status": phase_status.get(
+                "cross_examination", {}
+            ).get("status", "not_run"),
+            "adversarial_review_status": phase_status.get(
+                "adversarial_review", {}
+            ).get("status", "not_run"),
+            "grounded_issue_count": len(clusters),
+            "disagreement_count": len(disagreements),
+            "open_question_count": len(open_questions),
+        },
+        "reasons": reasons,
+    }
+
+
 def _build_gate(
     deterministic: dict[str, Any],
     notes: list[str],
@@ -1121,6 +1446,7 @@ def _build_gate(
     required_ids: Sequence[str],
     states: list[dict[str, Any]],
     issues: Sequence[str],
+    consensus_policy: Mapping[str, Any],
     settings: ConsensusSettings,
 ) -> dict[str, Any]:
     blockers: list[dict[str, str]] = []
@@ -1135,6 +1461,13 @@ def _build_gate(
         add("no_models_selected", "No hosted providers were explicitly selected.")
     for issue in issues:
         add("provider_configuration", issue)
+    if not consensus_policy.get("met", False):
+        reasons = consensus_policy.get("reasons", [])
+        detail = "; ".join(str(item) for item in reasons) or "Required criteria were not satisfied."
+        add(
+            "consensus_policy_not_met",
+            "AI consensus policy was not satisfied: " + detail,
+        )
     if not settings.enable_cross_examination:
         add(
             "required_review_phase_disabled",
@@ -1237,6 +1570,7 @@ def _build_gate(
         "blockers": blockers,
         "blocker_count": len(blockers),
         "required_model_participation_satisfied": not missing and complete >= target,
+        "consensus_policy_satisfied": bool(consensus_policy.get("met", False)),
         "deterministic_validation_satisfied": bool(deterministic.get("valid")),
         "human_review_required": bool(blockers),
         "physical_construction_verified": False,
@@ -1345,16 +1679,19 @@ def _consensus_status(
     independent: int,
     clusters: list[dict[str, Any]],
     disagreements: list[dict[str, Any]],
+    policy: Mapping[str, Any],
 ) -> str:
     if independent == 0:
         return "NO_INDEPENDENT_MODEL_PARTICIPATION"
     if disagreements:
         return "DISPUTED_OR_UNRESOLVED"
+    if not policy.get("met", False):
+        return "CONSENSUS_POLICY_NOT_MET"
     if not clusters:
         return "NO_GROUNDED_FINDINGS_REPORTED"
     return (
         "GROUNDED_FINDINGS_AGREED"
-        if all(item["consensus_reached"] for item in clusters)
+        if all(item.get("consensus_reached", False) for item in clusters)
         else "PARTIAL_OR_NO_CONSENSUS"
     )
 
@@ -1428,14 +1765,18 @@ async def _notify(
 ) -> None:
     if callback is None:
         return
-    value = callback(
-        {
-            "stage": stage,
-            "current": current,
-            "total": 5,
-            "message": message,
-            "updated_at": datetime.now(timezone.utc).isoformat(),
-        }
-    )
-    if inspect.isawaitable(value):
-        await value
+    try:
+        value = callback(
+            {
+                "stage": stage,
+                "current": current,
+                "total": 5,
+                "message": message,
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+        if inspect.isawaitable(value):
+            await value
+    except Exception:
+        # Progress reporting is best-effort and must not discard a valid review.
+        return

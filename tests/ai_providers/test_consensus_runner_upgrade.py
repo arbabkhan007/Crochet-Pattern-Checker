@@ -6,6 +6,7 @@ import pytest
 
 from crochet_checker.ai_providers.orchestrator import ConsensusRunner
 from crochet_checker.ai_providers.provider_adapters import (
+    ProviderCatalog,
     ProviderConfig,
     ProviderRequestError,
     ProviderResponse,
@@ -182,6 +183,157 @@ def test_parallel_provider_phases_and_written_only_scoped_approval():
         assert len(adapter.prompts) == 3
 
 
+def test_independent_specialist_reviews_are_concurrent_and_roles_are_distinct():
+    providers = configs(2)
+    active_calls = [0]
+    max_active_calls = [0]
+
+    class TrackingAdapter(FakeAdapter):
+        async def generate(self, system_prompt, user_prompt):
+            active_calls[0] += 1
+            max_active_calls[0] = max(max_active_calls[0], active_calls[0])
+            try:
+                await asyncio.sleep(0.01)
+                return await super().generate(system_prompt, user_prompt)
+            finally:
+                active_calls[0] -= 1
+
+    adapters = {
+        item.provider_id: TrackingAdapter(item.provider_id, findings=[])
+        for item in providers
+    }
+    report = asyncio.run(
+        runner_for(adapters, provider_configs=providers).run(PATTERN)
+    )
+
+    roles = {item["provider_id"]: item["role"] for item in report["models"]["states"]}
+    assert roles == {
+        "provider_a": "stitch_arithmetic",
+        "provider_b": "construction_assembly",
+    }
+    assert max_active_calls[0] >= 2
+    assert report["ai_consensus"]["policy"]["met"] is True
+
+
+def test_consensus_is_not_claimed_when_a_required_provider_misses_the_policy():
+    providers = configs(3)
+    adapters = {
+        providers[0].provider_id: FakeAdapter(
+            providers[0].provider_id, findings=[_finding()]
+        ),
+        providers[1].provider_id: FakeAdapter(
+            providers[1].provider_id, findings=[_finding()]
+        ),
+        providers[2].provider_id: FakeAdapter(
+            providers[2].provider_id,
+            failure=ProviderRequestError(
+                "Provider service error persisted",
+                attempts=2,
+                latency_ms=5,
+                status_code=503,
+            ),
+        ),
+    }
+    report = asyncio.run(
+        runner_for(
+            adapters,
+            provider_configs=providers,
+            settings=ConsensusSettings(consensus_threshold=0.6),
+        ).run(PATTERN)
+    )
+
+    issue = report["ai_consensus"]["issues"][0]
+    assert issue["support_threshold_met"] is True
+    assert issue["consensus_reached"] is False
+    assert report["ai_consensus"]["status"] == "CONSENSUS_POLICY_NOT_MET"
+    assert report["ai_consensus"]["policy"]["met"] is False
+    assert report["ai_consensus"]["policy"]["checks"][
+        "required_provider_slots_met"
+    ] is False
+    assert any("provider_c" in reason for reason in report["ai_consensus"]["policy"]["reasons"])
+    assert "consensus" in report["ai_consensus"]["reason_consensus_not_reached"].casefold()
+
+
+def test_low_support_info_finding_blocks_consensus_and_delivery_gate():
+    low_severity_finding = _finding()
+    low_severity_finding["severity"] = "info"
+    providers = configs(2)
+    adapters = {
+        providers[0].provider_id: FakeAdapter(
+            providers[0].provider_id, findings=[low_severity_finding]
+        ),
+        providers[1].provider_id: FakeAdapter(providers[1].provider_id, findings=[]),
+    }
+    report = asyncio.run(
+        runner_for(adapters, provider_configs=providers).run(PATTERN)
+    )
+
+    assert report["ai_consensus"]["issues"][0]["support_threshold_met"] is False
+    assert report["ai_consensus"]["status"] == "CONSENSUS_POLICY_NOT_MET"
+    assert report["gate"]["approved"] is False
+    assert report["gate"]["consensus_policy_satisfied"] is False
+    assert any(
+        item["code"] == "consensus_policy_not_met"
+        for item in report["gate"]["blockers"]
+    )
+
+
+def test_selected_but_unconfigured_optional_provider_is_reported_with_assigned_role():
+    catalog = ProviderCatalog.from_env(
+        {
+            "CROCHET_CONSENSUS_PROVIDERS": "openai,anthropic",
+            "CROCHET_REQUIRED_PROVIDERS": "openai",
+            "OPENAI_MODEL": "configured-test-model",
+            "OPENAI_API_KEY": "test-only-key",
+            "ANTHROPIC_MODEL": "missing-key-test-model",
+        }
+    )
+    runner = ConsensusRunner(
+        catalog=catalog,
+        adapters={"openai": FakeAdapter("openai", findings=[])},
+        settings=ConsensusSettings(),
+        validator=lambda _text: _valid_report(),
+        unverified_steps=lambda _text: [],
+    )
+    report = asyncio.run(runner.run(PATTERN))
+
+    anthropic = next(
+        item for item in report["models"]["states"] if item["provider_id"] == "anthropic"
+    )
+    assert anthropic["status"] == "not_configured"
+    assert anthropic["role"] == "construction_assembly"
+    assert anthropic["independent_participated"] is False
+    assert anthropic["missing_configuration"] == ["API key"]
+    assert report["models"]["participation"]["selected_provider_count"] == 2
+    assert report["models"]["participation"][
+        "selected_independent_participation_ratio"
+    ] == 0.5
+    assert report["ai_consensus"]["status"] == "CONSENSUS_POLICY_NOT_MET"
+    assert report["ai_consensus"]["reason_consensus_not_reached"]
+
+
+def test_progress_callback_failure_does_not_discard_a_structured_review_report():
+    providers = configs(2)
+    adapters = {
+        item.provider_id: FakeAdapter(item.provider_id, findings=[])
+        for item in providers
+    }
+
+    async def broken_progress(_update):
+        raise RuntimeError("progress database unavailable")
+
+    report = asyncio.run(
+        runner_for(adapters, provider_configs=providers).run(
+            PATTERN, progress=broken_progress
+        )
+    )
+
+    assert report["execution_status"] == "completed"
+    assert report["report_schema_version"] == 1
+    assert len(report["rounds"]["provider_calls"]) == 6
+    assert report["rounds"]["provider_call_records_complete"] is True
+
+
 def test_deterministic_failure_cannot_be_overruled_by_mocked_ai():
     adapters = {
         item.provider_id: FakeAdapter(item.provider_id, findings=[])
@@ -347,6 +499,53 @@ def test_configured_fallback_is_reported_as_the_required_slot_substitute():
     assert slot["status"] == "failed"
     assert slot["required_slot_satisfied_by"] == "provider_fallback"
     assert report["models"]["participation"]["required_slots_satisfied"] is True
+
+
+def test_configured_fallback_not_needed_is_not_reported_as_a_failure_or_participant():
+    selected = configs(2)
+    fallback = ProviderConfig(
+        "provider_fallback",
+        "openai_compatible",
+        "explicit-fallback-model",
+        "https://unit.invalid/v1",
+        api_key="fallback-secret",
+        required=False,
+    )
+    adapters = {
+        "provider_a": FakeAdapter("provider_a", findings=[]),
+        "provider_b": FakeAdapter("provider_b", findings=[]),
+        "provider_fallback": FakeAdapter("provider_fallback", findings=[]),
+    }
+    runner = ConsensusRunner(
+        providers=selected,
+        required_provider_ids=["provider_a", "provider_b"],
+        fallbacks={"provider_a": fallback},
+        adapters=adapters,
+        settings=ConsensusSettings(),
+        validator=lambda _text: _valid_report(),
+        unverified_steps=lambda _text: [],
+    )
+    report = asyncio.run(runner.run(PATTERN))
+
+    fallback_state = next(
+        item
+        for item in report["models"]["states"]
+        if item["provider_id"] == "provider_fallback"
+    )
+    assert fallback_state["status"] == "not_attempted"
+    assert fallback_state["is_fallback"] is True
+    assert "provider_fallback" not in {
+        item["provider_id"] for item in report["models"]["participating"]
+    }
+    assert all(
+        item["provider_id"] != "provider_fallback"
+        for item in report["models"]["failed"]
+    )
+    assert not any(
+        item["provider_id"] == "provider_fallback"
+        for item in report["rounds"]["provider_calls"]
+    )
+    assert report["gate"]["approved"] is True
 
 
 def test_missing_or_ungrounded_review_coverage_fails_closed():
