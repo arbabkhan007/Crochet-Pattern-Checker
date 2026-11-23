@@ -34,6 +34,8 @@ wheels/
 
 # Output files
 *.pdf
+# Generated from the color hero art whenever an ink-saver PDF is built.
+docs/ns*/assets/*.bw.png
 output/
 batch_output/
 test_batch_output/
