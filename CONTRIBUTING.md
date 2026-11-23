@@ -16,6 +16,13 @@ Thank you for contributing! Please read our guidelines.
 5. Commit and push
 6. Open a Pull Request
 
+## 🧹 Repository Hygiene
+
+- Do not commit virtual environments, caches, bytecode, `node_modules`, or generated build output. `.gitignore` and CI checks enforce this.
+- Keep source patterns, tests, and documented product deliverables; do not remove assets by extension alone.
+- Put large release-only bundles in GitHub Releases or object storage, with a checksummed manifest and stable download links.
+- Do not rewrite shared Git history or force-push cleanup without explicit maintainer coordination.
+
 ## 📝 Pattern Format
 
 Thank you! 🧶
