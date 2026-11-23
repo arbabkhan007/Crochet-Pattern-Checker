@@ -76,7 +76,7 @@ print("Parser and validator smoke test passed")
 PY
 
 echo "[4/6] Checker tests"
-python -m pytest -q tests/test_contract.py tests/test_stages.py tests/test_verdict.py tests/test_span.py tests/validation
+python tools/run_tests_with_release_inputs.py tests/test_contract.py tests/test_stages.py tests/test_verdict.py tests/test_span.py tests/validation -q
 
 echo "[5/6] Consensus lessons"
 python scripts/check_consensus.py
