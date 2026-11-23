@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "ruleset_id": "CPC-RULESET-1",
+  "review_status": "provisional",
+  "review_note": "These cases lock a small set of deterministic outputs. Their literal stitch arithmetic was checked, but independent human craft review and broader real-pattern review remain pending. They do not assess fit or target shape.",
+  "ruleset_sources": [
+    {
+      "path": "src/crochet_checker/validation/validator.py",
+      "sha256": "1072e5b2a4cfa944edcdd718d71a1dc707db1291a8d268cdfb4cfca30d8deec4"
+    },
+    {
+      "path": "src/crochet_checker/validation/audit_rules.py",
+      "sha256": "619981126c74e32da47ad0ca7e15c56e7d5bfabdbb1f15e350625de61ed98a9e"
+    },
+    {
+      "path": "src/crochet_checker/verification/stages.py",
+      "sha256": "749d3b0b7dc95aced7c10c1fdecfb6a05becad647352f48c06884234df63f862"
+    },
+    {
+      "path": "src/crochet_checker/verification/limits.py",
+      "sha256": "152af0009c5f282cabe26b7cfaf7e2f019da3ff584599f5ae8163a01e22909dc"
+    },
+    {
+      "path": "src/crochet_checker/verification/verdict.py",
+      "sha256": "b01c40d3aa55faf9e0c3a39e3e48c73d211b3d334c1810ce7672f10d0858410e"
+    },
+    {
+      "path": "src/crochet_checker/parser/parser.py",
+      "sha256": "5c02ebd7ae037b2e37aa0afdd5c88afcaea94e8dddb88c99948fc62371d8547d"
+    },
+    {
+      "path": "src/crochet_checker/parser/grammar.py",
+      "sha256": "0156fae2fca08c78cbfb87ada82a512be3e1f758e9805821c81303aa0faf9967"
+    },
+    {
+      "path": "src/crochet_checker/parser/normalizer.py",
+      "sha256": "ebde4c82b6760db72f159c5bc26037d952f98fe9e232ad2d0c71ad7746e540f8"
+    }
+  ],
+  "cases": [
+    {
+      "id": "repeat-count-valid-progression",
+      "pair_id": "simple-sphere-counts",
+      "role": "corrected",
+      "file": "sphere_valid_counts.txt",
+      "sha256": "17e25ecfefd2d69f9a18a6a18af36866730c2e04227f932829e56aadbd5a9a6f",
+      "review_status": "provisional-objective-counts",
+      "expected_status": "PASS",
+      "expected_findings": []
+    },
+    {
+      "id": "repeat-overconsumption-error",
+      "pair_id": "simple-sphere-counts",
+      "role": "broken",
+      "file": "repeat_overconsumption.txt",
+      "sha256": "9abaa526f31556fbe0b931a0c719a6657bd86680cd5965e4d5be987b5b50d781",
+      "review_status": "provisional-objective-counts",
+      "expected_status": "ERROR",
+      "expected_findings": [
+        {
+          "rule_id": "CPC.STITCH.REPEAT_OVERCONSUMPTION",
+          "severity": "error",
+          "location": "Line 2",
+          "expected": 6,
+          "actual": 12,
+          "source_line": "Round 2: (sc, inc) x 6 (18)"
+        },
+        {
+          "rule_id": "CPC.STITCH.LARGE_INCREASE_REVIEW",
+          "severity": "warning",
+          "location": "Line 2",
+          "expected": 6,
+          "actual": 18,
+          "source_line": "Round 2: (sc, inc) x 6 (18)"
+        }
+      ]
+    },
+    {
+      "id": "large-shaping-step-review-only",
+      "pair_id": null,
+      "role": "review",
+      "file": "large_step_review.txt",
+      "sha256": "7b68f8253204481f11cea3b50d3640d8733edffc2cfc38cdaad63e3e9a19b6a4",
+      "review_status": "provisional-review-severity",
+      "expected_status": "PASS_WITH_WARNINGS",
+      "expected_findings": [
+        {
+          "rule_id": "CPC.SHAPE.LARGE_STEP_REVIEW",
+          "severity": "warning",
+          "location": "Round 2",
+          "expected": 12,
+          "actual": 24,
+          "source_line": "Round 2: inc x 12 (24)"
+        }
+      ]
+    },
+    {
+      "id": "trailing-repeat-alternative-review",
+      "pair_id": null,
+      "role": "review",
+      "file": "repeat_alternative_review.txt",
+      "sha256": "f97e374b13630390ebea87d96c07003ed58b5681e39ef93ebde7611bfef0792f",
+      "review_status": "provisional-parser-coverage",
+      "expected_status": "NEEDS_REVIEW",
+      "expected_findings": [
+        {
+          "rule_id": "CPC.PARSER.REPEAT_SUFFIX_UNPARSED",
+          "severity": "review",
+          "location": "Line 2",
+          "expected": null,
+          "actual": null,
+          "source_line": "Round 2: (sc, inc) x 6 (18) or (sc, inc) x 3 (9)"
+        }
+      ]
+    }
+  ]
+}

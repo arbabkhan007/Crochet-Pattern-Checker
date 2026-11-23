@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nightmare-eval/solver.schema.json",
+  "title": "Nightmare Pattern Verifier Solver report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fixture", "defects", "coverage", "untestable_reasons", "summary"],
+  "properties": {
+    "fixture": {"type": "string", "minLength": 1},
+    "defects": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/defect"}
+    },
+    "coverage": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/coverageItem"}
+    },
+    "untestable_reasons": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "summary": {"type": "string"}
+  },
+  "$defs": {
+    "defect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "location", "category", "claim", "evidence", "recomputed", "severity"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^D[1-9][0-9]*$"},
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["section", "round_or_row", "quote"],
+          "properties": {
+            "section": {"type": "string"},
+            "round_or_row": {"type": "string"},
+            "quote": {"type": "string", "minLength": 1}
+          }
+        },
+        "category": {"$ref": "#/$defs/category"},
+        "claim": {"type": "string", "minLength": 1},
+        "evidence": {"type": "string", "minLength": 1},
+        "recomputed": {"type": "string", "minLength": 1},
+        "severity": {"enum": ["BLOCKER", "MAJOR", "MINOR"]}
+      }
+    },
+    "category": {
+      "enum": ["stitch_math", "repeat", "contradiction", "missing_info", "absurdity", "finishing", "gauge", "yardage"]
+    },
+    "coverageItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["area", "status", "reason"],
+      "properties": {
+        "area": {
+          "enum": ["stitch_counts", "repeats", "size_grading", "cross_references", "terminology", "gauge", "yardage", "finishing", "absurd_directives"]
+        },
+        "status": {"enum": ["checked", "not_checked"]},
+        "reason": {"type": "string"}
+      }
+    }
+  }
+}

@@ -82,6 +82,10 @@ Version 1.0.0. Repository: [arbabkhan007/Crochet-Pattern-Checker](https://github
 
 ## What a result means
 
+`CPC-RULESET-1` identifies the current deterministic rule set. JSON reports include structured findings with stable rule IDs, severities, locations, and source lines where available; legacy prose errors and warnings remain available. `NEEDS_REVIEW` means an explicit Row/Round body was not fully parsed. It is not a stitch-count error.
+
+A large shaping step is a review warning, not a requirement to add a particular round or proof of fit. The small golden fixture set is provisional; independent craft review and broader real-pattern review remain pending.
+
 `PASS` means the written checks that ran found no error and no warning. It does not mean a photo was counted, a chart image was read, or every English sentence was understood.
 
 These engines are not run:
@@ -211,6 +215,18 @@ On written US instructions it checks stitch counts, repeats, increases that more
 | `crochet-check progress` | Local round checklist | Not a validator |
 | `crochet-check diff` | Compares the written stitch counts of two files | Does not call a count change a cone or a disk, and does not measure a shape |
 | `crochet-check export` | Writes the existing stitch points as obj or gltf, the stitch map as svg, or the sheet as html | Does not write InDesign, does not use millimetres, and does not certify a print file |
+
+## Coordinated multi-model review (optional)
+
+The normal checker remains deterministic and does not call hosted chat. The optional `/consensus` dashboard and `/api/consensus/runs` endpoint run a coordinated specialist review only after providers are explicitly selected and a user submits a pattern.
+
+Set `CROCHET_CONSENSUS_PROVIDERS` to the provider IDs to run (for example, `openai,anthropic`). Supported IDs are `openai`, `anthropic`, `google`, `xai`, `deepseek`, `mistral`, `meta_llama`, `qwen`, and `openai_compatible`; configure each selected provider's real API key (when required), explicit model ID, and custom base URL (when required) in the server environment. Credentials stay server-side. Local readiness means only that configuration is present; it is not a live model, quota, or credential check. An omitted provider selection means no hosted models are called. See `.env.example` for the supported settings; do not commit real credentials.
+
+Each selected provider is assigned a specialist role, whether or not its configuration is ready; only selected, ready providers are called. The defaults cycle through stitch arithmetic, construction/assembly, instruction clarity, materials completeness, and adversarial counterexample review; `CROCHET_ROLE_<PROVIDER_ID>` can assign a role explicitly. Independent reviews run concurrently within the configured concurrency limit. Successful independent reviews are then cross-examined anonymously and adversarially; failed, missing, skipped, or unconfigured participants are never represented as completed reviews.
+
+Every completed attempt returns and stores a structured report with role assignments, per-phase calls, model participation and failures, source-grounded findings, disagreements, open questions, consensus-policy checks, and a reason whenever consensus was not reached. A consensus label is withheld unless the configured participation, role, phase, evidence, and support-threshold policy is satisfied. A catastrophic orchestration failure is also stored as a fail-closed report, with participation marked unknown when it cannot be confirmed. Run history is local SQLite at `.crochet_consensus/history.sqlite3` by default; protect it because it contains submitted pattern text.
+
+The deterministic checker remains authoritative for the rules it verifies. AI findings are advisory, cannot override deterministic arithmetic, and do not certify physical construction, gauge, fit, safety, or quality. Proposed corrections remain separate drafts and must be revalidated.
 
 ## Examples
 

@@ -109,6 +109,7 @@ def main() -> int:
                 "status": report.overall_status,
                 "errors": len(report.errors),
                 "warnings": len(report.warnings),
+                "not_checked": len(report.not_checked),
                 "seen": useful(messages(report.errors) + messages(report.warnings))[:3],
             }
             viewpoint_rows.append(row)
@@ -118,6 +119,7 @@ def main() -> int:
                 report.overall_status,
                 "err", len(report.errors),
                 "warn", len(report.warnings),
+                "not_checked", len(report.not_checked),
             )
 
     write_report(proved, viewpoint_rows)
@@ -129,7 +131,7 @@ def main() -> int:
 
 def write_report(proved: list[dict], rows: list[dict]) -> None:
     lines = [
-        "# Consensus learning",
+        "# Synthetic lesson fixture report",
         "",
         "This file is rewritten by `scripts/check_consensus.py`. It is the check result, not a fourth pattern.",
         "",
@@ -139,7 +141,7 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "- `docs/gemini_corrected.md`",
         "- `docs/chatgpt_corrected.md`",
         "",
-        "The checker does not change its own rules. A lesson is learned only when `wrong.txt` is not a clean pass and `corrected.txt` passes with no errors and no warnings.",
+        "The mechanical gate requires `wrong.txt` not to be a clean pass and `corrected.txt` to pass with no errors or warnings. This status comparison does not prove that the intended defect was detected or that the answer key is independently correct; those fixture reviews remain open.",
         "",
         "## How to read a viewpoint check",
         "",
@@ -147,11 +149,11 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "An ERROR made only of undefined abbreviations, or of `worked N stitches into` on a prose line, is parser noise. It is not the lesson.",
         "",
-        "A 12-to-24 increase is now an error. An unequal stitch seam is now an error. An unequal inch edge is now a warning. A UK piece that uses sc, an unbounded repeat, an unreachable stitch, a missing round, a short chart-symbol row, an uncounted stitch line, a gauge far outside the Craft Yarn Council crochet band, a short-row span that drops 34 to 28 without stating the row-ends, a prose frill above 2.5 times full, and safety eyes mounted on a frill are now checked. A closed tentacle join, a chain crossed once, a dropped body count, a back post on the front loop, eyes placed after stuffing, more than 3 stitches in each row end, a repeat that misses its incoming count, an unlisted color, a repeated round number, and more than 2.5 stitches in every base stitch are now checked. A short chain, an unclosed parenthesis, a missing star, a decrease that misses its count, an increase that more than doubles, a written-as mismatch, an eye-count mismatch, a future round, a make-count mismatch, and a repeat of zero are now checked. Fifty phrase checks, lessons 44 through 93, now catch a zero hook, a one-stitch shell, a backward range, and the other written impossibilities. Lessons 94 through 158 add hook-letter, yarn-weight, UK-gloss, turning-chain, and zero-measure checks, plus general increase, decrease, range, multiple, and measure checks. Those general checks are proved on 5,000 sentences. Five thousand named copies were not added. A cinch with no number closes the last stated round, and is an error when no counted round comes before it. A lowercase sew line is a piece reference. A photo is still not classified.",
+        "A 12-to-24 shaping step and a greater-than-2x stated-count jump are review warnings, not proof of errors. A confidently parsed simple repeat that consumes more than the preceding verified count is a separate objective stitch-consumption error. Unequal stated seam counts can be mechanically compared; inch-span, gauge, fullness, shaping, fit, and fabric behavior remain advice for review or sample measurements. This generated report records the current checker output on the repository fixtures. It is not independent craft review, a complete coverage metric, or evidence that the rules generalize to real patterns. A photo is still not classified.",
         "",
-        "## What the checker learned",
+        "## Synthetic lesson checks",
         "",
-        "These lessons are the consensus. Each one is agreed by both corrected files and proved by the checker.",
+        "These synthetic pairs record current checker behavior. The result table is not a vote, independent craft review, or proof of broad real-pattern coverage; expected findings and answer keys still need independent review.",
         "",
     ]
     for item in proved:
@@ -162,9 +164,9 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
             lines.append(f"- {message}")
         lines.append(f"Corrected result: {item['fixed_status']}.")
         lines.append("")
-        lines.append(f"How: {item['how']}")
+        lines.append(f"Fixture explanation (unreviewed): {item['how']}")
         lines.append("")
-        lines.append(f"What: {item['what']}")
+        lines.append(f"Lesson note (unreviewed): {item['what']}")
         lines.append("")
 
     lines.extend([
@@ -172,8 +174,8 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "| Pattern | Agreed defect | Why it is not a lesson |",
         "|---|---|---|",
-        "| Bear | Do not cinch, with no stitch counts | A prohibition is not an instruction. A flatten line without two stitch counts is named and not compared. |",
-        "| Bear | Do not cinch the arm | A prohibition is not an instruction. Flatten without two stitch counts is named, not counted. |",
+        "| Bear | Do not cinch, with no stitch counts | Cinch and flatten are still prose when no two stitch counts are written. |",
+        "| Bear | Do not cinch the arm | Cinch and flatten are prose. The checker does not read them. |",
         "| Bear | Add legs and ears | A missing piece is not an error unless the checker can see a count. |",
         "| Wyvern | 24-stitch join versus a valid 30 | The models disagree. No consensus pattern is written. |",
         "| Wyvern | 35-stitch fan versus 42-stitch fan | Both still warn above 2.5 times full. Neither is the lesson. |",
@@ -185,15 +187,15 @@ def write_report(proved: list[dict], rows: list[dict]) -> None:
         "",
         "These rows are what the checker returned. They are not a vote.",
         "",
-        "| File | Section | Status | Errors | Warnings | Seen, after dropping abbreviation noise |",
-        "|---|---|---|---:|---:|---|",
+        "| File | Section | Status | Errors | Warnings | Not checked | Seen, after dropping abbreviation noise |",
+        "|---|---|---|---:|---:|---:|---|",
     ])
     for row in rows:
         seen = "; ".join(row["seen"]) if row["seen"] else "none"
         seen = seen.replace("|", "/")
         title = row["title"].replace("|", "/")
         lines.append(
-            f"| `{row['file']}` | {title} | {row['status']} | {row['errors']} | {row['warnings']} | {seen} |"
+            f"| `{row['file']}` | {title} | {row['status']} | {row['errors']} | {row['warnings']} | {row['not_checked']} | {seen} |"
         )
 
     lines.extend([

@@ -192,9 +192,47 @@ def test_failed_execution_records_no_approval_and_never_persists_exception_secre
     run = asyncio.run(service.execute(run_id))
 
     assert run["status"] == "failed"
-    assert run["report"] is None
+    assert run["report"] is not None
+    assert run["report"]["execution_status"] == "failed"
+    assert run["report"]["approved"] is False
+    assert run["report"]["ai_consensus"]["status"] == (
+        "NOT_EVALUATED_DUE_TO_ORCHESTRATION_FAILURE"
+    )
+    assert run["report"]["ai_consensus"]["reason_consensus_not_reached"]
+    assert run["report"]["rounds"]["provider_call_records_complete"] is False
     assert "very-secret" not in run["error"]
     assert run["progress"]["stage"] == "failed"
+
+
+def test_orchestration_failure_names_configured_models_and_marks_participation_unknown():
+    store = ConsensusHistoryStore(":memory:")
+    catalog = ProviderCatalog.from_env(
+        {
+            "CROCHET_CONSENSUS_PROVIDERS": "openai",
+            "OPENAI_MODEL": "explicit-test-model",
+            "OPENAI_API_KEY": "secret-for-test-only",
+        }
+    )
+    runner = StubRunner(failure=RuntimeError("provider response included secret"))
+    service = ConsensusService(
+        store=store,
+        catalog=catalog,
+        settings=ConsensusSettings(),
+        runner=runner,
+    )
+    run_id = service.create_run(ORIGINAL)
+    run = asyncio.run(service.execute(run_id))
+
+    report = run["report"]
+    assert run["status"] == "failed"
+    assert report["models"]["selected_provider_ids"] == ["openai"]
+    assert report["models"]["participating"] == []
+    assert report["models"]["unknown"][0]["provider_id"] == "openai"
+    assert report["models"]["unknown"][0]["role"] == "stitch_arithmetic"
+    assert report["models"]["unknown"][0]["independent_participated"] is None
+    assert "secret-for-test-only" not in str(report)
+    listing = store.list_runs(1)[0]
+    assert listing["unknown_model_count"] == 1
 
 
 def test_only_completed_parent_can_be_revised_and_missing_parent_is_not_silenced():

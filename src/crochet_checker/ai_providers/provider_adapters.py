@@ -92,6 +92,7 @@ class ProviderAvailability:
     family: str
     missing: tuple[str, ...] = ()
     fallback_for: tuple[str, ...] = ()
+    role: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -102,6 +103,7 @@ class ProviderAvailability:
             "required": self.required,
             "model": self.model,
             "family": self.family,
+            "role": self.role,
             "missing_configuration": list(self.missing),
             "fallback_for": list(self.fallback_for),
         }
@@ -402,6 +404,7 @@ class ProviderCatalog:
                         "valid HTTPS endpoint without embedded credentials/query/fragment"
                     )
             ready = bool(model and base and not missing)
+            role = source.get(f"CROCHET_ROLE_{provider_id.upper()}", "").strip() or None
             availability.append(
                 ProviderAvailability(
                     provider_id,
@@ -412,6 +415,7 @@ class ProviderCatalog:
                     definition["family"],
                     tuple(missing),
                     tuple(sorted(fallback_for.get(provider_id, []))),
+                    role,
                 )
             )
             if ready:
@@ -422,8 +426,7 @@ class ProviderCatalog:
                     base_url=str(base),
                     api_key=key,
                     required=provider_id in required_set,
-                    role=source.get(f"CROCHET_ROLE_{provider_id.upper()}", "").strip()
-                    or None,
+                    role=role,
                     timeout_seconds=max(
                         0.1,
                         _env_float(

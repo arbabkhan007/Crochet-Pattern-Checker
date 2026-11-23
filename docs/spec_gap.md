@@ -28,7 +28,7 @@ The specification describes a multi-year system. This file says what the current
 22. Unclosed repeat. A round whose parentheses do not balance is an error.
 23. Missing star. `Rep from *` with no opening star is an error.
 24. Decrease cover. `dec x 5 on 11 stitches` is an error because the decrease uses 10.
-25. Over-double increase. A stated jump from 6 to 18 is an error. A jump from 6 to 12 is not.
+25. Over-double increase. A stated jump from 6 to 18 is a review warning, not proof of an error or a required intermediate count. A jump from 6 to 12 does not trigger this greater-than-2x review. A separate explicit repeat-consumption conflict remains an objective error.
 26. Written-as count. A 30-stitch edge written as 38 is an error.
 27. Eye count. Materials `(x2)` and `Mount 4 safety eyes` is an error. Counts are compared only inside one pattern section.
 28. Future round. Round 2 cannot work into Round 5.
@@ -202,3 +202,10 @@ A hook letter written as `H/8 is 2.25 mm` is the same gap as the parenthetical s
 
 
 `Inc that shrinks from 12 to 6`, `gauge of minus 1 sc`, and `colour B back to colour B` are the same written rules. A line that says `or` stays a choice. The kept scripts do not set a price, a score, or a gauge. No length is invented.
+
+
+## Structured findings and conservative review
+
+The public report identifies the deterministic ruleset as `CPC-RULESET-1` and preserves legacy prose while adding machine-readable finding IDs, severity, and source locations where available. Row/round parser coverage is explicitly reported as `not_checked`; a recognized row or round that the parser cannot fully interpret is `NEEDS_REVIEW`, not a clean pass and not an arithmetic error. Text after a parsed-looking repeat is not treated as proof that the parsed prefix is the author's complete instruction.
+
+A 12-to-24 shaping step and a greater-than-2x stated-count jump are review warnings. The checker does not prescribe an intermediate count, establish intended shape, or certify fit. The four golden cases are provisional and still need independent craft review.

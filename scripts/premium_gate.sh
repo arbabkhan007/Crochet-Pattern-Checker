@@ -11,7 +11,7 @@ echo "[2/4] Whitespace"
 git diff --check
 
 echo "[3/4] Checker tests and consensus"
-python -m pytest -q tests/test_contract.py tests/test_stages.py tests/test_verdict.py tests/test_span.py tests/validation
+python tools/run_tests_with_release_inputs.py tests/test_contract.py tests/test_stages.py tests/test_verdict.py tests/test_span.py tests/validation -q
 python scripts/check_consensus.py
 
 echo "[4/4] Undefined names in the checker"

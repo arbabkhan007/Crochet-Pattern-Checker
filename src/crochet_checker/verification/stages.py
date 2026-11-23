@@ -149,7 +149,7 @@ def run_stages(text: str) -> StageReport:
     errors.extend(unclosed_repeat(text))
     errors.extend(missing_star(text))
     errors.extend(decrease_cover(text))
-    errors.extend(over_double(text))
+    warnings.extend(over_double(text))
     errors.extend(written_as_mismatch(text))
     errors.extend(eye_count(text))
     errors.extend(future_round(text))
@@ -1528,10 +1528,10 @@ def decrease_cover(text: str) -> list[str]:
 
 
 def over_double(text: str) -> list[str]:
-    """Flag a stated count that more than doubles the previous round."""
-    errors = []
+    """Warn when a stated increase exceeds 2x; a ratio alone is not proof of error."""
+    warnings: list[str] = []
     previous = None
-    for line in text.splitlines():
+    for line_number, line in enumerate(text.splitlines(), 1):
         if _is_piece_line(line) or line.startswith("## "):
             previous = None
             continue
@@ -1541,12 +1541,14 @@ def over_double(text: str) -> list[str]:
             continue
         produced = int(stated.group(1))
         if previous is not None and produced > previous * 2:
-            errors.append(
-                f"Round {header.group(2)} jumps from {previous} to {produced}. "
-                "More than doubling in one round skips a size."
+            label = header.group(1).title()
+            warnings.append(
+                f"Line {line_number}: {label} {header.group(2)} jumps from "
+                f"{previous} to {produced}. More than doubling is a large increase; "
+                "verify the shaping and count."
             )
         previous = produced
-    return _unique(errors)
+    return _unique(warnings)
 
 
 def written_as_mismatch(text: str) -> list[str]:

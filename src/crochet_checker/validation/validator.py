@@ -467,6 +467,33 @@ class _CompatFinding:
         return self.message
 
 
+@dataclass(frozen=True)
+class FindingRecord:
+    """Stable, additive machine-readable representation of a finding."""
+
+    rule_id: str
+    severity: str
+    message: str
+    location: str | None = None
+    expected: int | None = None
+    actual: int | None = None
+    source_line: str | None = None
+
+    def to_dict(self) -> dict:
+        return {
+            "rule_id": self.rule_id,
+            "severity": self.severity,
+            "message": self.message,
+            "location": self.location,
+            "expected": self.expected,
+            "actual": self.actual,
+            "source_line": self.source_line,
+        }
+
+
+RULESET_ID = "CPC-RULESET-1"
+
+
 @dataclass
 class ValidationReport:
     """
@@ -483,6 +510,9 @@ class ValidationReport:
     stitch_counts: dict[int, int] = field(default_factory=dict)
     row_transitions: list[dict] = field(default_factory=list)
     consistency: bool = True
+    not_checked: list[str] = field(default_factory=list)
+    findings: list[FindingRecord] = field(default_factory=list)
+    ruleset_id: str = RULESET_ID
 
     @property
     def has_errors(self) -> bool:
@@ -493,6 +523,15 @@ class ValidationReport:
         return self.valid
 
     def to_dict(self) -> dict:
+        stitch_counts: dict[str, dict[str, int] | int] = {}
+        for key, count in self.stitch_counts.items():
+            if isinstance(key, tuple) and len(key) == 2:
+                piece, ordinal = key
+                piece_counts = stitch_counts.setdefault(str(piece), {})
+                if isinstance(piece_counts, dict):
+                    piece_counts[str(ordinal)] = count
+            else:
+                stitch_counts[str(key)] = count
         return {
             "valid": self.valid,
             "errors": [getattr(item, "message", str(item)) for item in self.errors],
@@ -500,11 +539,77 @@ class ValidationReport:
             "stitch_count": self.stitch_count,
             "score": self.score,
             "overall_status": self.overall_status,
-            "stitch_counts": self.stitch_counts,
+            "stitch_counts": stitch_counts,
             "row_transitions": self.row_transitions,
             "consistency": self.consistency,
+            "not_checked": list(self.not_checked),
+            "findings": [finding.to_dict() for finding in self.findings],
+            "ruleset_id": self.ruleset_id,
         }
 
+
+def _finding_source(message: str, source_text: str) -> tuple[str | None, str | None]:
+    line_match = re.match(r"^Line (\d+):", message)
+    if line_match:
+        number = int(line_match.group(1))
+        lines = source_text.splitlines()
+        return f"Line {number}", lines[number - 1].strip() if number <= len(lines) else None
+
+    label_match = re.search(r"\b(Round/row|Round|Row|Rnd)\s+(\d+)\b", message, re.IGNORECASE)
+    if not label_match:
+        return None, None
+    label = "Row" if label_match.group(1).lower() == "row" else "Round"
+    number = int(label_match.group(2))
+    for raw in source_text.splitlines():
+        candidate = raw.strip()
+        candidate = re.sub(r"^(?:[-*+]\s+|#{1,6}\s+)", "", candidate)
+        header = re.match(r"^(Row|Rnd|Round|R)\.?\s*(\d+)\b", candidate, re.IGNORECASE)
+        if not header or int(header.group(2)) != number:
+            continue
+        is_row = header.group(1).lower() == "row"
+        if (label == "Row") == is_row:
+            return f"{label} {number}", raw.strip()
+    return f"{label} {number}", None
+
+
+def _finding_record(message: str, severity: str, source_text: str) -> FindingRecord:
+    rule_id = "CPC.LEGACY.UNCLASSIFIED"
+    expected = actual = None
+
+    if code := re.match(r"^\[(CPC\.[A-Z0-9_.-]+)\]", message):
+        rule_id = code.group(1)
+    elif consume := re.search(r"this round consumes (\d+) stitches, but only (\d+) are available", message, re.IGNORECASE):
+        rule_id = "CPC.STITCH.REPEAT_OVERCONSUMPTION"
+        actual, expected = int(consume.group(1)), int(consume.group(2))
+    elif increase := re.search(r"Round (\d+) jumps from (\d+) to (\d+)\. More than doubling is a large increase", message, re.IGNORECASE):
+        rule_id = "CPC.STITCH.LARGE_INCREASE_REVIEW"
+        expected, actual = int(increase.group(2)), int(increase.group(3))
+        severity = "warning"
+    elif stated := re.search(r"(?:Round|Row) (\d+) states (\d+) stitches, but operations produce (\d+)", message, re.IGNORECASE):
+        rule_id = "CPC.STITCH.STATED_COUNT_MISMATCH"
+        expected, actual = int(stated.group(2)), int(stated.group(3))
+    elif jump := re.search(r"(?:Round|Row) (\d+): 12 to 24 stitches doubles the count", message, re.IGNORECASE):
+        rule_id = "CPC.SHAPE.LARGE_STEP_REVIEW"
+        expected, actual = 12, 24
+        severity = "warning"
+    elif "text after the repeat may be unparsed" in message:
+        rule_id, severity = "CPC.PARSER.REPEAT_SUFFIX_UNPARSED", "review"
+    elif "parser could not fully interpret" in message:
+        rule_id, severity = "CPC.PARSER.ROW_UNPARSED", "review"
+    elif "row/round header has no instruction body" in message:
+        rule_id, severity = "CPC.PARSER.EMPTY_ROW_BODY", "review"
+    elif "parser coverage could not complete" in message:
+        rule_id, severity = "CPC.PARSER.COVERAGE_AUDIT_FAILED", "review"
+
+    location, source_line = _finding_source(message, source_text)
+    return FindingRecord(rule_id, severity, message, location, expected, actual, source_line)
+
+
+def _build_finding_records(errors, warnings, not_checked, source_text):
+    records = [_finding_record(str(item), "error", source_text) for item in errors]
+    records.extend(_finding_record(str(item), "warning", source_text) for item in warnings)
+    records.extend(_finding_record(str(item), "review", source_text) for item in not_checked)
+    return records
 
 
 _CONTEXT_TARGETS = ("each_stitch_around", "each_stitch_across", "remaining")
@@ -589,6 +694,7 @@ def validate_pattern(pattern_input, strict=False):
     # instead of the placeholder count stored on the operation.
     try:
         from ..parser.parser import parse_pattern
+        from ..verification.limits import has_unparsed_repeat_suffix
 
         parsed = (
             pattern_input
@@ -611,10 +717,20 @@ def validate_pattern(pattern_input, strict=False):
                 produced_this_round = 0
                 available = previous
                 available_at_start = previous
+                round_unverified = False
                 is_row = hasattr(item, "row_number")
                 label = "Row" if is_row else "Round"
                 number = getattr(item, "row_number", getattr(item, "round_number", "?"))
                 for instruction in item.instructions:
+                    if (
+                        has_unparsed_repeat_suffix(instruction.source_text or "")
+                        and (
+                            instruction.is_ambiguous
+                            or bool(instruction.parse_warnings)
+                        )
+                    ):
+                        round_unverified = True
+                        continue
                     computed = _produced_with_context(instruction, available)
                     produced_this_round += computed
                     if _needs_previous_round(instruction):
@@ -664,7 +780,7 @@ def validate_pattern(pattern_input, strict=False):
                     if message not in warnings:
                         warnings.append(message)
                         warning_locations[message] = f"Row {number}"
-                previous = produced_this_round
+                previous = None if round_unverified else produced_this_round
     except Exception:
         # The compiler result remains authoritative if legacy parsing is
         # unavailable for an unusual input.
@@ -744,4 +860,24 @@ def validate_pattern(pattern_input, strict=False):
         consistency=not bool(errors),
     )
 
+    try:
+        from ..verification.limits import parser_coverage_notes, unread_notes
+
+        coverage_notes = parser_coverage_notes(pattern_text)
+        report.not_checked = unread_notes(pattern_text)
+    except Exception:
+        coverage_notes = [
+            "Row/round parser coverage could not complete; manual review is required."
+        ]
+        report.not_checked = list(coverage_notes)
+
+    # Only explicit row/round parser gaps downgrade a result. Existing prose and
+    # assembly notes remain visible without being mistaken for parsed instructions.
+    if coverage_notes:
+        report.valid = False
+        if not report.errors:
+            report.overall_status = "NEEDS_REVIEW"
+    report.findings = _build_finding_records(
+        errors, warnings, report.not_checked, pattern_text
+    )
     return report

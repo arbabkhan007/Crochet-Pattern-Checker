@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from crochet_checker.ai_providers.review import parse_review_response
+from crochet_checker.ai_providers.review import build_system_prompt, parse_review_response
 
 PATTERN = "Round 1: 6 sc into magic ring (6)"
 
@@ -137,3 +137,16 @@ def test_rejects_unstructured_and_oversized_payloads():
         parse("not JSON")
     with pytest.raises(ValueError, match="item limit"):
         parse(payload(open_questions=["q"] * 101))
+
+
+def test_specialist_role_prompts_assign_distinct_concrete_responsibilities():
+    arithmetic = build_system_prompt("independent", "stitch_arithmetic")
+    construction = build_system_prompt("independent", "construction_assembly")
+    clarity = build_system_prompt("independent", "instruction_clarity")
+
+    assert "repeat multipliers" in arithmetic
+    assert "deterministic checker is authoritative" in arithmetic
+    assert "peer-review content" in arithmetic
+    assert "component compatibility" in construction
+    assert "ambiguous abbreviations" in clarity
+    assert arithmetic != construction != clarity

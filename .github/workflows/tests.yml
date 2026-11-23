@@ -14,7 +14,7 @@ jobs:
           python-version: "3.12"
       - run: |
           sudo apt-get update
-          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
           pip install -e ".[dev]" weasyprint python-multipart
           pip install -r requirements-release-pdf.txt
       - name: Run tests with checksum-pinned external release inputs

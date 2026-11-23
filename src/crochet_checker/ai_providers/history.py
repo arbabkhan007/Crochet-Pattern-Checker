@@ -164,6 +164,30 @@ class ConsensusHistoryStore:
             if cursor.rowcount == 0:
                 raise KeyError(run_id)
 
+    def save_failure_report(
+        self, run_id: str, report: dict[str, Any], safe_error: str
+    ) -> None:
+        progress = {
+            "stage": "failed",
+            "current": 0,
+            "total": 5,
+            "message": "Run failed; structured report saved; no approval issued",
+            "updated_at": _now(),
+        }
+        with self._connect() as db:
+            cursor = db.execute(
+                "UPDATE consensus_runs SET updated_at=?,status='failed',report_json=?,error=?,progress_json=? WHERE run_id=?",
+                (
+                    _now(),
+                    json.dumps(report, ensure_ascii=False, separators=(",", ":")),
+                    safe_error[:400],
+                    json.dumps(progress),
+                    run_id,
+                ),
+            )
+            if cursor.rowcount == 0:
+                raise KeyError(run_id)
+
     def mark_failed(self, run_id: str, safe_error: str) -> None:
         progress = {
             "stage": "failed",
@@ -223,6 +247,7 @@ class ConsensusHistoryStore:
             item["configured_model_count"] = len(models.get("configured", []))
             item["participating_model_count"] = len(models.get("participating", []))
             item["failed_model_count"] = len(models.get("failed", []))
+            item["unknown_model_count"] = len(models.get("unknown", []))
             result.append(item)
         return result
 

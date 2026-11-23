@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/nightmare-eval/verifier.schema.json",
+  "title": "Nightmare Pattern Verifier independent review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fixture", "claim_verdicts", "verifier_additions", "coverage", "summary"],
+  "properties": {
+    "fixture": {"type": "string", "minLength": 1},
+    "claim_verdicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim_id", "verdict", "evidence", "recomputed", "note"],
+        "properties": {
+          "claim_id": {"type": "string", "pattern": "^D[1-9][0-9]*$"},
+          "verdict": {"enum": ["confirmed", "refuted", "partial", "unverifiable"]},
+          "evidence": {"type": "string", "minLength": 1},
+          "recomputed": {"type": "string", "minLength": 1},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "verifier_additions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/addition"}
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["area", "status", "reason"],
+        "properties": {
+          "area": {
+            "enum": ["stitch_counts", "repeats", "size_grading", "cross_references", "terminology", "gauge", "yardage", "finishing", "absurd_directives"]
+          },
+          "status": {"enum": ["checked", "not_checked"]},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "summary": {"type": "string"}
+  },
+  "$defs": {
+    "addition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "location", "category", "claim", "evidence", "recomputed", "severity"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^V[1-9][0-9]*$"},
+        "location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["section", "round_or_row", "quote"],
+          "properties": {
+            "section": {"type": "string"},
+            "round_or_row": {"type": "string"},
+            "quote": {"type": "string", "minLength": 1}
+          }
+        },
+        "category": {
+          "enum": ["stitch_math", "repeat", "contradiction", "missing_info", "absurdity", "finishing", "gauge", "yardage"]
+        },
+        "claim": {"type": "string", "minLength": 1},
+        "evidence": {"type": "string", "minLength": 1},
+        "recomputed": {"type": "string", "minLength": 1},
+        "severity": {"enum": ["BLOCKER", "MAJOR", "MINOR"]}
+      }
+    }
+  }
+}
