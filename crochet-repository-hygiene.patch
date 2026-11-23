@@ -1,0 +1,220 @@
+diff --git a/.github/workflows/tests.yml b/.github/workflows/tests.yml
+index 04e1134..70e6398 100644
+--- a/.github/workflows/tests.yml
++++ b/.github/workflows/tests.yml
+@@ -12,6 +12,8 @@ jobs:
+       - uses: actions/setup-python@v5
+         with:
+           python-version: "3.12"
++      - name: Check repository hygiene
++        run: python scripts/check_repo_hygiene.py
+       - run: |
+           sudo apt-get update
+           sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 0c47bf9..2821e37 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -16,6 +16,13 @@ Thank you for contributing! Please read our guidelines.
+ 5. Commit and push
+ 6. Open a Pull Request
+ 
++## 🧹 Repository Hygiene
++
++- Do not commit virtual environments, caches, bytecode, `node_modules`, or generated build output. `.gitignore` and CI checks enforce this.
++- Keep source patterns, tests, and documented product deliverables; do not remove assets by extension alone.
++- Put large release-only bundles in GitHub Releases or object storage, with a checksummed manifest and stable download links.
++- Do not rewrite shared Git history or force-push cleanup without explicit maintainer coordination.
++
+ ## 📝 Pattern Format
+ 
+ Thank you! 🧶
+diff --git a/README.md b/README.md
+index 5776304..7b43c50 100644
+--- a/README.md
++++ b/README.md
+@@ -82,63 +82,9 @@ Version 1.0.0. Repository: [arbabkhan007/Crochet-Pattern-Checker](https://github
+ 
+ ## What a result means
+ 
+-`CPC-RULESET-1` identifies the current deterministic rule set. JSON reports include structured findings with stable rule IDs, severities, locations, and source lines where available; legacy prose errors and warnings remain available. `NEEDS_REVIEW` means an explicit Row/Round body was not fully parsed. It is not a stitch-count error.
++The checker analyzes written pattern text. `PASS` means only that deterministic checks reported no errors or warnings; it is not proof of physical construction, photo or chart interpretation, measured gauge, fit, or safety. Optional specialist reviews may add textual findings, but they neither replace the deterministic verdict nor verify a made object. Unparsed instructions are surfaced as not checked, and estimates keep their assumptions visible.
+ 
+-A large shaping step is a review warning, not a requirement to add a particular round or proof of fit. The small golden fixture set is provisional; independent craft review and broader real-pattern review remain pending.
+-
+-`PASS` means the written checks that ran found no error and no warning. It does not mean a photo was counted, a chart image was read, or every English sentence was understood.
+-
+-These engines are not run:
+-
+-- a chart image detector
+-- a photo stitch classifier
+-- a hosted language model
+-- a support chat
+-- a cover image generator
+-- a vision training set
+-- a process cluster
+-
+-Two assembly lines are read. They are still not a made piece and not a photo:
+-
+-- `Cinch shut`, with no stitch count, closes the last stated round. It is an error when no counted round comes before it.
+-- `sew head to body` is a piece reference. It is an error when head or body never starts.
+-
+-An instruction line the parser did not count is named under Not checked. It is not treated as a passed round.
+-
+-A sew line that names a made piece but gives no number is named. The count is not guessed. A flatten line with fewer than two stitch counts is named. The seam is not compared.
+-
+-A check is not a purchase. A photo was not opened, the piece was not made, and a gauge swatch was not measured.
+-
+-A finished-size range, a request to match stitch and round gauge with no tested sample, a yarn range that was not weighed, and an approximate opening are warnings. The missing measurements are not invented.
+-
+-A hook size of 0 mm is an error in any sentence. The line does not have to say `Hook: 0 mm`. A size such as 3.0 mm or 10 mm is not that error.
+-
+-A chain of 0, work of zero stitches, a skip of zero, and a repeat of zero times are errors in any sentence. A hook size written in centimeters is an error in any sentence. These do not have to match one lesson line.
+-
+-A hook of 40 mm or more is a warning in any sentence, not only after `Hook:`. Chain zero and work 0 are the same errors as `ch 0` and `work 0 stitches`. A hook size written as centimeters is the same error as cm.
+-
+-The words zero and one are the same defects as 0 and 1 in those written checks. Decrease five times across eleven stitches is the same error as dec x 5 on 11 stitches.
+-
+-Those arithmetic checks also accept the words twelve, six, and the other number words, and they do not have to be the first words of the line. A hook letter such as H/8 can be named in any sentence. A hook written as millimeters is the same size check as mm.
+-
+-A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
+-
+-`Inc from 12 to 6`, `rnd 8 to rnd 5`, `colour A to colour A`, and `ch-1 counts as dc` are the same errors as the longer sentences. A line that says `or` is still a choice. No length is invented. This is not a physical proof, and it is not a reason to pay for a pattern.
+-
+-`ch1, turn for dc`, `8in = 8cm`, and `H/8 = 2.25mm` are the same errors without the space. A real conversion such as `4 inches = 10.16 cm` is not that error. No length is invented.
+-
+-`I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
+-
+-`Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written errors. `sc (UK double)` stays correct. No length is invented.
+-
+-`Righties and lefties`, `Fsc and ch 12 to start`, and `increase shrinks, 12 to 6` are the same written rules. A line that says `or` stays a choice. No length is invented.
+-
+-`I-cord of no stitches`, `round number 0`, and `repeat x zero` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
+-
+-`Cable that crosses nothing`, `yardage listed as nothing`, and `round numbered nothing` are the same empty counts. `Leave nothing unworked` is not that error. No length is invented.
+-
+-
+-`Inc that shrinks from 12 to 6`, `gauge of minus 1 sc`, and `colour B back to colour B` are the same written rules. A line that says `or` stays a choice. The kept scripts do not set a price, a score, or a gauge. No length is invented.
++See [Detailed result semantics](docs/result-semantics.md) for stable rule IDs, `NEEDS_REVIEW`, the checks that run, and concrete examples.
+ 
+ ## Web companion (optional)
+ 
+diff --git a/docs/result-semantics.md b/docs/result-semantics.md
+new file mode 100644
+index 0000000..e0d036c
+--- /dev/null
++++ b/docs/result-semantics.md
+@@ -0,0 +1,57 @@
++# What a result means
++
++This page preserves the detailed result contract and limitations; the README contains a short overview.
++
++`CPC-RULESET-1` identifies the current deterministic rule set. JSON reports include structured findings with stable rule IDs, severities, locations, and source lines where available; legacy prose errors and warnings remain available. `NEEDS_REVIEW` means an explicit Row/Round body was not fully parsed. It is not a stitch-count error.
++
++A large shaping step is a review warning, not a requirement to add a particular round or proof of fit. The small golden fixture set is provisional; independent craft review and broader real-pattern review remain pending.
++
++`PASS` means the written checks that ran found no error and no warning. It does not mean a photo was counted, a chart image was read, or every English sentence was understood.
++
++## Optional AI review and non-goals
++
++When explicitly enabled, the coordinated specialist-review feature may use hosted language models to review the written pattern. Its participation and failures are reported separately. These reviews do not replace or override the deterministic checker verdict, and they cannot verify a physical object, inspect photos or chart images, measure gauge, or confirm that construction or testing happened. `PASS` remains the result of deterministic written-pattern checks, not AI consensus.
++
++The checker does not run a chart-image detector, photo stitch classifier, support chat, cover-image generator, vision-training set, or process cluster.
++
++Two assembly lines are read. They are still not a made piece and not a photo:
++
++- `Cinch shut`, with no stitch count, closes the last stated round. It is an error when no counted round comes before it.
++- `sew head to body` is a piece reference. It is an error when head or body never starts.
++
++An instruction line the parser did not count is named under Not checked. It is not treated as a passed round.
++
++A sew line that names a made piece but gives no number is named. The count is not guessed. A flatten line with fewer than two stitch counts is named. The seam is not compared.
++
++A check is not a purchase. A photo was not opened, the piece was not made, and a gauge swatch was not measured.
++
++A finished-size range, a request to match stitch and round gauge with no tested sample, a yarn range that was not weighed, and an approximate opening are warnings. The missing measurements are not invented.
++
++A hook size of 0 mm is an error in any sentence. The line does not have to say `Hook: 0 mm`. A size such as 3.0 mm or 10 mm is not that error.
++
++A chain of 0, work of zero stitches, a skip of zero, and a repeat of zero times are errors in any sentence. A hook size written in centimeters is an error in any sentence. These do not have to match one lesson line.
++
++A hook of 40 mm or more is a warning in any sentence, not only after `Hook:`. Chain zero and work 0 are the same errors as `ch 0` and `work 0 stitches`. A hook size written as centimeters is the same error as cm.
++
++The words zero and one are the same defects as 0 and 1 in those written checks. Decrease five times across eleven stitches is the same error as dec x 5 on 11 stitches.
++
++Those arithmetic checks also accept the words twelve, six, and the other number words, and they do not have to be the first words of the line. A hook letter such as H/8 can be named in any sentence. A hook written as millimeters is the same size check as mm.
++
++A line that starts with `>` is a quote. A line that says `do not` is a prohibition. Neither is treated as an instruction.
++
++`Inc from 12 to 6`, `rnd 8 to rnd 5`, `colour A to colour A`, and `ch-1 counts as dc` are the same errors as the longer sentences. A line that says `or` is still a choice. No length is invented. This is not a physical proof, and it is not a reason to pay for a pattern.
++
++`ch1, turn for dc`, `8in = 8cm`, and `H/8 = 2.25mm` are the same errors without the space. A real conversion such as `4 inches = 10.16 cm` is not that error. No length is invented.
++
++`I-cord uses no stitch`, `cable crosses no stitch`, and `make none` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
++
++`Puff is one stitch`, `picot = 0`, and `round goes side to side` are the same written errors. `sc (UK double)` stays correct. No length is invented.
++
++`Righties and lefties`, `Fsc and ch 12 to start`, and `increase shrinks, 12 to 6` are the same written rules. A line that says `or` stays a choice. No length is invented.
++
++`I-cord of no stitches`, `round number 0`, and `repeat x zero` are the same empty counts. `No stitches are left unworked` is not that error. No length is invented.
++
++`Cable that crosses nothing`, `yardage listed as nothing`, and `round numbered nothing` are the same empty counts. `Leave nothing unworked` is not that error. No length is invented.
++
++
++`Inc that shrinks from 12 to 6`, `gauge of minus 1 sc`, and `colour B back to colour B` are the same written rules. A line that says `or` stays a choice. The kept scripts do not set a price, a score, or a gauge. No length is invented.
+diff --git a/scripts/check_repo_hygiene.py b/scripts/check_repo_hygiene.py
+new file mode 100644
+index 0000000..2783578
+--- /dev/null
++++ b/scripts/check_repo_hygiene.py
+@@ -0,0 +1,50 @@
++"""Fail CI if machine-local environments or generated caches are tracked."""
++
++from __future__ import annotations
++
++import subprocess
++import sys
++
++FORBIDDEN_DIRECTORY_NAMES = {
++    ".venv",
++    "venv",
++    "ENV",
++    "env",
++    "__pycache__",
++    ".pytest_cache",
++    ".ruff_cache",
++    "node_modules",
++}
++FORBIDDEN_SUFFIXES = {".pyc", ".pyo"}
++
++
++def main() -> int:
++    result = subprocess.run(
++        ["git", "ls-files", "-z"],
++        check=True,
++        capture_output=True,
++    )
++    tracked = [
++        item.decode("utf-8", errors="surrogateescape")
++        for item in result.stdout.split(b"\0")
++        if item
++    ]
++    offenders = [
++        path
++        for path in tracked
++        if any(part in FORBIDDEN_DIRECTORY_NAMES for part in path.split("/"))
++        or path.endswith(tuple(FORBIDDEN_SUFFIXES))
++    ]
++
++    if offenders:
++        print("Tracked local environments or generated files found:", file=sys.stderr)
++        for path in offenders:
++            print(f"  {path}", file=sys.stderr)
++        return 1
++
++    print("Repository hygiene check passed.")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
