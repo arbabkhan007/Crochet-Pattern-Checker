@@ -1560,7 +1560,8 @@ def make_table(
         for column_index, cell in enumerate(row):
             display = cell
             if progress_table and row_index > 0 and column_index == 0:
-                display = f"[ ] {cell}"
+                # LRM marks prevent bracket mirroring in some PDF viewers/fonts.
+                display = f"\u200e[ ]\u200e {cell}"
             style = (
                 styles["table_header"]
                 if row_index == 0
@@ -1921,6 +1922,7 @@ def blocks_to_story(
     heading_count = 0
     current_h2 = ""
     inserted_assembly = False
+    skip_assembly_text = False
     for block in blocks:
         if block.kind == "heading":
             text = str(block.value)
@@ -1930,6 +1932,7 @@ def blocks_to_story(
                 continue  # Represented by the editorial cover.
             if block.level == 2:
                 current_h2 = text
+                skip_assembly_text = False
                 story.append(CondPageBreak(42 * mm))
             style_key = f"h{min(block.level, 4)}"
             level = max(0, block.level - 2)
@@ -1970,6 +1973,9 @@ def blocks_to_story(
                             ),
                         ]
                     )
+                # The assembly image already contains the step map; skip only the
+                # redundant intro line, but keep the numbered written directions.
+                skip_assembly_text = True
             if text == "Colourways":
                 story.extend(
                     [
@@ -1986,6 +1992,14 @@ def blocks_to_story(
                     ]
                 )
             continue
+        if skip_assembly_text and block.kind == "paragraph":
+            para_text = str(block.value).strip()
+            if para_text.lower().startswith("assembly - work in this order"):
+                continue
+            skip_assembly_text = False
+        if skip_assembly_text and block.kind == "list":
+            # Keep numbered assembly directions; they are the controlling text.
+            skip_assembly_text = False
         if block.kind == "rule":
             rule_colour = HexColor("#777777") if printer_saver else LINE
             story.extend(
@@ -2258,19 +2272,22 @@ def postflight_pdf(output: Path) -> None:
         "43 knots",
         f"© 2026 {BRAND}",
     ]
-    normalized_text = " ".join(all_text.lower().split())
+    check_text = all_text.replace("\u200e", "")
+    normalized_text = " ".join(check_text.lower().split())
     for phrase in required_text:
         if phrase.lower() not in normalized_text:
             raise ValueError(f"Required customer text is missing: {phrase!r}")
 
     head_rnd_11 = r"\[\s*\]\s*R11\s+\[5 sc, dec\] x 6\s+\(36\)"
-    if not re.search(head_rnd_11, all_text):
+    if not re.search(head_rnd_11, check_text):
         raise ValueError("Head Rnd 11 is missing its 42-to-36 decrease instruction")
     body_rnd_11 = r"\[\s*\]\s*R11\s+sc in each st around\s+\(48\)"
-    if not re.search(body_rnd_11, all_text):
+    if not re.search(body_rnd_11, check_text):
         raise ValueError("Body Rnd 11 is missing its straight-round instruction")
     expected_boxes = expected_progress_box_count(SOURCE.read_text(encoding="utf-8"))
-    if all_text.count("[ ]") < expected_boxes:
+    box_text = check_text
+    box_count = box_text.count("[ ]")
+    if box_count < expected_boxes:
         raise ValueError(
             "One or more construction-table progress checkboxes were not rendered"
         )
@@ -2286,7 +2303,7 @@ def postflight_pdf(output: Path) -> None:
         f"{len(reader.pages)} A4 pages, "
         f"{output.stat().st_size / 1024 / 1024:.2f} MiB, "
         f"3 distinct images ({image_placements} placements), "
-        f"{all_text.count('[ ]')} progress boxes, {text_spans} text spans within page bounds, "
+        f"{box_count} progress boxes, {text_spans} text spans within page bounds, "
         "selectable text, metadata, "
         "bookmarks, brand, code, copyright, and critical instructions"
     )
@@ -2342,7 +2359,8 @@ def postflight_printer_pdf(output: Path) -> None:
                     )
 
     all_text = "\n".join(page_texts)
-    normalized_text = " ".join(all_text.lower().split())
+    check_text = all_text.replace("\u200e", "")
+    normalized_text = " ".join(check_text.lower().split())
     required_text = [
         "PRINTER-SAVER EDITION",
         "Every construction-table row begins with a printable [ ] box",
@@ -2370,13 +2388,14 @@ def postflight_printer_pdf(output: Path) -> None:
         if phrase.lower() not in normalized_text:
             raise ValueError(f"Required printer-saver text is missing: {phrase!r}")
     expected_boxes = expected_progress_box_count(SOURCE.read_text(encoding="utf-8"))
-    if all_text.count("[ ]") < expected_boxes:
+    box_count = check_text.count("[ ]")
+    if box_count < expected_boxes:
         raise ValueError("One or more progress checkboxes were not rendered")
     head_rnd_11 = r"\[\s*\]\s*R11\s+\[5 sc, dec\] x 6\s+\(36\)"
-    if not re.search(head_rnd_11, all_text):
+    if not re.search(head_rnd_11, check_text):
         raise ValueError("Printer-saver Head Rnd 11 instruction is missing")
     body_rnd_11 = r"\[\s*\]\s*R11\s+sc in each st around\s+\(48\)"
-    if not re.search(body_rnd_11, all_text):
+    if not re.search(body_rnd_11, check_text):
         raise ValueError("Printer-saver Body Rnd 11 instruction is missing")
 
     image_hashes, image_placements = image_inventory(reader)
@@ -2387,7 +2406,7 @@ def postflight_printer_pdf(output: Path) -> None:
         "Printer-saver postflight: PASS — "
         f"{len(reader.pages)} A4 pages, "
         f"{output.stat().st_size / 1024 / 1024:.2f} MiB, "
-        f"{all_text.count('[ ]')} progress boxes, {text_spans} text spans within page bounds, "
+        f"{box_count} progress boxes, {text_spans} text spans within page bounds, "
         "no raster images, grayscale vectors, "
         "selectable text, metadata, bookmarks, brand, code, copyright, and critical instructions"
     )

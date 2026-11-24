@@ -215,7 +215,7 @@ Cut 6 strands of Yarn A, each 22 cm / 8.5 in. Fold the bundle in half and attach
 
 ### 9. Fringe - Yarn A
 
-Attach AFTER the horns and ears so you can part the hair around them. Cut 44 strands, each 14 cm / 5.5 in (swap 6 for Yarn C for depth). Attach with lark's head knots in a horseshoe from one ear, across the brow, to the other, filling three rows across the front of the head: every stitch along the front of Rnd 8 (24 knots), then every other stitch along the front of Rnd 7 (about 10 knots) and Rnd 6 (about 9 knots) - about 24 + 10 + 9 = 43 knots.
+Attach AFTER the horns and ears so you can part the hair around them. Cut 44 strands (includes 1 spare), each 14 cm / 5.5 in (swap 6 for Yarn C for depth). Attach with lark's head knots in a horseshoe from one ear, across the brow, to the other, filling three rows across the front of the head: every stitch along the front of Rnd 8 (24 knots), then every other stitch along the front of Rnd 7 (about 10 knots) and Rnd 6 (about 9 knots) - about 24 + 10 + 9 = 43 knots.
 
 Tousle, then trim so the fringe grazes the eyes and breaks into uneven points. Highland hair is weather-beaten, not a salon fringe.
 
