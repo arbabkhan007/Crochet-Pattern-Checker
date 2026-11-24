@@ -81,7 +81,9 @@ Worked from the crown down toward the neck. One straight round only - that is wh
 | R15 | [sc, dec] x 6 | (12) | last pinch of stuffing |
 | R16 | dec x 6 | (6) | close the hole |
 
-Eyes & head size: place the 12 mm eyes between Rnds 9 and 10, 7 stitches apart and a touch low on the face (7 sts is about 32 mm, just under half the head width). LOCK THE WASHERS at about Rnd 12, while you can still reach the inside: press each washer on until it clicks. The head stays open until Rnd 16 closes it - after that the washers are unreachable. Finished head about 70 mm wide x 67 mm tall.
+Head finishing: after completing R16, fasten off and leave a sufficient yarn tail. Thread the tail through the front loops only of the remaining 6 stitches, pull tightly to close the opening, then secure the yarn with a small knot and weave the end inside the head.
+
+Eyes & head size: the 12 mm eyes go in between Rnds 9 and 10, 7 stitches apart and a touch low on the face (7 sts is about 32 mm, just under half the head width). LOCK THE WASHERS at about Rnd 12, while you can still reach the inside: press each washer on until it clicks. The head stays open until Rnd 16 closes it - after that the washers are unreachable. Finished head about 70 mm wide x 67 mm tall.
 
 ### 2. Muzzle & nostrils - Yarn B
 
@@ -136,7 +138,7 @@ A flat oval worked around a chain, sewn on last.
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
-| Found. | ch 9 | - | - |
+| Foundation: | ch 9 | - | - |
 | R1 | sc in 2nd ch, sc in next 6, 3 sc in last ch, sc in next 6, 2 sc in last loop | (18) | - |
 | R2 | inc, 6 sc, inc x 3, 6 sc, inc x 2 | (24) | - |
 | R3 | sc, inc, 6 sc, [sc, inc] x 3, 6 sc, [sc, inc] x 2 | (30) | - |
@@ -167,11 +169,15 @@ All four identical; the sitting pose comes from where and at what angle you sew 
 | R15 | sc in each st around | (9) | - |
 | R16 | sc in each st around | (9) | leave top open |
 
+Standard leg finishing: after R16, fasten off and leave a 30-40 cm sewing tail. 
+Do not close or flatten the opening - the 9-stitch top edge stays open so it can be sewn to the body. Stuff the hoof firmly, keep the upper leg lightly filled, and add only a small pinch near the top if needed so the opening remains easy to shape and attach.
+
 Leg length - read before you sew. A 67 mm leg joins much lower than it is long, so it splays: front about 55 degrees from vertical, back about 68-70 degrees (near horizontal) - that is the low Highland sit. For a tidier upright sit, work the FRONT pair only to Rnd 10 (42 mm); leave the back pair at 16 rounds as haunches.
 
 #### Shortened front legs - upright option only (make 2)
 
-Short-front finish and placement: each leg is about 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening. Pin both front legs before sewing, centred across Body Rnds 8-9 and about 8 body stitches apart. Start each leg 25 degrees forward from vertical; mirror the pair and adjust only within 20-30 degrees until both hooves rest level. Sew all 12 opening stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
+Short-front finish and placement: each leg measures 42 mm with a 12-stitch top opening. Stuff the hoof firmly, keep the final two rounds lightly filled, and FO after Rnd 10 with a 40 cm sewing tail; do not close or flatten the opening. 
+Pin both front legs before sewing, centred across Body Rnds 8-9 and about 8 body stitches apart. Start each leg 25 degrees forward from vertical; mirror the pair and adjust only within 20-30 degrees until both hooves rest level. Sew all 12 opening stitches to the body, then make a second complete seam pass. Keep the standard 16-round back legs at 68-70 degrees from vertical.
 
 ### 6. Ears - make 2 of each layer
 
@@ -217,9 +223,9 @@ Tousle, then trim so the fringe grazes the eyes and breaks into uneven points. H
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
-| Found. | ch 61 | - | - |
+| Foundation: | ch 61 | - | - |
 | Row 1 | hdc in 2nd ch from hook and in each ch across | (60) | - |
-| Row 2 | ch 1, turn, hdc across | (60) | - |
+| Row 2 | ch 2, turn, hdc across | (60) | turning ch does not count |
 
 FO; add a 3-strand tassel at each end or weave a second colour as a slip-stitch stripe to hint at tartan, then tie loosely under the muzzle. Ribbon shortcut: 28 cm of 12 mm rust tartan ribbon, knotted once.
 
@@ -235,7 +241,7 @@ Assembly - work in this order:
 
 4. Fringe attached and trimmed (section 9), parting around horns and ears.
 
-5. Head to body: closed head on the open 18-st neck ring (Rnd 19). Ball-on-ring join - pack the neck firmly, ladder-stitch around TWICE. Match the 18 body Rnd-19 stitches one-for-one to the 18 head stitches of Rnd 14, forming a full circular seam around the nub; do not bunch all 18 neck stitches into the 6-stitch closure. Tilt the muzzle slightly down.
+5. Head to body: position the closed head over the open 18-st neck ring (Body Rnd 19). The head is closed at Rnd 16 (6 sts), but the attachment ring is the full 18-stitch round at Head Rnd 14. Match the 18 body Rnd-19 stitches one-for-one to the 18 head stitches of Rnd 14, forming a full circular seam around the nub; do not bunch all 18 neck stitches into the 6-stitch closure. Pin at four quarter points first (front, back, left, right), then fill in the remaining stitches so the head sits level. Pack the neck firmly. Using the body tail and ladder stitch, pass the needle under a stitch on the body opening, then under the corresponding stitch on Head Rnd 14, alternating around the full circle. Pull the seam snug every few stitches, check the head position, then ladder-stitch around TWICE for a reinforcing second pass. Weave the tail inside the body. Tilt the muzzle slightly down.
 
 6. Back legs: lower sides across Rnds 3-6, almost on the base, splayed near horizontal.
 
@@ -261,13 +267,15 @@ Ginger  ·  Caramel  ·  Highland black  ·  Cream  ·  Roan red
 
 ## Three sizes, one pattern
 
-| Version | Yarn / hook | Eyes | Height |
+The stitch counts are unchanged across all three versions; yarn weight, hook size, eye size and stuffing quantity change. The heights below are **estimated targets - not physically tested**. No physical sample was made for the Wee or Cuddle version in this pass; actual finished size depends on yarn thickness, hook, individual tension and stuffing density.
+
+| Version | Yarn / hook | Eyes | Estimated height* |
 |---|---|---|---|
 | Wee Hamish | DK / #3 - 2.75 mm | 8-9 mm | ~12 cm |
-| Classic | Worsted / #4 - 3.5 mm | 12 mm | ~15 cm |
+| Classic Hamish | Worsted / #4 - 3.5 mm | 12 mm | ~15 cm |
 | Cuddle Hamish | Bulky chenille / #5 - 5.0 mm | 16-18 mm | ~21 cm |
 
-Stitch counts stay the same; only yarn, hook and stuffing change. Yarn scales with the square of the height and stuffing with the cube - buy generously for the big chenille version.
+\*Estimated from yarn/hook scaling of the Classic pattern. No physical sample has been made and measured for Wee Hamish or Cuddle Hamish as part of this pattern release. Work a gauge swatch, measure your own tension, and expect variation. Yarn usage scales roughly with the square of height and stuffing with the cube - buy generously for larger versions.
 
 ## Designer notes
 

@@ -12,6 +12,7 @@ import re
 import tempfile
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
+import math
 from hashlib import sha256
 from html import escape, unescape
 from pathlib import Path
@@ -673,11 +674,11 @@ def make_placement_drawing(model: dict, *, printer_saver: bool = False) -> Drawi
         accent = GINGER
         panel = PAPER
 
-    drawing = Drawing(492, 166)
+    drawing = Drawing(492, 246)
     drawing.add(
         String(
             246,
-            156,
+            236,
             "NS 01 · COMPONENT PLACEMENT (SCHEMATIC, NOT TO SCALE)",
             textAnchor="middle",
             fontName="Helvetica-Bold",
@@ -686,16 +687,19 @@ def make_placement_drawing(model: dict, *, printer_saver: bool = False) -> Drawi
         )
     )
     drawing.add(
-        Rect(7, 19, 235, 130, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
+        Rect(7, 99, 235, 130, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
     )
     drawing.add(
-        Rect(250, 19, 235, 130, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
+        Rect(250, 99, 235, 130, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
+    )
+    drawing.add(
+        Rect(7, 8, 478, 84, fillColor=panel, strokeColor=accent, strokeWidth=0.7)
     )
 
     head = model["components"]["head"]
     head_features = head["features"]
-    head_bottom, head_top = 45, 124
-    head_x, head_y, head_w, head_h = 22, 47, 64, 72
+    head_bottom, head_top = 125, 204
+    head_x, head_y, head_w, head_h = 22, 127, 64, 72
     drawing.add(
         Ellipse(
             head_x + head_w / 2,
@@ -774,39 +778,39 @@ def make_placement_drawing(model: dict, *, printer_saver: bool = False) -> Drawi
         )
 
     head_total = max(row["end"] for row in head["rounds"])
-    head_label(134, f"Head · TOP DOWN · R1–R{head_total}", True)
+    head_label(214, f"Head · TOP DOWN · R1–R{head_total}", True)
     head_label(
-        119,
+        199,
         f"Horns R{head_features['horns']['round_start']}–R{head_features['horns']['round_end']} · {head_features['horns']['spacing_stitches']} sts apart",
     )
     fringe_rounds = head_features["fringe"]["rounds"]
     head_label(
-        106,
+        186,
         f"Ears R{head_features['ears']['round_start']}–R{head_features['ears']['round_end']} · fringe R{min(fringe_rounds)}–R{max(fringe_rounds)}",
     )
     head_label(
-        93,
+        173,
         f"Eyes {eye_diameter:g} mm · R{eye_start}–R{eye_end} · "
         f"{head_features['eyes']['spacing_stitches']} sts apart",
     )
-    head_label(80, f"Muzzle top: R{muzzle['round_start']}")
+    head_label(160, f"Muzzle top: R{muzzle['round_start']}")
     head_label(
-        67,
+        147,
         f"Lower edge: R{muzzle['lower_edge_round_start']}–R{muzzle['lower_edge_round_end']}",
     )
     head_label(
-        54,
+        134,
         f"Join ring: R{head['neck_join']['round']} · {head['neck_join']['stitches']} sts",
     )
     head_label(
-        41, f"Closes at R{head['closure']['round']} · {head['closure']['stitches']} sts"
+        121, f"Closes at R{head['closure']['round']} · {head['closure']['stitches']} sts"
     )
 
     body = model["components"]["body"]
     body_features = body["features"]
-    body_bottom, body_top = 47, 120
+    body_bottom, body_top = 127, 200
     drawing.add(
-        Ellipse(297.5, 84, 28.5, 35, fillColor=ginger, strokeColor=ink, strokeWidth=1.1)
+        Ellipse(297.5, 164, 28.5, 35, fillColor=ginger, strokeColor=ink, strokeWidth=1.1)
     )
     back_mid = (
         body_features["back_legs"]["round_start"]
@@ -855,22 +859,95 @@ def make_placement_drawing(model: dict, *, printer_saver: bool = False) -> Drawi
 
     body_total = max(row["end"] for row in body["rounds"])
     belly_offset = body_features["belly_patch"]["lower_edge_offset_from_base_rounds"]
-    body_label(134, f"Body · BOTTOM UP · R1–R{body_total}", True)
+    body_label(214, f"Body · BOTTOM UP · R1–R{body_total}", True)
     body_label(
-        119, f"Open neck: R{body['ending']['round']} · {body['ending']['stitches']} sts"
+        199, f"Open neck: R{body['ending']['round']} · {body['ending']['stitches']} sts"
     )
     body_label(
-        106,
+        186,
         f"Front legs: R{body_features['front_legs']['round_start']}–R{body_features['front_legs']['round_end']} · ~{body_features['front_legs']['gap_stitches']} sts gap",
     )
     body_label(
-        93,
+        173,
         f"Back legs: R{body_features['back_legs']['round_start']}–R{body_features['back_legs']['round_end']}",
     )
-    body_label(80, "Belly patch: optional; lower edge")
-    body_label(68, f"~{belly_offset} rounds above base")
-    body_label(54, "Tail anchor: centre-back")
-    body_label(41, "above last increase round")
+    body_label(160, "Belly patch: optional; lower edge")
+    body_label(148, f"~{belly_offset} rounds above base")
+    body_label(134, "Tail anchor: centre-back")
+    body_label(121, "above last increase round")
+
+    # Head-to-body close-up (written join controls construction)
+    drawing.add(
+        String(
+            246,
+            82,
+            "HEAD-TO-BODY JOIN CLOSE-UP (SCHEMATIC)",
+            textAnchor="middle",
+            fontName="Helvetica-Bold",
+            fontSize=7.2,
+            fillColor=ink,
+        )
+    )
+    head_ring_sts = head["neck_join"]["stitches"]
+    body_ring_sts = body["ending"]["stitches"]
+    # left: head R14 ring
+    head_cx, head_cy = 85, 45
+    drawing.add(Circle(head_cx, head_cy, 20, fillColor=ginger, strokeColor=ink, strokeWidth=1))
+    drawing.add(Circle(head_cx, head_cy, 6, fillColor=panel, strokeColor=ink, strokeWidth=0.7))
+    for i in range(head_ring_sts):
+        ang = math.radians(i * 360 / head_ring_sts - 90)
+        x = head_cx + 20 * math.cos(ang)
+        y = head_cy + 20 * math.sin(ang)
+        drawing.add(Circle(x, y, 1.3, fillColor=ink, strokeColor=ink))
+    drawing.add(String(head_cx, 72, f"Head R{head['neck_join']['round']} ring", textAnchor="middle", fontName="Helvetica-Bold", fontSize=6, fillColor=ink))
+    drawing.add(String(head_cx, 16, f"{head_ring_sts} sts", textAnchor="middle", fontName="Helvetica", fontSize=5.8, fillColor=ink))
+
+    # middle: body R19 opening
+    body_cx, body_cy = 170, 45
+    drawing.add(Circle(body_cx, body_cy, 20, fillColor=oat, strokeColor=ink, strokeWidth=1))
+    for i in range(body_ring_sts):
+        ang = math.radians(i * 360 / body_ring_sts - 90)
+        x = body_cx + 20 * math.cos(ang)
+        y = body_cy + 20 * math.sin(ang)
+        drawing.add(Circle(x, y, 1.3, fillColor=ink, strokeColor=ink))
+    drawing.add(String(body_cx, 72, f"Body R{body['ending']['round']} opening", textAnchor="middle", fontName="Helvetica-Bold", fontSize=6, fillColor=ink))
+    drawing.add(String(body_cx, 16, f"{body_ring_sts} sts", textAnchor="middle", fontName="Helvetica", fontSize=5.8, fillColor=ink))
+
+    # arrows and labels
+    drawing.add(Line(110, 45, 145, 45, strokeColor=accent, strokeWidth=1.2))
+    drawing.add(Line(142, 42, 145, 45, strokeColor=accent, strokeWidth=1.2))
+    drawing.add(Line(142, 48, 145, 45, strokeColor=accent, strokeWidth=1.2))
+    drawing.add(String(128, 50, "align 1:1", textAnchor="middle", fontName="Helvetica", fontSize=5.5, fillColor=ink))
+
+    # right: completed join + direction
+    join_cx, join_cy = 290, 45
+    drawing.add(Circle(join_cx, join_cy, 20, fillColor=ginger, strokeColor=ink, strokeWidth=1))
+    drawing.add(Circle(join_cx, join_cy, 14, fillColor=oat, strokeColor=ink, strokeWidth=0.8))
+    for i in range(18):
+        ang = math.radians(i * 360 / 18 - 90)
+        x1 = join_cx + 14 * math.cos(ang)
+        y1 = join_cy + 14 * math.sin(ang)
+        x2 = join_cx + 20 * math.cos(ang)
+        y2 = join_cy + 20 * math.sin(ang)
+        drawing.add(Line(x1, y1, x2, y2, strokeColor=ink, strokeWidth=0.6))
+    # sewing direction arc arrow
+    for i in range(6):
+        a1 = math.radians(i * 20 - 80)
+        a2 = math.radians((i + 1) * 20 - 80)
+        x1 = join_cx + 24 * math.cos(a1)
+        y1 = join_cy + 24 * math.sin(a1)
+        x2 = join_cx + 24 * math.cos(a2)
+        y2 = join_cy + 24 * math.sin(a2)
+        drawing.add(Line(x1, y1, x2, y2, strokeColor=accent, strokeWidth=1.1))
+    drawing.add(String(join_cx, 72, "Completed join", textAnchor="middle", fontName="Helvetica-Bold", fontSize=6, fillColor=ink))
+    drawing.add(String(join_cx, 16, "ladder stitch x2", textAnchor="middle", fontName="Helvetica", fontSize=5.8, fillColor=ink))
+    drawing.add(String(242, 45, "→", textAnchor="middle", fontName="Helvetica-Bold", fontSize=10, fillColor=accent))
+
+    drawing.add(String(392, 67, "Match 18 body R19 sts to 18 head R14 sts", fontName="Helvetica-Bold", fontSize=5.8, fillColor=ink))
+    drawing.add(String(392, 57, "Pin 4 quarter points, then fill gaps", fontName="Helvetica", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 47, "Ladder stitch full circle", fontName="Helvetica", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 37, "Second reinforcing pass", fontName="Helvetica", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 27, "Do not join to 6-st closure", fontName="Helvetica-Bold", fontSize=5.6, fillColor=accent))
 
     return drawing
 

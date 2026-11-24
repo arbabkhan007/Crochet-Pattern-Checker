@@ -308,7 +308,7 @@ def compile_ns01_pdf_model(source_path: Path = SOURCE) -> dict[str, Any]:
     body_rounds = _round_rows(body_section, "body")
 
     eyes_match = _match(
-        r"Place the (\d+(?:\.\d+)?)\s*mm eyes between Rnds\s+(\d+)\s+and\s+(\d+),\s*(\d+)\s+stitches apart",
+        r"(?:Place|Insert|the)\s+(?:the\s+)?(\d+(?:\.\d+)?)\s*mm eyes (?:go in )?between Rnds\s+(\d+)\s+and\s+(\d+),\s*(\d+)\s+stitches apart",
         text,
         "eye placement",
     )
