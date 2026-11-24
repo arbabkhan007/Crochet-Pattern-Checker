@@ -62,7 +62,7 @@ Work in a continuous spiral unless a piece says otherwise - no joins, no chain 1
 
 ### 1. Body - one no-sew piece
 
-The base is worked up to 48 stitches before the walls begin; the base size sets the whole cat. Stopping at 36 gives a body about 34 mm across that comes out tall and round no matter how firmly it is filled.
+The base is worked up to 48 stitches before the walls begin; the base size sets the whole cat. Stopping at 36 gives a body about 39 mm across that comes out tall and round no matter how firmly it is filled.
 
 | Rnd | Instruction | Sts | Note |
 

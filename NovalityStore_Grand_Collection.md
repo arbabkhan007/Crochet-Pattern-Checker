@@ -3,8 +3,9 @@
 
 Every pattern in this volume has been through the Novality verification pipeline:
 
-1. **Deterministic static-analysis engine** (`src/crochet_checker`) — each corrected master runs
-   **0 errors / 0 warnings**.
+1. **Deterministic static-analysis engine** (`src/crochet_checker`) — the corrected masters run
+   **0 errors / 0 warnings**, except NS-14 which the current engine reports as **2 errors / 4 warnings**
+   (dialect-scope flags on a US+UK dual-format table, plus four unverified-claim warnings).
 2. **Independent stitch arithmetic auditor** (`docs/kit/audit_lib.py`) — every round/row table is
    re-derived from its own instruction text: **0 problems** across all seventeen patterns; the
    handful of prose/continuation rows are carried as explicit expected counts in
@@ -54,7 +55,7 @@ live in each pattern's validation report.
 | NS-11 | No-Sew Christmas Gnome | 0 / 0 | 0 / 0 | 7 | 7 |
 | NS-12 | Bobble Christmas Tree | 0 / 0 | 0 / 0 | 7 | 7 |
 | NS-13 | Christmas Ornament Bundle | 0 / 0 | 0 / 0 | 7 | 7 |
-| NS-14 | Bobble Snowflake Tree Skirt | 0 / 0 | 0 / 0 | 10 | 10 |
+| NS-14 | Bobble Snowflake Tree Skirt | 2 / 4 | 0 / 0 | 10 | 10 |
 | NS-15 | Interchangeable Christmas Wreath | 0 / 0 | 0 / 0 | 11 | 11 |
 | NS-16 | Mini Stocking Advent Garland | 0 / 0 | 0 / 0 | 9 | 9 |
 | NS-17 | Year of the Fire Goat 2027 Plushie Set | 0 / 0 | 0 / 0 | 14 | 14 |
