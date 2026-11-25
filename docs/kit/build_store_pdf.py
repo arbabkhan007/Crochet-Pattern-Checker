@@ -8,12 +8,18 @@ and appendices with an assembly map, count chart, count ladder and live checks.
 
 Usage:  python build_store_pdf.py <spec.py> [--bw]
 """
+import hashlib
 import importlib.util
 import io
 import math
+import os
 import re
+import shutil
 import sys
-from pathlib import Path
+import tempfile
+import urllib.request
+import zipfile
+from pathlib import Path, PurePosixPath
 from xml.sax.saxutils import escape
 
 from reportlab.lib.colors import HexColor, white
@@ -43,6 +49,150 @@ registerFontFamily("DJ", normal="DJ", bold="DJ-B", italic="DJ", boldItalic="DJ-B
 W, H = letter
 M = 0.6 * inch
 CW = W - 2 * M
+
+ASSET_BUNDLE_URL = (
+    "https://github.com/arbabkhan007/Crochet-Pattern-Checker/releases/download/"
+    "novality-pattern-assets-v1/novality-pattern-hero-assets-v1.zip"
+)
+ASSET_BUNDLE_SHA256_URL = (
+    "https://github.com/arbabkhan007/Crochet-Pattern-Checker/releases/download/"
+    "novality-pattern-assets-v1/novality-pattern-hero-assets-v1.sha256"
+)
+ASSET_CACHE_DEFAULT = Path.home() / ".cache" / "novality-pattern-assets-v1"
+ASSET_PATH_RE = re.compile(r"docs/ns[0-9]{2}/assets/[^/]+\.png")
+
+
+def resolve_hero_asset(asset_path):
+    """Resolve a hero image from the checkout, an override, or the release ZIP."""
+    requested_text = os.fspath(asset_path)
+    if not isinstance(requested_text, str) or "\\" in requested_text or "\0" in requested_text:
+        raise ValueError(f"Hero path must be a safe relative path: {asset_path}")
+    requested = Path(requested_text)
+    if ".." in requested.parts:
+        raise ValueError(f"Hero path must not traverse parent directories: {asset_path}")
+    repo_root = KIT.parents[1].resolve()
+    if requested.is_absolute():
+        try:
+            requested = requested.resolve(strict=False).relative_to(repo_root)
+        except ValueError:
+            # Preserve the builder's previous support for an existing absolute
+            # hero file, while only remapping missing assets from this checkout.
+            if requested.is_file():
+                return requested
+            raise ValueError(
+                f"Missing absolute hero path is outside the project checkout: {asset_path}"
+            )
+
+    # Resolve from the project root as well as the current directory. This keeps
+    # builds working when invoked outside the repository root.
+    for candidate in (requested, repo_root / requested):
+        if candidate.is_file():
+            return candidate
+
+    external_root = os.environ.get("NOVALITY_PATTERN_ASSET_DIR")
+    if external_root:
+        external_path = Path(external_root).expanduser() / requested
+        if external_path.is_file():
+            return external_path
+
+    cache_root = Path(
+        os.environ.get("NOVALITY_PATTERN_ASSET_CACHE", ASSET_CACHE_DEFAULT)
+    ).expanduser()
+    cached_path = cache_root / requested
+    marker = cache_root / ".bundle-ready"
+    if marker.is_file():
+        try:
+            installed_hash = marker.read_text(encoding="ascii").strip()
+        except OSError:
+            installed_hash = ""
+        if re.fullmatch(r"[0-9a-fA-F]{64}", installed_hash) and cached_path.is_file():
+            return cached_path
+        marker.unlink(missing_ok=True)
+
+    bundle_url = os.environ.get("NOVALITY_PATTERN_ASSET_BUNDLE_URL", ASSET_BUNDLE_URL)
+    checksum_url = os.environ.get(
+        "NOVALITY_PATTERN_ASSET_SHA256_URL", ASSET_BUNDLE_SHA256_URL
+    )
+    cache_root.mkdir(parents=True, exist_ok=True)
+    archive_path = None
+    try:
+        with urllib.request.urlopen(checksum_url, timeout=30) as response:
+            checksum_text = response.read(4096).decode("ascii").strip()
+        checksum_fields = checksum_text.split()
+        if not checksum_fields:
+            raise ValueError("The release checksum file is empty.")
+        expected_hash = checksum_fields[0]
+        if not re.fullmatch(r"[0-9a-fA-F]{64}", expected_hash):
+            raise ValueError("The release checksum file is not a SHA-256 digest.")
+
+        with tempfile.NamedTemporaryFile(
+            prefix="novality-assets-", suffix=".zip", dir=cache_root, delete=False
+        ) as temp_archive:
+            archive_path = Path(temp_archive.name)
+            with urllib.request.urlopen(bundle_url, timeout=60) as response:
+                shutil.copyfileobj(response, temp_archive)
+
+        digest = hashlib.sha256()
+        with archive_path.open("rb") as archive_file:
+            for chunk in iter(lambda: archive_file.read(1024 * 1024), b""):
+                digest.update(chunk)
+        if digest.hexdigest().lower() != expected_hash.lower():
+            raise ValueError("Downloaded hero-art bundle failed its SHA-256 check.")
+
+        with zipfile.ZipFile(archive_path) as archive:
+            extracted_count = 0
+            for member in archive.infolist():
+                if "\\" in member.filename or "\0" in member.filename:
+                    raise ValueError("Asset bundle contains an unsafe archive path.")
+                path = PurePosixPath(member.filename)
+                if path.is_absolute() or ".." in path.parts:
+                    raise ValueError("Asset bundle contains an unsafe archive path.")
+                if member.is_dir() or not ASSET_PATH_RE.fullmatch(path.as_posix()):
+                    continue
+                extracted_count += 1
+                destination = cache_root.joinpath(*path.parts)
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                temp_path = None
+                try:
+                    with archive.open(member) as source, tempfile.NamedTemporaryFile(
+                        prefix=f".{destination.name}.", dir=destination.parent, delete=False
+                    ) as temp_file:
+                        temp_path = Path(temp_file.name)
+                        shutil.copyfileobj(source, temp_file)
+                    temp_path.replace(destination)
+                finally:
+                    if temp_path is not None:
+                        temp_path.unlink(missing_ok=True)
+            if not extracted_count:
+                raise ValueError("The release ZIP contains no hero PNG assets.")
+
+        marker_temp = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w", encoding="ascii", prefix=".bundle-ready.",
+                dir=cache_root, delete=False
+            ) as marker_file:
+                marker_temp = Path(marker_file.name)
+                marker_file.write(expected_hash.lower() + "\n")
+            marker_temp.replace(marker)
+        finally:
+            if marker_temp is not None:
+                marker_temp.unlink(missing_ok=True)
+
+        if cached_path.is_file():
+            return cached_path
+        raise FileNotFoundError(
+            f"Hero asset {requested} is missing from the downloaded release bundle."
+        )
+    except Exception as exc:
+        raise FileNotFoundError(
+            f"Cannot load hero image {requested}. Confirm the GitHub Release asset is "
+            f"available, or set NOVALITY_PATTERN_ASSET_DIR to an extracted bundle. "
+            f"Details: {exc}"
+        ) from exc
+    finally:
+        if archive_path is not None:
+            archive_path.unlink(missing_ok=True)
 
 
 def load_spec(path):
@@ -457,7 +607,7 @@ def build(spec_path, bw=False):
         st.append(Spacer(1, 10))
         from reportlab.platypus import Image as RLImage
         from PIL import Image as PILImage, ImageOps
-        hero = Path(spec["hero"])
+        hero = resolve_hero_asset(spec["hero"])
         im = PILImage.open(hero).convert("RGB")
         if bw:
             im = ImageOps.autocontrast(im.convert("L"), cutoff=1).convert("RGB")
