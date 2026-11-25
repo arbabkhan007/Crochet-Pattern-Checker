@@ -2,17 +2,24 @@
 
 Reads a corrected master markdown file plus a small SPEC and produces the
 store-edition PDF with the standing furniture: white ink-friendly cover with
-framed illustrative render + disclosure chip, 5-axiom badge, running footer
-stamps, copyright on first and last page, appendices with assembly map,
-count chart, count ladder and the live 5-axiom engine table.
+framed illustrative render + disclosure chip, a linked contents page and PDF
+bookmarks, a fail-closed verification badge, running page stamps, copyright,
+and appendices with an assembly map, count chart, count ladder and live checks.
 
 Usage:  python build_store_pdf.py <spec.py> [--bw]
 """
+import hashlib
 import importlib.util
+import io
 import math
+import os
 import re
+import shutil
 import sys
-from pathlib import Path
+import tempfile
+import urllib.request
+import zipfile
+from pathlib import Path, PurePosixPath
 from xml.sax.saxutils import escape
 
 from reportlab.lib.colors import HexColor, white
@@ -42,6 +49,150 @@ registerFontFamily("DJ", normal="DJ", bold="DJ-B", italic="DJ", boldItalic="DJ-B
 W, H = letter
 M = 0.6 * inch
 CW = W - 2 * M
+
+ASSET_BUNDLE_URL = (
+    "https://github.com/arbabkhan007/Crochet-Pattern-Checker/releases/download/"
+    "novality-pattern-assets-v1/novality-pattern-hero-assets-v1.zip"
+)
+ASSET_BUNDLE_SHA256_URL = (
+    "https://github.com/arbabkhan007/Crochet-Pattern-Checker/releases/download/"
+    "novality-pattern-assets-v1/novality-pattern-hero-assets-v1.sha256"
+)
+ASSET_CACHE_DEFAULT = Path.home() / ".cache" / "novality-pattern-assets-v1"
+ASSET_PATH_RE = re.compile(r"docs/ns[0-9]{2}/assets/[^/]+\.png")
+
+
+def resolve_hero_asset(asset_path):
+    """Resolve a hero image from the checkout, an override, or the release ZIP."""
+    requested_text = os.fspath(asset_path)
+    if not isinstance(requested_text, str) or "\\" in requested_text or "\0" in requested_text:
+        raise ValueError(f"Hero path must be a safe relative path: {asset_path}")
+    requested = Path(requested_text)
+    if ".." in requested.parts:
+        raise ValueError(f"Hero path must not traverse parent directories: {asset_path}")
+    repo_root = KIT.parents[1].resolve()
+    if requested.is_absolute():
+        try:
+            requested = requested.resolve(strict=False).relative_to(repo_root)
+        except ValueError:
+            # Preserve the builder's previous support for an existing absolute
+            # hero file, while only remapping missing assets from this checkout.
+            if requested.is_file():
+                return requested
+            raise ValueError(
+                f"Missing absolute hero path is outside the project checkout: {asset_path}"
+            )
+
+    # Resolve from the project root as well as the current directory. This keeps
+    # builds working when invoked outside the repository root.
+    for candidate in (requested, repo_root / requested):
+        if candidate.is_file():
+            return candidate
+
+    external_root = os.environ.get("NOVALITY_PATTERN_ASSET_DIR")
+    if external_root:
+        external_path = Path(external_root).expanduser() / requested
+        if external_path.is_file():
+            return external_path
+
+    cache_root = Path(
+        os.environ.get("NOVALITY_PATTERN_ASSET_CACHE", ASSET_CACHE_DEFAULT)
+    ).expanduser()
+    cached_path = cache_root / requested
+    marker = cache_root / ".bundle-ready"
+    if marker.is_file():
+        try:
+            installed_hash = marker.read_text(encoding="ascii").strip()
+        except OSError:
+            installed_hash = ""
+        if re.fullmatch(r"[0-9a-fA-F]{64}", installed_hash) and cached_path.is_file():
+            return cached_path
+        marker.unlink(missing_ok=True)
+
+    bundle_url = os.environ.get("NOVALITY_PATTERN_ASSET_BUNDLE_URL", ASSET_BUNDLE_URL)
+    checksum_url = os.environ.get(
+        "NOVALITY_PATTERN_ASSET_SHA256_URL", ASSET_BUNDLE_SHA256_URL
+    )
+    cache_root.mkdir(parents=True, exist_ok=True)
+    archive_path = None
+    try:
+        with urllib.request.urlopen(checksum_url, timeout=30) as response:
+            checksum_text = response.read(4096).decode("ascii").strip()
+        checksum_fields = checksum_text.split()
+        if not checksum_fields:
+            raise ValueError("The release checksum file is empty.")
+        expected_hash = checksum_fields[0]
+        if not re.fullmatch(r"[0-9a-fA-F]{64}", expected_hash):
+            raise ValueError("The release checksum file is not a SHA-256 digest.")
+
+        with tempfile.NamedTemporaryFile(
+            prefix="novality-assets-", suffix=".zip", dir=cache_root, delete=False
+        ) as temp_archive:
+            archive_path = Path(temp_archive.name)
+            with urllib.request.urlopen(bundle_url, timeout=60) as response:
+                shutil.copyfileobj(response, temp_archive)
+
+        digest = hashlib.sha256()
+        with archive_path.open("rb") as archive_file:
+            for chunk in iter(lambda: archive_file.read(1024 * 1024), b""):
+                digest.update(chunk)
+        if digest.hexdigest().lower() != expected_hash.lower():
+            raise ValueError("Downloaded hero-art bundle failed its SHA-256 check.")
+
+        with zipfile.ZipFile(archive_path) as archive:
+            extracted_count = 0
+            for member in archive.infolist():
+                if "\\" in member.filename or "\0" in member.filename:
+                    raise ValueError("Asset bundle contains an unsafe archive path.")
+                path = PurePosixPath(member.filename)
+                if path.is_absolute() or ".." in path.parts:
+                    raise ValueError("Asset bundle contains an unsafe archive path.")
+                if member.is_dir() or not ASSET_PATH_RE.fullmatch(path.as_posix()):
+                    continue
+                extracted_count += 1
+                destination = cache_root.joinpath(*path.parts)
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                temp_path = None
+                try:
+                    with archive.open(member) as source, tempfile.NamedTemporaryFile(
+                        prefix=f".{destination.name}.", dir=destination.parent, delete=False
+                    ) as temp_file:
+                        temp_path = Path(temp_file.name)
+                        shutil.copyfileobj(source, temp_file)
+                    temp_path.replace(destination)
+                finally:
+                    if temp_path is not None:
+                        temp_path.unlink(missing_ok=True)
+            if not extracted_count:
+                raise ValueError("The release ZIP contains no hero PNG assets.")
+
+        marker_temp = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w", encoding="ascii", prefix=".bundle-ready.",
+                dir=cache_root, delete=False
+            ) as marker_file:
+                marker_temp = Path(marker_file.name)
+                marker_file.write(expected_hash.lower() + "\n")
+            marker_temp.replace(marker)
+        finally:
+            if marker_temp is not None:
+                marker_temp.unlink(missing_ok=True)
+
+        if cached_path.is_file():
+            return cached_path
+        raise FileNotFoundError(
+            f"Hero asset {requested} is missing from the downloaded release bundle."
+        )
+    except Exception as exc:
+        raise FileNotFoundError(
+            f"Cannot load hero image {requested}. Confirm the GitHub Release asset is "
+            f"available, or set NOVALITY_PATTERN_ASSET_DIR to an extracted bundle. "
+            f"Details: {exc}"
+        ) from exc
+    finally:
+        if archive_path is not None:
+            archive_path.unlink(missing_ok=True)
 
 
 def load_spec(path):
@@ -76,13 +227,40 @@ def md(s):
 
 
 class Doc(BaseDocTemplate):
-    def __init__(self, path, spec, P, bw, **kw):
+    def __init__(self, path, spec, P, bw, verification_ok=False, **kw):
         super().__init__(path, pagesize=letter, leftMargin=M, rightMargin=M,
                          topMargin=0.62 * inch, bottomMargin=0.62 * inch, **kw)
         self.spec, self.P, self.bw = spec, P, bw
+        self.verification_ok = verification_ok
+        self._heading_index = 0
         self.addPageTemplates([PageTemplate("body",
                             [Frame(M, 0.62 * inch, CW, H - 1.24 * inch, id="F")],
                             onPage=self.furniture)])
+
+    def beforeDocument(self):
+        self._heading_index = 0
+        title = self.spec.get("title", "Crochet Pattern")
+        code = self.spec.get("code", "")
+        self.canv.setTitle(f"{title} | Crochet Pattern")
+        self.canv.setAuthor("Novality Store")
+        self.canv.setSubject(f"US-terms crochet pattern {code}".strip())
+        self.canv.setCreator("Novality Store Premium Pattern Publisher")
+        self.canv.setKeywords("crochet, pattern, amigurumi, Novality Store")
+
+    def afterFlowable(self, flowable):
+        if not isinstance(flowable, Paragraph):
+            return
+        level = {"h2": 0, "h3": 1}.get(getattr(flowable.style, "name", ""))
+        if level is None:
+            return
+        title = flowable.getPlainText().strip()
+        if not title:
+            return
+        self._heading_index += 1
+        key = f"section-{self._heading_index}"
+        self.canv.bookmarkPage(key)
+        self.canv.addOutlineEntry(title, key, level=level, closed=False)
+        self.notify("TOCEntry", (level, title, self.page, key))
 
     def furniture(self, cv, doc):
         P, s = self.P, self.spec
@@ -92,7 +270,7 @@ class Doc(BaseDocTemplate):
             cv.setFillColor(P["FOREST"])
             cv.setFont("DJ-B", 7.6)
             cv.drawString(M, H - 0.34 * inch, f"{s['code']}  ·  {s['title'].upper()}")
-            cv.setFillColor(P["INK"] if not self.bw else P["INK"])
+            cv.setFillColor(P["INK"])
             cv.setFont("DJ", 6.8)
             cv.drawRightString(W - M, H - 0.34 * inch, "Novality Store · US terms")
             cv.setStrokeColor(P["RULE"])
@@ -101,8 +279,9 @@ class Doc(BaseDocTemplate):
         cv.setStrokeColor(P["RULE"])
         cv.setLineWidth(0.8)
         cv.line(M, 0.52 * inch, W - M, 0.52 * inch)
-        stamp = (f"Novality Store | Design Code {s['code']} | Page {pg} of "
-                 f"{doc.total_pages}  ·  \u2713 5-AXIOM VERIFIED")
+        badge = "VERIFIED" if self.verification_ok else "REVIEW REQUIRED"
+        stamp = (f"Novality Store  |  {s['code']}  |  Page {pg} of "
+                 f"{doc.total_pages}  ·  {badge}")
         cv.setFillColor(P["GREY"] if not self.bw else P["INK"])
         cv.setFont("DJ", 7)
         cv.drawCentredString(W / 2, 0.36 * inch, stamp)
@@ -121,13 +300,13 @@ def styles(P, bw):
         "h4": ParagraphStyle("h4", fontName="DJ-B", fontSize=8.6, leading=11,
                              textColor=P["GOLD_DK"] if not bw else HexColor("#000000"),
                              spaceBefore=6, spaceAfter=1),
-        "body": ParagraphStyle("body", fontName="DJ", fontSize=8.2, leading=10.6,
+        "body": ParagraphStyle("body", fontName="DJ", fontSize=8.6, leading=11.5,
                                textColor=ink, alignment=TA_JUSTIFY, spaceAfter=4),
-        "bullet": ParagraphStyle("bullet", fontName="DJ", fontSize=8.2, leading=10.6,
+        "bullet": ParagraphStyle("bullet", fontName="DJ", fontSize=8.6, leading=11.5,
                                  textColor=ink, leftIndent=10, spaceAfter=2.5),
-        "cell": ParagraphStyle("cell", fontName="DJ", fontSize=7.4, leading=9.4, textColor=ink),
-        "cellb": ParagraphStyle("cellb", fontName="DJ-B", fontSize=7.4, leading=9.4, textColor=ink),
-        "head": ParagraphStyle("head", fontName="DJ-B", fontSize=7.4, leading=9.4,
+        "cell": ParagraphStyle("cell", fontName="DJ", fontSize=7.7, leading=10, textColor=ink),
+        "cellb": ParagraphStyle("cellb", fontName="DJ-B", fontSize=7.7, leading=10, textColor=ink),
+        "head": ParagraphStyle("head", fontName="DJ-B", fontSize=7.7, leading=10,
                                textColor=white if not bw else HexColor("#000000"),
                                alignment=TA_CENTER),
         "cap": ParagraphStyle("cap", fontName="DJ", fontSize=6.8, leading=8.6,
@@ -239,7 +418,8 @@ class ComponentMap(Flowable):
             c.setFillColor(HexColor("#FFFFFF") if self.bw else HexColor(self.P["FOREST"]))
             c.rect(x, y + 0.73 * inch, bw_, 0.22 * inch, fill=1, stroke=0)
             if self.bw:
-                c.setStrokeColor(HexColor("#333333")); c.setLineWidth(0.5)
+                c.setStrokeColor(HexColor("#333333"))
+                c.setLineWidth(0.5)
                 c.line(x, y + 0.73 * inch, x + bw_, y + 0.73 * inch)
                 c.setFillColor(HexColor("#000000"))
             else:
@@ -391,8 +571,7 @@ def build(spec_path, bw=False):
     S = styles(P, bw)
     out = Path(spec["out_bw"] if bw else spec["out"])
 
-    probs, _unp = audit_lib.audit_tables(src)
-    MANIFOLD_OK = not probs
+    probs, unparsed = audit_lib.audit_tables(src)
     try:
         from crochet_checker.verification import stages as _st
         AX = {"Domain Isolation": len(_st.domain_isolation(src)),
@@ -400,42 +579,49 @@ def build(spec_path, bw=False):
               "Open Boundaries": len(_st.open_boundary(src)),
               "Gauge Bounding": len(_st.gauge_band(src))}
     except Exception:
-        AX = {"Domain Isolation": 0, "Edge Lineage": 0, "Open Boundaries": 0,
-              "Gauge Bounding": 0}
+        AX = None
+    verification_ok = not probs and not unparsed and AX is not None and not any(AX.values())
 
     def story():
         st = []
         # ---------------- cover
         st.append(Spacer(1, 4))
-        hdr = Table([[Paragraph(f"<b>NOVALITY STORE</b>", ParagraphStyle(
-                        "cv", fontName="DS-B", fontSize=13, textColor=P["FOREST"] if not bw
+        hdr = Table([[Paragraph("<b>NOVALITY STORE</b>", ParagraphStyle(
+                        "cv", fontName="DS-B", fontSize=12.2, textColor=P["FOREST"] if not bw
                         else HexColor("#000000"))),
                       Paragraph("· Novality Crochet Studio imprint", S["small"]),
                       Paragraph(f"<b>DESIGN CODE {spec['code'].replace('NS-', 'NS ')}</b>",
-                                ParagraphStyle("cvr", fontName="DJ-B", fontSize=9,
+                                ParagraphStyle("cvr", fontName="DJ-B", fontSize=8.5,
                                                textColor=P["INK"], alignment=2))]],
-                    colWidths=[1.7 * inch, CW - 3.3 * inch, 1.6 * inch])
+                    colWidths=[2.0 * inch, CW - 3.9 * inch, 1.9 * inch])
         hdr.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                                 ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                                 ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-                                 ("LINEBELOW", (0, 0), (-1, -1), 1.6,
-                                  HexColor(P["FOREST"]) if not bw else HexColor("#000000"))]))
+                                 ("BACKGROUND", (0, 0), (-1, -1),
+                                  HexColor(P["GREEN_ROW"]) if not bw else HexColor("#FFFFFF")),
+                                 ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                                 ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                                 ("TOPPADDING", (0, 0), (-1, -1), 5),
+                                 ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+                                 ("LINEBELOW", (0, 0), (-1, -1), 1.5,
+                                  HexColor(P["GOLD"]) if not bw else HexColor("#000000"))]))
         st.append(hdr)
         st.append(Spacer(1, 10))
         from reportlab.platypus import Image as RLImage
         from PIL import Image as PILImage, ImageOps
-        hero = Path(spec["hero"])
+        hero = resolve_hero_asset(spec["hero"])
         im = PILImage.open(hero).convert("RGB")
         if bw:
             im = ImageOps.autocontrast(im.convert("L"), cutoff=1).convert("RGB")
-        tw, th = CW, 3.05 * inch
+        tw, th = CW, 3.45 * inch
         ratio = min(tw / im.width, th / im.height)
         iw, ih = im.width * ratio, im.height * ratio
-        tmp = hero.with_suffix(".bw.png") if bw else hero
         if bw:
-            im.save(tmp)
-        img = RLImage(str(tmp), width=iw, height=ih)
-        frame = Table([[img]], colWidths=[CW], rowHeights=[3.15 * inch])
+            hero_image = io.BytesIO()
+            im.save(hero_image, format="PNG")
+            hero_image.seek(0)
+            img = RLImage(hero_image, width=iw, height=ih)
+        else:
+            img = RLImage(str(hero), width=iw, height=ih)
+        frame = Table([[img]], colWidths=[CW], rowHeights=[3.55 * inch])
         frame.setStyle(TableStyle([
             ("ALIGN", (0, 0), (-1, -1), "CENTER"), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
             ("BOX", (0, 0), (-1, -1), 1.1, HexColor(P["FOREST"]) if not bw else HexColor("#333333")),
@@ -456,7 +642,7 @@ def build(spec_path, bw=False):
         st.append(chip)
         st.append(Spacer(1, 0.34 * inch))
         st.append(Paragraph(md(spec["title"]), ParagraphStyle(
-            "t", fontName="DS-B", fontSize=27, leading=30,
+            "t", fontName="DS-B", fontSize=30, leading=33,
             textColor=P["FOREST_DK"] if not bw else HexColor("#000000"))))
         st.append(Paragraph(md(spec["subtitle"]), ParagraphStyle(
             "st", fontName="DJ", fontSize=9.4, leading=12.5, textColor=P["INK"])))
@@ -465,12 +651,16 @@ def build(spec_path, bw=False):
             "tg", fontName="DJ-B", fontSize=7.8, leading=10, textColor=P["GOLD_DK"] if not bw
             else HexColor("#000000"))))
         st.append(Spacer(1, 6))
-        chips = [Paragraph("<b>&#10003; 5-AXIOM MATHEMATICALLY VERIFIED</b>",
-                           ParagraphStyle("bd", fontName="DJ-B", fontSize=8, textColor=P["INK"]))]
+        badge_label = ("✓ 5-AXIOM CHECKS PASSED" if verification_ok
+                       else "REVIEW REQUIRED")
+        badge_color = ("#000000" if bw else
+                       (P["FOREST"] if verification_ok else P["BERRY"]))
+        chips = [Paragraph(f"<b>{md(badge_label)}</b>",
+                           ParagraphStyle("bd", fontName="DJ-B", fontSize=7.7,
+                                          textColor=HexColor(badge_color)))]
         for c in spec["chips"]:
             chips.append(Paragraph(f"<b>{md(c)}</b>", ParagraphStyle(
                 "ch", fontName="DJ-B", fontSize=8, textColor=P["INK"], alignment=TA_CENTER)))
-        row = [[ch] for ch in chips]
         widths = [pdfmetrics.stringWidth(c.text.replace("<b>", "").replace("</b>", ""),
                                          "DJ-B", 8) + 18 for c in chips]
         tblchips = Table([chips], colWidths=widths)
@@ -537,7 +727,8 @@ def build(spec_path, bw=False):
                             ParagraphStyle("cp", fontName="DJ", fontSize=7.4, textColor=P["INK"],
                                            alignment=TA_CENTER)))
         st.append(Paragraph("Personal &amp; small-batch finished-item licence · Design Code "
-                            f"{spec['code']} · pattern text machine-verified (crochet-check v1.0.0)",
+                            f"{spec['code']} · Independent checks: "
+                            f"{'PASS' if verification_ok else 'REVIEW REQUIRED'}",
                             ParagraphStyle("cp2", fontName="DJ", fontSize=6.8,
                                            textColor=P["GREY"] if not bw else P["INK"],
                                            alignment=TA_CENTER)))
@@ -546,6 +737,33 @@ def build(spec_path, bw=False):
                             ParagraphStyle("cp3", fontName="DJ", fontSize=6.8,
                                            textColor=P["GREY"] if not bw else P["INK"],
                                            alignment=TA_CENTER)))
+        st.append(PageBreak())
+        st.append(Paragraph("A GUIDE TO YOUR PATTERN", ParagraphStyle(
+            "roadmap-kicker", fontName="DJ-B", fontSize=7.4, leading=10,
+            textColor=P["GOLD_DK"] if not bw else HexColor("#222222"),
+            spaceAfter=3)))
+        st.append(Paragraph("Inside this pattern", ParagraphStyle(
+            "roadmap-title", fontName="DS-B", fontSize=24, leading=28,
+            textColor=P["FOREST_DK"] if not bw else HexColor("#000000"),
+            spaceAfter=3)))
+        st.append(Paragraph("Use the page numbers below or your reader’s bookmarks to jump to a section.",
+                            ParagraphStyle("roadmap-note", fontName="DJ", fontSize=7.6,
+                                           leading=10, textColor=P["GREY"] if not bw
+                                           else HexColor("#222222"), spaceAfter=4)))
+        st.append(rule(P, bw, 1.4))
+        st.append(Spacer(1, 8))
+        toc = TableOfContents()
+        toc.levelStyles = [
+            ParagraphStyle("TOCLevel0", fontName="DJ-B", fontSize=9.1, leading=14,
+                           textColor=P["INK"] if not bw else HexColor("#000000"),
+                           spaceBefore=3),
+            ParagraphStyle("TOCLevel1", fontName="DJ", fontSize=8.1, leading=11.5,
+                           leftIndent=16,
+                           textColor=P["GREY"] if not bw else HexColor("#222222")),
+        ]
+        toc.dotsMinLevel = 0
+        st.append(toc)
+        st.append(PageBreak())
         # ---------------- body sections
         skip_until_terms = False
         for kind, payload in blocks:
@@ -607,43 +825,63 @@ def build(spec_path, bw=False):
         st.append(PageBreak())
         st += section_title("Appendix B - Count Ladder & Verification Summary", S, P, bw)
         half = math.ceil(len(counts) / 2)
-        for a, b in ((0, half), (half, len(counts))):
-            if a >= b:
-                continue
-            data = [[Paragraph("Rnd", S["head"]), Paragraph("Sts", S["head"])]]
-            if bw:
-                pass
-            for lab, v in zip(labels[a:b], counts[a:b]):
-                data.append([Paragraph(md(lab), S["cell"]), Paragraph(str(v), S["cell"])])
-            t = Table(data, colWidths=[0.7 * inch, 0.6 * inch])
-            tst = [("GRID", (0, 0), (-1, -1), 0.4, HexColor(P["RULE"])),
-                   ("BACKGROUND", (0, 0), (-1, 0), HexColor(P["FOREST"]) if not bw
-                    else HexColor("#FFFFFF")),
-                   ("TOPPADDING", (0, 0), (-1, -1), 2.5),
-                   ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5)]
-            if bw:
-                tst.append(("LINEBELOW", (0, 0), (-1, 0), 0.8, HexColor("#333333")))
-            t.setStyle(TableStyle(tst))
-            t.hAlign = "LEFT" if a == 0 else "RIGHT"
-            st.append(t)
-            st.append(Spacer(1, 4))
-        st.append(callout("Verification summary",
-                          f"Every round count in this pattern was re-derived from its own "
-                          f"instructions by an independent auditor "
-                          f"({'PASS' if MANIFOLD_OK else 'FAIL'}: {len(counts)} ladder rows, "
-                          f"0 mismatches) and by the deterministic static-analysis engine "
-                          f"crochet-check v1.0.0. No count below is sampled or hand-checked.",
-                          S, P, bw))
+        ladder_data = [[Paragraph("Rnd", S["head"]), Paragraph("Sts", S["head"]),
+                        Paragraph("Rnd", S["head"]), Paragraph("Sts", S["head"])]]
+        for i in range(half):
+            row = []
+            for j in (i, i + half):
+                if j < len(counts) and j < len(labels):
+                    row.extend([Paragraph(md(labels[j]), S["cell"]),
+                                Paragraph(str(counts[j]), S["cell"])])
+                else:
+                    row.extend(["", ""])
+            ladder_data.append(row)
+        ladder = Table(ladder_data,
+                       colWidths=[0.7 * inch, 0.6 * inch, 0.7 * inch, 0.6 * inch],
+                       repeatRows=1)
+        ladder_style = [("GRID", (0, 0), (-1, -1), 0.4, HexColor(P["RULE"])),
+                        ("BACKGROUND", (0, 0), (-1, 0), HexColor(P["FOREST"]) if not bw
+                         else HexColor("#FFFFFF")),
+                        ("TOPPADDING", (0, 0), (-1, -1), 3),
+                        ("BOTTOMPADDING", (0, 0), (-1, -1), 3)]
+        if bw:
+            ladder_style.append(("LINEBELOW", (0, 0), (-1, 0), 0.8,
+                                 HexColor("#333333")))
+        for row_index in range(2, len(ladder_data), 2):
+            ladder_style.append(("BACKGROUND", (0, row_index), (-1, row_index),
+                                 HexColor("#F2F2F2") if bw else HexColor(P["CREAM_ROW"])))
+        ladder.setStyle(TableStyle(ladder_style))
+        ladder.hAlign = "CENTER"
+        st.append(ladder)
         st.append(Spacer(1, 6))
-        ax_rows = [["Axiom", "What it guarantees", "Findings"]]
-        ax_rows += [["Domain Isolation", "Pieces keep separate stitch domains",
-                     str(AX["Domain Isolation"])],
-                    ["Edge Lineage", "Every round consumes exactly the previous total",
-                     str(AX["Edge Lineage"])],
-                    ["Open Boundaries", "Open edges are closed or sewn deliberately",
-                     str(AX["Open Boundaries"])],
-                    ["Gauge Bounding", "Hook and gauge band consistent with stated size",
-                     str(AX["Gauge Bounding"])]]
+        audit_status = "PASS" if not probs and not unparsed else "REVIEW REQUIRED"
+        if AX is None:
+            engine_status = "NOT RUN (engine unavailable)"
+            engine_findings = "not reported"
+        else:
+            finding_total = sum(AX.values())
+            engine_status = "PASS" if finding_total == 0 else "REVIEW REQUIRED"
+            finding_word = "finding" if finding_total == 1 else "findings"
+            engine_findings = f"{finding_total} {finding_word} across four checks"
+        mismatch_word = "mismatch" if len(probs) == 1 else "mismatches"
+        unparsed_word = "unparsed row" if len(unparsed) == 1 else "unparsed rows"
+        verification_summary = (
+            f"Independent stitch-table audit: {audit_status} "
+            f"({len(counts)} ladder rows; {len(probs)} {mismatch_word}; "
+            f"{len(unparsed)} {unparsed_word}). Static-analysis engine: "
+            f"{engine_status} ({engine_findings}). A verified badge requires "
+            f"both checks to complete with no findings."
+        )
+        st.append(callout("Verification summary", verification_summary, S, P, bw))
+        st.append(Spacer(1, 6))
+        ax_rows = [["Check", "What it examines", "Findings"]]
+        ax_rows += [[name, description, str(AX[name]) if AX is not None else "not run"]
+                    for name, description in (
+                        ("Domain Isolation", "Pieces keep separate stitch domains"),
+                        ("Edge Lineage", "Each round consumes the prior total"),
+                        ("Open Boundaries", "Open edges are closed or sewn deliberately"),
+                        ("Gauge Bounding", "Hook and gauge band match stated size"),
+                    )]
         at = Table([[Paragraph(md(c), S["head"] if i == 0 else S["cell"])
                      for c in r] for i, r in enumerate(ax_rows)],
                    colWidths=[1.3 * inch, CW - 2.1 * inch, 0.8 * inch])
@@ -667,17 +905,17 @@ def build(spec_path, bw=False):
                                            textColor=P["INK"], alignment=TA_CENTER)))
         return st
 
-    # two-pass for total pages
-    import io
+    # Resolve the contents page and total-page footer in two deterministic passes.
     import pymupdf
+    out.parent.mkdir(parents=True, exist_ok=True)
     buf = io.BytesIO()
-    doc = Doc(buf, spec, P, bw)
+    doc = Doc(buf, spec, P, bw, verification_ok=verification_ok)
     doc.total_pages = 99
-    doc.build(story())
+    doc.multiBuild(story(), maxPasses=5)
     pages = pymupdf.open(stream=buf.getvalue(), filetype="pdf").page_count
-    doc = Doc(str(out), spec, P, bw)
+    doc = Doc(str(out), spec, P, bw, verification_ok=verification_ok)
     doc.total_pages = pages
-    doc.build(story())
+    doc.multiBuild(story(), maxPasses=5)
     print(f"wrote {out} pages: {pages}")
     return pages
 
