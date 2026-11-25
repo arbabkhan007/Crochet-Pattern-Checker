@@ -10,7 +10,7 @@ Three quick decorations from leftover yarn: a stuffed round bauble, a flat-block
 
 ## Safety — read this first
 
-These designs are intended as decorations, not toys. Keep them and their hanging loops out of children’s reach; avoid beads, loose bells and glued additions, secure every loop twice, and make each loop only as long as needed for its intended support. No finished ornament has been shown by Novality Store to comply with ASTM F963, EN 71 or another product-safety regime. A “decoration” label does not override reasonably foreseeable use, so a finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties before supply.
+These designs are intended as decorations, not toys. Keep them and their hanging loops out of children’s reach; avoid beads, loose bells and glued additions, secure every loop twice, and make each loop only as long as needed for its intended support. No finished ornament has been shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another product-safety regime. A “decoration” label does not override reasonably foreseeable use, so a finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties before supply.
 
 ## Materials
 
@@ -111,7 +111,7 @@ Block flat using the fibre-appropriate method in technique 4; let it cool if ste
 - **Star will not lie flat.** It needs blocking, not more tugging. Wet-block cotton. For acrylic, pins alone may not set the shape; follow the yarn label and cautiously steam from above without touching or melting the fibres.
 - **Snowflake arms lean, crowd or buckle.** Confirm the tall stitch is US tr / UK dtr and that each arm has five worked stitches plus two ch-3 side spaces. Both arm-end sl sts share the same ch-5 space: work the first sl st loose, distribute the three tall stitches across the loop, and work the last sl st snug. If the first arm already buckles, remake the lace rounds more loosely or with a slightly larger hook instead of relying on glue or heavy stiffener.
 
-## Colorways
+## Colourways
 
 Snow white  ·  Classic red & white  ·  Gold  ·  Evergreen trio  ·  Frost blue
 
@@ -135,19 +135,19 @@ Follow the yarn and metallic-thread labels. Before publishing a cleaning claim o
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 13.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 13.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is licensed to the purchaser for personal use and for the small-batch sale of finished physical items under the terms below. You may not copy, redistribute, resell, share, translate, reproduce, or claim the pattern itself as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is licensed to the purchaser for personal use and for the small-batch sale of finished physical items under the terms below. You may not copy, redistribute, resell, share, translate, reproduce, or claim the pattern itself as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished ornaments as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to "Novality Store".
+Make as many finished ornaments as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to "Novality Crochet Studio".
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -155,4 +155,4 @@ These are intended as decorations, not toys. Keep ornaments and hanging loops ou
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#NovalityOrnaments** - Tag us in your trees and tables. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#NovalityOrnaments** - Tag us in your trees and tables. Thank you for supporting an independent pattern designer.

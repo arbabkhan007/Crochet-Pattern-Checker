@@ -152,7 +152,7 @@ FO with a tail, stuff very lightly, sew to the top centre over the Rnd 13 openin
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
-| Found. | ch 7 | - | - |
+| Foundation: | ch 7 | - | - |
 | R1 | sc in 2nd ch, 4 sc, 3 sc in last ch; continue along the other side: 4 sc, 2 sc in last ch | (14) | around the chain |
 | R2 | ch 1, turn; 4 sc, inc in each of next 3, 4 sc (last 3 sts of R1 stay unworked - they form the pointed base) | (14) | - |
 | R3 | ch 1, turn; sl st in each st across | (14) | - |
@@ -163,7 +163,7 @@ FO with a tail. The final sl-st row gives a firm rolled edge - sew to the stem b
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
-| Found. | ch 20; from the 2nd ch, sl st in each chain to the end (19 sl st) | (19) | - |
+| Foundation: | ch 20; from the 2nd ch, sl st in each chain to the end (19 sl st) | (19) | - |
 
 FO with a tail. The slip stitches make the chain curl into a tight spiral - wind it once around the stem base and sew the end down (a few chains longer and looser if it will not hold a curl).
 
@@ -211,7 +211,7 @@ Flatten and do not stuff. Sew a pink inner onto each lavender outer, then sew th
 
 | Rnd | Instruction | Sts | Note |
 |---|---|---|---|
-| Found. | ch 13 | - | - |
+| Foundation: | ch 13 | - | - |
 | Row 1 | from the 2nd ch: sc in 4, hdc in 4, dc in 4; ch 1, turn | (12) | - |
 | Row 2 | sc in 3, hdc in 4, dc in 5; ch 1, turn | (12) | - |
 | Row 3 | sl st in first 2, (sc, hdc, dc, picot, dc, hdc, sc) in next st, sl st in next 3, (sc, hdc, picot, hdc, sc) in next st, sl st in next 2, (sc, hdc, picot, hdc, sc) in next st, sl st in last 2 | - | scalloped edge - FO with a 10 in tail |
@@ -245,7 +245,7 @@ Display - Halloween garland: cut 6 ft of jute twine, or chain about 450 in sage 
 - **Hat swamps the ghost.** Stop the brim at Rnd 6, 20 stitches - a wider brim flares past Boo's 27 mm head.
 - **Cannot fit the eye washers.** You closed the piece first. Boo's eyes go in through his open bottom; Bramble's go in after Rnd 8 before the body narrows.
 
-## Colorways
+## Colourways
 
 Classic cream  ·  Pumpkin orange  ·  Bat lavender  ·  Ghostly white  ·  Charcoal  ·  Sage & oat
 
@@ -261,19 +261,19 @@ Follow the labels for every yarn and component used. Before publishing a care cl
 
 ### Copyright & ownership
 
-This crochet pattern set - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 02.
+This crochet pattern set - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 02.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished minis and garlands as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
+Make as many finished minis and garlands as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Crochet Studio”.
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -281,4 +281,4 @@ This pattern has not been tested to a toy-safety standard (ASTM F963 / EN 71) an
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#KawaiiHalloweenSet** - We love seeing your spookies. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#KawaiiHalloweenSet** - We love seeing your spookies. Thank you for supporting an independent pattern designer.

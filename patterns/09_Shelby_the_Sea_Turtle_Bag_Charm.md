@@ -106,7 +106,7 @@ Underside Rnd 8 (head & flippers): 7 sc, (sc, hdc, hdc, sc) in next st, 8 sc, (s
 
 Follow the labels for the yarn, embroidery floss and keyring. Before publishing a care claim or supplying finished charms, clean and dry a complete sample by the proposed method, then inspect for dye transfer, corrosion, distortion, stuffing migration and damage to the ring attachment or seam. Until that sample test passes, recommend wiping the crochet surface with a barely damp cloth, keeping the metal ring as dry as possible, then drying the charm flat. Check the ring, doubled attachment yarn and surrounding shell stitches before each use and after cleaning.
 
-## Colorways
+## Colourways
 
 Original colourway: sage-green shell, cream underside/head/flippers, darker-sage embroidered shell markings and black French-knot eyes. Optional shell variations: teal, mustard or rust; pair each with a clearly contrasting sand, cream or pale-green body.
 
@@ -114,19 +114,19 @@ Original colourway: sage-green shell, cream underside/head/flippers, darker-sage
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 09.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 09.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished charms as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
+Make as many finished charms as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Crochet Studio”.
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -134,4 +134,4 @@ Shelby uses 4 mm safety eyes (French knots recommended at this size) and a metal
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#ShelbyTheSeaTurtle** - We love seeing your makes. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#ShelbyTheSeaTurtle** - We love seeing your makes. Thank you for supporting an independent pattern designer.

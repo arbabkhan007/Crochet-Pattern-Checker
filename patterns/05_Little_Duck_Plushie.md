@@ -135,7 +135,7 @@ The flat orange beak and embroidered eyes - no plastic parts, so a safer seller.
 | Aran / worsted (#4) | 9 - 10 cm |
 | DK / light worsted (#3) | 7.5 - 8.5 cm |
 
-## Colorways
+## Colourways
 
 Original colourway: sunshine-yellow body and wings, tangerine-orange beak, and black embroidered eyes. Optional body-tone variations: buttercream, soft white, pale peach or duck-egg blue; keep the beak visibly contrasting and embroider the face in a dark washable thread.
 
@@ -149,19 +149,19 @@ Follow the actual yarn label and wash-test a finished sample before publishing c
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 05.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 05.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished ducks as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
+Make as many finished ducks as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Crochet Studio”.
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -169,4 +169,4 @@ Eyes are embroidered (no small plastic parts). Finished toys sold for children m
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#LittleDuckPlushie** - We love seeing your ducklings. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#LittleDuckPlushie** - We love seeing your ducklings. Thank you for supporting an independent pattern designer.

@@ -124,7 +124,7 @@ US rounds counts are written by hand below; the wreath grows by LENGTH, so these
 - **Wreath will not hold a circle.** Under-stuffed at the join - add a thin worm of fill through the join stitches, or wrap the join with spare yarn like a bandage.
 - **Poinsettia petals cluster on one side.** Each petal goes into its OWN centre stitch, moving stitch by stitch around the six - not all six into one stitch.
 
-## Colorways
+## Colourways
 
 Classic green & red  ·  Winter white & gold  ·  Berry wreath  ·  Neutral farmhouse green
 
@@ -148,15 +148,15 @@ Follow the labels for every yarn, stuffing, metallic thread and hanging componen
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 15.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 15.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished wreaths as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small quantities with credit to Novality Store.
+Make as many finished wreaths as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small quantities with credit to Novality Crochet Studio.
 
 ### You may not
 
@@ -168,4 +168,4 @@ Home decor item - not a toy. Keep away from open flames; hang securely.
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#NovalityWreath** - swap the decoration, swap the mood. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#NovalityWreath** - swap the decoration, swap the mood. Thank you for supporting an independent pattern designer.

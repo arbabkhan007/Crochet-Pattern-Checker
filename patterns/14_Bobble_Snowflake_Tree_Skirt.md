@@ -167,7 +167,7 @@ Each border repeat consumes six final-round anchors and produces six worked stit
 - **The border does not close:** verify the final total is 168, 276 or 384 and consume exactly six anchors per scallop. Do not improvise a partial shell.
 - **Bobbles stay flat:** keep the five incomplete dc relaxed, close all six loops together and push the bobble to the right side before the next stitch.
 
-## Colorways
+## Colourways
 
 **Original colourway:** forest green MC for R1–R4 and all later non-bobble growth rounds; oat cream CC for each complete bobble round, all 12 optional surface spokes and the scalloped border. Use comparable worsted/aran yarns so colour changes do not alter gauge.
 

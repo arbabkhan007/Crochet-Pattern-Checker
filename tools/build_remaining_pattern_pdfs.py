@@ -833,6 +833,19 @@ def create_graphic_cover(spec: PatternSpec) -> None:
         draw.polygon([(980, 955), (960, 975), (1000, 975)], fill=face_thread)
         draw.rounded_rectangle((848, 1040, 1115, 1094), radius=18, fill=scarlet, outline=darker(scarlet), width=5)
         draw.line((865, 1064, 1098, 1064), fill=darker(scarlet, 1.25), width=6)
+    else:
+        # Generic illustrative fallback for photo-motif specs missing hero assets.
+        accent = colours[3] if len(colours) > 3 else darker(second, 0.85)
+        ellipse((420, 860, 980, 1360), main, 301)
+        ellipse((470, 520, 930, 940), main, 302)
+        ellipse((500, 300, 640, 560), second, 303)
+        ellipse((760, 300, 900, 560), second, 304)
+        if len(colours) > 2:
+            ellipse((575, 700, 825, 860), third, 305)
+        draw.ellipse((610, 640, 635, 665), fill="#222222")
+        draw.ellipse((765, 640, 790, 665), fill="#222222")
+        draw.arc((640, 690, 760, 760), 20, 160, fill="#444444", width=6)
+        draw.rounded_rectangle((560, 1260, 840, 1360), radius=30, fill=accent, outline=darker(accent), width=4)
 
     draw.rounded_rectangle((160, 1540, 1240, 1618), radius=30, fill="#E7ECE7", outline="#76836A", width=3)
     label = "ILLUSTRATIVE CROCHET MOTIF · WRITTEN DIRECTIONS CONTROL"
@@ -950,7 +963,7 @@ def create_maker_map(spec: PatternSpec) -> None:
 
 
 def ensure_visual_assets(spec: PatternSpec) -> None:
-    if spec.motif != "photo":
+    if spec.motif != "photo" or not spec.hero.exists():
         create_graphic_cover(spec)
     if not spec.hero.exists():
         raise FileNotFoundError(f"Missing cover visual for {spec.code}: {spec.hero}")

@@ -12,7 +12,7 @@ A soft standing fir built in one piece: plain rounds, then tier after tier of bo
 
 As written, the contrast-colour bobbles are crocheted into the fabric and the design has no beads or glued decorations. Adding beads, bells or other embellishments can create detachable small parts; do not add them without reassessing the finished item. Stuff firmly and secure every yarn end.
 
-No finished tree has been shown by Novality Store to comply with ASTM F963, EN 71 or another toy-safety regime. Omitting embellishments removes those component hazards but does not establish age suitability or product compliance. Before supply, the finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties in every destination market.
+No finished tree has been shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another toy-safety regime. Omitting embellishments removes those component hazards but does not establish age suitability or product compliance. Before supply, the finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties in every destination market.
 
 ## Materials
 
@@ -111,7 +111,7 @@ Stuffing: only the bottom half needs real fill - a lightly stuffed cone that fle
 - **Tip flops.** Over-stuffed at the top. Take two pinches of stuffing out of the cone tip and re-cinch R26 tightly.
 - **Base will not sit flat.** You skipped the BLO ridge (R9) or worked it loosely. That ridge is the fold - re-press it with a fingernail while shaping.
 
-## Colorways
+## Colourways
 
 Fir green  ·  Sage velvet  ·  Snow white  ·  Crimson berry  ·  Gold-tipped
 
@@ -127,24 +127,24 @@ Follow the labels for every yarn and insert used. A tree containing cardboard is
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 12.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 12.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is licensed to the purchaser for personal use and for the small-batch sale of finished physical items under the terms below. You may not copy, redistribute, resell, share, translate, reproduce, or claim the pattern itself as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is licensed to the purchaser for personal use and for the small-batch sale of finished physical items under the terms below. You may not copy, redistribute, resell, share, translate, reproduce, or claim the pattern itself as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished trees as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to "Novality Store".
+Make as many finished trees as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to "Novality Crochet Studio".
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
-No finished tree has been shown by Novality Store to comply with ASTM F963, EN 71 or another toy-safety regime. Avoid beads, bells and glued decorations unless the altered item is fully reassessed. The finished-item maker or seller is responsible for market-specific assessment and evidence before supply.
+No finished tree has been shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another toy-safety regime. Avoid beads, bells and glued decorations unless the altered item is fully reassessed. The finished-item maker or seller is responsible for market-specific assessment and evidence before supply.
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#NovalityTree** - Show us your forest. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#NovalityTree** - Show us your forest. Thank you for supporting an independent pattern designer.

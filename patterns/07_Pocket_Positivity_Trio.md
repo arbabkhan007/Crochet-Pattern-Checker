@@ -146,7 +146,7 @@ Before you finish, check each toy: Sunny has 9 even petals and a closed brown ce
 
 Use chunky/aran or hold #4 double on a 3.5 mm hook (~4.5 mm per stitch, about 1.3x): Sunny ~3.9 cm, Waddle ~4.9 cm, Spud ~3.5 cm. Stitch counts do not change.
 
-## Colorways
+## Colourways
 
 Original trio: Sunny uses golden-yellow petals with a chocolate-brown centre; Waddle uses a black body, cream chest and golden-yellow beak; Spud uses warm tan. Faces are black. Optional coordinated variations: mustard and cocoa for Sunny, charcoal and oat for Waddle, and russet or sandy beige for Spud.
 
@@ -158,19 +158,19 @@ Sell as adult collectibles, desk companions or keychain charms - not “baby-saf
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 07.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 07.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished toys as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
+Make as many finished toys as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Crochet Studio”.
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -178,4 +178,4 @@ This set uses 5 mm safety eyes (small parts) and is not intended for children un
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#PocketPositivityTrio** - We love seeing your makes. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#PocketPositivityTrio** - We love seeing your makes. Thank you for supporting an independent pattern designer.

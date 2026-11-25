@@ -112,7 +112,7 @@ Joining: mark all 18 stitches of Head Rnd 12. Centre the head over one corner of
 - **Blanket curls / not square.** You skipped the sc border, or missed a (3 dc, ch 2, 3 dc) corner - check all four corners at the end of every round.
 - **Came out too small / head flops.** Tighter than 4.3 mm/dc: go up a hook or add rounds (22 rounds = ~28 cm). Stuff the head firmly and sew the base seam twice.
 
-## Colorways
+## Colourways
 
 Cream  ·  Sage  ·  Dusty pink  ·  Pale grey  ·  Butter yellow
 
@@ -136,19 +136,19 @@ Before publishing a machine-wash, hand-wash or other care claim, clean and fully
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 10.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 10.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished loveys as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
+Make as many finished loveys as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Crochet Studio”.
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -156,4 +156,4 @@ Willow has NO safety eyes, buttons, beads or removable parts - the face is embro
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#WillowTheBunnyLovey** - We love seeing your makes. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#WillowTheBunnyLovey** - We love seeing your makes. Thank you for supporting an independent pattern designer.

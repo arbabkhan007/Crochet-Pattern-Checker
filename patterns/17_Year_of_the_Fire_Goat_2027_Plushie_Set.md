@@ -395,7 +395,7 @@ Complete faces and head accessories while each 12-stitch neck remains open. Pin 
 - **The horns will not curve:** do not insert wire; use the hidden yarn tack across the Rnd-6 bend ridge.
 - **The flame edge has too many peaks:** follow the exact 35-edge-stitch route; it makes 12 orange peaks.
 
-## Colorways
+## Colourways
 
 Original Fire Goat colourway: warm-cream body and ears, light-tan muzzle/inner ears/hooves, espresso-brown horns, scarlet-red sash, burnt-orange flames, golden-yellow flame tips and black embroidered eyes. Optional pink is limited to securely embroidered blush.
 

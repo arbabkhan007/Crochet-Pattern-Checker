@@ -12,7 +12,7 @@ A plump little gnome worked as ONE continuous piece - body, beard, face and hat 
 
 Optional plastic safety eyes can become small parts if an eye, washer or surrounding stitch fails. Lock their washers from the inside BEFORE stuffing and closing, then check each eye and the fabric by hand. An embroidered or plain face removes those plastic components but does not establish age suitability.
 
-No finished gnome has been shown by Novality Store to comply with ASTM F963, EN 71 or another toy-safety regime; do not market one as “baby-safe” or compliant. Before supply, the finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties in every destination market. Stuff firmly and secure every yarn end.
+No finished gnome has been shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another toy-safety regime; do not market one as “baby-safe” or compliant. Before supply, the finished-item maker or seller must determine all applicable classification, assessment, testing, documentation, labelling and traceability duties in every destination market. Stuff firmly and secure every yarn end.
 
 ## Materials
 
@@ -118,7 +118,7 @@ The nose is worked in Rnd 14. One complete plain skin-tone round—Rnd 15—sits
 - **The nose bobble will not pop.** Work the 5 dc loosely and push the bobble toward you as you complete it; finish the round, then nudge it out from the inside while stuffing.
 - **Gnome tips over.** Pack more stuffing into the base and flatten the bottom; the base disc should be noticeably firmer than the hat.
 
-## Colorways
+## Colourways
 
 Santa red  ·  Forest green  ·  Nordic grey  ·  Candy pink  ·  Midnight navy
 
@@ -140,24 +140,24 @@ Follow the labels for every yarn and component used. Before publishing a care cl
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 11.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 11.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is licensed to the purchaser for personal use and for the small-batch sale of finished physical items under the terms below. You may not copy, redistribute, resell, share, translate, reproduce, or claim the pattern itself as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is licensed to the purchaser for personal use and for the small-batch sale of finished physical items under the terms below. You may not copy, redistribute, resell, share, translate, reproduce, or claim the pattern itself as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished gnomes as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to "Novality Store".
+Make as many finished gnomes as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to "Novality Crochet Studio".
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
-No finished gnome has been shown by Novality Store to comply with ASTM F963, EN 71 or another toy-safety regime. If using plastic safety eyes, lock the washers before stuffing and closing; embroidery removes those components but is not proof of overall compliance. The finished-item maker or seller is responsible for market-specific assessment and evidence before supply.
+No finished gnome has been shown by Novality Crochet Studio to comply with ASTM F963, EN 71 or another toy-safety regime. If using plastic safety eyes, lock the washers before stuffing and closing; embroidery removes those components but is not proof of overall compliance. The finished-item maker or seller is responsible for market-specific assessment and evidence before supply.
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#NovalityGnome** - We love seeing gnome gatherings. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#NovalityGnome** - We love seeing gnome gatherings. Thank you for supporting an independent pattern designer.

@@ -180,7 +180,7 @@ Assembly-line production—cuffs first, then legs, heels, pickups and toes—can
 - **The stocking leans:** confirm both heel sides use corresponding gaps and each leg/foot plain round has 20 stitches.
 - **The cuff is too small for the intended item:** change hook only after making a new sample; then remeasure the full stocking and support load.
 
-## Colorways
+## Colourways
 
 Original colourway: classic red MC for leg and foot, snow-white CC for the ribbed cuff, and evergreen AC for heel, toe and hanging loop. All three colours should be similar DK yarns so the gauge remains consistent.
 

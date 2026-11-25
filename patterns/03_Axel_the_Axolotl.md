@@ -180,7 +180,7 @@ Before you sew - lay every component out and check: 1 body, 2 arms, 2 feet, 6 gi
 - **Stuffing shows through.** Go down to a 3.0 mm hook. Loose gauge on a 3.5 mm hook is the usual cause.
 - **Axel will not sit.** Move the feet one round lower and make sure the R23-R26 decreases are centred on the underside, not the back.
 
-## Colorways
+## Colourways
 
 Classic pink  ·  White leucistic  ·  Melanoid black  ·  Mint  ·  Lavender
 
@@ -192,19 +192,19 @@ Follow the labels for every yarn and component used, especially the fuzzy gill y
 
 ### Copyright & ownership
 
-This crochet pattern - including all instructions, stitch counts, photography and design elements - is the original work and intellectual property of Novality Store, designed by Novality Crochet Studio. Design Code NS 03.
+This crochet pattern - including all instructions, stitch counts, editorial layout and design elements - is the original work and intellectual property of Novality Crochet Studio. Design Code NS 03.
 
-© 2026 Novality Store. All rights reserved.
+© 2026 Novality Crochet Studio. All rights reserved.
 
-This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Store.
+This pattern is for personal use only. You may sell finished items made from this pattern, but you may not copy, redistribute, resell, share, translate, reproduce, or claim this pattern as your own. The pattern itself may not be uploaded, reproduced, or distributed in digital or printed form without permission from Novality Crochet Studio.
 
 ### You may
 
-Make as many finished axolotl plushies as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Store”.
+Make as many finished axolotl plushies as you like for yourself, gifts, or charity. Sell physical finished items made from this pattern in small batches, in shops, markets and online, provided credit is given to “Novality Crochet Studio”.
 
 ### You may not
 
-Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Store name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
+Do not resell, share, redistribute, translate, rewrite, publish or upload this digital PDF or its contents in any form. Do not alter, copy or recolor the pattern and claim it as your own. Do not use the Novality Crochet Studio name, logo or photos beyond crediting the pattern. Do not mass-produce finished items commercially without written permission.
 
 ### Safety reminder
 
@@ -212,4 +212,4 @@ This pattern has not been tested to a toy-safety standard such as ASTM F963 or E
 
 ## Happy crocheting!
 
-Tag your makes with **#NovalityStore** and **#AxelTheAxolotl** - We love seeing your makes. Thank you for supporting an independent pattern designer.
+Tag your makes with **#NovalityCrochetStudio** and **#AxelTheAxolotl** - We love seeing your makes. Thank you for supporting an independent pattern designer.
