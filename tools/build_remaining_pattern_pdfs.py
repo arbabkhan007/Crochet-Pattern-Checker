@@ -191,7 +191,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("PALE PINK", "bat ear linings · about 2 g", "#DCA2AD"),
         ),
         "LOCK BOO + BRAMBLE EYES BEFORE CLOSING · EMBROIDER PIP BEFORE STUFFING",
-        "halloween_mini_set_cover.jpg",
+        "ns02_ai_cover.png",
     ),
     PatternSpec(
         3,
@@ -210,7 +210,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("DARK PINK · SMOOTH", "tail fin · about 3 g", "#A94061"),
         ),
         "LOCK EYES + EMBROIDER FACE AFTER RND 9 · BEFORE STUFFING",
-        "axel_axolotl_cover.jpg",
+        "ns03_ai_cover.png",
     ),
     PatternSpec(
         4,
@@ -228,7 +228,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("DARK BROWN", "embroidered face · about 5 g", "#4A3027"),
         ),
         "EMBROIDER FACE AFTER BODY RND 15 · BEFORE DECREASES",
-        "coco_capybara_cover.jpg",
+        "ns04_ai_cover.png",
     ),
     PatternSpec(
         5,
@@ -247,7 +247,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("BLACK", "embroidered eyes", "#292525"),
         ),
         "SEW WINGS AFTER RND 9 · FACE + BEAK AFTER RND 19",
-        "little_duck_cover.jpg",
+        "ns05_ai_cover.png",
     ),
     PatternSpec(
         6,
@@ -267,7 +267,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("BLACK", "eyes + whisker details", "#2D2C2B"),
         ),
         "LOCK EYES + EMBROIDER ALL DETAILS AFTER RND 9",
-        "momo_loaf_cat_cover.jpg",
+        "ns06_ai_cover.png",
     ),
     PatternSpec(
         7,
@@ -288,7 +288,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("WARM TAN", "Spud body", "#B78A5E"),
         ),
         "LOCK OR EMBROIDER EVERY FACE BEFORE DECREASES AND CLOSURE",
-        "pocket_positivity_trio_cover.jpg",
+        "ns07_ai_cover.png",
     ),
     PatternSpec(
         8,
@@ -307,7 +307,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("DARK BROWN", "embroidered nostrils", "#40342F"),
         ),
         "LOCK EYES AFTER RND 8 · MATCH THE 18-TO-18 NECK JOIN",
-        "ember_baby_dragon_cover.jpg",
+        "ns08_ai_cover.png",
     ),
     PatternSpec(
         9,
@@ -327,7 +327,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("BLACK", "French-knot eyes", "#282828"),
         ),
         "JOIN 24 SHELL STS TO 24 EXPOSED LOOPS · SECURE KEYRING BEFORE CLOSING",
-        "shelby_turtle_cover_graphic.png",
+        "ns09_ai_cover.png",
         "turtle",
     ),
     PatternSpec(
@@ -346,7 +346,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("DARK BROWN", "embroidered face", "#4C382F"),
         ),
         "FACE AFTER HEAD RND 10 · SEW ALL 18 MARKED STS TWICE",
-        "willow_lovey_cover_graphic.png",
+        "ns10_ai_cover.png",
         "lovey",
     ),
     PatternSpec(
@@ -367,7 +367,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("DARK BROWN", "optional embroidered eyes", "#3A302C"),
         ),
         "ADD EYES AFTER RND 15 · BEFORE STUFFING AT RND 16",
-        "no_sew_gnome_cover_graphic.png",
+        "ns11_ai_cover.png",
         "gnome",
     ),
     PatternSpec(
@@ -388,7 +388,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("CREAM", "optional contrast bobbles", "#EEE4CD"),
         ),
         "CHANGE TO CONTRAST BEFORE EACH BOBBLE · BASE DISC AFTER RND 9",
-        "bobble_tree_cover_graphic.png",
+        "ns12_ai_cover.png",
         "tree",
     ),
     PatternSpec(
@@ -410,7 +410,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("SILVER", "metallic stripe or loop option", "#A7AAA8"),
         ),
         "COUNT EACH REPEAT · BLOCK THE STAR AND SNOWFLAKE TO SHAPE",
-        "ornament_bundle_cover_graphic.png",
+        "ns13_ai_cover.png",
         "ornaments",
     ),
     PatternSpec(
@@ -429,7 +429,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("OAT CREAM", "CC · bobble rounds, spokes + border", "#E8DEC6"),
         ),
         "12 SEPARATE SPOKES · FINAL COUNTS 168 / 276 / 384 · EXACT 6-ST BORDER REPEATS",
-        "tree_skirt_cover_graphic.png",
+        "ns14_ai_cover.png",
         "skirt",
     ),
     PatternSpec(
@@ -450,7 +450,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("GOLD", "flower centre + bow accent", "#C9A03A"),
         ),
         "MEASURE THE TUBE · KEEP OPENINGS ROUND · JOIN 12 PAIRS",
-        "wreath_cover_graphic.png",
+        "ns15_ai_cover.png",
         "wreath",
     ),
     PatternSpec(
@@ -470,7 +470,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("EVERGREEN", "heel, toe + hanging loop", "#3F6448"),
         ),
         "TURN AFTER HEEL ROW 6 · PICK UP 5 + 10 + 5 + 3 = 23",
-        "mini_stocking_garland_cover_graphic.png",
+        "ns16_ai_cover.png",
         "stockings",
     ),
     PatternSpec(
@@ -496,7 +496,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("SAGE GREEN", "optional crochet leaves", "#66805D"),
         ),
         "MATCH 12 NECK ANCHORS · FLATTEN EACH 8-ST LEG INTO 4 PAIRS",
-        "fire_goat_lamb_cover_graphic.png",
+        "ns17_ai_cover.png",
         "fire_goats",
     ),
 )
@@ -963,6 +963,8 @@ def create_maker_map(spec: PatternSpec) -> None:
 
 
 def ensure_visual_assets(spec: PatternSpec) -> None:
+    if spec.hero.name.endswith("_ai_cover.png") and spec.hero.exists():
+        return  # AI-generated cover supplied for this design; keep it.
     if spec.motif != "photo" or not spec.hero.exists():
         create_graphic_cover(spec)
     if not spec.hero.exists():

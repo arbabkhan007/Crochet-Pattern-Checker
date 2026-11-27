@@ -28,7 +28,7 @@ ASSET_ROOT = (
     if RELEASE_INPUT_CACHE
     else ROOT
 )
-HERO_ASSET = ASSET_ROOT / "assets/patterns/ns01/hamish_cover_concept.png"
+HERO_ASSET = ASSET_ROOT / "assets/patterns/ns01/ns01_ai_cover.png"
 MATERIALS_ASSET = ASSET_ROOT / "assets/patterns/ns01/hamish_materials_concept.png"
 COVER_IMAGE_BOX_MM = (107.0, 195.0)
 MATERIALS_IMAGE_BOX_MM = (160.0, 68.0)
