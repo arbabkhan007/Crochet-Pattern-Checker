@@ -4,13 +4,17 @@
 
 A stuffed spiral tube joined into a ring, dressed for the season with three REMOVABLE decorations: poinsettia, lace snowflake and a gift-bow. Swap them as the holidays change. Mini ornament, standard door and large door sizes.
 
-**FINISHED SIZE**  Mini ornament wreath: 20-24 cm / 8-9.5 in tube, about 6.5-7.5 cm across.  Standard door wreath: 34-38 in (86-97 cm) tube, about 10-12 in (25-30 cm) across.  Large door wreath: 47-52 in (119-132 cm) tube, about 38-42 cm across.  Poinsettia approx. 3-4 in; snowflake approx. 4 in; bow approx. 3-4 in wide.
+**FINISHED SIZE**  Mini ornament wreath: 20-24 cm / 8-9.5 in tube, about 6.5-7.5 cm across.  Standard door wreath: 34-38 in (86-97 cm) tube, about 10.5-12 in (27-31 cm) across.  Large door wreath: 47-52 in (119-132 cm) tube, about 38-42 cm across.  Poinsettia approx. 3-4 in; snowflake approx. 4 in; bow approx. 3-4 in wide.
 
 ---
 
 ## Safety — read this first
 
 Home decor, not a toy. A stuffed wreath is heavier than it looks - hang it on a proper hook, not a suction cup.
+
+## Safety for removable parts
+
+Removable loops, ties, ribbon and any jingle bell can form loops or come loose. Keep finished wreaths and loose decorations out of reach of children under 3 and of pets. Do not hang a finished wreath where a child could pull it or climb to reach it.
 
 ## Materials
 
@@ -41,9 +45,9 @@ Wreath base: continuous spiral rounds (no joins - use a marker). Decorations: jo
 
 2. **Joining the tube** - Keep both openings ROUND and make sure the tube is not twisted. Lay the ends together and sl st through matching stitches of near and far ends across all 12 pairs, then massage the tube into a circle.
 
-3. **Snowflake arm (shared with NS 13)** - Into each ch-5 space: (sl st, ch 3, 3 tr, ch 3, sl st). First sl st loose, last sl st snug so the arm lies flat and stands upright.
+3. **Snowflake arm** - Work one arm into each of the six ch-5 spaces: (sl st, ch 3, 3 tr, ch 3, sl st). Make no extra stitch between arms. First sl st loose, last sl st snug so the arm lies flat and stands upright.
 
-4. **Removable attachments** - Every decoration gets a ch-18 loop so it lifts off the wreath; never sew decorations permanently - interchangeability is the point.
+4. **Removable attachments** - The poinsettia and the snowflake each have a ch-18 loop so they lift off the wreath. The bow is held by its own tie (see the bow section). Never sew decorations permanently - interchangeability is the point.
 
 ## Instructions
 
@@ -57,7 +61,7 @@ Continuous spiral, constant 12 sts. Stuff lightly every 5-8 rounds; keep it bend
 |---|---|---|---|---|
 | - | Ch 12, sl st to first ch to form a ring; place marker | Ch 12, sl st to first ch to form a ring; place marker | - | ring |
 | R1 | Sc in each ch around | Dc in each ch around | (12) | - |
-| R2+ | Sc in each st around until tube measures the target length (see table) | Dc in each st around until tube measures the target length (see table) | (12) | estimate: mini 90-105 rnds / standard 140-160 / large 190-215 - MEASURE the tube |
+| R2+ | Sc in each st around until tube measures the target length (see table) | Dc in each st around until tube measures the target length (see table) | (12) | estimate: standard 140-160 / large 190-215 rnds; mini not yet tested - MEASURE the tube |
 | Join | Sl st through matching sts of both tube ends across all 12 pairs, FO | Sl st through matching sts of both tube ends across all 12 pairs, FO | - | joins 12 near-end + 12 far-end pairs = 12 joins |
 | Loop | Join green at top, ch 20, sl st to same point, FO | Join green at top, ch 20, sl st to same point, FO | - | hanging loop |
 
@@ -98,7 +102,7 @@ Two chain loops, two tails, one little centre band.
 | Loops | With red: ch 24, sl st to first ch (loop 1 - untwisted); ch 24 again, sl st to same base point (loop 2) | With red: ch 24, sl st to first ch (loop 1 - untwisted); ch 24 again, sl st to same base point (loop 2) | - | two 24-ch loops |
 | Tails | Ch 15, sc in 2nd ch from hook and across (14 sc), sl st to bow base; repeat for second tail | Ch 15, dc in 2nd ch from hook and across (14 dc), sl st to bow base; repeat for second tail | (14) | 15 chains make 14 sc, x2 tails |
 | Band | Ch 6, sc in 2nd ch from hook and across (5); rows 2-4: ch 1, turn, sc across (5) | Ch 6, dc in 2nd ch from hook and across (5); rows 2-4: ch 1, turn, dc across (5) | (5) | separate little rectangle: 4 rows of 5; wrap around bow centre, sl st short ends |
-| Tie | Attach one folded 55 cm tie under at least 2 sturdy sts on the finished band back as in technique 4 | Attach one folded 55 cm tie under at least 2 sturdy sts on the finished band back as in technique 4 | - | two tails wrap around tube; tie at back |
+| Tie | Cut one 55 cm length of matching yarn or ribbon. Fold it in half and attach the fold under at least 2 sturdy sts on the finished band back. Use the two loose ends to wrap around the wreath and tie at the back | Cut one 55 cm length of matching yarn or ribbon. Fold it in half and attach the fold under at least 2 sturdy sts on the finished band back. Use the two loose ends to wrap around the wreath and tie at the back | - | two tails wrap around tube; tie at back |
 
 ### 5. Mini wreath ornament (optional)
 
@@ -108,15 +112,15 @@ DK yarn, 3 mm hook, 8-st tube.
 
 | Rnd | US terms | UK terms | Sts | Note |
 |---|---|---|---|---|
-| - | Ch 8 ring; sc in each ch (8); spiral rounds of 8 sc until 20-24 cm; join ends as base; ch 14 hanging loop | Ch 8 ring; dc in each ch (8); spiral rounds of 8 dc until 20-24 cm; join ends as base; ch 14 hanging loop | (8) | constant 8-st tube |
+| - | Ch 8, sl st to first ch to form a ring; sc in each ch around (8); spiral rounds of 8 sc until 20-24 cm; join ends as base; ch 14 hanging loop | Ch 8, sl st to first ch to form a ring; dc in each ch around (8); spiral rounds of 8 dc until 20-24 cm; join ends as base; ch 14 hanging loop | (8) | constant 8-st tube |
 
-US rounds counts are written by hand below; the wreath grows by LENGTH, so these remain reference counts - always measure the tube.
+The wreath grows by LENGTH: stop when the tube reaches 20-24 cm and measure it, rather than counting rounds.
 
 ## Finishing & assembly
 
 - Stuff the tube as you go - after every 5-8 rounds is far easier than stuffing a finished tube.
 - Join the tube LAST: slip stitch across all 12 stitch pairs, then massage it circular on a flat table.
-- Every decoration hangs from a ch-18 loop; wrap loops around one wreath stitch or tie to ribbon - nothing is sewn forever.
+- The poinsettia and snowflake hang from their ch-18 loops; wrap each loop around one wreath stitch or tie it to ribbon. The bow is tied at the back. Nothing is sewn on permanently.
 
 ## Troubleshooting
 
@@ -134,15 +138,15 @@ Classic green & red  ·  Winter white & gold  ·  Berry wreath  ·  Neutral farm
 
 | Wreath | Tube length | Est. rounds | Approx. diameter |
 |---|---|---|---|
-| Mini ornament | 20-24 cm / 8-9.5 in | 90-105 | 6.5-7.5 cm |
-| Standard door | 34-38 in / 86-97 cm | 140-160 | 25-30 cm |
+| Mini ornament | 20-24 cm / 8-9.5 in | not yet tested - measure | 6.5-7.5 cm |
+| Standard door | 34-38 in / 86-97 cm | 140-160 | 27-31 cm |
 | Large door | 47-52 in / 119-132 cm | 190-215 | 38-42 cm |
 
 Rounds are estimates only - measure the tube.
 
 ## Care & storage
 
-Follow the labels for every yarn, stuffing, metallic thread and hanging component used. Before publishing a cleaning claim or supplying finished wreaths, clean and dry a complete sample by the proposed method, then remeasure it and inspect for dye transfer, distortion, stuffing migration, opened tube or decoration joins, and weakened hanging materials. Until that test passes, recommend gentle surface cleaning only. Store fully dry, supported and uncompressed; inspect the hanger, hook, tube seam and every tied decoration before each season and after severe weather.
+Follow the labels for every yarn, stuffing and metallic thread used. Clean by gentle surface wiping only: brush or wipe with a barely damp cloth and dry flat. Store fully dry and uncompressed. Before each season, check the hanging loop, the tube join and every tied decoration.
 
 ## Terms of Use
 

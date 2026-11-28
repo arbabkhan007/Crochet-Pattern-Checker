@@ -447,7 +447,7 @@ SPECS: tuple[PatternSpec, ...] = (
             PaletteEntry("WREATH GREEN", "stuffed tube base · 150–200 g", "#426947"),
             PaletteEntry("POINSETTIA RED", "removable flower", "#B53F39"),
             PaletteEntry("SNOW WHITE", "removable snowflake", "#F1EDE3"),
-            PaletteEntry("GOLD", "flower centre + bow accent", "#C9A03A"),
+            PaletteEntry("YELLOW", "poinsettia centres · optional gold thread", "#C9A03A"),
         ),
         "MEASURE THE TUBE · KEEP OPENINGS ROUND · JOIN 12 PAIRS",
         "ns15_ai_cover.png",
@@ -1550,7 +1550,7 @@ def toc_story(styles: dict[str, ParagraphStyle], fonts: Fonts, *, printer_saver:
         Spacer(1, 5 * mm),
         Paragraph("How to use this pattern", styles["h2"]),
         Paragraph(
-            "Read the complete component before beginning it. Move the marker at the start of every crochet round unless the master says otherwise. Diagrams and illustrations support orientation only; the numbered written directions control construction.",
+            "Read the complete component before beginning it. Move the marker at the start of every crochet round unless the written round says otherwise. Diagrams and illustrations support orientation only; the numbered written directions control construction.",
             styles["callout"],
         ),
     ]
