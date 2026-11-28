@@ -1468,6 +1468,7 @@ def profile_story(
                 "<b>Safety:</b> this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.",
                 styles["callout"],
             ),
+            Spacer(1, 4 * mm),
             Paragraph(
                 f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.",
                 styles["quote"],
@@ -1597,6 +1598,16 @@ def make_table(
     return table
 
 
+def heading_group_leads_to_table(blocks: Sequence[Block], index: int) -> bool:
+    """Whether this heading is followed by a heading group and a table."""
+    next_index = index + 1
+    while next_index < len(blocks) and blocks[next_index].kind == "heading":
+        if str(blocks[next_index].value) == "Happy crocheting!":
+            return False
+        next_index += 1
+    return next_index < len(blocks) and blocks[next_index].kind == "table"
+
+
 def blocks_to_story(
     spec: PatternSpec,
     blocks: Iterable[Block],
@@ -1608,16 +1619,24 @@ def blocks_to_story(
     story: list[Flowable] = []
     current_h2 = ""
     heading_count = 0
-    for block in blocks:
+    blocks = list(blocks)
+    for block_index, block in enumerate(blocks):
         if block.kind == "heading":
             text = str(block.value)
             if text == "Happy crocheting!":
                 break
             if block.level == 1:
                 continue
+            min_space = 0
             if block.level == 2:
                 current_h2 = text
-                story.append(CondPageBreak(42 * mm))
+                min_space = 42 * mm
+            if spec.number == 15 and text == "Care & storage":
+                min_space = 150 * mm
+            if heading_group_leads_to_table(blocks, block_index):
+                min_space = max(min_space, 55 * mm)
+            if min_space:
+                story.append(CondPageBreak(min_space))
             style_key = f"h{min(block.level, 4)}"
             level = max(0, block.level - 2)
             key = f"ns{spec.number:02d}-section-{heading_count}"
@@ -1642,13 +1661,15 @@ def blocks_to_story(
             story.append(Paragraph(inline_markup(str(block.value)), styles["quote"]))
             continue
         if block.kind == "table":
-            story.extend(
-                [
-                    Spacer(1, 2 * mm),
-                    make_table(spec, block.value, styles, available_width, printer_saver=printer_saver),
-                    Spacer(1, 4 * mm),
-                ]
-            )
+            table = make_table(spec, block.value, styles, available_width, printer_saver=printer_saver)
+            if story and isinstance(story[-1], HeadingParagraph):
+                # Keep a section title attached to the table it introduces.
+                # An intervening Spacer would satisfy keepWithNext by itself and
+                # leave a one-row/table heading stranded at the bottom of a page.
+                story.append(table)
+            else:
+                story.extend([Spacer(1, 2 * mm), table])
+            story.append(Spacer(1, 4 * mm))
             continue
         if block.kind == "bullet":
             story.append(Paragraph(inline_markup(str(block.value)), styles["bullet"], bulletText="•"))

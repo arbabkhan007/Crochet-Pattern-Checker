@@ -1667,6 +1667,7 @@ def profile_story(
             "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
             styles["callout"],
         ),
+        Spacer(1, 4 * mm),
         Paragraph(
             f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Cover and materials visuals are illustrative; the written materials, counts and construction directions control.",
             styles["quote"],
@@ -1747,6 +1748,7 @@ def printer_profile_story(
             "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
             styles["callout"],
         ),
+        Spacer(1, 4 * mm),
         Paragraph(
             f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. The written materials, counts and construction directions control.",
             styles["quote"],
@@ -1829,6 +1831,16 @@ def toc_story(
     ]
 
 
+def heading_group_leads_to_table(blocks: Sequence[Block], index: int) -> bool:
+    """Whether this heading is followed by a heading group and a table."""
+    next_index = index + 1
+    while next_index < len(blocks) and blocks[next_index].kind == "heading":
+        if str(blocks[next_index].value) == "Happy crocheting!":
+            return False
+        next_index += 1
+    return next_index < len(blocks) and blocks[next_index].kind == "table"
+
+
 def blocks_to_story(
     blocks: Iterable[Block],
     styles: dict[str, ParagraphStyle],
@@ -1844,16 +1856,21 @@ def blocks_to_story(
     heading_count = 0
     current_h2 = ""
     inserted_assembly = False
-    for block in blocks:
+    blocks = list(blocks)
+    for block_index, block in enumerate(blocks):
         if block.kind == "heading":
             text = str(block.value)
             if text == "Happy crocheting!":
                 break  # Reframed as the intentional branded back cover.
             if block.level == 1:
                 continue  # Represented by the editorial cover.
+            min_space = 42 * mm if block.level == 2 else 0
+            if heading_group_leads_to_table(blocks, block_index):
+                min_space = max(min_space, 55 * mm)
+            if min_space:
+                story.append(CondPageBreak(min_space))
             if block.level == 2:
                 current_h2 = text
-                story.append(CondPageBreak(42 * mm))
             style_key = f"h{min(block.level, 4)}"
             level = max(0, block.level - 2)
             key = f"section-{heading_count}"
@@ -1923,18 +1940,18 @@ def blocks_to_story(
             story.append(Paragraph(inline_markup(str(block.value)), styles["quote"]))
             continue
         if block.kind == "table":
-            story.extend(
-                [
-                    Spacer(1, 2 * mm),
-                    make_table(
-                        block.value,
-                        styles,
-                        available_width,
-                        printer_saver=printer_saver,
-                    ),
-                    Spacer(1, 4 * mm),
-                ]
+            table = make_table(
+                block.value,
+                styles,
+                available_width,
+                printer_saver=printer_saver,
             )
+            if story and isinstance(story[-1], HeadingParagraph):
+                # Keep the heading attached to the table it introduces.
+                story.append(table)
+            else:
+                story.extend([Spacer(1, 2 * mm), table])
+            story.append(Spacer(1, 4 * mm))
             continue
         if block.kind == "bullet":
             story.append(
