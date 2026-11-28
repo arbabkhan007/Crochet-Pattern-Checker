@@ -868,6 +868,23 @@ def component_headings(text: str) -> list[str]:
     return [clean_heading(value) for value in re.findall(r"^###\s+(.+)$", match.group(1), re.MULTILINE)]
 
 
+def wrap_to_pixel_width(draw, text: str, font, max_width: float) -> str:
+    """Greedy word wrap measured in rendered pixels, so labels never cross a card edge."""
+    lines: list[str] = []
+    current = ""
+    for word in text.split():
+        candidate = word if not current else f"{current} {word}"
+        if draw.textlength(candidate, font=font) <= max_width:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return "\n".join(lines)
+
+
 def create_maker_map(spec: PatternSpec) -> None:
     """Create a concise visual route through the source's component sections."""
 
@@ -951,8 +968,9 @@ def create_maker_map(spec: PatternSpec) -> None:
         number_box = draw.textbbox((0, 0), number, font=pil_font(23, bold=True))
         draw.text((x + 61 - (number_box[2] - number_box[0]) / 2, y + 44), number, font=pil_font(23, bold=True), fill="#FFFDF8")
         title = re.sub(r"^\d+[.]\s*|^[A-Z][.]\s*", "", title)
-        wrapped = wrap_words(title, 34)
-        draw.multiline_text((x + 118, y + 27), wrapped, font=pil_font(22, bold=True), fill="#28231F", spacing=8)
+        title_font = pil_font(22, bold=True)
+        wrapped = wrap_to_pixel_width(draw, title, title_font, card_w - 118 - 30)
+        draw.multiline_text((x + 118, y + 27), wrapped, font=title_font, fill="#28231F", spacing=8)
 
     draw.rounded_rectangle((105, 970, 1695, 1040), radius=18, fill="#31473B")
     critical = wrap_words(spec.critical, 92)
@@ -963,10 +981,9 @@ def create_maker_map(spec: PatternSpec) -> None:
 
 
 def ensure_visual_assets(spec: PatternSpec) -> None:
-    if spec.hero.name.endswith("_ai_cover.png") and spec.hero.exists():
-        return  # AI-generated cover supplied for this design; keep it.
-    if spec.motif != "photo" or not spec.hero.exists():
-        create_graphic_cover(spec)
+    ai_cover = spec.hero.name.endswith("_ai_cover.png") and spec.hero.exists()
+    if not ai_cover and (spec.motif != "photo" or not spec.hero.exists()):
+        create_graphic_cover(spec)  # AI-generated covers are kept as supplied.
     if not spec.hero.exists():
         raise FileNotFoundError(f"Missing cover visual for {spec.code}: {spec.hero}")
     create_maker_map(spec)
@@ -1483,6 +1500,7 @@ def profile_story(
                 "<b>Safety:</b> this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.",
                 styles["callout"],
             ),
+            Spacer(1, 6 * mm),
             Paragraph(
                 f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.",
                 styles["quote"],
