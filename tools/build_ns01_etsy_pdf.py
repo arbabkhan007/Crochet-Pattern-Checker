@@ -1746,6 +1746,7 @@ def profile_story(
             "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
             styles["callout"],
         ),
+        Spacer(1, 6 * mm),
         Paragraph(
             f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Cover and materials visuals are illustrative; the written materials, counts and construction directions control.",
             styles["quote"],
@@ -1826,6 +1827,7 @@ def printer_profile_story(
             "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
             styles["callout"],
         ),
+        Spacer(1, 6 * mm),
         Paragraph(
             f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. The written materials, counts and construction directions control.",
             styles["quote"],
