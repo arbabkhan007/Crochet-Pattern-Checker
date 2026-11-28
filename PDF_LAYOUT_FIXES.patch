@@ -1,0 +1,369 @@
+--- a/tools/build_remaining_pattern_pdfs.py
++++ b/tools/build_remaining_pattern_pdfs.py
+@@ -1468,6 +1468,7 @@
+                 "<b>Safety:</b> this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.",
+                 styles["callout"],
+             ),
++            Spacer(1, 4 * mm),
+             Paragraph(
+                 f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Visuals are illustrative; the written materials, counts and construction directions control.",
+                 styles["quote"],
+@@ -1597,6 +1598,16 @@
+     return table
+ 
+ 
++def heading_group_leads_to_table(blocks: Sequence[Block], index: int) -> bool:
++    """Whether this heading is followed by a heading group and a table."""
++    next_index = index + 1
++    while next_index < len(blocks) and blocks[next_index].kind == "heading":
++        if str(blocks[next_index].value) == "Happy crocheting!":
++            return False
++        next_index += 1
++    return next_index < len(blocks) and blocks[next_index].kind == "table"
++
++
+ def blocks_to_story(
+     spec: PatternSpec,
+     blocks: Iterable[Block],
+@@ -1608,16 +1619,24 @@
+     story: list[Flowable] = []
+     current_h2 = ""
+     heading_count = 0
+-    for block in blocks:
++    blocks = list(blocks)
++    for block_index, block in enumerate(blocks):
+         if block.kind == "heading":
+             text = str(block.value)
+             if text == "Happy crocheting!":
+                 break
+             if block.level == 1:
+                 continue
++            min_space = 0
+             if block.level == 2:
+                 current_h2 = text
+-                story.append(CondPageBreak(42 * mm))
++                min_space = 42 * mm
++            if spec.number == 15 and text == "Care & storage":
++                min_space = 150 * mm
++            if heading_group_leads_to_table(blocks, block_index):
++                min_space = max(min_space, 55 * mm)
++            if min_space:
++                story.append(CondPageBreak(min_space))
+             style_key = f"h{min(block.level, 4)}"
+             level = max(0, block.level - 2)
+             key = f"ns{spec.number:02d}-section-{heading_count}"
+@@ -1642,13 +1661,15 @@
+             story.append(Paragraph(inline_markup(str(block.value)), styles["quote"]))
+             continue
+         if block.kind == "table":
+-            story.extend(
+-                [
+-                    Spacer(1, 2 * mm),
+-                    make_table(spec, block.value, styles, available_width, printer_saver=printer_saver),
+-                    Spacer(1, 4 * mm),
+-                ]
+-            )
++            table = make_table(spec, block.value, styles, available_width, printer_saver=printer_saver)
++            if story and isinstance(story[-1], HeadingParagraph):
++                # Keep a section title attached to the table it introduces.
++                # An intervening Spacer would satisfy keepWithNext by itself and
++                # leave a one-row/table heading stranded at the bottom of a page.
++                story.append(table)
++            else:
++                story.extend([Spacer(1, 2 * mm), table])
++            story.append(Spacer(1, 4 * mm))
+             continue
+         if block.kind == "bullet":
+             story.append(Paragraph(inline_markup(str(block.value)), styles["bullet"], bulletText="•"))
+--- a/tools/build_ns01_etsy_pdf.py
++++ b/tools/build_ns01_etsy_pdf.py
+@@ -1667,6 +1667,7 @@
+             "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
+             styles["callout"],
+         ),
++        Spacer(1, 4 * mm),
+         Paragraph(
+             f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. Cover and materials visuals are illustrative; the written materials, counts and construction directions control.",
+             styles["quote"],
+@@ -1747,6 +1748,7 @@
+             "<b>Safety:</b> plastic eyes and attached pieces can become small parts if a component or surrounding fabric fails. This pattern does not claim toy-standard compliance. Follow the full Safety section and obtain the market-specific assessment required for any finished item supplied to another person.",
+             styles["callout"],
+         ),
++        Spacer(1, 4 * mm),
+         Paragraph(
+             f"<b>Copyright notice</b><br/>© 2026 {BRAND}. All rights reserved. Licensed to the purchaser under the Terms of Use in this document. The written materials, counts and construction directions control.",
+             styles["quote"],
+@@ -1829,6 +1831,16 @@
+     ]
+ 
+ 
++def heading_group_leads_to_table(blocks: Sequence[Block], index: int) -> bool:
++    """Whether this heading is followed by a heading group and a table."""
++    next_index = index + 1
++    while next_index < len(blocks) and blocks[next_index].kind == "heading":
++        if str(blocks[next_index].value) == "Happy crocheting!":
++            return False
++        next_index += 1
++    return next_index < len(blocks) and blocks[next_index].kind == "table"
++
++
+ def blocks_to_story(
+     blocks: Iterable[Block],
+     styles: dict[str, ParagraphStyle],
+@@ -1844,16 +1856,21 @@
+     heading_count = 0
+     current_h2 = ""
+     inserted_assembly = False
+-    for block in blocks:
++    blocks = list(blocks)
++    for block_index, block in enumerate(blocks):
+         if block.kind == "heading":
+             text = str(block.value)
+             if text == "Happy crocheting!":
+                 break  # Reframed as the intentional branded back cover.
+             if block.level == 1:
+                 continue  # Represented by the editorial cover.
++            min_space = 42 * mm if block.level == 2 else 0
++            if heading_group_leads_to_table(blocks, block_index):
++                min_space = max(min_space, 55 * mm)
++            if min_space:
++                story.append(CondPageBreak(min_space))
+             if block.level == 2:
+                 current_h2 = text
+-                story.append(CondPageBreak(42 * mm))
+             style_key = f"h{min(block.level, 4)}"
+             level = max(0, block.level - 2)
+             key = f"section-{heading_count}"
+@@ -1923,18 +1940,18 @@
+             story.append(Paragraph(inline_markup(str(block.value)), styles["quote"]))
+             continue
+         if block.kind == "table":
+-            story.extend(
+-                [
+-                    Spacer(1, 2 * mm),
+-                    make_table(
+-                        block.value,
+-                        styles,
+-                        available_width,
+-                        printer_saver=printer_saver,
+-                    ),
+-                    Spacer(1, 4 * mm),
+-                ]
++            table = make_table(
++                block.value,
++                styles,
++                available_width,
++                printer_saver=printer_saver,
+             )
++            if story and isinstance(story[-1], HeadingParagraph):
++                # Keep the heading attached to the table it introduces.
++                story.append(table)
++            else:
++                story.extend([Spacer(1, 2 * mm), table])
++            story.append(Spacer(1, 4 * mm))
+             continue
+         if block.kind == "bullet":
+             story.append(
+--- /dev/null
++++ b/tools/audit_pdf_layouts.py
+@@ -0,0 +1,200 @@
++#!/usr/bin/env python3
++"""Check rendered Novality release PDFs for common layout regressions.
++
++Run after building the NS 01 and NS 02–17 release editions:
++    python tools/audit_pdf_layouts.py
++
++The checks cover text outside page bounds, orphaned source headings at page
++ends, and overlap between the safety and copyright panels on the profile page.
++This is a focused regression audit, not a substitute for a complete visual,
++content, accessibility, or pattern-accuracy review.
++"""
++from __future__ import annotations
++
++import argparse
++import importlib.util
++import re
++import sys
++import unicodedata
++from pathlib import Path
++
++import pymupdf
++
++ROOT = Path(__file__).resolve().parents[1]
++TOOLS = ROOT / "tools"
++sys.path.insert(0, str(TOOLS))
++
++
++def load_builder(name: str, path: Path):
++    spec = importlib.util.spec_from_file_location(name, path)
++    if spec is None or spec.loader is None:
++        raise RuntimeError(f"Cannot load PDF builder: {path}")
++    module = importlib.util.module_from_spec(spec)
++    sys.modules[name] = module
++    spec.loader.exec_module(module)
++    return module
++
++
++remaining = load_builder(
++    "layout_remaining_builder", TOOLS / "build_remaining_pattern_pdfs.py"
++)
++ns01 = load_builder("layout_ns01_builder", TOOLS / "build_ns01_etsy_pdf.py")
++
++
++def normalize(text: str) -> str:
++    text = unicodedata.normalize("NFKC", text).casefold()
++    text = re.sub(r"\s+", " ", text)
++    return re.sub(r"[^\w]+", " ", text).strip()
++
++
++def page_text_blocks(page):
++    blocks = []
++    for block in page.get_text("dict")["blocks"]:
++        if "lines" not in block:
++            continue
++        text = " ".join(
++            span["text"]
++            for line in block["lines"]
++            for span in line["spans"]
++        ).strip()
++        if text:
++            blocks.append((pymupdf.Rect(block["bbox"]), text))
++    return blocks
++
++
++def get_profile_panel_gap(document) -> float:
++    safety = copyright = None
++    for page in document:
++        for text_rect, text in page_text_blocks(page):
++            normalized = normalize(text)
++            if normalized.startswith("safety this pdf does not claim") or normalized.startswith(
++                "safety plastic eyes"
++            ):
++                safety = (page.number, text_rect)
++            if normalized.startswith("copyright notice"):
++                copyright = (page.number, text_rect)
++
++    if safety is None or copyright is None:
++        raise ValueError("Safety and copyright panels were not both found")
++
++    def enclosing_panel(page, text_rect):
++        candidates = [
++            drawing["rect"]
++            for drawing in page.get_drawings()
++            if drawing["rect"].width > 400
++            and drawing["rect"].height > 20
++            and drawing["rect"].contains(text_rect)
++        ]
++        return min(candidates, key=lambda rect: rect.width * rect.height) if candidates else None
++
++    safety_box = enclosing_panel(document[safety[0]], safety[1])
++    copyright_box = enclosing_panel(document[copyright[0]], copyright[1])
++    if safety_box is None or copyright_box is None:
++        raise ValueError("Could not locate the safety/copyright panel borders")
++    return copyright_box.y0 - safety_box.y1
++
++
++def source_headings(source: str, parser, normalizer) -> set[str]:
++    headings = set()
++    for block in parser(normalizer(source)):
++        if (
++            block.kind == "heading"
++            and block.level > 1
++            and str(block.value) != "Happy crocheting!"
++        ):
++            headings.add(normalize(str(block.value)))
++    return headings
++
++
++def audit_pdf(path: Path, headings: set[str]) -> tuple[int, float]:
++    if not path.is_file():
++        raise FileNotFoundError(path)
++
++    document = pymupdf.open(path)
++    out_of_bounds = []
++    orphan_headings = []
++
++    for page in document:
++        for word in page.get_text("words"):
++            x0, y0, x1, y1 = word[:4]
++            if (
++                x0 < -0.3
++                or y0 < -0.3
++                or x1 > page.rect.width + 0.3
++                or y1 > page.rect.height + 0.3
++            ):
++                out_of_bounds.append((page.number + 1, word[4]))
++
++        content = [
++            (rect, text)
++            for rect, text in page_text_blocks(page)
++            if 50 < rect.y0 and rect.y1 < page.rect.height - 35
++        ]
++        content.sort(key=lambda item: (item[0].y1, item[0].x0))
++        if content and normalize(content[-1][1]) in headings:
++            orphan_headings.append((page.number + 1, content[-1][1]))
++
++    gap = get_profile_panel_gap(document)
++    pages = len(document)
++    document.close()
++
++    if gap <= 0:
++        raise ValueError(f"{path.name}: safety/copyright panels overlap by {-gap:.2f} pt")
++    if orphan_headings:
++        raise ValueError(f"{path.name}: page-end heading(s) without following content: {orphan_headings}")
++    if out_of_bounds:
++        raise ValueError(f"{path.name}: text outside page bounds: {out_of_bounds[:3]}")
++    return pages, gap
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument(
++        "--release-dir",
++        type=Path,
++        default=ROOT / "release",
++        help="Directory containing the generated release PDFs (default: ./release)",
++    )
++    args = parser.parse_args()
++    release_dir = args.release_dir.expanduser().resolve()
++
++    results = []
++    for pattern in remaining.SPECS:
++        headings = source_headings(
++            pattern.source.read_text(encoding="utf-8"),
++            remaining.parse_markdown,
++            remaining.normalize_branding,
++        )
++        for edition, output_name in (
++            ("colour", pattern.main_output.name),
++            ("printer-saver", pattern.printer_output.name),
++        ):
++            path = release_dir / output_name
++            pages, gap = audit_pdf(path, headings)
++            results.append((pattern.number, edition, pages, gap))
++
++    ns01_source = (ROOT / "patterns/01_Hamish_the_Highland_Cow.md").read_text(
++        encoding="utf-8"
++    )
++    headings = source_headings(
++        ns01_source, ns01.parse_markdown, ns01.normalize_branding
++    )
++    for edition, name in (
++        ("colour", "NS01_Hamish_the_Highland_Cow_Crochet_Pattern.pdf"),
++        ("printer-saver", "NS01_Hamish_the_Highland_Cow_PRINTER_SAVER.pdf"),
++    ):
++        pages, gap = audit_pdf(release_dir / name, headings)
++        results.append((1, edition, pages, gap))
++
++    print(
++        f"PASS — {len(results)} PDFs; minimum profile-panel gap "
++        f"{min(result[3] for result in results):.2f} pt; "
++        "no orphan headings; no text outside page bounds."
++    )
++    for code, edition, pages, gap in sorted(results):
++        print(f"NS{code:02d} {edition:13} {pages:2} pages  gap {gap:.2f} pt")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
