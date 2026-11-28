@@ -275,7 +275,7 @@ def create_assembly_asset(path: Path, model: dict) -> None:
         )
         draw.multiline_text(
             (x + 128, y + 80),
-            wrap_words(note, 36),
+            wrap_words(note, 28),
             font=pil_font(20),
             fill="#5F5750",
             spacing=7,
@@ -943,11 +943,12 @@ def make_placement_drawing(model: dict, *, printer_saver: bool = False) -> Drawi
     drawing.add(String(join_cx, 16, "ladder stitch x2", textAnchor="middle", fontName="Helvetica", fontSize=5.8, fillColor=ink))
     drawing.add(String(242, 45, "→", textAnchor="middle", fontName="Helvetica-Bold", fontSize=10, fillColor=accent))
 
-    drawing.add(String(392, 67, "Match 18 body R19 sts to 18 head R14 sts", fontName="Helvetica-Bold", fontSize=5.8, fillColor=ink))
-    drawing.add(String(392, 57, "Pin 4 quarter points, then fill gaps", fontName="Helvetica", fontSize=5.6, fillColor=ink))
-    drawing.add(String(392, 47, "Ladder stitch full circle", fontName="Helvetica", fontSize=5.6, fillColor=ink))
-    drawing.add(String(392, 37, "Second reinforcing pass", fontName="Helvetica", fontSize=5.6, fillColor=ink))
-    drawing.add(String(392, 27, "Do not join to 6-st closure", fontName="Helvetica-Bold", fontSize=5.6, fillColor=accent))
+    drawing.add(String(392, 67, f"Match {body_ring_sts} body R{body['ending']['round']} sts", fontName="Helvetica-Bold", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 59, f"to {head_ring_sts} head R{head['neck_join']['round']} sts", fontName="Helvetica-Bold", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 49, "Pin 4 quarter points, then fill gaps", fontName="Helvetica", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 40, "Ladder stitch full circle", fontName="Helvetica", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 31, "Second reinforcing pass", fontName="Helvetica", fontSize=5.6, fillColor=ink))
+    drawing.add(String(392, 22, "Do not join to 6-st closure", fontName="Helvetica-Bold", fontSize=5.6, fillColor=accent))
 
     return drawing
 
