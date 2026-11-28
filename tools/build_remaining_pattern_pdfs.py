@@ -885,6 +885,22 @@ def wrap_to_pixel_width(draw, text: str, font, max_width: float) -> str:
     return "\n".join(lines)
 
 
+def palette_name_lines(spec: "PatternSpec", max_chars: int) -> list[str]:
+    """Pack whole colour names into lines so no colour name is ever split."""
+    lines: list[str] = []
+    current = ""
+    for entry in spec.palette:
+        candidate = entry.name if not current else f"{current} · {entry.name}"
+        if len(candidate) <= max_chars:
+            current = candidate
+        else:
+            lines.append(current)
+            current = entry.name
+    if current:
+        lines.append(current)
+    return lines
+
+
 def create_maker_map(spec: PatternSpec) -> None:
     """Create a concise visual route through the source's component sections."""
 
@@ -1069,7 +1085,7 @@ class CollectionCover(Flowable):
         canvas.setFont(self.fonts.sans_bold, 7.3)
         canvas.drawString(19 * mm, 81 * mm, "ORIGINAL COLOURWAY")
         canvas.setFont(self.fonts.sans, 6.8)
-        palette_lines = wrap_words(spec.palette_summary, 36).splitlines()[:2]
+        palette_lines = palette_name_lines(spec, 36)[:2]
         y = 74.5 * mm
         for line in palette_lines:
             canvas.drawString(19 * mm, y, line)
@@ -1496,6 +1512,7 @@ def profile_story(
                 "Read every component and finishing note before beginning. Mark completed rows, confirm the count at each row end, and stop immediately if your count differs. Complete internal eyes, embroidery, knots and joins while the relevant opening remains accessible.",
                 styles["front_body"],
             ),
+            Spacer(1, 2 * mm),
             Paragraph(
                 "<b>Safety:</b> this PDF does not claim that a finished item meets any toy or consumer-product standard. Follow the full Safety section and obtain every assessment required for the finished item's intended market and use.",
                 styles["callout"],
